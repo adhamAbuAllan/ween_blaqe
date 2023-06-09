@@ -6,14 +6,18 @@ import 'package:get/get_rx/src/rx_typedefs/rx_typedefs.dart';
 import 'package:ween_blaqe/styles/button.dart';
 import 'package:ween_blaqe/styles/show_more_widget/about_apartment_style.dart';
 
-class Alert  {
+class AlertWithTwoBtn{
+  // var  visible = true;
+
   static show(
     BuildContext context,
     String title,
     String message,
       String textOfOkButton,
       String textOfCancelButton,
-  ) {
+      Function onClicked,
+
+      ) {
     showDialog(
         context: context,
         builder: (context) {
@@ -41,20 +45,24 @@ class Alert  {
               ),
             ),
             actions: [
+
               ElevatedButton(
                   onPressed: () {
-                    Get.back();
-                    
+                    onClicked();
+
+
 
                   },style: fullButton,
                   child:  Text(textOfOkButton,
 
                   )),
+              // SizedBox(width: 1,),
+
               OutlinedButton(
                   onPressed: () {
                     Get.back();
                   },style: outlineButton,
-                  child:  Text(textOfCancelButton,
+                  child:  Text(textOfCancelButton
 
                   )),
 

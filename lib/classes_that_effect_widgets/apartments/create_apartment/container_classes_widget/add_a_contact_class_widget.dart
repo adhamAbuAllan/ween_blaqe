@@ -94,7 +94,7 @@ class _AddAcontactState extends State<AddAcontact> {
 
     return  Container(
         margin: EdgeInsets.fromLTRB(10, 2, 10, 10),
-    width: 373,
+    width: double.infinity,
     // height: 140,
     padding: EdgeInsets.fromLTRB(0, 0, 0, 10),
     decoration: BoxDecoration(

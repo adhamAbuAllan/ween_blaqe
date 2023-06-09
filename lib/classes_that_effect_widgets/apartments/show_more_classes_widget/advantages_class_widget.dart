@@ -27,6 +27,10 @@ class _AdvantagesClassWidgetState extends State<AdvantagesClassWidget> {
     features.add(Feature(id: 3, name: "ادوات مطبخ", icon: "assets/images/apartments_images/advantages/cutlery1.png"));
     features.add(Feature(id: 4, name: "مكتب", icon: "assets/images/apartments_images/advantages/desktop.png"));
     features.add(Feature(id: 5, name: "غسلة صحون", icon: "assets/images/apartments_images/advantages/dishes-washer.png"));
+    features.add(Feature(id: 7, name: "طفاية", icon: "assets/images/apartments_images/advantages/fire-extinguisher.png",));
+    features.add(Feature(id: 8, name: "إسعافات أولية", icon: "assets/images/apartments_images/advantages/first-aid-box.png",));
+    features.add(Feature(id: 9, name: "غاز", icon: "assets/images/apartments_images/advantages/gas-stove.png",    ));
+
   }
 
   @override

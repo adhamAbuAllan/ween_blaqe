@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:ween_blaqe/api/advantages.dart';
 
-Widget ShowAllAdvantages(Advantages advantages) {
-  var advantageName = advantages.adv_name;
+Widget showAllAdvantages(Advantage advantages) {
+  var advantageName = advantages.advName;
   var icon = advantages.icon;
   return Row(
     children: [

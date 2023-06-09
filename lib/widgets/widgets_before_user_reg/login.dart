@@ -1,27 +1,25 @@
 import 'dart:convert';
+// import 'dart:html';
 // import 'dart:io';
 // import 'dart:ui';
+import 'package:colorful_safe_area/colorful_safe_area.dart';
 import 'package:flutter/material.dart';
-// import 'package:fluttertoast/fluttertoast.dart';
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
 import 'package:http/http.dart' as http;
-import 'package:shared_preferences/shared_preferences.dart';
+import 'package:ween_blaqe/classes_that_effect_widgets/alirt_class_widget.dart';
 import 'package:ween_blaqe/funcations/route_pages/my_pages_routes.dart';
 import 'package:ween_blaqe/funcations/route_pages/push_routes.dart';
 import 'package:ween_blaqe/widgets/toast_widget.dart';
-// import 'package:ween_blaqe/testing_code/responses_code.dart';
-// import 'package:ween_blaqe/widgets/user/studnet/main_student.dart';
 import '../../main.dart';
 import '../user/studnet/main_student.dart';
 import '/classes_that_effect_widgets/apartments/create_apartment/container_classes_widget/container_input_text_class_widget.dart';
 import 'package:ween_blaqe/styles/button.dart';
-// import 'package:ween_blaqe/widgets/toast_widget.dart';
-// import 'package:ween_blaqe/widgets/user/studnet/account_of_student.dart';
-// import 'package:ween_blaqe/widgets/user/studnet/master_home.dart';
+
 import 'package:ween_blaqe/widgets/widgets_before_user_reg/registration.dart';
-// import 'package:ween_blaqe/styles/text_field_form_style.dart';
-// import 'package:ween_blaqe/widgets/user/studnet/home.dart';
+
 import 'package:ween_blaqe/classes_that_effect_widgets/login/password_container_class_widget.dart';
-// import 'package:ween_blaqe/controller/auth_controller.dart';
+
 //
 //
 // //YOUR INFO
@@ -58,208 +56,267 @@ class _LoginState extends State<Login> {
   TextEditingController passwordController = TextEditingController();
 
   // FocusNode userPhoneFocus = FocusNode();
-  // FocusNode passwordFocus = FocusNode();
+  FocusNode passwordFocus = FocusNode();
   TextEditingController phoneController = TextEditingController();
   String msg = "";
   bool _isvisible = true;
+  bool autoFocus = true;
+  // String errorText = "";
+  //alert box
+  var titleOfAlirt = "بيانات خاطئة";
+  var messageOfAlirt = "رقم الهاتف أو كلمة المرور خاطئة";
+  var textOfOkButton = "موافق";
 
   // late final String numberPhone;
   @override
   // void initState() {
-  //   super.initState();
-  //   WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
-  //     userPhoneFocus.requestFocus();
-  //     FocusScope.of(context).requestFocus();
-  //     phoneController.addListener(() {
-  //       // numberPhone = Session.get(phoneController.text, "");
-  //
-  //     });
-  //   }
-  //   );
+    // super.initState();
+    // WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
+    //   userPhoneFocus.requestFocus();
+    //   FocusScope.of(context).requestFocus();
+  // //     phoneController.addListener(() {
+  // //       // numberPhone = Session.get(phoneController.text, "");
+  // //
+  //     }
+      // );
+    // }
+    // );
   // }
 
   // var loginRes = ResponseLogin();
 
-
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: Colors.grey.shade200,
-      body: SingleChildScrollView(
-        child: Column(
-          children: [
-            //back arrow button
+    return GestureDetector(
+      onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
 
-            //title-nameApp
-            Row(
-              children: const [
-                Padding(
-                  padding: EdgeInsets.fromLTRB(0, 50, 20, 0),
-                  child: Text(
-                    "تسجيل الدخول في",
-                    style: TextStyle(
-                      fontSize: 26.0,
-                      fontFamily: 'IBM',
-                      inherit: true,
+      child: ColorfulSafeArea(
+        color: Colors.orange,
+        child: Scaffold(
+          backgroundColor: Colors.grey.shade200,
+          body: SingleChildScrollView(
+            child: Column(
+              children: [
+                //back arrow button
+                //title-nameApp
+                Row(
+                  children: const [
+                    Padding(
+                      padding: EdgeInsets.fromLTRB(0, 50, 20, 0),
+                      child: Text(
+                        "تسجيل الدخول",
+                        style: TextStyle(
+                          fontSize: 28.0,
+                          fontFamily: 'IBM',
+                          inherit: true,
+                        ),
+                      ),
                     ),
-                  ),
+                    Expanded(child: Text("")),
+                  ],
                 ),
-                Expanded(child: Text("")),
-
-              ],
-            ),
-            //nameApp
-            Row(
-              children: const [
+                //nameApp
+                Row(
+                  children:  [
+                    Padding(
+                      padding: EdgeInsets.fromLTRB(0, 0, 20, 30),
+                      child: Row(
+                        children: const [
+                          Text(
+                            "في ",
+                            style: TextStyle(
+                                fontSize: 28,
+                                fontFamily: 'IBM',
+                                inherit: true,
+                                fontWeight: FontWeight.bold),
+                          ),
+                          Text(
+                            "وين بلاقي",
+                            style: TextStyle(
+                                fontSize: 28,
+                                fontFamily: 'IBM',
+                                inherit: true,
+                                color: Colors.orange,
+                                fontWeight: FontWeight.bold),
+                          ),
+                        ],
+                      ),
+                    ),
+                    Expanded(child: Text("")),
+                  ],
+                ),
+                //phone container
                 Padding(
-                  padding: EdgeInsets.fromLTRB(0, 0, 20, 30),
-                  child: Text(
-                    "وين بلاقي",
-                    style: TextStyle(
-                        fontSize: 28,
-                        fontFamily: 'IBM',
-                        inherit: true,
-                        color: Colors.orange,
-                        fontWeight: FontWeight.bold),
+                  padding: const EdgeInsets.fromLTRB(0, 0, 0, 10),
+                  child: ContainerInputTextClassWidget(
+                      title: phoneText,
+                      controller: phoneController,
+                      // errorText:"asdf" ,
+                      hintInput: hintPhone,
+                      // textInputAction: TextInputAction.next,
+                      autoFocus: autoFocus,
+                      // value: "123",
+                      // autoFocus: autoFocus,
+                      inputType: phone,
+                      // focusNode: userPhoneFocus,
+                      // onFieldSubmitted: (m){
+                      //   FocusScope.of(context).requestFocus(passwordFocus);
+                      // }
+                    ),
+                ),
+                //password container
+                PasswordContainerClassWidget(
+                  inputType: password,
+                  // isVisible: true,
+                  isObscure: true,
+
+
+                  hintInput: hintPassword,
+                  title: password_text,
+
+                  controller: passwordController,
+                  focusNode: passwordFocus,
+                  //   onFieldSubmitted: (value){
+                  //   FocusScope.of(context).unfocus();
+                  // }
+                ), //buttons
+                //login button
+                Padding(
+                  padding: const EdgeInsets.fromLTRB(20, 50, 20, 10),
+                  child: SizedBox(
+                    width: double.infinity,
+                    height: 55,
+                    child: ElevatedButton(
+                        style: fullButton,
+                        onPressed: () {
+                          if(phoneController.text.isEmpty){
+                            // autoFocus = true;
+                            // errorText = "يرجى ادخال رقم الهاتف";
+                            NormalAlert.show(context, "حقل فارغ",
+                                "يرجى تعبئة حقل رقم الهاتف",
+                                "حسنًا");
+                            return;
+                          }
+                          if(passwordController.text.isEmpty){
+                            NormalAlert.show(context, "حقل فارغ",
+                                "يرجى تعبئة حقل كلمة المرور",
+                                "حسنًا");
+                            return;
+                          }
+
+                          // setState(() {
+                            // msg = "Loading..";
+                            go(phoneController.text, passwordController.text);
+                          // });
+                          // go(NewSession.get(phoneController.text, ""),
+                          //    NewSession.get( passwordController.text, ""));
+                          // Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (ctx) {
+                          //   return Main();
+                          // }));
+                          // Navigator.of(context).push(
+                          //   MaterialPageRoute(builder: (ctx){
+                          //     return Main();
+                          //   },settings: RouteSettings(
+                          //     name:MyPagesRoutes.main
+                          //   )
+                          //   )
+                          // );
+                        },
+                        child: const Text("تسجيل الدخول")),
                   ),
                 ),
-                Expanded(child: Text("")),
+                //signup button
+                Padding(
+                  padding: const EdgeInsets.fromLTRB(20, 10, 20, 10),
+                  child: SizedBox(
+                    width: double.infinity,
+                    height: 55,
+                    child: OutlinedButton(
+                        onPressed: () {
+                          Navigator.of(context).push(
+                            MaterialPageRoute(builder: (context) {
+                              return Register();
+                            }),
+                          );
+                        },
+                        style: outlineButton,
+                        child: const Text("تسجيل حساب جديد")),
+                  ),
+                ),
+                //forget password?
+                Padding(
+                  padding: const EdgeInsets.fromLTRB(0, 30, 0, 0),
+                  child: TextButton(
 
+                    child: const Text("نسيت كلمة المرور؟", style: TextStyle(
+                        color: Colors.blue, fontWeight: FontWeight.bold
+                        , fontFamily: 'IBM'
+                    ),),
+                    onPressed: () {},),
+                ),
+                SizedBox(height: 50,),
+                TextButton(
+                    onPressed: (){
+                      myPushName(context, MyPagesRoutes.screensWillAddFuture);
+                    }
+                    ,child:Text("شاشات سيتم إضافتها مستقبلاً",style: TextStyle(
+                  fontFamily: "IBM",
+                  fontSize: 14,
+                  color:Colors.grey.shade400,
+                ),
+                )),
               ],
             ),
-            //phone
-            Padding(
-              padding: const EdgeInsets.fromLTRB(0, 0, 0, 10),
-              child: ContainerInputTextClassWidget(title: phoneText,
-                  controller: phoneController,
-                  hintInput: hintPhone,
-                  // value: "123",
-
-                  inputType: phone,
-                  // focusNode: userPhoneFocus,
-                  onFieldSubmitted: (value) {
-                    // passwordFocus.requestFocus();
-
-                  }),
-            ),
-            PasswordContainerClassWidget(inputType: password,
-              hintInput: hintPassword,
-              title: password_text,
-              controller: passwordController,
-              // focusNode: passwordFocus,
-              //   onFieldSubmitted: (value){
-              //   FocusScope.of(context).unfocus();
-              //
-              // }
-            ), //buttons
-            //login
-            Padding(
-              padding: const EdgeInsets.fromLTRB(0, 50, 0, 10),
-              child: SizedBox(
-                width: 350,
-                height: 55,
-                child: ElevatedButton(
-
-
-                    style: fullButton,
-                    onPressed: () {
-                      setState(() {
-                        msg = "Loading..";
-
-                      });
-                      go("123", "123@123");
-                      // Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (ctx) {
-                      //   return Main();
-                      // }));
-                      Navigator.of(context).push(
-                        MaterialPageRoute(builder: (ctx){
-                          return Main();
-                        },settings: RouteSettings(
-                          name:MyPagesRoutes.main
-                        )
-                        )
-                      );
-
-
-                    },
-                    child: const Text("تسجيل الدخول")),
-              ),
-            ),
-            //signup
-            Padding(
-              padding: const EdgeInsets.all(10.0),
-              child: SizedBox(
-                width: 350,
-                height: 55,
-                child: OutlinedButton(
-                    onPressed: () {
-                      Navigator.of(context).push(
-                        MaterialPageRoute(builder: (context) {
-                          return Register();
-                        }),
-                      );
-                    },
-                    style: outlineButton,
-                    child: const Text("تسجيل حساب جديد")),
-              ),
-            ),
-            //forget password?
-            Padding(
-              padding: const EdgeInsets.fromLTRB(0, 30, 0, 0),
-              child: TextButton(
-
-                child: const Text("نسيت كلمة المرور؟", style: TextStyle(
-                    color: Colors.blue, fontWeight: FontWeight.bold
-                    , fontFamily: 'IBM'
-                ),),
-                onPressed: () {},),
-            )
-          ],
+          ),
         ),
       ),
     );
   }
-
   go(String phone, String password) async {
     var url = Uri.parse(ServerLocalDiv.userLogin);
-
-      // print(msg);
       var response = await http
           .post(url, body: {"phone": phone, "password": password});
-      if (response.body != null) {
-        toast("تمت عملية الطلب بنجاح");
-
-      } else {
-        toast("كلمة المرو أو رقم الهاتف خاطئ");
-
-      }
+      print("response:$response");
       var json = jsonDecode(response.body);
+      print("json --$json");
       var res = UserRes.fromJson(json);
-      if(res.status != false){
-        toast("تمت عملية تحويل الرد");
-      }else{
-        toast("لم تتم عملية تحويل الرد");
-
-      }
+      print("response --$res");
       if (res.status == false) {
         setState(() {
+          print("stateus is false !");
           msg = res.msg;
-          toast("كلمة المرو أو رقم الهاتف خاطئ");
+          // toast("your not found");
+NormalAlert.show(context, titleOfAlirt, messageOfAlirt, textOfOkButton);
+autoFocus = true;
         });
         removeUserInfo();
       } else {
         setState(() {
+print("status is true!:${res.data.name}");
+print("status is true!:${res.data.id}");
+print("status is true!:${res.data.token}");
+print("status is true!:${res.data.type}");
+print("status is true!:${res.data.gender}");
+print("status is true!:${res.data.university}");
+print("status is true!:${res.data.phone}");
+          // toast("yout found ");
           msg = "";
         });
         if (res.data != null) {
-          var data = res.data!;
+          var data = res.data;
           saveUserInfo(data);
-          toast("تم حفظ بيانات المستخدم في المنطقة المشتركة");
-          Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (ctx) {
-            return Main();
-          }));
+
+         myPushName(context, MyPagesRoutes.main);
+          FocusScopeNode currentFocus = FocusScope.of(context);
+          if (!currentFocus.hasPrimaryFocus) {
+            currentFocus.unfocus();
+          }
+          // myPushName(context, MyPagesRoutes.citiesTest);
         }else{
-          toast("لم يتم حفظ بيانات المستخدم في المنطقة المشتركة");
+          if(msg=="user not found"){
+            NormalAlert.show(context, "خطأ في عملية التسجيل", "تأكد من كتابة رقم الهاتف و كلمة المرور بشكلٍ سليم", "حسنًا");
+          }
+          // NormalAlert.show(context, "خطأ في عملية التسجيل", "رقم الهاتف ، أو كلمة المرور خاطئة", "موافق");
         }
       }
     }
@@ -273,12 +330,8 @@ class _LoginState extends State<Login> {
     //   var profile = user_response.data!.profile;
     //   print(profile);
     // }
-
-
   }
-
-
-// loginProcess(String username, String password) async{
+ // loginProcess(String username, String password) async{
 //
 //   var url = Uri.parse(Server.userLogin);
 //   var response = await http
@@ -306,7 +359,7 @@ class _LoginState extends State<Login> {
 // print("your are in navigator code");
 //       Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (ctx) {
 //         return Main();
-//       }));
+//       }));\
 //     }
 //   }
 //

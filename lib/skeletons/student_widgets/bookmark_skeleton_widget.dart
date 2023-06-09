@@ -16,6 +16,7 @@ class _BookMarkSkeletonWidgetState extends State<BookMarkSkeletonWidget> {
       body: SingleChildScrollView(
         child: Column(
           children: [
+            //title
             Row(
               children: [
                 Padding(
@@ -31,6 +32,7 @@ class _BookMarkSkeletonWidgetState extends State<BookMarkSkeletonWidget> {
                 Expanded(child: Text("")),
               ],
             ),
+            //subtitle
             Row(
               children: [
                 Padding(
@@ -45,6 +47,7 @@ class _BookMarkSkeletonWidgetState extends State<BookMarkSkeletonWidget> {
                 const Expanded(child: Text("")),
               ],
             ),
+            //clear all
             Row(
               children: [
                 const Expanded(child: Text("")),
@@ -58,6 +61,7 @@ class _BookMarkSkeletonWidgetState extends State<BookMarkSkeletonWidget> {
                     )),
               ],
             ),
+            //bookmark container
             Container(
               margin: EdgeInsets.fromLTRB(10, 23, 10, 0),
               decoration: BoxDecoration(
@@ -126,15 +130,9 @@ class _BookMarkSkeletonWidgetState extends State<BookMarkSkeletonWidget> {
                                       width: 240,
                                       borderRadius: BorderRadius.circular(7)),
                                 ),
-
-
                                 const SizedBox(
                                   height: 10,
                                 ),
-
-
-
-
 
                                 Row(
                                   children: [

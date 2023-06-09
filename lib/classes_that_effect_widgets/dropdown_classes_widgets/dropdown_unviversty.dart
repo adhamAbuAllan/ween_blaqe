@@ -1,16 +1,23 @@
 import 'dart:convert';
 import 'package:flutter/material.dart';
-import 'package:ween_blaqe/api/universities.dart';
 import 'package:ween_blaqe/sesstion/sesstion_of_university.dart';
 import 'package:ween_blaqe/urls_of_project/localhost_urls.dart';
 import 'package:http/http.dart' as http;
+
+import '../../api/users.dart';
 List <University>universityItems = [];
 University ? currentUniversity;
+
 class DropDownUniversity extends StatefulWidget {
   // University currentValue = currentValue.name ;
   DropDownUniversity({Key? key,
     // University ? currentUniversity
+
+    required this.onSelected,
+
+
   }) : super(key: key);
+  Function(University) onSelected;
   @override
   State<DropDownUniversity> createState() => _DropDownUniversityState();
 }
@@ -36,12 +43,13 @@ class _DropDownUniversityState extends State<DropDownUniversity> {
             style: TextStyle(fontSize:16 ),
             // autofocus: true,
             decoration: InputDecoration(
+              // contentPadding: EdgeInsets.symmetric(vertical: 20),
               enabledBorder: OutlineInputBorder(
                 //<-- SEE HERE
                 borderSide:
                 BorderSide(color: Colors.orange.shade300, width: 0.5),
               ),
-              focusedBorder: OutlineInputBorder(
+              focusedBorder: const OutlineInputBorder(
                 //<-- SEE HERE
                 borderSide: BorderSide(color: Colors.orange, width: 1),
               ),
@@ -54,8 +62,14 @@ class _DropDownUniversityState extends State<DropDownUniversity> {
                   fontFamily: 'IBM'
               ),),),).toList(),
             onChanged: (i){
+              currentUniversity = i;
               setState(() {
-                currentUniversity = i!;
+               currentUniversity = i!;
+                setState(() {
+                  widget.onSelected(currentUniversity!);
+
+                });
+
               });
             },
           )
@@ -67,7 +81,7 @@ class _DropDownUniversityState extends State<DropDownUniversity> {
           ),)
       );
   }
-  go() async {
+  go({String? any}) async {
     setState(() {
       universityItems.clear();
     });
@@ -83,10 +97,9 @@ class _DropDownUniversityState extends State<DropDownUniversity> {
       setState(() {
         if(currentUniversity!=null){
           saveUniversity(currentUniversity!);
-          }
 
-
-      });
+        }});
     }
+
   }
 }

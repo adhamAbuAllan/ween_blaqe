@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 // import 'package:ween_blaqe/styles/colors.dart';
+// button style widget
 //fullbutton
 final ButtonStyle fullButton = ElevatedButton.styleFrom(
   backgroundColor: Colors.orange.shade500,
@@ -13,13 +14,18 @@ final ButtonStyle fullButton = ElevatedButton.styleFrom(
 )
 );
 //outlineButton
+
+
  final  ButtonStyle  outlineButton = OutlinedButton.styleFrom(
-    primary: Colors.orange,
-    textStyle: TextStyle(fontSize: 14,color: Colors.orange,
+    foregroundColor: Colors.orange,
+   elevation: 0,
+
+   textStyle: TextStyle(
+     fontSize: 14,color: Colors.orange,
        fontFamily: 'IBM',
  ),
     side: BorderSide(width:1,color: Colors.orange),
-    padding: EdgeInsets.all(0),
+    padding: EdgeInsets.all(1),
     alignment: Alignment.center,
-    elevation: 0,
 );
+

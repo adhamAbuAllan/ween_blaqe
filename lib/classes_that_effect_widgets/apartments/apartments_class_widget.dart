@@ -4,6 +4,7 @@ import '../../api/apartment_advantages.dart';
 import '../../styles/button.dart';
 import 'package:ween_blaqe/widgets/user/studnet/show_more.dart';
 import '../../api/photos.dart';
+import '../../urls_of_project/localhost_urls.dart';
 
 
 Widget HomeClassWidget (Apartment apartment, Function onClick ,BuildContext context) {
@@ -12,7 +13,7 @@ Widget HomeClassWidget (Apartment apartment, Function onClick ,BuildContext cont
   var id = apartment.id;
   var title = apartment.title;
   var price = apartment.price;
-  var city = apartment.city_id;
+  var city = apartment.city;
   var location = apartment.location;
 
  return  Container(

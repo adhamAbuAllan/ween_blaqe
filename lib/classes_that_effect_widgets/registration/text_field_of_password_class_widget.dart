@@ -1,75 +1,151 @@
 import 'package:flutter/material.dart';
+//text filed password for registration
 class TextFieldOfPasswordClassWidget extends StatefulWidget {
-  TextInputType inputType;
+  TextInputType? inputType;
   Function? onFieldSubmitted;
-  String labelInput;
+  String ?labelInput;
   FocusNode? focusNode;
-  TextEditingController ? controller;
+  bool ? autoFocus;
+  bool ?hide;
+  String?  displayText;
+  Function(String)?checkPass;
+  double? strength;
 
 
 
+  TextEditingController? controller;
 
+  TextFieldOfPasswordClassWidget(
+      {Key? key,
+       this.inputType,
 
-  TextFieldOfPasswordClassWidget({Key? key,
-    required this.inputType,
-    required this.labelInput,
-     this.onFieldSubmitted,
-     this.focusNode,
-    this.controller
-  }) : super(key: key);
+       this.labelInput,
+      this.onFieldSubmitted,
+       this.displayText,
+        this.strength,
+      this.focusNode,
+        this.hide,
+        this.autoFocus,
+        this.checkPass,
+        this.controller})
+      : super(key: key);
 
   @override
-  State<TextFieldOfPasswordClassWidget> createState() => _TextFieldOfPasswordClassWidgetState();
+  State<TextFieldOfPasswordClassWidget> createState() =>
+      _TextFieldOfPasswordClassWidgetState();
 }
 
+class _TextFieldOfPasswordClassWidgetState
+    extends State<TextFieldOfPasswordClassWidget> {
+  // late String password;
 
-class _TextFieldOfPasswordClassWidgetState extends State<TextFieldOfPasswordClassWidget> {
+  bool isObscure = false;
+  // double strength = 0;
+  // 0: No password
+  // 1/4: Weak
+  // 2/4: Medium
+  // 3/4: Strong
+  // 1: Great
+
+  RegExp numReg = RegExp(r".*[0-9].*");
+  RegExp letterReg = RegExp(r".*[A-Za-z].*");
+
+    // displayText = 'الرجاء إدخال كلمة المرور ';
+
+
+  void checkPassword(String value) {
+
+    widget.controller?.text = value.trim();
+
+    if (widget.controller!.text.isEmpty) {
+      setState(() {
+        widget.strength = 0;
+        widget.displayText = 'الرجاء إدخال كلمة المرور';
+      });
+    } else if (widget.controller!.text.length < 6) {
+      setState(() {
+        widget.strength = 1 / 4;
+        widget.displayText = 'كلمة المرور الخاصة بك قصيرة';
+      });
+    } else if (widget.controller!.text.length < 8) {
+      setState(() {
+        widget.strength = 2 / 4;
+        widget.displayText = 'كلمة المرور الخاصة بك مقبولة ولكنها ليست قوية';
+      });
+    } else {
+      if (!letterReg.hasMatch(widget.controller!.text) ||
+          !numReg.hasMatch(widget.controller!.text)
+      ) {
+        setState(() {
+          widget.strength = 3 / 4;
+          widget.displayText = 'كلمة المرور الخاصة بك قوية';
+        });
+      } else {
+        setState(() {
+          widget.strength = 1;
+          widget.displayText = 'كلمة المرور الخاصة بك ممتازة';
+        });
+      }
+    }
+  }
+
+
   @override
   Widget build(BuildContext context) {
     IconData invisible_ic = Icons.visibility_off;
     IconData visible_ic = Icons.visibility;
     IconData currentIcon = Icons.visibility_off;
 
+
     var labelInput = widget.labelInput;
     var inputType = widget.inputType;
-    bool visible = false;
+    // bool visible = false;
     var focusNode = FocusNode();
     return Padding(
-        padding: const EdgeInsets.fromLTRB(25, 0, 25, 12),
+        // padding: const EdgeInsets.fromLTRB(25, 0, 25, 12),
+        padding: const EdgeInsets.symmetric(vertical: 10,horizontal: 25),
         child: TextFormField(
-controller: widget.controller,
-          obscureText: visible,
+          // onChanged: (value) => checkPassword(value),
+          // onChanged: (v) => widget.checkPass!(widget.displayText??v),
+          controller: widget.controller,
+          // autofocus: widget.autoFocus ?? false,
+
+          textInputAction: TextInputAction.next ,
+          obscureText: widget.hide??true,
           style: TextStyle(fontFamily: 'IBM'),
           focusNode: focusNode,
           keyboardType: inputType,
           decoration: InputDecoration(
               labelText: labelInput,
-
               labelStyle: TextStyle(
-                  color: Colors.grey.shade500,
-                  fontFamily: 'IBM',
-                  fontSize: 16),
+                  color: Colors.grey.shade500, fontFamily: 'IBM', fontSize: 16),
               suffixIcon: IconButton(
-                icon: Icon(
-                    currentIcon = Icons.visibility_off
-                ),
+                icon: Icon(currentIcon = Icons.visibility),
                 onPressed: () {
-                  if (currentIcon ==  Icons.visibility_off){
+                  if (currentIcon == Icons.visibility_off) {
                     setState(() {
-                      visible = true;
-                      currentIcon = Icons.visibility;
+                      widget.hide = false;
+                      setState(() {
+                        currentIcon = Icons.visibility_off;
+
+                      });
                     });
-                  }else{
+                  } else {
                     setState(() {
-                      visible = false;
-                      currentIcon = Icons.visibility_off;
+                      widget.hide = true;
+                      setState(() {
+                        currentIcon = Icons.visibility;
+
+                      });
                     });
                   }
                 },
               ),
+
+
               hintStyle: TextStyle(color: Colors.grey),
               border: InputBorder.none,
-              focusedBorder: OutlineInputBorder(
+              focusedBorder: const OutlineInputBorder(
                 borderSide: BorderSide(
                   width: 1,
                   color: Colors.orange,
@@ -84,4 +160,14 @@ controller: widget.controller,
         ));
 
   }
+  checkTowFieldPassword(String firstValue, String secondValue){
+   var  errorText = '';
+   (value) {
+     setState(() {
+    if(firstValue!=secondValue){
+      errorText = "كلمتي المرور غير متطالبقتين";
+    }
+     });
+   };
+ }
 }

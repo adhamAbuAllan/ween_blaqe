@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import '../styles/button.dart';
+import '../urls_of_project/localhost_urls.dart';
 class LoginRequest extends StatefulWidget {
   const LoginRequest({Key? key}) : super(key: key);
 
@@ -20,7 +21,7 @@ class _LoginRequestState extends State<LoginRequest> {
       body: Center(child: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
-          Text("يا صباح الHello World",style: TextStyle(fontSize: 28,fontFamily: 'IBM'),),
+          const Text("يا صباح الHello World",style: TextStyle(fontSize: 28,fontFamily: 'IBM'),),
           //phone number
           Padding(
             padding: const EdgeInsets.fromLTRB(25,20,25, 10),
@@ -31,11 +32,11 @@ class _LoginRequestState extends State<LoginRequest> {
                   labelStyle: TextStyle(color: Colors.orange),
 
                   // alignLabelWithHint: true,
-                  hintStyle: TextStyle(
+                  hintStyle: const TextStyle(
                     color: Colors.grey,
                   ),
                   border: InputBorder.none,
-                  focusedBorder: OutlineInputBorder(
+                  focusedBorder: const OutlineInputBorder(
                     borderSide: BorderSide(
                       width: 1,
                       color: Colors.orange,
@@ -59,11 +60,12 @@ class _LoginRequestState extends State<LoginRequest> {
                     labelStyle: TextStyle(color: Colors.orange),
 
 
-                    hintStyle: TextStyle(
+                    hintStyle: const TextStyle(
                         color: Colors.grey
                     ),
+
                     border: InputBorder.none,
-                    focusedBorder: OutlineInputBorder(
+                    focusedBorder: const OutlineInputBorder(
                       borderSide: BorderSide(
                         width: 1,
                         color: Colors.orange,
@@ -101,7 +103,7 @@ class _LoginRequestState extends State<LoginRequest> {
     );
   }
   void login()async{
-    var url = Uri.parse("http://akram.cap.edu.ps.api/user/login");
+    var url = Uri.parse(ServerLocalDiv.userLogin);
     var res = await http.post(url,body: {
       'phone':phone.text,
       'password':passwrod.text,

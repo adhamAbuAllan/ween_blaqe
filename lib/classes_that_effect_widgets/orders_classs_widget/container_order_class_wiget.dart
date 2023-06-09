@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:ween_blaqe/widgets/user/studnet/bookmark.dart';
 
 import '../../styles/button.dart';
 import '../../widgets/user/studnet/show_more.dart';
@@ -7,12 +8,16 @@ class OrderContainerClassWidget extends StatefulWidget {
 String profileImage;
 String studentName;
 String title;
-String dateTime;
+// String dateTime;
+  Function(bool) ? onClick;
 String  apartmentImage;
 String  apartmentTitle;
+bool ? showRequest;
    OrderContainerClassWidget({Key? key,
-   required this.dateTime,
+   // required this.dateTime,
      required this.studentName,
+     this.onClick,
+     this.showRequest,
      required this.profileImage,
      required this.title,
      required this.apartmentImage,
@@ -31,7 +36,7 @@ class _OrderContainerClassWidgetState extends State<OrderContainerClassWidget> {
     var title = widget.title;
     var apartmentImage = widget.apartmentImage;
     var apartmentTitle = widget.apartmentTitle;
-    var date = widget.dateTime;
+    // var date = widget.dateTime;
     return Container(
         margin: EdgeInsets.fromLTRB(10, 2, 10, 10),
     width: 373,
@@ -47,7 +52,9 @@ class _OrderContainerClassWidgetState extends State<OrderContainerClassWidget> {
               Expanded(child: Text("")),
               Padding(
                 padding: const EdgeInsets.fromLTRB(10, 0, 0, 0),
-                child: Text("$date",
+                child: Text(
+                  "",
+                    // "$date",
                     style: TextStyle(
                       fontSize: 14,
                       fontFamily: 'IBM',
@@ -102,7 +109,7 @@ class _OrderContainerClassWidgetState extends State<OrderContainerClassWidget> {
             Padding(
               padding: EdgeInsets.fromLTRB(0, 5, 40, 0),
               child: Text(apartmentTitle ,
-                  style: TextStyle(
+                  style: const TextStyle(
                     color: Colors.black87,
                     fontFamily: 'IBM',
                     fontSize: 16,
@@ -117,7 +124,15 @@ class _OrderContainerClassWidgetState extends State<OrderContainerClassWidget> {
                     padding: const EdgeInsets.fromLTRB(25, 10, 40, 10),
                     child: ElevatedButton(
                       onPressed: () {
-                        // Navigator.pop(context);
+                        setState(() {
+                          (value){
+                            setState(() {
+                              widget.showRequest = !value;
+
+                            });
+                          };
+
+                        });
                       },
                       style: fullButton,
                       child: const Text("قبول"),
@@ -149,11 +164,11 @@ class ResponseOrderMessageClassWidget extends StatefulWidget {
   String profileImage;
   String studentName;
   String title;
-  String dateTime;
+  // String dateTime;
   String messageOfOrderStatus;
   final IconData? icon;
    ResponseOrderMessageClassWidget({Key? key,
-     required this.dateTime,
+     // required this.dateTime,
      required this.studentName,
      required this.profileImage,
      required this.title,
@@ -169,7 +184,7 @@ class _ResponseOrderMessageClassWidgetState extends State<ResponseOrderMessageCl
     var studentName = widget.studentName;
     var profileImage = widget.profileImage;
     var title = widget.title;
-    var date = widget.dateTime;
+    // var date = widget.dateTime;
     var messageOfResponse = widget.messageOfOrderStatus;
     var icon = Icon(widget.icon);
     return Container(
@@ -187,7 +202,9 @@ class _ResponseOrderMessageClassWidgetState extends State<ResponseOrderMessageCl
               Expanded(child: Text("")),
               Padding(
                 padding: const EdgeInsets.fromLTRB(10, 0, 0, 0),
-                child: Text("$date",
+                child: Text(
+                  "",
+                  // "$date",
                     style: TextStyle(
                       fontSize: 14,
                       fontFamily: 'IBM',

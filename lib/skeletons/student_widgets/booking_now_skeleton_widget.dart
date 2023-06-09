@@ -1,5 +1,9 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:skeletons/skeletons.dart';
+
+import '../../funcations/route_pages/my_pages_routes.dart';
 
 class BookingNowSkeletonWidget extends StatefulWidget {
   const BookingNowSkeletonWidget({Key? key}) : super(key: key);
@@ -9,6 +13,14 @@ class BookingNowSkeletonWidget extends StatefulWidget {
 }
 
 class _BookingNowSkeletonWidgetState extends State<BookingNowSkeletonWidget> {
+  @override
+  void initState() {
+    super.initState();
+    // Timer(
+    //   const Duration(seconds: 2),
+    //       () => Navigator.pushReplacementNamed(context, MyPagesRoutes.bookingNow),
+    // );
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(

@@ -71,9 +71,10 @@ class ContainerInputLongTextReadyWidgetSkeleton extends StatelessWidget {
         ),
         child: Column(
           children: [
-            //text of adv skeleton
+            //text of date skeleton
             Row(
               children: [
+
                 Padding(
                   padding: EdgeInsets.fromLTRB(0, 10, 10, 10),
                   child: SkeletonLine(
@@ -84,8 +85,11 @@ class ContainerInputLongTextReadyWidgetSkeleton extends StatelessWidget {
                   ),
                 ),
                 Expanded(child: Text("")),
+
               ],
             ),
+
+
             Padding(
               padding: const EdgeInsets.fromLTRB(12, 8, 12, 8),
               child: Row(

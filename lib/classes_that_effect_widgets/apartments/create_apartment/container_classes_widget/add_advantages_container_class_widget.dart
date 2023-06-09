@@ -1,7 +1,259 @@
 // import 'dart:html';
 
+import 'dart:convert';
 import 'package:flutter/material.dart';
-import 'package:get/get_rx/src/rx_types/rx_types.dart';
+import 'package:http/http.dart' as http;
+import '../../../../api/advantages.dart';
+import '../../../../urls_of_project/localhost_urls.dart';
+
+String msg = "";
+class AddAdvantages extends StatefulWidget {
+  const AddAdvantages({Key? key}) : super(key: key);
+
+  @override
+  State<AddAdvantages> createState() => _AddAdvantagesState();
+}
+class Feature{
+  int id;
+  String name;
+  String icon;
+  bool checked = false;
+  Feature({required this.id,required this.name,required this.icon,this.checked=false});
+}
+
+class _AddAdvantagesState extends State<AddAdvantages> {
+  var turnOnLocalFeatures = false;
+
+  List<Advantage> advantages = [];
+  Advantage ?advantage;
+
+  bool checked = false;
+  List<Feature> features = [];
+  List<AdvantageRes> allFeatures = [];
+  List<int> featuresChosen = [];
+
+  List<int> chosen = [];
+  @override
+  void initState() {
+    super.initState();
+
+    WidgetsBinding.instance.addPostFrameCallback((timeStamp) async {
+      await go();
+
+    });
+    features.add(Feature(id: 1, name: "كاميرات مراقبة", icon: "assets/images/apartments_images/advantages/casino-cctv.png",));
+    features.add(Feature(id: 2, name: "كاميرات مراقبة داخلية", icon: "assets/images/apartments_images/advantages/cctv.png",));
+    features.add(Feature(id: 3, name: "ادوات مطبخ", icon: "assets/images/apartments_images/advantages/cutlery1.png",checked: checked));
+    features.add(Feature(id: 4, name: "مكتب", icon: "assets/images/apartments_images/advantages/desktop.png",checked: checked));
+    features.add(Feature(id: 5, name: "غسلة صحون", icon: "assets/images/apartments_images/advantages/dishes-washer.png",checked: checked));
+    features.add(Feature(id: 7, name: "طفاية", icon: "assets/images/apartments_images/advantages/fire-extinguisher.png",checked: checked));
+    features.add(Feature(id: 8, name: "إسعافات أولية", icon: "assets/images/apartments_images/advantages/first-aid-box.png",checked: checked));
+    features.add(Feature(id: 9, name: "غاز", icon: "assets/images/apartments_images/advantages/gas-stove.png",checked: checked));
+    features.add(Feature(id: 10, name: "مياه ساخنة", icon: "assets/images/apartments_images/advantages/hot-water.png",checked: checked));
+    features.add(Feature(id: 11, name: "مطبخ", icon: "assets/images/apartments_images/advantages/kitchen-set.png",checked: checked));
+    features.add(Feature(id: 12, name: "ميكرويف", icon: "assets/images/apartments_images/advantages/microwave.png",checked: checked));
+    features.add(Feature(id: 13, name: "فرن", icon: "assets/images/apartments_images/advantages/oven.png",checked: checked));
+    features.add(Feature(id: 14, name: "أدوات مطبخ", icon: "assets/images/apartments_images/advantages/plate.png",checked: checked));
+    features.add(Feature(id: 15, name: "ثلاجة", icon: "assets/images/apartments_images/advantages/refrigerator-.png",checked: checked));
+    features.add(Feature(id: 15, name: "واي فاي", icon: "assets/images/apartments_images/advantages/wifi.png",checked: checked));
+  }
+  @override
+  Widget build(BuildContext context) {
+
+    return
+      SingleChildScrollView(
+        child: Column(
+                children:
+                // turnOnLocalFeatures == true ?
+                features.map((feature){
+                      return
+                    Row(
+                      // mainAxisAlignment: MainAxisAlignment.spaceAround,
+                      // mainAxisSize: MainAxisSize.min,
+                      children: [
+                        Checkbox(
+                            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(2.6)),
+                            focusColor: Colors.orange,
+                            checkColor: Colors.white,
+                            hoverColor: Colors.orange,
+                            activeColor: Colors.orange,
+                            side: BorderSide(color: Colors.orange.shade300),
+                            splashRadius: 20,
+                            // autofocus: false,
+                            // tristate: true,
+                            // overlayColor: MaterialStateProperty.all(Colors.orange),
+                            value: feature.checked, onChanged: (a){
+                          // features.first;
+                          if(a!=null) {
+                            setState(() {
+                              // advantage?.checkedId == 1 ? a: a;
+                              feature.checked = a;
+
+                              // feature.checked = a;
+                              // _isTapped = feature.checked;
+                              // feature.checked = _isTapped;
+                            });
+                            if(checked == true){
+                              chosen.add(feature.id);
+                              // chosen.add(advantage?.id??1);
+                            }else{
+                              var index = chosen.indexOf(feature.id);
+                              chosen.removeAt(index);
+                            }
+                          }else{
+                            print("you input null values check you database or and check url is ture or not !");
+                          }
+                        }),
+                        Text(
+                          feature.name,
+                          // feature.advName,
+                          style: TextStyle(fontFamily: 'IBM',fontSize: 16,color: Colors.grey.shade800),
+                        ),
+                        const Expanded(child: Text("") ),
+                        Image( image: AssetImage(feature.icon),width: 30,height: 30,)
+                      ],
+                    );
+
+                }).toList()
+              ),
+      );
+  }
+  go()async{
+    setState(() {
+      advantages.clear();
+    });
+    var url = Uri.parse('http://10.0.2.2:8000/api/advantages/all');
+    // var response = await http.post(url,body:{"adv_name": "apartment",
+    //   // "icon":"assets/images/apartments_images/apartment.jpg"
+    // });
+    var res = await http.get(url);
+    var json = jsonDecode(res.body);
+    var data = json["data"] as List<dynamic>;
+    advantages.clear();
+    for (var value in data) {
+      advantages.add(Advantage(id: value['id'], advName: value['adv_name'],icon: value['icon'],checkedId:
+      value['checked_id']));
+      print("this is data :$data");
+      setState(() {
+        advantages.first;
+        if(checked == false){
+  value['checked_id'] = 0;
+
+  // data[4] = 0;
+}else{
+  value['checked_id'] = 1;
+          print(checked);
+
+        }
+      });
+    }
+  }
+  goInsert(String name) async {
+    var url = Uri.parse(ServerLocalDiv.advantagesAdd);
+
+    var response = await http.post(url,body:{"adv_name": name,});
+    var json = jsonDecode(response.body);
+    var data = json["data"] as List<dynamic>;
+    for (var value in data) {
+      advantages.add(Advantage(id: value['id'], advName: value['adv_name'],icon: value['icon'],checkedId:
+      value['checked_id']));
+      setState(() {
+        advantages.first;
+        // advantages = chosen;
+        if(checked == false){
+
+          // data[4] = 0;
+        }else{
+
+        }
+      });
+    }
+
+
+  }
+}
+// print(currentType?.productName??"");
+// print(currentArea?.name??"");
+// focusNodeOfFullName;
+// FocusScope.of(context).requestFocus();
+// :
+
+// allFeatures.map((feature){
+//   return
+//     Row(
+//       // mainAxisAlignment: MainAxisAlignment.spaceAround,
+//       // mainAxisSize: MainAxisSize.min,
+//       children: [d
+//         Checkbox(
+//             shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(2.6)),
+//             focusColor: Colors.orange,
+//             checkColor: Colors.white,
+//             hoverColor: Colors.orange,
+//             activeColor: Colors.orange,
+//             side: BorderSide(color: Colors.orange.shade300),
+//             splashRadius: 20,
+//             // autofocus: false,
+//             // tristate: true,
+//             // overlayColor: MaterialStateProperty.all(Colors.orange),
+//             value:if( feature.data.checkedId == 0){
+//               return false;
+//   }, onChanged: (a){
+//           // features.first;
+//           if(a!=null) {
+//             setState(() {
+//               // advantage?.checkedId == 1 ? a: a;
+//               feature.checked = a;
+//
+//               // feature.checked = a;
+//               // _isTapped = feature.checked;
+//               // feature.checked = _isTapped;
+//             });
+//             if(checked == true){
+//               chosen.add(feature.id);
+//               // chosen.add(advantage?.id??1);
+//             }else{
+//               var index = chosen.indexOf(feature.id);
+//               chosen.removeAt(index);
+//             }
+//           }else{
+//             print("you input null values check you database or and check url is ture or not !");
+//           }
+//         }),
+//         Text(
+//           feature.name,
+//           // feature.advName,
+//           style: TextStyle(fontFamily: 'IBM',fontSize: 16,color: Colors.grey.shade800),
+//         ),
+//         const Expanded(child: Text("") ),
+//         Image( image: AssetImage(feature.icon),width: 30,height: 30,)
+//       ],
+//     );
+//
+//
+//
+//
+//
+// }).toList(),
+// if(response.body.isEmpty){
+//   print('they body is empty');
+// }else{
+//   print('they body is NotEmpty');
+//
+// }
+// var res = AdvantageRes.fromJson(json);
+// if(res.status==false){
+//   setState(() {
+//     msg = res.msg;
+//     print("status is false : $msg");
+//   });
+//
+// }else{
+//   setState(() {
+//     msg = "";
+//     print("status is true :$msg");
+//   });
+// }
+
 // class AddAdvantages extends StatefulWidget {
 //   String advantageName;
 //   String advantageIcon;
@@ -62,80 +314,3 @@ import 'package:get/get_rx/src/rx_types/rx_types.dart';
 //
 //   }
 // }
-class AddAdvantages extends StatefulWidget {
-  const AddAdvantages({Key? key}) : super(key: key);
-
-  @override
-  State<AddAdvantages> createState() => _AddAdvantagesState();
-}
-
-class Feature{
-  int id;
-  String name;
-  String icon;
-  bool checked = false;
-  Feature({required this.id,required this.name,required this.icon,this.checked=false});
-}
-class _AddAdvantagesState extends State<AddAdvantages> {
-
-  List<Feature> features = [];
-  List<int> chosen = [];
-  @override
-  void initState() {
-    super.initState();
-    features.add(Feature(id: 1, name: "كاميرات مرافبة", icon: "assets/images/apartments_images/advantages/casino-cctv.png",checked: false));
-    features.add(Feature(id: 2, name: "كاميرات مراقبة داخلية", icon: "assets/images/apartments_images/advantages/cctv.png"));
-    features.add(Feature(id: 3, name: "ادوات مطبخ", icon: "assets/images/apartments_images/advantages/cutlery1.png"));
-    features.add(Feature(id: 4, name: "مكتب", icon: "assets/images/apartments_images/advantages/desktop.png"));
-    features.add(Feature(id: 5, name: "غسلة صحون", icon: "assets/images/apartments_images/advantages/dishes-washer.png"));
-  }
-
-  @override
-  Widget build(BuildContext context) {
-
-    return  Column(
-        children: features.map((feature){
-          return Row(
-            children: [
-              Checkbox(
-                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(2.6)),
-                  focusColor: Colors.orange,
-                  checkColor: Colors.white,
-                  hoverColor: Colors.orange,
-                  activeColor: Colors.orange,
-                  side: BorderSide(color: Colors.orange.shade300),
-                  splashRadius: 20,
-                  // autofocus: false,
-                  // tristate: true,
-                  overlayColor: MaterialStateProperty.all(Colors.orange),
-
-                  value: feature.checked, onChanged: (a){
-                if(a!=null) {
-
-                  setState(() {
-                    feature.checked = a;
-                    // _isTapped = feature.checked;
-                    // feature.checked = _isTapped;
-
-
-
-                  });
-                  if(feature.checked == true){
-                    chosen.add(feature.id);
-                  }else{
-                    var index = chosen.indexOf(feature.id);
-                    chosen.removeAt(index);
-                  }
-                }
-              }),
-              Text(feature.name,
-                style: TextStyle(fontFamily: 'IBM',fontSize: 16,color: Colors.grey.shade800),
-              ),
-              const Expanded(child: Text("") ),
-              Image( image: AssetImage(feature.icon),width: 30,height: 30,)
-            ],
-          );
-        }).toList(),
-    );
-  }
-}

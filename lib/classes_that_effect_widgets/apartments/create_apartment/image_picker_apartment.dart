@@ -6,42 +6,33 @@
 
 import 'dart:async';
 import 'dart:io';
-
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:ween_blaqe/styles/button.dart';
+import 'package:http/http.dart' as http;
 import 'package:ween_blaqe/widgets/toast_widget.dart';
 import 'package:ween_blaqe/widgets/user/owner/steps_to_create_apartment/fourth_step.dart';
 // import 'package:video_player/video_player.dart';
-
 class AddImages extends StatefulWidget {
   const AddImages({super.key, this.title});
-
   final String? title;
-
   @override
   State<AddImages> createState() => _AddImagesState();
 }
-
 class _AddImagesState extends State<AddImages> {
   List<XFile>? _imageFileList;
-
   void _setImageFileListFromFile(XFile? value) {
     _imageFileList = value == null ? null : <XFile>[value];
   }
-
   dynamic _pickImageError;
   String? _retrieveDataError;
-
   final ImagePicker _picker = ImagePicker();
   final TextEditingController maxWidthController = TextEditingController();
   final TextEditingController maxHeightController = TextEditingController();
   final TextEditingController qualityController = TextEditingController();
-
   Future<void> _onImageButtonPressed(ImageSource source,
       {BuildContext? context, bool isMultiImage = false}) async {
     if (isMultiImage) {
@@ -119,7 +110,7 @@ class _AddImagesState extends State<AddImages> {
                   left: 15.0,
                   top: 2,
                   child: GestureDetector(
-                    child: Icon(
+                    child: const Icon(
                       Icons.cancel,
                       color: Colors.white70,
                     ),
@@ -162,6 +153,7 @@ class _AddImagesState extends State<AddImages> {
 
   Widget? checkArray() {
     if (_imageFileList != null) {
+      // uploadImages2(_imageFileList!);
       Get.to(FourthStep());
     } else {
       toast("أضف صورة واحدة على الاقل");
@@ -197,7 +189,9 @@ class _AddImagesState extends State<AddImages> {
           Padding(
             padding: const EdgeInsets.all(8.0),
             child: OutlinedButton(
-              onPressed: () {},
+              onPressed: () {
+                Navigator.pop(context);
+              },
               style: outlineButton,
               child: const Text(" رجوع "),
             ),
@@ -376,7 +370,107 @@ class _AddImagesState extends State<AddImages> {
           );
         });
   }
-}
+//for testing
+  //---------------------------------------------------
+  // Future<void> uploadImages(List<XFile> imageFiles) async {
+  //   var request = http.MultipartRequest(
+  //     'POST',
+  //     Uri.parse('http://10.0.2.2:8000/api/photo/uploadImages'),
+  //   );
+  //
+  //   for (var imageFile in imageFiles) {
+  //     var multipartFile = await http.MultipartFile.fromPath(
+  //       'images[]',
+  //       imageFile.path,
+  //     );
+  //     request.files.add(multipartFile);
+  //   }
+  //
+  //   var response = await request.send();
+  //
+  //   if (response.statusCode == 200) {
+  //     print('Images uploaded successfully');
+  //   } else {
+  //     print('Image upload failed with status ${response.statusCode}');
+  //   }
+  // }
+  //---------------------------------------------------
+
+  // Future<void> uploadImages2(List<XFile> imageFiles) async {
+  //   var request = http.MultipartRequest(
+  //     'POST',
+  //     Uri.parse('http://10.0.2.2:8000/api/photo/uploadImages'),
+  //   );
+  //
+  //   for (var imageFile in imageFiles) {
+  //     var stream = http.ByteStream(
+  //       imageFile.openRead().cast(),
+  //     ); // Convert the file to byte stream.
+  //     var length = await imageFile.length(); // get image size
+  //     var multipartFile = http.MultipartFile(
+  //       'images', // ? or images[]. To you really need to label the parameter with a array definition at the end ?
+  //       stream, //File as a stream
+  //       length, //File size
+  //       filename: imageFile.path.split('/').last, //File name without path.
+  //     );
+  //     request.files.add(multipartFile);
+  //   }
+  //
+  //   var response = await request.send();
+  //   if (response.statusCode == 200) {
+  //     print('Images uploaded successfully');
+  //   } else {
+  //     print('Error uploading images: ${response.reasonPhrase}');
+  //   }
+  // }
+  }
+
 
 typedef OnPickImageCallback = void Function(
     double? maxWidth, double? maxHeight, int? quality);
+
+
+
+
+
+
+
+
+
+
+
+
+/*
+for ask
+Select a suggested title that best summarizes your question, or write your own title.
+
+How to Upload Multiple Images with Flutter and Laravel using HTTP and JSON?
+
+What's the Best Way to Send HTTP Requests from Flutter to a Laravel API for Uploading Multiple Images?
+
+Uploading Multiple Images from Flutter to Laravel API Using HTTP and JSON: Best Practices
+
+Write your own title.
+
+ */
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

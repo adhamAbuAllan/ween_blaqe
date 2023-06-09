@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
+import 'package:ween_blaqe/api/apartments.dart';
 import 'package:ween_blaqe/widgets/user/owner/refactor_apartment.dart';
 
 import '../../../classes_that_effect_widgets/apartments/show_more_classes_widget/about_apartment_class_widget.dart';
@@ -60,13 +61,16 @@ class _ApartmentOfOwnerState extends State<ApartmentOfOwner> {
 
           ),
           //this widget for image only
-          ImagesSlider(images: imageSliders),
+          //I stop Image Slider because didn't have indicator
+          // ImagesSlider(images: imageSliders),
+          ImageSliderWithPointer(),
           GenericInfoClassWidget(
-            location: location,
-            price: price,
-            city: city,
-            title: title,
-            numberOfAllowedStudnet: countOfStudent,
+            apartments: ArrayOfApartments(),
+            // location: location,
+            // price: price,
+            // city: city,
+            // title: title,
+            // numberOfAllowedStudnet: countOfStudent,
           ),
           Container(
             margin: EdgeInsets.fromLTRB(10, 23, 10, 0),
@@ -287,7 +291,7 @@ class _ApartmentOfOwnerState extends State<ApartmentOfOwner> {
               ],
             ),
           ),
-            //
+            //two buttons refactor and delete
           Row(
             children: [
               Padding(

@@ -11,3 +11,14 @@ class CircleOfStepsSkeletonReady extends StatelessWidget {
         ));
   }
 }
+class SmallCircleSkeletonReady extends StatelessWidget {
+  const SmallCircleSkeletonReady({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return  SkeletonAvatar(
+        style: SkeletonAvatarStyle(width: 65/3, height:65/3,
+            borderRadius: BorderRadius.circular(65/3)
+        ));
+  }
+}

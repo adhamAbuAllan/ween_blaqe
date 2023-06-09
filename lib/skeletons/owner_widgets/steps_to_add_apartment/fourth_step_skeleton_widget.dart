@@ -13,21 +13,19 @@ class FourthStepSkeletonWidget extends StatelessWidget {
     return  SafeArea(
       child: Scaffold(
         backgroundColor: Colors.grey.shade200,
+        appBar: AppBar(
+          backgroundColor: Colors.white,
+          actions: [
+            SmallButtonReadySkeleton(),
+            Expanded(child: Text("")),
+            SmallButtonReadySkeleton()
+          ],
+        ),
+
         body: SingleChildScrollView(
           child: Center(
             child: Column(
               children: [
-                Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Row(
-                    children: const [
-                      SmallButtonReadySkeleton(),
-
-                      Expanded(child: Text("")),
-                      SmallButtonReadySkeleton()
-                    ],
-                  ),
-                ),
                 //text steps
                 Padding(
                     padding: const EdgeInsets.fromLTRB(0, 10, 0, 0),
@@ -45,6 +43,8 @@ class FourthStepSkeletonWidget extends StatelessWidget {
                     padding: EdgeInsets.fromLTRB(25, 5, 25, 10),
                     child: CircleOfStepsSkeletonReady()
                 ),
+
+
                 //add title box
                 ContainerInputTextReadyWidgetSkeleton(),
                 //description box

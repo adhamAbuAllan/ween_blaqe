@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
+
 class TextFieldClassWdiget extends StatelessWidget {
   String labelName;
   double  fontSize;
   TextInputType  textInputType;
   FocusNode  ?foucsNode;
   Function ? onFieldSubmitted;
+  bool ? autoFocus;
+
   TextEditingController ? controller;
 
    TextFieldClassWdiget
@@ -14,7 +17,8 @@ class TextFieldClassWdiget extends StatelessWidget {
   required this.fontSize,
     this.foucsNode,
     this.onFieldSubmitted,
-     this.controller
+     this.controller,
+     this.autoFocus,
 
    }) : super(key: key);
 
@@ -24,11 +28,15 @@ class TextFieldClassWdiget extends StatelessWidget {
         padding: const EdgeInsets.fromLTRB(25, 0, 25, 0),
         child: TextFormField(
           controller: controller,
+          textInputAction: TextInputAction.next ,
+
+          autofocus: autoFocus ?? false,
           // focusNode: foucsNode,
           keyboardType: textInputType,
-          style: TextStyle(fontFamily: 'IBM'),
+          style: const TextStyle(fontFamily: 'IBM'),
 
           decoration: InputDecoration(
+            // contentPadding: EdgeInsets.symmetric(vertical: 20,horizontal: 10),
               labelText: labelName,
               labelStyle: TextStyle(
                   color: Colors.grey.shade500,
@@ -36,11 +44,11 @@ class TextFieldClassWdiget extends StatelessWidget {
                   fontSize: fontSize
               ),
               // alignLabelWithHint: true,
-              hintStyle: TextStyle(
+              hintStyle: const TextStyle(
                 color: Colors.grey,
               ),
               border: InputBorder.none,
-              focusedBorder: OutlineInputBorder(
+              focusedBorder: const OutlineInputBorder(
                 borderSide: BorderSide(
                   width: 1,
                   color: Colors.orange,

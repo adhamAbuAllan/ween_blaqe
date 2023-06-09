@@ -1,18 +1,25 @@
 import 'package:flutter/material.dart';
+import 'package:ween_blaqe/classes_that_effect_widgets/dropdown_classes_widgets/dropdown_cities.dart';
+import 'package:ween_blaqe/classes_that_effect_widgets/dropdown_classes_widgets/dropdown_type_of_apartment.dart';
+import 'package:ween_blaqe/data_containers/add_ad_data_container.dart';
 import 'package:ween_blaqe/styles/text_field_form_style.dart';
-class ContainerChooseItemClassWidget extends StatefulWidget {
+
+import '../../../../api/cities.dart';
+class ContainerChooseCityItemClassWidget extends StatefulWidget {
   String title;
-  String firstItem;
-  List<String> items;
-   ContainerChooseItemClassWidget({Key? key,
+   ContainerChooseCityItemClassWidget({Key? key,
      required this.title,
-     required this.items,
-     required this.firstItem,
-}) : super(key: key);
+     required this.onSelected
+   }) : super(key: key);
+  Function(City) onSelected;
+
   @override
-  State<ContainerChooseItemClassWidget> createState() => _ContainerChooseItemClassWidgetState();
+  State<ContainerChooseCityItemClassWidget> createState() => _ContainerChooseCityItemClassWidgetState();
 }
-class _ContainerChooseItemClassWidgetState extends State<ContainerChooseItemClassWidget> {
+
+class _ContainerChooseCityItemClassWidgetState extends State<ContainerChooseCityItemClassWidget> {
+  @override
+
   @override
   Widget build(BuildContext context) {
     return  Container(
@@ -40,42 +47,57 @@ class _ContainerChooseItemClassWidgetState extends State<ContainerChooseItemClas
                   ],
                 ),
                 Padding(
-                  padding: const EdgeInsets.fromLTRB(15, 0, 15, 0),
-                  child: DropdownButtonFormField(
-                    style: TextStyle(fontSize: 22),
-                    decoration: InputDecoration(
-                      enabledBorder: OutlineInputBorder(
-                        //<-- SEE HERE
-                        borderSide:
-                        BorderSide(color: Colors.orange.shade300, width: 0.5),
-                      ),
-                      focusedBorder: OutlineInputBorder(
-                        //<-- SEE HERE
-                        borderSide: BorderSide(color: Colors.orange, width: 1),
-                      ),
-                    ),
-                    value: widget.firstItem,
-                    onChanged: (String? newValue) {
-                      setState(() {
-                        widget.firstItem = newValue!;
-                      });
-                    },
-                    items: widget.items.map<DropdownMenuItem<String>>((String value) {
-                      return DropdownMenuItem<String>(
-                        value: value,
-                        child: Text(
-                          value,
-                          style: TextStyle(fontSize: 16,
-                              color: Colors.grey.shade800,
-                              fontFamily: 'IBM'
-                          ),
-                        ),
-                      );
-                    }).toList(),
-                  ),
+                  padding: const EdgeInsets.fromLTRB(0, 0, 0, 0),
+                  child: DropDownCity(onSelected:widget.onSelected,)
                 ),
 
               ])
       );
+  }
+}
+class ContainerChooseTypeApartmentItemClassWidget extends StatefulWidget {
+  String title;
+
+  ContainerChooseTypeApartmentItemClassWidget({Key? key,
+    required this.title,
+
+  }) : super(key: key);
+  @override
+  _ContainerChooseTypeApartmentItemClassWidgetState createState() => _ContainerChooseTypeApartmentItemClassWidgetState();
+}
+class _ContainerChooseTypeApartmentItemClassWidgetState extends State<ContainerChooseTypeApartmentItemClassWidget> {
+  @override
+  Widget build(BuildContext context) {
+    return  Container(
+        margin: EdgeInsets.fromLTRB(10, 2, 10, 10),
+        height: 140,
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(7),
+          color: Colors.white70,
+        ),
+        child: Column(
+            children: [
+              //
+              Row(
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.fromLTRB(0, 10, 10,10),
+                    child: Text(widget.title,
+                      style: TextStyle(
+                        color: Colors.grey.shade800,
+                        fontSize: 14,
+                        fontFamily: 'IBM',
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+              Padding(
+                  padding: const EdgeInsets.fromLTRB(0, 0, 0, 0),
+                  child: DropDownTypeOfApartment()
+              ),
+
+            ])
+    );
   }
 }

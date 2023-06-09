@@ -3,19 +3,22 @@ import 'package:flutter/material.dart';
 import 'package:ween_blaqe/sesstion/sesstion_of_type_of_user.dart';
 import 'package:ween_blaqe/urls_of_project/localhost_urls.dart';
 import 'package:http/http.dart' as http;
-import '../../api/type_of_user.dart';
+import '../../api/users.dart';
 
 List<TypeOfUser> typeOfUserItems = [];
-TypeOfUser? currentType;
-  bool  visible = false;
+ TypeOfUser? currentType;
+  bool?  visible = false;
 
 class DropDownTypeOfUser extends StatefulWidget {
-
-static bool testing = visible;
+static TypeOfUser? currentValue = currentType;
+static bool ?testing = visible;
   DropDownTypeOfUser({
     Key? key,
-    this.test
+    required this.onSelected
+    // this.test
   }) : super(key: key);
+Function(TypeOfUser) onSelected;
+
 bool ?test ;
   @override
   State<DropDownTypeOfUser> createState() => _DropDownTypeOfUserState();
@@ -24,6 +27,7 @@ bool ?test ;
 class _DropDownTypeOfUserState extends State<DropDownTypeOfUser> {
   @override
   void initState() {
+    // DropDownTypeOfUser.currentValue?.id;
     super.initState();
     WidgetsBinding.instance.addPostFrameCallback((timeStamp) async {
       await go();
@@ -50,7 +54,7 @@ class _DropDownTypeOfUserState extends State<DropDownTypeOfUser> {
                     borderSide:
                         BorderSide(color: Colors.orange.shade300, width: 0.5),
                   ),
-                  focusedBorder: OutlineInputBorder(
+                  focusedBorder: const OutlineInputBorder(
                     //<-- SEE HERE
                     borderSide: BorderSide(color: Colors.orange, width: 1),
                   ),
@@ -61,7 +65,7 @@ class _DropDownTypeOfUserState extends State<DropDownTypeOfUser> {
                       (c) => DropdownMenuItem(
                         value: c,
                         child: Text(
-                          c.productName,
+                          c.name,
                           style: TextStyle(
                               fontSize: 15.0,
                               color: Colors.grey.shade800,
@@ -73,7 +77,11 @@ class _DropDownTypeOfUserState extends State<DropDownTypeOfUser> {
                 onChanged: (i) {
                   setState(() {
                     currentType = i!;
-                    visible = !visible;
+                    setState(() {
+                      widget.onSelected(currentType!);
+
+                    });
+                    // visible = !visible;
                     // print(widget.visible);
 
                   });
@@ -99,14 +107,14 @@ class _DropDownTypeOfUserState extends State<DropDownTypeOfUser> {
     typeOfUserItems.clear();
     for (var value in data) {
       typeOfUserItems
-          .add(TypeOfUser(id: value['id'], productName: value['product_name']));
+          .add(TypeOfUser(id: value['id'], name: value['name']));
       currentType = typeOfUserItems.first;
-      widget.test = !visible;
-
+      // widget.test = !visible;
+      setState(() {
+        if (currentType!= null) {
+          saveTypeOfUser(currentType!);
+        }});
     }
-    setState(() {
-      if (currentType!= null) {
-        saveTypeOfUser(currentType!);
-      }});
+
   }
 }

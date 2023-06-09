@@ -11,9 +11,8 @@ Widget city(City city,Function onClick){
       height: 40,
       child: OutlinedButton(
           onPressed: () {
-            onClick.call(
-              // print(city)
-            );
+
+            onClick.call();
           },
           child: Text(city.name),
           style: outlineButton),

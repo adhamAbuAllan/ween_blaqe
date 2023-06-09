@@ -1,18 +1,30 @@
 import 'package:flutter/material.dart';
 import 'package:ween_blaqe/classes_that_effect_widgets/bookmark_class_widget.dart';
+import 'package:ween_blaqe/data_containers/add_ad_data_container.dart';
+
+import '../../../testing_code/drop_down_bottom_get_data.dart';
+import '../../../testing_code/exams/second_exam.dart';
+import '../../../testing_code/responses_code.dart';
+import 'home.dart';
+
 class Bookmark extends StatefulWidget {
-  const Bookmark({Key? key}) : super(key: key);
+   Bookmark({Key? key}) : super(key: key);
 
   @override
   State<Bookmark> createState() => _BookmarkState();
-}
 
+}
+var show = false;
 class _BookmarkState extends State<Bookmark> {
+
   @override
   Widget build(BuildContext context) {
-    var title = "شقة للطلاب في مدينة الخليل";
-    var location = "الخليل - واد الهرية";
-    var price = "900";
+
+
+
+    var title = "شقة للطلاب مفروش الخليل";
+    var location = "الخليل-واد الهرية";
+    var price = 999;
     var image = "assets/images/apartments_images/image1.png";
     var booking= "غير محجوز";
     return Scaffold(
@@ -53,7 +65,21 @@ class _BookmarkState extends State<Bookmark> {
 
             ],
           ),
-          BookmarkClassWidget(title: title, image: image, price: price, booking: booking, location: location,isvisible: false,)
+        show   == false ? Center(child: Container(
+            margin: EdgeInsets.fromLTRB(25, 215, 25, 0),child: TextButton(
+          onPressed: (){
+            setState(() {
+              show = true;
+
+            });
+          },
+              child: Text("لا يوجد لديك إعلانات محفوظة",
+                style: TextStyle(
+                  fontFamily: "IBM",
+                  color: Colors.grey.shade800,
+                  fontSize: 20,
+                )),
+            ),)) :  BookmarkClassWidget(title: title??"", image: image, price: price??0, booking: booking, location: location??"",isvisible: false,)
 
 
         ],),

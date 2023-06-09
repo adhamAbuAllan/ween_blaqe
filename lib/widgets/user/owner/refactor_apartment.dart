@@ -1,3 +1,4 @@
+import 'package:colorful_safe_area/colorful_safe_area.dart';
 import 'package:flutter/material.dart';
 import 'package:ween_blaqe/classes_that_effect_widgets/apartments/create_apartment/container_classes_widget/container_choose_item_class_widget.dart';
 import 'package:ween_blaqe/classes_that_effect_widgets/apartments/create_apartment/container_classes_widget/container_input_text_class_widget.dart';
@@ -21,6 +22,8 @@ class _RefactorApartmentState extends State<RefactorApartment> {
     //Cities box
     String firstCity = 'الخليل';
     String city_box_title = "المدينة";
+    int city_id = 0;
+
 
     List<String> cities = [
       'الخليل',
@@ -88,171 +91,177 @@ class _RefactorApartmentState extends State<RefactorApartment> {
         "و مطعم للوجبات السريعة كذلك يوجد العديد "
         "من المكتبات التي تخدم الطلاب بجميع التخصصات.";
 
-    return SafeArea(
-      child: Scaffold(
-        backgroundColor: Colors.grey.shade200,
-          appBar: AppBar(
+    return ColorfulSafeArea(
+      color: Colors.orange,
+
+      child: SafeArea(
+        child: Scaffold(
+          backgroundColor: Colors.grey.shade200,
+            appBar: AppBar(
 
 
-            actions: [
+              actions: [
 
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: OutlinedButton(
-                onPressed: () {
-                  Navigator.pop(context);
-                },
-                style: outlineButton,
-                child: const Text("إلغاء"),
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: OutlinedButton(
+                  onPressed: () {
+                    Navigator.pop(context);
+                  },
+                  style: outlineButton,
+                  child: const Text("إلغاء"),
+                ),
               ),
-            ),
-            const Expanded(child: Text("")),
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: ElevatedButton(
-                onPressed: () {
-                  Navigator.of(context).push(MaterialPageRoute(
-                    builder: (context) {
-                      return const ApartmentOfOwner();
-                    },
-                  ));
-                },
-                style: fullButton,
-                child: const Text("حفظ"),
+              const Expanded(child: Text("")),
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: ElevatedButton(
+                  onPressed: () {
+                    Navigator.of(context).push(MaterialPageRoute(
+                      builder: (context) {
+                        return const ApartmentOfOwner();
+                      },
+                    ));
+                  },
+                  style: fullButton,
+                  child: const Text("حفظ"),
+                ),
               ),
+
+            ],
+            backgroundColor: Colors.white,
+
             ),
 
-          ],
-          backgroundColor: Colors.white,
-
-          ),
-
-          body:   SingleChildScrollView(
-            child: Center(
-              child: Column(
-                children: [
-                  //city box
-                  Padding(
-                    padding: const EdgeInsets.fromLTRB(0, 10, 0, 10),
-                    child: ContainerChooseItemClassWidget(
-                      title: city_box_title,
-                      firstItem: firstCity,
-                      items: cities,
+            body:   SingleChildScrollView(
+              child: Center(
+                child: Column(
+                  children: [
+                    //city box
+                    Padding(
+                      padding: const EdgeInsets.fromLTRB(0, 10, 0, 10),
+                      child: ContainerChooseCityItemClassWidget(
+                        title: city_box_title,
+                        onSelected: (c){
+                          city_id = c.id;
+                        },
+                      ),
                     ),
-                  ),
-                  //location box
-                  Padding(
-                    padding: const EdgeInsets.fromLTRB(0, 0, 0, 10),
-                    child: ContainerInputTextClassWidget(
-                        title: choose_address_title,
-                        hintInput: hint_address,
-                        inputType: text,
-                        focusNode:address_focusNose,
-                        onFieldSubmitted: (value){}
+                    //location box
+                    Padding(
+                      padding: const EdgeInsets.fromLTRB(0, 0, 0, 10),
+                      child: ContainerInputTextClassWidget(
+                          title: choose_address_title,
+                          hintInput: hint_address,
+                          inputType: text,
+                          focusNode:address_focusNose,
+                          onFieldSubmitted: (value){}
+                      ),
                     ),
-                  ),
-                  //rooms box
-                  Padding(
-                    padding: EdgeInsets.fromLTRB(0, 0, 0, 10),
-                    child: ContainerInputTextClassWidget(
-                        title: choose_count_rooms_text,
-                        hintInput: hint_count_rooms,
-                        inputType: number,
-                        focusNode: count_roomsFocusNode,
-                        onFieldSubmitted: (value){}
+                    //rooms box
+                    Padding(
+                      padding: EdgeInsets.fromLTRB(0, 0, 0, 10),
+                      child: ContainerInputTextClassWidget(
+                          title: choose_count_rooms_text,
+                          hintInput: hint_count_rooms,
+                          inputType: number,
+                          focusNode: count_roomsFocusNode,
+                          onFieldSubmitted: (value){}
+                      ),
                     ),
-                  ),
-                  //bathrooms box
-                  Padding(
-                    padding: EdgeInsets.fromLTRB(0, 0, 0, 0),
-                    child: ContainerInputTextClassWidget(
-                        title: choose_count_bathrooms_text,
-                        hintInput: hint_count_bathrooms,
-                        inputType: number,
-                        focusNode: count_bathroomsFocusNode,
-                        onFieldSubmitted: (value){}
+                    //bathrooms box
+                    Padding(
+                      padding: EdgeInsets.fromLTRB(0, 0, 0, 0),
+                      child: ContainerInputTextClassWidget(
+                          title: choose_count_bathrooms_text,
+                          hintInput: hint_count_bathrooms,
+                          inputType: number,
+                          focusNode: count_bathroomsFocusNode,
+                          onFieldSubmitted: (value){}
+                      ),
                     ),
-                  ),
-                  Container(
-                    margin: const EdgeInsets.fromLTRB(10, 2, 10, 10),
-                    padding: const EdgeInsets.fromLTRB(10, 2, 10, 10),
-                    width: 373,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(7),
-                      color: Colors.white70,
-                    ),
-                    child: Column(
-                      children: [
-                        //this row for text
-                        Row(
-                          children: [
-                            Padding(
-                              padding: const EdgeInsets.fromLTRB(0, 0, 10, 10),
-                              child: Text(
-                                "حدد المزايا",
-                                style: TextStyle(
-                                    fontFamily: 'IBM',
-                                    fontSize: 20,
-                                    color: Colors.grey.shade800),
+                    Container(
+                      margin: const EdgeInsets.fromLTRB(10, 2, 10, 10),
+                      padding: const EdgeInsets.fromLTRB(10, 2, 10, 10),
+                      width: 373,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(7),
+                        color: Colors.white70,
+                      ),
+                      child: Column(
+                        children: [
+                          //this row for text
+                          Row(
+                            children: [
+                              Padding(
+                                padding: const EdgeInsets.fromLTRB(0, 0, 10, 10),
+                                child: Text(
+                                  "حدد المزايا",
+                                  style: TextStyle(
+                                      fontFamily: 'IBM',
+                                      fontSize: 20,
+                                      color: Colors.grey.shade800),
+                                ),
                               ),
-                            ),
-                            const Expanded(child: Text("")),
-                          ],
-                        ),
-                        //here could owner add advantages
-                        const AddAdvantages(),
+                              const Expanded(child: Text("")),
+                            ],
+                          ),
+                          //here could owner add advantages
+                          const AddAdvantages(),
 
-                      ],
+                        ],
+                      ),
                     ),
-                  ),
-                  //price padding
-                  Padding(
-                    padding: const EdgeInsets.fromLTRB(0, 0, 0, 10),
-                    child: ContainerInputTextClassWidget(title: priceText,
-                      hintInput: priceHint,
-                      inputType: TextInputType.number,focusNode: priceFocusNode,
-                      onFieldSubmitted: (value){},),
-                  ),
-                  //countStudent padding
-                  Padding(
-                    padding: const EdgeInsets.fromLTRB(0, 0, 0, 10),
-                    child: ContainerInputTextClassWidget(title: countStudentText,
-                        hintInput: countStudentHint,
-                        inputType: TextInputType.number,focusNode: countStudentFocusNode,
-                        onFieldSubmitted: (value){}),
-                  ),
-                  //square padding
-                  Padding(
-                    padding: const EdgeInsets.fromLTRB(0, 0, 0, 10),
-                    child: ContainerInputTextClassWidget(title: squareText,
-                        hintInput: squareHint,
-                        inputType: TextInputType.number,focusNode: squareFocusNode,
-                        onFieldSubmitted: (value){}),
-                  ),
-                  //type of apartment container
-                  ContainerChooseItemClassWidget(title: typeApartmentText,
-                    items: typeApartmentItems,
-                    firstItem: firstValueTypeApartment,),
-                  //add title to Ad
-                  Padding(
-                    padding: const EdgeInsets.fromLTRB(0, 0, 0, 10),
-                    child: ContainerInputTextClassWidget(
-                        title: addSuitableTitleForAdText,
-                        hintInput: addSuitableTitleForAdHnit,
-                        inputType: TextInputType.text,focusNode: adFocusNode,
-                        onFieldSubmitted: (value){}),
-                  ),
-                  // discriptopin the apartment
-                  ContainerInputLongTextClassWidget(
-                      title: discrptionApartmentText ,
-                      hintInput: discrptionApartmentHint,
-                      inputType: TextInputType.text,focusNode: discrptionFocusedNode),
-                  const AddAcontact()
+                    //price padding
+                    Padding(
+                      padding: const EdgeInsets.fromLTRB(0, 0, 0, 10),
+                      child: ContainerInputTextClassWidget(title: priceText,
+                        hintInput: priceHint,
+                        inputType: TextInputType.number,focusNode: priceFocusNode,
+                        onFieldSubmitted: (value){},),
+                    ),
+                    //countStudent padding
+                    Padding(
+                      padding: const EdgeInsets.fromLTRB(0, 0, 0, 10),
+                      child: ContainerInputTextClassWidget(title: countStudentText,
+                          hintInput: countStudentHint,
+                          inputType: TextInputType.number,focusNode: countStudentFocusNode,
+                          onFieldSubmitted: (value){}),
+                    ),
+                    //square padding
+                    Padding(
+                      padding: const EdgeInsets.fromLTRB(0, 0, 0, 10),
+                      child: ContainerInputTextClassWidget(title: squareText,
+                          hintInput: squareHint,
+                          inputType: TextInputType.number,focusNode: squareFocusNode,
+                          onFieldSubmitted: (value){}),
+                    ),
+                    //type of apartment container
+                    ContainerChooseTypeApartmentItemClassWidget(title: typeApartmentText,
 
-                ],
+
+                      ),
+                    //add title to Ad
+                    Padding(
+                      padding: const EdgeInsets.fromLTRB(0, 0, 0, 10),
+                      child: ContainerInputTextClassWidget(
+                          title: addSuitableTitleForAdText,
+                          hintInput: addSuitableTitleForAdHnit,
+                          inputType: TextInputType.text,focusNode: adFocusNode,
+                          onFieldSubmitted: (value){}),
+                    ),
+                    // discriptopin the apartment
+                    ContainerInputLongTextClassWidget(
+                        title: discrptionApartmentText ,
+                        hintInput: discrptionApartmentHint,
+                        inputType: TextInputType.text,focusNode: discrptionFocusedNode),
+                    const AddAcontact()
+
+                  ],
+                ),
               ),
             ),
-          ),
+        ),
       ),
     );
   }

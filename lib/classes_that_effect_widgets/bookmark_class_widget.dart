@@ -6,7 +6,7 @@ class BookmarkClassWidget extends StatefulWidget {
   String image;
   String title;
   String location;
-  String price;
+  int price;
   String booking;
   bool ? isvisible = false;
 
@@ -50,8 +50,8 @@ class _BookmarkClassWidgetState extends State<BookmarkClassWidget> {
       // },
       child: Container(
         margin: EdgeInsets.fromLTRB(10, 2, 10, 10),
-        width: 373,
-        padding: EdgeInsets.fromLTRB(0, 0, 0, 10),
+        width: double.infinity,
+        padding: const EdgeInsets.fromLTRB(25, 20, 25, 25),
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(7),
           color: Colors.white70,
@@ -135,7 +135,7 @@ class _BookmarkClassWidgetState extends State<BookmarkClassWidget> {
                                 color: Colors.grey.shade800),
                           ),
                           TextSpan(
-                              text: price,
+                              text: "$price",
                               style: TextStyle(
                                 fontSize: 16,
                                 fontFamily: 'IBM',

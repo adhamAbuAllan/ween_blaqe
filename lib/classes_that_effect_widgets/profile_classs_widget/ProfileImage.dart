@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+
+import '../../api/users.dart';
 class ProfileImage extends StatefulWidget {
   String image;
   String name;
@@ -22,10 +24,15 @@ class _ProfileImageState extends State<ProfileImage> {
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(7),
         color: Colors.white70,),
-      child: Column(children: [
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+
+        children: [
         Padding(
           padding: const EdgeInsets.fromLTRB(10, 5, 10, 5),
           child: Row(
+            mainAxisSize: MainAxisSize.min,
+
             children:  [
               Padding(
                 padding: const EdgeInsets.all(8.0),
@@ -36,15 +43,18 @@ class _ProfileImageState extends State<ProfileImage> {
 
               ),
               Text(name,style: const TextStyle(fontSize: 16,fontFamily: 'IBM'),),
+              Expanded(child: Text("")),
             ],
           ),
         ),
         //join history
         Row(
+          mainAxisSize: MainAxisSize.min,
+
           children:  [
             Padding(
               padding: const EdgeInsets.fromLTRB(0, 0,10, 5),
-              child: Text("انضم في$dateOfJoin",style: const TextStyle(fontSize: 13,fontFamily: 'IBM',color: Colors.grey),),
+              child: Text("انضم في${dateOfJoin}",style: const TextStyle(fontSize: 13,fontFamily: 'IBM',color: Colors.grey),),
             ),
             const Expanded(child: Text(""))
 

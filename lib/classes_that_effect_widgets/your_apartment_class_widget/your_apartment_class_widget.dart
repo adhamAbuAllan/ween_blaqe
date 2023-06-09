@@ -5,7 +5,7 @@ class YourApartmentClassWidget extends StatefulWidget {
   String image;
   String title;
   String location;
-  String price;
+  int price;
   String booking;
 
   YourApartmentClassWidget({
@@ -33,7 +33,7 @@ class _YourApartmentClassWidgetState extends State<YourApartmentClassWidget> {
     var location = widget.location;
     var price = widget.price;
     var booking = widget.booking;
-    var date = DateAsText(date: DateTime.now());
+    // var date = DateAsText(date: DateTime.now());
     return GestureDetector(
       // onTap: (){
       //   Navigator.of(context).push(
@@ -44,7 +44,7 @@ class _YourApartmentClassWidgetState extends State<YourApartmentClassWidget> {
       // },
       child: Container(
           margin: EdgeInsets.fromLTRB(10, 2, 10, 10),
-          width: 373,
+          width: double.infinity,
           height: 180,
           padding: EdgeInsets.fromLTRB(0, 0, 0, 10),
           decoration: BoxDecoration(
@@ -58,7 +58,8 @@ class _YourApartmentClassWidgetState extends State<YourApartmentClassWidget> {
                   Expanded(child: Text("")),
                   Padding(
                     padding: const EdgeInsets.fromLTRB(10, 0, 0, 0),
-                    child: Text("$date",
+                    child: Text("",
+                        // "$date",
                         style: TextStyle(
                           fontSize: 14,
                           fontFamily: 'IBM',
@@ -130,7 +131,7 @@ class _YourApartmentClassWidgetState extends State<YourApartmentClassWidget> {
                                   color: Colors.grey.shade800),
                             ),
                             TextSpan(
-                                text: price,
+                                text: "$price",
                                 style: TextStyle(
                                   fontSize: 16,
                                   fontFamily: 'IBM',

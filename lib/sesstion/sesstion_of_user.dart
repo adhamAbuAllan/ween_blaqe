@@ -1,36 +1,62 @@
-import '../api/users.dart';
-import 'main_session.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+import 'package:ween_blaqe/api/type_of_user.dart';
+import 'package:ween_blaqe/api/universities.dart';
 
-saveUserInfo(User data) {
-  Session.save("logged", "OK");
-  Session.save("token", data.token);
-  Session.saveInt("id", data.id);
+import '../api/users.dart';
+
+import 'new_session.dart';
+
+saveUserInfo(User data ) {
+  NewSession.save("logged", "OK");
+  NewSession.save("token", data.token);
+  NewSession.save<int>("id", data.id);
   // Session.save("profile", data.profile);
-  Session.save("name", data.name);
-  Session.save("type", data.token);
+  NewSession.save("name", data.name);
+
+  /*
+             * be careful !!!
+             * don't delete those two lines those tables of database
+             * -------------------------------------------------
+
+  // NewSession.save("type_id", data.type.id);
+  // NewSession.save("university_id", data.university.id);
+
+  -------------------------------------------------
+*/
+
+  NewSession.save("type", data.type);
+
+  NewSession.save("phone", data.phone);
+  NewSession.save("gender", data.gender);
+  NewSession.save("university", data.university);
+
+
 }
 
 removeUserInfo() {
-  Session.remove("logged");
-  Session.remove("token");
-  Session.remove("id");
+  NewSession.remove("logged");
+  NewSession.remove("token");
+  NewSession.remove("id");
   // Session.remove("profile");
-  Session.remove("name");
-  Session.remove("type");
+  NewSession.remove("name");
+  NewSession.remove("gender");
+  NewSession.remove("type_id");
+  NewSession.remove("university_id");
 }
 
 saveUserInfoOfTeach(User data) {
-  Session.save("logged", "OK");
-  Session.save("token", data.token);
-  Session.saveInt("id", data.id);
+  NewSession.save("logged", "OK");
+  NewSession.save("token", data.token);
+  NewSession.save<int>("id", data.id);
   // Session.save("profile", data.profile);
-  Session.save("name", data.name);
+  NewSession.save("name", data.name);
 }
 
 removeUserInfoOfTeach() {
-  Session.remove("logged");
-  Session.remove("token");
-  Session.remove("id");
+  NewSession.remove("logged");
+  NewSession.remove("token");
+  NewSession.remove("id");
   // Session.remove("profile");
-  Session.remove("name");
+  NewSession.remove("name");
 }
+

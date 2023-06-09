@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:ween_blaqe/widgets/toast_widget.dart';
 // class MatiralOfSwitch extends StatelessWidget {
 //   const MatiralOfSwitch({Key? key}) : super(key: key);
   @override
@@ -39,6 +40,7 @@ class _OwnSwitchState extends State<OwnSwitch> {
           onChanged: (bool value) {
             setState(() {
               light1 = value;
+             value == false ? toast("تم كتم الاشعارات"):toast("تم تفعيل الاشعارات");
             });
           },
         ),

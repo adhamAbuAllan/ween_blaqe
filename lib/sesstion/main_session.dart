@@ -8,6 +8,7 @@ class Session {
     prefs = await SharedPreferences.getInstance();
   }
 
+
   static void save(String key, String value) {
     prefs.setString(key, value);
   }

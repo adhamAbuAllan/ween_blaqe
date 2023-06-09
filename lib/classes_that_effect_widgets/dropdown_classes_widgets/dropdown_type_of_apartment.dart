@@ -6,6 +6,7 @@ import 'package:http/http.dart' as http;
 
 import '../../data_containers/add_ad_data_container.dart';
 import '../../sesstion/sesstion_of_type_apartment.dart';
+import 'dropdown_type_of_apartment.dart';
 List <TypeOfApartment>TypeOfApartmentItems = [];
 TypeOfApartment ? currentType;
 class DropDownTypeOfApartment extends StatefulWidget {
@@ -33,9 +34,9 @@ class _DropDownTypeOfApartmentState extends State<DropDownTypeOfApartment> {
         width : double.infinity,
         child: Padding(
             padding: const EdgeInsets.fromLTRB(15, 0, 10, 0),
-            child:TypeOfApartmentItems.length>=1 ? DropdownButtonFormField<dynamic>(
+            child:TypeOfApartmentItems.isNotEmpty ? DropdownButtonFormField<dynamic>(
               // focusNode: focusNode,
-              style: TextStyle(fontSize:14 ),
+              style: const TextStyle(fontSize:14 ),
               // autofocus: true,
               decoration: InputDecoration(
                 enabledBorder: OutlineInputBorder(
@@ -43,7 +44,7 @@ class _DropDownTypeOfApartmentState extends State<DropDownTypeOfApartment> {
                   borderSide:
                   BorderSide(color: Colors.orange.shade300, width: 0.5),
                 ),
-                focusedBorder: OutlineInputBorder(
+                focusedBorder: const OutlineInputBorder(
                   //<-- SEE HERE
                   borderSide: BorderSide(color: Colors.orange, width: 1),
                 ),
@@ -51,15 +52,21 @@ class _DropDownTypeOfApartmentState extends State<DropDownTypeOfApartment> {
               value: currentType,
               items:TypeOfApartmentItems
                   .map((c)=> DropdownMenuItem(value:c,child: Text(c.name,
-                style: TextStyle(fontSize: 14,
+                style: const TextStyle(fontSize: 14,
                     color: Colors.black54,
                     fontFamily: 'IBM'
                 ),),),).toList(),
               onChanged: (i){
                 setState(() {
                   currentType = i!;
-                  AddAdDataContainer.typOfApartmentId =
-                      currentType?.id??0;
+                  if(currentType!=null){
+
+                    // currentCity!.id = AddAdDataContainer.currentCityId!.id;
+                    // currentType!.id = AddAdDataContainer.typOfApartmentId!.id;
+                  }else{
+                    // currentCity?.id = 0;
+                  }
+
                 });
               },
             )

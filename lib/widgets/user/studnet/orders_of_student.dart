@@ -1,5 +1,6 @@
 import 'package:ween_blaqe/classes_that_effect_widgets/orders_classs_widget/container_order_student_class_widget.dart';
 
+import '../../../data_containers/add_ad_data_container.dart';
 import 'main_student.dart';
 import 'package:flutter/material.dart';
 import 'package:ween_blaqe/classes_that_effect_widgets/bookmark_class_widget.dart';
@@ -9,7 +10,7 @@ class OrdersOfStudent extends StatefulWidget {
   @override
   State<OrdersOfStudent> createState() => _OrdersOfStudentState();
 }
-
+var show = false;
 class _OrdersOfStudentState extends State<OrdersOfStudent> {
   @override
   Widget build(BuildContext context) {
@@ -56,7 +57,20 @@ class _OrdersOfStudentState extends State<OrdersOfStudent> {
 
             ],
           ),
-          ContainerOrderOfStudentClassWidget(title: title, image: image, price: price, location: location, dateOfBooking: date)
+          show == false ? Center(child: Container(
+            margin: EdgeInsets.fromLTRB(25, 200, 25, 0),child: TextButton(
+            onPressed: (){
+              setState(() {
+                show = true;
+              });
+            },
+              child: Text("لم تقم بحجز أي شقة حتى الان",
+                style: TextStyle(
+                  fontFamily: "IBM",
+                  color: Colors.grey.shade800,
+                  fontSize: 20,
+                )),
+            ),)) : ContainerOrderOfStudentClassWidget(title: title, image: image, price: price, location: location, dateOfBooking: date)
 
 
         ],),

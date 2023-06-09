@@ -1,6 +1,7 @@
 // import 'dart:html';
 
 import 'package:carousel_slider/carousel_slider.dart';
+import 'package:colorful_safe_area/colorful_safe_area.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
@@ -9,6 +10,7 @@ import 'package:url_launcher/url_launcher.dart';
 import 'package:ween_blaqe/classes_that_effect_widgets/apartments/show_more_classes_widget/about_apartment_class_widget.dart';
 import 'package:ween_blaqe/classes_that_effect_widgets/apartments/show_more_classes_widget/advantages_class_widget.dart';
 import 'package:ween_blaqe/classes_that_effect_widgets/apartments/show_more_classes_widget/for_inquriries_class_widget.dart';
+import 'package:ween_blaqe/data_containers/add_ad_data_container.dart';
 import 'package:ween_blaqe/funcations/route_pages/my_pages_routes.dart';
 import 'package:ween_blaqe/funcations/route_pages/push_routes.dart';
 import 'package:ween_blaqe/sesstion/main_session.dart';
@@ -16,6 +18,8 @@ import 'package:ween_blaqe/widgets/toast_widget.dart';
 import 'package:ween_blaqe/widgets/user/studnet/show_all_advantages.dart';
 import '../../../classes_that_effect_widgets/apartments/show_more_classes_widget/generic_info_class_widget.dart';
 import '../../../classes_that_effect_widgets/apartments/slider_images.dart';
+import '../../../i_well_delete_it/image_slider_with_indicator.dart';
+import '../../../sesstion/new_session.dart';
 import '../../../styles/button.dart';
 import '../../../styles/show_more_widget/about_apartment_style.dart';
 import '../../../styles/text_style/aline_style.dart';
@@ -29,7 +33,7 @@ String phone = "569339613";
 String number_phone = "https://wa.me/+972$phone}";
 String number_phone2 = "https://api.whatsapp.com/send?phone=+972$phone";
 final Uri _url = Uri.parse('https://pub.dev');
-late Apartment apartment;
+late ApartmentRes apartment;
 
 /*
  String url() {
@@ -44,26 +48,33 @@ late Apartment apartment;
   ////////////////////////////////////////////////////////////////
  */
 class ShowMore extends StatefulWidget {
-  const ShowMore({Key? key}) : super(key: key);
+  ArrayOfApartments ? oneApartment;
 
+   ShowMore({Key? key,this.oneApartment,
+  }) : super(key: key);
   @override
   State<ShowMore> createState() => _ShowMoreState();
 }
 
 class _ShowMoreState extends State<ShowMore> {
   @override
+  void initState() {
+    super.initState();
+    getData();
+  }
+  @override
   Widget build(BuildContext context) {
     //general info box
-    var title = "شقة للطالبات في مدينة الخليل";
-    var city = "الخليل";
-    var price = 900;
-    var countOfStudent = 2;
-    var location = "واد الهرية ";
+    var title = AddAdDataContainer.title;
+    var city = AddAdDataContainer.city;
+    var price = AddAdDataContainer.price;
+    var countOfStudent = AddAdDataContainer.countOfStudent;
+    var location = AddAdDataContainer.address;
     //about apartment box
     var titleAboutApartmentSM = "المساحة";
     var imageAboutApartmentSM =
         "assets/images/apartments_images/about_apartment/area.png";
-    var valueAboutApartmentSM = 40;
+    var valueAboutApartmentSM = AddAdDataContainer.squareMeters??0;
     var titleAboutApartment = "الاًسرّة";
     var imageAboutApartment =
         "assets/images/apartments_images/about_apartment/bed1.png";
@@ -71,15 +82,18 @@ class _ShowMoreState extends State<ShowMore> {
     var imageAboutApartmentRoom =
         "assets/images/apartments_images/about_apartment/room.png";
     var titleAboutApartmentroom = "الغرف";
-    var valueAboutApartmentRoom = 2;
+    var valueAboutApartmentRoom = AddAdDataContainer.rooms??0;
     var imageAboutApartmentBathroom =
         "assets/images/apartments_images/about_apartment/bathroom.png";
-    var valueAboutApartmentBathroom = 1;
+    var valueAboutApartmentBathroom = AddAdDataContainer.bathRooms??0;
     var titleAboutApartmentBathroom = "الحمامات";
+    final CarouselController imageController = CarouselController();
 
+var ownIndex = 0;
+// var arrayOfApartments = widget.arrayOfApartments;
 
-
-    return SafeArea(
+    return ColorfulSafeArea(
+      color: Colors.orange,
       child: Scaffold(
         backgroundColor: Colors.grey.shade200,
         body: SingleChildScrollView(
@@ -101,23 +115,32 @@ class _ShowMoreState extends State<ShowMore> {
                       )),
                 ),
                 const Expanded(child: Text("")),
+
               ],
             ),
 
-
             //this widget for image only
-            ImagesSlider(images: imageSliders),
+            //I use this widget because the ImageSlider didn't have a indicator
+            ImageSliderWithPointer(),
+
+              // child: ImagesSlider(images: imageSliders,
+              //   myController: imageController,index: ownIndex
+              //     ),
+
+
+            // TestImageSlider(current: ownIndex,myContext: context),
 
 
             GenericInfoClassWidget(
-              location: location,
-              price: price,
-              city: city,
-              title: title,
-              numberOfAllowedStudnet: countOfStudent,
+              apartments: widget.oneApartment,
+              // location: location??"",
+              // price: price??0,
+              // city: city??"",
+              // title: title??"",
+              // numberOfAllowedStudnet: countOfStudent??0,
             ),
             Container(
-              margin: EdgeInsets.fromLTRB(10, 23, 10, 0),
+              margin: const EdgeInsets.fromLTRB(10, 23, 10, 0),
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(7),
                 color: Colors.white70,
@@ -128,7 +151,7 @@ class _ShowMoreState extends State<ShowMore> {
                   Row(
                     children: const [
                       Padding(
-                        padding: EdgeInsets.fromLTRB(0, 0, 10, 0),
+                        padding: EdgeInsets.fromLTRB(0, 0, 20, 0),
                         child: Text(
                           "حول الشقة",
                           style: TextStyle(
@@ -152,10 +175,7 @@ class _ShowMoreState extends State<ShowMore> {
                                 title: titleAboutApartmentSM,
                                 image: imageAboutApartmentSM,
                                 value: valueAboutApartmentSM),
-                            AboutApartment(
-                                title: titleAboutApartment,
-                                image: imageAboutApartment,
-                                value: valueAboutApartment),
+
                             AboutApartment(
                                 title: titleAboutApartmentroom,
                                 image: imageAboutApartmentRoom,
@@ -197,9 +217,9 @@ class _ShowMoreState extends State<ShowMore> {
 
 //button to show more advantages
                   Padding(
-                    padding: const EdgeInsets.fromLTRB(0, 20, 0, 15),
+                    padding: const EdgeInsets.fromLTRB(25, 25, 25, 25),
                     child: SizedBox(
-                      width: 350,
+                      width: double.infinity,
                       height: 55,
                       child: ElevatedButton(
                           onPressed: () {
@@ -219,8 +239,7 @@ class _ShowMoreState extends State<ShowMore> {
 
 //notes of owner
             Container(
-              margin: EdgeInsets.fromLTRB(0, 23, 0, 0),
-              width: 373,
+              margin: EdgeInsets.fromLTRB(10, 23, 10, 0),
 // discription.length.toDouble() * 2,
 //decoration of show apartment style
               decoration: BoxDecoration(
@@ -232,7 +251,7 @@ class _ShowMoreState extends State<ShowMore> {
                 children:  [
 //title
                   Row(
-                    children: [
+                    children: const [
                       Padding(
                         padding: EdgeInsets.fromLTRB(0, 10, 10, 0),
                         child: Text("وصف الشقة",
@@ -248,11 +267,8 @@ class _ShowMoreState extends State<ShowMore> {
 //description
                   Padding(
                     padding: EdgeInsets.fromLTRB(10, 0, 10, 10),
-                    child: Text("شقة سكنية مكونة من غرفتين و حمام"
-                        " و مطبخ و يحتوي السكن و اصنصيل و هناك موقف"
-                        " خاص بالسيارات كما هذا انه مناسب للدراسة كون "
-                        "المكان هادئ و لا يوجد ضوضاء للمصانع او ما شابه",
-                        style: TextStyle(
+                    child: Text(AddAdDataContainer.description??"",
+                        style: const TextStyle(
                           color: Colors.black87,
                           fontSize: 16,
                           fontFamily: 'IBM',
@@ -264,8 +280,7 @@ class _ShowMoreState extends State<ShowMore> {
             ),
 //number phone
             Container(
-              margin: EdgeInsets.fromLTRB(0, 23, 0, 0),
-              width: 373,
+              margin: EdgeInsets.fromLTRB(10, 23, 10, 0),
               height: 120,
 // discription.length.toDouble() * 2,
 //decoration of show apartment style
@@ -278,7 +293,7 @@ class _ShowMoreState extends State<ShowMore> {
                 children: [
 //title
                   Row(
-                    children: [
+                    children: const [
                       Padding(
                         padding:  EdgeInsets.fromLTRB(0, 10, 10, 10),
                         child: Text("للإستفسار",
@@ -294,20 +309,37 @@ class _ShowMoreState extends State<ShowMore> {
 //phone number
                   Row(
                     children: [
-                      Expanded(
+                      const Expanded(
                         child: Text(""),
                       ),
                       SizedBox(
                         width: 115,
                         height: 50,
                         child: OutlinedButton(
+                          onPressed: () {
+// _launchUrl;
+// final value = ClipboardData(text: number_phone);
+// Clipboard.setData(value);
+                            number_phone2;
+
+// Fluttertoast.showToast(
+//     msg: "الرقم غير صحيح",
+//     toastLength: Toast.LENGTH_SHORT,
+//     gravity: ToastGravity.BOTTOM_RIGHT,
+//     timeInSecForIosWeb: 10,
+//     backgroundColor: Colors.blue,
+//     textColor: Colors.white,
+//     fontSize: 16.0
+// );
+                          },
+                          style: outlineButton,
                           child: Padding(
                             padding: const EdgeInsets.all(8.0),
                             child: Row(
-                              children: [
+                              children: const [
 //whtsapp icon
                                 Padding(
-                                  padding: const EdgeInsets.fromLTRB(0, 0, 0, 0),
+                                  padding: EdgeInsets.fromLTRB(0, 0, 0, 0),
                                   child: Image(
                                     image:
                                         AssetImage("assets/images/whatsapp.png"),
@@ -329,26 +361,9 @@ class _ShowMoreState extends State<ShowMore> {
                               ],
                             ),
                           ),
-                          onPressed: () {
-// _launchUrl;
-// final value = ClipboardData(text: number_phone);
-// Clipboard.setData(value);
-                            number_phone2;
-
-// Fluttertoast.showToast(
-//     msg: "الرقم غير صحيح",
-//     toastLength: Toast.LENGTH_SHORT,
-//     gravity: ToastGravity.BOTTOM_RIGHT,
-//     timeInSecForIosWeb: 10,
-//     backgroundColor: Colors.blue,
-//     textColor: Colors.white,
-//     fontSize: 16.0
-// );
-                          },
-                          style: outlineButton,
                         ),
                       ),
-                      Expanded(
+                      const Expanded(
                         child: Text(""),
                         flex: 20,
                       ),
@@ -360,17 +375,17 @@ class _ShowMoreState extends State<ShowMore> {
             ),
 
             Padding(
-              padding: const EdgeInsets.fromLTRB(0, 20, 0, 25),
+              padding: const EdgeInsets.fromLTRB(25, 25, 25, 25),
               child: SizedBox(
-                width: 350,
+                width: double.infinity,
                 height: 55,
                 child: ElevatedButton(
                     onPressed: () {
-                      Session.get("logged", "") == "" ? toast("يرجى تسجيل الدخول لإتمام عملية لحجز") :
-                      myPush(context, BookingNow(), MyPagesRoutes.bookingNow);
+                      // NewSession.get("logged", "") == "" ? toast("يرجى تسجيل الدخول لإتمام عملية لحجز") :
+                      myPushName(context, MyPagesRoutes.bookingNow);
                     },
-                    child: Text("إحجز الآن"),
-                    style: fullButton),
+                    style: fullButton,
+                    child: const Text("إحجز الآن")),
               ),
             ),
           ],

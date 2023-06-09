@@ -1,17 +1,29 @@
 import 'package:flutter/material.dart';
-import 'package:ween_blaqe/sesstion/main_session.dart';
-import 'package:ween_blaqe/widgets/user/owner/main_owner.dart';
-import 'package:ween_blaqe/widgets/user/studnet/main_student.dart';
-import 'package:ween_blaqe/widgets/widgets_before_user_reg/account_before_login.dart';
+import 'package:ween_blaqe/api/universities.dart';
+
+import '../../api/apartments.dart';
+
 class DropdownButtonClassWidget extends StatefulWidget {
 
-  String firstItem;
-  List<String> items;
-  FocusNode? focusNode;
-  Function? onFieldSubmitted;
+  String ?firstItem;
+  List<String> ? items;
+  // FocusNode? focusNode;
+  // Function? onFieldSubmitted;
   double fontSize;
   bool ? visible;
+  double lift;
+  double right;
   TextEditingController ? controller;
+  Function(String)? onSelected;
+  // String name ;
+  // String ? myKey;
+  // dynamic myValue;
+  // Map<String ,dynamic>? response;
+
+
+  // Session.get(myKey, myValue);
+
+  // Session.get("profile", ""),
 
   // Function onTab;
 
@@ -19,12 +31,19 @@ class DropdownButtonClassWidget extends StatefulWidget {
 
   DropdownButtonClassWidget({Key? key,
      required this.items,
+    required this.right,
+    required this.lift,
      required this.firstItem,
-    this.focusNode,
+    // this.focusNode,
      required this.fontSize,
-      this.onFieldSubmitted,
+      // this.onFieldSubmitted,
     this.visible,
-    this.controller
+    this.controller,
+    this.onSelected,
+    // required this.name,
+ //    this.myKey,
+ //    this.myValue,
+ // this.response
 
 
     // this.onTab,
@@ -33,29 +52,35 @@ class DropdownButtonClassWidget extends StatefulWidget {
 
 
   @override
-  State<DropdownButtonClassWidget> createState() => _DropdownButtonClassWidgetState();
+  State<DropdownButtonClassWidget> createState() => _DropdownButtonClassWidget();
 
 }
-
-class _DropdownButtonClassWidgetState extends State<DropdownButtonClassWidget> {
+class _DropdownButtonClassWidget extends State<DropdownButtonClassWidget> {
 
   @override
   Widget build(BuildContext context) {
     var items = widget.items;
-
-    var firstItem = widget.firstItem;
-    var focusNode = widget.focusNode;
+    var currentValue = widget.firstItem;
+    // var focusNode = widget.focusNode;
     var fonstSize = widget.fontSize;
-    var visible = widget.visible;
+    // var visible = widget.visible;
+    // var name = widget.name;
+    // var myKey = widget.myKey!;
+    // var myValue = widget.myValue!;
+    //
+    // Map<String , dynamic> response = widget.response!;
+    // response = NewSession.get(myKey, myValue);
+    // items.forEach((element) {
+    //   // myKey = element;
+    //   element = myKey;
+    // });
     return Padding(
-      padding: const EdgeInsets.fromLTRB(25, 0, 25, 0),
-      child: DropdownButtonFormField(
-
-        focusNode: focusNode,
+      padding:  EdgeInsets.fromLTRB(widget.lift, 0, widget.right, 0),
+      child: DropdownButtonFormField<dynamic>(
+        // focusNode: focusNode,
         style: TextStyle(fontSize:fonstSize ),
-        autofocus: true,
+        // autofocus: true,
         decoration: InputDecoration(
-
           enabledBorder: OutlineInputBorder(
             //<-- SEE HERE
             borderSide:
@@ -66,40 +91,54 @@ class _DropdownButtonClassWidgetState extends State<DropdownButtonClassWidget> {
             borderSide: BorderSide(color: Colors.orange, width: 1),
           ),
         ),
+          value: currentValue,
 
-          value: firstItem,
-          onChanged: (String? newValue) {
-
-            setState(() {
-              firstItem = newValue!;
-              if (firstItem == "مؤجر"){
-                visible = true;
-              }
-
-            });
-          },
         items:items
-        .map<DropdownMenuItem<String>>((String value) {
+        ?.map((e)=> DropdownMenuItem(
+          value: e,
+          child: Text(
+          e,
+          style: TextStyle(fontSize: fonstSize,
+                color: Colors.grey.shade800,
+                fontFamily: 'IBM'
+            ),),),).toList(),
+          onChanged: (i){
+          setState(() {
+                   currentValue = i;
+                    setState(() {
+                      widget.onSelected!(currentValue!);
+                    });
 
-         Session.get("1", "1") == "1" ? MainStudent:MainOwner();
 
-          return DropdownMenuItem<String>(
+          });
+      },
 
-            value: value,
-            onTap: (){
+        //   DropdownMenuItem(
+        //
+        //         (String value) {
+        //   return DropdownMenuItem(
+        //     value: value,
+        //     onTap: (){
+        //       // response[widget.myKey!] = value;
+        //     },
+        //     child: Text(
+        //       value,
+        //       style: TextStyle(fontSize: fonstSize,
+        //           color: Colors.grey.shade800,
+        //           fontFamily: 'IBM'
+        //       ),
+        //     ),
+        //   );
+        //
+        // }).toList(),
 
-            },
-            child: Text(
-              value,
-              style: TextStyle(fontSize: fonstSize,
-                  color: Colors.grey.shade800,
-                  fontFamily: 'IBM'
-              ),
-            ),
-          );
-        }).toList()
-      ),
+      )
     );
 
   }
 }
+////////////////////////////////--------------------------//////////////////////////////
+
+
+
+

@@ -38,8 +38,8 @@ class _ContainerOrderOfStudentClassWidgetState extends State<ContainerOrderOfStu
       // },
       child: Container(
         margin: const EdgeInsets.fromLTRB(10, 2, 10, 10),
-        width: 373,
-        padding: const EdgeInsets.fromLTRB(0, 0, 0, 10),
+        width: double.infinity,
+        padding: const EdgeInsets.fromLTRB(25, 20, 25, 25),
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(7),
           color: Colors.white70,
