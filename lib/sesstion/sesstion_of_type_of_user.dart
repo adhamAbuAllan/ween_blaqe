@@ -1,6 +1,4 @@
-import 'package:ween_blaqe/api/type_of_user.dart';
-
-import '../api/users.dart';
+import '../api/type_of_user.dart';
 import 'new_session.dart';
 
 saveTypeOfUser(TypeOfUser data) {

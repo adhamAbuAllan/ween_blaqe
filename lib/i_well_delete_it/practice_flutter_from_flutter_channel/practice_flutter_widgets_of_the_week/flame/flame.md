@@ -1,0 +1,1 @@
+> flame package make your application like a simple game app

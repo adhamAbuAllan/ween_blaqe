@@ -1,6 +1,4 @@
-import 'package:ween_blaqe/api/type_of_apartment.dart';
-
-
+import '../api/type_of_apartment.dart';
 import 'new_session.dart';
 
 saveTypeOfApartment(TypeOfApartment data) {

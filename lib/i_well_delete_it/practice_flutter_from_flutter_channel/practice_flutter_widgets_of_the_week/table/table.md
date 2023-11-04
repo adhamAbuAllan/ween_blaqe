@@ -1,0 +1,1 @@
+>A widget that uses the table layout algorithm for its children.

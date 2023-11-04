@@ -1,0 +1,28 @@
+import 'package:url_launcher/url_launcher.dart';
+
+void sendMessageToWhatsApp(String phoneNumber, String message) async {
+  
+    String urlWith970 = 'https://wa.me/970$phoneNumber/?text=${Uri.encodeFull(message)}';
+    String urlWith972 = 'https://wa.me/972$phoneNumber/?text=${Uri.encodeFull(message)}';
+
+    //this code could not be good work
+
+  //   if (!await canLaunchUrl(Uri.parse(urlWith970))) {
+  //     await launch(urlWith970);
+  //   } else {
+  //     if(await canLaunchUrl(Uri.parse(urlWith972))){
+  //       await launch(urlWith972);
+  //     }else{
+  //       throw "the url uncorrect";
+  //     }
+  //   }
+  //   throw "something was wrong";
+// this code could be good work
+  //that launch two urls that mean if [url with 972] didn't work that will
+  // launch [url with 970] in anywhere
+  if(await canLaunchUrl(Uri.parse(urlWith970)) || await canLaunchUrl(Uri.parse(urlWith972))){
+     await launch(urlWith972);
+      await launch(urlWith970);
+  }else{throw "something was wrong";}
+}
+// switch ()

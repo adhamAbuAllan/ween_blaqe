@@ -12,13 +12,14 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:ween_blaqe/main.dart';
 
 void main() {
-  final Future<SharedPreferences> _prefs = SharedPreferences.getInstance();
-
+  final Future<SharedPreferences> prefs = SharedPreferences.getInstance();
 
   testWidgets('Counter increments smoke test', (WidgetTester tester) async {
-    var token = (await _prefs).get("token");
+    var token = (await prefs).get("token");
     // Build our app and trigger a frame.
-    await tester.pumpWidget(  OwnMaterialApp(logged: token!=null,));
+    await tester.pumpWidget(OwnMaterialApp(
+      logged: token != null,
+    ));
 
     // Verify that our counter starts at 0.
     expect(find.text('0'), findsOneWidget);

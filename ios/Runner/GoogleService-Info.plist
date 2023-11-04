@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>340084591875-qmthcuslemtm43q955crdk0r7re0dsmp.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.340084591875-qmthcuslemtm43q955crdk0r7re0dsmp</string>
+	<key>API_KEY</key>
+	<string>AIzaSyCrYYK83OfAJRmSD-WhNFedzOGV_pr9xpw</string>
+	<key>GCM_SENDER_ID</key>
+	<string>340084591875</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.example.weenBlaqe</string>
+	<key>PROJECT_ID</key>
+	<string>weenblaqedatabase</string>
+	<key>STORAGE_BUCKET</key>
+	<string>weenblaqedatabase.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:340084591875:ios:f51e1deef98854407aad36</string>
+</dict>
+</plist>

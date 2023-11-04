@@ -1,7 +1,7 @@
-import 'dart:ffi';
+// import 'dart:ffi';
 
-import 'package:ween_blaqe/api/users.dart';
-import 'package:ween_blaqe/api/apartments.dart';
+
+import 'apartments_api/one_apartment.dart';
 
 
 // class Booking{
@@ -65,7 +65,7 @@ class Bookings {
     required this.totalPrice,
     required this.monthCount
   });
-  late final ArrayOfApartments apartment;
+  late final DataOfOneApartment apartment;
   late final int userId;
   late final int price;
   late final String fromDate;
@@ -74,7 +74,7 @@ class Bookings {
   late final int monthCount;
 
   Bookings.fromJson(Map<String, dynamic> json){
-    apartment = ArrayOfApartments.fromJson(json['apartment']);
+    apartment = DataOfOneApartment.fromJson(json['apartment']);
     userId = json['user_id'];
     price = json['price'];
     fromDate = json['from_date'];
@@ -95,4 +95,3 @@ class Bookings {
     return _data;
   }
 }
-

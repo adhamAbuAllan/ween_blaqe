@@ -1,0 +1,1 @@
+>Flutter plugin for launching a URL. Supports web, phone, SMS, and email schemes.

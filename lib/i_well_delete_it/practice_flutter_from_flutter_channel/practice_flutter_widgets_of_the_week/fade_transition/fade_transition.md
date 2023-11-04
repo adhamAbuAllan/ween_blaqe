@@ -1,0 +1,1 @@
+>Animates the opacity of a widget.

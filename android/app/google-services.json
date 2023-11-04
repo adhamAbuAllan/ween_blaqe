@@ -1,0 +1,88 @@
+{
+  "project_info": {
+    "project_number": "340084591875",
+    "project_id": "weenblaqedatabase",
+    "storage_bucket": "weenblaqedatabase.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:340084591875:android:d0e35c56276e44267aad36",
+        "android_client_info": {
+          "package_name": "com.example.ween_blaqe"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "340084591875-9q13imn4m20pe59ndboo1nnh8kmc07f1.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBMWiZBG41Yc7lcg3AbXttea_ayrI4nxTQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "340084591875-9q13imn4m20pe59ndboo1nnh8kmc07f1.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "340084591875-qmthcuslemtm43q955crdk0r7re0dsmp.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.weenBlaqe"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
+
+
+
+//{
+//  "project_info": {
+//    "project_number": "340084591875",
+//    "project_id": "weenblaqedatabase",
+//    "storage_bucket": "weenblaqedatabase.appspot.com"
+//  },
+//  "client": [
+//    {
+//      "client_info": {
+//        "mobilesdk_app_id": "1:340084591875:android:d0e35c56276e44267aad36",
+//        "android_client_info": {
+//          "package_name": "com.example.ween_blaqe"
+//        }
+//      },
+//      "oauth_client": [
+//        {
+//          "client_id": "340084591875-lj7df89mbd89re93pvp663ivc1k4t0mp.apps.googleusercontent.com",
+//          "client_type": 3
+//        }
+//      ],
+//      "api_key": [
+//        {
+//          "current_key": "AIzaSyBMWiZBG41Yc7lcg3AbXttea_ayrI4nxTQ"
+//        }
+//      ],
+//      "services": {
+//        "appinvite_service": {
+//          "other_platform_oauth_client": [
+//            {
+//              "client_id": "340084591875-lj7df89mbd89re93pvp663ivc1k4t0mp.apps.googleusercontent.com",
+//              "client_type": 3
+//            }
+//          ]
+//        }
+//      }
+//    }
+//  ],
+//  "configuration_version": "1"
+//}

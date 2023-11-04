@@ -1,16 +1,12 @@
-import 'package:shared_preferences/shared_preferences.dart';
-import 'package:ween_blaqe/api/type_of_user.dart';
-import 'package:ween_blaqe/api/universities.dart';
-
 import '../api/users.dart';
 
 import 'new_session.dart';
-
 saveUserInfo(User data ) {
   NewSession.save("logged", "OK");
   NewSession.save("token", data.token);
   NewSession.save<int>("id", data.id);
   // Session.save("profile", data.profile);
+
   NewSession.save("name", data.name);
 
   /*

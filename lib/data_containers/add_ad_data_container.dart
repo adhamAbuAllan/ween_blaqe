@@ -1,14 +1,14 @@
-import '../api/cities.dart';
-import '../api/type_of_apartment.dart';
-import '../api/users.dart';
+import 'package:ween_blaqe/api/users.dart';
+
+import '../api/photos.dart';
 
 class AddAdDataContainer {
+  static int ? id;
   static String? address;
-
+  static String? email;
   static User? ownerId;
   static int? bathRooms;
   static int? rooms;
-
   static int? price;
   static int? countOfStudent;
   static int? squareMeters;
@@ -28,7 +28,7 @@ class AddAdDataContainer {
   static String? city;
   static String? type;
   static List<int>? advantages;
-
+  static List<Photos>? photos;
 
   // static int ? cityId ;
 

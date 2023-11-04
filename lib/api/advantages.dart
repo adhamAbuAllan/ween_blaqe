@@ -1,9 +1,9 @@
 
 
 import 'package:flutter/material.dart';
+import 'package:ween_blaqe/constants/strings.dart';
 import 'dart:convert';
 
-import '../urls_of_project/localhost_urls.dart';
 import 'package:http/http.dart' as http;
 
 
@@ -34,14 +34,14 @@ class _TestAdvState extends State<TestAdv> {
   @override
   void initState() {
     super.initState();
-    go();
+    getAdvantages();
   }
   String msg = "";
   @override
   Widget build(BuildContext context) {
     return const Placeholder();
   }
-  go()async{
+  getAdvantages()async{
     var url = Uri.parse(ServerLocalDiv.advantagesAdd);
     var response = await http.post(url,body:{"adv_name": "apartment",
       // "icon":"assets/images/apartments_images/apartment.jpg"
@@ -88,12 +88,12 @@ class AdvantageRes {
   });
   late final bool status;
   late final String msg;
-  late final Advantage? data;
+  late final Advantages? data;
 
   AdvantageRes.fromJson(Map<String, dynamic> json){
     status = json['status'];
     msg = json['msg'];
-    data = json['data'] == null? null : Advantage?.fromJson(json['data']);
+    data = json['data'] == null? null : Advantages?.fromJson(json['data']);
   }
 
   Map<String, dynamic> toJson() {
@@ -105,8 +105,8 @@ class AdvantageRes {
   }
 }
 
-class Advantage{
-  Advantage({
+class Advantages{
+  Advantages({
     required this.id,
     required this.advName,
     required this.icon,
@@ -121,7 +121,7 @@ class Advantage{
   late final String? createdAt;
   late final String?updatedAt;
 
-  Advantage.fromJson(Map<String, dynamic> json){
+  Advantages.fromJson(Map<String, dynamic> json){
     id = json['id'];
     checkedId = json['checked_id'];
     advName = json['adv_name'];

@@ -1,6 +1,4 @@
 import 'dart:core';
-import 'package:ween_blaqe/api/type_of_user.dart';
-import 'package:ween_blaqe/api/universities.dart';
 
 
 //
@@ -112,7 +110,8 @@ class User {
     required this.id,
     required this.name,
     required this.phone,
-            /*
+    this.email,
+    /*
              * be careful !!!
              * don't delete those two lines those tables of database
              * -------------------------------------------------
@@ -125,11 +124,12 @@ class User {
     required this.type,
     required this.university,
     required this.createAt
+
   });
   late final int id;
   late final String name;
   late final String phone;
-             /*
+  /*
              * be careful !!!
              * don't delete those two lines those tables of database
              * -------------------------------------------------
@@ -141,6 +141,7 @@ class User {
   late final String gender;
   late final String university;
   late final String type;
+  late final String ? email;
   late final String  createAt;
   //
 
@@ -148,8 +149,9 @@ class User {
     id = json['id'];
     name = json['name'];
     phone = json['phone'];
+    email = json['email'];
 
-            /*
+    /*
              * be careful !!!
              * don't delete those two lines those tables of database
              * -------------------------------------------------
@@ -169,7 +171,7 @@ class User {
     _data['id'] = id;
     _data['name'] = name;
     _data['phone'] = phone;
-            /*
+    /*
              * be careful !!!
              * don't delete those two lines those tables of database
              * -------------------------------------------------
@@ -179,6 +181,7 @@ class User {
              */
 
     _data['token'] = token;
+    _data['email'] = token;
     _data['gender'] = gender;
     _data['type'] = type;
     _data['university'] = university;
@@ -187,50 +190,50 @@ class User {
   }
 }
 
-class University {
-  University({
-    required this.id,
-    required this.name,
+// class University {
+//   University({
+//     required this.id,
+//     required this.name,
+//
+//   });
+//   late final int id;
+//   late final String name;
+//
+//
+//   University.fromJson(Map<String, dynamic> json){
+//     id = json['id'];
+//     name = json['name'];
+//
+//   }
+//
+//   Map<String, dynamic> toJson() {
+//     final _data = <String, dynamic>{};
+//     _data['id'] = id;
+//     _data['name'] = name;
+//
+//     return _data;
+//   }
+// }
 
-  });
-  late final int id;
-  late final String name;
-
-
-  University.fromJson(Map<String, dynamic> json){
-    id = json['id'];
-    name = json['name'];
-
-  }
-
-  Map<String, dynamic> toJson() {
-    final _data = <String, dynamic>{};
-    _data['id'] = id;
-    _data['name'] = name;
-
-    return _data;
-  }
-}
-
-class TypeOfUser {
-  TypeOfUser({
-    required this.id,
-    required this.name,
-
-  });
-  late final int id;
-  late final String name;
-
-
-  TypeOfUser.fromJson(Map<String, dynamic> json){
-    id = json['id'];
-    name = json['name'];
-  }
-  Map<String, dynamic> toJson() {
-    final _data = <String, dynamic>{};
-    _data['id'] = id;
-    _data['name'] = name;
-
-    return _data;
-  }
-}
+// class TypeOfUser {
+//   TypeOfUser({
+//     required this.id,
+//     required this.name,
+//
+//   });
+//   late final int id;
+//   late final String name;
+//
+//
+//   TypeOfUser.fromJson(Map<String, dynamic> json){
+//     id = json['id'];
+//     name = json['name'];
+//   }
+//   Map<String, dynamic> toJson() {
+//     final _data = <String, dynamic>{};
+//     _data['id'] = id;
+//     _data['name'] = name;
+//
+//     return _data;
+//   }
+// }

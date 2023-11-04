@@ -1,3 +1,8 @@
+
+
+
+
+
 class TypeOfApartmentRes {
   TypeOfApartmentRes({
     required this.status,
@@ -26,8 +31,8 @@ class TypeOfApartmentRes {
 class TypeOfApartment {
   TypeOfApartment({
     required this.name,
-     this.updatedAt,
-     this.createdAt,
+    this.updatedAt,
+    this.createdAt,
     required this.id,
   });
   late final String name;

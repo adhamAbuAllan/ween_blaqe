@@ -28,9 +28,9 @@ class City {
 
     required this.id,
     required this.name,
-     this.active,
-     this.createdAt,
-     this.updatedAt,
+    this.active,
+    this.createdAt,
+    this.updatedAt,
   });
   late final int id;
   late final String name;

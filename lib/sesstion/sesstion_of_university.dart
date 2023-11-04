@@ -1,8 +1,7 @@
 import '../api/universities.dart';
-import '../api/users.dart';
 import 'new_session.dart';
 
-saveUniversity(University data) {
+saveUniversity(University data) { 
   NewSession.save<int>("id", data.id);
   NewSession.save("name", data.name);
 }
