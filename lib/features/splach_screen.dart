@@ -105,7 +105,7 @@ checkWifiStatus();
     var connectivityResult = await (Connectivity().checkConnectivity());
     if (connectivityResult == ConnectivityResult.wifi) {
     } else {
-      pushToNoInternet();
+      pushAndRemoveToNoInternet();
     }
   }
   void navigateToHome() {
@@ -117,7 +117,7 @@ checkWifiStatus();
 
     });
   }
-  void pushToNoInternet() {
-    myPushName(context, MyPagesRoutes.noInternet);
+  void pushAndRemoveToNoInternet() {
+    myPushReplacementNamed(context, MyPagesRoutes.noInternet);
   }
 }
