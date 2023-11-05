@@ -5,6 +5,7 @@ import 'package:get/get.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:ween_blaqe/core/widgets/apartments/show_more_classes_widget/generic_info_class_widget.dart';
+import 'controller/wifi_checker.dart';
 import 'firebase_options.dart';
 import 'package:ween_blaqe/controller/main_controller.dart';
 import 'package:ween_blaqe/controller/owner_controller/owner_controller.dart';
@@ -104,8 +105,12 @@ class _OwnMaterialAppState extends State<OwnMaterialApp> {
   Widget build(BuildContext context) {
     return GetMaterialApp(
       debugShowCheckedModeBanner: false,
+
       darkTheme: ThemeData(
-          // brightness: Brightness.darkf
+        colorScheme: ColorScheme.fromSwatch().copyWith(secondary: Colors.grey),
+
+
+        // brightness: Brightness.darkf
           ),
 
       // themeMode: ThemeMode.system,
@@ -156,7 +161,7 @@ class _OwnMaterialAppState extends State<OwnMaterialApp> {
             const AccountBeforeLoginInStudent(),
         MyPagesRoutes.accountBeforeLoginInOwner: (context) =>
             const AccountBeforeLoginInOwner(),
-        MyPagesRoutes.accountOfStudent: (context) => AccountOfStudent(),
+        MyPagesRoutes.accountOfStudent: (context) => const AccountOfStudent(),
         MyPagesRoutes.accountOfOwner: (context) => const AccountOfOwner(),
         MyPagesRoutes.bookingNow: (context) => const BookingNow(),
         MyPagesRoutes.getStarted: (context) => const GetStarted(),
@@ -297,7 +302,7 @@ class _MainState extends State<Main> {
                     MainStudent(),
 
                     //for Owner
-                    MainOwner(),
+                    // MainOwner(),
                   ],
                 );
               },

@@ -111,7 +111,7 @@ Widget buttonGoToPage(Function onClick, String title) {
   );
 }
 
-Widget buttonHaveTitleAndIcon(Function onClick, String title, Icon icon) {
+Widget buttonHaveTitleAndIcon(Function onClick, String title, {Icon? icon,bool? isIcon,Image ? image }) {
   return ListTile(
     onTap: () => {onClick.call()},
     contentPadding: const EdgeInsets.fromLTRB(10, 0, 10, 0),
@@ -120,6 +120,6 @@ Widget buttonHaveTitleAndIcon(Function onClick, String title, Icon icon) {
       style: const TextStyle(
           fontSize: 16, fontFamily: 'IBM', color: Colors.black87),
     ),
-    trailing: icon,
+    trailing: isIcon?? false ? icon : image,
   );
 }

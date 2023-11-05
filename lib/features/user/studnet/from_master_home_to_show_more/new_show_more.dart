@@ -21,7 +21,7 @@ import '../../../../i_well_delete_it/slove_get_advantage_data/home_screen.dart';
 
 
 class NewShowMore extends StatefulWidget {
-  NewShowMore({
+  const NewShowMore({
     Key? key,
     this.oneApartment,
   }) : super(key: key);
@@ -200,7 +200,7 @@ class _NewShowMoreState extends State<NewShowMore> {
                    Row(
                     children: [
                       Padding(
-                        padding: EdgeInsets.fromLTRB(0, 0, 10, 0),
+                        padding: const EdgeInsets.fromLTRB(0, 0, 10, 0),
                         child: Text(
                           "معلومات عامة",
                           style: TextStyle(
@@ -210,7 +210,7 @@ class _NewShowMoreState extends State<NewShowMore> {
                           ),
                         ),
                       ),
-                      Expanded(
+                      const Expanded(
                         child: Text(""),
                       ),
                     ],
@@ -340,7 +340,7 @@ class _NewShowMoreState extends State<NewShowMore> {
                           ),
                         ),
                       ),
-                      Expanded(child: Text("")),
+                      const Expanded(child: Text("")),
                     ],
                   ),
 
@@ -502,7 +502,7 @@ class _NewShowMoreState extends State<NewShowMore> {
                                         ),
                                       ),
                                        Image(
-                                        image: AssetImage(
+                                        image: const AssetImage(
                                             "assets/images/apartments_images/about_apartment/area.png",),
                                         width: 32,
                                         height: 32,
@@ -588,7 +588,7 @@ class _NewShowMoreState extends State<NewShowMore> {
                    Row(
                     children: [
                       Padding(
-                        padding: EdgeInsets.fromLTRB(0, 10, 10, 0),
+                        padding: const EdgeInsets.fromLTRB(0, 10, 10, 0),
                         child: Text("وصف الشقة",
                             style: TextStyle(
                               color: Colors.black.withOpacity(.7),
@@ -596,12 +596,12 @@ class _NewShowMoreState extends State<NewShowMore> {
                               fontFamily: 'IBM',
                             )),
                       ),
-                      Expanded(child: Text(""))
+                      const Expanded(child: Text(""))
                     ],
                   ),
 //description
                   Padding(
-                    padding:  EdgeInsets.fromLTRB(10, 0, 10, 10),
+                    padding:  const EdgeInsets.fromLTRB(10, 0, 10, 10),
                     child: Text(widget.oneApartment?.description ?? "",
                         style:  TextStyle(
                           color: Colors.black.withOpacity(.7),
@@ -630,7 +630,7 @@ class _NewShowMoreState extends State<NewShowMore> {
                    Row(
                     children: [
                       Padding(
-                        padding: EdgeInsets.fromLTRB(0, 10, 10, 10),
+                        padding: const EdgeInsets.fromLTRB(0, 10, 10, 10),
                         child: Text("للإستفسار",
                             style: TextStyle(
                               color: Colors.black.withOpacity(.7),
@@ -638,7 +638,7 @@ class _NewShowMoreState extends State<NewShowMore> {
                               fontFamily: 'IBM',
                             )),
                       ),
-                      Expanded(child: Text(""))
+                      const Expanded(child: Text(""))
                     ],
                   ),
 //phone number
@@ -675,7 +675,7 @@ class _NewShowMoreState extends State<NewShowMore> {
                           },
                           style: outlineButton,
                           child:  Padding(
-                            padding: EdgeInsets.all(8.0),
+                            padding: const EdgeInsets.all(8.0),
                             child: Row(
                               children: [
 //whtsapp icon
@@ -691,7 +691,7 @@ class _NewShowMoreState extends State<NewShowMore> {
 
 //text
                                 Padding(
-                                  padding: EdgeInsets.fromLTRB(0, 0, 0, 0),
+                                  padding: const EdgeInsets.fromLTRB(0, 0, 0, 0),
                                   child: Text(" واتساب",
                                       style: TextStyle(
                                         color: Colors.black.withOpacity(.7),

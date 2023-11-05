@@ -28,7 +28,7 @@ class _MainStudentState extends State<MainStudent> {
   @override
   void initState() {
     super.initState();
-    checkWifiStatus();
+    // checkWifiStatus();
   }
 
   var studentController = StudentController();

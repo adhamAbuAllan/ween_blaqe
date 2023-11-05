@@ -16,7 +16,11 @@ class HomeCachedNetworkImage extends StatelessWidget {
         children: [
           Container(
             decoration: const BoxDecoration(
-              image:  DecorationImage(image:  CachedNetworkImageProvider(
+              image:  DecorationImage(
+
+
+                  image:  CachedNetworkImageProvider(
+
                   'https://images.unsplash.com/photo-1461749280684-dccba630e2f6?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8Y29kaW5nfGVufDB8fDB8fHww&w=1000&q=80'
               )),
             ),

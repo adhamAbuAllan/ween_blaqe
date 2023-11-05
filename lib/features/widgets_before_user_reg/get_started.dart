@@ -84,7 +84,7 @@ class _GetStartedState extends State<GetStarted> {
                 height: 55,
                 child: ElevatedButton(
                     onPressed: () {
-                      myPushReplacementNamed(context, MyPagesRoutes.main);
+                      myPushReplacementNamed( MyPagesRoutes.main,context: context);
                     },
                     style: fullButton,
                     child: const Text("لنبدأ")),

@@ -152,6 +152,7 @@ class _AccountOfOwnerState extends State<AccountOfOwner> {
               ],
             ),
             aline,
+
             //help
             buttonAccount(() {
               myPushName(context, MyPagesRoutes.askForHelp);
@@ -220,7 +221,7 @@ class _AccountOfOwnerState extends State<AccountOfOwner> {
                     onPressed: () {
                       removeUserInfo();
                       checkCurrentAuthState(context);
-                      myPushAndRemoveUntilName(context, const MainOwner(), "");
+                      // myPushAndRemoveUntilName(context, const MainOwner(), "");
                     },
                     style: outlineButton,
                     child: const Text("تسجيل الخروج")),

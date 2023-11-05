@@ -92,6 +92,6 @@ myPushNameAndRemoveUntil(BuildContext context, String routeName,
 }
 
 //push and replacement Named
-myPushReplacementNamed(BuildContext context, String routeName) {
-  Navigator.of(context).pushReplacementNamed(routeName);
+myPushReplacementNamed( String routeName,{BuildContext? context}) {
+  Navigator.of(context!).pushReplacementNamed(routeName);
 }

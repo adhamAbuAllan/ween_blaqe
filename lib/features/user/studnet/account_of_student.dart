@@ -3,7 +3,6 @@ import 'dart:math';
 import 'package:colorful_safe_area/colorful_safe_area.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
 import 'package:ween_blaqe/constants/strings.dart';
 import 'package:ween_blaqe/core/utils/funcations/firebase_funcations/check_current_auth_state.dart';
 import 'package:ween_blaqe/core/utils/funcations/route_pages/push_routes.dart';
@@ -26,7 +25,7 @@ import 'profile.dart';
 //account screen
 
 class AccountOfStudent extends StatefulWidget {
-  AccountOfStudent({Key? key}) : super(key: key);
+  const AccountOfStudent({Key? key}) : super(key: key);
 
   @override
   State<AccountOfStudent> createState() => _AccountOfStudentState();
@@ -205,26 +204,26 @@ class _AccountOfStudentState extends State<AccountOfStudent> {
     return Row(
             mainAxisSize: MainAxisSize.min,
             children: [
-              Padding(
+              const Padding(
                 padding: EdgeInsets.fromLTRB(25, 0, 10, 0),
                 child: Icon(
                   Icons.notifications_outlined,
                   size: 32,
                 ),
               ),
-              Text(
+              const Text(
                 "الاشعارات",
                 style: TextStyle(
                   fontSize: 18,
                   fontFamily: 'IBM',
                 ),
               ),
-              Expanded(
+              const Expanded(
                   child: SizedBox(
                 child: Text(""),
               )),
               Padding(
-                padding: EdgeInsets.fromLTRB(20, 0, 0, 0),
+                padding: const EdgeInsets.fromLTRB(20, 0, 0, 0),
                 child: Switcher(light1: notificationState,onChanged: (value){
                   setState(() {
                     notificationState = value;

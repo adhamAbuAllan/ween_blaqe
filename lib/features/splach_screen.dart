@@ -3,10 +3,10 @@ import 'dart:async';
 import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:flutter/material.dart';
 import 'package:ween_blaqe/core/utils/funcations/route_pages/push_routes.dart';
+import 'package:ween_blaqe/features/error_widgets/no_internet.dart';
+import 'package:ween_blaqe/main.dart';
 
 import '../constants/strings.dart';
-
-
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({
@@ -21,13 +21,15 @@ class _SplashScreenState extends State<SplashScreen> {
   @override
   void initState() {
     super.initState();
-
+    // navigateToHome();
+    checkWifiStatus();
+    debugPrint("initState Of splashScreen is work now ! ");
     // Timer(
     //   const Duration(seconds: 3),
     //   () => Navigator.pushReplacementNamed(context, MyPagesRoutes.main),
     // );
-    navigateToHome();
-checkWifiStatus();
+    // checkWifiStatus();
+
 //   Future<void> goToMain()async{
 //     connectivityResult = await (Connectivity().checkConnectivity());
 //   }
@@ -93,7 +95,6 @@ checkWifiStatus();
               //   textScaleFactor: 1.4,
               //   // selectionColor: Colors.blue
               // ),
-
             ],
           ),
         ),
@@ -101,23 +102,55 @@ checkWifiStatus();
     );
   }
 
-  Future<void> checkWifiStatus() async {
-    var connectivityResult = await (Connectivity().checkConnectivity());
-    if (connectivityResult == ConnectivityResult.wifi) {
+  void checkWifiStatus() async {
+    var connectivityResult = await Connectivity().checkConnectivity();
+    if (connectivityResult == ConnectivityResult.wifi
+        // connectivityResult.name == ConnectivityResult.wifi
+        ) {
+      print("naviage to noIntrnet ");
+      // await navigateToHome();
+      navigateToHome();
     } else {
-      pushAndRemoveToNoInternet();
+      if (connectivityResult == ConnectivityResult.none) {
+        pushAndRemoveToNoInternet();
+
+        debugPrint("you don't have entrent");
+      }
     }
   }
-  void navigateToHome() {
-    Future.delayed(const Duration(seconds: 2), () {
-      Navigator.pushReplacementNamed(context, MyPagesRoutes.main);
 
+  Future<void> navigateToHome() async {
+    /*
+    this is first -v code
+     */
+    Future.delayed(const Duration(milliseconds: 700), () {
+      Navigator.pushReplacementNamed(context, MyPagesRoutes.main);
       // Get.to(() => const HomeView(),
       //     transition: Transition.fade, duration: kTranstionDuratoin);
-
     });
+
+    /*
+      this is 11/4/2023 -v
+       */
+    // await  Navigator.pushReplacementNamed(context, MyPagesRoutes.main);
+    // await  myPushName(context, MyPagesRoutes.main);
+
+    // Future.delayed(const Duration(seconds: 2), () {
+    //
+    //   // Get.to(() => const HomeView(),
+    //   //     transition: Transition.fade, duration: kTranstionDuratoin);
+    //
+    // });
   }
-  void pushAndRemoveToNoInternet() {
-    myPushReplacementNamed(context, MyPagesRoutes.noInternet);
+
+  Future<void> pushAndRemoveToNoInternet() async {
+    Future.delayed(const Duration(milliseconds: 700), () {
+      // Navigator.pushReplacementNamed(context, MyPagesRoutes.noInternet);
+      myPushName(context, MyPagesRoutes.noInternet);
+
+      // checkWifiStatus();
+    });
+
+    // Navigator.pushReplacementNamed(context,MyPagesRoutes.noInternet);
   }
 }

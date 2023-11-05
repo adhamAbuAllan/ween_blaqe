@@ -134,7 +134,8 @@ flutter:
     - assets/images/stop_war/c7.png
     - assets/images/stop_war/b1.jpg
     - assets/images/stop_war/c6.png
-    - assets/images/stop_war/b2.png
+    - assets/images/stop_war/b2.png    - assets/images/tasbih.png
+
   fonts:
     - family: Cairo
       fonts:

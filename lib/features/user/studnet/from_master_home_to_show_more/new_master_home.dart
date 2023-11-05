@@ -1,14 +1,19 @@
 import 'dart:convert';
 
+import 'package:cached_network_image/cached_network_image.dart';
+import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:http/http.dart' as http;
 import 'package:ween_blaqe/constants/strings.dart';
 import 'package:ween_blaqe/core/utils/styles/button.dart';
 import 'package:ween_blaqe/core/widgets/skeletons/student_widgets/home_skeleton_widget.dart';
+import 'package:ween_blaqe/features/error_widgets/no_internet.dart';
 
 import '../../../../api/apartments_api/one_apartment.dart';
 import '../../../../api/photos.dart';
 import '../../../../constants/nums.dart';
+import '../../../../core/utils/funcations/snakbar.dart';
 import 'new_show_more.dart';
 
 void main() {
@@ -25,21 +30,20 @@ class NewMasterHome extends StatefulWidget {
 }
 
 class _NewMasterHomeState extends State<NewMasterHome> {
-
-
   // For holding response as UserPets
   late OneApartment apartmentsRes;
-   // DataOfOneApartment oneApartment  ;
+
+  // DataOfOneApartment oneApartment  ;
 
   late String name;
+
   // for data is loaded flag
   bool isDataLoaded = false;
 
   // error holding
   String errorMessage = '';
 
-
-
+  bool isStart = false;
 
   //
   // late final List<Photos>? photos;
@@ -90,17 +94,14 @@ class _NewMasterHomeState extends State<NewMasterHome> {
   //   return photos;
   // }
 
-
   @override
   void initState() {
     super.initState();
-
+    isStart = true;
     // myPushName(context, MyPagesRoutes.skeletonShowMoreWidget);
     // SkeletonShowMoreWidget;
     callAPIandAssignData();
-
-
-
+    debugPrint("the initState is work now ");
     // print(callAPIandAssignData());
     // print(apartmentsRes.data);
   }
@@ -116,16 +117,64 @@ class _NewMasterHomeState extends State<NewMasterHome> {
         isDataLoaded
             ? errorMessage.isNotEmpty
                 ? Text(errorMessage)
-                : (apartmentsRes.data?.isEmpty?? false)
+                : (apartmentsRes.data?.isEmpty ?? false)
                     ? const Text(
                         "لا يوجد إعلانات في الوقت الحالي يرجى المحاولة لاحقًا.",
                       )
-                    : ListView.builder(
-                        // shrinkWrap: true,
-                        // scrollDirection: Axis.vertical,
-                        itemCount: apartmentsRes.data?.length,
-                        itemBuilder: (ctx, index) => apartments(index, true))
+                    : StreamBuilder<ConnectivityResult>(
+                        stream: Connectivity().onConnectivityChanged,
+                        builder: (context, snapshot) {
+                          if (snapshot.data == ConnectivityResult.wifi) {
+                            isStart
+                                ? const Text("")
+                                : showSnakBarInStreamBuilder(
+                                    context, "تمت إعادة الاتصال",
+                                    isIcon: true, icon: Icons.wifi,isConnect: true);
+                          } else if (snapshot.data == ConnectivityResult.none) {
+                            showSnakBarInStreamBuilder(
+                              context,
+                              "انقطع الانترنت",
+                              isIcon: true,
+                              icon: Icons.wifi_off,isConnect: false
+                            );
+                          }
+
+                          return ListView.builder(
+
+                              // shrinkWrap: true,
+                              // scrollDirection: Axis.vertical,
+                              itemCount: apartmentsRes.data?.length,
+                              itemBuilder: (ctx, index) =>
+                                  apartments(index, true));
+
+                          //  if(snapshot.data == ConnectivityResult.none ){
+                          //
+                          //    showSnakBarInStreamBuilder(context,"انقطع الانترنت",state: false);
+                          //
+                          //    return   const NoInternet();
+                          // }else {
+                          //      isStart ? const Text("") :   showSnakBarInStreamBuilder(context,"تمت إعادة الاتصال",state: true);
+                          //
+                          //
+                          //
+                          //    return ListView.builder(
+                          //
+                          //      // shrinkWrap: true,
+                          //      // scrollDirection: Axis.vertical,
+                          //        itemCount: apartmentsRes.data?.length,
+                          //        itemBuilder: (ctx, index) => apartments(index, true));
+                          //  }
+                        })
             : const HomeSkeletonWidget();
+  }
+
+  void showSnakBarInStreamBuilder(BuildContext context, String text,
+      {bool? isIcon, IconData? icon, bool? isConnect}) {
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      showSnakBar(context, text,
+          isIcon: isIcon, icon: icon, isConnect: isConnect);
+      isStart = false;
+    });
   }
 
   Widget apartments(
@@ -143,7 +192,8 @@ class _NewMasterHomeState extends State<NewMasterHome> {
        */
       //----------
       //you should delete the height attribute and add the padding widget instead
-      height: 395, // <- delete height attribute
+      height: 395,
+      // <- delete height attribute
       //----------
       //decoration of show apartment style
       decoration: BoxDecoration(
@@ -162,8 +212,10 @@ class _NewMasterHomeState extends State<NewMasterHome> {
                 padding: const EdgeInsets.all(8.0),
                 child: Text(
                   " سكن :${apartmentsRes.data?[index].type ?? ""}",
-                  style:  TextStyle(fontSize: 14, fontFamily: 'IBM',color: Colors.black.withOpacity(.9)),
-
+                  style: TextStyle(
+                      fontSize: 14,
+                      fontFamily: 'IBM',
+                      color: Colors.black.withOpacity(.9)),
                 ),
               ),
               const Expanded(child: Text("")),
@@ -201,19 +253,24 @@ class _NewMasterHomeState extends State<NewMasterHome> {
           //       height: 240,
           //       borderRadius: BorderRadius.circular(7)),
           // ) :
-           ClipRRect(
+          ClipRRect(
               borderRadius: BorderRadius.circular(7 / 2),
               child: Image(
-                image: NetworkImage(
-                // json.decode(
-                  apartmentsRes.data?[index].photos?[0].url?? 'https://via.placeholder.com/150',
-                //     photos?[0].url ?? "https://via.placeholder.com/150"
+                image: CachedNetworkImageProvider(
+                    apartmentsRes.data?[index].photos?[0].url ??
+                        'https://via.placeholder.com/150'),
+              )),
 
-                  //   oneApartment.photos?[0].url??"https://via.placeholder.com/150"
-
-
-    // )
-                  ),height: 240,              ),) ,
+          //             image: NetworkImage(
+          //             // json.decode(
+          //               apartmentsRes.data?[index].photos?[0].url?? 'https://via.placeholder.com/150',
+          //             //     photos?[0].url ?? "https://via.placeholder.com/150"
+          //
+          //               //   oneApartment.photos?[0].url??"https://via.placeholder.com/150"
+          //
+          //
+          // // )
+          //               ),height: 240,              ),) ,
 
           //  Image(
           //   // image: AssetImage("assets/images/apartments_images/image1.png")
@@ -230,7 +287,7 @@ class _NewMasterHomeState extends State<NewMasterHome> {
             children: [
               Padding(
                 padding: const EdgeInsets.all(8.0),
-                child: Text((apartmentsRes.data?[index].title??""),
+                child: Text((apartmentsRes.data?[index].title ?? ""),
                     style: TextStyle(
                       color: Colors.black.withOpacity(.7),
                       fontFamily: 'IBM',
@@ -240,17 +297,16 @@ class _NewMasterHomeState extends State<NewMasterHome> {
               const Expanded(child: Text("")),
               Padding(
                 padding: const EdgeInsets.fromLTRB(0, 0, 3, 0),
-                child: Text((
-                    apartmentsRes.data?[index].price.toString())??"0",
-
-                    style: const TextStyle(
-                      color: kPrimaryColor,
-                      fontSize: 16,
-                      fontFamily: 'IBM',
-                    )),
+                child:
+                    Text((apartmentsRes.data?[index].price.toString()) ?? "0",
+                        style: const TextStyle(
+                          color: kPrimaryColor,
+                          fontSize: 16,
+                          fontFamily: 'IBM',
+                        )),
               ),
-               Padding(
-                padding: EdgeInsets.fromLTRB(10, 0, 3, 0),
+              Padding(
+                padding: const EdgeInsets.fromLTRB(10, 0, 3, 0),
                 child: Text("ش/ش",
                     style: TextStyle(
                       color: Colors.black.withOpacity(.5),
@@ -285,8 +341,8 @@ class _NewMasterHomeState extends State<NewMasterHome> {
                 ),
               ),
               const Expanded(child: Text("")),
-               Padding(
-                padding: EdgeInsets.fromLTRB(0, 0, 0, 0),
+              Padding(
+                padding: const EdgeInsets.fromLTRB(0, 0, 0, 0),
                 child: Text("الموقع:",
                     style: TextStyle(
                       color: Colors.black.withOpacity(.65),
@@ -297,7 +353,7 @@ class _NewMasterHomeState extends State<NewMasterHome> {
               Padding(
                 padding: const EdgeInsets.fromLTRB(10, 0, 0, 0),
                 child: Text(apartmentsRes.data?[index].city ?? "",
-                    style:  TextStyle(
+                    style: TextStyle(
                       color: Colors.black.withOpacity(.6),
                       fontSize: 16,
                       fontFamily: 'IBM',
@@ -309,6 +365,7 @@ class _NewMasterHomeState extends State<NewMasterHome> {
       ),
     );
   }
+
   // API Call
   Future<OneApartment> getDataFromAPI() async {
     Uri uri = Uri.parse(ServerLocalDiv.apartmentAll);
@@ -318,7 +375,7 @@ class _NewMasterHomeState extends State<NewMasterHome> {
     if (response.statusCode == 200) {
       var responseBody = response.body;
 
-      // All ok
+      // All oku=
       // ApartmentsRes usersPets = apartmentPetsFromJson(response.body);
       var json = jsonDecode(responseBody);
       OneApartment apartmentsRes = OneApartment.fromJson(json);
@@ -340,27 +397,25 @@ class _NewMasterHomeState extends State<NewMasterHome> {
     }
     return apartmentsRes;
   }
+
   Future<List<Photos>> fetchPhotos() async {
     setState(() {
       isDataLoaded = true;
-
     });
     Uri uri = Uri.parse(ServerLocalDiv.apartmentAll);
     final response = await http.get(uri);
     if (response.statusCode == 200) {
-
       List jsonResponse = jsonDecode(response.body);
 
       return jsonResponse.map((item) => Photos.fromJson(item)).toList();
     } else {
       setState(() {
         isDataLoaded = false;
-
       });
       throw Exception('Failed to load photos from API');
     }
-
   }
+
   callAPIandAssignData() async {
     apartmentsRes = (await getDataFromAPI()) as OneApartment;
     // photos =  (await NewShowMore().oneApartment?.photos);
@@ -368,8 +423,6 @@ class _NewMasterHomeState extends State<NewMasterHome> {
     // oneApartment = (await apartmentsRes.data) as DataOfOneApartment;
     // photos = (await getDataImagesFromAPI()) as Photos;
 
-
     // debugPrint("$apartmentsRes");
   }
-
 }
