@@ -11,6 +11,6 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(home: AnimatedTextKitHome(),);
+    return const MaterialApp(home: AnimatedTextKitHome(),);
   }
 }

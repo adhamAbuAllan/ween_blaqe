@@ -9,7 +9,7 @@ final ButtonStyle fullButton = ElevatedButton.styleFrom(
     backgroundColor: kPrimaryColor,
     elevation: 0,
     textStyle: const TextStyle(
-      fontSize: 14,
+      fontSize: 15,
       fontFamily: 'IBM',
     ),
     shape: const RoundedRectangleBorder(

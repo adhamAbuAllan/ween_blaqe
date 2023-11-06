@@ -1,8 +1,13 @@
+import 'dart:collection';
+
+import 'package:animated_text_kit/animated_text_kit.dart';
+import 'package:carousel_slider/carousel_slider.dart';
 import 'package:colorful_safe_area/colorful_safe_area.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:ween_blaqe/core/utils/styles/text_style/aline_style.dart';
 import 'package:ween_blaqe/constants/nums.dart';
+import '../../core/utils/styles/button.dart';
 import '../../core/widgets/buttons/lines_buttons/line_buttons.dart';
 
 class NoInternet extends StatefulWidget {
@@ -16,6 +21,13 @@ class NoInternet extends StatefulWidget {
 
 class _NoInternetState extends State<NoInternet> {
   bool isWantToSepha = false;
+  int isContExpands = 0;
+
+  int sephaCounter = 0;
+  int index = 0;
+  int total = 0;
+  List<String> sephaText = ["s1", "a1", "b3", ",e4", "f5"];
+  CarouselController controller = CarouselController();
 
   @override
   void initState() {
@@ -28,13 +40,14 @@ class _NoInternetState extends State<NoInternet> {
       color: kPrimaryColor,
       child: Scaffold(
         backgroundColor: Colors.grey.shade200,
-        body: Align(
-          alignment: Alignment.topCenter,
+        body: AnimatedAlign(
+          alignment: isWantToSepha ? Alignment.center : Alignment.topCenter,
+          duration: const Duration(milliseconds: 700),
           child: AnimatedContainer(
             margin: const EdgeInsets.fromLTRB(0, 100, 0, 0),
             width: 373,
-            height: isWantToSepha ? 700 : 210,
-            padding: const EdgeInsets.fromLTRB(0, 0, 10, 10),
+            height: isWantToSepha ? 500 : 170,
+            // padding: const EdgeInsets.fromLTRB(0, 0, 0, 0),
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(7),
               color: Colors.white,
@@ -90,19 +103,96 @@ class _NoInternetState extends State<NoInternet> {
                   )
                 ]),
                 aline,
+                Row(children: [
+                  sephaCounter != 0
+                      ? AnimatedTextKit(animatedTexts: [
 
-                buttonHaveTitleAndIcon(
-                  () {
-                    setState(() {
-                      isWantToSepha = true;
-                    });
+                    FadeAnimatedText(
+                        duration:
+                        const Duration(milliseconds: 700),
+                        "$total+",
+                        textStyle: const TextStyle(
+                            fontFamily: "IBM",
+                            color: Colors.orange)),
+                  ])
+                      : Text("$total+",
+                      style: const TextStyle(
+                          fontFamily: "IBM", color: Colors.orange)),
+                ],),
+                isWantToSepha
+                    ? AnimatedAlign(
+                  alignment: Alignment(isWantToSepha ? -.5 : .5,isWantToSepha ? -.5:.5),
+                      duration: const Duration(milliseconds: 5000),
+                      child: CarouselSlider(
+                          items: sephaText.map((entry) {
+                            return Builder(builder: (BuildContext context) {
+                              return Align(
+                                  alignment: Alignment.center,
+                                  child: Text(
+                                    entry[index],
+                                    style: const TextStyle(
+                                        fontSize: 24, fontFamily: "IBM"),
+                                  ));
+                            });
+                          }).toList(),
+                          carouselController: controller,
+                          options: CarouselOptions(
 
-                  },
-                  "إبدأ التسبيح",
-                  image: Image.asset("assets/images/tasbih.png",
-                      width: 35, height: 35),
-                  isIcon: false,
-                )
+                              // onPageChanged: (i, reason) {
+                              //   setState(() {
+                              //     index = i;
+                              //   });
+                              // },
+                              scrollDirection: Axis.vertical,
+                              height: 50),
+                        ),
+                    )
+                    : const SizedBox(),
+
+                isWantToSepha
+                    ? AnimatedAlign(
+                  duration: const Duration(milliseconds: 4050),
+
+                 alignment:    Alignment(isContExpands<2 ? -.5: .5,isContExpands<2 ? -.5: .5) ,
+                      child: SizedBox(
+                        width: double.infinity,
+                        height: 55,
+                        child: ElevatedButton(
+                            style: fullButton,
+                            onPressed: () async {
+                              setState(() {
+                                if (sephaCounter < sephaText.length) {
+                                  sephaCounter++;
+                                  total++;
+                                  debugPrint(
+                                      "sephaCounter++ : $sephaCounter++");
+                                  return setState(() {
+                                    controller.animateToPage(
+                                        duration: const Duration(
+                                            milliseconds: 700),
+                                        curve: Curves.linear,
+                                        sephaCounter);
+                                  });
+                                }
+                                setState(() {
+                                  sephaCounter = 0;
+                                });
+                              });
+                            },
+                            child: const Text("سّبح")),
+                      ),
+                    )
+                    : buttonHaveTitleAndIcon(
+                        () {
+                          setState(() {
+                            isWantToSepha = true;
+                          });
+                        },
+                        "إبدأ التسبيح",
+                        image: Image.asset("assets/images/tasbih.png",
+                            width: 35, height: 35),
+                        isIcon: false,
+                      )
 
                 // const Icon(
                 //   // Icons.tasb,

@@ -171,6 +171,7 @@ Iterable<GestureDetector> _pointer(List<Photos> photos, BuildContext context, in
                   // : Colors.white.withOpacity(.7)
                   )
                   .withOpacity(current == entry.key ? 0.9 : 0.4))),
+
         ),
       );
     });
