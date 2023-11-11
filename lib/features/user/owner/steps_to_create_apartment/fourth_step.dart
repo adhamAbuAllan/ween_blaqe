@@ -261,6 +261,7 @@ class _FourthStepState extends State<FourthStep> {
               ),
             ),
             floatingActionButton: FloatingActionButton.extended(
+
               onPressed: () {
                 // Get.to(ImagePickerTesting);
                 Navigator.of(context).push(MaterialPageRoute(
@@ -277,7 +278,6 @@ class _FourthStepState extends State<FourthStep> {
   }
 
   String msg = "";
-
   createApartment(
       String address,
       int bathRooms,
@@ -350,8 +350,7 @@ class _FourthStepState extends State<FourthStep> {
       res.title = AddAdDataContainer.title!;
       res.price = AddAdDataContainer.price!;
       resUser.email = AddAdDataContainer.email;
-
-      res.ownerId = resUser.id;
+      res.owner?.phone = AddAdDataContainer.user!.phone;
       pushToApartmentOfOwnerAfterAdd();
 
       return res;

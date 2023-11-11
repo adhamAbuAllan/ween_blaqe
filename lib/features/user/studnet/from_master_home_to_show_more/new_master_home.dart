@@ -3,17 +3,16 @@ import 'dart:convert';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
 import 'package:ween_blaqe/constants/strings.dart';
 import 'package:ween_blaqe/core/utils/styles/button.dart';
 import 'package:ween_blaqe/core/widgets/skeletons/student_widgets/home_skeleton_widget.dart';
-import 'package:ween_blaqe/features/error_widgets/no_internet.dart';
 
 import '../../../../api/apartments_api/one_apartment.dart';
 import '../../../../api/photos.dart';
 import '../../../../constants/nums.dart';
-import '../../../../core/utils/funcations/snakbar.dart';
+import '../../../../core/utils/funcations/snakbar_for_stream_builder.dart';
 import 'new_show_more.dart';
 
 void main() {
@@ -39,11 +38,13 @@ class _NewMasterHomeState extends State<NewMasterHome> {
 
   // for data is loaded flag
   bool isDataLoaded = false;
+  bool isCodeActive = false;
 
   // error holding
   String errorMessage = '';
 
   bool isStart = false;
+  bool clicked = false;
 
   //
   // late final List<Photos>? photos;
@@ -106,7 +107,6 @@ class _NewMasterHomeState extends State<NewMasterHome> {
     // print(apartmentsRes.data);
   }
 
-  bool clicked = false;
 
   @override
   Widget build(BuildContext context) {
@@ -129,13 +129,14 @@ class _NewMasterHomeState extends State<NewMasterHome> {
                                 ? const Text("")
                                 : showSnakBarInStreamBuilder(
                                     context, "تمت إعادة الاتصال",
-                                    isIcon: true, icon: Icons.wifi,isConnect: true);
+                                    isIcon: true, icon: Icons.wifi,isConnect: true,isStart: isStart);
+
                           } else if (snapshot.data == ConnectivityResult.none) {
                             showSnakBarInStreamBuilder(
                               context,
                               "انقطع الانترنت",
                               isIcon: true,
-                              icon: Icons.wifi_off,isConnect: false
+                              icon: Icons.wifi_off,isConnect: false, isStart: isStart
                             );
                           }
 
@@ -145,7 +146,7 @@ class _NewMasterHomeState extends State<NewMasterHome> {
                               // scrollDirection: Axis.vertical,
                               itemCount: apartmentsRes.data?.length,
                               itemBuilder: (ctx, index) =>
-                                  apartments(index, true));
+                                  apartments(index,));
 
                           //  if(snapshot.data == ConnectivityResult.none ){
                           //
@@ -168,18 +169,10 @@ class _NewMasterHomeState extends State<NewMasterHome> {
             : const HomeSkeletonWidget();
   }
 
-  void showSnakBarInStreamBuilder(BuildContext context, String text,
-      {bool? isIcon, IconData? icon, bool? isConnect}) {
-    WidgetsBinding.instance.addPostFrameCallback((_) {
-      showSnakBar(context, text,
-          isIcon: isIcon, icon: icon, isConnect: isConnect);
-      isStart = false;
-    });
-  }
 
-  Widget apartments(
+  Container apartments(
     int index,
-    bool checked,
+    // bool clicked,
   ) {
     return Container(
       padding: const EdgeInsets.fromLTRB(5, 0, 5, 0),
@@ -192,7 +185,7 @@ class _NewMasterHomeState extends State<NewMasterHome> {
        */
       //----------
       //you should delete the height attribute and add the padding widget instead
-      height: 395,
+      height: 355,
       // <- delete height attribute
       //----------
       //decoration of show apartment style
@@ -221,27 +214,31 @@ class _NewMasterHomeState extends State<NewMasterHome> {
               const Expanded(child: Text("")),
               Padding(
                 padding: const EdgeInsets.fromLTRB(5, 0, 0, 0),
-                child: checked == true
-                    ? IconButton(
+                child:
+                // clicked
+                //     ?
+               isCodeActive ?   IconButton(
                         onPressed: () {
                           setState(() {
-                            clicked = false;
+
+                            clicked = !clicked;
+
                           });
                         },
-                        icon: const Icon(
-                          Icons.bookmark_outline,
+                        icon:  Icon(
+                         clicked ? Icons.bookmark :  Icons.bookmark_outline,
                           size: 28,
-                        ))
-                    : IconButton(
-                        onPressed: () {
-                          setState(() {
-                            clicked = true;
-                          });
-                        },
-                        icon: const Icon(
-                          Icons.bookmark,
-                          size: 28,
-                        )),
+                        )):const SizedBox()
+                    // : IconButton(
+                    //     onPressed: () {
+                    //       setState(() {
+                    //         clicked = !clicked;
+                    //       });
+                    //     },
+                    //     icon: const Icon(
+                    //       Icons.bookmark,
+                    //       size: 28,
+                    //     )),
               ),
             ],
           ),
@@ -258,7 +255,8 @@ class _NewMasterHomeState extends State<NewMasterHome> {
               child: Image(
                 image: CachedNetworkImageProvider(
                     apartmentsRes.data?[index].photos?[0].url ??
-                        'https://via.placeholder.com/150'),
+                        'https://via.placeholder.com/150'
+                ),
               )),
 
           //             image: NetworkImage(

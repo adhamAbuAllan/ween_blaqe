@@ -235,8 +235,9 @@ home ,
    account,)
  */
 class Main extends StatefulWidget {
-  const Main({Key? key}) : super(key: key);
-
+  final Future<void> Function(BuildContext, String) ? navigatorOfMainClass;
+  const Main({ Key? key,  this.navigatorOfMainClass,}) : super(key: key);
+  // myPushName(context, MyPagesRoutes.showMore);
   @override
   State<Main> createState() => _MainState();
 }

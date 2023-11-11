@@ -144,7 +144,7 @@ class _ApartmentOfOwnerState extends State<ApartmentOfOwner> {
                       Expanded(child: Text("")),
                     ],
                   ),
-                  const AdvantagesClassWidget(),
+                  // const AdvantagesClassWidget(),
 
 //button to show more advantages
                   Padding(
@@ -154,11 +154,11 @@ class _ApartmentOfOwnerState extends State<ApartmentOfOwner> {
                       height: 55,
                       child: ElevatedButton(
                           onPressed: () {
-                            Navigator.of(context).push(
-                              MaterialPageRoute(builder: (context) {
-                                return const ShowAllAdvantages();
-                              }),
-                            );
+                            // Navigator.of(context).push(
+                            //   MaterialPageRoute(builder: (context) {
+                            //     return const ShowAllAdvantages();
+                            //   }),
+                            // );
                           },
                           style: fullButton,
                           child: const Text("عرض الميزات ال11")),

@@ -1,17 +1,18 @@
 // import 'dart:ffi';
 
 import 'package:colorful_safe_area/colorful_safe_area.dart';
+import 'package:flame/extensions.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:ween_blaqe/constants/strings.dart';
 import 'package:ween_blaqe/core/utils/funcations/route_pages/push_routes.dart';
+import 'package:ween_blaqe/core/utils/funcations/snakbar.dart';
 import 'package:ween_blaqe/core/utils/styles/button.dart';
 import 'package:ween_blaqe/core/utils/styles/switch_style.dart';
 import 'package:ween_blaqe/core/utils/styles/text_style/aline_style.dart';
 
 import 'package:ween_blaqe/constants/nums.dart';
 import '../../core/widgets/buttons/lines_buttons/line_buttons.dart';
-
 
 import 'registration.dart';
 import '../../controller/main_controller.dart';
@@ -28,12 +29,14 @@ class AccountBeforeLoginInStudent extends StatefulWidget {
   State<AccountBeforeLoginInStudent> createState() =>
       _AccountBeforeLoginInStudentState();
 }
+
 bool notificationState = true;
-late bool  currentValue ;
+bool isCodeActive = false;
+late bool currentValue;
+
 MainController controller = Get.find();
 OwnerController ownerController = Get.find();
 StudentController studentController = Get.find();
-
 
 class _AccountBeforeLoginInStudentState
     extends State<AccountBeforeLoginInStudent> {
@@ -43,10 +46,9 @@ class _AccountBeforeLoginInStudentState
     super.initState();
     setState(() {
       currentValue = true;
-
     });
-
   }
+
   @override
   Widget build(BuildContext context) {
     return ColorfulSafeArea(
@@ -94,16 +96,14 @@ class _AccountBeforeLoginInStudentState
 
               // notification icon and text and switch
 
-               GestureDetector(
-                 onTap: (){
-                   setState(() {
-                     notificationState = !currentValue;
-
-                   });
-currentValue = notificationState;
-                 },
-
-                 child: Row(
+              GestureDetector(
+                onTap: () {
+                  setState(() {
+                    notificationState = !currentValue;
+                  });
+                  currentValue = notificationState;
+                },
+                child: Row(
                   children: [
                     const Padding(
                       padding: EdgeInsets.fromLTRB(0, 0, 10, 0),
@@ -122,20 +122,22 @@ currentValue = notificationState;
                     const Spacer(),
                     Padding(
                       padding: const EdgeInsets.fromLTRB(20, 0, 0, 0),
-                      child:Switcher(light1: notificationState,onChanged: (currentValue){
-                        setState(() {
-                          // currentValue = value;
-                          notificationState = currentValue;
-                          // value ==
-                          // false
-                          // ? toast("تم كتم الاشعارات")
-                          // : toast("تم تفعيل الاشعارات");
-                        });
-                      }),
+                      child: Switcher(
+                          light1: notificationState,
+                          onChanged: (currentValue) {
+                            setState(() {
+                              // currentValue = value;
+                              notificationState = currentValue;
+                              // value ==
+                              // false
+                              // ? toast("تم كتم الاشعارات")
+                              // : toast("تم تفعيل الاشعارات");
+                            });
+                          }),
                     )
                   ],
+                ),
               ),
-               ),
               aline,
               //help
               buttonAccount(() {
@@ -159,25 +161,28 @@ currentValue = notificationState;
                     color: Colors.black87,
                   ),
                   "سياسة الخصوصية"),
-              aline,
+              // aline,
               //switch to owner
-              buttonAccount(
-                () {
-// myPushReplacementNamed(context,MyPagesRoutes.mainOwner);
-                  setState(() {
-                    ownerController.changeTo(0);
-                    controller.changeTo(1);
-
-                    myPushName(context, MyPagesRoutes.mainOwner);
-                  });
-                },
-                const Icon(
-                  Icons.change_circle_outlined,
-                  size: 32,
-                  color: Colors.black87,
-                ),
-                "التبديل إلى مالك",
-              ),
+//               buttonAccount(
+//                 () {
+// // myPushReplacementNamed(context,MyPagesRoutes.mainOwner);
+//                   myPushName(context, MyPagesRoutes.mainOwner);
+//                   setState(() {
+//                     ownerController.changeTo(0);
+//                     controller.changeTo(1);
+//
+//                     myPushName(context, MyPagesRoutes.mainOwner);
+//                   });
+//                   // showSnakBar(
+//                   //     context, "هذه الميزة قيد التطوير وسيتم إضافتها قريبًا");
+//                 },
+//                 const Icon(
+//                   Icons.change_circle_outlined,
+//                   size: 32,
+//                   color: Colors.black87,
+//                 ),
+//                 "التبديل إلى مالك",
+//               ),
               // aline,
 
               //share app
@@ -199,7 +204,7 @@ currentValue = notificationState;
                     size: 32,
                     color: Colors.black87,
                   ),
-                  "أأرسل ملاحظات إلينا"),
+                  "أرسل ملاحظات إلينا"),
               aline,
               //button login
               Padding(
@@ -209,13 +214,17 @@ currentValue = notificationState;
                   height: 55,
                   child: ElevatedButton(
                       onPressed: () {
-                        Navigator.of(context).push(
-                          MaterialPageRoute(builder: (context) {
-                            return const Login();
-                          }),
-                        );
+                        // Navigator.of(context).push(
+                        //   MaterialPageRoute(builder: (context) {
+                        //     return const Login();
+                        //   }),
+                        // );
+                        showSnakBar(context,
+                            "هذه الميزة قيد التطوير وسيتم إضافتها قريبًا");
                       },
-                      style: fullButton,
+                      style: fullButton.copyWith(
+                          backgroundColor:
+                              const MaterialStatePropertyAll(Colors.grey)),
                       child: const Text("تسجيل الدخول")),
                 ),
               ),
@@ -234,20 +243,22 @@ currentValue = notificationState;
                   ),
                   //reg
                   TextButton(
-                    child: const Text(
+                    child: Text(
                       "إنشاء حساب",
                       style: TextStyle(
-                        color: Colors.black,
+                        color: isCodeActive ? Colors.black : Colors.grey,
                         decoration: TextDecoration.underline,
                         fontFamily: 'IBM',
                       ),
                     ),
                     onPressed: () {
-                      Navigator.of(context).push(
-                        MaterialPageRoute(builder: (context) {
-                          return const Register();
-                        }),
-                      );
+                      showSnakBar(context,
+                          "هذه الميزة قيد التطوير وسيتم إضافتها قريبًا");
+                      // Navigator.of(context).push(
+                      //   MaterialPageRoute(builder: (context) {
+                      //     return const Register();
+                      //   }),
+                      // );
                     },
                   ),
                 ],
@@ -269,9 +280,7 @@ class AccountBeforeLoginInOwner extends StatefulWidget {
       _AccountBeforeLoginInOwnerState();
 }
 
-
 class _AccountBeforeLoginInOwnerState extends State<AccountBeforeLoginInOwner> {
-
   @override
   Widget build(BuildContext context) {
     return ColorfulSafeArea(
@@ -318,7 +327,7 @@ class _AccountBeforeLoginInOwnerState extends State<AccountBeforeLoginInOwner> {
               aline,
 
               //notification icon and text and switch
-               Row(
+              Row(
                 children: [
                   const Padding(
                     padding: EdgeInsets.fromLTRB(0, 0, 10, 0),
@@ -337,15 +346,17 @@ class _AccountBeforeLoginInOwnerState extends State<AccountBeforeLoginInOwner> {
                   ),
                   Padding(
                     padding: const EdgeInsets.fromLTRB(20, 0, 0, 0),
-                    child: Switcher(light1: notificationState,onChanged: (value){
-                      setState(() {
-                        notificationState = value;
-                        // value ==
-                        // false
-                        // ? toast("تم كتم الاشعارات")
-                        // : toast("تم تفعيل الاشعارات");
-                      });
-                    }),
+                    child: Switcher(
+                        light1: notificationState,
+                        onChanged: (value) {
+                          setState(() {
+                            notificationState = value;
+                            // value ==
+                            // false
+                            // ? toast("تم كتم الاشعارات")
+                            // : toast("تم تفعيل الاشعارات");
+                          });
+                        }),
                   )
                 ],
               ),
@@ -410,7 +421,7 @@ class _AccountBeforeLoginInOwnerState extends State<AccountBeforeLoginInOwner> {
                     size: 32,
                     color: Colors.black87,
                   ),
-                  "أأرسل ملاحظات إلينا"),
+                  "أرسل ملاحظات إلينا"),
               aline,
               //button login
               Padding(
@@ -426,7 +437,9 @@ class _AccountBeforeLoginInOwnerState extends State<AccountBeforeLoginInOwner> {
                           }),
                         );
                       },
-                      style: fullButton,
+                      style: fullButton.copyWith(
+                          backgroundColor:
+                              const MaterialStatePropertyAll(Colors.grey)),
                       child: const Text("تسجيل الدخول")),
                 ),
               ),
@@ -470,6 +483,5 @@ class _AccountBeforeLoginInOwnerState extends State<AccountBeforeLoginInOwner> {
     );
   }
 }
-extension MakeSwitch on bool {
 
-}
+extension MakeSwitch on bool {}

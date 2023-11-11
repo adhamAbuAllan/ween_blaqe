@@ -12,7 +12,7 @@ class AddAdDataContainer {
   static int? price;
   static int? countOfStudent;
   static int? squareMeters;
-
+  static User ? user;
   /*
   *
   * don't delete those commands I will active after know

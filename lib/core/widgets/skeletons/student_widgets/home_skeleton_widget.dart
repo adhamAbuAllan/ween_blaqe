@@ -136,6 +136,7 @@ class _HomeSkeletonWidgetState extends State<HomeSkeletonWidget> {
                       Row(
                         children: [
                           SkeletonLine(
+
                             style: SkeletonLineStyle(
                                 height: 18,
                                 width: 100,

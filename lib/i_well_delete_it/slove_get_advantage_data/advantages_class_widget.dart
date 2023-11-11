@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'package:colorful_safe_area/colorful_safe_area.dart';
 import 'package:http/http.dart' as http;
 import 'package:flutter/material.dart';
 
@@ -42,7 +43,7 @@ class _GetAdvantagesState extends State<GetAdvantages> {
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
-           Row(
+          Row(
             children: [
               Padding(
                 padding: const EdgeInsets.fromLTRB(0, 0, 10, 0),
@@ -74,7 +75,7 @@ class _GetAdvantagesState extends State<GetAdvantages> {
                         onPressed: () {
                           Navigator.of(context).push(
                             MaterialPageRoute(builder: (context) {
-                              return ShowAllAdvantagesTest(
+                              return ShowAllAdvantages(
                                   features: advantages!);
                             }),
                           );
@@ -179,26 +180,97 @@ class _AdvantagesClassWidgetState extends State<AdvantagesClassWidget> {
   }
 }
 
-class ShowAllAdvantagesTest extends StatefulWidget {
-  const ShowAllAdvantagesTest({super.key, required this.features});
+class ShowAllAdvantages extends StatefulWidget {
+  const ShowAllAdvantages({super.key, required this.features});
 
   final List<Advantages> features;
 
   @override
-  State<ShowAllAdvantagesTest> createState() => _ShowAllAdvantagesTestState();
+  State<ShowAllAdvantages> createState() => _ShowAllAdvantagesState();
 }
 
-class _ShowAllAdvantagesTestState extends State<ShowAllAdvantagesTest> {
+class _ShowAllAdvantagesState extends State<ShowAllAdvantages> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: ListView.builder(
-          itemCount: widget.features.length,
-          itemBuilder: ((c, i) {
-            return const ListTile(
-              title: Text("feature.advName"),
-            );
-          })),
+    return ColorfulSafeArea(
+      color: kPrimaryColor,
+      child: Scaffold(
+        backgroundColor: Colors.grey.shade200,
+
+        body: Column(
+
+          children: [
+            Row(
+              children: [
+                Padding(
+                  padding: const EdgeInsets.fromLTRB(0, 25, 0, 0),
+                  child: IconButton(
+                    padding: const EdgeInsets.only(right: 10),
+                      onPressed: () {
+                        Navigator.of(context).pop(context);
+                      },
+                      icon: const Icon(
+                        Icons.arrow_back_ios,
+                        color: Colors.black87,
+                      )),
+                ),
+                const Expanded(child: Text("")),
+              ],
+            ),
+            Container(
+              margin: const EdgeInsets.fromLTRB(10, 30, 10, 0),
+
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(7),
+                color: kContainerColor,
+              ),
+              child: Column(
+                children: [
+                  const Row(
+                    children: [
+                      Padding(
+                        padding: EdgeInsets.fromLTRB(0, 0, 10, 0),
+                        child: Text("المزايا",
+                            style: TextStyle(
+                              color: Colors.black87,
+                              fontSize: 20,
+                              fontFamily: 'IBM',
+                            )),
+                      ),
+                      Expanded(child: Text("")),
+                    ],
+                  ),
+
+                     SizedBox(
+                       height: 500,
+                       child: ListView.builder(
+
+                           padding: const EdgeInsets.all(0),
+                          itemCount: widget.features.length,
+                          itemBuilder: ((c, i) {
+                            return ListTile(
+                              title: Text(widget.features[i].advName,
+                                style: TextStyle(
+                                    fontFamily: 'IBM',
+                                    fontSize: 16,
+                                    color: Colors.black.withOpacity(.7)),
+                              ),
+                                trailing: Image.network(
+                                  widget.features[i].icon,
+                                  height: 30,
+                                  width: 30,
+                                  color: Colors.black.withOpacity(.5),
+                                )
+                            );
+                          })),
+                     ),
+
+                ],
+              ),
+            ),
+          ],
+        ),
+      ),
     );
   }
 }

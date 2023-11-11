@@ -23,7 +23,9 @@ class _NotificationOfStudentWithNotifiState
     return Scaffold(
       backgroundColor: Colors.grey.shade200,
       body: SingleChildScrollView(
+
         child: Column(
+
           children: [
             const Row(
               children: [
@@ -76,21 +78,25 @@ class _NotificationOfStudentWithNotifiState
                 ),
               ],
             ),
+
+              Padding(
+                padding: const EdgeInsets.symmetric(vertical: 25),
+                child: Image.asset("assets/images/zzz_notifiction.png",width: 450/1.3,height: 420/1.3,color: Colors.black.withOpacity(.7)),
+              ),
             show == false
                 ? Center(
                     child: Container(
-                    margin: const EdgeInsets.fromLTRB(25, 180, 25, 0),
                     child: TextButton(
                       onPressed: () {
                         setState(() {
-                          show = true;
+                          // show = true;
                         });
                       },
                       child: Text("لا يوجد لديك إشعارات",
                           style: TextStyle(
                             fontFamily: "IBM",
                             color: Colors.grey.shade800,
-                            fontSize: 20,
+                            fontSize: 16,
                           )),
                     ),
                   ))

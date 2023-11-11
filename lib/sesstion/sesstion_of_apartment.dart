@@ -15,7 +15,7 @@ saveUserInfo(DataOfOneApartment data) {
   NewSession.save("description", data.description);
   NewSession.save("type_id", data..type);
   NewSession.save("city_id", data.city!);
-  NewSession.save("owner_id", data.ownerId);
+  NewSession.save("owner", data.owner);
   NewSession.save("update_at", data.updatedAt);
 
   // NewSession.save("create_at", data.c);
@@ -35,7 +35,7 @@ removeUserInfo() {
   NewSession.remove("description");
   NewSession.remove("type_id");
   NewSession.remove("city_id");
-  NewSession.remove("owner_id");
+  NewSession.remove("owner");
   NewSession.remove("updated_at");
   NewSession.remove("created_at");
 }

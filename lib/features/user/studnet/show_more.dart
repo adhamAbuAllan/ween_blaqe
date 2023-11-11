@@ -206,7 +206,7 @@ class _ShowMoreState extends State<ShowMore>  {
                       Expanded(child: Text("")),
                     ],
                   ),
-                  const AdvantagesClassWidget(),
+                  // const AdvantagesClassWidget(),
 
 //button to show more advantages
                   Padding(
@@ -216,11 +216,11 @@ class _ShowMoreState extends State<ShowMore>  {
                       height: 55,
                       child: ElevatedButton(
                           onPressed: () {
-                            Navigator.of(context).push(
-                              MaterialPageRoute(builder: (context) {
-                                return const ShowAllAdvantages();
-                              }),
-                            );
+                            // Navigator.of(context).push(
+                            //   MaterialPageRoute(builder: (context) {
+                            //     return const ShowAllAdvantages();
+                            //   }),
+                            // );
                           },
                           style: fullButton,
                           child: const Text("عرض الميزات ال11")),

@@ -1,9 +1,11 @@
 import 'package:colorful_safe_area/colorful_safe_area.dart';
 import 'package:flutter/material.dart';
 import 'package:ween_blaqe/constants/nums.dart';
+import '../../../api/advantages.dart';
 import '../../../core/widgets/apartments/show_more_classes_widget/advantages_class_widget.dart';
   class ShowAllAdvantages extends StatelessWidget {
-  const ShowAllAdvantages({Key? key}) : super(key: key);
+  const ShowAllAdvantages({Key? key,required this.features}) : super(key: key);
+  final List<Advantages> features;
 
   @override
   Widget build(BuildContext context) {
@@ -38,23 +40,23 @@ import '../../../core/widgets/apartments/show_more_classes_widget/advantages_cla
                   borderRadius: BorderRadius.circular(7),
                   color: kContainerColor,
                 ),
-                child:  const Column(
+                child:   Column(
                   children: [
-                    Row(
+                    const Row(
                       children: [
                         Padding(
                           padding: EdgeInsets.fromLTRB(305, 0, 10, 0),
                           child: Text("المزايا",
                               style: TextStyle(
                                 color: Colors.black87,
-                                fontSize: 20,
+                                 fontSize: 20,
                                 fontFamily: 'IBM',
                               )),
                         ),
                         Expanded(child: Text("")),
                       ],
                     ),
-                    AdvantagesClassWidget()
+                    AdvantagesClassWidget(features: features,)
                   ],
                 ),
               ),

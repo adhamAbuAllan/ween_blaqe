@@ -6,6 +6,7 @@ import 'package:colorful_safe_area/colorful_safe_area.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:ween_blaqe/constants/strings.dart';
+import 'package:ween_blaqe/core/utils/funcations/snakbar.dart';
 import 'package:ween_blaqe/core/utils/styles/button.dart';
 import 'package:ween_blaqe/urls_of_project/localhost_urls.dart';
 import '../api/comments.dart';
@@ -63,12 +64,17 @@ class _SendNoticeForUsState extends State<SendNoticeForUs> {
                       // Get.to(ApartmentsOfOwnerAfterAdd());
                       if (sendNoticeForUcController.text == "" ||
                           sendNoticeForUcController.text.length < 35) {
+                        showSnakBar(context, "يرجى كتابة سطر واحد مكون من 35 حرف على الاقل");
+
                         // toast("يرجى كتابة سطر واحد مكون من 35 حرف على الاقل");
                       } else {
                         // toast(messageOfToast);
+                        go(sendNoticeForUcController.text);
+                        showSnakBar(context, "شكرًا لك على ملاحظتك, سيتم أخذها بعين الاعتبار ");
+
+
                       }
 
-                      go(sendNoticeForUcController.text);
                     },
                     style: fullButton,
                     child: const Text("إرسال"),
