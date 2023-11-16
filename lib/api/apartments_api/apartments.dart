@@ -601,8 +601,8 @@ class Owner {
     required this.name,
     required this.phone,
     required this.gender,
-    required this.universityId,
-    required this.typeId,
+    // required this.university,
+    // required this.type,
     required this.active,
     required this.createdAt,
     required this.updatedAt,
@@ -611,8 +611,8 @@ class Owner {
   late final String name;
   late final String phone;
   late final String gender;
-  late final int universityId;
-  late final int typeId;
+  // late final int university;
+  // late final int type;
   late final int active;
   late final String createdAt;
   late final String updatedAt;
@@ -622,8 +622,8 @@ class Owner {
     name = json['name'];
     phone = json['phone'];
     gender = json['gender'];
-    universityId = json['university_id'];
-    typeId = json['type_id'];
+    // university = json['university'];
+    // type = json['type'];
     active = json['active'];
     createdAt = json['created_at'];
     updatedAt = json['updated_at'];
@@ -635,8 +635,8 @@ class Owner {
     _data['name'] = name;
     _data['phone'] = phone;
     _data['gender'] = gender;
-    _data['university_id'] = universityId;
-    _data['type_id'] = typeId;
+    // _data['university'] = university;
+    // _data['type'] = type;
     _data['active'] = active;
     _data['created_at'] = createdAt;
     _data['updated_at'] = updatedAt;

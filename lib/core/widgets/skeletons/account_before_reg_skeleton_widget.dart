@@ -79,7 +79,8 @@ class AccountBeforeRegSkeletonWidget extends StatelessWidget {
           const Padding(
             padding: EdgeInsets.fromLTRB(0, 0, 25, 0),
             child: SmallTextSkeletonReady(),
-          )
+          ),
+
         ],
       ),
     ));

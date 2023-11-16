@@ -37,8 +37,11 @@ class NewShowMore extends StatefulWidget {
 
 class _NewShowMoreState extends State<NewShowMore> {
   bool _isDataLoaded = false;
-  late final List<Photos>? photos = widget.oneApartment?.photos;
 
+  late final List<Photos>? photos = widget.oneApartment?.photos;
+  bool _isGirlStudent = false;
+  bool _isBoyStudent = false;
+  bool _isFamilies = false;
   Object tag = 'photo';
   bool isStart = false;
 
@@ -46,6 +49,15 @@ class _NewShowMoreState extends State<NewShowMore> {
   void initState() {
     super.initState();
     isStart = true;
+    if (widget.oneApartment?.type == "طلاب") {
+      _isBoyStudent = true;
+    }
+    if (widget.oneApartment?.type == "طالبات") {
+      _isGirlStudent = true;
+    }
+    if (widget.oneApartment?.type == "عائلات") {
+      _isFamilies = true;
+    }
 
     // myPushName(context, MyPagesRoutes.skeletonShowMoreWidget);
     // SkeletonShowMoreWidget;
@@ -279,7 +291,13 @@ class _NewShowMoreState extends State<NewShowMore> {
                             Padding(
                               padding: const EdgeInsets.fromLTRB(0, 0, 5, 10),
                               child: Text(
-                                  "عدد الطلاب المسموح به:${widget.oneApartment?.countOfStudnet ?? 0}",
+                                  (_isBoyStudent
+                                      ? "عدد الطلاب المسموح به:${widget.oneApartment?.countOfStudnet ?? 0}"
+                                      : (_isGirlStudent
+                                          ? "عدد الطالبات المسموح به:${widget.oneApartment?.countOfStudnet ?? 0}"
+                                          : (_isFamilies
+                                              ? "عدد الافراد المسموح به:${widget.oneApartment?.countOfStudnet ?? 0}"
+                                              : "عدد الافراد المسموح به:${widget.oneApartment?.countOfStudnet ?? 0}"))),
                                   style: TextStyle(
                                     color: Colors.black.withOpacity(.6),
                                     fontSize: 16,
@@ -670,21 +688,22 @@ class _NewShowMoreState extends State<NewShowMore> {
                           ],
                         ),
 //phone number
-                  Row(
-                    children: [
-                      const Expanded(
-                        child: Text(""),
-                      ),
-                      SizedBox(
-                        width: 115,
-                        height: 50,
-                        child: OutlinedButton(
-                          onPressed: () async {
-                            sendMessageToWhatsApp(
-                                widget.oneApartment!.owner!.phone, "هل يمكنني الاستفسار عن هذا؟");
-                            // openBrowserURL(
-                            //     url: 'https://wa.me/970569118259/',
-                            //     inApp: false);
+                        Row(
+                          children: [
+                            const Expanded(
+                              child: Text(""),
+                            ),
+                            SizedBox(
+                              width: 115,
+                              height: 50,
+                              child: OutlinedButton(
+                                onPressed: () async {
+                                  sendMessageToWhatsApp(
+                                      widget.oneApartment!.owner!.phone,
+                                      "هل يمكنني الاستفسار عن هذا؟");
+                                  // openBrowserURL(
+                                  //     url: 'https://wa.me/970569118259/',
+                                  //     inApp: false);
 
 // _launchUrl;
 // final value = ClipboardData(text: number_phone);
@@ -760,9 +779,12 @@ class _NewShowMoreState extends State<NewShowMore> {
                             //     : Navigator.of(context).push(MaterialPageRoute(
                             //     builder: (BuildContext context) =>
                             //         BookingNow(oneApartment: widget.oneApartment)));
-                            showSnakBar(context, "هذه الميزة قيد التطوير وسيتم إضافتها قريبًا");
+                            showSnakBar(context,
+                                "هذه الميزة قيد التطوير وسيتم إضافتها قريبًا");
                           },
-                          style: fullButton.copyWith(backgroundColor: const MaterialStatePropertyAll(Colors.grey)),
+                          style: fullButton.copyWith(
+                              backgroundColor:
+                                  const MaterialStatePropertyAll(Colors.grey)),
                           child: const Text("إحجز الآن")),
                     ),
                   ),

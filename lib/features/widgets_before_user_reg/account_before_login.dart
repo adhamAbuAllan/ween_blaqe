@@ -1,7 +1,6 @@
 // import 'dart:ffi';
 
 import 'package:colorful_safe_area/colorful_safe_area.dart';
-import 'package:flame/extensions.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:ween_blaqe/constants/strings.dart';
@@ -263,6 +262,29 @@ class _AccountBeforeLoginInStudentState
                   ),
                 ],
               ),
+
+              // Padding(
+              //   padding: const EdgeInsets.only(top: 20*9.5,bottom: 30*2),
+              //   child: Row(
+              //     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              //       children: [
+              //         IconButton(
+              //         onPressed: (){},
+              //           icon: Icon(FontAwesomeIcons.facebookMessenger,color: Colors.black.withOpacity(.65),size: 30)),
+              //         IconButton(
+              //         onPressed: (){},
+              //           icon: Icon(FontAwesomeIcons.whatsapp,color: Colors.black.withOpacity(.65),size: 30,)),
+              //         IconButton(
+              //         onPressed: (){},
+              //           icon: Icon(FontAwesomeIcons.facebook,color: Colors.black.withOpacity(.65),size: 30)),
+              //         IconButton(
+              //         onPressed: (){},
+              //           icon: Icon(FontAwesomeIcons.tiktok,color: Colors.black.withOpacity(.65),size: 30)),
+              //
+              //       ]),
+              //   // child: Divider(color: Colors.black.withOpacity(.6),thickness: 7,indent: 10,endIndent: 10),
+              // ),
+
             ],
           ),
         ),
@@ -476,6 +498,8 @@ class _AccountBeforeLoginInOwnerState extends State<AccountBeforeLoginInOwner> {
                   ),
                 ],
               ),
+
+
             ],
           ),
         ),

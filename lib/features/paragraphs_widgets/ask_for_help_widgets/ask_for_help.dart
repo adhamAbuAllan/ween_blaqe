@@ -29,7 +29,7 @@ class AskForHelp extends StatelessWidget {
             ),
             bottom: const TabBar(
               tabs: [
-                Tab(text: 'طالب'),
+                Tab(text: 'مُستأجر'),
                 Tab(text: 'مالك'),
               ],
             ),

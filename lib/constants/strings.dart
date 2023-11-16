@@ -3,8 +3,7 @@
   ///
 //Loclhost for physical Divise
 class ServerLocalDiv {
-
-  static String server = "http://192.168.1.110:8000/api/";
+  static String server = "http://192.168.1.137:8000/api/";
   // static String postAll = "${server}post/all";
   static String userLogin = "${server}user/login";
   static String register = "${server}user/register";
@@ -53,9 +52,6 @@ class ServerLocalDiv {
 
     //for test
     static String playerAll= "${server}player/all";
-
-
-
 
 
 

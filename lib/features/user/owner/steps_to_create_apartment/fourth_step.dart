@@ -14,7 +14,6 @@ import 'package:ween_blaqe/core/widgets/alirt_class_widget.dart';
 import 'package:ween_blaqe/data_containers/add_ad_data_container.dart';
 import 'package:ween_blaqe/main.dart';
 
-import '../../../../api/apartments_api/apartments.dart';
 import '../../../../api/users.dart';
 
 import '../../../../core/widgets/apartments/create_apartment/container_classes_widget/check_boxs/connection_check_box/add_a_contact_class_widget.dart';
@@ -350,7 +349,7 @@ class _FourthStepState extends State<FourthStep> {
       res.title = AddAdDataContainer.title!;
       res.price = AddAdDataContainer.price!;
       resUser.email = AddAdDataContainer.email;
-      res.owner?.phone = AddAdDataContainer.user!.phone;
+      // res.owner?.phone = AddAdDataContainer.user!.phone;
       pushToApartmentOfOwnerAfterAdd();
 
       return res;

@@ -96,7 +96,8 @@ class HowCouldBookingApartment extends StatelessWidget {
                 width: double.infinity,
                 margin: const EdgeInsets.fromLTRB(25, 0, 30, 10),
                 child: Text(
-                  "يتطلب حجز شقة على تطبيق 'وين بلاقي' تسجيل دخول المستخدم أولاً ثم إتباع الخطوات التالية",
+                  // "يتطلب حجز شقة على تطبيق 'وين بلاقي' تسجيل دخول المستخدم أولاً ثم إتباع الخطوات التالية",
+                  "يمكنك طلب حجز شقة من خلال إتباع الخطوات التالية",
                   style: TextStyle(
                     fontSize: 16.0,
                     color: Colors.grey.shade800,
@@ -123,7 +124,8 @@ class HowCouldBookingApartment extends StatelessWidget {
                 width: double.infinity,
                 margin: const EdgeInsets.fromLTRB(25, 0, 30, 10),
                 child: Text(
-                  "بعد إختيارك لأعلان ما اظغط على زر احجز الان",
+                  // "بعد إختيارك لأعلان ما اظغط على زر احجز الان",
+                  "إذهب إلى القائمة الرئيسية",
                   style: TextStyle(
                     fontSize: 16.0,
                     color: Colors.grey.shade800,
@@ -151,7 +153,8 @@ class HowCouldBookingApartment extends StatelessWidget {
                 width: double.infinity,
                 margin: const EdgeInsets.fromLTRB(25, 0, 30, 10),
                 child: Text(
-                  "إختر مدة إقامتك من خلال إضافة عدد الأشهر ",
+                  // "إختر مدة إقامتك من خلال إضافة عدد الأشهر ",
+                  "إختر الإعلان الشقة التي تريدها من خلال الضغط على كلمة عرض المزيد",
                   style: TextStyle(
                     fontSize: 16.0,
                     color: Colors.grey.shade800,
@@ -178,7 +181,8 @@ class HowCouldBookingApartment extends StatelessWidget {
                 width: double.infinity,
                 margin: const EdgeInsets.fromLTRB(25, 0, 30, 10),
                 child: Text(
-                  "إضغط على زر 'تأكيد الحجز'",
+                  // "إضغط على زر 'تأكيد الحجز'",
+                  "قم بانزول إلى أسفل الشاشة",
                   style: TextStyle(
                     fontSize: 16.0,
                     color: Colors.grey.shade800,
@@ -205,7 +209,8 @@ class HowCouldBookingApartment extends StatelessWidget {
                 width: double.infinity,
                 margin: const EdgeInsets.fromLTRB(25, 0, 30, 10),
                 child: Text(
-                  "ستظهر لك رسالة لتأكيد طلب الحجز ،إضغط على زر 'نعم،متابعة'",
+                  // "ستظهر لك رسالة لتأكيد طلب الحجز ،إضغط على زر 'نعم،متابعة'",
+                  "سيظهر لك مربع الاستفسار , إختر وسلية التواصل التي تناسبك -قد يحتوي المربع على وسيلة تواصل واحدة , يمكن أن يتم إضافة المزيد من الوسائل مستقبللاً",
                   style: TextStyle(
                     fontSize: 16.0,
                     color: Colors.grey.shade800,

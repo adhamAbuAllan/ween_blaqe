@@ -15,7 +15,7 @@ saveUserInfo(DataOfOneApartment data) {
   NewSession.save("description", data.description);
   NewSession.save("type_id", data..type);
   NewSession.save("city_id", data.city!);
-  NewSession.save("owner", data.owner);
+  // NewSession.save("owner", data.owner);
   NewSession.save("update_at", data.updatedAt);
 
   // NewSession.save("create_at", data.c);
