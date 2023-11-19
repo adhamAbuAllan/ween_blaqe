@@ -5,7 +5,6 @@ import '../../../../../constants/nums.dart';
 import 'custom_slider.dart';
 
 // import 'package:smooth_page_indicator/src/painters/worm_painter.dart';
-@immutable
 class ImageSliderWithPointer extends StatefulWidget {
   ImageSliderWithPointer({
     super.key,
@@ -16,7 +15,7 @@ class ImageSliderWithPointer extends StatefulWidget {
     // this.onPaageChanged,
     this.onPageChange,
     required this.current,
-    required this.curve,
+    // required this.curve,
      required this.duration,
     required this.tag
   });
@@ -26,7 +25,7 @@ class ImageSliderWithPointer extends StatefulWidget {
    int current;
   final CarouselController controller;
   Duration duration;
-      Curve curve;
+      // Curve curve;
       Object tag;
   @override
   State<StatefulWidget> createState() {
@@ -87,7 +86,8 @@ class _ImageSliderWithPointer extends State<ImageSliderWithPointer> {
       // CarouselController controller
       Padding(
         padding: const EdgeInsets.only(left: 10.0),
-        child: thePointerOfImage(context, widget.items,widget.duration,widget.curve,
+        child: thePointerOfImage(context, widget.items,widget.duration,
+          // widget.curve,
             current: widget.current,
 
         ),
@@ -135,14 +135,19 @@ class _ImageSliderWithPointer extends State<ImageSliderWithPointer> {
 
 Row thePointerOfImage(
     BuildContext context, List<Photos> photos, Duration duration,
-Curve curve,
+// Curve curve,
     {int? current}) {
   return Row(
       mainAxisAlignment: MainAxisAlignment.center,
-      children: _pointer(photos, context, current,duration,curve).toList());
+      children: _pointer(photos, context, current,duration
+          // ,curve
+      ).toList());
 }
 
-Iterable<GestureDetector> _pointer(List<Photos> photos, BuildContext context, int? current,Duration duration,Curve curve) {
+Iterable<GestureDetector> _pointer(List<Photos> photos, BuildContext context, int? current,Duration
+duration,
+    // Curve curve
+    ) {
   return photos.asMap().entries.map((entry) {
       return GestureDetector(
         // onTap: () {

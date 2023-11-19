@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 
 void showSnakBar(@required BuildContext context, @required String message,
     {bool? isIcon = false, IconData? icon, bool? isConnect,int ?  seconds}) {
+
   ScaffoldMessenger.of(context).showSnackBar(
 
       SnackBar(
+
        clipBehavior: Clip.antiAliasWithSaveLayer,
     dismissDirection: DismissDirection.down,
     behavior: SnackBarBehavior.floating,
@@ -27,6 +28,6 @@ void showSnakBar(@required BuildContext context, @required String message,
         message,
         style: const TextStyle(fontSize: 16, fontFamily: "IBM"),
       ),
-        margin: const EdgeInsets.only( bottom: 65,left: 25,right: 25),
+        margin: const EdgeInsets.only( bottom: 20,left: 25,right: 25),
         ) );
 }

@@ -200,12 +200,14 @@ class _NewShowMoreState extends State<NewShowMore> {
                             controller: controller,
                             items: photos!,
                             duration: const Duration(milliseconds: 300),
-                            curve: Curves.ease,
+                            // curve: Curves.linear,
                             current: current,
                             tag: tag,
                             onPageChange: (index, p1) {
                               setState(() {
+
                                 current = index;
+                                controller.animateToPage(current,duration: const Duration(milliseconds: 300,),);
                                 print("the p1 is like this : $p1");
 
                                 // current = lastIndex!;

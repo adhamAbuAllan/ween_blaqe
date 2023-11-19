@@ -114,10 +114,13 @@ class _GetAdvantagesState extends State<GetAdvantages> {
                       fontFamily: 'IBM',
                       fontSize: 16,
                       color: Colors.black.withOpacity(.7))),
-              trailing: Image.network(
+              trailing: entry.icon.isEmpty ? const SizedBox(child: CircularProgressIndicator(color: kPrimaryColor,strokeWidth: 3,)) :Image.network(
                 entry.icon,
                 height: 30,
                 width: 30,
+                errorBuilder: (context, error, stackTrace) {
+                  return  const SizedBox(child: CircularProgressIndicator(color: kPrimaryColor,strokeWidth: 3,));
+                },
                 color: Colors.black.withOpacity(.5),
               ),
             ),
@@ -242,7 +245,7 @@ class _ShowAllAdvantagesState extends State<ShowAllAdvantages> {
                   ),
 
                      SizedBox(
-                       height: 500,
+                       height: 530,
                        child: ListView.builder(
 
                            padding: const EdgeInsets.all(0),
@@ -255,7 +258,11 @@ class _ShowAllAdvantagesState extends State<ShowAllAdvantages> {
                                     fontSize: 16,
                                     color: Colors.black.withOpacity(.7)),
                               ),
-                                trailing: Image.network(
+
+                              trailing: widget.features[i].icon.isEmpty ? const SizedBox(child: CircularProgressIndicator(color: kPrimaryColor,strokeWidth: 3,)) :
+
+
+                              Image.network(
                                   widget.features[i].icon,
                                   height: 30,
                                   width: 30,

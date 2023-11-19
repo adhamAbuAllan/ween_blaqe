@@ -89,8 +89,8 @@ class DataOfOneApartment {
     final _data = <String, dynamic>{};
     _data['id'] = id;
     _data['owner'] = owner?.toJson();
-    _data['photos'] = photos?.map((e) => e.toJson()).toList();
-    _data['advantage'] = advantages?.map((e) => e.toJson()).toList();
+    _data['photos'] = photos?.map((e) => e.toJson()).toList()??[];
+    _data['advantage'] = advantages?.map((e) => e.toJson()).toList()??[];
     _data['rooms'] = rooms;
     _data['bathrooms'] = bathrooms;
     _data['square_meters'] = squareMeters;
