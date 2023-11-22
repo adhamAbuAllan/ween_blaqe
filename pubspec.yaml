@@ -7,6 +7,8 @@ environment:
   sdk: '>=2.17.0 <3.0.0'
 dependencies:
   animated_text_kit: ^4.2.2
+#  draggable_widget: ^2.0.0
+#  draggable_float_widget: ^0.1.0
   animations: ^2.0.7
   flutter_speed_dial: ^7.0.0
   barcode_widget: ^2.0.4

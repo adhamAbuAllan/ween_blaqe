@@ -6,7 +6,7 @@ import 'custom_slider.dart';
 
 // import 'package:smooth_page_indicator/src/painters/worm_painter.dart';
 class ImageSliderWithPointer extends StatefulWidget {
-  ImageSliderWithPointer({
+ const ImageSliderWithPointer({
     super.key,
     // required this.itemsOfWidgets,
     required this.items,
@@ -17,16 +17,16 @@ class ImageSliderWithPointer extends StatefulWidget {
     required this.current,
     // required this.curve,
      required this.duration,
-    required this.tag
+    // required this.tag
   });
 
    final List<Photos> items;
-  dynamic Function(int, CarouselPageChangedReason)? onPageChange;
-   int current;
+  final dynamic Function(int, CarouselPageChangedReason)? onPageChange;
+   final int current;
   final CarouselController controller;
-  Duration duration;
+ final  Duration duration;
       // Curve curve;
-      Object tag;
+    // final   Object tag;
   @override
   State<StatefulWidget> createState() {
     return _ImageSliderWithPointer();
@@ -70,7 +70,7 @@ class _ImageSliderWithPointer extends State<ImageSliderWithPointer> {
   Widget build(BuildContext context) {
     return Column(children: [
       buildCarouselSlider(
-        tag:widget.tag ,
+        // tag:widget.tag ,
           controller: widget.controller,
           context: context,
           photos: widget.items,
@@ -86,7 +86,7 @@ class _ImageSliderWithPointer extends State<ImageSliderWithPointer> {
       // CarouselController controller
       Padding(
         padding: const EdgeInsets.only(left: 10.0),
-        child: thePointerOfImage(context, widget.items,widget.duration,
+        child: ThePointerOfImage(photos: widget.items,duration:widget.duration,
           // widget.curve,
             current: widget.current,
 
@@ -132,23 +132,17 @@ class _ImageSliderWithPointer extends State<ImageSliderWithPointer> {
     ]);
   }
 }
-
-Row thePointerOfImage(
-    BuildContext context, List<Photos> photos, Duration duration,
+class ThePointerOfImage extends StatelessWidget {
+  const ThePointerOfImage({super.key, required this.photos, required this.duration, this.current,});
+ final  List<Photos> photos;
+    final   Duration duration;
 // Curve curve,
-    {int? current}) {
-  return Row(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: _pointer(photos, context, current,duration
-          // ,curve
-      ).toList());
-}
-
-Iterable<GestureDetector> _pointer(List<Photos> photos, BuildContext context, int? current,Duration
-duration,
-    // Curve curve
-    ) {
-  return photos.asMap().entries.map((entry) {
+    final  int? current;
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children:photos.asMap().entries.map((entry) {
       return GestureDetector(
         // onTap: () {
         //
@@ -170,14 +164,67 @@ duration,
               //   borderRadius: BorderRadiusDirectional.circular((12/2)),
               shape: BoxShape.rectangle,
               color: (Theme.of(context).brightness == Brightness.dark
-                      ? kPrimaryColor300
-                      : kPrimaryColor
+                  ? kPrimaryColor300
+                  : kPrimaryColor
                   // ? Colors.white.withOpacity(.9)
                   // : Colors.white.withOpacity(.7)
-                  )
+              )
                   .withOpacity(current == entry.key ? 0.9 : 0.4))),
 
         ),
       );
-    });
+    }).toList());
+        // children: _pointer(photos, context, current,duration
+        //   // ,curve
+        // ).toList());
+  }
 }
+
+// Row thePointerOfImage(
+//     BuildContext context, List<Photos> photos, Duration duration,
+// // Curve curve,
+//     {int? current}) {
+//   return Row(
+//       mainAxisAlignment: MainAxisAlignment.center,
+//       children: _pointer(photos, context, current,duration
+//           // ,curve
+//       ).toList());
+// }
+
+// Iterable<GestureDetector> _pointer(List<Photos> photos, BuildContext context, int? current,Duration
+// duration,
+//     // Curve curve
+//     ) {
+//   return photos.asMap().entries.map((entry) {
+//       return GestureDetector(
+//         // onTap: () {
+//         //
+//         //   controller?.animateToPage(entry.key,
+//         //     duration:duration , // Set the duration for the animation
+//         //     curve:  curve
+//         //   );
+//         //   print("the pointer is animated");
+//         // },
+//         child: AnimatedContainer(
+//           duration:duration,curve: Curves.linear,
+//           width: 12.0,
+//           height: 12.0,
+//           // width: (12 / 2),
+//           // height: (12 / 2),
+//           margin: const EdgeInsets.symmetric(vertical: 8.0, horizontal: 4.0),
+//           decoration: (BoxDecoration(
+//               borderRadius: BorderRadiusDirectional.circular(7 / 3.5),
+//               //   borderRadius: BorderRadiusDirectional.circular((12/2)),
+//               shape: BoxShape.rectangle,
+//               color: (Theme.of(context).brightness == Brightness.dark
+//                       ? kPrimaryColor300
+//                       : kPrimaryColor
+//                   // ? Colors.white.withOpacity(.9)
+//                   // : Colors.white.withOpacity(.7)
+//                   )
+//                   .withOpacity(current == entry.key ? 0.9 : 0.4))),
+//
+//         ),
+//       );
+//     });
+// }

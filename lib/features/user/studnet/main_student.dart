@@ -46,9 +46,11 @@ class _MainStudentState extends State<MainStudent> {
 
       color: kPrimaryColor,
       child: Scaffold(
+
         // appBar: AppBar(bottomOpacity: 0,leadingWidth: 20,toolbarOpacity: 0,backgroundColor: Colors.transparent,elevation: 0,shadowColor: Colors.transparent,title: Text("Your wlecome "),),
         backgroundColor: Colors.grey.shade200,
         body: GetBuilder<StudentController>(
+
           builder: (context) {
             return ColorfulSafeArea(
               color: kPrimaryColor,
@@ -72,6 +74,7 @@ class _MainStudentState extends State<MainStudent> {
           },
         ),
         bottomNavigationBar: BottomNavigationBarOfStudent(
+
           controller: studentController,
         ),
 // floatingActionButtonLocation: FloatingActionButtonLocation.miniEndFloat,
@@ -112,9 +115,10 @@ SpeedDial buildSpeedDial() {
 
   return SpeedDial(
     curve: Curves.linear,
+
     spacing: 25,
     // activeBackgroundColor: Colors.orange[400],
-    overlayColor: Colors.grey.withOpacity(.00001),
+    overlayColor: Colors.grey,
     // animatedIcon: AnimatedIcons.home_menu,
     icon: Icons.add_home_outlined,
     backgroundColor: kPrimaryColor,
@@ -129,7 +133,7 @@ SpeedDial buildSpeedDial() {
         backgroundColor: const Color(0xff25D366),
         // label: 'whatsApp',
         onTap: () {
-          sendMessageToWhatsApp('569339613',
+          sendMessageToWhatsApp('2569339613',
               "هل يمكنني الاستفسار عن هذا؟");
         },
       ),

@@ -22,7 +22,9 @@ import '../../../../core/widgets/apartments/show_more_classes_widget/image_slide
 import '../../../../i_well_delete_it/slove_get_advantage_data/advantages_class_widget.dart';
 
 // import '../../../toast_widget.dart';
-
+main(){
+  runApp(MaterialApp(home:NewShowMore()));
+}
 class NewShowMore extends StatefulWidget {
   const NewShowMore({
     Key? key,
@@ -42,7 +44,7 @@ class _NewShowMoreState extends State<NewShowMore> {
   bool _isGirlStudent = false;
   bool _isBoyStudent = false;
   bool _isFamilies = false;
-  Object tag = 'photo';
+  // Object tag = 'photo';
   bool isStart = false;
 
   @override
@@ -191,7 +193,7 @@ class _NewShowMoreState extends State<NewShowMore> {
                                       });
                                     });
                                   },
-                                  tag: tag,
+                                  // tag: tag,
                                 ),
                               ),
                             );
@@ -202,7 +204,7 @@ class _NewShowMoreState extends State<NewShowMore> {
                             duration: const Duration(milliseconds: 300),
                             // curve: Curves.linear,
                             current: current,
-                            tag: tag,
+                            // tag: tag,
                             onPageChange: (index, p1) {
                               setState(() {
 

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-void showSnakBar(@required BuildContext context, @required String message,
+void  showSnakBar(@required BuildContext context, @required String message,
     {bool? isIcon = false, IconData? icon, bool? isConnect,int ?  seconds}) {
 
   ScaffoldMessenger.of(context).showSnackBar(

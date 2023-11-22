@@ -9,7 +9,7 @@ StatefulBuilder buildCarouselSlider({
   required BuildContext context,
   CarouselController? controller,
   dynamic Function(int, CarouselPageChangedReason)? onPageChange,
-  required Object tag,
+  // required Object tag,
   int? current,
 }) {
   return StatefulBuilder(

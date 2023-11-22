@@ -13,6 +13,12 @@ import 'package:ween_blaqe/features/error_widgets/search_not_found.dart';
 import '../../../../api/apartments_api/one_apartment.dart';
 import '../../../../api/photos.dart';
 import '../../../../core/utils/funcations/snakbar_for_stream_builder.dart';
+// main(){
+//   runApp( MaterialApp(
+//       theme: ThemeData(useMaterial3: false,),
+//       home:const Scaffold(body: NewMasterHome())));
+// }
+
 class NewMasterHome extends StatefulWidget {
   const NewMasterHome({Key? key}) : super(key: key);
   @override

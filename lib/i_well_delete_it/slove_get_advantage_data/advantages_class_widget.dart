@@ -58,7 +58,8 @@ class _GetAdvantagesState extends State<GetAdvantages> {
             ],
           ),
           Column(
-            children: _advantageItemsWidget(advantages: advantages)
+            children:
+            _advantageItemsWidget(advantages: advantages)
                 .toList()
                 .take(10)
                 .toList(),
@@ -132,7 +133,6 @@ class _GetAdvantagesState extends State<GetAdvantages> {
             ));
   }
 }
-
 //advantage coinater calss widget
 // import 'dart:html';
 

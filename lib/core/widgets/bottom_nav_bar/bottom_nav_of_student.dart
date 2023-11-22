@@ -20,7 +20,11 @@ class _BottomNavigationBarOfStudentState
   Widget build(BuildContext context) {
     var controller = widget.controller;
     return BottomNavigationBar(
-
+      selectedLabelStyle: const TextStyle(fontFamily: 'IBM'),
+      unselectedLabelStyle: const TextStyle(fontFamily: 'IBM',),
+      // selectedIconTheme: const IconThemeData(opacity: 1),
+      // unselectedIconTheme: const IconThemeData(opacity: .5),
+      // enableFeedback: false,
       backgroundColor:  const Color(0xB3ffffff),
       selectedItemColor: const Color(0xffff9800),
       unselectedItemColor: Colors.grey,
@@ -38,8 +42,10 @@ class _BottomNavigationBarOfStudentState
       items: const [
         //home item
         BottomNavigationBarItem(
+
           icon: Icon(Icons.home_outlined),
           label: 'الرئيسية',
+
           activeIcon: Icon(Icons.home)
           
         ),

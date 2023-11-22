@@ -3,10 +3,6 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:firebase_core/firebase_core.dart';
-import 'package:ween_blaqe/core/widgets/apartments/show_more_classes_widget/generic_info_class_widget.dart';
-import 'controller/wifi_checker.dart';
-import 'firebase_options.dart';
 import 'package:ween_blaqe/controller/main_controller.dart';
 import 'package:ween_blaqe/controller/owner_controller/owner_controller.dart';
 import 'package:ween_blaqe/controller/student_controller/student_controller.dart';
@@ -104,9 +100,14 @@ class _OwnMaterialAppState extends State<OwnMaterialApp> {
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(
+
       debugShowCheckedModeBanner: false,
 
       darkTheme: ThemeData(
+
+        useMaterial3: false,
+
+
         colorScheme: ColorScheme.fromSwatch().copyWith(secondary: Colors.grey),
 
 
@@ -116,6 +117,7 @@ class _OwnMaterialAppState extends State<OwnMaterialApp> {
       // themeMode: ThemeMode.system,
 
       theme: ThemeData(
+        useMaterial3: false,
           fontFamily: 'IBM',
 
           // brightness: Brightness.,
