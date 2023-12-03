@@ -1,7 +1,5 @@
 import 'package:colorful_safe_area/colorful_safe_area.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
-import 'package:ween_blaqe/core/utils/styles/text_style/aline_style.dart';
 
 import '../../../../constants/nums.dart';
 import '../../../../core/widgets/buttons/lines_buttons/line_buttons.dart';

@@ -13,7 +13,6 @@ import 'package:ween_blaqe/controller/pointer_of_images_controller.dart';
 import 'package:ween_blaqe/core/utils/funcations/go_url_launcher_methodes/go_to_whatsapp_method.dart';
 import 'package:ween_blaqe/core/utils/funcations/snakbar.dart';
 import 'package:ween_blaqe/core/utils/styles/button.dart';
-import 'package:ween_blaqe/core/utils/styles/show_more_widget/about_apartment_style.dart';
 import 'package:ween_blaqe/features/error_widgets/no_internet.dart';
 import '../../../../constants/nums.dart';
 import '../../../../constants/strings.dart';
@@ -24,7 +23,7 @@ import '../../../../i_well_delete_it/slove_get_advantage_data/advantages_class_w
 
 // import '../../../toast_widget.dart';
 main() {
-  runApp(MaterialApp(home: NewShowMore()));
+  runApp(const MaterialApp(home: NewShowMore()));
 }
 
 class NewShowMore extends StatefulWidget {
@@ -186,8 +185,8 @@ class _NewShowMoreState extends State<NewShowMore> {
                                       // pageController.jumpToPage(current);
                                       controller.jumpToPage(current);
 
-                                      print(
-                                          "the current.reactive.value is:${current.reactive.value}");
+                                      // print(
+                                      //     "the current.reactive.value is:${current.reactive.value}");
                                     });
                                   },
                                   context: context,
@@ -222,7 +221,7 @@ class _NewShowMoreState extends State<NewShowMore> {
                                     milliseconds: 300,
                                   ),
                                 );
-                                print("the p1 is like this : $p1");
+                                // print("the p1 is like this : $p1");
 
                                 // current = lastIndex!;
 
