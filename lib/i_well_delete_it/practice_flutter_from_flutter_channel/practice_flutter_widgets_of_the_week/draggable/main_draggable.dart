@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'draggable_home.dart';
 
 void main() {
-  runApp (_MyApp());
+  runApp (const _MyApp());
 }
 
 class _MyApp extends StatelessWidget {
@@ -11,7 +11,7 @@ class _MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return const MaterialApp(
       home: DraggableHome(),
     );
   }

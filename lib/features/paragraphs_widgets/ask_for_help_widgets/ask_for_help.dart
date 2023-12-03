@@ -15,6 +15,7 @@ class AskForHelp extends StatelessWidget {
     return DefaultTabController(
       length: 2,
       child: ColorfulSafeArea(
+        // bottomColor: Colors.transparent ,
         color: kPrimaryColor,
         child: Scaffold(
           backgroundColor: Colors.grey.shade200,
@@ -38,7 +39,7 @@ class AskForHelp extends StatelessWidget {
             children: [
               //student Tab
               Padding(
-                padding: const EdgeInsets.fromLTRB(0, 20, 0, 450),
+                padding: const EdgeInsets.fromLTRB(0, 20, 0, 530),
                 child: Container(
                     padding: const EdgeInsets.fromLTRB(0, 0, 0, 10),
                     margin: const EdgeInsets.fromLTRB(10, 0, 10, 0),
@@ -66,7 +67,7 @@ class AskForHelp extends StatelessWidget {
 
               //owner tab
               Padding(
-                padding: const EdgeInsets.fromLTRB(0, 20, 0, 440),
+                padding: const EdgeInsets.fromLTRB(0, 20, 0, 560),
                 child: Container(
                     padding: const EdgeInsets.fromLTRB(0, 0, 0, 10),
                     margin: const EdgeInsets.fromLTRB(10, 0, 10, 0),
@@ -79,11 +80,11 @@ class AskForHelp extends StatelessWidget {
                         askForHelpButton(() {
                           myPushName(context, MyPagesRoutes.howCreateAd);
                         }, "طريقة نشر إعلان"),
-                        aline,
-                        askForHelpButton(() {
-                          myPushName(context,
-                              MyPagesRoutes.couldBeOwnerAndStudentInOneTime);
-                        }, "هل يمكن أن أكون مؤجر و مستأجر في نفس الوقت؟"),
+                        // aline,
+                        // askForHelpButton(() {
+                        //   myPushName(context,
+                        //       MyPagesRoutes.couldBeOwnerAndStudentInOneTime);
+                        // }, "هل يمكن أن أكون مؤجر و مستأجر في نفس الوقت؟"),
                         aline,
                         askForHelpButton(() {
                           myPushName(context, MyPagesRoutes.theAdIsFreeOrNot);

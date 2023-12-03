@@ -22,6 +22,7 @@ class _PrivacyPolicyState extends State<PrivacyPolicy> {
   @override
   Widget build(BuildContext context) {
     return ColorfulSafeArea(
+      bottomColor: Colors.transparent ,
       color: kPrimaryColor,
       child: Scaffold(
         appBar: AppBar(

@@ -198,7 +198,8 @@ class _AddAdvantagesState extends State<AddAdvantages> {
           id: value['id'],
           advName: value['adv_name'],
           icon: value['icon'],
-          checkedId: value['checked_id']));
+          // checkedId: value['checked_id']
+      ));
       debugPrint("this is data :$data");
       setState(() {
         advantages.first;
@@ -227,7 +228,8 @@ class _AddAdvantagesState extends State<AddAdvantages> {
           id: value['id'],
           advName: value['adv_name'],
           icon: value['icon'],
-          checkedId: value['checked_id']));
+          // checkedId: value['checked_id']
+      ));
       setState(() {
         advantages.first;
         // advantages = chosen;

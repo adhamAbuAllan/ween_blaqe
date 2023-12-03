@@ -32,6 +32,7 @@ class _SkeletonShowMoreWidgetState extends State<SkeletonShowMoreWidget> {
   @override
   Widget build(BuildContext context) {
     return ColorfulSafeArea(
+      bottomColor: Colors.transparent ,
       color: kPrimaryColor,
       child: Scaffold(
         backgroundColor: Colors.grey.shade200,

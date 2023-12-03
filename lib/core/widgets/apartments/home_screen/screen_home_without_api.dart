@@ -263,256 +263,256 @@ import 'package:ween_blaqe/features/user/studnet/show_more.dart';
 import '../../../../constants/nums.dart';
 
 
-class AdPost extends StatelessWidget {
-  const AdPost({
-    Key? key,
-    // required this.image,
-    // required this.title,
-    // required this.price,
-    // required this.city,
-  }) : super(
-          key: key,
-        );
-  // String image;
-  // String title;
-  // int price;
-  // String city;
-
-  @override
-  Widget build(BuildContext context) {
-    return Column(
-      children: [
-        Container(
-          padding: const EdgeInsets.fromLTRB(5, 0, 5, 0),
-          margin: const EdgeInsets.fromLTRB(10, 23, 10, 0),
-          width: 373,
-          height: 395,
-          //decoration of show apartment style
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(7),
-            color: kContainerColor,
-          ),
-
-          child: Column(
-            // this children have (bookmark IconImage  , image of apartment , title of post , price , and location.
-            children: [
-              // bookmark iconImage
-              Padding(
-                padding: const EdgeInsets.fromLTRB(0, 0, 320, 0),
-                child: IconButton(
-                  onPressed: () {},
-                  icon: const Icon(
-                    Icons.bookmark_outline,
-                    size: 28,
-                  ),
-                ),
-              ),
-              // image/s of apartment
-              ClipRRect(
-
-                  borderRadius: BorderRadius.circular(7 / 2),
-                  child: const Image(
-                    image: AssetImage(
-                        "assets/images/apartments_images/apartment.jpg")
-                    // child: Image(image: Image.network("src")),
-                    ,
-                    height: 240,
-                    // width:368,
-                  )),
-              // title and price
-              Row(
-                children: [
-                  Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: Text("سكن طلاب في مدينة الخليل",
-                        style: TextStyle(
-                          color: Colors.grey.shade800,
-                          fontFamily: 'IBM',
-                          fontSize: 15,
-                        )),
-                  ),
-                  const Expanded(child: Text("")),
-                  const Padding(
-                    padding: EdgeInsets.fromLTRB(0, 0, 3, 0),
-                    child: Text("950",
-                        style: TextStyle(
-                          color: kPrimaryColor,
-                          fontSize: 16,
-                          fontFamily: 'IBM',
-                        )),
-                  ),
-                  const Padding(
-                    padding: EdgeInsets.fromLTRB(10, 0, 3, 0),
-                    child: Text("ش/ش",
-                        style: TextStyle(
-                          color: Colors.grey,
-                          fontSize: 12,
-                          fontFamily: 'IBM',
-                        )),
-                  ),
-                ],
-              ),
-
-              // see more and location
-              Row(
-                children: [
-                  Padding(
-                    padding: const EdgeInsets.fromLTRB(0, 0, 10, 0),
-                    child: OutlinedButton(
-                      onPressed: () {
-                        Get.to(const ShowMore());
-                      },
-                      style: outlineButton,
-                      child: const Text(
-                        " عرض المزيد ",
-                        style: TextStyle(
-                          fontSize: 13,
-                          fontFamily: 'IBM',
-                        ),
-                      ),
-                    ),
-                  ),
-                  const Expanded(child: Text("")),
-                  const Padding(
-                    padding: EdgeInsets.fromLTRB(0, 0, 0, 0),
-                    child: Text("الموقع:",
-                        style: TextStyle(
-                          color: Colors.grey,
-                          fontSize: 16,
-                          fontFamily: 'IBM',
-                        )),
-                  ),
-                  const Padding(
-                    padding: EdgeInsets.fromLTRB(10, 0, 0, 0),
-                    child: Text("الخليل",
-                        style: TextStyle(
-                          color: Colors.grey,
-                          fontSize: 16,
-                          fontFamily: 'IBM',
-                        )),
-                  ),
-                ],
-              )
-            ],
-          ),
-        ),
-        Container(
-          padding: const EdgeInsets.fromLTRB(5, 0, 5, 0),
-          margin: const EdgeInsets.fromLTRB(10, 23, 10, 0),
-          width: 373,
-          height: 395,
-          //decoration of show apartment style
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(7),
-            color: kContainerColor,
-          ),
-
-          child: Column(
-            // this children have (bookmark IconImage  , image of apartment , title of post , price , and location.
-            children: [
-              // bookmark iconImage
-              Padding(
-                padding: const EdgeInsets.fromLTRB(0, 0, 320, 0),
-                child: IconButton(
-                  onPressed: () {},
-                  icon: const Icon(
-                    Icons.bookmark_outline,
-                    size: 28,
-                  ),
-                ),
-              ),
-              // image/s of apartment
-              ClipRRect(
-                  borderRadius: BorderRadius.circular(7 / 2),
-                  child: const Image(
-                    image: AssetImage(
-                        "assets/images/apartments_images/apartment.jpg")
-                    // child: Image(image: Image.network("src")),
-                    ,
-                    height: 240,
-                    // width:368,
-                  )),
-              // title and price
-              Row(
-                children: [
-                  Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: Text("سكن طلاب في مدينة الخليل",
-                        style: TextStyle(
-                          color: Colors.grey.shade800,
-                          fontFamily: 'IBM',
-                          fontSize: 15,
-                        )),
-                  ),
-                  const Expanded(child: Text("")),
-                  const Padding(
-                    padding: EdgeInsets.fromLTRB(0, 0, 3, 0),
-                    child: Text("950",
-                        style: TextStyle(
-                          color: kPrimaryColor,
-                          fontSize: 16,
-                          fontFamily: 'IBM',
-                        )),
-                  ),
-                  const Padding(
-                    padding: EdgeInsets.fromLTRB(10, 0, 3, 0),
-                    child: Text("ش/ش",
-                        style: TextStyle(
-                          color: Colors.grey,
-                          fontSize: 12,
-                          fontFamily: 'IBM',
-                        )),
-                  ),
-                ],
-              ),
-
-              // see more and location
-              Row(
-                children: [
-                  Padding(
-                    padding: const EdgeInsets.fromLTRB(0, 0, 10, 0),
-                    child: OutlinedButton(
-                      onPressed: () {
-                        Get.to(const ShowMore());
-                      },
-                      style: outlineButton,
-                      child: const Text(
-                        " عرض المزيد ",
-                        style: TextStyle(
-                          fontSize: 13,
-                          fontFamily: 'IBM',
-                        ),
-                      ),
-                    ),
-                  ),
-                  const Expanded(child: Text("")),
-                  const Padding(
-                    padding: EdgeInsets.fromLTRB(0, 0, 0, 0),
-                    child: Text("الموقع:",
-                        style: TextStyle(
-                          color: Colors.grey,
-                          fontSize: 16,
-                          fontFamily: 'IBM',
-                        )),
-                  ),
-                  const Padding(
-                    padding: EdgeInsets.fromLTRB(10, 0, 0, 0),
-                    child: Text("الخليل",
-                        style: TextStyle(
-                          color: Colors.grey,
-                          fontSize: 16,
-                          fontFamily: 'IBM',
-                        )),
-                  ),
-                ],
-              )
-            ],
-          ),
-        ),
-        const SizedBox(
-          height: 20,
-        )
-      ],
-    );
-  }
-}
+// class AdPost extends StatelessWidget {
+//   const AdPost({
+//     Key? key,
+//     // required this.image,
+//     // required this.title,
+//     // required this.price,
+//     // required this.city,
+//   }) : super(
+//           key: key,
+//         );
+//   // String image;
+//   // String title;
+//   // int price;
+//   // String city;
+//
+//   @override
+//   Widget build(BuildContext context) {
+//     return Column(
+//       children: [
+//         Container(
+//           padding: const EdgeInsets.fromLTRB(5, 0, 5, 0),
+//           margin: const EdgeInsets.fromLTRB(10, 23, 10, 0),
+//           width: 373,
+//           height: 395,
+//           //decoration of show apartment style
+//           decoration: BoxDecoration(
+//             borderRadius: BorderRadius.circular(7),
+//             color: kContainerColor,
+//           ),
+//
+//           child: Column(
+//             // this children have (bookmark IconImage  , image of apartment , title of post , price , and location.
+//             children: [
+//               // bookmark iconImage
+//               Padding(
+//                 padding: const EdgeInsets.fromLTRB(0, 0, 320, 0),
+//                 child: IconButton(
+//                   onPressed: () {},
+//                   icon: const Icon(
+//                     Icons.bookmark_outline,
+//                     size: 28,
+//                   ),
+//                 ),
+//               ),
+//               // image/s of apartment
+//               ClipRRect(
+//
+//                   borderRadius: BorderRadius.circular(7 / 2),
+//                   child: const Image(
+//                     image: AssetImage(
+//                         "assets/images/apartments_images/apartment.jpg")
+//                     // child: Image(image: Image.network("src")),
+//                     ,
+//                     height: 240,
+//                     // width:368,
+//                   )),
+//               // title and price
+//               Row(
+//                 children: [
+//                   Padding(
+//                     padding: const EdgeInsets.all(8.0),
+//                     child: Text("سكن طلاب في مدينة الخليل",
+//                         style: TextStyle(
+//                           color: Colors.grey.shade800,
+//                           fontFamily: 'IBM',
+//                           fontSize: 15,
+//                         )),
+//                   ),
+//                   const Expanded(child: Text("")),
+//                   const Padding(
+//                     padding: EdgeInsets.fromLTRB(0, 0, 3, 0),
+//                     child: Text("950",
+//                         style: TextStyle(
+//                           color: kPrimaryColor,
+//                           fontSize: 16,
+//                           fontFamily: 'IBM',
+//                         )),
+//                   ),
+//                   const Padding(
+//                     padding: EdgeInsets.fromLTRB(10, 0, 3, 0),
+//                     child: Text("ش/ش",
+//                         style: TextStyle(
+//                           color: Colors.grey,
+//                           fontSize: 12,
+//                           fontFamily: 'IBM',
+//                         )),
+//                   ),
+//                 ],
+//               ),
+//
+//               // see more and location
+//               Row(
+//                 children: [
+//                   Padding(
+//                     padding: const EdgeInsets.fromLTRB(0, 0, 10, 0),
+//                     child: OutlinedButton(
+//                       onPressed: () {
+//                         Get.to(const ShowMore());
+//                       },
+//                       style: outlineButton,
+//                       child: const Text(
+//                         " عرض المزيد ",
+//                         style: TextStyle(
+//                           fontSize: 13,
+//                           fontFamily: 'IBM',
+//                         ),
+//                       ),
+//                     ),
+//                   ),
+//                   const Expanded(child: Text("")),
+//                   const Padding(
+//                     padding: EdgeInsets.fromLTRB(0, 0, 0, 0),
+//                     child: Text("الموقع:",
+//                         style: TextStyle(
+//                           color: Colors.grey,
+//                           fontSize: 16,
+//                           fontFamily: 'IBM',
+//                         )),
+//                   ),
+//                   const Padding(
+//                     padding: EdgeInsets.fromLTRB(10, 0, 0, 0),
+//                     child: Text("الخليل",
+//                         style: TextStyle(
+//                           color: Colors.grey,
+//                           fontSize: 16,
+//                           fontFamily: 'IBM',
+//                         )),
+//                   ),
+//                 ],
+//               )
+//             ],
+//           ),
+//         ),
+//         Container(
+//           padding: const EdgeInsets.fromLTRB(5, 0, 5, 0),
+//           margin: const EdgeInsets.fromLTRB(10, 23, 10, 0),
+//           width: 373,
+//           height: 395,
+//           //decoration of show apartment style
+//           decoration: BoxDecoration(
+//             borderRadius: BorderRadius.circular(7),
+//             color: kContainerColor,
+//           ),
+//
+//           child: Column(
+//             // this children have (bookmark IconImage  , image of apartment , title of post , price , and location.
+//             children: [
+//               // bookmark iconImage
+//               Padding(
+//                 padding: const EdgeInsets.fromLTRB(0, 0, 320, 0),
+//                 child: IconButton(
+//                   onPressed: () {},
+//                   icon: const Icon(
+//                     Icons.bookmark_outline,
+//                     size: 28,
+//                   ),
+//                 ),
+//               ),
+//               // image/s of apartment
+//               ClipRRect(
+//                   borderRadius: BorderRadius.circular(7 / 2),
+//                   child: const Image(
+//                     image: AssetImage(
+//                         "assets/images/apartments_images/apartment.jpg")
+//                     // child: Image(image: Image.network("src")),
+//                     ,
+//                     height: 240,
+//                     // width:368,
+//                   )),
+//               // title and price
+//               Row(
+//                 children: [
+//                   Padding(
+//                     padding: const EdgeInsets.all(8.0),
+//                     child: Text("سكن طلاب في مدينة الخليل",
+//                         style: TextStyle(
+//                           color: Colors.grey.shade800,
+//                           fontFamily: 'IBM',
+//                           fontSize: 15,
+//                         )),
+//                   ),
+//                   const Expanded(child: Text("")),
+//                   const Padding(
+//                     padding: EdgeInsets.fromLTRB(0, 0, 3, 0),
+//                     child: Text("950",
+//                         style: TextStyle(
+//                           color: kPrimaryColor,
+//                           fontSize: 16,
+//                           fontFamily: 'IBM',
+//                         )),
+//                   ),
+//                   const Padding(
+//                     padding: EdgeInsets.fromLTRB(10, 0, 3, 0),
+//                     child: Text("ش/ش",
+//                         style: TextStyle(
+//                           color: Colors.grey,
+//                           fontSize: 12,
+//                           fontFamily: 'IBM',
+//                         )),
+//                   ),
+//                 ],
+//               ),
+//
+//               // see more and location
+//               Row(
+//                 children: [
+//                   Padding(
+//                     padding: const EdgeInsets.fromLTRB(0, 0, 10, 0),
+//                     child: OutlinedButton(
+//                       onPressed: () {
+//                         Get.to(const ShowMore());
+//                       },
+//                       style: outlineButton,
+//                       child: const Text(
+//                         " عرض المزيد ",
+//                         style: TextStyle(
+//                           fontSize: 13,
+//                           fontFamily: 'IBM',
+//                         ),
+//                       ),
+//                     ),
+//                   ),
+//                   const Expanded(child: Text("")),
+//                   const Padding(
+//                     padding: EdgeInsets.fromLTRB(0, 0, 0, 0),
+//                     child: Text("الموقع:",
+//                         style: TextStyle(
+//                           color: Colors.grey,
+//                           fontSize: 16,
+//                           fontFamily: 'IBM',
+//                         )),
+//                   ),
+//                   const Padding(
+//                     padding: EdgeInsets.fromLTRB(10, 0, 0, 0),
+//                     child: Text("الخليل",
+//                         style: TextStyle(
+//                           color: Colors.grey,
+//                           fontSize: 16,
+//                           fontFamily: 'IBM',
+//                         )),
+//                   ),
+//                 ],
+//               )
+//             ],
+//           ),
+//         ),
+//         const SizedBox(
+//           height: 20,
+//         )
+//       ],
+//     );
+//   }
+// }

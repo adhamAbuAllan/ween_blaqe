@@ -22,6 +22,7 @@ class _BottomNavigationBarOfStudentState
     return BottomNavigationBar(
       selectedLabelStyle: const TextStyle(fontFamily: 'IBM'),
       unselectedLabelStyle: const TextStyle(fontFamily: 'IBM',),
+
       // selectedIconTheme: const IconThemeData(opacity: 1),
       // unselectedIconTheme: const IconThemeData(opacity: .5),
       // enableFeedback: false,
@@ -47,7 +48,7 @@ class _BottomNavigationBarOfStudentState
           label: 'الرئيسية',
 
           activeIcon: Icon(Icons.home)
-          
+
         ),
         //notification item
         BottomNavigationBarItem(
@@ -75,6 +76,7 @@ class _BottomNavigationBarOfStudentState
         // ),
         //account item
         BottomNavigationBarItem(
+
           icon: Icon(Icons.person_2_outlined),
           label: 'الحساب',
 

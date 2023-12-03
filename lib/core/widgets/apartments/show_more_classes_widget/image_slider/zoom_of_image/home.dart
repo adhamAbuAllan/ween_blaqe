@@ -60,7 +60,8 @@ class _DetailScreenState extends State<DetailScreen> {
     // final PageController controller = PageController(initialPage: widget.initialIndex,);
     widget.controller = PageController(initialPage: widget.initialIndex);
     return ColorfulSafeArea(
-      color: kPrimaryColor,
+
+      bottomColor: Colors.transparent , color: kPrimaryColor,
       child: Scaffold(
         backgroundColor: Colors.grey.withOpacity(.2),
         body: GestureDetector(

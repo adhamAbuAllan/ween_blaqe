@@ -14,9 +14,11 @@ class SystemPaying extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ColorfulSafeArea(
+      bottomColor: Colors.transparent ,
       color: kPrimaryColor,
       child: Scaffold(
-        backgroundColor: Colors.grey.shade200,
+        backgroundColor: kBackgroundAppColor,
+
         appBar: AppBar(
           title: const Text(
             'طريق الدفع',
@@ -63,8 +65,11 @@ class WhatIsSystemPayingAllow extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ColorfulSafeArea(
+      bottomColor: Colors.transparent ,
       color: kPrimaryColor,
       child: Scaffold(
+        backgroundColor: kBackgroundAppColor,
+
         appBar: AppBar(
           backgroundColor: kPrimaryColor,
         ),

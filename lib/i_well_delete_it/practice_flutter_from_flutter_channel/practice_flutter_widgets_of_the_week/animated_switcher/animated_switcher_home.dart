@@ -14,7 +14,7 @@ class _AnimatedSwitcherHomeState extends State<AnimatedSwitcherHome> {
       body: AnimatedSwitcher(
         duration: Duration(seconds: 1),
         child: Text("first widget"),
-        transitionBuilder: (child, animation) => ScaleTransition(child: child,scale: animation,),
+        transitionBuilder: (child, animation) => ScaleTransition(child: Center(child: child),scale: animation,),
       ),
     );
   }

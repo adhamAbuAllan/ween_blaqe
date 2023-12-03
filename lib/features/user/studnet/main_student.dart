@@ -1,7 +1,7 @@
 import 'package:colorful_safe_area/colorful_safe_area.dart';
 import 'package:connectivity_plus/connectivity_plus.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_speed_dial/flutter_speed_dial.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
 import 'package:ween_blaqe/constants/strings.dart';
@@ -10,9 +10,8 @@ import 'package:ween_blaqe/core/utils/funcations/route_pages/push_routes.dart';
 import '../../../controller/student_controller/student_controller.dart';
 import '../../../core/utils/funcations/go_url_launcher_methodes/go_to_whatsapp_method.dart';
 import '../../../core/widgets/bottom_nav_bar/bottom_nav_of_student.dart';
-import '../../../sesstion/new_session.dart';
-import 'package:ween_blaqe/constants/nums.dart';import '../../widgets_before_user_reg/account_before_login.dart';
-import 'account_of_student.dart';
+import 'package:ween_blaqe/constants/nums.dart';
+import '../../widgets_before_user_reg/account_before_login.dart';
 import 'from_master_home_to_show_more/new_master_home.dart';
 import 'notification.dart';
 import 'orders_of_student.dart';
@@ -43,43 +42,266 @@ class _MainStudentState extends State<MainStudent> {
     var studentController = controller;
 
     return ColorfulSafeArea(
-
+      bottomColor: Colors.transparent,
       color: kPrimaryColor,
       child: Scaffold(
 
-        // appBar: AppBar(bottomOpacity: 0,leadingWidth: 20,toolbarOpacity: 0,backgroundColor: Colors.transparent,elevation: 0,shadowColor: Colors.transparent,title: Text("Your wlecome "),),
-        backgroundColor: Colors.grey.shade200,
-        body: GetBuilder<StudentController>(
+          // appBar: AppBar(bottomOpacity: 0,leadingWidth: 20,toolbarOpacity: 0,backgroundColor: Colors.transparent,elevation: 0,shadowColor: Colors.transparent,title: Text("Your wlecome "),),
+          backgroundColor: Colors.grey.shade200,
+          body: GetBuilder<StudentController>(
+            builder: (context) {
+              return ColorfulSafeArea(
+                bottomColor: Colors.transparent,
+                color: kPrimaryColor,
+                child: IndexedStack(
+                  index: studentController.index,
+                  children: const [
+                    // MasterHome(),
 
-          builder: (context) {
-            return ColorfulSafeArea(
-              color: kPrimaryColor,
-              child: IndexedStack(
-                index: studentController.index,
-                children: [
-                  // MasterHome(),
-
-                  const NewMasterHome(),
-                  // const NewMasterHomeTest(),
-                  const NotificationOfStudentWithNotifi(),
-                  const OrdersOfStudent(),
-                  // const Bookmark(),
-                  NewSession.get("logged", "") == ""
-                      ?
-                  const AccountBeforeLoginInStudent()
-                      : AccountOfStudent(),
-                ],
-              ),
-            );
-          },
-        ),
-        bottomNavigationBar: BottomNavigationBarOfStudent(
-
-          controller: studentController,
-        ),
+                    NewMasterHome(),
+                    // const NewMasterHomeTest(),
+                    NotificationOfStudentWithNotifi(),
+                    OrdersOfStudent(),
+                    // const Bookmark(),
+                    // NewSession.get("logged", "") == ""
+                    //     ?
+                    AccountBeforeLoginInStudent()
+                    // : AccountOfStudent(),
+                  ],
+                ),
+              );
+            },
+          ),
+          bottomNavigationBar: BottomNavigationBarOfStudent(
+            controller: studentController,
+          ),
 // floatingActionButtonLocation: FloatingActionButtonLocation.miniEndFloat,
 
-          floatingActionButton:buildSpeedDial()
+          floatingActionButton: FloatingActionButton(
+            onPressed: () {
+              showCupertinoModalPopup(
+                  context: context,
+                  builder: (
+                    context,
+                  ) {
+                    return CupertinoActionSheet(
+                      /*
+                      RichText(
+                  softWrap: true,
+
+                  // "إختر مدة إقامتك من خلال إضافة عدد الأشهر ",
+                  text: TextSpan(
+                      children: <TextSpan>[
+                    const TextSpan(
+                        text: "نصيحة:",
+                        style: TextStyle(
+                          fontSize: 18.0,
+                          color: Colors.orange,
+                          fontFamily: 'IBM',
+                          inherit: true,
+                        )),
+                  ]),
+                )
+                       */
+                      title: Text(
+                        "إنشاء إعلان",
+                        style: TextStyle(
+                          color: Colors.grey[600],
+                          fontSize: 24,
+                          fontFamily: "IBM",
+                        ),
+                      ),
+
+                      message: Column(
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          RichText(
+                            textAlign: TextAlign.center,
+                            softWrap: true,
+                            text: TextSpan(
+                              children: <TextSpan>[
+                                TextSpan(
+                                    text:
+                                        "قم بإنشاء إعلانك الخاص على تطبيق 'وين بلاقي' واحصل على زبائن بشكل أسرع",
+                                    style: TextStyle(
+                                      color: Colors.grey[600],
+                                      fontSize: 24,
+                                      fontFamily: "IBM",
+                                    )),
+                              ],
+                            ),
+                          ),
+                           Divider(color: Colors.black.withOpacity(.3)),
+
+                          SizedBox(
+                            child: Row(
+
+                              crossAxisAlignment: CrossAxisAlignment.center,
+                              mainAxisSize: MainAxisSize.min,
+                              children: [
+                                RichText(
+                                    text: TextSpan(children: [
+                                  TextSpan(
+                                      style: TextStyle(
+                                        fontFamily: "IBM",
+                                        fontSize: 18,
+                                        color: Colors.grey[600],
+                                      ),
+                                      text: "التكلفة الشهرية: "),
+                                  TextSpan(
+                                      style: TextStyle(
+                                        fontFamily: "IBM",
+                                        color: Colors.grey[600],
+                                        fontSize: 18,
+                                      ),
+                                      text: "120"),
+                                ])),
+                                const SizedBox(
+                                  width: 3,
+                                ),
+                                FaIcon(FontAwesomeIcons.shekelSign,
+                                    size: 14, color: Colors.grey[600]),
+                              ],
+                            ),
+                          ),
+                          SizedBox(
+                            child: Row(
+                              crossAxisAlignment: CrossAxisAlignment.center,
+                              mainAxisSize: MainAxisSize.min,
+                              children: [
+                                SizedBox(
+                                  height: 60,
+                                  width: 120,
+                                  child: RichText(
+                                      softWrap: true,
+                                      text: TextSpan(
+                                        children: [
+                                          TextSpan(
+                                              style: TextStyle(
+                                                fontFamily: "IBM",
+                                                fontSize: 18,
+                                                color: Colors.grey[600],
+                                              ),
+                                              text: "التكلفة السنوية:"),
+                                        ],
+                                      )),
+                                ),
+
+                                SizedBox(
+
+                                  child: Column(
+
+
+                                    children: [
+                                      SizedBox(
+                                        child: Row(
+                                          children: [
+                                            SizedBox(
+                                              child: RichText(
+                                                  text: TextSpan(children: [
+                                                TextSpan(
+                                                    style: TextStyle(
+                                                      fontFamily: "IBM",
+                                                      color: Colors.grey[600],
+                                                      fontSize: 18,
+                                                    ),
+                                                    text: "1200")
+                                              ])),
+                                            ),
+                                            const SizedBox(
+                                              width: 3,
+                                            ),
+                                            FaIcon(FontAwesomeIcons.shekelSign,
+                                                size: 14,
+                                                color: Colors.grey[600]),
+                                          ],
+                                        ),
+                                      ),
+
+                                      SizedBox(
+                                        child: Row(
+                                          children: [
+                                            SizedBox(
+                                              child: RichText(
+                                                  softWrap: true,
+                                                  text: TextSpan(children: [
+                                                    TextSpan(
+                                                        style: TextStyle(
+                                                          fontFamily: "IBM",
+                                                          color:
+                                                              Colors.grey[400],
+                                                          decoration:
+                                                              TextDecoration
+                                                                  .lineThrough,
+                                                          fontSize: 18,
+                                                        ),
+                                                        text: "1440")
+                                                  ])),
+                                            ),
+                                            const SizedBox(
+                                              width: 3,
+                                            ),
+                                            FaIcon(
+                                              size: 14,
+                                              FontAwesomeIcons.shekelSign,
+                                              color: Colors.grey[600],
+                                            ),
+                                          ],
+                                        ),
+                                      )
+                                    ],
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                        ],
+                      ),
+                      // const Text(
+                      //     "قم بإنشاء إعلانك الخاص على تطبيق 'وين بلاقي' واحصل على زبائن بشكل أسرع",
+                      //     softWrap: true,
+                      //
+                      //     style: TextStyle(fontSize: 20, fontFamily: "IBM")),
+
+                      actions: [
+                        CupertinoActionSheetAction(
+                            onPressed: () {
+                              sendMessageToWhatsApp(
+                                  '2569339613', "السلام عليكم");
+                            },
+                            child: const Text(
+                              "طلب الإشتراك عبر واتس أب",
+
+                              style: TextStyle(fontFamily: "IBM",),
+                            )),
+                        CupertinoActionSheetAction(
+                            onPressed: () {
+
+                            },
+                            child: const Text(
+                              "عرض تفاصيل الإشتراك",
+                              style: TextStyle(
+                                fontFamily: "IBM",
+                              ),
+                            )),
+                      ],
+                      cancelButton: CupertinoActionSheetAction(
+                        child: const Text('إلغاء',
+                            style: TextStyle(
+                              fontFamily: "IBM",
+                            )),
+                        onPressed: () {
+                          Navigator.pop(context);
+                        },
+                      ),
+                    );
+                  });
+            },
+            backgroundColor: kPrimaryColor,
+            child: const Icon(Icons.add_home_outlined),
+          )
+          // buildSpeedDial()
           // FloatingActionButton(
           //   backgroundColor: kPrimaryColor,
           //   onPressed: () {
@@ -94,7 +316,7 @@ class _MainStudentState extends State<MainStudent> {
           //     color: Colors.white,
           //   ),
           // )
-      ),
+          ),
     );
   }
 
@@ -111,38 +333,39 @@ class _MainStudentState extends State<MainStudent> {
     myPushName(context, MyPagesRoutes.noInternet);
   }
 }
-SpeedDial buildSpeedDial() {
 
-  return SpeedDial(
-    curve: Curves.linear,
-
-    spacing: 25,
-    // activeBackgroundColor: Colors.orange[400],
-    overlayColor: Colors.grey,
-    // animatedIcon: AnimatedIcons.home_menu,
-    icon: Icons.add_home_outlined,
-    backgroundColor: kPrimaryColor,
-    renderOverlay: true,
-    closeManually: false,
-    switchLabelPosition: true,
-
-    children: [
-      SpeedDialChild(
-        child:  const Icon(FontAwesomeIcons.whatsapp,color: Colors.white,),
-        //25D366
-        backgroundColor: const Color(0xff25D366),
-        // label: 'whatsApp',
-        onTap: () {
-          sendMessageToWhatsApp('2569339613',
-              "هل يمكنني الاستفسار عن هذا؟");
-        },
-      ),
-      // SpeedDialChild(
-      //   child: Image.asset(m),
-      //   label: 'messenger',
-      //   onTap: () => print('Edit'),
-      // ),
-    ],
-  );
-
-}
+// SpeedDial buildSpeedDial() {
+//   return SpeedDial(
+//     curve: Curves.linear,
+//
+//     spacing: 25,
+//     // activeBackgroundColor: Colors.orange[400],
+//     overlayColor: Colors.grey,
+//     // animatedIcon: AnimatedIcons.home_menu,
+//     icon: Icons.add_home_outlined,
+//     backgroundColor: kPrimaryColor,
+//     renderOverlay: true,
+//     closeManually: false,
+//     switchLabelPosition: true,
+//
+//     children: [
+//       SpeedDialChild(
+//         child: const Icon(
+//           FontAwesomeIcons.whatsapp,
+//           color: Colors.white,
+//         ),
+//         //25D366
+//         backgroundColor: const Color(0xff25D366),
+//         // label: 'whatsApp',
+//         onTap: () {
+//           sendMessageToWhatsApp('2569339613', "هل يمكنني الاستفسار عن هذا؟");
+//         },
+//       ),
+//       // SpeedDialChild(
+//       //   child: Image.asset(m),
+//       //   label: 'messenger',
+//       //   onTap: () => print('Edit'),
+//       // ),
+//     ],
+//   );
+// }

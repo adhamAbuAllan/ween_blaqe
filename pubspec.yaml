@@ -142,7 +142,10 @@ flutter:
     - assets/images/stop_war/b2.png
     - assets/images/tasbih.png
     - assets/images/mobile-development.png
-    - assets/images/zzz_notifiction.png
+    - assets/images/zzz_notifiction.png    - assets/images/screenshot/Screenshot_select_add_home_button.png    - assets/images/screenshot/Screenshot_home_screen.png    - assets/images/screenshot/Screenshot_select_what_app_button.png
+
+
+
 
 
   fonts:

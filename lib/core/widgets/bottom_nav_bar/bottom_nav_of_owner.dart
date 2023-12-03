@@ -28,6 +28,7 @@ class _BottomNavigationBarOfOwnerState
     // Icons.person_2_outlined
 
     return BottomNavigationBar(
+
       backgroundColor: kContainerColor,
       selectedItemColor: kPrimaryColor,
       unselectedItemColor: Colors.grey,
@@ -64,6 +65,7 @@ class _BottomNavigationBarOfOwnerState
         //acount item
         BottomNavigationBarItem(
           icon: Icon(Icons.person_2_outlined),
+
           label: 'الحساب',
         ),
       ],

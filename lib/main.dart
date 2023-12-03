@@ -11,7 +11,6 @@ import 'package:ween_blaqe/core/widgets/skeletons/general_skeleton_ready_widgets
 import 'package:ween_blaqe/core/widgets/skeletons/student_widgets/booking_now_skeleton_widget.dart';
 import 'package:ween_blaqe/core/widgets/skeletons/student_widgets/show_more_skeleton_widget.dart';
 import 'package:ween_blaqe/features/error_widgets/no_internet.dart';
-import 'package:ween_blaqe/features/error_widgets/search_not_found.dart';
 import 'package:ween_blaqe/features/paragraphs_widgets/ask_for_help_widgets/another_asks.dart';
 import 'package:ween_blaqe/features/paragraphs_widgets/ask_for_help_widgets/ask_for_help.dart';
 import 'package:ween_blaqe/features/paragraphs_widgets/ask_for_help_widgets/for_owner/how_create_ad.dart';
@@ -19,39 +18,17 @@ import 'package:ween_blaqe/features/paragraphs_widgets/ask_for_help_widgets/for_
 import 'package:ween_blaqe/features/paragraphs_widgets/ask_for_help_widgets/for_student/system_booking.dart';
 import 'package:ween_blaqe/features/paragraphs_widgets/ask_for_help_widgets/for_student/system_paying.dart';
 import 'package:ween_blaqe/features/paragraphs_widgets/privacy_policy.dart';
-import 'package:ween_blaqe/features/screens_that_will_add_in_future.dart';
-import 'package:ween_blaqe/features/user/owner/account_of_owner.dart';
-import 'package:ween_blaqe/features/user/owner/apartments_of_owner_after_add.dart';
-import 'package:ween_blaqe/features/user/owner/apartments_of_owner_before_add.dart';
-import 'package:ween_blaqe/features/user/owner/main_owner.dart';
-import 'package:ween_blaqe/features/user/owner/notification_of_owner.dart';
-import 'package:ween_blaqe/features/user/owner/orders.dart';
-import 'package:ween_blaqe/features/user/owner/refactor_apartment.dart';
-import 'package:ween_blaqe/features/user/owner/steps_to_create_apartment/first_step.dart';
-import 'package:ween_blaqe/features/user/owner/steps_to_create_apartment/fourth_step.dart';
-import 'package:ween_blaqe/features/user/owner/steps_to_create_apartment/second_step.dart';
-import 'package:ween_blaqe/features/user/owner/steps_to_create_apartment/third_step.dart';
-import 'package:ween_blaqe/features/user/studnet/account_of_student.dart';
-import 'package:ween_blaqe/features/user/studnet/booking_now.dart';
-import 'package:ween_blaqe/features/user/studnet/bookmark.dart';
+
 import 'package:ween_blaqe/features/user/studnet/from_master_home_to_show_more/new_master_home.dart';
 import 'package:ween_blaqe/features/user/studnet/from_master_home_to_show_more/new_show_more.dart';
 import 'package:ween_blaqe/features/user/studnet/main_student.dart';
 import 'package:ween_blaqe/features/user/studnet/master_home.dart';
-import 'package:ween_blaqe/features/user/studnet/notification.dart';
-import 'package:ween_blaqe/features/user/studnet/orders_of_student.dart';
-import 'package:ween_blaqe/features/user/studnet/profile.dart';
-import 'package:ween_blaqe/features/user/studnet/search_filter.dart';
-import 'package:ween_blaqe/features/user/studnet/show_more.dart';
-import 'package:ween_blaqe/features/widgets_before_user_reg/account_before_login.dart';
-import 'package:ween_blaqe/features/widgets_before_user_reg/get_started.dart';
-import 'package:ween_blaqe/features/widgets_before_user_reg/login.dart';
-import 'package:ween_blaqe/features/widgets_before_user_reg/registration.dart';
+
 import 'package:ween_blaqe/sesstion/new_session.dart';
 import 'package:ween_blaqe/features/splach_screen.dart';
 import 'constants/nums.dart';
 import 'constants/strings.dart';
-// import 'i_well_delete_it/learn_from_udemy/chat_app/firebase_options.dart';
+// import 'i_well_delete_it/learn_from_udemy/chat_app/firebase_option\s.dart';
 import 'features/send_notice_for_us.dart';
 
 // late SharedPreferences sp;
@@ -149,39 +126,39 @@ class _OwnMaterialAppState extends State<OwnMaterialApp> {
       //  initialRoute: MyPagesRoutes.newMasterHome,
       routes: {
         MyPagesRoutes.main: (context) => const Main(),
-        MyPagesRoutes.mainOwner: (context) => const MainOwner(),
+        // MyPagesRoutes.mainOwner: (context) => const MainOwner(),
         MyPagesRoutes.mainStudent: (context) => const MainStudent(),
-        MyPagesRoutes.step1: (context) => const FirstStep(),
-        MyPagesRoutes.step2: (context) => const SecondStep(),
-        MyPagesRoutes.step3: (context) => const ThirdStep(),
-        MyPagesRoutes.step4: (context) => const FourthStep(),
-        MyPagesRoutes.login: (context) => const Login(),
-        MyPagesRoutes.register: (context) => const Register(),
-        MyPagesRoutes.masterHome: (context) => const MasterHome(),
-        MyPagesRoutes.showMore: (context) => const ShowMore(),
-        MyPagesRoutes.accountBeforeLoginInStudent: (context) =>
-            const AccountBeforeLoginInStudent(),
-        MyPagesRoutes.accountBeforeLoginInOwner: (context) =>
-            const AccountBeforeLoginInOwner(),
-        MyPagesRoutes.accountOfStudent: (context) => const AccountOfStudent(),
-        MyPagesRoutes.accountOfOwner: (context) => const AccountOfOwner(),
-        MyPagesRoutes.bookingNow: (context) => const BookingNow(),
-        MyPagesRoutes.getStarted: (context) => const GetStarted(),
-        MyPagesRoutes.searchFilter: (context) => const SearchFilter(),
-        MyPagesRoutes.profile: (context) => const Profile(),
-        MyPagesRoutes.ordersOfStudent: (context) => const OrdersOfStudent(),
-        MyPagesRoutes.bookmark: (context) => const Bookmark(),
-        MyPagesRoutes.orders: (context) => const Orders(),
-        MyPagesRoutes.notificationOfStudent: (context) =>
-            const NotificationOfStudentWithNotifi(),
-        MyPagesRoutes.notificationOfOwner: (context) =>
-            const NotificationOfOwner(),
-        MyPagesRoutes.apartmentOfOwnerAfterAdd: (context) =>
-            const ApartmentsOfOwnerAfterAdd(),
-        MyPagesRoutes.apartmentOfOwnerBeforeAdd: (context) =>
-            const ApartmentOfOwnerBeforeAdd(),
+        // MyPagesRoutes.step1: (context) => const FirstStep(),
+        // MyPagesRoutes.step2: (context) => const SecondStep(),
+        // MyPagesRoutes.step3: (context) => const ThirdStep(),
+        // MyPagesRoutes.step4: (context) => const FourthStep(),
+        // MyPagesRoutes.login: (context) => const Login(),
+        // MyPagesRoutes.register: (context) => const Register(),
+        // MyPagesRoutes.masterHome: (context) => const MasterHome(),
+        // MyPagesRoutes.showMore: (context) => const ShowMore(),
+        // MyPagesRoutes.accountBeforeLoginInStudent: (context) =>
+        //     const AccountBeforeLoginInStudent(),
+        // MyPagesRoutes.accountBeforeLoginInOwner: (context) =>
+        //     const AccountBeforeLoginInOwner(),
+        // MyPagesRoutes.accountOfStudent: (context) => const AccountOfStudent(),
+        // MyPagesRoutes.accountOfOwner: (context) => const AccountOfOwner(),
+        // MyPagesRoutes.bookingNow: (context) => const BookingNow(),
+        // MyPagesRoutes.getStarted: (context) => const GetStarted(),
+        // MyPagesRoutes.searchFilter: (context) => const SearchFilter(),
+        // MyPagesRoutes.profile: (context) => const Profile(),
+        // MyPagesRoutes.ordersOfStudent: (context) => const OrdersOfStudent(),
+        // MyPagesRoutes.bookmark: (context) => const Bookmark(),
+        // MyPagesRoutes.orders: (context) => const Orders(),
+        // MyPagesRoutes.notificationOfStudent: (context) =>
+        //     const NotificationOfStudentWithNotifi(),
+        // MyPagesRoutes.notificationOfOwner: (context) =>
+        //     const NotificationOfOwner(),
+        // MyPagesRoutes.apartmentOfOwnerAfterAdd: (context) =>
+        //     const ApartmentsOfOwnerAfterAdd(),
+        // MyPagesRoutes.apartmentOfOwnerBeforeAdd: (context) =>
+        //     const ApartmentOfOwnerBeforeAdd(),
         MyPagesRoutes.splashScreen: (context) => const SplashScreen(),
-        MyPagesRoutes.refactorApartment: (context) => const RefactorApartment(),
+        // MyPagesRoutes.refactorApartment: (context) => const RefactorApartment(),
         MyPagesRoutes.privacyPolicy: (context) => const PrivacyPolicy(),
         MyPagesRoutes.askForHelp: (context) => const AskForHelp(),
         MyPagesRoutes.systemPaying: (context) => const SystemPaying(),
@@ -198,18 +175,18 @@ class _OwnMaterialAppState extends State<OwnMaterialApp> {
         MyPagesRoutes.howLongIsTheReservationAvailable: (context) =>
             const HowLongIsTheReservationAvailable(),
         MyPagesRoutes.howCreateAd: (context) => const HowCreateAd(),
-        MyPagesRoutes.couldBeOwnerAndStudentInOneTime: (context) =>
-            const CouldBeOwnerAndStudentInOneTime(),
+        // MyPagesRoutes.couldBeOwnerAndStudentInOneTime: (context) =>
+        //     const CouldBeOwnerAndStudentInOneTime(),
         MyPagesRoutes.sendNoticeForUs: (context) => const SendNoticeForUs(),
         MyPagesRoutes.theAdIsFreeOrNot: (context) => const TheAdIsFreeOrNot(),
         MyPagesRoutes.skeletonShowMoreWidget: (context) =>
             const SkeletonShowMoreWidget(),
-        MyPagesRoutes.screensWillAddFuture: (context) =>
-            const ScreensWillAddFuture(),
+        // MyPagesRoutes.screensWillAddFuture: (context) =>
+        //     const ScreensWillAddFuture(),
         MyPagesRoutes.noInternet: (context) => const NoInternet(),
-        MyPagesRoutes.searchNotFound: (context) => const SearchNotFound(),
-        MyPagesRoutes.skeletonBookingNow: (context) =>
-            const BookingNowSkeletonWidget(),
+        // MyPagesRoutes.searchNotFound: (context) => const SearchNotFound(),
+        // MyPagesRoutes.skeletonBookingNow: (context) =>
+        //     const BookingNowSkeletonWidget(),
         MyPagesRoutes.skeletonParagraph: (context) =>
             const LongParagraphReadySkeleton(),
         MyPagesRoutes.newMasterHome: (context) => const NewMasterHome(),
@@ -293,7 +270,7 @@ class _MainState extends State<Main> {
       child: ColorfulSafeArea(
         // bottom: false,
         // top
-
+        bottomColor: Colors.transparent ,
         color: kPrimaryColor,
         child: Scaffold(
             backgroundColor: Colors.grey.shade200,

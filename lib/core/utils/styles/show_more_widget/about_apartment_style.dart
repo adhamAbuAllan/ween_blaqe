@@ -7,6 +7,7 @@ import 'package:ween_blaqe/constants/nums.dart';
 
 
 final ButtonStyle outlineBox = OutlinedButton.styleFrom(
+
   foregroundColor: kPrimaryColor,
   textStyle: const TextStyle(
     fontFamily: 'IBM',

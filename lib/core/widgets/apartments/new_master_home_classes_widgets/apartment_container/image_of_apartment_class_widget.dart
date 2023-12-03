@@ -18,10 +18,11 @@ final  int index;
         child: Image(
           errorBuilder: (context, error, stackTrace) {
             return SkeletonAvatar(
+
               style: SkeletonAvatarStyle(
-                  width: 368,
+                  width: 367,
                   height: 220,
-                  borderRadius: BorderRadius.circular(7)),
+                  borderRadius: BorderRadius.circular(7/2)),
             );
 
           },
@@ -30,6 +31,9 @@ final  int index;
               apartmentsRes.data?[index].photos?[0].url ??apartmentsRes.data![0].photos![0].url!
                   // 'https://via.placeholder.com/150'
           ),
+
+        height: 220,width: 367,
+          fit: BoxFit.cover,
         ));
   }
 }

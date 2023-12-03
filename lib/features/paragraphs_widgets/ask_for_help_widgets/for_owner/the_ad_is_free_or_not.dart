@@ -1,7 +1,9 @@
 import 'package:colorful_safe_area/colorful_safe_area.dart';
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 import '../../../../constants/nums.dart';
+import '../../../../core/utils/funcations/go_url_launcher_methodes/go_to_whatsapp_method.dart';
 
 class TheAdIsFreeOrNot extends StatelessWidget {
   const TheAdIsFreeOrNot({Key? key}) : super(key: key);
@@ -10,7 +12,9 @@ class TheAdIsFreeOrNot extends StatelessWidget {
   Widget build(BuildContext context) {
     return ColorfulSafeArea(
       color: kPrimaryColor,
+      bottomColor: Colors.transparent,
       child: Scaffold(
+        backgroundColor: kBackgroundAppColor,
         appBar: AppBar(
           backgroundColor: kPrimaryColor,
         ),
@@ -18,33 +22,219 @@ class TheAdIsFreeOrNot extends StatelessWidget {
           children: [
             //title
             Container(
-              margin: const EdgeInsets.fromLTRB(40, 0, 0, 0),
+              margin: const EdgeInsets.fromLTRB(30, 0, 0, 0),
               padding: const EdgeInsets.fromLTRB(0, 50, 25, 10),
-              child: const Text(
-                " هل يتطلب إنشاء إعلان الإشتراك أو دفع رسوم ؟",
+              child: Text(
+                "كم يُكلفة الإشتراك لعرض إعلاناتي داخل تطبيق وين بلاقي؟",
                 style: TextStyle(
                   fontSize: 20.0,
-                  color: Colors.black87,
+                  color: Colors.black.withOpacity(.8),
                   fontFamily: 'IBM',
                   inherit: false,
                 ),
               ),
             ),
 
+            // Container(
+            //   width: double.infinity,
+            //   margin: const EdgeInsets.fromLTRB(25, 0, 30, 10),
+            //   child: Text(
+            //     "التكلفة ",
+            //     style: TextStyle(
+            //       fontSize: 18.0,
+            //       color: Colors.grey.shade800,
+            //       fontFamily: 'IBM',
+            //       inherit: true,
+            //     ),
+            //   ),
+            // ),
+            // Container(
+            //   width: double.infinity,
+            //   margin: const EdgeInsets.fromLTRB(25, 0, 30, 10),
+            //   child: Text(
+            //     // "الخطة السنوية : عند شرائك الخطة السنوية لأول مرة تكون تكلفة الاشتراك هي 1100 شيقل ، و عند تجديد الاشتراك تكون تكلفة الاشتراك 1200 شيقل",
+            //     "",
+            //     style: TextStyle(
+            //       fontSize: 16.0,
+            //       color: Colors.grey.shade800,
+            //       fontFamily: 'IBM',
+            //       inherit: true,
+            //     ),
+            //   ),
+            // ),
             Container(
               width: double.infinity,
               margin: const EdgeInsets.fromLTRB(25, 0, 30, 10),
-              child: Text(
-                "في الوقت الحالي لا يتطلب إنشاء إعلان لشقتك الاشتراك"
-                " أو دفع رسوم ، بما أن التطبيق الان في الوضع التجريبي. ",
-                style: TextStyle(
-                  fontSize: 16.0,
-                  color: Colors.grey.shade800,
-                  fontFamily: 'IBM',
-                  inherit: true,
-                ),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  Text(
+                    "أعرض إعلاناتك بلا حدود على تطبيق وين بلاقي بتكلفة قليلة نسبيًا",
+                    style: TextStyle(
+                      fontSize: 18.0,
+                      fontFamily: 'IBM',
+                      color: Colors.black.withOpacity(.8),
+                      inherit: true,
+                    ),
+                  ),
+                  const SizedBox(
+                    height: 10,
+                  ),
+                  SizedBox(
+                    child: Row(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        RichText(
+                            text: TextSpan(children: [
+                          TextSpan(
+                              style: TextStyle(
+                                fontFamily: "IBM",
+                                fontSize: 22,
+                                color: Colors.black.withOpacity(.8),
+                              ),
+                              text: "التكلفة الشهرية: "),
+                          TextSpan(
+                              style: TextStyle(
+                                fontFamily: "IBM",
+                                color: Colors.black.withOpacity(.8),
+                                fontSize: 22,
+                              ),
+                              text: "120"),
+                        ])),
+                        const SizedBox(
+                          width: 3,
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.only(top: 6.0),
+                          child: FaIcon(
+                            FontAwesomeIcons.shekelSign,
+                            size: 18,
+                            color: Colors.black.withOpacity(.8),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                  const SizedBox(
+                    height: 10,
+                  ),
+                  SizedBox(
+                    child: Row(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        SizedBox(
+                          height: 60,
+                          width: 140,
+                          child: RichText(
+                              softWrap: true,
+                              text: TextSpan(
+                                children: [
+                                  TextSpan(
+                                      style: TextStyle(
+                                        fontFamily: "IBM",
+                                        fontSize: 22,
+                                        color: Colors.black.withOpacity(.8),
+                                      ),
+                                      text: "التكلفة السنوية:"),
+                                ],
+                              )),
+                        ),
+                        SizedBox(
+                          child: Column(
+                            children: [
+                              SizedBox(
+                                child: Row(
+                                  children: [
+                                    SizedBox(
+                                      child: RichText(
+                                          text: TextSpan(children: [
+                                        TextSpan(
+                                          style: TextStyle(
+                                            fontFamily: "IBM",
+                                            color: Colors.black.withOpacity(.8),
+                                            fontSize: 22,
+                                          ),
+                                          text: "1200",
+                                        )
+                                      ])),
+                                    ),
+                                    const SizedBox(
+                                      width: 3,
+                                    ),
+                                    FaIcon(
+                                      FontAwesomeIcons.shekelSign,
+                                      size: 18,
+                                      color: Colors.black.withOpacity(.8),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                              SizedBox(
+                                child: Row(
+                                  children: [
+                                    SizedBox(
+                                      child: RichText(
+                                          softWrap: true,
+                                          text: const TextSpan(children: [
+                                            TextSpan(
+                                                style: TextStyle(
+                                                  fontFamily: "IBM",
+                                                  color: Colors.grey,
+                                                  decoration: TextDecoration
+                                                      .lineThrough,
+                                                  fontSize: 22,
+                                                ),
+                                                text: "1440")
+                                          ])),
+                                    ),
+                                    const SizedBox(
+                                      width: 3,
+                                    ),
+                                    FaIcon(
+                                      size: 18,
+                                      FontAwesomeIcons.shekelSign,
+                                      color: Colors.black.withOpacity(.8),
+                                    ),
+                                  ],
+                                ),
+                              )
+                            ],
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                  const Divider(thickness: 1),
+                  Row(
+                    children: [
+                      const Text(
+                          softWrap: true,
+                          "إشترك الأن من خلال التواصل معنا عبر ",style: TextStyle(
+                        fontFamily: "IBM",
+                        fontSize: 14,
+                      )),
+                      TextButton(
+                        style: ButtonStyle(overlayColor: MaterialStatePropertyAll(const Color(0xff25D366).withOpacity(.0),) ),
+
+                        child: const Text("واتس أب",style: TextStyle(
+                        fontFamily: "IBM",
+                        fontSize: 14,
+                        color: Color(0xff25D366),
+
+
+                      )),onPressed: (){
+                        sendMessageToWhatsApp(
+                            '2569339613', "السلام عليكم، ");
+                      },),
+                    ],
+                  ),
+                ],
               ),
             ),
+
           ],
         ),
       ),

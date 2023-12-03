@@ -110,12 +110,12 @@ class Advantages{
     required this.id,
     required this.advName,
     required this.icon,
-    required this.checkedId,
+    // required this.checkedId,
     this.createdAt,
     this.updatedAt,
   });
   late final int id;
-  late final int ?checkedId;
+  // late final int ?checkedId;
   late final String icon;
   late final String advName;
   late final String? createdAt;
@@ -123,7 +123,7 @@ class Advantages{
 
   Advantages.fromJson(Map<String, dynamic> json){
     id = json['id'];
-    checkedId = json['checked_id'];
+    // checkedId = json['checked_id'];
     advName = json['adv_name'];
     icon = json['icon'];
     createdAt = json['created_at'];
@@ -133,7 +133,7 @@ class Advantages{
   Map<String, dynamic> toJson() {
     final _data = <String, dynamic>{};
     _data['id'] = id;
-    _data['checked_id']= checkedId;
+    // _data['checked_id']= checkedId;
     _data['icon'] = icon;
     _data['adv_name'] = advName;
     _data['created_at'] = createdAt;

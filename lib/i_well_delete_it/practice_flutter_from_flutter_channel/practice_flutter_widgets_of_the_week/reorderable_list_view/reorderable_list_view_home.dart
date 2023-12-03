@@ -23,6 +23,7 @@ class _ReorderableListViewHomeState extends State<ReorderableListViewHome> {
         backgroundColor: Colors.orange,
       ),
       body: ColorfulSafeArea(
+        bottomColor: Colors.transparent ,
         color: Colors.orange,
         child: Padding(
           padding: const EdgeInsets.symmetric(vertical: 10 * 2, horizontal: 30),

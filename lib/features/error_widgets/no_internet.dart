@@ -85,6 +85,7 @@ class _NoInternetState extends State<NoInternet> {
   @override
   Widget build(BuildContext context) {
     return ColorfulSafeArea(
+      bottomColor: Colors.transparent ,
       color: kPrimaryColor,
       child: Scaffold(
         backgroundColor: Colors.grey.shade200,

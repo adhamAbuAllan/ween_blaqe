@@ -10,6 +10,7 @@ import '../../../core/widgets/apartments/show_more_classes_widget/advantages_cla
   @override
   Widget build(BuildContext context) {
     return ColorfulSafeArea(
+      bottomColor: Colors.transparent ,
       color: kPrimaryColor,
       child: Scaffold(
         backgroundColor: Colors.grey.shade200,

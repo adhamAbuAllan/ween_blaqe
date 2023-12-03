@@ -47,7 +47,8 @@ class DataOfOneApartment {
       this.city,
       this.type,
       this.updatedAt,
-      this.countOfStudnet});
+      this.countOfStudnet,
+      });
 
   late final int? id;
   late final Owner? owner;

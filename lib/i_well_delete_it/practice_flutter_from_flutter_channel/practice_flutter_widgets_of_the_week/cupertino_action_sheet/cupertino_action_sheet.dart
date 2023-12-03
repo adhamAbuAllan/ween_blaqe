@@ -1,9 +1,12 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:ween_blaqe/core/utils/funcations/snakbar.dart';
+import 'package:ween_blaqe/i_well_delete_it/practice_flutter_from_flutter_channel/practice_flutter_widgets_of_the_week/theme/dark_theme.dart';
 
 main(){
-  runApp(const MaterialApp(home: _Home(),));
+  runApp( MaterialApp(
+    darkTheme: ThemeData.dark(useMaterial3: true) ,
+    home: _Home(),));
 }
 class _Home extends StatefulWidget {
   const _Home();

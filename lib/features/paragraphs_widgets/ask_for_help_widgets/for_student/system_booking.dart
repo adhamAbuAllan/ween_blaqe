@@ -1,5 +1,6 @@
 import 'package:colorful_safe_area/colorful_safe_area.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:ween_blaqe/core/utils/styles/text_style/aline_style.dart';
 
 import '../../../../constants/nums.dart';
@@ -13,9 +14,10 @@ class SystemBooking extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ColorfulSafeArea(
+      bottomColor: Colors.transparent,
       color: kPrimaryColor,
       child: Scaffold(
-        backgroundColor: Colors.grey.shade200,
+        backgroundColor: kBackgroundAppColor,
         appBar: AppBar(
           title: const Text(
             'طريق الحجز',
@@ -40,15 +42,15 @@ class SystemBooking extends StatelessWidget {
                         myPushName(
                             context, MyPagesRoutes.howCouldBookingApartment);
                       }, "كيف يمكنني حجز شقة؟"),
-                      aline,
-                      askForHelpButton(() {
-                        myPushName(context, MyPagesRoutes.couldICancelABooking);
-                      }, "هل يمكنني إلغاء الحجز؟"),
-                      aline,
-                      askForHelpButton(() {
-                        myPushName(context,
-                            MyPagesRoutes.howLongIsTheReservationAvailable);
-                      }, "ما هي مدة الحجز المتاحة؟")
+                      // aline,
+                      // askForHelpButton(() {
+                      //   myPushName(context, MyPagesRoutes.couldICancelABooking);
+                      // }, "هل يمكنني إلغاء الحجز؟"),
+                      // aline,
+                      // askForHelpButton(() {
+                      //   myPushName(context,
+                      //       MyPagesRoutes.howLongIsTheReservationAvailable);
+                      // }, "ما هي مدة الحجز المتاحة؟")
                     ],
                   )),
             ),
@@ -65,6 +67,7 @@ class HowCouldBookingApartment extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ColorfulSafeArea(
+      bottomColor: Colors.transparent,
       color: kPrimaryColor,
       child: Scaffold(
         appBar: AppBar(
@@ -97,7 +100,7 @@ class HowCouldBookingApartment extends StatelessWidget {
                 margin: const EdgeInsets.fromLTRB(25, 0, 30, 10),
                 child: Text(
                   // "يتطلب حجز شقة على تطبيق 'وين بلاقي' تسجيل دخول المستخدم أولاً ثم إتباع الخطوات التالية",
-                  "يمكنك طلب حجز شقة من خلال إتباع الخطوات التالية",
+                  "لحجز شقة إتبع الخطوات التالية:",
                   style: TextStyle(
                     fontSize: 16.0,
                     color: Colors.grey.shade800,
@@ -111,7 +114,7 @@ class HowCouldBookingApartment extends StatelessWidget {
                 width: double.infinity,
                 margin: const EdgeInsets.fromLTRB(25, 0, 30, 10),
                 child: const Text(
-                  "الخطوة الاولى",
+                  "أولًا، إذهب إلى الصفحة الرئيسية",
                   style: TextStyle(
                     fontSize: 18.0,
                     fontFamily: 'IBM',
@@ -125,7 +128,7 @@ class HowCouldBookingApartment extends StatelessWidget {
                 margin: const EdgeInsets.fromLTRB(25, 0, 30, 10),
                 child: Text(
                   // "بعد إختيارك لأعلان ما اظغط على زر احجز الان",
-                  "إذهب إلى القائمة الرئيسية",
+                  "إذهب إلى القائمة الرئيسية من خلال الضغط على زر أيقونة المنزل المتواجدة في الجزء السفلي على يمين الواجهة. ",
                   style: TextStyle(
                     fontSize: 16.0,
                     color: Colors.grey.shade800,
@@ -140,7 +143,7 @@ class HowCouldBookingApartment extends StatelessWidget {
                 width: double.infinity,
                 margin: const EdgeInsets.fromLTRB(25, 0, 30, 10),
                 child: const Text(
-                  "الخطوة الثانية",
+                  "ثانيًا: قم بإجاد الشقة المناسبة",
                   style: TextStyle(
                     fontSize: 18.0,
                     fontFamily: 'IBM',
@@ -154,7 +157,7 @@ class HowCouldBookingApartment extends StatelessWidget {
                 margin: const EdgeInsets.fromLTRB(25, 0, 30, 10),
                 child: Text(
                   // "إختر مدة إقامتك من خلال إضافة عدد الأشهر ",
-                  "إختر الإعلان الشقة التي تريدها من خلال الضغط على كلمة عرض المزيد",
+                  "إبحث عن الشقة المناسبة لك, يمكنك إختيار الصنف الذي تريده من خلال زر 'صنف السكن' المتواجد على يمين الواجهة في الجزء العلوي منها، ويظهر هذا الزر من خلال التمرير إلى الأسفل و من ثم إلى الأعلى أو من خلال الضغط على أي عنصر في الواجهة الرئيسية.",
                   style: TextStyle(
                     fontSize: 16.0,
                     color: Colors.grey.shade800,
@@ -163,12 +166,46 @@ class HowCouldBookingApartment extends StatelessWidget {
                   ),
                 ),
               ),
+              Container(
+                width: double.infinity,
+                margin: const EdgeInsets.fromLTRB(25, 0, 30, 10),
+
+                child: RichText(
+                  softWrap: true,
+
+                  // "إختر مدة إقامتك من خلال إضافة عدد الأشهر ",
+                  text: TextSpan(
+
+                      children: <TextSpan>[
+
+                    const TextSpan(
+                        text: "نصيحة:",
+                        style: TextStyle(
+                          fontSize: 18.0,
+                          color: Colors.orange,
+                          fontFamily: 'IBM',
+                          inherit: true,
+                        )),
+                    TextSpan(
+
+                        text:
+                            "في حال لم تجد الشقة المناسبة تواصل مع أي مالك يمتلك شقة في المدينة التي لم تجد فيها الشقة المطلوبة ، فقد يتمكن من مساعدتك للتواصل مع شخص آخر يمتلك الشقة التي تبحث عنها.",
+                        style: TextStyle(
+                          fontSize: 16.0,
+                          color: Colors.black.withOpacity(.7),
+                          fontFamily: 'IBM',
+                          inherit: true,
+                        ))
+                  ]),
+                ),
+              ),
+
               //step 3 text
               Container(
                 width: double.infinity,
                 margin: const EdgeInsets.fromLTRB(25, 0, 30, 10),
                 child: const Text(
-                  "الخطوة الثالثة",
+                  "ثالثًا: أعرض المزيد من التفاصيل",
                   style: TextStyle(
                     fontSize: 18.0,
                     fontFamily: 'IBM',
@@ -182,7 +219,7 @@ class HowCouldBookingApartment extends StatelessWidget {
                 margin: const EdgeInsets.fromLTRB(25, 0, 30, 10),
                 child: Text(
                   // "إضغط على زر 'تأكيد الحجز'",
-                  "قم بانزول إلى أسفل الشاشة",
+                  "قم بضغط على زر عرض المزيد، لعرض المزيد من التفاصيل حول الشقة المطلوبة.",
                   style: TextStyle(
                     fontSize: 16.0,
                     color: Colors.grey.shade800,
@@ -196,7 +233,7 @@ class HowCouldBookingApartment extends StatelessWidget {
                 width: double.infinity,
                 margin: const EdgeInsets.fromLTRB(25, 0, 30, 10),
                 child: const Text(
-                  "الخطوة الرابعة",
+                  "رابعًا: إختر وسيلة التواصل المناسبة",
                   style: TextStyle(
                     fontSize: 18.0,
                     fontFamily: 'IBM',
@@ -210,7 +247,7 @@ class HowCouldBookingApartment extends StatelessWidget {
                 margin: const EdgeInsets.fromLTRB(25, 0, 30, 10),
                 child: Text(
                   // "ستظهر لك رسالة لتأكيد طلب الحجز ،إضغط على زر 'نعم،متابعة'",
-                  "سيظهر لك مربع الاستفسار , إختر وسلية التواصل التي تناسبك -قد يحتوي المربع على وسيلة تواصل واحدة , يمكن أن يتم إضافة المزيد من الوسائل مستقبللاً",
+                  "في مربع الأستفسار ، إختر وسيلة التواصل المناسبة لك، لتتمكن من التواصل مع مالك الشقة.",
                   style: TextStyle(
                     fontSize: 16.0,
                     color: Colors.grey.shade800,
@@ -223,7 +260,8 @@ class HowCouldBookingApartment extends StatelessWidget {
                 width: double.infinity,
                 margin: const EdgeInsets.fromLTRB(25, 0, 30, 10),
                 child: const Text(
-                  "تم إرسال الطلب",
+                  // "تم إرسال الطلب",
+                  "خامسًا: تواصل مع المالك للحجز",
                   style: TextStyle(
                     fontSize: 18.0,
                     fontFamily: 'IBM',
@@ -231,13 +269,13 @@ class HowCouldBookingApartment extends StatelessWidget {
                   ),
                 ),
               ),
-
               //what next
               Container(
                 width: double.infinity,
                 margin: const EdgeInsets.fromLTRB(25, 0, 30, 10),
                 child: Text(
-                  "سيرسل طلبك إلى المؤجر الذي بدوره يقبل الطلب أو يرفضه، في كلا الحالتين سيصلك إشعار عن الإجراء الذي إتخذه المؤجر.",
+                  // "سيرسل طلبك إلى المؤجر الذي بدوره يقبل الطلب أو يرفضه، في كلا الحالتين سيصلك إشعار عن الإجراء الذي إتخذه المؤجر.",
+                  "قم بتواصل مع مالك الشقة لتحصل على المزيد من التفاصيل حول الشقة و آلية حجزها.",
                   style: TextStyle(
                     fontSize: 16.0,
                     color: Colors.grey.shade800,
@@ -261,6 +299,7 @@ class CouldICancelABooking extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ColorfulSafeArea(
+      bottomColor: Colors.transparent,
       color: kPrimaryColor,
       child: Scaffold(
         appBar: AppBar(
@@ -315,6 +354,7 @@ class HowLongIsTheReservationAvailable extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ColorfulSafeArea(
+      bottomColor: Colors.transparent,
       color: kPrimaryColor,
       child: Scaffold(
         appBar: AppBar(

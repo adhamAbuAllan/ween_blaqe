@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:http/http.dart' as http;
 import 'package:skeletons/skeletons.dart';
@@ -22,9 +23,10 @@ import '../../../../core/widgets/apartments/show_more_classes_widget/image_slide
 import '../../../../i_well_delete_it/slove_get_advantage_data/advantages_class_widget.dart';
 
 // import '../../../toast_widget.dart';
-main(){
-  runApp(MaterialApp(home:NewShowMore()));
+main() {
+  runApp(MaterialApp(home: NewShowMore()));
 }
+
 class NewShowMore extends StatefulWidget {
   const NewShowMore({
     Key? key,
@@ -44,6 +46,7 @@ class _NewShowMoreState extends State<NewShowMore> {
   bool _isGirlStudent = false;
   bool _isBoyStudent = false;
   bool _isFamilies = false;
+
   // Object tag = 'photo';
   bool isStart = false;
 
@@ -101,11 +104,15 @@ class _NewShowMoreState extends State<NewShowMore> {
   // var ownIndex = 0;
 // var arrayOfApartments = widget.arrayOfApartments;
   int current = 0;
+
   PointerController pointerController = PointerController();
 
   // Assuming playersRes is the response you received
   final CarouselController controller = CarouselController();
   PageController pageController = PageController();
+  bool isRoomSizeChange = false;
+  bool isRoomBathSizeChange = false;
+  bool isAreaSizeChange = false;
 
   @override
   Widget build(BuildContext context) {
@@ -125,6 +132,7 @@ class _NewShowMoreState extends State<NewShowMore> {
             return const NoInternet();
           }
           return ColorfulSafeArea(
+            bottomColor: Colors.transparent ,
             color: kPrimaryColor,
             child: Scaffold(
               backgroundColor: Colors.grey.shade200,
@@ -207,9 +215,13 @@ class _NewShowMoreState extends State<NewShowMore> {
                             // tag: tag,
                             onPageChange: (index, p1) {
                               setState(() {
-
                                 current = index;
-                                controller.animateToPage(current,duration: const Duration(milliseconds: 300,),);
+                                controller.animateToPage(
+                                  current,
+                                  duration: const Duration(
+                                    milliseconds: 300,
+                                  ),
+                                );
                                 print("the p1 is like this : $p1");
 
                                 // current = lastIndex!;
@@ -393,59 +405,87 @@ class _NewShowMoreState extends State<NewShowMore> {
                                 child: SizedBox(
                                   width: 80,
                                   height: 80,
-                                  child: OutlinedButton(
-                                    onPressed: null,
-                                    style: outlineBox,
-                                    child: Column(
-                                      children: [
-                                        const Expanded(
-                                          child: Text(""),
-                                        ),
-                                        Text(
-                                          titleAboutApartmentroom,
-                                          style: TextStyle(
-                                              color:
-                                                  Colors.black.withOpacity(.7)),
-                                        ),
-                                        const Expanded(
-                                          child: Text(""),
-                                        ),
-                                        Row(
-                                          children: [
-                                            //Cubic meters
-                                            const Expanded(
-                                              child: Text(""),
-                                            ),
-
-                                            Padding(
-                                              padding:
-                                                  const EdgeInsets.fromLTRB(
-                                                      5, 0, 5, 0),
-                                              child: Text(
-                                                "${widget.oneApartment?.rooms ?? 0}",
-                                                style: TextStyle(
-                                                    color: Colors.black
-                                                        .withOpacity(.7)),
+                                  child: AnimatedSize(
+                                    duration: const Duration(milliseconds: 700),
+                                    curve: Curves.linear,
+                                    reverseDuration:
+                                        const Duration(milliseconds: 700),
+                                    clipBehavior: Clip.antiAlias,
+                                    child: OutlinedButton(
+                                      onPressed: () {
+                                        setState(() {
+                                          isRoomSizeChange = !isRoomSizeChange;
+                                        });
+                                      },
+                                      style: outlineButton.copyWith(
+                                          overlayColor:
+                                              const MaterialStatePropertyAll(
+                                                  Colors.transparent),
+                                          side: MaterialStatePropertyAll(
+                                              BorderSide(
+                                                  width:
+                                                      !isRoomSizeChange ? 1 : 2,
+                                                  color: isRoomSizeChange
+                                                      ? kPrimaryColor
+                                                      : kPrimaryColor300))),
+                                      child: Column(
+                                        children: [
+                                          const Expanded(
+                                            child: Text(""),
+                                          ),
+                                          Text(
+                                            titleAboutApartmentroom,
+                                            style: TextStyle(
+                                                color: Colors.black
+                                                    .withOpacity(.7)),
+                                          ),
+                                          const Expanded(
+                                            child: Text(""),
+                                          ),
+                                          Row(
+                                            children: [
+                                              //Cubic meters
+                                              const Expanded(
+                                                child: Text(""),
                                               ),
-                                            ),
-                                            Image(
-                                              image: AssetImage(
-                                                  imageAboutApartmentRoom),
-                                              width: 32,
-                                              height: 32,
-                                              color:
-                                                  Colors.black.withOpacity(.6),
-                                            ),
-                                            const Expanded(
-                                              child: Text(""),
-                                            ),
-                                          ],
-                                        ),
-                                        const Expanded(
-                                          flex: 2,
-                                          child: Text(""),
-                                        ),
-                                      ],
+
+                                              Padding(
+                                                padding:
+                                                    const EdgeInsets.fromLTRB(
+                                                        5, 0, 5, 0),
+                                                child: isRoomSizeChange
+                                                    ? SizedBox(
+                                                        width: 10.5,
+                                                        height: 25,
+                                                        child:
+                                                            buildAnimatedTextKit("${widget.oneApartment?.rooms ?? 0}"))
+                                                    : Text(
+                                                        "${widget.oneApartment?.rooms ?? 0}",
+                                                        style: TextStyle(
+                                                            color: Colors.black
+                                                                .withOpacity(
+                                                                    .7)),
+                                                      ),
+                                              ),
+                                              Image(
+                                                image: AssetImage(
+                                                    imageAboutApartmentRoom),
+                                                width: 32,
+                                                height: 32,
+                                                color: Colors.black
+                                                    .withOpacity(.6),
+                                              ),
+                                              const Expanded(
+                                                child: Text(""),
+                                              ),
+                                            ],
+                                          ),
+                                          const Expanded(
+                                            flex: 2,
+                                            child: Text(""),
+                                          ),
+                                        ],
+                                      ),
                                     ),
                                   ),
                                 ),
@@ -455,55 +495,84 @@ class _NewShowMoreState extends State<NewShowMore> {
                                 child: SizedBox(
                                   width: 80,
                                   height: 80,
-                                  child: OutlinedButton(
-                                    onPressed: null,
-                                    style: outlineBox,
-                                    child: Column(
-                                      children: [
-                                        const Expanded(
-                                          child: Text(""),
-                                        ),
-                                        Text(
-                                          "الحمامات",
-                                          style: TextStyle(
-                                              color:
-                                                  Colors.black.withOpacity(.7)),
-                                        ),
-                                        const Expanded(
-                                          child: Text(""),
-                                        ),
-                                        Row(
-                                          children: [
-                                            //Cubic meters
-                                            const Expanded(
-                                              child: Text(""),
-                                            ),
-
-                                            Padding(
-                                              padding:
-                                                  const EdgeInsets.fromLTRB(
-                                                      5, 0, 5, 0),
-                                              child: Text(
-                                                "${widget.oneApartment?.bathrooms ?? 0}",
-                                                style: TextStyle(
-                                                    color: Colors.black
-                                                        .withOpacity(.7)),
+                                  child: AnimatedSize(
+                                    duration: const Duration(milliseconds: 700),
+                                    curve: Curves.linear,
+                                    reverseDuration:
+                                        const Duration(milliseconds: 700),
+                                    clipBehavior: Clip.antiAlias,
+                                    child: OutlinedButton(
+                                      onPressed: () {
+                                        setState(() {
+                                          isRoomBathSizeChange =
+                                              !isRoomBathSizeChange;
+                                        });
+                                      },
+                                      style: outlineButton.copyWith(
+                                          overlayColor:
+                                              const MaterialStatePropertyAll(
+                                                  Colors.transparent),
+                                          side: MaterialStatePropertyAll(
+                                              BorderSide(
+                                                  width: !isRoomBathSizeChange
+                                                      ? 1
+                                                      : 2,
+                                                  color: isRoomBathSizeChange
+                                                      ? kPrimaryColor
+                                                      : kPrimaryColor300))),
+                                      child: Column(
+                                        children: [
+                                          const Expanded(
+                                            child: Text(""),
+                                          ),
+                                          Text(
+                                            "الحمامات",
+                                            style: TextStyle(
+                                                color: Colors.black
+                                                    .withOpacity(.7)),
+                                          ),
+                                          const Expanded(
+                                            child: Text(""),
+                                          ),
+                                          Row(
+                                            children: [
+                                              //Cubic meters
+                                              const Expanded(
+                                                child: Text(""),
                                               ),
-                                            ),
-                                            const Image(
-                                              image: AssetImage(
-                                                  "assets/images/apartments_images/about_apartment/bathroom.png"),
-                                              width: 32,
-                                              height: 32,
-                                            ),
-                                            const Expanded(child: Text("")),
-                                          ],
-                                        ),
-                                        const Expanded(
-                                          flex: 2,
-                                          child: Text(""),
-                                        ),
-                                      ],
+
+                                              Padding(
+                                                padding:
+                                                    const EdgeInsets.fromLTRB(
+                                                        5, 0, 5, 0),
+                                                child: isRoomBathSizeChange
+                                                    ? SizedBox(
+                                                    width: 10.5,
+                                                    height: 25,
+                                                    child:
+                                                    buildAnimatedTextKit("${widget.oneApartment?.bathrooms ?? 0}"))
+                                                    :Text(
+                                                  "${widget.oneApartment?.bathrooms ?? 0}",
+                                                  style: TextStyle(
+                                                      color: Colors.black
+                                                          .withOpacity(.7)),
+                                                ),
+                                              ),
+                                              const Image(
+                                                image: AssetImage(
+                                                    "assets/images/apartments_images/about_apartment/bathroom.png"),
+                                                width: 32,
+                                                height: 32,
+                                              ),
+                                              const Expanded(child: Text("")),
+                                            ],
+                                          ),
+                                          const Expanded(
+                                            flex: 2,
+                                            child: Text(""),
+                                          ),
+                                        ],
+                                      ),
                                     ),
                                   ),
                                 ),
@@ -513,59 +582,89 @@ class _NewShowMoreState extends State<NewShowMore> {
                                 child: SizedBox(
                                   width: 100,
                                   height: 80,
-                                  child: OutlinedButton(
-                                    onPressed: null,
-                                    style: outlineBox,
-                                    child: Column(
-                                      children: [
-                                        const Expanded(
-                                          child: Text(""),
-                                        ),
-                                        Text(
-                                          "المساحة",
-                                          style: TextStyle(
-                                              color:
-                                                  Colors.black.withOpacity(.7)),
-                                        ),
-                                        const Expanded(
-                                          child: Text(""),
-                                        ),
-                                        Row(
-                                          children: [
-                                            //Cubic meters
-                                            const Expanded(
-                                              child: Text(""),
-                                            ),
+                                  child: AnimatedSize(
+                                    duration: const Duration(milliseconds: 700),
+                                    curve: Curves.linear,
+                                    reverseDuration:
+                                    const Duration(milliseconds: 700),
+                                    clipBehavior: Clip.antiAlias,
+                                    child: OutlinedButton(
+                                      onPressed: () {
+                                        setState(() {
 
-                                            Padding(
-                                              padding:
-                                                  const EdgeInsets.fromLTRB(
-                                                      5, 0, 5, 0),
-                                              child: Text(
-                                                "${widget.oneApartment?.squareMeters ?? 0}"
-                                                "m",
-                                                style: TextStyle(
-                                                    color: Colors.black
-                                                        .withOpacity(.7)),
+                                          isAreaSizeChange =
+                                          !isAreaSizeChange;
+                                        });
+                                      },
+                                      style: outlineButton.copyWith(
+                                          overlayColor:
+                                          const MaterialStatePropertyAll(
+                                              Colors.transparent),
+                                          side: MaterialStatePropertyAll(
+                                              BorderSide(
+                                                  width:
+                                                  !isAreaSizeChange ? 1 : 2,
+                                                  color: isAreaSizeChange
+                                                      ? kPrimaryColor
+                                                      : kPrimaryColor300))),
+                                      child: Column(
+                                        children: [
+                                          const Expanded(
+                                            child: Text(""),
+                                          ),
+                                          Text(
+                                            "المساحة",
+                                            style: TextStyle(
+                                                color:
+                                                    Colors.black.withOpacity(.7)),
+                                          ),
+                                          const Expanded(
+                                            child: Text(""),
+                                          ),
+                                          Row(
+                                            children: [
+                                              //Cubic meters
+                                              const Expanded(
+                                                child: Text(""),
                                               ),
-                                            ),
-                                            Image(
-                                              image: const AssetImage(
-                                                "assets/images/apartments_images/about_apartment/area.png",
+
+                                              Padding(
+                                                padding:
+                                                    const EdgeInsets.fromLTRB(
+                                                        5, 0, 5, 0),
+                                                child:isAreaSizeChange
+                                                    ? SizedBox(
+                                                    // width: 37.6,
+                                                    width: widget.oneApartment!.squareMeters! >= 100 ?48.01 : 37.6,
+                                                    height: 25,
+                                                    child:
+                                                    buildAnimatedTextKit("²م${widget.oneApartment?.squareMeters ?? 0}"))
+                                                    : Text(
+                                                  "²م${widget.oneApartment?.squareMeters ?? 0}"
+                                                  ,
+                                                  style: TextStyle(
+                                                      color: Colors.black
+                                                          .withOpacity(.7)),
+                                                ),
                                               ),
-                                              width: 32,
-                                              height: 32,
-                                              color:
-                                                  Colors.black.withOpacity(.6),
-                                            ),
-                                            const Expanded(child: Text("")),
-                                          ],
-                                        ),
-                                        const Expanded(
-                                          flex: 2,
-                                          child: Text(""),
-                                        ),
-                                      ],
+                                              Image(
+                                                image: const AssetImage(
+                                                  "assets/images/apartments_images/about_apartment/area.png",
+                                                ),
+                                                width: 32,
+                                                height: 32,
+                                                color:
+                                                    Colors.black.withOpacity(.6),
+                                              ),
+                                              const Expanded(child: Text("")),
+                                            ],
+                                          ),
+                                          const Expanded(
+                                            flex: 2,
+                                            child: Text(""),
+                                          ),
+                                        ],
+                                      ),
                                     ),
                                   ),
                                 ),
@@ -817,6 +916,32 @@ class _NewShowMoreState extends State<NewShowMore> {
     }
   }
 
+  //aniatoin
+  AnimatedTextKit buildAnimatedTextKit(String text) {
+    return AnimatedTextKit(
+      totalRepeatCount: 3,
+      pause: Duration.zero,
+      onFinished: () {
+        setState(() {
+          isRoomSizeChange = false;
+          isRoomBathSizeChange = false;
+          isAreaSizeChange = false;
+        });
+      },
+      //aniatedTextOfCounter
+      animatedTexts: [
+        FadeAnimatedText(
+          text,
+          textStyle: const TextStyle(fontFamily: "IBM", color: Colors.orange),
+          duration: const Duration(
+            milliseconds: 100,
+          ),
+        ),
+      ],
+    );
+  }
+
+//////////////////////
 //   CarouselSlider buildCarouselSlider(
 //       {List<Photos>? photos, CarouselController? controller}) {
 //     return CarouselSlider(

@@ -2,6 +2,7 @@ import 'dart:convert';
 import 'package:colorful_safe_area/colorful_safe_area.dart';
 import 'package:http/http.dart' as http;
 import 'package:flutter/material.dart';
+import 'package:skeletons/skeletons.dart';
 
 import '../../api/advantages.dart';
 import '../../api/apartments_api/one_apartment.dart';
@@ -115,12 +116,17 @@ class _GetAdvantagesState extends State<GetAdvantages> {
                       fontFamily: 'IBM',
                       fontSize: 16,
                       color: Colors.black.withOpacity(.7))),
-              trailing: entry.icon.isEmpty ? const SizedBox(child: CircularProgressIndicator(color: kPrimaryColor,strokeWidth: 3,)) :Image.network(
+              trailing: entry.icon.isEmpty ? const SizedBox(child: SkeletonAvatar(
+                  style:
+                  SkeletonAvatarStyle(width: 28, height: 28))) :Image.network(
                 entry.icon,
                 height: 30,
                 width: 30,
                 errorBuilder: (context, error, stackTrace) {
-                  return  const SizedBox(child: CircularProgressIndicator(color: kPrimaryColor,strokeWidth: 3,));
+                  return  const SizedBox(child: SkeletonAvatar(
+
+                      style:
+                      SkeletonAvatarStyle(width: 28, height: 28,)));
                 },
                 color: Colors.black.withOpacity(.5),
               ),
@@ -196,6 +202,7 @@ class _ShowAllAdvantagesState extends State<ShowAllAdvantages> {
   @override
   Widget build(BuildContext context) {
     return ColorfulSafeArea(
+      bottomColor: Colors.transparent ,
       color: kPrimaryColor,
       child: Scaffold(
         backgroundColor: Colors.grey.shade200,

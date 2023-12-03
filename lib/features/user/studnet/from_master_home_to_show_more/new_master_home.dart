@@ -59,16 +59,16 @@ class _NewMasterHomeState extends State<NewMasterHome> {
     _scrollController = ScrollController();
     _scrollController.addListener(() {
       //[_scrollController.addListener] this attribute usages to hide or show the button
-      Future.delayed(const Duration(milliseconds: 700), () {
-        //when user make scrolling , the udenr code execute after 700 milisec. ///don't remove it///
+      Future.delayed(const Duration(milliseconds: 350), () {
+        //when user make scrolling , the udenr code execute after 350 milisec. ///don't remove it///
         if (_scrollController.position.userScrollDirection.name == "forward") {
-          //if user scroll to up , the button will visible after 700 milisec
+          //if user scroll to up , the button will visible after 350 milisec
           setState(() {
             _isVisible = true;
           });
         } else if (_scrollController.position.userScrollDirection.name ==
             "reverse") {
-          //when user scroll to down , the button will invisible after 700 milisec
+          //when user scroll to down , the button will invisible after 350 milisec
           setState(() {
             _isVisible = false;
           });
@@ -150,7 +150,7 @@ class _NewMasterHomeState extends State<NewMasterHome> {
                       padding: const EdgeInsets.only(top: 10 * 7, left: 8.0),
                       child: AnimatedOpacity(
                           opacity: (_isListOfTypes ? (_isVisible ? 1 : 0) : 0),
-                          duration: const Duration(milliseconds: 700),
+                          duration: const Duration(milliseconds: 350),
 
                           child: !_isVisible
                               ? const SizedBox()
@@ -299,9 +299,9 @@ class _NewMasterHomeState extends State<NewMasterHome> {
 
   // API Call
   Future<OneApartment> getDataFromAPI({String? type, bool? isAll}) async {
-    Uri uri = Uri.parse("${ServerLocalDiv.apartmentAll}?type=$type");
+    Uri uri = Uri.parse("${ServerWeenBalaqee.apartmentAll}?type=$type");
     if (isAll == true) {
-      uri = Uri.parse(ServerLocalDiv.apartmentAll);
+      uri = Uri.parse(ServerWeenBalaqee.apartmentAll);
     }
     debugPrint("uri --$uri");
     var response = await http.get(uri);
@@ -327,11 +327,11 @@ class _NewMasterHomeState extends State<NewMasterHome> {
     return apartmentsRes;
   }
 
-  Future<List<Photos>> fetchPhotos() async {
+  Future<List<Photos>>    fetchPhotos() async {
     setState(() {
       isDataLoaded = true;
     });
-    Uri uri = Uri.parse(ServerLocalDiv.apartmentAll);
+    Uri uri = Uri.parse(ServerWeenBalaqee.apartmentAll);
     final response = await http.get(uri);
     if (response.statusCode == 200) {
       List jsonResponse = jsonDecode(response.body);

@@ -40,6 +40,7 @@ class _ProfileOfOwnerState extends State<ProfileOfOwner> {
   @override
   Widget build(BuildContext context) {
     return ColorfulSafeArea(
+      bottomColor: Colors.transparent ,
       color: kPrimaryColor,
       child: Scaffold(
         backgroundColor: Colors.grey.shade200,

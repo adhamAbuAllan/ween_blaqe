@@ -26,23 +26,23 @@ class __HomeState extends State<_Home> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: SingleChildScrollView(
-        child: _expansionPanelList(),
+        child: _expansionPanelList((index, isExpanded) {
+          setState(() {
+            _data[index].isExpanded = !isExpanded;
+
+            debugPrint(
+                "you click on the row , and the index is $index and the state is $isExpanded");
+          });
+        }),
       ),
     );
   }
 
 
 
-  ExpansionPanelList _expansionPanelList() {
+  ExpansionPanelList _expansionPanelList(void Function(int, bool)? expansionCallback) {
     return ExpansionPanelList(
-      expansionCallback: (index, isExpanded) {
-        setState(() {
-          _data[index].isExpanded = !isExpanded;
-
-          debugPrint(
-              "you click on the row , and the index is $index and the state is $isExpanded");
-        });
-      },
+      expansionCallback:expansionCallback ,
       children: _data.map<ExpansionPanel>((Item item) {
         return ExpansionPanel(
             headerBuilder: (context, isExpanded) {
@@ -50,7 +50,11 @@ class __HomeState extends State<_Home> {
                 title: Text(item.headerText),
               );
             },
-            body: _listTile(item),
+            body: _listTile(item,          () {
+              setState(() {
+                _data.removeWhere((Item currentItem) => item == currentItem);
+              });
+            }),
             isExpanded: item.isExpanded);
       }).toList(),
     );
@@ -59,7 +63,7 @@ class __HomeState extends State<_Home> {
 
 
 
-  ListTile _listTile(Item item) {
+  ListTile _listTile(Item item , void Function()? onTap) {
     return ListTile(
       title: Text(item.expandedText),
       subtitle: const Text('To delete this item, click trash icon'),
@@ -67,11 +71,9 @@ class __HomeState extends State<_Home> {
         Icons.delete,
         color: Colors.orange,
       ),
-      onTap: () {
-        setState(() {
-          _data.removeWhere((Item currentItem) => item == currentItem);
-        });
-      },
+      onTap:
+          onTap
+,
     );
   }
 }

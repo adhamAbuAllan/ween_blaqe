@@ -36,6 +36,7 @@ class _SendNoticeForUsState extends State<SendNoticeForUs> {
   @override
   Widget build(BuildContext context) {
     return ColorfulSafeArea(
+        bottomColor: Colors.transparent ,
         color: kPrimaryColor,
         child: GestureDetector(
           onTap: () => FocusManager.instance.primaryFocus?.unfocus(),

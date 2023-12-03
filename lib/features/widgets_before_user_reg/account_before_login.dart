@@ -51,6 +51,7 @@ class _AccountBeforeLoginInStudentState
   @override
   Widget build(BuildContext context) {
     return ColorfulSafeArea(
+      bottomColor: Colors.transparent ,
       color: kPrimaryColor,
       child: Scaffold(
         backgroundColor: Colors.grey.shade200,
@@ -81,7 +82,8 @@ class _AccountBeforeLoginInStudentState
                   Padding(
                     padding: const EdgeInsets.fromLTRB(0, 0, 10, 55),
                     child: Text(
-                      "قم بتسجيل الدخول لتحجز اول شقة لك ",
+                      // "قم بتسجيل الدخول لتحجز اول شقة لك ",
+                      "لا يتطلب حجز شقة حساب جديد أو تسجيل الدخول ",
                       style: TextStyle(
                           color: Colors.grey.shade600,
                           fontSize: 14,
@@ -91,52 +93,52 @@ class _AccountBeforeLoginInStudentState
                   const Expanded(child: Text("")),
                 ],
               ),
-              aline,
+              // aline,
 
               // notification icon and text and switch
 
-              GestureDetector(
-                onTap: () {
-                  setState(() {
-                    notificationState = !currentValue;
-                  });
-                  currentValue = notificationState;
-                },
-                child: Row(
-                  children: [
-                    const Padding(
-                      padding: EdgeInsets.fromLTRB(0, 0, 10, 0),
-                      child: Icon(
-                        Icons.notifications_outlined,
-                        size: 32,
-                      ),
-                    ),
-                    const Text(
-                      "الاشعارات",
-                      style: TextStyle(
-                        fontSize: 18,
-                        fontFamily: 'IBM',
-                      ),
-                    ),
-                    const Spacer(),
-                    Padding(
-                      padding: const EdgeInsets.fromLTRB(20, 0, 0, 0),
-                      child: Switcher(
-                          light1: notificationState,
-                          onChanged: (currentValue) {
-                            setState(() {
-                              // currentValue = value;
-                              notificationState = currentValue;
-                              // value ==
-                              // false
-                              // ? toast("تم كتم الاشعارات")
-                              // : toast("تم تفعيل الاشعارات");
-                            });
-                          }),
-                    )
-                  ],
-                ),
-              ),
+              // GestureDetector(
+              //   onTap: () {
+              //     setState(() {
+              //       notificationState = !currentValue;
+              //     });
+              //     currentValue = notificationState;
+              //   },
+              //   child: Row(
+              //     children: [
+              //       const Padding(
+              //         padding: EdgeInsets.fromLTRB(0, 0, 10, 0),
+              //         child: Icon(
+              //           Icons.notifications_outlined,
+              //           size: 32,
+              //         ),
+              //       ),
+              //       const Text(
+              //         "الاشعارات",
+              //         style: TextStyle(
+              //           fontSize: 18,
+              //           fontFamily: 'IBM',
+              //         ),
+              //       ),
+              //       const Spacer(),
+              //       Padding(
+              //         padding: const EdgeInsets.fromLTRB(20, 0, 0, 0),
+              //         child: Switcher(
+              //             light1: notificationState,
+              //             onChanged: (currentValue) {
+              //               setState(() {
+              //                 // currentValue = value;
+              //                 notificationState = currentValue;
+              //                 // value ==
+              //                 // false
+              //                 // ? toast("تم كتم الاشعارات")
+              //                 // : toast("تم تفعيل الاشعارات");
+              //               });
+              //             }),
+              //       )
+              //     ],
+              //   ),
+              // ),
               aline,
               //help
               buttonAccount(() {
@@ -306,6 +308,7 @@ class _AccountBeforeLoginInOwnerState extends State<AccountBeforeLoginInOwner> {
   @override
   Widget build(BuildContext context) {
     return ColorfulSafeArea(
+      bottomColor: Colors.transparent ,
       color: kPrimaryColor,
       child: Scaffold(
         backgroundColor: Colors.grey.shade200,
@@ -453,11 +456,11 @@ class _AccountBeforeLoginInOwnerState extends State<AccountBeforeLoginInOwner> {
                   height: 55,
                   child: ElevatedButton(
                       onPressed: () {
-                        Navigator.of(context).push(
-                          MaterialPageRoute(builder: (context) {
-                            return const Login();
-                          }),
-                        );
+                        // Navigator.of(context).push(
+                        //   MaterialPageRoute(builder: (context) {
+                        //     return const Login();
+                        //   }),
+                        // );
                       },
                       style: fullButton.copyWith(
                           backgroundColor:
@@ -489,11 +492,11 @@ class _AccountBeforeLoginInOwnerState extends State<AccountBeforeLoginInOwner> {
                       ),
                     ),
                     onPressed: () {
-                      Navigator.of(context).push(
-                        MaterialPageRoute(builder: (context) {
-                          return const Register();
-                        }),
-                      );
+                      // Navigator.of(context).push(
+                      //   MaterialPageRoute(builder: (context) {
+                      //     return const Register();
+                      //   }),
+                      // );
                     },
                   ),
                 ],
