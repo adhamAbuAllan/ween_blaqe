@@ -225,12 +225,12 @@ class _MainStudentState extends State<MainStudent> {
                                             SizedBox(
                                               child: RichText(
                                                   softWrap: true,
-                                                  text: TextSpan(children: [
+                                                  text: const TextSpan(children: [
                                                     TextSpan(
                                                         style: TextStyle(
                                                           fontFamily: "IBM",
                                                           color:
-                                                              Colors.grey[400],
+                                                              Colors.grey,
                                                           decoration:
                                                               TextDecoration
                                                                   .lineThrough,
@@ -287,6 +287,7 @@ class _MainStudentState extends State<MainStudent> {
                             )),
                       ],
                       cancelButton: CupertinoActionSheetAction(
+
                         child: const Text('إلغاء',
                             style: TextStyle(
                               fontFamily: "IBM",
