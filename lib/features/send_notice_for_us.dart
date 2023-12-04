@@ -8,7 +8,6 @@ import 'package:http/http.dart' as http;
 import 'package:ween_blaqe/constants/strings.dart';
 import 'package:ween_blaqe/core/utils/funcations/snakbar.dart';
 import 'package:ween_blaqe/core/utils/styles/button.dart';
-import 'package:ween_blaqe/urls_of_project/localhost_urls.dart';
 import '../api/comments.dart';
 import '../constants/nums.dart';
 import '../core/widgets/apartments/create_apartment/container_classes_widget/input_text_class_widget/container_input_text_class_widget.dart';
@@ -105,7 +104,7 @@ class _SendNoticeForUsState extends State<SendNoticeForUs> {
   }
 
   go(String comment) async {
-    var uri = Uri.parse(ServerLocalDiv.commentAdd);
+    var uri = Uri.parse(ServerWeenBalaqee.commentAdd);
     var request = await http.post(uri, body: {
       "comment": comment,
 // "type_id":insetType,
