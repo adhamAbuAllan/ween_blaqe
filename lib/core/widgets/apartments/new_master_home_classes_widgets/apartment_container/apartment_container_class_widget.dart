@@ -16,7 +16,6 @@ final Widget child;
        */
       //----------
       //you should delete the height attribute and add the padding widget instead
-      height: 355,
       // <- delete height attribute
       //----------
       //decoration of show apartment style

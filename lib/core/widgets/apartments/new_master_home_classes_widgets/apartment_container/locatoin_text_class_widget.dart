@@ -8,27 +8,30 @@ class ApartmentLocatoinText extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return               Row(
-      children: [
-        Padding(
-          padding: const EdgeInsets.fromLTRB(0, 0, 0, 0),
-          child: Text("الموقع:",
-              style: TextStyle(
-                color: Colors.black.withOpacity(.65),
-                fontSize: 16,
-                fontFamily: 'IBM',
-              )),
-        ),
-        Padding(
-          padding: const EdgeInsets.fromLTRB(10, 0, 0, 0),
-          child: Text(apartmentsRes.data?[index].city?.name ?? "",
-              style: TextStyle(
-                color: Colors.black.withOpacity(.6),
-                fontSize: 16,
-                fontFamily: 'IBM',
-              )),
-        )
-      ],
+    return               SizedBox(
+      child: Row(
+        children: [
+          Padding(
+            padding: const EdgeInsets.fromLTRB(0, 0, 0, 0),
+            child: Text("الموقع:",
+                style: TextStyle(
+                  color: Colors.black.withOpacity(.65),
+                  fontSize: 16,
+                  fontFamily: 'IBM',
+                )),
+          ),
+          Padding(
+            padding: const EdgeInsets.fromLTRB(10, 0, 0, 0),
+            child: Text(apartmentsRes.data?[index].city?.name ?? "",
+                softWrap: true,
+                style: TextStyle(
+                  color: Colors.black.withOpacity(.6),
+                  fontSize: 16,
+                  fontFamily: 'IBM',
+                )),
+          )
+        ],
+      ),
     );
   }
 }

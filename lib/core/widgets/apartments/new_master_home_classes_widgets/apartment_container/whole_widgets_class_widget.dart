@@ -34,9 +34,12 @@ class _WholeWidgetOfApartmentState extends State<WholeWidgetOfApartment> {
           ),
           Row(
             children: [
-              ApartmentTitleText(
-                index: widget.index,
-                apartmentsRes: widget.apartmentsRes,
+              SizedBox(
+                width: 250,
+                child: ApartmentTitleText(
+                  index: widget.index,
+                  apartmentsRes: widget.apartmentsRes,
+                ),
               ),
               const Spacer(),
               ApartmentPriceText(

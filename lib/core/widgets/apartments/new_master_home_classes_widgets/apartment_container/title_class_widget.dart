@@ -13,7 +13,8 @@ class ApartmentTitleText extends StatelessWidget {
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.all(8.0),
-      child: Text((apartmentsRes.data?[index].title ?? ""),
+      child: Text(apartmentsRes.data?[index].title ?? "",
+          softWrap: true,
           style: TextStyle(
             color: Colors.black.withOpacity(.7),
             fontFamily: 'IBM',
