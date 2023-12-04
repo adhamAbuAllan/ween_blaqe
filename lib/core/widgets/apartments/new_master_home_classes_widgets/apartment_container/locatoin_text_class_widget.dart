@@ -21,7 +21,7 @@ class ApartmentLocatoinText extends StatelessWidget {
         ),
         Padding(
           padding: const EdgeInsets.fromLTRB(10, 0, 0, 0),
-          child: Text(apartmentsRes.data?[index].city ?? "",
+          child: Text(apartmentsRes.data?[index].city?.name ?? "",
               style: TextStyle(
                 color: Colors.black.withOpacity(.6),
                 fontSize: 16,

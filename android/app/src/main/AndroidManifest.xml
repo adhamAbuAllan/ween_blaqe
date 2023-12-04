@@ -34,7 +34,8 @@
         android:label="وين بلاقي"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher"
-         android:usesCleartextTraffic="true"
+        android:usesCleartextTraffic="true"
+        android:enableOnBackInvokedCallback="true"
 >
        <!-- Provide required visibility configuration for API level 30 and above -->
         <activity

@@ -1,5 +1,7 @@
 import 'package:ween_blaqe/api/advantages.dart';
+import 'package:ween_blaqe/api/type_of_apartment.dart';
 
+import '../cities.dart';
 import '../photos.dart';
 import 'apartments.dart';
 
@@ -61,8 +63,8 @@ class DataOfOneApartment {
   late final String? description;
   late final String? location;
   late final int? price;
-  late final String? city;
-  late final String? type;
+  late final City? city;
+  late final TypeOfApartment? type;
   late final String? updatedAt;
   late final int? countOfStudnet;
 
@@ -81,8 +83,8 @@ class DataOfOneApartment {
     description = json['description'];
     location = json['location'];
     price = json['price'];
-    city = json['city'];
-    type = json['type'];
+    city = City.fromJson(json['city']);
+    type = TypeOfApartment.fromJson(json['type']);
     updatedAt = json['updated_at'];
   }
 
@@ -100,8 +102,8 @@ class DataOfOneApartment {
     _data['location'] = location;
     _data['price'] = price;
     _data['count_of_student'] = countOfStudnet;
-    _data['city'] = city;
-    _data['type'] = type;
+    _data['city'] = city?.toJson()??"";
+    _data['type'] = type?.toJson()??"";
     _data['updated_at'] = updatedAt;
     return _data;
   }

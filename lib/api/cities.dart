@@ -41,7 +41,7 @@ class City {
   City.fromJson(Map<String, dynamic> json){
     id = json['id'];
     name = json['name'];
-    active = json['active'];
+    // active = json['active'];
     createdAt = json['created_at'];
     updatedAt = json['updated_at'] ;
   }
@@ -50,7 +50,7 @@ class City {
     final _data = <String, dynamic>{};
     _data['id'] = id;
     _data['name'] = name;
-    _data['active'] = active ;
+    // _data['active'] = active ;
     _data['created_at'] = createdAt ;
     _data['updated_at'] = updatedAt ;
     return _data;

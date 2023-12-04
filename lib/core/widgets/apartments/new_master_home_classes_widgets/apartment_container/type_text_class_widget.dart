@@ -18,7 +18,7 @@ class _ApartmentTypeTextState extends State<ApartmentTypeText> {
         Padding(
           padding: const EdgeInsets.all(8.0),
           child: Text(
-            " سكن :${widget.apartmentsRes.data?[widget.index].type ?? ""}",
+            " سكن :${widget.apartmentsRes.data?[widget.index].type?.name ?? ""}",
             style: TextStyle(
                 fontSize: 14,
                 fontFamily: 'IBM',
