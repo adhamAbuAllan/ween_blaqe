@@ -9,6 +9,7 @@ import 'package:ween_blaqe/core/widgets/apartments/new_master_home_classes_widge
 import 'package:ween_blaqe/core/widgets/apartments/new_master_home_classes_widgets/types_of_apartments_list/show_list_button.dart';
 import 'package:ween_blaqe/core/widgets/apartments/new_master_home_classes_widgets/types_of_apartments_list/type_item_button.dart';
 import 'package:ween_blaqe/core/widgets/skeletons/student_widgets/home_skeleton_widget.dart';
+import 'package:ween_blaqe/features/error_widgets/no_internet.dart';
 import 'package:ween_blaqe/features/error_widgets/search_not_found.dart';
 import '../../../../api/apartments_api/one_apartment.dart';
 import '../../../../api/photos.dart';
@@ -99,21 +100,28 @@ class _NewMasterHomeState extends State<NewMasterHome> {
             if (snapshot.data == ConnectivityResult
                 .wifi) { // show snackbar connection if have connection with wifi
               isStart
-                  ? const Text("")
-                  : showSnakBarInStreamBuilder(
+                  ?
+            const Text("")
+                  :
+            showSnakBarInStreamBuilder(
                   context, "تمت إعادة الاتصال",
                   isIcon: true,
                   icon: Icons.wifi,
                   isConnect: true,
                   isStart: isStart);
+
+                // Navigator.pop(context);
+
             } else if (snapshot.data == ConnectivityResult
-                .none) { // show sanckbar no connectoin if no have connection with wifi
+                .none) { // show sanckbar no connectoin if no have connection with wifi and go to no Internet screen
               showSnakBarInStreamBuilder(
                   context, "انقطع الانترنت",
                   isIcon: true,
                   icon: Icons.wifi_off,
                   isConnect: false,
                   isStart: isStart);
+              isStart = false;
+              return const NoInternet();
             }
 
             return GestureDetector(

@@ -1,16 +1,12 @@
 import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:colorful_safe_area/colorful_safe_area.dart';
-import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:flutter/material.dart';
 import 'package:vibration/vibration.dart';
-import 'package:ween_blaqe/core/utils/funcations/route_pages/push_routes.dart';
 import 'package:ween_blaqe/core/utils/styles/text_style/aline_style.dart';
 import 'package:ween_blaqe/constants/nums.dart';
-import 'package:ween_blaqe/features/user/studnet/from_master_home_to_show_more/new_master_home.dart';
 import '../../core/utils/styles/button.dart';
 import '../../core/widgets/buttons/lines_buttons/line_buttons.dart';
-import '../../main.dart';
 
 class NoInternet extends StatefulWidget {
   const NoInternet({
@@ -89,7 +85,8 @@ class _NoInternetState extends State<NoInternet> {
       color: kPrimaryColor,
       child: Scaffold(
         backgroundColor: Colors.grey.shade200,
-        body:AnimatedAlign(
+        body:
+        AnimatedAlign(
           alignment: isWantToSepha ? Alignment.center : Alignment.topCenter,
           duration: const Duration(milliseconds: 800),
           child: AnimatedContainer(
@@ -109,7 +106,6 @@ class _NoInternetState extends State<NoInternet> {
             duration: const Duration(milliseconds: 800),
             child: Column(
               children: [
-
                 //
                 // isAnimate ? AnimatedAlign(duration: const Duration(milliseconds: 700),
                 //     curve: Curves.linear,
@@ -216,6 +212,7 @@ class _NoInternetState extends State<NoInternet> {
               ],
             ),
           ),
+
         ),
       ),
     );
