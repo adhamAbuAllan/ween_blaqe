@@ -156,7 +156,7 @@ class _NewMasterHomeState extends State<NewMasterHome> {
                     ), //btn show types of apartments
                     Padding(
                       padding: const EdgeInsets.only(top: 10 * 7, left: 8.0),
-                      child: AnimatedOpacity(
+                      child: !_isListOfTypes ? const SizedBox(): AnimatedOpacity(
                           opacity: (_isListOfTypes ? (_isVisible ? 1 : 0) : 0),
                           duration: const Duration(milliseconds: 350),
 
@@ -175,7 +175,6 @@ class _NewMasterHomeState extends State<NewMasterHome> {
 
                                         setState(() {
                                           isDataLoaded = false;
-
                                           _type = "طلاب";
                                           callAPIandAssignData(
                                               type: _type, isAll: false);
