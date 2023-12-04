@@ -172,7 +172,10 @@ class _NewMasterHomeState extends State<NewMasterHome> {
                                     ApartmentShowTypesTextButton(
                                       textType: 'طلاب',
                                       onPressed: () {
+
                                         setState(() {
+                                          isDataLoaded = false;
+
                                           _type = "طلاب";
                                           callAPIandAssignData(
                                               type: _type, isAll: false);
@@ -205,6 +208,8 @@ class _NewMasterHomeState extends State<NewMasterHome> {
                                       textType: 'طالبات',
                                       onPressed: () {
                                         setState(() {
+                                          isDataLoaded = false;
+
                                           _type = "طالبات";
                                           callAPIandAssignData(
                                               type: _type, isAll: false);
@@ -238,6 +243,8 @@ class _NewMasterHomeState extends State<NewMasterHome> {
                                       textType: 'عائلات',
                                       onPressed: () {
                                         setState(() {
+                                          isDataLoaded = false;
+
                                           _type = "عائلات";
                                           callAPIandAssignData(
                                               type: _type, isAll: false);
@@ -270,7 +277,9 @@ class _NewMasterHomeState extends State<NewMasterHome> {
                                       textType: 'الكل',
                                       onPressed: () {
                                         setState(() {
+                                          isDataLoaded = false;
                                           // _type = "عائلات";
+
                                           callAPIandAssignData(isAll: true);
                                           _isBoyStudent = false;
                                           _isGirlStudent = false;
