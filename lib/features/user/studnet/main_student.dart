@@ -267,7 +267,7 @@ class _MainStudentState extends State<MainStudent> {
                         CupertinoActionSheetAction(
                             onPressed: () {
                               sendMessageToWhatsApp(
-                                  '2569339613', "السلام عليكم");
+                                  '2569339613', "السلام عليكم، ");
                             },
                             child: const Text(
                               "طلب الإشتراك عبر واتس أب",
@@ -276,7 +276,7 @@ class _MainStudentState extends State<MainStudent> {
                             )),
                         CupertinoActionSheetAction(
                             onPressed: () {
-
+myPushName(context, MyPagesRoutes.theAdIsFreeOrNot);
                             },
                             child: const Text(
                               "عرض تفاصيل الإشتراك",
