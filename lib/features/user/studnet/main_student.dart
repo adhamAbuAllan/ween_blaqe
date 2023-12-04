@@ -13,7 +13,6 @@ import '../../../core/widgets/bottom_nav_bar/bottom_nav_of_student.dart';
 import 'package:ween_blaqe/constants/nums.dart';
 import '../../widgets_before_user_reg/account_before_login.dart';
 import 'from_master_home_to_show_more/new_master_home.dart';
-import 'notification.dart';
 import 'orders_of_student.dart';
 
 class MainStudent extends StatefulWidget {
@@ -60,7 +59,7 @@ class _MainStudentState extends State<MainStudent> {
 
                     NewMasterHome(),
                     // const NewMasterHomeTest(),
-                    NotificationOfStudentWithNotifi(),
+                    // NotificationOfStudentWithNotifi(),
                     OrdersOfStudent(),
                     // const Bookmark(),
                     // NewSession.get("logged", "") == ""

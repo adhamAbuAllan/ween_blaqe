@@ -51,17 +51,17 @@ class _BottomNavigationBarOfStudentState
 
         ),
         //notification item
-        BottomNavigationBarItem(
-          icon: Icon(
-            Icons.notifications_outlined,
-
-          ),
-          label: 'الاشعارات',
-          activeIcon: Icon(
-            Icons.notifications,
-
-          )
-        ),
+        // BottomNavigationBarItem(
+        //   icon: Icon(
+        //     Icons.notifications_outlined,
+        //
+        //   ),
+        //   label: 'الاشعارات',
+        //   activeIcon: Icon(
+        //     Icons.notifications,
+        //
+        //   )
+        // ),
         //orders item
         BottomNavigationBarItem(
           icon: Icon(Icons.home_repair_service_outlined),
