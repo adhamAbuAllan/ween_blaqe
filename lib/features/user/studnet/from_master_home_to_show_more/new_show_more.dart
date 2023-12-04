@@ -53,13 +53,13 @@ class _NewShowMoreState extends State<NewShowMore> {
   void initState() {
     super.initState();
     isStart = true;
-    if (widget.oneApartment?.type == "طلاب") {
+    if (widget.oneApartment?.type?.name == "طلاب") {
       _isBoyStudent = true;
     }
-    if (widget.oneApartment?.type == "طالبات") {
+    if (widget.oneApartment?.type?.name == "طالبات") {
       _isGirlStudent = true;
     }
-    if (widget.oneApartment?.type == "عائلات") {
+    if (widget.oneApartment?.type?.name == "عائلات") {
       _isFamilies = true;
     }
 
@@ -280,20 +280,26 @@ class _NewShowMoreState extends State<NewShowMore> {
                         // location
                         Row(
                           children: [
-                            Padding(
-                              padding: const EdgeInsets.fromLTRB(0, 0, 10, 10),
-                              child: Text(
-                                "المكان:${widget.oneApartment?.city ?? ""
+                            SizedBox(
+                              width: 360,
+                              child: Padding(
+                                padding: const EdgeInsets.fromLTRB(0, 0, 10, 10),
+                                child: Text(
+                                  "المكان:${widget.oneApartment?.city?.name ?? ""
 
-                                // data.
-                                }-${widget.oneApartment?.location ?? ""
-                                // .data
 
-                                }",
-                                textDirection: TextDirection.rtl,
-                                style: TextStyle(
-                                  color: Colors.black.withOpacity(.7),
-                                  fontFamily: 'IBM',
+                                  // data.
+                                  }-${widget.oneApartment?.location ?? ""
+                                  // .data
+
+                                  }",
+                                  softWrap: true,
+
+                                  textDirection: TextDirection.rtl,
+                                  style: TextStyle(
+                                    color: Colors.black.withOpacity(.7),
+                                    fontFamily: 'IBM',
+                                  ),
                                 ),
                               ),
                             ),
@@ -303,6 +309,7 @@ class _NewShowMoreState extends State<NewShowMore> {
                         //count of student
                         Row(
                           children: [
+
                             Padding(
                               padding: const EdgeInsets.fromLTRB(0, 0, 5, 10),
                               child: Text(
@@ -328,7 +335,7 @@ class _NewShowMoreState extends State<NewShowMore> {
                             Padding(
                               padding: const EdgeInsets.fromLTRB(0, 0, 5, 10),
                               child: Text(
-                                  "نوع السكن:${widget.oneApartment?.type ?? ""}",
+                                  "نوع السكن:${widget.oneApartment?.type?.name ?? ""}",
                                   style: TextStyle(
                                     color: Colors.black.withOpacity(.6),
                                     fontSize: 16,
