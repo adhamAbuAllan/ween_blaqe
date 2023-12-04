@@ -263,17 +263,21 @@ class _NewShowMoreState extends State<NewShowMore> {
                         //title
                         Row(
                           children: [
-                            Padding(
-                              padding: const EdgeInsets.fromLTRB(10, 0, 10, 10),
-                              child: Text(
-                                  widget.oneApartment?.title ?? ""
-                                  // data.
-                                  ,
-                                  style: TextStyle(
-                                    color: Colors.black.withOpacity(.7),
-                                    fontSize: 18,
-                                    fontFamily: 'IBM',
-                                  )),
+                            SizedBox(
+                              width: 360,
+                              child: Padding(
+                                padding: const EdgeInsets.fromLTRB(10, 0, 10, 10),
+                                child: Text(
+                                    "${widget.oneApartment?.title ?? ""}"
+                                    // data.
+                                    ,
+                                    softWrap: true,
+                                    style: TextStyle(
+                                      color: Colors.black.withOpacity(.7),
+                                      fontSize: 18,
+                                      fontFamily: 'IBM',
+                                    )),
+                              ),
                             ),
                           ],
                         ),
@@ -803,7 +807,6 @@ class _NewShowMoreState extends State<NewShowMore> {
                               child: Text(""),
                             ),
                             SizedBox(
-                              width: 115,
                               height: 50,
                               child: OutlinedButton(
                                 onPressed: () async {
@@ -850,7 +853,7 @@ class _NewShowMoreState extends State<NewShowMore> {
                                       Padding(
                                         padding: const EdgeInsets.fromLTRB(
                                             0, 0, 0, 0),
-                                        child: Text(" واتساب",
+                                        child: Text(" واتس اب",
                                             style: TextStyle(
                                               color:
                                                   Colors.black.withOpacity(.7),
