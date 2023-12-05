@@ -1,10 +1,12 @@
 import 'package:colorful_safe_area/colorful_safe_area.dart';
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:ween_blaqe/constants/strings.dart';
 import 'package:ween_blaqe/core/utils/funcations/route_pages/push_routes.dart';
 import 'package:ween_blaqe/core/utils/styles/text_style/aline_style.dart';
 
 import 'package:ween_blaqe/constants/nums.dart';
+import '../../../core/utils/funcations/go_url_launcher_methodes/go_to_whatsapp_method.dart';
 import '../../../core/widgets/buttons/lines_buttons/line_buttons.dart';
 
 class AskForHelp extends StatelessWidget {
@@ -94,8 +96,17 @@ class AskForHelp extends StatelessWidget {
               ),
             ],
           ),
+        floatingActionButton:
+
+        Padding(
+          padding: const EdgeInsets.only(bottom: 45.0),
+          child: FloatingActionButton(shape:ContinuousRectangleBorder(borderRadius: BorderRadius.circular(16/2)) ,
+            onPressed: (){                              sendMessageToWhatsApp(
+                '2569339613', "السلام عليكم، ممكن مساعدة، ");},backgroundColor: const Color(0xff25D366),child: const FaIcon(FontAwesomeIcons.whatsapp,size: 30),),
+        ),
         ),
       ),
     );
+
   }
 }

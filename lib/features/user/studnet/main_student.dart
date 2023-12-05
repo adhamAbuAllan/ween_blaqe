@@ -77,6 +77,7 @@ class _MainStudentState extends State<MainStudent> {
 // floatingActionButtonLocation: FloatingActionButtonLocation.miniEndFloat,
 
           floatingActionButton: FloatingActionButton(
+              shape:ContinuousRectangleBorder(borderRadius: BorderRadius.circular(16/2)),
             onPressed: () {
               showCupertinoModalPopup(
                   context: context,
@@ -299,7 +300,7 @@ myPushName(context, MyPagesRoutes.theAdIsFreeOrNot);
                   });
             },
             backgroundColor: kPrimaryColor,
-            child: const Icon(Icons.add_home_outlined),
+            child: const Icon(Icons.add_home_outlined,size: 30,),
           )
           // buildSpeedDial()
           // FloatingActionButton(
