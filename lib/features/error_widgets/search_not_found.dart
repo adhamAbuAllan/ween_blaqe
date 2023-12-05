@@ -160,28 +160,21 @@ class _TypeNotFoundState extends State<TypeNotFound> {
                     //this container have 6 Text Widgets that in Row because
                     // they tow items container and expanded widget
                     Column(children: [
+                      const SizedBox(height: 60,),
                       Padding(
-                        padding: const EdgeInsets.fromLTRB(210, 100, 10, 0),
-                        child: Text("لا توجد نتائج عن",
+                        padding: const EdgeInsets.only(right: 10),
+                        child: Text(
+                            " صنف سكن ال${ widget.type } غير متوفر ",
                             style: TextStyle(
-                              fontSize: 16.0,
-                              fontFamily: 'IBM',
-                              inherit: true,
-                              color: Colors.grey.shade800,
-                            )),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.fromLTRB(11*20, 0, 10, 20),
-                        child: Text(" سكن ${widget.type}",
-                            style: TextStyle(
-                              fontSize: 16.0,
+                              fontSize: 18.0,
                               fontFamily: 'IBM',
                               inherit: true,
                               color: Colors.grey.shade600,
                             )),
                       ),
+
                       Padding(
-                        padding: const EdgeInsets.fromLTRB(75, 0, 10, 10),
+                        padding: const EdgeInsets.fromLTRB(10, 0, 0, 0),
                         child: Text("  سيتم إضافة شقق لل${widget.type} قريبًا",
                             style: TextStyle(
                               fontSize: 16.0,
@@ -228,12 +221,12 @@ class _TypeNotFoundState extends State<TypeNotFound> {
                 ),
                 //
                 const Padding(
-                  padding: EdgeInsets.fromLTRB(0, 50, 0, 0),
+                  padding: EdgeInsets.fromLTRB(0, 150, 0, 0),
                   child: Image(
                     image: AssetImage(
-                        "assets/images/error_images/search_not_found.png"),
-                    height: 170,
-                    width: 170,
+                        "assets/images/error_images/search_not_found.png",),
+                    height: 130*2,
+                    width: 130*2,
                   ),
                 ),
                 Padding(
