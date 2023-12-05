@@ -812,7 +812,8 @@ class _NewShowMoreState extends State<NewShowMore> {
                                 onPressed: () async {
                                   sendMessageToWhatsApp(
                                       widget.oneApartment!.owner!.phone,
-                                      "هل يمكنني الاستفسار عن هذا؟");
+
+                                      "  السلام عليكم، ممكن أستفسر عن الإعلان الخاص بـ${widget.oneApartment?.title} ",image: widget.oneApartment?.photos?[0].url);
                                   // openBrowserURL(
                                   //     url: 'https://wa.me/970569118259/',
                                   //     inApp: false);

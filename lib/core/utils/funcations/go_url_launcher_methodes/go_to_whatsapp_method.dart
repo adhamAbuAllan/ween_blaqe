@@ -1,9 +1,9 @@
 import 'package:url_launcher/url_launcher.dart';
 
-void sendMessageToWhatsApp(String phoneNumber, String message, {bool?  isMyNumber}) async {
+void sendMessageToWhatsApp(String phoneNumber, String message, {bool?  isMyNumber ,String ? image}) async {
   
     // String urlWith970 = 'https://wa.me/970$phoneNumber/?text=${Uri.encodeFull(message)}';
-    String urlWith97 = 'https://wa.me/97$phoneNumber/?text=${Uri.encodeFull(message)}';
+    String urlWith97 = 'https://wa.me/97$phoneNumber/?text=${Uri.encodeFull("$message $image" )}';
 
     //this code could not be good work
 
