@@ -1,12 +1,19 @@
-import 'package:flutter/material.dart';
+import 'dart:convert';
 
+import 'package:flutter/material.dart';
+import 'package:http/http.dart' as http;
+
+import '../../../api/apartments_api/one_apartment.dart';
+import '../../../constants/strings.dart';
 import '../../../controller/student_controller/student_controller.dart';
 
 
 class BottomNavigationBarOfStudent extends StatefulWidget {
   final StudentController controller;
-  const BottomNavigationBarOfStudent({Key? key, required this.controller})
+
+    BottomNavigationBarOfStudent({Key? key, required this.controller,})
       : super(key: key);
+
   @override
   State<BottomNavigationBarOfStudent> createState() =>
       _BottomNavigationBarOfStudentState();
@@ -14,6 +21,14 @@ class BottomNavigationBarOfStudent extends StatefulWidget {
 
 class _BottomNavigationBarOfStudentState
     extends State<BottomNavigationBarOfStudent> {
+  String errorMessage  = "";
+  late OneApartment apartmentsRes;
+  bool isDataLoaded = false; //data load from server
+
+  @override
+  void initState() {
+    super.initState();
+  }
   var index = 0;
   bool isCodeActive = false;
   @override
@@ -40,11 +55,10 @@ class _BottomNavigationBarOfStudentState
         });
       },
       //items of BottomNavigationBer Widget
-      items: const [
+      items:  const [
         //home item
         BottomNavigationBarItem(
-
-          icon: Icon(Icons.home_outlined),
+            icon: Icon(Icons.home_outlined),
           label: 'الرئيسية',
 
           activeIcon: Icon(Icons.home)

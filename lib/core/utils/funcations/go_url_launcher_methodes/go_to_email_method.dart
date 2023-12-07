@@ -12,3 +12,12 @@ void snedMessageToEmail(String email , subject,body)async{
 throw " the email is not correct";
   }
 }
+void sendEmailToGmail(String emailAddress, String subject, String body ,) async {
+  String gmailUrl = 'mailto:$emailAddress?subject=${Uri.encodeFull(subject)}&body=${Uri.encodeFull(body)} , ';
+
+  if (await canLaunchUrl(Uri.parse(gmailUrl))) {
+    await launch(gmailUrl);
+  } else {
+    throw "Could not launch Gmail URL";
+  }
+}

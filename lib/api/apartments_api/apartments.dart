@@ -611,6 +611,8 @@ class Owner {
   late final String name;
   late final String phone;
   late final String gender;
+  late final String email;
+
   // late final int university;
   // late final int type;
   // late final int active;
@@ -622,6 +624,7 @@ class Owner {
     name = json['name'];
     phone = json['phone'];
     gender = json['gender'];
+    email = json['email'];
     // university = json['university'];
     // type = json['type'];
     // active = json['active'];
@@ -635,6 +638,8 @@ class Owner {
     _data['name'] = name;
     _data['phone'] = phone;
     _data['gender'] = gender;
+    _data['email'] = email;
+
     // _data['university'] = university;
     // _data['type'] = type;
     // _data['active'] = active;

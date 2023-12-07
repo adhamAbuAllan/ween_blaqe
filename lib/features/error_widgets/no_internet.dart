@@ -2,12 +2,16 @@ import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:colorful_safe_area/colorful_safe_area.dart';
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:vibration/vibration.dart';
 import 'package:ween_blaqe/core/utils/styles/text_style/aline_style.dart';
 import 'package:ween_blaqe/constants/nums.dart';
 import '../../core/utils/styles/button.dart';
 import '../../core/widgets/buttons/lines_buttons/line_buttons.dart';
 
+// main(){
+//   runApp(const MaterialApp(home: NoInternet(),));
+// }
 class NoInternet extends StatefulWidget {
   const NoInternet({
     Key? key,
@@ -17,7 +21,7 @@ class NoInternet extends StatefulWidget {
   State<NoInternet> createState() => _NoInternetState();
 }
 
-class _NoInternetState extends State<NoInternet> {
+class _NoInternetState extends State<NoInternet> with WidgetsBindingObserver {
   bool isWantToSepha = false;
   bool isContExpanding = false;
   bool isSephaCountrEnd = false;
@@ -25,12 +29,11 @@ class _NoInternetState extends State<NoInternet> {
   bool isFirstAnimate = false;
   bool isSecondAnimate = false;
   bool isLongPress = false;
-  bool isDataLoding  = false;
+  bool isDataLoding = false;
   int sephaCounter = 0;
   int index = 0;
   int total = 0;
   int onLongPressCounter = 17;
-
 
   CarouselController controller = CarouselController();
   List<String> sephaText = [
@@ -47,7 +50,31 @@ class _NoInternetState extends State<NoInternet> {
   @override
   void initState() {
     super.initState();
+    WidgetsBinding.instance.addObserver(this);
+    loadTotal();
   }
+
+  @override
+  void dispose() {
+    WidgetsBinding.instance.removeObserver(this);
+    super.dispose();
+  }
+
+  @override
+  void didChangeAppLifecycleState(AppLifecycleState state) {
+    if (state == AppLifecycleState.resumed) {
+      // Load the total value from SharedPreferences when the app is resumed
+      loadTotal();
+    }
+  }
+
+  void loadTotal() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    setState(() {
+      total = prefs.getInt('total') ?? 0;
+    });
+  }
+
 //   Container yourFirstChildWidget (){
 //     return Container();
 //   }
@@ -80,13 +107,19 @@ class _NoInternetState extends State<NoInternet> {
 // }
   @override
   Widget build(BuildContext context) {
-    return ColorfulSafeArea(
-      bottomColor: Colors.transparent ,
+    return
+
+      ColorfulSafeArea(
+      bottomColor: Colors.transparent,
       color: kPrimaryColor,
       child: Scaffold(
+        floatingActionButton: FloatingActionButton(
+            shape:ContinuousRectangleBorder(borderRadius: BorderRadius.circular(16/2)),
+            backgroundColor: kPrimaryColor,
+            // child: const Icon(,size: 30,),
+            onPressed: (){}),
         backgroundColor: Colors.grey.shade200,
-        body:
-        AnimatedAlign(
+        body: AnimatedAlign(
           alignment: isWantToSepha ? Alignment.center : Alignment.topCenter,
           duration: const Duration(milliseconds: 800),
           child: AnimatedContainer(
@@ -113,8 +146,6 @@ class _NoInternetState extends State<NoInternet> {
                 //     child: yourChildrenWidgets()) : yourPerantWidget(),
                 //
 
-
-
                 buildCounterTextRow(),
                 aline,
                 // !isContExpanding?const SizedBox() :  const AnimatedSize(
@@ -124,76 +155,101 @@ class _NoInternetState extends State<NoInternet> {
                 // ),
                 isWantToSepha
                     ? AnimatedSize(
-                  duration: const Duration(milliseconds: 1000),
-                  curve: Curves.linear,
-                  child: SizedBox(height: !isContExpanding ? 60 : 0),
-                )
+                        duration: const Duration(milliseconds: 1000),
+                        curve: Curves.linear,
+                        child: SizedBox(height: !isContExpanding ? 60 : 0),
+                      )
                     : const SizedBox(),
                 isContExpanding
                     ? const AnimatedSize(
-                    duration: Duration(milliseconds: 2900),
-                    curve: Curves.linear,
-                    child: SizedBox())
+                        duration: Duration(milliseconds: 2900),
+                        curve: Curves.linear,
+                        child: SizedBox())
                     : AnimatedAlign(
-                  duration: const Duration(milliseconds: 2900),
-                  alignment: Alignment.centerRight,
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    mainAxisSize: MainAxisSize.max,
-                    children: [
-                      isAnimate
-                          ? SizedBox(
-                        height: 28,
-                        child: buildAnimatedTextKit(),
-                      )
-                          : Text("$total+",
-                          style: const TextStyle(
-                              fontFamily: "IBM",
-                              color: Colors.orange)),
-                    ],
-                  ),
-                ),
+                        duration: const Duration(milliseconds: 2900),
+                        alignment: Alignment.centerRight,
+                        child: SizedBox(
+                          height: 30,
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            mainAxisSize: MainAxisSize.max,
+                            children: [
+
+                              isAnimate
+                                  ? SizedBox(
+                                      height: 28,
+                                      child: buildAnimatedTextKit(),
+                                    )
+                                  : Text("$total+",
+                                      style: const TextStyle(
+                                          fontFamily: "IBM",
+                                          color: Colors.orange)),
+
+                            ],
+                          ),
+                        ),
+                      ),
 
                 isWantToSepha
                     ? (!isContExpanding
-                    ? buildBorderSebhaContainer()
-                    : const SizedBox())
+                        ? buildBorderSebhaContainer()
+                        : const SizedBox())
                     : const SizedBox(),
                 isWantToSepha
                     ? AnimatedSize(
-                  duration: const Duration(milliseconds: 1000),
-                  curve: Curves.linear,
-                  child: SizedBox(height: !isContExpanding ? 150 : 80),
-                )
+                        duration: const Duration(milliseconds: 1000),
+                        curve: Curves.linear,
+                        child: SizedBox(height: !isContExpanding ? 80 : 80),
+                      )
                     : const SizedBox(),
 
                 isWantToSepha
                     ? (!isContExpanding
-                    ? SizedBox(
-                  width: double.infinity,
-                  height: 55,
-                  child: buildSebhaElevatedButton(),
-                )
-                    : const SizedBox())
+                        ? Column(
+                          children: [
+                            SizedBox(
+                                width: double.infinity,
+                                height: 55,
+                                child: buildSebhaElevatedButton(),
+                              )   ,
+                            SizedBox(height: 20,),
+                            SizedBox(
+                                width: double.infinity,
+                                height: 55,
+                                child: OutlinedButton(
+
+                                    style: outlineButton,
+                                    onPressed: () {
+
+                                  setState(() {
+                                    total = 0;
+                                    saveTotal(total);
+                                  });
+                                },
+                                child: Text("تصفير")),
+                              ),
+                          ],
+                        )
+                        : const SizedBox())
                     : (isContExpanding
-                    ? const AnimatedSize(duration: Duration(seconds: 1))
-                    : AnimatedAlign(
-                  duration: const Duration(milliseconds: 100),
-                  curve: Curves.bounceInOut,
-                  alignment: Alignment.bottomCenter,
-                  child: buttonHaveTitleAndIcon(
-                        () {
-                      setState(() {
-                        isWantToSepha = true;
-                        isContExpanding = true;
-                      });
-                    },
-                    "إبدأ التسبيح",
-                    image: Image.asset("assets/images/tasbih.png",
-                        width: 35, height: isContExpanding ? 0 : 35),
-                    isIcon: false,
-                  ),
-                ))
+                        ? const AnimatedSize(duration: Duration(seconds: 1))
+                        : AnimatedAlign(
+                            duration: const Duration(milliseconds: 100),
+                            curve: Curves.bounceInOut,
+                            alignment: Alignment.bottomCenter,
+                            child: buttonHaveTitleAndIcon(
+                              () {
+                                setState(() {
+                                  isWantToSepha = true;
+                                  isContExpanding = true;
+                                });
+                              },
+                              "إبدأ التسبيح",
+                              image: Image.asset("assets/images/tasbih.png",
+                                  width: 35, height: isContExpanding ? 0 : 35),
+                              isIcon: false,
+                            ),
+                          ))
                 // const Icon(
                 //   // Icons.tasb,
                 //   FontAwesomeIcons.tas
@@ -212,11 +268,11 @@ class _NoInternetState extends State<NoInternet> {
               ],
             ),
           ),
-
         ),
       ),
     );
   }
+
   ///////////////////////////////////
   //////////////////////////////////
   /////////////////////////////////
@@ -311,10 +367,7 @@ class _NoInternetState extends State<NoInternet> {
   //SebhaSlider
   CarouselSlider buildSebhaCarouselSlider() {
     return CarouselSlider(
-      items: sephaText
-          .asMap()
-          .entries
-          .map((entry) {
+      items: sephaText.asMap().entries.map((entry) {
         return Builder(builder: (BuildContext context) {
           index = entry.key;
           debugPrint(entry.value);
@@ -330,11 +383,11 @@ class _NoInternetState extends State<NoInternet> {
       carouselController: controller,
       options: CarouselOptions(
 
-        // onPageChanged: (i, reason) {
-        //   setState(() {
-        //     index = i;
-        //   });
-        // },
+          // onPageChanged: (i, reason) {
+          //   setState(() {
+          //     index = i;
+          //   });
+          // },
           scrollDirection: Axis.vertical,
           height: 50),
     );
@@ -349,7 +402,6 @@ class _NoInternetState extends State<NoInternet> {
             isLongPress = true;
 
             onLongPressCounter++;
-
 
             // index = onLongPressCounter;
             controller.animateToPage(
@@ -375,7 +427,6 @@ class _NoInternetState extends State<NoInternet> {
             debugPrint("long prees is Finish");
           });
         },
-
         onPressed: () async {
           setState(() {
             onLongPressCounter = 17;
@@ -395,7 +446,7 @@ class _NoInternetState extends State<NoInternet> {
                     curve: Curves.linear,
                     index);
                 total++;
-
+                saveTotal(total);
                 total % 10 == 0 ? isAnimate = true : false;
                 isAnimate ? isSephaCountrEnd = true : isSephaCountrEnd = false;
                 isAnimate ? isFirstAnimate = true : isFirstAnimate = false;
@@ -417,10 +468,18 @@ class _NoInternetState extends State<NoInternet> {
             });
           });
         },
-        child: const Text("سّبح"));
+        child: Text(
+          "سّبح",
+          style: TextStyle(color: Colors.white.withOpacity(.95)),
+        ));
   }
 
   var loading = false;
+
+}
+void saveTotal(int totalValue) async {
+  SharedPreferences prefs = await SharedPreferences.getInstance();
+  prefs.setInt('total', totalValue);
 }
 
 // void main() {

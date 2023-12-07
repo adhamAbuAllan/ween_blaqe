@@ -16,6 +16,8 @@ import 'package:ween_blaqe/core/utils/styles/button.dart';
 import 'package:ween_blaqe/features/error_widgets/no_internet.dart';
 import '../../../../constants/nums.dart';
 import '../../../../constants/strings.dart';
+import '../../../../core/utils/funcations/go_url_launcher_methodes/go_to_email_method.dart';
+import '../../../../core/utils/funcations/go_url_launcher_methodes/go_to_messenger_method.dart';
 import '../../../../core/utils/funcations/snakbar_for_stream_builder.dart';
 import '../../../../core/widgets/apartments/show_more_classes_widget/image_slider/pointer.dart';
 import '../../../../core/widgets/apartments/show_more_classes_widget/image_slider/zoom_of_image/home.dart';
@@ -810,6 +812,8 @@ class _NewShowMoreState extends State<NewShowMore> {
                               height: 50,
                               child: OutlinedButton(
                                 onPressed: () async {
+
+                                  // sendMessageToMessenger("https://www.facebook.com/adhm.alaan"," السلام عليكم، ممكن أستفسر عن الإعلان الخاص بـ${widget.oneApartment?.title}");
                                   sendMessageToWhatsApp(
                                       widget.oneApartment!.owner!.phone,
 
@@ -855,6 +859,69 @@ class _NewShowMoreState extends State<NewShowMore> {
                                         padding: const EdgeInsets.fromLTRB(
                                             0, 0, 0, 0),
                                         child: Text(" واتس اب",
+                                            style: TextStyle(
+                                              color:
+                                                  Colors.black.withOpacity(.7),
+                                              fontSize: 16,
+                                              fontFamily: 'IBM',
+                                            )),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                              ),
+                            ),
+                            SizedBox(width: 20,),
+                          widget.oneApartment!.owner!.email.isEmpty? const SizedBox(): SizedBox(
+                              height: 50,
+                              child: OutlinedButton(
+                                onPressed: () async {
+                                  sendEmailToGmail(
+
+
+                                      widget.oneApartment!.owner!.email,"إستفسار عن إعلان ${widget.oneApartment!.title },","  السلام عليكم، ممكن أستفسر عن الإعلان الخاص بـ${widget.oneApartment?.title} ",);
+
+                                  // openBrowserURL(
+                                  //     url: 'https://wa.me/970569118259/',
+                                  //     inApp: false);
+
+// _launchUrl;
+// final value = ClipboardData(text: number_phone);
+// Clipboard.setData(value);
+//                                 number_phone2;
+
+// Fluttertoast.showToast(
+//     msg: "الرقم غير صحيح",
+//     toastLength: Toast.LENGTH_SHORT,
+//     gravity: ToastGravity.BOTTOM_RIGHT,
+//     timeInSecForIosWeb: 10,
+//     backgroundColor: Colors.blue,
+//     textColor: Colors.white,
+//     fontSize: 16.0
+// );
+                                },
+                                style: outlineButton,
+                                child: Padding(
+                                  padding: const EdgeInsets.all(8.0),
+                                  child: Row(
+                                    children: [
+//whtsapp icon
+                                      const Padding(
+                                        padding:
+                                            EdgeInsets.fromLTRB(0, 0, 0, 0),
+                                        child: Image(
+                                          image: AssetImage(
+                                              "assets/images/gmail.png"),
+                                          width: 28,
+                                          height: 28,
+                                        ),
+                                      ),
+
+//text
+                                      Padding(
+                                        padding: const EdgeInsets.fromLTRB(
+                                            0, 0, 0, 0),
+                                        child: Text(" جيميل",
                                             style: TextStyle(
                                               color:
                                                   Colors.black.withOpacity(.7),

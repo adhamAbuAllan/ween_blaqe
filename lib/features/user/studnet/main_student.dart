@@ -1,6 +1,7 @@
 import 'package:colorful_safe_area/colorful_safe_area.dart';
 import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:flutter/cupertino.dart';
+
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
@@ -73,12 +74,15 @@ class _MainStudentState extends State<MainStudent> {
           ),
           bottomNavigationBar: BottomNavigationBarOfStudent(
             controller: studentController,
+
           ),
 // floatingActionButtonLocation: FloatingActionButtonLocation.miniEndFloat,
 
           floatingActionButton: FloatingActionButton(
               shape:ContinuousRectangleBorder(borderRadius: BorderRadius.circular(16/2)),
             onPressed: () {
+
+
               showCupertinoModalPopup(
                   context: context,
                   builder: (
