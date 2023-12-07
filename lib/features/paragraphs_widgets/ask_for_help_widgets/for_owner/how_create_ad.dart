@@ -53,7 +53,7 @@ class HowCreateAd extends StatelessWidget {
                     ),
                   ),
                 ),
-                Image.asset("assets/images/screenshot/Screenshot_home_screen.png",width: 200,height: 300,),
+                Image.asset("assets/images/apartments_images/Simulator Screenshot - iPhone 15 Pro Max - 2023-12-05 at 14.48.13.png",width: 300,height: 400,),
                 Container(
                   width: double.infinity,
                   margin: const EdgeInsets.fromLTRB(25, 50, 30, 10),
@@ -68,7 +68,7 @@ class HowCreateAd extends StatelessWidget {
                   ),
                 ),
                 Image.asset(
-                    "assets/images/screenshot/Screenshot_select_add_home_button.png",width: 200,height: 300,),
+                    "assets/images/apartments_images/Simulator Screenshot - iPhone 15 Pro Max - 2023-12-05 at 14.32.35.png",width: 300,height: 400,),
                 Container(
 
                   width: double.infinity,
@@ -77,7 +77,7 @@ class HowCreateAd extends StatelessWidget {
                     // " في حال"
                     // " كنت مسجل في حساب طالب ، يمكنك نشر إعلانك ، فالتطبيق"
                     // " يسهل على المستخدم حجز او نشر شقة في نفس الوقت",
-                    "ستظهر لك ايقونة الواتس أب ، قم بإضغط عليها",
+                    "ثم أضغط على زر 'اطلب الإشتراك عبر واتس أب'",
                     style: TextStyle(
                       fontSize: 16.0,
                       color: Colors.grey.shade800,
@@ -89,7 +89,7 @@ class HowCreateAd extends StatelessWidget {
             
                 Image.asset(
 
-                    "assets/images/screenshot/Screenshot_select_what_app_button.png",width: 200,height: 300,),
+                    "assets/images/apartments_images/Simulator Screenshot - iPhone 15 Pro Max - 2023-12-05 at 14.27.36.png",width: 300,height: 400,),
                 Container(
                   width: double.infinity,
                   margin: const EdgeInsets.fromLTRB(25, 5, 30, 10),
