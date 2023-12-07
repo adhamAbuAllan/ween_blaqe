@@ -113,11 +113,6 @@ class _NoInternetState extends State<NoInternet> with WidgetsBindingObserver {
       bottomColor: Colors.transparent,
       color: kPrimaryColor,
       child: Scaffold(
-        floatingActionButton: FloatingActionButton(
-            shape:ContinuousRectangleBorder(borderRadius: BorderRadius.circular(16/2)),
-            backgroundColor: kPrimaryColor,
-            // child: const Icon(,size: 30,),
-            onPressed: (){}),
         backgroundColor: Colors.grey.shade200,
         body: AnimatedAlign(
           alignment: isWantToSepha ? Alignment.center : Alignment.topCenter,
