@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 
-const Widget aline = Divider(
-  color: Colors.black54,
-  height: 2,
-  thickness: 1,
+ Widget aline = Divider(
+  color: Colors.black.withOpacity(.5),
+  height: 1,
+  thickness: .1,
 );
 
 // Row(

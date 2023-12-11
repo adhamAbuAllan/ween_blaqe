@@ -2,6 +2,7 @@
 
 import 'package:colorful_safe_area/colorful_safe_area.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:get/get.dart';
 import 'package:ween_blaqe/constants/strings.dart';
 import 'package:ween_blaqe/core/utils/funcations/route_pages/push_routes.dart';
@@ -13,12 +14,53 @@ import 'package:ween_blaqe/core/utils/styles/text_style/aline_style.dart';
 import 'package:ween_blaqe/constants/nums.dart';
 import '../../core/widgets/buttons/lines_buttons/line_buttons.dart';
 
-import 'registration.dart';
+// import 'registration.dart';
 import '../../controller/main_controller.dart';
 import '../../controller/owner_controller/owner_controller.dart';
 import '../../controller/student_controller/student_controller.dart';
-import 'login.dart';
+// import 'login.dart';
+main (){
+  runApp(MaterialApp(
+    debugShowCheckedModeBanner: false,
 
+    darkTheme: ThemeData(
+
+      useMaterial3: false,
+
+
+      colorScheme: ColorScheme.fromSwatch().copyWith(secondary: Colors.grey),
+
+
+      // brightness: Brightness.darkf
+    ),
+
+    // themeMode: ThemeMode.system,
+
+    theme: ThemeData(
+        useMaterial3: false,
+        fontFamily: 'IBM',
+
+        // brightness: Brightness.,
+
+        // scaffoldBackgroundColor: Colors.grey.shade200,
+        switchTheme: const SwitchThemeData(),
+        colorSchemeSeed: const Color(0xffff9800),
+        bottomNavigationBarTheme: const BottomNavigationBarThemeData(
+            selectedIconTheme: IconThemeData(size: 26))),
+    //make screen rtl
+    localizationsDelegates: const [
+      GlobalCupertinoLocalizations.delegate,
+      GlobalMaterialLocalizations.delegate,
+      GlobalWidgetsLocalizations.delegate,
+    ],
+    supportedLocales: const [
+      Locale("en", "US"),
+      Locale("ar", "SA"), // OR Locale('ar', 'AE') OR Other RTL locales
+    ],
+    locale: const Locale("ar", "SA"),
+
+    home: AccountBeforeLoginInStudent(),));
+}
 //Account before login Screen
 
 class AccountBeforeLoginInStudent extends StatefulWidget {
@@ -80,7 +122,7 @@ class _AccountBeforeLoginInStudentState
               Row(
                 children: [
                   Padding(
-                    padding: const EdgeInsets.fromLTRB(0, 0, 10, 55),
+                    padding: const EdgeInsets.fromLTRB(0, 0, 10, 75),
                     child: Text(
                       // "قم بتسجيل الدخول لتحجز اول شقة لك ",
                       "لا يتطلب حجز شقة حساب جديد أو تسجيل الدخول ",
@@ -139,31 +181,42 @@ class _AccountBeforeLoginInStudentState
               //     ],
               //   ),
               // ),
-              aline,
-              //help
-              buttonAccount(() {
-                myPushName(context, MyPagesRoutes.askForHelp);
-              },
-                  const Icon(
-                    Icons.info_outline,
-                    size: 32,
-                    color: Colors.black87,
-                  ),
-                  "اطلب المساعدة"),
-
-              aline,
-              //privacy policy
-              buttonAccount(() {
-                myPushName(context, MyPagesRoutes.privacyPolicy);
-              },
-                  const Icon(
-                    Icons.privacy_tip_outlined,
-                    size: 32,
-                    color: Colors.black87,
-                  ),
-                  "سياسة الخصوصية"),
               // aline,
-              //switch to owner
+              //help
+
+              Container(
+                  child: Container(
+                    padding: const EdgeInsets.fromLTRB(0, 0, 0, 10),
+                    margin: const EdgeInsets.fromLTRB(10, 0, 10, 0),
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(7),
+                      color: Colors.white,
+                    ),
+                    child: Column(children: [
+
+                      buttonAccount(() {
+                        myPushName(context, MyPagesRoutes.askForHelp);
+                      },
+                          const Icon(
+                            Icons.info_outline,
+                            size: 32,
+                            color: Colors.black87,
+                          ),
+                          "اطلب المساعدة"),
+
+                      aline,
+                      //privacy policy
+                      buttonAccount(() {
+                        myPushName(context, MyPagesRoutes.privacyPolicy);
+                      },
+                          const Icon(
+                            Icons.privacy_tip_outlined,
+                            size: 32,
+                            color: Colors.black87,
+                          ),
+                          "سياسة الخصوصية"),
+                      // aline,
+                      //switch to owner
 //               buttonAccount(
 //                 () {
 // // myPushReplacementNamed(context,MyPagesRoutes.mainOwner);
@@ -184,32 +237,37 @@ class _AccountBeforeLoginInStudentState
 //                 ),
 //                 "التبديل إلى مالك",
 //               ),
-              // aline,
+                      // aline,
 
-              //share app
-              // ButtonAccount(
-              //     () {},
-              //     const Icon(
-              //       Icons.share_outlined,
-              //       size: 32,
-              //       color: Colors.black87,
-              //     ),
-              //     "شارك التطبيق"),
-              aline,
-              //send feedback for us
-              buttonAccount(() {
-                myPushName(context, MyPagesRoutes.sendNoticeForUs);
-              },
-                  const Icon(
-                    Icons.feedback_outlined,
-                    size: 32,
-                    color: Colors.black87,
-                  ),
-                  "أرسل ملاحظات إلينا"),
-              aline,
+                      //share app
+                      // ButtonAccount(
+                      //     () {},
+                      //     const Icon(
+                      //       Icons.share_outlined,
+                      //       size: 32,
+                      //       color: Colors.black87,
+                      //     ),
+                      //     "شارك التطبيق"),
+                      aline,
+                      //send feedback for us
+                      buttonAccount(() {
+                        myPushName(context, MyPagesRoutes.sendNoticeForUs);
+                      },
+                          const Icon(
+                            Icons.feedback_outlined,
+                            size: 32,
+                            color: Colors.black87,
+                          ),
+                          "أرسل ملاحظات إلينا"),
+
+
+                    ]),
+              ),
+              ),
+              // aline,
               //button login
               Padding(
-                padding: const EdgeInsets.fromLTRB(25, 25, 25, 25),
+                padding: const EdgeInsets.fromLTRB(25, 75, 25, 25),
                 child: SizedBox(
                   width: double.infinity,
                   height: 55,
@@ -225,7 +283,7 @@ class _AccountBeforeLoginInStudentState
                       },
                       style: fullButton.copyWith(
                           backgroundColor:
-                              const MaterialStatePropertyAll(Colors.grey)),
+                          const MaterialStatePropertyAll(Colors.grey)),
                       child: const Text("تسجيل الدخول")),
                 ),
               ),
@@ -286,6 +344,7 @@ class _AccountBeforeLoginInStudentState
               //       ]),
               //   // child: Divider(color: Colors.black.withOpacity(.6),thickness: 7,indent: 10,endIndent: 10),
               // ),
+
 
             ],
           ),
@@ -478,6 +537,7 @@ class _AccountBeforeLoginInOwnerState extends State<AccountBeforeLoginInOwner> {
                       "ألا تمتلك حساب؟",
                       style: TextStyle(
                         color: Colors.black87,
+                        fontFamily: "IBM"
                       ),
                     ),
                   ),

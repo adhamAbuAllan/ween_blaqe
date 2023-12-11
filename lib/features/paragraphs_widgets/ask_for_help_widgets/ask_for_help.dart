@@ -31,6 +31,8 @@ class AskForHelp extends StatelessWidget {
               ),
             ),
             bottom: const TabBar(
+              dividerColor: Colors.white,
+
               tabs: [
                 Tab(text: 'مُستأجر'),
                 Tab(text: 'مالك'),
@@ -53,11 +55,11 @@ class AskForHelp extends StatelessWidget {
                       children: [
                         askForHelpButton(() {
                           myPushName(context, MyPagesRoutes.systemPaying);
-                        }, "طريقة الدفع"),
+                        }, "الدفع"),
                         aline,
                         askForHelpButton(() {
                           myPushName(context, MyPagesRoutes.systemBooking);
-                        }, " طريقة الحجز"),
+                        }, "الحجز"),
                         aline,
                         askForHelpButton(() {
                           myPushName(context, MyPagesRoutes.whatIsMeanSS);
