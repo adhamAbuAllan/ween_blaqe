@@ -1,4 +1,4 @@
-package com.example.ween_blaqe
+package com.weenbalaqee.weenbalaqee
 
 import io.flutter.embedding.android.FlutterActivity
 import io.flutter.embedding.engine.FlutterEngine

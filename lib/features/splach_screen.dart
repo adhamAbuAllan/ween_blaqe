@@ -4,7 +4,9 @@ import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:flutter/material.dart';
 
 import '../constants/strings.dart';
-
+main(){
+  runApp(MaterialApp(home:SplashScreen()));
+}
 class SplashScreen extends StatefulWidget {
   const SplashScreen({
     Key? key,
@@ -21,7 +23,7 @@ class _SplashScreenState extends State<SplashScreen> {
   @override
   void initState() {
     super.initState();
-    navigateToHome();
+    // navigateToHome();
 
     debugPrint("initState Of splashScreen is work now ! ");
     // Timer(
@@ -65,7 +67,7 @@ class _SplashScreenState extends State<SplashScreen> {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Image(
-                image: AssetImage("assets/images/splash_screen.jpg"),
+                image: AssetImage("assets/images/splash screen heigh qulity with large size.png"),
     ) ]))));
       //         // Text(
       //         //   "وين",
@@ -122,26 +124,26 @@ class _SplashScreenState extends State<SplashScreen> {
 
   }
 
-  void checkWifiStatus() async {
-     var   connectivityResult =  Connectivity().checkConnectivity();
-
-    if (connectivityResult ==  ConnectivityResult.wifi) {
-      print("naviage to noIntrnet/you have entrent ");
-      await navigateToHome();
-      // bulidSplashScreenWidget();
-      setState(() {
-        isInitialized = true;
-      });
-    } else {
-      if (connectivityResult == ConnectivityResult.none) {
-        pushAndRemoveToNoInternet();
-        isInitialized = true;
-
-
-        debugPrint("you don't have entrent");
-      }
-    }
-  }
+  // void checkWifiStatus() async {
+  //    var   connectivityResult =  Connectivity().checkConnectivity();
+  //
+  //   if (connectivityResult ==  ConnectivityResult.wifi) {
+  //     print("naviage to noIntrnet/you have entrent ");
+  //     await navigateToHome();
+  //     // bulidSplashScreenWidget();
+  //     setState(() {
+  //       isInitialized = true;
+  //     });
+  //   } else {
+  //     if (connectivityResult == ConnectivityResult.none) {
+  //       pushAndRemoveToNoInternet();
+  //       isInitialized = true;
+  //
+  //
+  //       debugPrint("you don't have entrent");
+  //     }
+  //   }
+  // }
 
   // StatelessWidget bulidSplashScreenWidget()  {
 
@@ -248,17 +250,17 @@ class _SplashScreenState extends State<SplashScreen> {
 
     // Navigator.pushReplacementNamed(context,MyPagesRoutes.noInternet);
   }
-  Future<void> navigateToHome() async {
-    Future.delayed(const Duration(milliseconds: 700), () {
-      // Navigator.pushReplacementNamed(context, MyPagesRoutes.noInternet);
-
-      Navigator.pushReplacementNamed(context, MyPagesRoutes.main);
-
-
-      // checkWifiStatus();
-    });
-
-
-    // Navigator.pushReplacementNamed(context,MyPagesRoutes.noInternet);
-  }
+  // Future<void> navigateToHome() async {
+  //   Future.delayed(const Duration(milliseconds: 700), () {
+  //     // Navigator.pushReplacementNamed(context, MyPagesRoutes.noInternet);
+  //
+  //     Navigator.pushReplacementNamed(context, MyPagesRoutes.main);
+  //
+  //
+  //     // checkWifiStatus();
+  //   });
+  //
+  //
+  //   // Navigator.pushReplacementNamed(context,MyPagesRoutes.noInternet);
+  // }
 }

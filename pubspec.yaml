@@ -54,9 +54,12 @@ dependencies:
   provider: ^6.0.5
   shared_preferences: ^2.0.20
   skeletons: ^0.0.3
+#  flutter_keyboard_visibility: ^5.4.1
   url_launcher: ^6.1.11
   vibration: ^1.8.3
-  introduction_screen: ^3.1.12
+  intro_slider: ^4.2.1
+  rename: ^3.0.1
+#  introduction_screen: ^3.1.12
 dev_dependencies:
   flutter_lints: ^2.0.0
 
@@ -111,6 +114,13 @@ flutter:
     - assets/images/apartments_images/Simulator Screenshot - iPhone 15 Pro Max - 2023-12-05 at 14.27.36.png
     - assets/images/apartments_images/Simulator Screenshot - iPhone 15 Pro Max - 2023-12-05 at 14.32.35.png
     - assets/images/apartments_images/Simulator Screenshot - iPhone 15 Pro Max - 2023-12-05 at 14.48.13.png
+    - assets/images/splash screen heigh qulity with large size.png
+
+
+
+
+
+
 
 
 
