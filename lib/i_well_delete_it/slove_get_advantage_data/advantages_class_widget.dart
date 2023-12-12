@@ -84,7 +84,7 @@ class _GetAdvantagesState extends State<GetAdvantages> {
                         },
                         style: fullButton,
                         child: Text(
-                            "عرض الميزات ال${advantages?.length ?? 0 - 9} الآخرى")),
+                            "عرض الميزات ال${(advantages?.length ??0)-10} الآخرى")),
                   ),
                 )
               : const SizedBox(),

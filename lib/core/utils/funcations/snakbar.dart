@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 void  showSnakBar(@required BuildContext context, @required String message,
-    {bool? isIcon = false, IconData? icon, bool? isConnect,int ?  seconds}) {
+    {bool? isIcon = false, IconData? icon, bool? isConnect,int ?  seconds,bool ? withButton,String ?textOfButton,void Function()? onPressed}) {
 
   ScaffoldMessenger.of(context).showSnackBar(
 
@@ -16,15 +16,25 @@ void  showSnakBar(@required BuildContext context, @required String message,
       // backgroundColor:state?? false ?  Colors.black.withOpacity(.86)  : Colors.grey[900] ,
       content: isIcon ?? false
           ?
-      Icon(
-              icon!,
-              color: isConnect ?? false
-                  ? Colors.green
-                  : Colors.grey.withOpacity(.87),
-              size: 28,
+      Row(
+        crossAxisAlignment:CrossAxisAlignment.center,
+        mainAxisAlignment: MainAxisAlignment.center,
+        mainAxisSize: MainAxisSize.min,
+
+        children: [
+
+          Icon(
+                  icon!,
+                  color: isConnect ?? false
+                      ? Colors.green
+                      : Colors.grey.withOpacity(.87),
+                  size: 28,
 
 
-            ):Text(
+                ),
+        withButton??false ? TextButton(onPressed: onPressed, child:Text(textOfButton??"") ): const SizedBox()
+        ],
+      ):Text(
         message,
         style: const TextStyle(fontSize: 16, fontFamily: "IBM"),
       ),

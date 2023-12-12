@@ -5,8 +5,9 @@ import '../../../../utils/styles/button.dart';
 
 class ApartmentShowTypesButton extends StatefulWidget {
   final void Function()? onPressed;
+  final String ? text;
 
- const ApartmentShowTypesButton({super.key, this.onPressed});
+ const ApartmentShowTypesButton({super.key, this.onPressed,this.text });
 
   @override
   State<ApartmentShowTypesButton> createState() =>
@@ -20,14 +21,18 @@ class _ApartmentShowTypesButtonState extends State<ApartmentShowTypesButton> {
       opacity: .95,
       child: BtnShowTypesOfApartments(
         onPressed: widget.onPressed,
+        text:widget.text ,
+
       ),
     );
   }
 }
 //
 class BtnShowTypesOfApartments extends StatefulWidget {
-  const BtnShowTypesOfApartments({super.key,required this.onPressed});
+  const BtnShowTypesOfApartments({super.key,required this.onPressed, this.text});
   final void Function()? onPressed;
+  final String ? text;
+
   @override
   State<BtnShowTypesOfApartments> createState() => _BtnShowTypesOfApartmentsState();
 }
@@ -45,7 +50,8 @@ class _BtnShowTypesOfApartmentsState extends State<BtnShowTypesOfApartments> {
                 top: 4),
             height: 35,
             color: Colors.white,
-            child: const Text(
+            child: widget.text?.isNotEmpty??false ? Text(
+                " ${widget.text} ") :   Text(
                 " صنف السكن ")));
   }
 }

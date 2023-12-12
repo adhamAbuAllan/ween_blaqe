@@ -17,7 +17,6 @@ import 'package:ween_blaqe/features/error_widgets/no_internet.dart';
 import '../../../../constants/nums.dart';
 import '../../../../constants/strings.dart';
 import '../../../../core/utils/funcations/go_url_launcher_methodes/go_to_email_method.dart';
-import '../../../../core/utils/funcations/go_url_launcher_methodes/go_to_messenger_method.dart';
 import '../../../../core/utils/funcations/snakbar_for_stream_builder.dart';
 import '../../../../core/widgets/apartments/show_more_classes_widget/image_slider/pointer.dart';
 import '../../../../core/widgets/apartments/show_more_classes_widget/image_slider/zoom_of_image/home.dart';
@@ -270,7 +269,7 @@ class _NewShowMoreState extends State<NewShowMore> {
                               child: Padding(
                                 padding: const EdgeInsets.fromLTRB(10, 0, 10, 10),
                                 child: Text(
-                                    "${widget.oneApartment?.title ?? ""}"
+                                    widget.oneApartment?.title ?? ""
                                     // data.
                                     ,
                                     softWrap: true,
@@ -871,7 +870,7 @@ class _NewShowMoreState extends State<NewShowMore> {
                                 ),
                               ),
                             ),
-                            SizedBox(width: 20,),
+                            const SizedBox(width: 20,),
                           widget.oneApartment!.owner!.email.isEmpty? const SizedBox(): SizedBox(
                               height: 50,
                               child: OutlinedButton(
@@ -956,7 +955,8 @@ class _NewShowMoreState extends State<NewShowMore> {
                             //     ?showSnakBar(context, "يرجى تسجيل الدخول لإتمام عملية الحجز")
                             //
                             // // toast("يرجى تسجيل الدخول لإتمام عملية الحجز")
-                            //     : Navigator.of(context).push(MaterialPageRoute(
+                            //     :
+                            //     Navigator.of(context).push(MaterialPageRoute(
                             //     builder: (BuildContext context) =>
                             //         BookingNow(oneApartment: widget.oneApartment)));
                             showSnakBar(context,

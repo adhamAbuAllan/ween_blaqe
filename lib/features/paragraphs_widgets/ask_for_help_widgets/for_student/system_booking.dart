@@ -18,7 +18,7 @@ class SystemBooking extends StatelessWidget {
         backgroundColor: kBackgroundAppColor,
         appBar: AppBar(
           title: const Text(
-            'طريق الحجز',
+            'الحجز',
             style: TextStyle(fontFamily: 'IBM'),
           ),
           backgroundColor: kPrimaryColor,

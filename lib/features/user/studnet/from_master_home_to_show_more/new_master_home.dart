@@ -3,6 +3,7 @@ import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:ween_blaqe/constants/strings.dart';
+import 'package:ween_blaqe/core/utils/funcations/route_pages/push_routes.dart';
 import 'package:ween_blaqe/core/widgets/apartments/new_master_home_classes_widgets/apartment_container/list_of_apartments.dart';
 import 'package:ween_blaqe/core/widgets/apartments/new_master_home_classes_widgets/types_of_apartments_list/container_types.dart';
 import 'package:ween_blaqe/core/widgets/apartments/new_master_home_classes_widgets/types_of_apartments_list/pointer_of_type.dart';
@@ -100,7 +101,7 @@ bool isHaveInternet = false;
           ? TypeNotFound(type: _type,) // then go to TypeNotFound screen
           : StreamBuilder<ConnectivityResult>(
 
-        stream: Connectivity().onConnectivityChanged,
+          stream: Connectivity().onConnectivityChanged,
         builder: (context, snapshot) { //check wifi
           if (snapshot.data == ConnectivityResult
               .wifi) { // show snackbar connection if have connection with wifi
@@ -315,7 +316,32 @@ bool isHaveInternet = false;
         }
     ) // streamBuilder will show if json of apartment is not have a null value
 
-        :  const HomeSkeletonWidget(); // show HomeSkeletonWdiget if data is loading
+        :   Stack(children:[
+
+          GestureDetector(child: const HomeSkeletonWidget(),onDoubleTap: (){
+              setState(() {
+                _isVisible = !_isVisible;
+              });
+
+          },),
+        Padding(
+          padding:  const EdgeInsets.only(top: 10 * 7, right: 8.0),
+          child: AnimatedOpacity(
+            opacity: (
+                _isVisible ? 1 : 0)
+                ,
+            duration: const Duration(milliseconds: 300),
+            child: !_isVisible
+                ? const SizedBox()
+                : ApartmentShowTypesButton(onPressed: () {
+              setState(() {
+                myPushName(context, MyPagesRoutes.noInternet);
+              });
+            },text: "   سّبح   "),
+          ),
+        )
+
+      ]); // show HomeSkeletonWdiget if data is loading
   }
 
   // API Call
@@ -370,4 +396,23 @@ bool isHaveInternet = false;
   callAPIandAssignData({String? type, required bool isAll}) async {
     apartmentsRes = (await getDataFromAPI(type: type, isAll: isAll));
   }
+
+  Future<void> showSnackBarAfter3Second() async {
+    Future.delayed(const Duration(milliseconds: 3000), () {
+
+      // Navigator.pushReplacementNamed(context, MyPagesRoutes.noInternet);
+
+return showSnakBarInStreamBuilder(context,withButton: true,textOfButton: "سّبح",onPressed: (){const NoInternet();}, "انقطع الانترنت",
+    isIcon: true,
+    icon: Icons.wifi_off,
+    isConnect: false,
+    isStart: false);
+
+      // checkWifiStatus();
+    });
+
+
+    // Navigator.pushReplacementNamed(context,MyPagesRoutes.noInternet);
+  }
+
 }

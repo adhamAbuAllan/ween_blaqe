@@ -21,7 +21,7 @@ class SystemPaying extends StatelessWidget {
 
         appBar: AppBar(
           title: const Text(
-            'طريق الدفع',
+            'الدفع',
             style: TextStyle(fontFamily: 'IBM'),
           ),
           backgroundColor: kPrimaryColor,

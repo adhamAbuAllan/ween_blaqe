@@ -12,17 +12,16 @@ class FavoriteButtonCardWidget extends StatefulWidget {
 class _FavoriteButtonCardWidgetState extends State<FavoriteButtonCardWidget> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: //Code snippet of a card widget//
-
+    return
+      //Code snippet of a card widget//
           /** Card Widget **/
           Card(
         elevation: 50,
         shadowColor: Colors.black,
         color: Colors.greenAccent[100],
         child: SizedBox(
-          width: 300,
-          height: 500,
+          width: 380,
+          height: 720,
           child: Padding(
             padding: const EdgeInsets.all(20.0),
             child: Column(
@@ -67,7 +66,7 @@ class _FavoriteButtonCardWidgetState extends State<FavoriteButtonCardWidget> {
                   height: 10,
                 ), //SizedBox
                 SizedBox(
-                  width: 80,
+                  height: 40                                                                  ,
                   child: ElevatedButton(
                     onPressed: () {},
                     // color: Colors.green,
@@ -93,7 +92,7 @@ class _FavoriteButtonCardWidgetState extends State<FavoriteButtonCardWidget> {
             ), //Column
           ), //Padding
         ), //SizedBox
-      ), //Card
+
     );
   }
 }
