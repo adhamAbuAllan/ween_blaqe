@@ -14,7 +14,7 @@ dependencies:
   barcode_widget: ^2.0.4
   cached_network_image: ^3.2.3
   carousel_slider: ^4.2.1
-  cloud_firestore: ^4.9.1
+#  cloud_firestore: ^4.9.1
   colorful_safe_area: ^1.0.0
   photo_view: ^0.14.0
   connectivity_plus: ^4.0.2
@@ -22,12 +22,12 @@ dependencies:
   curved_navigation_bar: ^1.0.3
   device_info_plus: ^9.0.3
   easy_localization: ^3.0.1
-  firebase_auth: ^4.6.2
+#  firebase_auth: ^4.6.2
   smooth_page_indicator: ^1.1.0
-  firebase_core: ^2.15.1
-  firebase_crashlytics: ^3.3.3
-  firebase_messaging: ^14.6.7
-  firebase_ui_auth: ^1.6.4
+#  firebase_core: ^2.15.1
+#  firebase_crashlytics: ^3.3.3
+#  firebase_messaging: ^14.6.7
+#  firebase_ui_auth: ^1.6.4
   flutter_screenutil: ^5.9.0
   favorite_button: ^0.0.4
 
@@ -39,7 +39,7 @@ dependencies:
   flutter_localizations:
     sdk: flutter
   flutter_rating_bar: ^4.0.1
-  flutter_signin_button: ^2.0.0
+#  flutter_signin_button: ^2.0.0
   flutter_slidable: ^3.0.0
   flutter_svg: ^2.0.7
   font_awesome_flutter: ^9.0.0
@@ -56,6 +56,7 @@ dependencies:
   skeletons: ^0.0.3
   url_launcher: ^6.1.11
   vibration: ^1.8.3
+  introduction_screen: ^3.1.12
 dev_dependencies:
   flutter_lints: ^2.0.0
 
@@ -67,7 +68,6 @@ flutter:
   uses-material-design: true
   assets:
     - assets/images/apartment_get_started.png
-    - assets/images/another.jpeg
     - assets/images/apartments_images/
     - assets/images/apartments_images/about_apartment/
     - assets/images/apartments_images/advantages/
@@ -90,27 +90,6 @@ flutter:
     - assets/images/alert.png
     - assets/images/splash_screen.jpg
     - assets/images/correct.png
-    - assets/I_will_delete_it/images/numbers/
-    - assets/I_will_delete_it/images/family_members/
-    - assets/I_will_delete_it/images/colors/
-    - assets/I_will_delete_it/sounds/colors/
-    - assets/I_will_delete_it/sounds/numbers/
-    - assets/I_will_delete_it/sounds/family_members/
-    - assets/I_will_delete_it/sounds/phrases/
-    - assets/I_will_delete_it/images/weather_images/
-    - assets/images/svg_images/tiktok_icons/
-    - assets/images/svg_images/tiktok_icons/the_line.svg
-    - assets/images/svg_images/tiktok_icons/Vector_home.svg
-    - assets/images/svg_images/tiktok_icons/Ellipse 9 (Stroke).svg
-    - assets/images/svg_images/tiktok_icons/Ellipse 10 (Stroke).svg
-    - assets/images/svg_images/tiktok_icons/LIVE.svg
-    - assets/images/svg_images/tiktok_icons/Vector.svg
-    - assets/images/svg_images/tiktok_icons/discovery.png
-    - assets/images/svg_images/tiktok_icons/Account Stroke Icon.svg
-    - assets/images/svg_images/tiktok_icons/Message Stroke Icon.svg
-    - assets/images/svg_images/tiktok_icons/add_of_tiktok_app_icon.svg
-    - assets/images/svg_images/tiktok_icons/discovery.png
-    - assets/images/svg_images/tiktok_icons/Home Solid Icon.svg
     - assets/images/apartments_images/apartment.jpg
     - assets/images/apartments_images/image1.png
     - assets/images/apartments_images/advantages/hot-water.png
@@ -123,47 +102,32 @@ flutter:
     - assets/images/apartments_images/advantages/fire-alarm.png
     - assets/images/apartments_images/advantages/oven.png
     - assets/images/apartments_images/advantages/wifi.png
-    - assets/images/apartments_images/advantages/plate.png
-    - assets/images/svg_images/tiktok_icons/Like.svg
-    - assets/images/svg_images/tiktok_icons/Share.svg
-    - assets/images/svg_images/tiktok_icons/Disc.svg
-    - assets/images/svg_images/tiktok_icons/Comments.svg
-    - assets/images/svg_images/tiktok_icons/Bookmark.svg
-    - assets/images/svg_images/tiktok_icons/Plus Button.svg
-    - assets/images/svg_images/tiktok_icons/Left Arrow Icon.svg
-    - assets/images/stop_war/b3.png
-    - assets/images/stop_war/c1.jpeg
-    - assets/images/stop_war/c2.jpg
-    - assets/images/stop_war/c3.jpg
-    - assets/images/stop_war/c4.jpg
-    - assets/images/stop_war/c5.png
-    - assets/images/stop_war/c7.png
-    - assets/images/stop_war/b1.jpg
-    - assets/images/stop_war/c6.png
-    - assets/images/stop_war/b2.png
     - assets/images/tasbih.png
     - assets/images/mobile-development.png
     - assets/images/zzz_notifiction.png
     - assets/images/screenshot/Screenshot_select_add_home_button.png
     - assets/images/screenshot/Screenshot_home_screen.png
     - assets/images/screenshot/Screenshot_select_what_app_button.png
+    - assets/images/apartments_images/Simulator Screenshot - iPhone 15 Pro Max - 2023-12-05 at 14.27.36.png
+    - assets/images/apartments_images/Simulator Screenshot - iPhone 15 Pro Max - 2023-12-05 at 14.32.35.png
+    - assets/images/apartments_images/Simulator Screenshot - iPhone 15 Pro Max - 2023-12-05 at 14.48.13.png
 
 
 
 
 
   fonts:
-    - family: Cairo
-      fonts:
-        - asset: fonts/Cairo/Cairo-SemiBold.ttf
+#    - family: Cairo
+#      fonts:
+#        - asset: fonts/Cairo/Cairo-SemiBold.ttf
     - family: IBM
       fonts:
         - asset: fonts/IBM/IBMPlexSansArabic-SemiBold.ttf
           weight: 700
-    - family: TT Norms
-      fonts:
-        - asset: fonts/TT_Norms/TTNorms-Regular.otf
-          weight: 800
+#    - family: TT Norms
+#      fonts:
+#        - asset: fonts/TT_Norms/TTNorms-Regular.otf
+#          weight: 800
 
 fixed: false
 ui:
