@@ -48,6 +48,9 @@ bool isHaveInternet = false;
 
   bool _isVisible =
       false; //[_isVisable] usage to hide or show button and a list of types when user scroll or tab on screen.
+
+  bool _isSebhaVisible =
+  false; //[_isSebhaVisible] usage to hide or show button of Sebha.
   //those values : [_isBoyStudent] , [_isGirlStudent] , [_isFamilies] , [_isAll] usege to make point on the type of apartment when user chose one of them .
   bool _isGirlStudent = false; //for boy students
   bool _isBoyStudent = false; //for gril studnts
@@ -320,7 +323,7 @@ bool isHaveInternet = false;
 
           GestureDetector(child: const HomeSkeletonWidget(),onDoubleTap: (){
               setState(() {
-                _isVisible = !_isVisible;
+                _isSebhaVisible = !_isSebhaVisible;
               });
 
           },),
@@ -328,10 +331,10 @@ bool isHaveInternet = false;
           padding:  const EdgeInsets.only(top: 10 * 7, right: 8.0),
           child: AnimatedOpacity(
             opacity: (
-                _isVisible ? 1 : 0)
+                _isSebhaVisible ? 1 : 0)
                 ,
             duration: const Duration(milliseconds: 300),
-            child: !_isVisible
+            child: !_isSebhaVisible
                 ? const SizedBox()
                 : ApartmentShowTypesButton(onPressed: () {
               setState(() {
