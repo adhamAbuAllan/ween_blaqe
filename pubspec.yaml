@@ -91,7 +91,6 @@ flutter:
     - assets/images/error_images/refresh.png
     - assets/images/error_images/search_not_found.png
     - assets/images/alert.png
-    - assets/images/splash_screen.jpg
     - assets/images/correct.png
     - assets/images/apartments_images/apartment.jpg
     - assets/images/apartments_images/image1.png
