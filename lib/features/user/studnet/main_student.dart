@@ -79,6 +79,7 @@ class _MainStudentState extends State<MainStudent> {
 // floatingActionButtonLocation: FloatingActionButtonLocation.miniEndFloat,
 
           floatingActionButton: FloatingActionButton(
+
               shape:ContinuousRectangleBorder(borderRadius: BorderRadius.circular(16/2)),
             onPressed: () {
 
@@ -304,7 +305,7 @@ myPushName(context, MyPagesRoutes.theAdIsFreeOrNot);
                   });
             },
             backgroundColor: kPrimaryColor,
-            child: const Icon(Icons.add_home_outlined,size: 30,),
+            child:  Icon(Icons.add_home_outlined,size: 30,shadows: [BoxShadow(color: Color(0xD56300).withOpacity(.26),blurRadius: 5,offset: Offset(3,5),spreadRadius: 7)],),
           )
           // buildSpeedDial()
           // FloatingActionButton(

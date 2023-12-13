@@ -278,7 +278,7 @@ class _NoInternetState extends State<NoInternet> with WidgetsBindingObserver {
             },
               shape:ContinuousRectangleBorder(borderRadius: BorderRadius.circular(16/2)),
               backgroundColor: kPrimaryColor,
-              child: const FaIcon(FontAwesomeIcons.redoAlt),
+              child: const FaIcon(FontAwesomeIcons.redoAlt,),
             ):const SizedBox(),
           );
         }

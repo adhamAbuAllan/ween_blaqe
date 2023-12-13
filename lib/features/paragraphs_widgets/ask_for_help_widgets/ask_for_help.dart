@@ -102,9 +102,14 @@ class AskForHelp extends StatelessWidget {
 
         Padding(
           padding: const EdgeInsets.only(bottom: 45.0),
-          child: FloatingActionButton(shape:ContinuousRectangleBorder(borderRadius: BorderRadius.circular(16/2)) ,
+          child: FloatingActionButton(
+
+            shape:ContinuousRectangleBorder(borderRadius: BorderRadius.circular(16/2),) ,
             onPressed: (){                              sendMessageToWhatsApp(
-                '2569339613', "السلام عليكم، ممكن مساعدة، ");},backgroundColor: const Color(0xff25D366),child: const FaIcon(FontAwesomeIcons.whatsapp,size: 30),),
+                '2569339613', "السلام عليكم، ممكن مساعدة، ");},backgroundColor: const Color(0xff25D366),
+
+
+            child: const FaIcon(FontAwesomeIcons.whatsapp,size: 30,),),
         ),
         ),
       ),
