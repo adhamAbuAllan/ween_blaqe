@@ -9,6 +9,8 @@ class ApartmentsList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ListView.builder(
+      shrinkWrap: true,
+      physics: const BouncingScrollPhysics(decelerationRate: ScrollDecelerationRate.fast),
       controller: scrollController,
         itemCount: apartmentsRes.data?.length,
         itemBuilder:(ctx,index){

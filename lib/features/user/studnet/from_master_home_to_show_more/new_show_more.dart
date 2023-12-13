@@ -118,6 +118,7 @@ class _NewShowMoreState extends State<NewShowMore> {
   Widget build(BuildContext context) {
     bool isMove = false;
     return StreamBuilder<ConnectivityResult>(
+
         stream: Connectivity().onConnectivityChanged,
         builder: (context, snapshot) {
           if (snapshot.data == ConnectivityResult.none) {
@@ -137,6 +138,8 @@ class _NewShowMoreState extends State<NewShowMore> {
             child: Scaffold(
               backgroundColor: Colors.grey.shade200,
               body: SingleChildScrollView(
+                  physics: const BouncingScrollPhysics(decelerationRate: ScrollDecelerationRate.fast),
+
                   child: Column(
                 // mainAxisAlignment: MainAxisAlignment.center,
                 children: [
