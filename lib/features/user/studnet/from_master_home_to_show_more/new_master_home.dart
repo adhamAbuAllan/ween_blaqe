@@ -67,8 +67,14 @@ bool isHaveInternet = false;
     super.initState();
     isStart = true;
     _scrollController = ScrollController();
+
     _scrollController.addListener(() {
       //[_scrollController.addListener] this attribute usages to hide or show the button
+      debugPrint("min scroll extent${_scrollController.position.minScrollExtent}");
+      debugPrint(" scroll div PR${_scrollController.position.devicePixelRatio}");
+      debugPrint(" isScrollingNotifier${_scrollController.position.isScrollingNotifier}");
+      debugPrint("axis${_scrollController.position.axis}");
+      // debugPrint("axis${_scrollController.position.}");
       Future.delayed(const Duration(milliseconds: 350), () {
         //when user make scrolling , the udenr code execute after 350 milisec. ///don't remove it///
         if (_scrollController.position.userScrollDirection.name == "forward") {

@@ -101,7 +101,7 @@ class TheAdIsFreeOrNot extends StatelessWidget {
                                 color: Colors.black.withOpacity(.8),
                                 fontSize: 22,
                               ),
-                              text: "120"),
+                              text: "199"),
                         ])),
                         const SizedBox(
                           width: 3,
@@ -145,33 +145,8 @@ class TheAdIsFreeOrNot extends StatelessWidget {
                         SizedBox(
                           child: Column(
                             children: [
-                              SizedBox(
-                                child: Row(
-                                  children: [
-                                    SizedBox(
-                                      child: RichText(
-                                          text: TextSpan(children: [
-                                        TextSpan(
-                                          style: TextStyle(
-                                            fontFamily: "IBM",
-                                            color: Colors.black.withOpacity(.8),
-                                            fontSize: 22,
-                                          ),
-                                          text: "1200",
-                                        )
-                                      ])),
-                                    ),
-                                    const SizedBox(
-                                      width: 3,
-                                    ),
-                                    FaIcon(
-                                      FontAwesomeIcons.shekelSign,
-                                      size: 18,
-                                      color: Colors.black.withOpacity(.8),
-                                    ),
-                                  ],
-                                ),
-                              ),
+
+
                               SizedBox(
                                 child: Row(
                                   children: [
@@ -184,23 +159,51 @@ class TheAdIsFreeOrNot extends StatelessWidget {
                                                   fontFamily: "IBM",
                                                   color: Colors.grey,
                                                   decoration: TextDecoration
-                                                      .lineThrough,
-                                                  fontSize: 22,
+                                                      .lineThrough,decorationColor: Colors.red,
+                                                  fontSize: 24,
                                                 ),
-                                                text: "1440")
+                                                text: "2388")
                                           ])),
                                     ),
                                     const SizedBox(
                                       width: 3,
                                     ),
                                     FaIcon(
-                                      size: 18,
+                                      size: 20,
                                       FontAwesomeIcons.shekelSign,
                                       color: Colors.black.withOpacity(.8),
                                     ),
                                   ],
                                 ),
-                              )
+                              ),
+
+                              SizedBox(
+                                child: Row(
+                                  children: [
+                                    SizedBox(
+                                      child: RichText(
+                                          text: TextSpan(children: [
+                                        TextSpan(
+                                          style: TextStyle(
+                                            fontFamily: "IBM",
+                                            color: Colors.black.withOpacity(.8),
+                                            fontSize: 20,
+                                          ),
+                                          text: "1999",
+                                        )
+                                      ])),
+                                    ),
+                                    const SizedBox(
+                                      width: 3,
+                                    ),
+                                    FaIcon(
+                                      FontAwesomeIcons.shekelSign,
+                                      size: 16,
+                                      color: Colors.black.withOpacity(.8),
+                                    ),
+                                  ],
+                                ),
+                              ),
                             ],
                           ),
                         ),

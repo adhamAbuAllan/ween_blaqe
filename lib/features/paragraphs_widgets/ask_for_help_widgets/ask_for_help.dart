@@ -84,6 +84,7 @@ class AskForHelp extends StatelessWidget {
                         askForHelpButton(() {
                           myPushName(context, MyPagesRoutes.howCreateAd);
                         }, "طريقة نشر إعلان"),
+                        askForHelpButton((){}, "ما هي البيانات المطلوبة لنشر إعلان"),
                         // aline,
                         // askForHelpButton(() {
                         //   myPushName(context,

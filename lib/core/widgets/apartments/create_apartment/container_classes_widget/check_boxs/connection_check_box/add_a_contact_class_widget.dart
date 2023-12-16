@@ -86,11 +86,11 @@ class _AddAcontactState extends State<AddAcontact> {
     super.initState();
     // features.add(FeatureOfCheckBox(
     //     id: 1, name: "واتساب", icon: "assets/images/whatsapp.png",data: widget.userInfo!.phone),);
-    features.add(FeatureOfCheckBox(
-        id: 2,
-        name: "Gmail",
-        icon: "assets/images/gmail.png",
-        data: widget.userInfo?.email ?? ""));
+    // features.add(FeatureOfCheckBox(
+    //     id: 2,
+    //     name: "Gmail",
+    //     icon: "assets/images/gmail.png",
+    //     data: widget.userInfo?.email ?? ""));
     features.add(FeatureOfCheckBox(
         id: 3,
         name: "هاتف",

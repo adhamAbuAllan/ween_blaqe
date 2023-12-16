@@ -160,7 +160,7 @@ class _MainStudentState extends State<MainStudent> {
                                         color: Colors.grey[600],
                                         fontSize: 18,
                                       ),
-                                      text: "120"),
+                                      text: "199"),
                                 ])),
                                 const SizedBox(
                                   width: 3,
@@ -174,13 +174,17 @@ class _MainStudentState extends State<MainStudent> {
                             child: Row(
                               crossAxisAlignment: CrossAxisAlignment.center,
                               mainAxisSize: MainAxisSize.min,
+
                               children: [
+                                SizedBox(width: 20 ,),
                                 SizedBox(
                                   height: 60,
                                   width: 120,
                                   child: RichText(
+
                                       softWrap: true,
                                       text: TextSpan(
+
                                         children: [
                                           TextSpan(
                                               style: TextStyle(
@@ -196,34 +200,7 @@ class _MainStudentState extends State<MainStudent> {
                                 SizedBox(
 
                                   child: Column(
-
-
                                     children: [
-                                      SizedBox(
-                                        child: Row(
-                                          children: [
-                                            SizedBox(
-                                              child: RichText(
-                                                  text: TextSpan(children: [
-                                                TextSpan(
-                                                    style: TextStyle(
-                                                      fontFamily: "IBM",
-                                                      color: Colors.grey[600],
-                                                      fontSize: 18,
-                                                    ),
-                                                    text: "1200")
-                                              ])),
-                                            ),
-                                            const SizedBox(
-                                              width: 3,
-                                            ),
-                                            FaIcon(FontAwesomeIcons.shekelSign,
-                                                size: 14,
-                                                color: Colors.grey[600]),
-                                          ],
-                                        ),
-                                      ),
-
                                       SizedBox(
                                         child: Row(
                                           children: [
@@ -238,23 +215,48 @@ class _MainStudentState extends State<MainStudent> {
                                                               Colors.grey,
                                                           decoration:
                                                               TextDecoration
-                                                                  .lineThrough,
-                                                          fontSize: 18,
+                                                                  .lineThrough,decorationColor: Colors.red,
+                                                          fontSize: 20,
                                                         ),
-                                                        text: "1440")
+                                                        text: "2388",)
                                                   ])),
                                             ),
                                             const SizedBox(
                                               width: 3,
                                             ),
                                             FaIcon(
-                                              size: 14,
+                                              size: 16,
                                               FontAwesomeIcons.shekelSign,
                                               color: Colors.grey[600],
                                             ),
                                           ],
                                         ),
-                                      )
+                                      ),
+                                      SizedBox(
+                                        child: Row(
+                                          children: [
+                                            SizedBox(
+                                              child: RichText(
+                                                  text: TextSpan(children: [
+                                                    TextSpan(
+                                                        style: TextStyle(
+                                                          fontFamily: "IBM",
+                                                          color: Colors.grey[600],
+                                                          fontSize: 14,
+                                                        ),
+                                                        text: "1999")
+                                                  ])),
+                                            ),
+                                            const SizedBox(
+                                              width: 3,
+                                            ),
+                                            FaIcon(FontAwesomeIcons.shekelSign,
+                                                size: 12,
+                                                color: Colors.grey[600]),
+                                          ],
+                                        ),
+                                      ),
+
                                     ],
                                   ),
                                 ),

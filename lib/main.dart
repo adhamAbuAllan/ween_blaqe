@@ -8,7 +8,6 @@ import 'package:ween_blaqe/controller/owner_controller/owner_controller.dart';
 import 'package:ween_blaqe/controller/student_controller/student_controller.dart';
 import 'package:ween_blaqe/core/utils/funcations/route_pages/push_routes.dart';
 import 'package:ween_blaqe/core/widgets/skeletons/general_skeleton_ready_widgets/paragraph_ready_skeleton.dart';
-import 'package:ween_blaqe/core/widgets/skeletons/student_widgets/booking_now_skeleton_widget.dart';
 import 'package:ween_blaqe/core/widgets/skeletons/student_widgets/show_more_skeleton_widget.dart';
 import 'package:ween_blaqe/features/error_widgets/no_internet.dart';
 import 'package:ween_blaqe/features/paragraphs_widgets/ask_for_help_widgets/another_asks.dart';
@@ -22,13 +21,11 @@ import 'package:ween_blaqe/features/paragraphs_widgets/privacy_policy.dart';
 import 'package:ween_blaqe/features/user/studnet/from_master_home_to_show_more/new_master_home.dart';
 import 'package:ween_blaqe/features/user/studnet/from_master_home_to_show_more/new_show_more.dart';
 import 'package:ween_blaqe/features/user/studnet/main_student.dart';
-import 'package:ween_blaqe/features/user/studnet/master_home.dart';
 
 import 'package:ween_blaqe/sesstion/new_session.dart';
 import 'package:ween_blaqe/features/splach_screen.dart';
 import 'constants/nums.dart';
 import 'constants/strings.dart';
-// import 'i_well_delete_it/learn_from_udemy/chat_app/firebase_option\s.dart';
 import 'features/send_notice_for_us.dart';
 
 // late SharedPreferences sp;
@@ -77,7 +74,6 @@ class _OwnMaterialAppState extends State<OwnMaterialApp> {
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(
-
       debugShowCheckedModeBanner: false,
 
       darkTheme: ThemeData(

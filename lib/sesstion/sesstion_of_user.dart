@@ -20,11 +20,11 @@ saveUserInfo(User data ) {
   -------------------------------------------------
 */
 
-  NewSession.save("type", data.type);
+  NewSession.save("type", data.typeId);
 
   NewSession.save("phone", data.phone);
-  NewSession.save("gender", data.gender);
-  NewSession.save("university", data.university);
+  // NewSession.save("gender", data.gender);
+  // NewSession.save("university", data.university);
 
 
 }

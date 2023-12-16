@@ -3,7 +3,7 @@ import 'package:ween_blaqe/api/type_of_apartment.dart';
 
 import '../cities.dart';
 import '../photos.dart';
-import 'apartments.dart';
+import '../users.dart';
 
 class OneApartment {
   OneApartment({
@@ -46,14 +46,14 @@ class DataOfOneApartment {
       this.description,
       this.location,
       this.price,
-      this.city,
-      this.type,
+      // this.city,
+      // this.type,
       this.updatedAt,
       this.countOfStudnet,
       });
 
   late final int? id;
-  late final Owner? owner;
+  late final User? owner;
   late final List<Photos>? photos;
   late final List<Advantages>? advantages;
   late final int? rooms;
@@ -70,7 +70,7 @@ class DataOfOneApartment {
 
   DataOfOneApartment.fromJson(Map<String, dynamic> json) {
     id = json['id'];
-    owner = Owner.fromJson(json['owner']);
+    owner = User.fromJson(json['owner']);
     photos = List.from(json['photos']).map((e) => Photos.fromJson(e)).toList();
     advantages = List.from(json['advantage'])
         .map((e) => Advantages.fromJson(e))

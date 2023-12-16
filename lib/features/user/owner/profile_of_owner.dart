@@ -67,7 +67,7 @@ class _ProfileOfOwnerState extends State<ProfileOfOwner> {
               const SizedBox(
                 height: 50,
               ),
-              ProfileImage(image: image, name:  widget.userInfo!.name, dateOfJoin:widget.userInfo?.createAt ),
+              ProfileImage(image: image, name:  widget.userInfo!.name, dateOfJoin:widget.userInfo?.createdAt ),
               const SizedBox(
                 height: 20,
               ),
