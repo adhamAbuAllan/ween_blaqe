@@ -1,10 +1,10 @@
 
 
 import 'package:flutter/material.dart';
-import 'package:ween_blaqe/constants/strings.dart';
-import 'dart:convert';
-
-import 'package:http/http.dart' as http;
+// import 'package:ween_blaqe/constants/strings.dart';
+// import 'dart:convert';
+//
+// import 'package:http/http.dart' as http;
 
 
 void main() {
@@ -34,39 +34,39 @@ class _TestAdvState extends State<TestAdv> {
   @override
   void initState() {
     super.initState();
-    getAdvantages();
+    // getAdvantages();
   }
   String msg = "";
   @override
   Widget build(BuildContext context) {
     return const Placeholder();
   }
-  getAdvantages()async{
-    var url = Uri.parse(ServerLocalDiv.advantagesAdd);
-    var response = await http.post(url,body:{"adv_name": "apartment",
-      // "icon":"assets/images/apartments_images/apartment.jpg"
-    });
-    var json = jsonDecode(response.body);
-    if(response.body.isEmpty){
-      print('they body is empty');
-    }else{
-      print('they body is NotEmpty');
-
-    }
-    var res = AdvantageRes.fromJson(json);
-    if(res.status==false){
-      setState(() {
-        msg = res.msg;
-        print("status is false : $msg");
-      });
-
-    }else{
-      setState(() {
-        msg = "";
-        print("status is true :$msg");
-      });
-    }
-  }
+  // getAdvantages()async{
+  //   var url = Uri.parse(ServerLocalDiv.advantagesAdd);
+  //   var response = await http.post(url,body:{"adv_name": "apartment",
+  //     // "icon":"assets/images/apartments_images/apartment.jpg"
+  //   });
+  //   var json = jsonDecode(response.body);
+  //   if(response.body.isEmpty){
+  //     print('they body is empty');
+  //   }else{
+  //     print('they body is NotEmpty');
+  //
+  //   }
+  //   var res = AdvantageRes.fromJson(json);
+  //   if(res.status==false){
+  //     setState(() {
+  //       msg = res.msg;
+  //       print("status is false : $msg");
+  //     });
+  //
+  //   }else{
+  //     setState(() {
+  //       msg = "";
+  //       print("status is true :$msg");
+  //     });
+  //   }
+  // }
 
 }
 

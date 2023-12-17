@@ -255,12 +255,12 @@
 //   }
 // }
 
-import 'package:flutter/material.dart';
-import 'package:get/get.dart';
-import 'package:ween_blaqe/core/utils/styles/button.dart';
-import 'package:ween_blaqe/features/user/studnet/show_more.dart';
-
-import '../../../../constants/nums.dart';
+// import 'package:flutter/material.dart';
+// import 'package:get/get.dart';
+// import 'package:ween_blaqe/core/utils/styles/button.dart';
+// import 'package:ween_blaqe/features/user/studnet/show_more.dart';
+//
+// import '../../../../constants/nums.dart';
 
 
 // class AdPost extends StatelessWidget {

@@ -1,8 +1,6 @@
-import 'dart:convert';
 import 'dart:ui';
 import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:connectivity_plus/connectivity_plus.dart';
-import 'package:http/http.dart' as http;
 import 'package:skeletons/skeletons.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:colorful_safe_area/colorful_safe_area.dart';
@@ -16,7 +14,6 @@ import 'package:ween_blaqe/core/utils/funcations/snakbar.dart';
 import 'package:ween_blaqe/core/utils/styles/button.dart';
 import 'package:ween_blaqe/features/error_widgets/no_internet.dart';
 import '../../../../constants/nums.dart';
-import '../../../../constants/strings.dart';
 import '../../../../core/utils/funcations/snakbar_for_stream_builder.dart';
 import '../../../../core/widgets/apartments/show_more_classes_widget/image_slider/pointer.dart';
 import '../../../../core/widgets/apartments/show_more_classes_widget/image_slider/zoom_of_image/home.dart';
@@ -981,23 +978,23 @@ class _NewShowMoreState extends State<NewShowMore> {
         });
   }
 
-  Future<List<Photos>> fetchPhotos() async {
-    setState(() {
-      _isDataLoaded = true;
-    });
-    Uri uri = Uri.parse(ServerLocalDiv.apartmentAll);
-    final response = await http.get(uri);
-    if (response.statusCode == 200) {
-      List jsonResponse = jsonDecode(response.body);
-
-      return jsonResponse.map((item) => Photos.fromJson(item)).toList();
-    } else {
-      setState(() {
-        _isDataLoaded = false;
-      });
-      throw Exception('Failed to load photos from API');
-    }
-  }
+  // Future<List<Photos>> fetchPhotos() async {
+  //   setState(() {
+  //     _isDataLoaded = true;
+  //   });
+  //   Uri uri = Uri.parse(ServerLocalDiv.apartmentAll);
+  //   final response = await http.get(uri);
+  //   if (response.statusCode == 200) {
+  //     List jsonResponse = jsonDecode(response.body);
+  //
+  //     return jsonResponse.map((item) => Photos.fromJson(item)).toList();
+  //   } else {
+  //     setState(() {
+  //       _isDataLoaded = false;
+  //     });
+  //     throw Exception('Failed to load photos from API');
+  //   }
+  // }
 
   //aniatoin
   AnimatedTextKit buildAnimatedTextKit(String text) {

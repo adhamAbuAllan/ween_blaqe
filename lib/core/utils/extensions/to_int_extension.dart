@@ -1,6 +1,6 @@
-extension ToInteger on String {
-
-  int toInt(){
-    return int.parse(this);
-  }
-}
+// extension ToInteger on String {
+//
+//   int toInt(){
+//     return int.parse(this);
+//   }
+// }

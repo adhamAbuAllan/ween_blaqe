@@ -1,13 +1,11 @@
-import 'dart:convert';
+
 import 'package:colorful_safe_area/colorful_safe_area.dart';
-import 'package:http/http.dart' as http;
 import 'package:flutter/material.dart';
 import 'package:skeletons/skeletons.dart';
 
 import '../../api/advantages.dart';
 import '../../api/apartments_api/one_apartment.dart';
 import '../../constants/nums.dart';
-import '../../constants/strings.dart';
 import '../../core/utils/styles/button.dart';
 
 main() {
@@ -93,18 +91,18 @@ class _GetAdvantagesState extends State<GetAdvantages> {
     );
   }
 
-  Future<List<Advantages>> featchAdvantages() async {
-    Uri uri = Uri.parse(ServerLocalDiv.apartmentAll);
-    final response = await http.get(uri);
-    if (response.statusCode == 200) {
-      List jsonResponse = jsonDecode(response.body);
-
-      return jsonResponse.map((item) => Advantages.fromJson(item)).toList();
-    } else {
-      setState(() {});
-      throw Exception('Failed to load photos from API');
-    }
-  }
+  // Future<List<Advantages>> featchAdvantages() async {
+  //   Uri uri = Uri.parse(ServerLocalDiv.apartmentAll);
+  //   final response = await http.get(uri);
+  //   if (response.statusCode == 200) {
+  //     List jsonResponse = jsonDecode(response.body);
+  //
+  //     return jsonResponse.map((item) => Advantages.fromJson(item)).toList();
+  //   } else {
+  //     setState(() {});
+  //     throw Exception('Failed to load photos from API');
+  //   }
+  // }
 
   Iterable<Padding> _advantageItemsWidget({List<Advantages>? advantages}) {
     return advantages?.map((entry) {
@@ -288,3 +286,4 @@ class _ShowAllAdvantagesState extends State<ShowAllAdvantages> {
     );
   }
 }
+

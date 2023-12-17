@@ -19,19 +19,19 @@ import 'package:flutter/material.dart';
 //     ),
 //   ],
 // );
-final Widget alineSkeleton = Row(
-  children: [
-    Expanded(
-      child: Padding(
-        padding: const EdgeInsets.fromLTRB(0, 0, 0, 0),
-        child: Container(
-          color: Colors.black12,
-          child: const Text(
-            "",
-            style: TextStyle(fontSize: 0.5),
-          ),
-        ),
-      ),
-    ),
-  ],
-);
+// final Widget alineSkeleton = Row(
+//   children: [
+//     Expanded(
+//       child: Padding(
+//         padding: const EdgeInsets.fromLTRB(0, 0, 0, 0),
+//         child: Container(
+//           color: Colors.black12,
+//           child: const Text(
+//             "",
+//             style: TextStyle(fontSize: 0.5),
+//           ),
+//         ),
+//       ),
+//     ),
+//   ],
+// );

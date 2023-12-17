@@ -1,17 +1,14 @@
-import 'dart:convert';
 
 import 'package:flutter/material.dart';
-import 'package:http/http.dart' as http;
 
 import '../../../api/apartments_api/one_apartment.dart';
-import '../../../constants/strings.dart';
 import '../../../controller/student_controller/student_controller.dart';
 
 
 class BottomNavigationBarOfStudent extends StatefulWidget {
   final StudentController controller;
 
-    BottomNavigationBarOfStudent({Key? key, required this.controller,})
+    const BottomNavigationBarOfStudent({Key? key, required this.controller,})
       : super(key: key);
 
   @override

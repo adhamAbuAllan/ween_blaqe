@@ -96,22 +96,22 @@ Widget askForHelpButton(Function onClick, String title) {
   // );
 }
 
-Widget buttonGoToPage(Function onClick, String title) {
-  return ListTile(
-    onTap: () {
-      onClick.call();
-    },
-    // minVerticalPadding: ,
-    contentPadding: const EdgeInsets.fromLTRB(10, 0, 10, 0),
-    // leading: icon ,
-    title: Text(
-      title,
-      style: const TextStyle(
-          fontSize: 16, fontFamily: 'IBM', color: Colors.black87),
-    ),
-    trailing: const Icon(Icons.arrow_forward_ios_rounded),
-  );
-}
+// Widget buttonGoToPage(Function onClick, String title) {
+//   return ListTile(
+//     onTap: () {
+//       onClick.call();
+//     },
+//     // minVerticalPadding: ,
+//     contentPadding: const EdgeInsets.fromLTRB(10, 0, 10, 0),
+//     // leading: icon ,
+//     title: Text(
+//       title,
+//       style: const TextStyle(
+//           fontSize: 16, fontFamily: 'IBM', color: Colors.black87),
+//     ),
+//     trailing: const Icon(Icons.arrow_forward_ios_rounded),
+//   );
+// }
 
 Widget buttonHaveTitleAndIcon(Function onClick, String title, {Icon? icon,bool? isIcon,Image ? image }) {
   return ListTile(

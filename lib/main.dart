@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:ween_blaqe/controller/main_controller.dart';
-import 'package:ween_blaqe/controller/owner_controller/owner_controller.dart';
+// import 'package:ween_blaqe/controller/owner_controller/owner_controller.dart';
 import 'package:ween_blaqe/controller/student_controller/student_controller.dart';
 import 'package:ween_blaqe/core/utils/funcations/route_pages/push_routes.dart';
 import 'package:ween_blaqe/core/widgets/skeletons/general_skeleton_ready_widgets/paragraph_ready_skeleton.dart';
@@ -47,12 +47,12 @@ void main() async {
   await NewSession.init();
   // await EasyLocalization.ensureInitialized();
   // final Future<SharedPreferences> prefs = SharedPreferences.getInstance();
-  var token = (await sp).get("token");
+  // var token = (await sp).get("token");
   Get.put(StudentController());
-  Get.put(OwnerController());
+  // Get.put(OwnerController());
   Get.put(MainController());
-  runApp(OwnMaterialApp(
-    logged: token != null,
+  runApp(const OwnMaterialApp(
+    // logged: token != null,
   ));
   // await Firebase.initializeApp(
   //   options: DefaultFirebaseOptions.currentPlatform,
@@ -64,8 +64,10 @@ void main() async {
 // }
 //ownMaterialApp that could play any screen in this class from admin
 class OwnMaterialApp extends StatefulWidget {
-  OwnMaterialApp({Key? key, required this.logged}) : super(key: key);
-  bool logged = false;
+  const OwnMaterialApp({Key? key,
+    // required this.logged
+  }) : super(key: key);
+ // final bool logged = false;
 
   @override
   State<OwnMaterialApp> createState() => _OwnMaterialAppState();
