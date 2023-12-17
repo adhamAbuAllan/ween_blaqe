@@ -3,7 +3,7 @@ import '../api/users.dart';
 import 'new_session.dart';
 saveUserInfo(User data ) {
   NewSession.save("logged", "OK");
-  NewSession.save("token", data.token);
+  // NewSession.save("token", data.token);
   NewSession.save<int>("id", data.id);
   // Session.save("profile", data.profile);
 
@@ -42,7 +42,7 @@ removeUserInfo() {
 
 saveUserInfoOfTeach(User data) {
   NewSession.save("logged", "OK");
-  NewSession.save("token", data.token);
+  // NewSession.save("token", data.token);
   NewSession.save<int>("id", data.id);
   // Session.save("profile", data.profile);
   NewSession.save("name", data.name);

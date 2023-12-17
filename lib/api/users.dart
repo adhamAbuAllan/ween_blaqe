@@ -35,7 +35,7 @@ class User {
     required this.typeId,
     required this.countryPhoneNumberId,
     required this.createdAt,
-    required this.token,
+    // required this.token,
   });
   late final int id;
   late final String name;
@@ -43,7 +43,7 @@ class User {
   late final TypeOfUser typeId;
   late final CountryPhoneNumberId countryPhoneNumberId;
   late final String createdAt;
-  late final String token;
+  // late final String token;
 
   User.fromJson(Map<String, dynamic> json){
     id = json['id'];
@@ -52,7 +52,7 @@ class User {
     typeId = TypeOfUser.fromJson(json['type_id']);
     countryPhoneNumberId = CountryPhoneNumberId.fromJson(json['country_phone_number_id']);
     createdAt = json['created_at'];
-    token = json['token'];
+    // token = json['token'];
   }
 
   Map<String, dynamic> toJson() {
@@ -63,7 +63,7 @@ class User {
     _data['type_id'] = typeId.toJson();
     _data['country_phone_number_id'] = countryPhoneNumberId.toJson();
     _data['created_at'] = createdAt;
-    _data['token'] = token;
+    // _data['token'] = token;
     return _data;
   }
 }

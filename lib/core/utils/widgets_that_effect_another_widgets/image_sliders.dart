@@ -1,13 +1,3 @@
-import 'package:carousel_slider/carousel_controller.dart';
-import 'package:flutter/material.dart';
-import 'package:ween_blaqe/api/apartments_api/one_apartment.dart';
-import 'package:ween_blaqe/i_well_delete_it/images_unnussery/unnussery_images.dart';
-
-import '../../../api/apartments_api/apartments.dart';
-import '../../../api/photos.dart';
-import '../../../i_well_delete_it/stop_the_war/normal_screen.dart';
-
-
 
 
 
