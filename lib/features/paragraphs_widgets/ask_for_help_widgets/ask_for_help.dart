@@ -71,7 +71,7 @@ class AskForHelp extends StatelessWidget {
 
               //owner tab
               Padding(
-                padding: const EdgeInsets.fromLTRB(0, 20, 0, 560),
+                padding: const EdgeInsets.fromLTRB(0, 20, 0, 510),
                 child: Container(
                     padding: const EdgeInsets.fromLTRB(0, 0, 0, 10),
                     margin: const EdgeInsets.fromLTRB(10, 0, 10, 0),
@@ -84,7 +84,11 @@ class AskForHelp extends StatelessWidget {
                         askForHelpButton(() {
                           myPushName(context, MyPagesRoutes.howCreateAd);
                         }, "طريقة نشر إعلان"),
-                        askForHelpButton((){}, "ما هي البيانات المطلوبة لنشر إعلان"),
+                        aline,
+
+                        askForHelpButton((){
+                          myPushName(context, MyPagesRoutes.whatTheInfoReqToCreateAd);
+                        }, "ما هي البيانات المطلوبة لنشر إعلان"),
                         // aline,
                         // askForHelpButton(() {
                         //   myPushName(context,

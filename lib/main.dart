@@ -14,6 +14,7 @@ import 'package:ween_blaqe/features/paragraphs_widgets/ask_for_help_widgets/anot
 import 'package:ween_blaqe/features/paragraphs_widgets/ask_for_help_widgets/ask_for_help.dart';
 import 'package:ween_blaqe/features/paragraphs_widgets/ask_for_help_widgets/for_owner/how_create_ad.dart';
 import 'package:ween_blaqe/features/paragraphs_widgets/ask_for_help_widgets/for_owner/the_ad_is_free_or_not.dart';
+import 'package:ween_blaqe/features/paragraphs_widgets/ask_for_help_widgets/for_owner/what_the_info_req_to_cerate_ad.dart';
 import 'package:ween_blaqe/features/paragraphs_widgets/ask_for_help_widgets/for_student/system_booking.dart';
 import 'package:ween_blaqe/features/paragraphs_widgets/ask_for_help_widgets/for_student/system_paying.dart';
 import 'package:ween_blaqe/features/paragraphs_widgets/privacy_policy.dart';
@@ -186,7 +187,8 @@ class _OwnMaterialAppState extends State<OwnMaterialApp> {
         MyPagesRoutes.skeletonParagraph: (context) =>
             const LongParagraphReadySkeleton(),
         MyPagesRoutes.newMasterHome: (context) => const NewMasterHome(),
-        MyPagesRoutes.newShowMore: (context) =>  NewShowMore(),
+        MyPagesRoutes.newShowMore: (context) =>  const NewShowMore(),
+        MyPagesRoutes.whatTheInfoReqToCreateAd: (context) =>  const WhatTheInfoReqToCreateAd(),
 
         //testing routes..
         // MyPagesRoutes.citiesTest:(context)=> CitiesTest(),

@@ -6,7 +6,7 @@ runApp(MaterialApp(home: _StringLen(),));
 }
 class _StringLen extends StatelessWidget {
   String text = "https://weenbalaqee.com/laravel-ween-balaqee/assets/images/subsections_photos/img_1234.png";
-   _StringLen({super.key});
+   _StringLen();
 
   @override
   Widget build(BuildContext context) {
@@ -166,5 +166,6 @@ class ServerLocalDiv {
     static const skeletonParagraph = "/skeleton_paragraph_ready";
     static const newMasterHome = "/new_master_home";
     static const newShowMore = "/new_show_more";
+    static const whatTheInfoReqToCreateAd = "/what_the_info_req_to_create_ad";
 
   }

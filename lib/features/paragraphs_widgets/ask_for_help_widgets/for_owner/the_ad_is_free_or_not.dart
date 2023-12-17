@@ -215,7 +215,7 @@ class TheAdIsFreeOrNot extends StatelessWidget {
                     children: [
                       const Text(
                           softWrap: true,
-                          "إشترك الأن من خلال التواصل معنا عبر ",style: TextStyle(
+                          "إشترك الأن من خلال التواصل عبر ",style: TextStyle(
                         fontFamily: "IBM",
                         fontSize: 14,
                       )),
@@ -230,7 +230,7 @@ class TheAdIsFreeOrNot extends StatelessWidget {
 
                       )),onPressed: (){
                         sendMessageToWhatsApp(
-                            '2569339613', "السلام عليكم، ");
+                            '2569339613', "السلام عليكم، ",image: "");
                       },),
                     ],
                   ),

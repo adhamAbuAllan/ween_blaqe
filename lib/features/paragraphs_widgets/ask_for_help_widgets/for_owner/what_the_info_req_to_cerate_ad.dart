@@ -1,4 +1,3 @@
-
 import 'dart:convert';
 
 import 'package:colorful_safe_area/colorful_safe_area.dart';
@@ -7,25 +6,21 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:http/http.dart' as http;
 
 import 'package:ween_blaqe/constants/nums.dart';
+import 'package:ween_blaqe/core/utils/funcations/route_pages/push_routes.dart';
+import 'package:ween_blaqe/core/utils/styles/text_style/aline_style.dart';
 import 'package:ween_blaqe/core/widgets/skeletons/general_skeleton_ready_widgets/paragraph_ready_skeleton.dart';
 
 import '../../../../api/apartments_api/one_apartment.dart';
 import '../../../../constants/strings.dart';
 
-
-
-main(){
+main() {
   runApp(MaterialApp(
-
     debugShowCheckedModeBanner: false,
 
     darkTheme: ThemeData(
-
       useMaterial3: false,
 
-
       colorScheme: ColorScheme.fromSwatch().copyWith(secondary: Colors.grey),
-
 
       // brightness: Brightness.darkf
     ),
@@ -60,334 +55,461 @@ main(){
     // locale: context.locale,
 
 // home: (),
-    home: const WhatTheInfoReqToCreateAd(),));
+    home: const WhatTheInfoReqToCreateAd(),
+  ));
 }
-class WhatTheInfoReqToCreateAd extends StatefulWidget {
 
+class WhatTheInfoReqToCreateAd extends StatefulWidget {
   const WhatTheInfoReqToCreateAd({super.key});
 
   @override
-  State<WhatTheInfoReqToCreateAd> createState() => _WhatTheInfoReqToCreateAdState();
+  State<WhatTheInfoReqToCreateAd> createState() =>
+      _WhatTheInfoReqToCreateAdState();
 }
 
 class _WhatTheInfoReqToCreateAdState extends State<WhatTheInfoReqToCreateAd> {
   bool isDataLoaded = false; //data load from server
   String errorMessage = ''; // message of error server
-  late OneApartment ?apartmentRes;
+  late OneApartment? apartmentRes;
 
   @override
   void initState() {
     super.initState();
     callAPIandAssignData();
-    }
+  }
 
   @override
   Widget build(BuildContext context) {
-    return  ColorfulSafeArea(
-      bottomColor: Colors.transparent ,
+    return ColorfulSafeArea(
+      bottomColor: Colors.transparent,
       color: kPrimaryColor,
       child: Scaffold(
         appBar: AppBar(
           backgroundColor: kPrimaryColor,
         ),
-        body: !isDataLoaded ? const LongParagraphReadySkeleton():SingleChildScrollView(
-          child: Column(
-
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              //title
-              const Row(
-
-                children: [
-                  Padding(
-
-                    padding: EdgeInsets.fromLTRB(0, 50, 20, 20),
-                    child: SizedBox(
-                      height: 100,
-                      width: 300,
+        body: !isDataLoaded
+            ? const LongParagraphReadySkeleton()
+            : SingleChildScrollView(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    //title
+                    const Row(
+                      children: [
+                        Padding(
+                          padding: EdgeInsets.fromLTRB(0, 50, 20, 20),
+                          child: SizedBox(
+                            height: 100,
+                            width: 300,
+                            child: Text(
+                              "ما هي البيانات المطلوبة لإنشاء إعلان؟",
+                              style: TextStyle(
+                                fontSize: 28.0,
+                                fontFamily: 'IBM',
+                                inherit: true,
+                              ),
+                              softWrap: true,
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                    //for apartment
+                    const Padding(
+                      padding: EdgeInsets.fromLTRB(0, 20, 20, 10),
                       child: Text(
-                        "ما هي البيانات المطلوبة لإنشاء إعلان؟",
+                        "بيانات الشقة",
                         style: TextStyle(
-                          fontSize: 28.0,
+                          fontSize: 26.0,
                           fontFamily: 'IBM',
                           inherit: true,
                         ),
-                        softWrap: true,
                       ),
                     ),
-                  ),
-                ],
-              ),
-              //for apartment
-              const Padding(
-                padding: EdgeInsets.fromLTRB(0, 20, 20, 10),
-                child: Text(
-                  "بيانات الشقة",
-                  style: TextStyle(
-                    fontSize: 26.0,
-                    fontFamily: 'IBM',
-                    inherit: true,
-                  ),
-                ),
-              ),
-              //info apartment
-              const Row(
-                children: [
-                  Padding(
-                    padding: EdgeInsets.fromLTRB(0, 0, 25, 10),
-                    child: Text(
-                    "معلومات عامة",
-                      style: TextStyle(
-                        fontSize: 22.0,
-                        fontFamily: 'IBM',
-                        inherit: true,
+                    //info apartment
+                    const Row(
+                      children: [
+                        Padding(
+                          padding: EdgeInsets.fromLTRB(0, 0, 25, 10),
+                          child: Text(
+                            "معلومات عامة",
+                            style: TextStyle(
+                              fontSize: 22.0,
+                              fontFamily: 'IBM',
+                              inherit: true,
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                    //paragraph of info and use that
+                    Container(
+                      width: double.infinity,
+                      margin: const EdgeInsets.fromLTRB(25, 0, 30, 10),
+                      child: const Text(
+                        "العلومات العامة هي العلومات التي تحتوي على عنوان الإعلان و مكان الشقة و عدد الافراد او الطلاب المسوح به و الصنف-طلاب ، طالبات ، عائلات...- و الإجرة الشهرية ",
+                        style: TextStyle(
+                          fontSize: 16.0,
+                          fontFamily: 'IBM',
+                          inherit: true,
+                        ),
                       ),
                     ),
-                  ),
-
-                ],
-              ),
-              //paragraph of info and use that
-              Container(
-                width: double.infinity,
-                margin: const EdgeInsets.fromLTRB(25, 0, 30, 10),
-                child: const Text(
-                  "العلومات العامة هي العلومات التي تحتوي على عنوان الإعلان و مكان الشقة و عدد الافراد او الطلاب المسوح به و الصنف-طلاب ، طالبات ، عائلات...- و الإجرة الشهرية ",
-                  style: TextStyle(
-                    fontSize: 16.0,
-                    fontFamily: 'IBM',
-                    inherit: true,
-                  ),
-                ),
-              ),
-          DataTable(
-horizontalMargin: 35,
-                sortAscending: false,
-                sortColumnIndex: 0,
-                columns: const [
-                  DataColumn(
-
-                      numeric: false,
-                      label: Text("الاسم",style: TextStyle(fontSize: 16,fontFamily: "IBM")),tooltip: "إسم المعلومة المطلوبة"),
-                  DataColumn(label: Text("مثال",style: TextStyle(fontSize: 16,fontFamily: "IBM")),tooltip: "مثال على العلومة المطلوبة",),
-
-
-                ],
-
-                rows:  const [
-
-                  DataRow(
-
-                      cells: [
-                    DataCell(
-                      Text("عنوان الإعلان",style: TextStyle(fontSize: 14,fontFamily: "IBM"))),
-                    DataCell(Text("شقة مفروشة بالقرب من جامعة بولتكنك",style: TextStyle(fontSize: 14,fontFamily: "IBM"),)),
-                    // DataCell(Text("عنوان الإعلان الخاص بالشقة")),
-                  ]),
-                  DataRow(
-
-                      cells: [
-
-                        DataCell(
-                            showEditIcon: false,
-                            Text(style: TextStyle(fontSize: 14,fontFamily: "IBM"),"المكان"),
-                            placeholder: false
-
+                    DataTable(
+                      horizontalMargin: 35,
+                      sortAscending: false,
+                      sortColumnIndex: 0,
+                      columns: const [
+                        DataColumn(
+                            numeric: false,
+                            label: Text("الاسم",
+                                style:
+                                    TextStyle(fontSize: 16, fontFamily: "IBM")),
+                            tooltip: "إسم المعلومة المطلوبة"),
+                        DataColumn(
+                          label: Text("مثال",
+                              style:
+                                  TextStyle(fontSize: 16, fontFamily: "IBM")),
+                          tooltip: "مثال على العلومة المطلوبة",
                         ),
-                        DataCell(Text(style: TextStyle(fontSize: 14,fontFamily: "IBM"),"الخليل-واد الهرية-بالقرب من جامعة بولتكنك")),
-                      ]),DataRow(
+                      ],
+                      rows: const [
+                        DataRow(cells: [
+                          DataCell(Text("عنوان الإعلان",
+                              style:
+                                  TextStyle(fontSize: 14, fontFamily: "IBM"))),
+                          DataCell(Text(
+                            "شقة مفروشة بالقرب من جامعة بولتكنك",
+                            style: TextStyle(fontSize: 14, fontFamily: "IBM"),
+                          )),
+                          // DataCell(Text("عنوان الإعلان الخاص بالشقة")),
+                        ]),
+                        DataRow(cells: [
+                          DataCell(
+                              showEditIcon: false,
+                              Text(
+                                  style: TextStyle(
+                                      fontSize: 14, fontFamily: "IBM"),
+                                  "المكان"),
+                              placeholder: false),
+                          DataCell(Text(
+                              style: TextStyle(fontSize: 14, fontFamily: "IBM"),
+                              "الخليل-واد الهرية-بالقرب من جامعة بولتكنك")),
+                        ]),
+                        DataRow(cells: [
+                          DataCell(
+                              showEditIcon: false,
+                              Text(
+                                  style: TextStyle(
+                                      fontSize: 12, fontFamily: "IBM"),
+                                  "عدد الطلاب المسموح به"),
+                              placeholder: false),
+                          DataCell(Text("3",
+                              style:
+                                  TextStyle(fontSize: 14, fontFamily: "IBM"))),
+                        ]),
+                        DataRow(cells: [
+                          DataCell(
+                              showEditIcon: false,
+                              Text("نوع السكن",
+                                  style: TextStyle(
+                                      fontSize: 14, fontFamily: "IBM")),
+                              placeholder: false),
+                          DataCell(Text("طلاب",
+                              style:
+                                  TextStyle(fontSize: 14, fontFamily: "IBM"))),
+                        ]),
+                        DataRow(cells: [
+                          DataCell(
+                              showEditIcon: false,
+                              Text("الأجرة الشهرية",
+                                  style: TextStyle(
+                                      fontSize: 14, fontFamily: "IBM")),
+                              placeholder: false),
+                          DataCell(Text("800",
+                              style:
+                                  TextStyle(fontSize: 14, fontFamily: "IBM"))),
+                        ]),
+                      ],
+                    ),
+                    //about apartment info
 
-                      cells: [
-
-                        DataCell(
-                            showEditIcon: false,
-                            Text(style: TextStyle(fontSize: 12,fontFamily: "IBM"),"عدد الطلاب المسموح به"),
-                            placeholder: false
-
+                    Container(
+                      width: double.infinity,
+                      padding: const EdgeInsets.fromLTRB(0, 50, 25, 10),
+                      child: const Text(
+                        "حول الشقة",
+                        style: TextStyle(
+                          fontSize: 22.0,
+                          fontFamily: 'IBM',
+                          inherit: true,
                         ),
-                        DataCell(Text("3",style: TextStyle(fontSize: 14,fontFamily: "IBM"))),
-                      ]),DataRow(
-
-                      cells: [
-
-                        DataCell(
-                            showEditIcon: false,
-                            Text("نوع السكن",style: TextStyle(fontSize: 14,fontFamily: "IBM")),
-                            placeholder: false
-
-                        ),
-                        DataCell(Text("طلاب",style: TextStyle(fontSize: 14,fontFamily: "IBM"))),
-                      ]),DataRow(
-
-                      cells: [
-
-                        DataCell(
-                            showEditIcon: false,
-                            Text("الأجرة الشهرية",style: TextStyle(fontSize: 14,fontFamily: "IBM")),
-                            placeholder: false
-
-                        ),
-                        DataCell(Text("800",style: TextStyle(fontSize: 14,fontFamily: "IBM"))),
-                      ]),
-                ],),
-              //about apartment info
-
-              Container(
-                width: double.infinity,
-                padding: const EdgeInsets.fromLTRB(0, 50, 25, 10),
-                child: const Text(
-                  "حول الشقة",
-                  style: TextStyle(
-                    fontSize: 22.0,
-                    fontFamily: 'IBM',
-                    inherit: true,
-                  ),
-                ),
-              ),
-              Container(
-                width: double.infinity,
-                margin: const EdgeInsets.fromLTRB(25, 0, 30, 10),
-                child: const Text(
-                  "حول الشقة أي المعومات التي تحتوي على ارقام وهي كالاتي: المساحة بالمتر مربع ، عدد الغرف ، و عدد الحمامات",
-                  style: TextStyle(
-                    fontSize: 16.0,
-                    fontFamily: 'IBM',
-                    inherit: true,
-                  ),
-                ),
-              ),
-              DataTable(
-                horizontalMargin: 35,
-
-              sortAscending: false,
-              sortColumnIndex: 0,
-              columns: const [
-                DataColumn(
-
-                    numeric: false,
-                    label: Text("الاسم",style: TextStyle(fontSize: 16,fontFamily: "IBM")),tooltip: "إسم المعلومة المطلوبة"),
-                DataColumn(label: Text("مثال",style: TextStyle(fontSize: 16,fontFamily: "IBM")),tooltip: "مثال على العلومة المطلوبة")
-
-
-              ],
-
-              rows:  const [
-
-                DataRow(
-
-                    cells: [
-                      DataCell(
-                          Text("مساحة الشقة",style: TextStyle(fontSize: 14,fontFamily: "IBM"))),
-                      DataCell(Text("70م",style: TextStyle(fontSize: 14,fontFamily: "IBM"))),
-                      // DataCell(Text("عنوان الإعلان الخاص بالشقة")),
-                    ]),
-                DataRow(
-
-                    cells: [
-
-                      DataCell(
-                          showEditIcon: false,
-                          Text("عدد الغرف",style: TextStyle(fontSize: 14,fontFamily: "IBM")),
-                          placeholder: false
-
                       ),
-                      DataCell(Text("3",style: TextStyle(fontSize: 14,fontFamily: "IBM"))),
-                    ]),DataRow(
-
-                    cells: [
-
-                      DataCell(
-                          showEditIcon: false,
-                          Text("عدد الحمامات",style: TextStyle(fontSize:14,fontFamily: "IBM"),),
-                          placeholder: false
-
+                    ),
+                    Container(
+                      width: double.infinity,
+                      margin: const EdgeInsets.fromLTRB(25, 0, 30, 10),
+                      child: const Text(
+                        "حول الشقة أي المعومات التي تحتوي على ارقام وهي كالاتي: المساحة بالمتر مربع ، عدد الغرف ، و عدد الحمامات",
+                        style: TextStyle(
+                          fontSize: 16.0,
+                          fontFamily: 'IBM',
+                          inherit: true,
+                        ),
                       ),
-                      DataCell(Text("1",style: TextStyle(fontSize: 14,fontFamily: "IBM"))),
-                    ]),
-              ],),
-              //advantages of apartment
-              Container(
-                width: double.infinity,
-                padding: const EdgeInsets.fromLTRB(0, 50, 25, 10),
-                child: const Text(
-                  "مزايا الشقة",
-                  style: TextStyle(
-                    fontSize: 22.0,
-                    fontFamily: 'IBM',
-                    inherit: true,
-                  ),
+                    ),
+                    DataTable(
+                      horizontalMargin: 35,
+                      sortAscending: false,
+                      sortColumnIndex: 0,
+                      columns: const [
+                        DataColumn(
+                            numeric: false,
+                            label: Text("الاسم",
+                                style:
+                                    TextStyle(fontSize: 16, fontFamily: "IBM")),
+                            tooltip: "إسم المعلومة المطلوبة"),
+                        DataColumn(
+                            label: Text("مثال",
+                                style:
+                                    TextStyle(fontSize: 16, fontFamily: "IBM")),
+                            tooltip: "مثال على العلومة المطلوبة")
+                      ],
+                      rows: const [
+                        DataRow(cells: [
+                          DataCell(Text("مساحة الشقة",
+                              style:
+                                  TextStyle(fontSize: 14, fontFamily: "IBM"))),
+                          DataCell(Text("70م",
+                              style:
+                                  TextStyle(fontSize: 14, fontFamily: "IBM"))),
+                          // DataCell(Text("عنوان الإعلان الخاص بالشقة")),
+                        ]),
+                        DataRow(cells: [
+                          DataCell(
+                              showEditIcon: false,
+                              Text("عدد الغرف",
+                                  style: TextStyle(
+                                      fontSize: 14, fontFamily: "IBM")),
+                              placeholder: false),
+                          DataCell(Text("3",
+                              style:
+                                  TextStyle(fontSize: 14, fontFamily: "IBM"))),
+                        ]),
+                        DataRow(cells: [
+                          DataCell(
+                              showEditIcon: false,
+                              Text(
+                                "عدد الحمامات",
+                                style:
+                                    TextStyle(fontSize: 14, fontFamily: "IBM"),
+                              ),
+                              placeholder: false),
+                          DataCell(Text("1",
+                              style:
+                                  TextStyle(fontSize: 14, fontFamily: "IBM"))),
+                        ]),
+                      ],
+                    ),
+                    //advantages of apartment
+                    Container(
+                      width: double.infinity,
+                      padding: const EdgeInsets.fromLTRB(0, 50, 25, 10),
+                      child: const Text(
+                        "مزايا الشقة",
+                        style: TextStyle(
+                          fontSize: 22.0,
+                          fontFamily: 'IBM',
+                          inherit: true,
+                        ),
+                      ),
+                    ),
+                    Container(
+                      width: double.infinity,
+                      margin: const EdgeInsets.fromLTRB(25, 0, 30, 10),
+                      child: const Text(
+                        "وهي ما توفر الشقة من خدماء و سائل راحة و ادوات اخرى موجودة مسبقًا في الشقة،وهذه الميزات المتوفرة في التطبيق حتى الان، يمكنك إضافة الميزات التي تريدها",
+                        style: TextStyle(
+                          fontSize: 16.0,
+                          fontFamily: 'IBM',
+                          inherit: true,
+                        ),
+                      ),
+                    ),
+                    DataTable(
+                      horizontalMargin: 35,
+                      sortColumnIndex: 0,
+                      columns: const [
+                        DataColumn(
+                            numeric: false,
+                            label: Text(
+                              "الاسم",
+                              style: TextStyle(fontFamily: "IBM", fontSize: 16),
+                            ),
+                            tooltip: "إسم الميزة"),
+                        DataColumn(
+                            label: Text(
+                              "ايقونة الميزة",
+                              style: TextStyle(fontFamily: "IBM"),
+                            ),
+                            tooltip: "الايقونة التي تظهر بجانب الميزة")
+                      ],
+                      rows: List<DataRow>.generate(
+                          apartmentRes?.data!.last.advantages!.length ?? 1,
+                          (index) => DataRow(cells: [
+                                DataCell(Text(
+                                    "${apartmentRes?.data?.last.advantages?[index].advName}",
+                                    style: const TextStyle(
+                                        fontSize: 14, fontFamily: "IBM"))),
+                                DataCell(Align(
+                                    alignment: Alignment.center,
+                                    child: Image.network(
+                                      "${apartmentRes?.data?.last.advantages![index].icon ?? 1}",
+                                      width: 24,
+                                      height: 24,
+                                    )))
+                              ])),
+                    ),
+
+                    Container(
+                      width: double.infinity,
+                      padding: const EdgeInsets.fromLTRB(0, 50, 25, 10),
+                      child: const Text(
+                        "وصف الشقة",
+                        style: TextStyle(
+                          fontSize: 22.0,
+                          fontFamily: 'IBM',
+                          inherit: true,
+                        ),
+                      ),
+                    ),
+                    Container(
+                      width: double.infinity,
+                      margin: const EdgeInsets.fromLTRB(25, 0, 30, 10),
+                      child: const Text(
+                        "اي المزيد من التفاصيل ، مثل هل الشقة في مكان هادئ ام في مركز المدينة ، و في اي طابق ، هل يوجد بالقرب منها بقالة ، هل المواصلات إليها سهلة... .",
+                        style: TextStyle(
+                          fontSize: 16.0,
+                          fontFamily: 'IBM',
+                          inherit: true,
+                        ),
+                      ),
+                    ),
+
+                    const Padding(
+                      padding: EdgeInsets.fromLTRB(0, 20, 20, 10),
+                      child: Text(
+                        "بيانات المالك",
+                        style: TextStyle(
+                          fontSize: 26.0,
+                          fontFamily: 'IBM',
+                          inherit: true,
+                        ),
+                      ),
+                    ),
+                    Container(
+                      width: double.infinity,
+                      margin: const EdgeInsets.fromLTRB(25, 0, 30, 10),
+                      child: const Text(
+                        " بيانات المالك هي تلك البيانات التي تخص مالك الشقة مثل اسمه و رقم الهاتف الخاص به.",
+                        style: TextStyle(
+                          fontSize: 16.0,
+                          fontFamily: 'IBM',
+                          inherit: true,
+                        ),
+                      ),
+                    ),
+
+                    DataTable(
+                      horizontalMargin: 35,
+                      sortAscending: false,
+                      sortColumnIndex: 0,
+                      columns: const [
+                        DataColumn(
+                            numeric: false,
+                            label: Text("الاسم",
+                                style:
+                                    TextStyle(fontSize: 16, fontFamily: "IBM")),
+                            tooltip: "إسم المعلومة المطلوبة"),
+                        DataColumn(
+                            label: Text("مثال",
+                                style:
+                                    TextStyle(fontSize: 16, fontFamily: "IBM")),
+                            tooltip: "مثال على العلومة المطلوبة")
+                      ],
+                      rows: const [
+                        DataRow(cells: [
+                          DataCell(Text("اسم المالك",
+                              style:
+                                  TextStyle(fontSize: 14, fontFamily: "IBM"))),
+                          DataCell(Text("أدهم أنور أبوعلان",
+                              style:
+                                  TextStyle(fontSize: 14, fontFamily: "IBM"))),
+                          // DataCell(Text("عنوان الإعلان الخاص بالشقة")),
+                        ]),
+                        DataRow(cells: [
+                          DataCell(
+                              showEditIcon: false,
+                              Text("رقم الهاتف",
+                                  style: TextStyle(
+                                      fontSize: 14, fontFamily: "IBM")),
+                              placeholder: false),
+                          DataCell(Text(
+                            "+97256*****3",
+                            style: TextStyle(
+                              fontSize: 14,
+                              fontFamily: "IBM",
+                            ),
+                            textDirection: TextDirection.ltr,
+                          )),
+                        ]),
+                      ],
+                    ),
+                    const SizedBox(
+                      height: 30,
+                    ),
+                    aline,
+                    const SizedBox(
+                      height: 30,
+                    ),
+                    const Text("إقرأ ايضًا",
+                        style: TextStyle(fontSize: 18, fontFamily: "IBM")),
+                    const SizedBox(height: 10,),
+                    TextButton(
+                        onPressed: () {
+                          myPushName(
+                              context, MyPagesRoutes.theAdIsFreeOrNot);
+                        },
+                        child: const Text(
+                            " كم تكلفة نشر إعلان على تطبيق 'وين بلاقي'",
+                            style: TextStyle(
+                                fontSize: 14,
+                                fontFamily: "IBM",
+                                color: Colors.orange))),
+                    const SizedBox(height: 10,),
+                    TextButton(
+                        onPressed: () {
+                          myPushName(
+                              context, MyPagesRoutes.howCreateAd);
+                        },
+                        child: const Text(
+                            " كيف انشر إعلاني على تطبيق 'وين بلاقي'"
+                            ,
+                            style: TextStyle(
+                                fontSize: 14,
+                                fontFamily: "IBM",
+                                color: Colors.orange)))
+                  ],
                 ),
               ),
-              Container(
-                width: double.infinity,
-                margin: const EdgeInsets.fromLTRB(25, 0, 30, 10),
-                child: const Text(
-                  "وهي ما توفر الشقة من خدماء و سائل راحة و ادوات اخرى موجودة مسبقًا في الشقة،وهذه الميزات المتوفرة في التطبيق حتى الان، يمكنك إضافة الميزات التي تريدها",
-                  style: TextStyle(
-                    fontSize: 16.0,
-                    fontFamily: 'IBM',
-                    inherit: true,
-                  ),
-                ),
-              ),
-              DataTable(
-                horizontalMargin: 35,
-                sortColumnIndex: 0,
-                columns: const [
-                  DataColumn(
-
-                      numeric: false,
-                      label: Text("الاسم",style: TextStyle(fontFamily: "IBM",fontSize: 16),),tooltip: "إسم الميزة"),
-                  DataColumn(label: Text("ايقونة الميزة",style: TextStyle(fontFamily: "IBM"),),tooltip: "الايقونة التي تظهر بجانب الميزة")
-
-
-                ],
-
-                rows:  List<DataRow>.generate(apartmentRes?.data!.last.advantages!.length??1, (index) => DataRow(cells: [
-                  DataCell(Text("${apartmentRes?.data?.last.advantages?[index].advName}",style: const TextStyle(fontSize: 14,fontFamily: "IBM"))),
-                 DataCell(Align(
-                     alignment: Alignment.center,
-                     child: Image.network("${apartmentRes?.data?.last.advantages![index].icon??1}",width: 24,height: 24,)))
-
-                  ])),
-
-              ),
-
-
-Container(
-      width: double.infinity,
-      padding: const EdgeInsets.fromLTRB(0, 50, 25, 10),
-      child: const Text(
-        "وصف الشقة",
-        style: TextStyle(
-          fontSize: 22.0,
-          fontFamily: 'IBM',
-          inherit: true,
-        ),
-      ),
-    ),
-    Container(
-    width: double.infinity,
-    margin: const EdgeInsets.fromLTRB(25, 0, 30, 10),
-    child: const Text(
-    "اي المزيد من التفاصيل ، مثل هل الشقة في مكان هادئ ام في مركز المدينة ، و في اي طابق ، هل يوجد بالقرب منها بقالة ، هل المواصلات إليها سهلة... .",
-    style: TextStyle(
-    fontSize: 16.0,
-    fontFamily: 'IBM',
-    inherit: true,
-    ),
-    ),
-    ),
-            ],
-          ),
-        ),
       ),
     );
   }
+
   // API Call
   Future<OneApartment?> getDataFromAPI() async {
     Uri uri = Uri.parse(ServerWeenBalaqee.apartmentAll);
-      uri = Uri.parse(ServerWeenBalaqee.apartmentAll);
+    uri = Uri.parse(ServerWeenBalaqee.apartmentAll);
     debugPrint("uri --$uri");
     var response = await http.get(uri);
     debugPrint("response --$response");
@@ -404,19 +526,17 @@ Container(
       debugPrint("msg : ${apartmentRes.msg}");
       debugPrint("the status is ${apartmentRes.status}");
       return apartmentRes;
-    }
-    else if (apartmentRes?.msg?.isNotEmpty ?? false) {
+    } else if (apartmentRes?.msg?.isNotEmpty ?? false) {
       errorMessage = '${response.statusCode}: ${response.body} ';
       debugPrint(errorMessage);
       return OneApartment(data: null, status: false, msg: '');
     }
     return apartmentRes;
   }
+
   callAPIandAssignData() async {
     apartmentRes = (await getDataFromAPI());
-    debugPrint("ths is the type_id of owner ${apartmentRes?.data?.first.owner?.typeId} and the type of value is string");
-    debugPrint("ths is the country_phone_number_id of owner ${apartmentRes?.data?.first.owner?.countryPhoneNumberId} and the type of value is string");
-
+    // debugPrint("ths is the type_id of owner ${apartmentRes?.data?.first.owner?.typeId} and the type of value is string");
+    // debugPrint("ths is the country_phone_number_id of owner ${apartmentRes?.data?.first.owner?.countryPhoneNumberId} and the type of value is string");
   }
-
 }
