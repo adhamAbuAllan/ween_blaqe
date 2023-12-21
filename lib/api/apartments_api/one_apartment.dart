@@ -46,8 +46,8 @@ class DataOfOneApartment {
       this.description,
       this.location,
       this.price,
-      // this.city,
-      // this.type,
+      this.city,
+      this.type,
       this.updatedAt,
       this.countOfStudnet,
       });

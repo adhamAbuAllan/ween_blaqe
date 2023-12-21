@@ -13,9 +13,9 @@ import 'package:ween_blaqe/constants/nums.dart';
 import '../../core/utils/styles/button.dart';
 import '../../core/widgets/buttons/lines_buttons/line_buttons.dart';
 
-// main(){
-//   runApp(const MaterialApp(home: NoInternet(),));
-// }
+main(){
+  runApp(const MaterialApp(home: NoInternet(),));
+}
 class NoInternet extends StatefulWidget {
   const NoInternet({
     Key? key,
@@ -34,6 +34,7 @@ class _NoInternetState extends State<NoInternet> with WidgetsBindingObserver {
   bool isSecondAnimate = false;
   bool isLongPress = false;
   bool isDataLoding = false;
+  bool onPerrsed = false;
   int sephaCounter = 0;
   int index = 0;
   int total = 0;

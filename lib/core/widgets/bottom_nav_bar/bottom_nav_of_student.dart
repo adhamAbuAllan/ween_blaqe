@@ -75,7 +75,7 @@ class _BottomNavigationBarOfStudentState
         // ),
         //orders item
         BottomNavigationBarItem(
-          icon: Icon(Icons.home_repair_service_outlined),
+          icon: Icon(Icons.home_repair_service_outlined,),
           label: 'الحجوزات',
           activeIcon: Icon(Icons.home_repair_service),
 

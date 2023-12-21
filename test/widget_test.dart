@@ -7,18 +7,18 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:shared_preferences/shared_preferences.dart';
+// import 'package:shared_preferences/shared_preferences.dart';
 
 import 'package:ween_blaqe/main.dart';
 
 void main() {
-  final Future<SharedPreferences> prefs = SharedPreferences.getInstance();
+  // final Future<SharedPreferences> prefs = SharedPreferences.getInstance();
 
   testWidgets('Counter increments smoke test', (WidgetTester tester) async {
-    var token = (await prefs).get("token");
+    // var token = (await prefs).get("token");
     // Build our app and trigger a frame.
-    await tester.pumpWidget(OwnMaterialApp(
-      logged: token != null,
+    await tester.pumpWidget(const OwnMaterialApp(
+      // logged: token != null,
     ));
 
     // Verify that our counter starts at 0.
