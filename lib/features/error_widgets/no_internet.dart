@@ -16,7 +16,8 @@ import '../../core/widgets/buttons/lines_buttons/line_buttons.dart';
 main(){
   runApp(const MaterialApp(home: NoInternet(),));
 }
-class NoInternet extends StatefulWidget {
+class
+NoInternet extends StatefulWidget {
   const NoInternet({
     Key? key,
   }) : super(key: key);
