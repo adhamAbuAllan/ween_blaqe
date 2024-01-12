@@ -23,8 +23,8 @@ class _SendNoticeForUsState extends State<SendNoticeForUs> {
   TextEditingController sendNoticeForUcController = TextEditingController();
 
   var sendNoticeForUsText = "ما هي ملاحظاتك؟";
-  var sendNoticeForUsHint =
-      "أقترح إضافة خاصية البحث عن شركاء حيث يستطيع الطالب البحث عن شريك له يشاركه في الشقة من خلال التطبيق";
+  var sendNoticeForUsHint = "أضف ملاحظاتك هنا";
+      // "أقترح إضافة خاصية البحث عن شركاء حيث يستطيع الطالب البحث عن شريك له يشاركه في الشقة من خلال التطبيق";
   var messageOfToast = "شكراً لك لقد تم إرسال إقتراحك بنجاح";
   @override
   void initState() {
@@ -47,14 +47,26 @@ class _SendNoticeForUsState extends State<SendNoticeForUs> {
               backgroundColor: Colors.white,
               actions: [
                 Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: OutlinedButton(
+                  padding: const EdgeInsets.all( 8.0),
+                  child:
+                  IconButton(
+                    icon: Icon(
+
+                      Icons.arrow_back_ios,
+                      color: Colors.black.withOpacity(.7),
+                      size: 30,
+                    ),
                     onPressed: () {
-                      Navigator.pop(context);
-                    },
-                    style: outlineButton,
-                    child: const Text("رجوع"),
-                  ),
+                          Navigator.pop(context);
+
+                    },)
+                  // OutlinedButton(
+                  //   onPressed: () {
+                  //     Navigator.pop(context);
+                  //   },
+                  //   style: outlineButton,
+                  //   child: const Text("رجوع"),
+                  // ),
                 ),
                 const Expanded(child: Text("")),
                 Padding(
@@ -90,9 +102,9 @@ class _SendNoticeForUsState extends State<SendNoticeForUs> {
                   title: sendNoticeForUsText,
 
                   hintInput: sendNoticeForUsHint,
-                  maxLines: 7,
-                  maxLength: 255,
-                  hintMaxLines: 7,
+                  maxLines: 10,
+                  maxLength: 512,
+                  hintMaxLines: 10,
                   inputType: TextInputType.text,
                   controller: sendNoticeForUcController,
                   // focusNode: discrptionFocusedNode

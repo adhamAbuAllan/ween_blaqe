@@ -74,16 +74,13 @@ class _MainStudentState extends State<MainStudent> {
           ),
           bottomNavigationBar: BottomNavigationBarOfStudent(
             controller: studentController,
-
           ),
 // floatingActionButtonLocation: FloatingActionButtonLocation.miniEndFloat,
-
           floatingActionButton: FloatingActionButton(
 
-              shape:ContinuousRectangleBorder(borderRadius: BorderRadius.circular(16/2)),
+            shape: ContinuousRectangleBorder(
+                borderRadius: BorderRadius.circular(16 / 2)),
             onPressed: () {
-
-
               showCupertinoModalPopup(
                   context: context,
                   builder: (
@@ -137,11 +134,9 @@ class _MainStudentState extends State<MainStudent> {
                               ],
                             ),
                           ),
-                           Divider(color: Colors.black.withOpacity(.3)),
-
+                          Divider(color: Colors.black.withOpacity(.3)),
                           SizedBox(
                             child: Row(
-
                               crossAxisAlignment: CrossAxisAlignment.center,
                               mainAxisSize: MainAxisSize.min,
                               children: [
@@ -174,17 +169,16 @@ class _MainStudentState extends State<MainStudent> {
                             child: Row(
                               crossAxisAlignment: CrossAxisAlignment.center,
                               mainAxisSize: MainAxisSize.min,
-
                               children: [
-                                SizedBox(width: 20 ,),
+                                const SizedBox(
+                                  width: 20,
+                                ),
                                 SizedBox(
                                   height: 60,
                                   width: 120,
                                   child: RichText(
-
                                       softWrap: true,
                                       text: TextSpan(
-
                                         children: [
                                           TextSpan(
                                               style: TextStyle(
@@ -196,9 +190,7 @@ class _MainStudentState extends State<MainStudent> {
                                         ],
                                       )),
                                 ),
-
                                 SizedBox(
-
                                   child: Column(
                                     children: [
                                       SizedBox(
@@ -207,18 +199,21 @@ class _MainStudentState extends State<MainStudent> {
                                             SizedBox(
                                               child: RichText(
                                                   softWrap: true,
-                                                  text: const TextSpan(children: [
+                                                  text:
+                                                      const TextSpan(children: [
                                                     TextSpan(
-                                                        style: TextStyle(
-                                                          fontFamily: "IBM",
-                                                          color:
-                                                              Colors.grey,
-                                                          decoration:
-                                                              TextDecoration
-                                                                  .lineThrough,decorationColor: Colors.red,
-                                                          fontSize: 20,
-                                                        ),
-                                                        text: "2388",)
+                                                      style: TextStyle(
+                                                        fontFamily: "IBM",
+                                                        color: Colors.grey,
+                                                        decoration:
+                                                            TextDecoration
+                                                                .lineThrough,
+                                                        decorationColor:
+                                                            Colors.red,
+                                                        fontSize: 20,
+                                                      ),
+                                                      text: "2388",
+                                                    )
                                                   ])),
                                             ),
                                             const SizedBox(
@@ -238,14 +233,14 @@ class _MainStudentState extends State<MainStudent> {
                                             SizedBox(
                                               child: RichText(
                                                   text: TextSpan(children: [
-                                                    TextSpan(
-                                                        style: TextStyle(
-                                                          fontFamily: "IBM",
-                                                          color: Colors.grey[600],
-                                                          fontSize: 14,
-                                                        ),
-                                                        text: "1999")
-                                                  ])),
+                                                TextSpan(
+                                                    style: TextStyle(
+                                                      fontFamily: "IBM",
+                                                      color: Colors.grey[600],
+                                                      fontSize: 14,
+                                                    ),
+                                                    text: "1999")
+                                              ])),
                                             ),
                                             const SizedBox(
                                               width: 3,
@@ -256,7 +251,6 @@ class _MainStudentState extends State<MainStudent> {
                                           ],
                                         ),
                                       ),
-
                                     ],
                                   ),
                                 ),
@@ -279,12 +273,14 @@ class _MainStudentState extends State<MainStudent> {
                             },
                             child: const Text(
                               "طلب الإشتراك عبر واتس أب",
-
-                              style: TextStyle(fontFamily: "IBM",),
+                              style: TextStyle(
+                                fontFamily: "IBM",
+                              ),
                             )),
                         CupertinoActionSheetAction(
                             onPressed: () {
-myPushName(context, MyPagesRoutes.theAdIsFreeOrNot);
+                              myPushName(
+                                  context, MyPagesRoutes.theAdIsFreeOrNot);
                             },
                             child: const Text(
                               "عرض تفاصيل الإشتراك",
@@ -294,7 +290,6 @@ myPushName(context, MyPagesRoutes.theAdIsFreeOrNot);
                             )),
                       ],
                       cancelButton: CupertinoActionSheetAction(
-
                         child: const Text('إلغاء',
                             style: TextStyle(
                               fontFamily: "IBM",
@@ -307,7 +302,17 @@ myPushName(context, MyPagesRoutes.theAdIsFreeOrNot);
                   });
             },
             backgroundColor: kPrimaryColor,
-            child:  Icon(Icons.add_home_outlined,size: 30,shadows: [BoxShadow(color: Color(0xD56300).withOpacity(.26),blurRadius: 5,offset: Offset(3,5),spreadRadius: 7)],),
+            child: Icon(
+              Icons.add_home_outlined,
+              size: 30,
+              shadows: [
+                BoxShadow(
+                    color: const Color(0xffD56300).withOpacity(.26),
+                    blurRadius: 5,
+                    offset: const Offset(3, 5),
+                    spreadRadius: 7)
+              ],
+            ),
           )
           // buildSpeedDial()
           // FloatingActionButton(

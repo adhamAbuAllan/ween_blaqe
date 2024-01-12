@@ -56,7 +56,7 @@ main (){
     ],
     locale: const Locale("ar", "SA"),
 
-    home: AccountBeforeLoginInStudent(),));
+    home: const AccountBeforeLoginInStudent(),));
 }
 //Account before login Screen
 
@@ -341,8 +341,8 @@ class _AccountBeforeLoginInStudentState
               //       ]),
               //   // child: Divider(color: Colors.black.withOpacity(.6),thickness: 7,indent: 10,endIndent: 10),
               // ),
-              const SizedBox(height: 150,),
-               Align(alignment: Alignment.bottomRight,child: Text("إصدار:2023.1",style: TextStyle(fontFamily: "IBM",fontSize: 12,color: Colors.grey.withOpacity(.7)),))
+              // const SizedBox(height: 150,),
+               // Align(alignment: Alignment.bottomRight,child: Text("إصدار:2023.1",style: TextStyle(fontFamily: "IBM",fontSize: 12,color: Colors.grey.withOpacity(.7)),))
 
 
             ],
