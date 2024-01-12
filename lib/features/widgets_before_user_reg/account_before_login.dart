@@ -180,87 +180,88 @@ class _AccountBeforeLoginInStudentState
               // ),
               // aline,
               //help
-
               Container(
-                  child: Container(
-                    padding: const EdgeInsets.fromLTRB(0, 0, 0, 10),
-                    margin: const EdgeInsets.fromLTRB(10, 0, 10, 0),
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(7),
-                      color: Colors.white,
-                    ),
-                    child: Column(children: [
+                height: 180,
+                padding: const EdgeInsets.fromLTRB(0, 0, 0, 10),
+                margin: const EdgeInsets.fromLTRB(10, 0, 10, 0),
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(7),
+                  color: Colors.white,
+                ),
+                child: Column(
+                    mainAxisSize: MainAxisSize.min,
 
-                      buttonAccount(() {
-                        myPushName(context, MyPagesRoutes.askForHelp);
-                      },
-                          const Icon(
-                            Icons.info_outline,
-                            size: 32,
-                            color: Colors.black87,
-                          ),
-                          "اطلب المساعدة"),
+                    children: [
 
-                      aline,
-                      //privacy policy
-                      buttonAccount(() {
-                        myPushName(context, MyPagesRoutes.privacyPolicy);
-                      },
-                          const Icon(
-                            Icons.privacy_tip_outlined,
-                            size: 32,
-                            color: Colors.black87,
-                          ),
-                          "سياسة الخصوصية"),
-                      // aline,
-                      //switch to owner
-//               buttonAccount(
-//                 () {
-// // myPushReplacementNamed(context,MyPagesRoutes.mainOwner);
-//                   myPushName(context, MyPagesRoutes.mainOwner);
-//                   setState(() {
-//                     ownerController.changeTo(0);
-//                     controller.changeTo(1);
-//
-//                     myPushName(context, MyPagesRoutes.mainOwner);
-//                   });
-//                   // showSnakBar(
-//                   //     context, "هذه الميزة قيد التطوير وسيتم إضافتها قريبًا");
-//                 },
-//                 const Icon(
-//                   Icons.change_circle_outlined,
-//                   size: 32,
-//                   color: Colors.black87,
-//                 ),
-//                 "التبديل إلى مالك",
-//               ),
-                      // aline,
+                  buttonAccount(() {
+                    myPushName(context, MyPagesRoutes.askForHelp);
+                  },
+                      const Icon(
+                        Icons.info_outline,
+                        size: 32,
+                        color: Colors.black87,
+                      ),
+                      "اطلب المساعدة"),
 
-                      //share app
-                      // ButtonAccount(
-                      //     () {},
-                      //     const Icon(
-                      //       Icons.share_outlined,
-                      //       size: 32,
-                      //       color: Colors.black87,
-                      //     ),
-                      //     "شارك التطبيق"),
-                      aline,
-                      //send feedback for us
-                      buttonAccount(() {
-                        myPushName(context, MyPagesRoutes.sendNoticeForUs);
-                      },
-                          const Icon(
-                            Icons.feedback_outlined,
-                            size: 32,
-                            color: Colors.black87,
-                          ),
-                          "أرسل ملاحظات إلينا"),
+                  aline,
+                  //privacy policy
+                  buttonAccount(() {
+                    myPushName(context, MyPagesRoutes.privacyPolicy);
+                  },
+                      const Icon(
+                        Icons.privacy_tip_outlined,
+                        size: 32,
+                        color: Colors.black87,
+                      ),
+                      "سياسة الخصوصية"),
+                  // aline,
+                  //switch to owner
+              //               buttonAccount(
+              //                 () {
+              // // myPushReplacementNamed(context,MyPagesRoutes.mainOwner);
+              //                   myPushName(context, MyPagesRoutes.mainOwner);
+              //                   setState(() {
+              //                     ownerController.changeTo(0);
+              //                     controller.changeTo(1);
+              //
+              //                     myPushName(context, MyPagesRoutes.mainOwner);
+              //                   });
+              //                   // showSnakBar(
+              //                   //     context, "هذه الميزة قيد التطوير وسيتم إضافتها قريبًا");
+              //                 },
+              //                 const Icon(
+              //                   Icons.change_circle_outlined,
+              //                   size: 32,
+              //                   color: Colors.black87,
+              //                 ),
+              //                 "التبديل إلى مالك",
+              //               ),
+                  // aline,
+
+                  //share app
+                  // ButtonAccount(
+                  //     () {},
+                  //     const Icon(
+                  //       Icons.share_outlined,
+                  //       size: 32,
+                  //       color: Colors.black87,
+                  //     ),
+                  //     "شارك التطبيق"),
+                  aline,
+                  //send feedback for us
+                  buttonAccount(() {
+                    myPushName(context, MyPagesRoutes.sendNoticeForUs);
+                  },
+                      const Icon(
+                        Icons.feedback_outlined,
+                        size: 32,
+                        color: Colors.black87,
+                      ),
+                      "أرسل ملاحظات إلينا"),
 
 
-                    ]),
-              ),
-              ),
+                ]),
+                            ),
               // aline,
               //button login
               Padding(

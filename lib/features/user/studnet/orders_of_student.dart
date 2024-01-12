@@ -65,7 +65,8 @@ class _OrdersOfStudentState extends State<OrdersOfStudent> {
             //             location: location,
             //             dateOfBooking: date)
             // ),
-            !isScreenIsReady  ?   Padding(
+            !isScreenIsReady  ?
+            Padding(
               padding: const EdgeInsets.only(top: 15.0),
               child: Text("هذه الميزة قيد التطوير وسيتم إضافتها قريبًا",style: TextStyle(
                 fontSize: 16,

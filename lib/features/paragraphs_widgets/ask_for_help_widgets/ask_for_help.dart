@@ -42,64 +42,72 @@ class AskForHelp extends StatelessWidget {
           body: TabBarView(
             children: [
               //student Tab
-              Padding(
-                padding: const EdgeInsets.fromLTRB(0, 20, 0, 530),
-                child: Container(
+              Column(
+                children: [
+                  const SizedBox(height: 20,),
+
+                  Container(
+
                     padding: const EdgeInsets.fromLTRB(0, 0, 0, 10),
                     margin: const EdgeInsets.fromLTRB(10, 0, 10, 0),
                     decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(7),
-                      color: Colors.white,
-                    ),
+                        borderRadius: BorderRadius.circular(7),
+                        color: Colors.white,
+                      ),
                     child: Column(
-                      children: [
-                        askForHelpButton(() {
-                          myPushName(context, MyPagesRoutes.systemPaying);
-                        }, "الدفع"),
-                        aline,
-                        askForHelpButton(() {
-                          myPushName(context, MyPagesRoutes.systemBooking);
-                        }, "الحجز"),
-                        aline,
-                        askForHelpButton(() {
-                          myPushName(context, MyPagesRoutes.whatIsMeanSS);
-                        }, "ما المقصود ب ش/ش"),
-                      ],
-                    )),
+                      mainAxisSize: MainAxisSize.min,
+                        children: [
+                          askForHelpButton(() {
+                            myPushName(context, MyPagesRoutes.systemPaying);
+                          }, "الدفع"),
+                          aline,
+                          askForHelpButton(() {
+                            myPushName(context, MyPagesRoutes.systemBooking);
+                          }, "الحجز"),
+                          aline,
+                          askForHelpButton(() {
+                            myPushName(context, MyPagesRoutes.whatIsMeanSS);
+                          }, "ما المقصود ب ش/ش"),
+                        ],
+                      ),
+                  ),
+                ],
               ),
               // Expanded(child: Text("")),
 
               //owner tab
-              Padding(
-                padding: const EdgeInsets.fromLTRB(0, 20, 0, 510),
-                child: Container(
-                    padding: const EdgeInsets.fromLTRB(0, 0, 0, 10),
-                    margin: const EdgeInsets.fromLTRB(10, 0, 10, 0),
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(7),
-                      color: Colors.white,
-                    ),
-                    child: Column(
-                      children: [
-                        askForHelpButton(() {
-                          myPushName(context, MyPagesRoutes.howCreateAd);
-                        }, "طريقة نشر إعلان"),
-                        aline,
+              Column(
+                children: [
+                  const SizedBox(height: 20,),
+                  Container(
+                      padding: const EdgeInsets.fromLTRB(0, 0, 0, 10),
+                      margin: const EdgeInsets.fromLTRB(10, 0, 10, 0),
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(7),
+                        color: Colors.white,
+                      ),
+                      child: Column(
+                        children: [
+                          askForHelpButton(() {
+                            myPushName(context, MyPagesRoutes.howCreateAd);
+                          }, "طريقة نشر إعلان"),
+                          aline,
 
-                        askForHelpButton((){
-                          myPushName(context, MyPagesRoutes.whatTheInfoReqToCreateAd);
-                        }, "ما هي البيانات المطلوبة لنشر إعلان"),
-                        // aline,
-                        // askForHelpButton(() {
-                        //   myPushName(context,
-                        //       MyPagesRoutes.couldBeOwnerAndStudentInOneTime);
-                        // }, "هل يمكن أن أكون مؤجر و مستأجر في نفس الوقت؟"),
-                        aline,
-                        askForHelpButton(() {
-                          myPushName(context, MyPagesRoutes.theAdIsFreeOrNot);
-                        }, "هل يتطلب إنشاء إعلان الإشتراك أو دفع رسوم؟"),
-                      ],
-                    )),
+                          askForHelpButton((){
+                            myPushName(context, MyPagesRoutes.whatTheInfoReqToCreateAd);
+                          }, "ما هي البيانات المطلوبة لنشر إعلان"),
+                          // aline,
+                          // askForHelpButton(() {
+                          //   myPushName(context,
+                          //       MyPagesRoutes.couldBeOwnerAndStudentInOneTime);
+                          // }, "هل يمكن أن أكون مؤجر و مستأجر في نفس الوقت؟"),
+                          aline,
+                          askForHelpButton(() {
+                            myPushName(context, MyPagesRoutes.theAdIsFreeOrNot);
+                          }, "هل يتطلب إنشاء إعلان الإشتراك أو دفع رسوم؟"),
+                        ],
+                      )),
+                ],
               ),
             ],
           ),
