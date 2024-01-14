@@ -1,12 +1,21 @@
 /*
 مطور تطبيقات الموبايل ، ومن أفضل مصممي واجهات الاستخدام على مستوى فلسطين و الضفة الغربية ، مصمم و مبرمج افضل تطبيق لحجز السكانات في فلسطين
  */
+/*
+سؤال : كيف اقوم تحديث التطبيق و إرسال ملف جديد لقوقل كونسل؟
+الجواب تحت:
+من ملف الpubspec زود رقم الversion اخر رقم
+زوده رقم هو غالبا 2 خليه 3 مثلا واعمل
+flutter clean واعمل بيلد تاني وارفعه وكل ما تيجي ترفع تحديث
+ لازم تعمل نفس العملية
+ */
 import 'package:colorful_safe_area/colorful_safe_area.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:ween_blaqe/controller/main_controller.dart';
+
 // import 'package:ween_blaqe/controller/owner_controller/owner_controller.dart';
 import 'package:ween_blaqe/controller/student_controller/student_controller.dart';
 import 'package:ween_blaqe/core/utils/funcations/route_pages/push_routes.dart';
@@ -31,7 +40,21 @@ import 'package:ween_blaqe/features/splach_screen.dart';
 import 'constants/nums.dart';
 import 'constants/strings.dart';
 import 'features/send_notice_for_us.dart';
-
+/*
+**كيف ممكن ننشئ مشاريع في الفريق تاعنا و الكل يوخذ حقه**
+لما بدنا نقترح فكرة على بعض رح نوجه
+ مشكلة وهي انه الكل بده فكرته تتطبيق ،
+ ففي هذا الحالة مش الكل رح يوخذ حقه ، بطرح
+ افكاره ، طيب كيف ممكن نحل هاي المشكلة
+ ، انا بقترح انه نطبق الافكار بالادوار ،
+  والمقصد انه كل واحد فينا إله دور في
+ طرح فكرته ، فبعد ما نتم الموافقة على فكرته
+  كتصويت نبلش نشتغل عليها ، وفي حال
+ ما وافقنا على فكرته ، نطلب منه يجيب
+  فكرة ثانية. بعد ما نشتغل على فكرته الشخص
+ ، بنبدأ في مشروع ثاني من فكرة شخص آخر.
+  في هاي الحالة بنتجنب الكثير من المشاكل
+*/
 // late SharedPreferences sp;
 //main screen
 // final Future<SharedPreferences> sp = SharedPreferences.getInstance();
@@ -55,8 +78,8 @@ void main() async {
   // Get.put(OwnerController());
   Get.put(MainController());
   runApp(const OwnMaterialApp(
-    // logged: token != null,
-  ));
+      // logged: token != null,
+      ));
   // await Firebase.initializeApp(
   //   options: DefaultFirebaseOptions.currentPlatform,
   // );
@@ -67,10 +90,12 @@ void main() async {
 // }
 //ownMaterialApp that could play any screen in this class from admin
 class OwnMaterialApp extends StatefulWidget {
-  const OwnMaterialApp({Key? key,
+  const OwnMaterialApp({
+    Key? key,
     // required this.logged
   }) : super(key: key);
- // final bool logged = false;
+
+  // final bool logged = false;
 
   @override
   State<OwnMaterialApp> createState() => _OwnMaterialAppState();
@@ -83,20 +108,17 @@ class _OwnMaterialAppState extends State<OwnMaterialApp> {
       debugShowCheckedModeBanner: false,
 
       darkTheme: ThemeData(
-
         useMaterial3: false,
-
 
         colorScheme: ColorScheme.fromSwatch().copyWith(secondary: Colors.grey),
 
-
         // brightness: Brightness.darkf
-          ),
+      ),
 
       // themeMode: ThemeMode.system,
 
       theme: ThemeData(
-        useMaterial3: false,
+          useMaterial3: false,
           fontFamily: 'IBM',
 
           // brightness: Brightness.,
@@ -192,8 +214,9 @@ class _OwnMaterialAppState extends State<OwnMaterialApp> {
         MyPagesRoutes.skeletonParagraph: (context) =>
             const LongParagraphReadySkeleton(),
         MyPagesRoutes.newMasterHome: (context) => const NewMasterHome(),
-        MyPagesRoutes.newShowMore: (context) =>  const NewShowMore(),
-        MyPagesRoutes.whatTheInfoReqToCreateAd: (context) =>  const WhatTheInfoReqToCreateAd(),
+        MyPagesRoutes.newShowMore: (context) => const NewShowMore(),
+        MyPagesRoutes.whatTheInfoReqToCreateAd: (context) =>
+            const WhatTheInfoReqToCreateAd(),
 
         //testing routes..
         // MyPagesRoutes.citiesTest:(context)=> CitiesTest(),
@@ -217,8 +240,13 @@ home ,
    account,)
  */
 class Main extends StatefulWidget {
-  final Future<void> Function(BuildContext, String) ? navigatorOfMainClass;
-  const Main({ Key? key,  this.navigatorOfMainClass,}) : super(key: key);
+  final Future<void> Function(BuildContext, String)? navigatorOfMainClass;
+
+  const Main({
+    Key? key,
+    this.navigatorOfMainClass,
+  }) : super(key: key);
+
   // myPushName(context, MyPagesRoutes.showMore);
   @override
   State<Main> createState() => _MainState();
@@ -273,7 +301,7 @@ class _MainState extends State<Main> {
       child: ColorfulSafeArea(
         // bottom: false,
         // top
-        bottomColor: Colors.transparent ,
+        bottomColor: Colors.transparent,
         color: kPrimaryColor,
         child: Scaffold(
             backgroundColor: Colors.grey.shade200,

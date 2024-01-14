@@ -355,9 +355,9 @@ bool isHaveInternet = false;
 
   // API Call
   Future<OneApartment> getDataFromAPI({String? type, bool? isAll}) async {
-    Uri uri = Uri.parse("${ServerWeenBalaqee.apartmentAll}?type=$type");
+    Uri uri = Uri.parse("${ServerLocahost.apartmentAll}?type=$type");
     if (isAll == true) {
-      uri = Uri.parse(ServerWeenBalaqee.apartmentAll);
+      uri = Uri.parse(ServerLocahost.apartmentAll);
     }
     debugPrint("uri --$uri");
     var response = await http.get(uri);
@@ -388,7 +388,7 @@ bool isHaveInternet = false;
       isDataLoaded = true;
 
     });
-    Uri uri = Uri.parse(ServerWeenBalaqee.apartmentAll);
+    Uri uri = Uri.parse(ServerLocahost.apartmentAll);
     final response = await http.get(uri);
     if (response.statusCode == 200) {
       List jsonResponse = jsonDecode(response.body);
