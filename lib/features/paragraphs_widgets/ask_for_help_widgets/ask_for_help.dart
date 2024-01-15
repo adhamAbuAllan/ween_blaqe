@@ -20,7 +20,7 @@ class AskForHelp extends StatelessWidget {
         // bottomColor: Colors.transparent ,
         color: kPrimaryColor,
         child: Scaffold(
-          backgroundColor: Colors.grey.shade200,
+          backgroundColor: kBackgroundAppColor,
           appBar: AppBar(
             backgroundColor: kPrimaryColor,
             title: const Text(
@@ -117,7 +117,7 @@ class AskForHelp extends StatelessWidget {
           padding: const EdgeInsets.only(bottom: 45.0),
           child: FloatingActionButton(
 
-            shape:ContinuousRectangleBorder(borderRadius: BorderRadius.circular(16/2),) ,
+            // shape:ContinuousRectangleBorder(borderRadius: BorderRadius.circular(16/2),) ,
             onPressed: (){                              sendMessageToWhatsApp(
                 '2569339613', "السلام عليكم، ممكن مساعدة، ");},backgroundColor: const Color(0xff25D366),
 

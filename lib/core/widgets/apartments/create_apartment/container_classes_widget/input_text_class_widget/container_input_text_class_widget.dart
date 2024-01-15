@@ -180,14 +180,14 @@ class _ContainerInputTextClassWidgetState
         ),
         focusedBorder: const OutlineInputBorder(
           borderSide: BorderSide(
-            width: 1,
+            width: 1.5,
             color: kPrimaryColor,
           ),
         ),
         enabledBorder: OutlineInputBorder(
-            borderSide: const BorderSide(
-              width: 0.5,
-              color: kPrimaryColor300,
+            borderSide:  const BorderSide(
+              width: 1,
+              color: kPrimaryColor,
             ),
             borderRadius: BorderRadius.circular(7)));
   }

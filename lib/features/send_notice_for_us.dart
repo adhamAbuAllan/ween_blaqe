@@ -45,6 +45,7 @@ class _SendNoticeForUsState extends State<SendNoticeForUs> {
             // Colors.grey.shade200,
             appBar: AppBar(
               backgroundColor: Colors.white,
+
               actions: [
                 Padding(
                   padding: const EdgeInsets.all( 8.0),
@@ -52,9 +53,9 @@ class _SendNoticeForUsState extends State<SendNoticeForUs> {
                   IconButton(
                     icon: Icon(
 
-                      Icons.arrow_back_ios,
+                      Icons.arrow_back,
                       color: Colors.black.withOpacity(.7),
-                      size: 30,
+                      size: 24,
                     ),
                     onPressed: () {
                           Navigator.pop(context);

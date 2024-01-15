@@ -78,8 +78,9 @@ class _MainStudentState extends State<MainStudent> {
 // floatingActionButtonLocation: FloatingActionButtonLocation.miniEndFloat,
           floatingActionButton: FloatingActionButton(
 
-            shape: ContinuousRectangleBorder(
-                borderRadius: BorderRadius.circular(16 / 2)),
+            // shape: ContinuousRectangleBorder(
+            //
+            //     borderRadius: BorderRadius.circular(16 / 2)),
             onPressed: () {
               showCupertinoModalPopup(
                   context: context,
@@ -269,7 +270,7 @@ class _MainStudentState extends State<MainStudent> {
                         CupertinoActionSheetAction(
                             onPressed: () {
                               sendMessageToWhatsApp(
-                                  '2569339613', "السلام عليكم، ");
+                                  '2569339613', "السلام عليكم،");
                             },
                             child: const Text(
                               "طلب الإشتراك عبر واتس أب",

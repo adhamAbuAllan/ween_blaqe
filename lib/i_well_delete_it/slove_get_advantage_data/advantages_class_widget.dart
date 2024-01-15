@@ -218,7 +218,7 @@ class _ShowAllAdvantagesState extends State<ShowAllAdvantages> {
                         Navigator.of(context).pop(context);
                       },
                       icon: const Icon(
-                        Icons.arrow_back_ios,
+                        Icons.arrow_back,
                         color: Colors.black87,
                       )),
                 ),

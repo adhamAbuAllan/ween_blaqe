@@ -149,9 +149,9 @@ class _NewShowMoreState extends State<NewShowMore> {
                                   Get.back();
                                 },
                                 icon: Icon(
-                                  size: 30,
+                                  size: 24,
 
-                                  Icons.arrow_back_ios,
+                                  Icons.arrow_back,
                                   color: Colors.black.withOpacity(.7),
                                 )),
                           ),

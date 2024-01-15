@@ -1,8 +1,10 @@
 import 'dart:async';
 
+import 'package:colorful_safe_area/colorful_safe_area.dart';
 import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:flutter/material.dart';
 
+import '../constants/nums.dart';
 import '../constants/strings.dart';
 
 class SplashScreen extends StatefulWidget {
@@ -58,15 +60,19 @@ class _SplashScreenState extends State<SplashScreen> {
 
       // )
           // :  bulidSplashScreenWidget()
-      SingleChildScrollView(
-        child: Center(
-          //
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Image(
-                image: AssetImage("assets/images/splash screen heigh qulity with large size.png"),
-    ) ]))));
+      ColorfulSafeArea(
+        bottomColor: Colors.transparent ,
+        color: kPrimaryColor,
+        child: SingleChildScrollView(
+          child: Center(
+            //
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Image(
+                  image: AssetImage("assets/images/splash screen heigh qulity with large size.png"),
+            ) ]))),
+      ));
       //         // Text(
       //         //   "وين",
       //         //   style: TextStyle(
@@ -126,7 +132,7 @@ class _SplashScreenState extends State<SplashScreen> {
      var   connectivityResult =  Connectivity().checkConnectivity();
 
     if (connectivityResult ==  ConnectivityResult.wifi) {
-      print("naviage to noIntrnet/you have entrent ");
+      // print("naviage to noIntrnet/you have entrent ");
       await navigateToHome();
       // bulidSplashScreenWidget();
       setState(() {

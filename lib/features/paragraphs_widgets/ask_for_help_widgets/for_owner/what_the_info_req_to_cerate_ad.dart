@@ -505,7 +505,6 @@ class _WhatTheInfoReqToCreateAdState extends State<WhatTheInfoReqToCreateAd> {
       ),
     );
   }
-
   // API Call
   Future<OneApartment?> getDataFromAPI() async {
     Uri uri = Uri.parse(ServerWeenBalaqee.apartmentAll);
