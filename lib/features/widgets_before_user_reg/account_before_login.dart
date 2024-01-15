@@ -93,7 +93,7 @@ class _AccountBeforeLoginInStudentState
       bottomColor: Colors.transparent ,
       color: kPrimaryColor,
       child: Scaffold(
-        backgroundColor: Colors.grey.shade200,
+        backgroundColor: kBackgroundAppColor,
         body: SingleChildScrollView(
           child: Column(
             children: [
@@ -181,7 +181,6 @@ class _AccountBeforeLoginInStudentState
               // aline,
               //help
               Container(
-                height: 180,
                 padding: const EdgeInsets.fromLTRB(0, 0, 0, 10),
                 margin: const EdgeInsets.fromLTRB(10, 0, 10, 0),
                 decoration: BoxDecoration(
