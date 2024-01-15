@@ -43,7 +43,7 @@ class _StringLen extends StatelessWidget {
     static String commentAdd= "${server}comment/add";
     static String uploadImages= "${server}photo/add";
   }
-  class ServerLocahost {
+  class ServerLocalhost {
     static String server = "http://192.168.1.200:8000/api/";
     // static String postAll = "${server}post/all";
     static String userLogin = "${server}user/login";

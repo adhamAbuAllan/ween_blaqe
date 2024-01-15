@@ -303,16 +303,15 @@ class _MainStudentState extends State<MainStudent> {
                   });
             },
             backgroundColor: kPrimaryColor,
-            child: Icon(
+            child: const Icon(
               Icons.add_home_outlined,
-              size: 30,
-              shadows: [
-                BoxShadow(
-                    color: const Color(0xffD56300).withOpacity(.26),
-                    blurRadius: 5,
-                    offset: const Offset(3, 5),
-                    spreadRadius: 7)
-              ],
+              size: 30,              // shadows: [
+              //   BoxShadow(
+              //       color: const Color(0xffD56300).withOpacity(.26),
+              //       blurRadius: 5,
+              //       offset: const Offset(3, 5),
+              //       spreadRadius: 7)
+              // ],
             ),
           )
           // buildSpeedDial()
