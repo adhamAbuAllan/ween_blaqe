@@ -93,10 +93,9 @@ class _AccountBeforeLoginInStudentState
       bottomColor: Colors.transparent ,
       color: kPrimaryColor,
       child: Scaffold(
-        backgroundColor: kBackgroundAppColor,
+        backgroundColor: Colors.grey.shade200,
         body: SingleChildScrollView(
-          child: Column(
-            children: [
+          child: Column(            children: [
               //title
               const Row(
                 children: [
