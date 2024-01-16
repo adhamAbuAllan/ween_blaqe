@@ -143,13 +143,13 @@ class _NewShowMoreState extends State<NewShowMore> {
                       Row(
                         children: [
                           Padding(
-                            padding: const EdgeInsets.fromLTRB(0, 20, 0, 0),
+                            padding: const EdgeInsets.fromLTRB(0, 20, 8, 0),
                             child: IconButton(
                                 onPressed: () {
                                   Get.back();
                                 },
                                 icon: Icon(
-                                  size: 24,
+                                  size: 34,
 
                                   Icons.arrow_back,
                                   color: Colors.black.withOpacity(.7),

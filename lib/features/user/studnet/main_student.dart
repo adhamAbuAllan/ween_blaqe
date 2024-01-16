@@ -175,7 +175,7 @@ class _MainStudentState extends State<MainStudent> {
                                   width: 20,
                                 ),
                                 SizedBox(
-                                  height: 60,
+                                  height: 50,
                                   width: 120,
                                   child: RichText(
                                       softWrap: true,

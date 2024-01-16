@@ -93,7 +93,7 @@ class _AccountBeforeLoginInStudentState
       bottomColor: Colors.transparent ,
       color: kPrimaryColor,
       child: Scaffold(
-        backgroundColor: Colors.grey.shade200,
+        backgroundColor: Colors.grey.shade200 ,
         body: SingleChildScrollView(
           child: Column(            children: [
               //title

@@ -48,14 +48,14 @@ class _SendNoticeForUsState extends State<SendNoticeForUs> {
 
               actions: [
                 Padding(
-                  padding: const EdgeInsets.all( 8.0),
+                  padding: const EdgeInsets.all(4),
                   child:
                   IconButton(
                     icon: Icon(
 
                       Icons.arrow_back,
                       color: Colors.black.withOpacity(.7),
-                      size: 24,
+                      size: 34,
                     ),
                     onPressed: () {
                           Navigator.pop(context);
