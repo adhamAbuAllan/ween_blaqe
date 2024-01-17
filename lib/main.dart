@@ -15,6 +15,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:ween_blaqe/controller/main_controller.dart';
+import 'package:flutter/services.dart';
 
 // import 'package:ween_blaqe/controller/owner_controller/owner_controller.dart';
 import 'package:ween_blaqe/controller/student_controller/student_controller.dart';
@@ -71,6 +72,10 @@ void main() async {
   debugPrint("Starting");
   WidgetsFlutterBinding.ensureInitialized();
   await NewSession.init();
+  await SystemChrome.setPreferredOrientations([
+    DeviceOrientation.portraitUp,
+    DeviceOrientation.portraitDown,
+  ]);
   // await EasyLocalization.ensureInitialized();
   // final Future<SharedPreferences> prefs = SharedPreferences.getInstance();
   // var token = (await sp).get("token");
@@ -259,6 +264,10 @@ class _MainState extends State<Main> {
   void initState() {
     super.initState();
     controller.addListener(listener);
+    SystemChrome.setPreferredOrientations([
+      DeviceOrientation.portraitUp,
+      DeviceOrientation.portraitDown,
+    ]);
 
     // initializtion();
   }
@@ -275,12 +284,16 @@ class _MainState extends State<Main> {
         (route) => route.settings.name == MyPagesRoutes.main,
         MyPagesRoutes.main);
   }
-
   @override
   void dispose() {
     super.dispose();
+    SystemChrome.setPreferredOrientations([
+      DeviceOrientation.portraitUp,
+      DeviceOrientation.portraitDown,
+      DeviceOrientation.landscapeLeft,
+      DeviceOrientation.landscapeRight,
+    ]);
   }
-
   void listener() {
     // \(controller.position.pixel);
   }
