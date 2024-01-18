@@ -36,7 +36,6 @@ class _MainStudentState extends State<MainStudent> {
   int index = 0;
 
   StudentController controller = Get.find();
-
   @override
   Widget build(BuildContext context) {
     var studentController = controller;

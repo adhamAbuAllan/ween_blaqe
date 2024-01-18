@@ -40,6 +40,7 @@ import 'package:ween_blaqe/sesstion/new_session.dart';
 import 'package:ween_blaqe/features/splach_screen.dart';
 import 'constants/nums.dart';
 import 'constants/strings.dart';
+import 'controller/models_controller/apartment_model_controller.dart';
 import 'features/send_notice_for_us.dart';
 /*
 **كيف ممكن ننشئ مشاريع في الفريق تاعنا و الكل يوخذ حقه**
@@ -80,6 +81,8 @@ void main() async {
   // final Future<SharedPreferences> prefs = SharedPreferences.getInstance();
   // var token = (await sp).get("token");
   Get.put(StudentController());
+  Get.put(ApartmentModelController());
+
   // Get.put(OwnerController());
   Get.put(MainController());
   runApp(const OwnMaterialApp(
@@ -300,6 +303,7 @@ class _MainState extends State<Main> {
 
   // var index = 0;
   MainController mainController = Get.find();
+
 
   @override
   Widget build(BuildContext context) {
