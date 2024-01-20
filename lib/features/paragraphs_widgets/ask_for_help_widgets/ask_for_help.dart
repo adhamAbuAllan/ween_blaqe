@@ -31,7 +31,7 @@ class AskForHelp extends StatelessWidget {
               ),
             ),
             bottom: const TabBar(
-              dividerColor: Colors.white,
+              dividerColor: kContainerColor,
 
               tabs: [
                 Tab(text: 'مُستأجر'),
@@ -52,7 +52,7 @@ class AskForHelp extends StatelessWidget {
                     margin: const EdgeInsets.fromLTRB(10, 0, 10, 0),
                     decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(7),
-                        color: Colors.white,
+                        color: kContainerColor,
                       ),
                     child: Column(
                       mainAxisSize: MainAxisSize.min,
@@ -63,7 +63,7 @@ class AskForHelp extends StatelessWidget {
                           aline,
                           askForHelpButton(() {
                             myPushName(context, MyPagesRoutes.systemBooking);
-                          }, "الحجز"),
+                      }, "الحجز"),
                           aline,
                           askForHelpButton(() {
                             myPushName(context, MyPagesRoutes.whatIsMeanSS);
@@ -84,7 +84,7 @@ class AskForHelp extends StatelessWidget {
                       margin: const EdgeInsets.fromLTRB(10, 0, 10, 0),
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(7),
-                        color: Colors.white,
+                        color: kContainerColor,
                       ),
                       child: Column(
                         children: [

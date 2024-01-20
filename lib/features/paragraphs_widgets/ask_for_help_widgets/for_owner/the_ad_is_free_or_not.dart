@@ -1,6 +1,7 @@
 import 'package:colorful_safe_area/colorful_safe_area.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:ween_blaqe/core/utils/styles/text_style/aline_style.dart';
 
 import '../../../../constants/nums.dart';
 import '../../../../core/utils/funcations/go_url_launcher_methodes/go_to_whatsapp_method.dart';
@@ -28,7 +29,7 @@ class TheAdIsFreeOrNot extends StatelessWidget {
                 "كم يُكلفة الإشتراك لعرض إعلاناتي داخل تطبيق وين بلاقي؟",
                 style: TextStyle(
                   fontSize: 20.0,
-                  color: Colors.black.withOpacity(.8),
+                  color: kTextColor.withOpacity(.8),
                   fontFamily: 'IBM',
                   inherit: false,
                 ),
@@ -74,7 +75,7 @@ class TheAdIsFreeOrNot extends StatelessWidget {
                     style: TextStyle(
                       fontSize: 18.0,
                       fontFamily: 'IBM',
-                      color: Colors.black.withOpacity(.8),
+                      color: kTextColor.withOpacity(.8),
                       inherit: true,
                     ),
                   ),
@@ -92,13 +93,13 @@ class TheAdIsFreeOrNot extends StatelessWidget {
                               style: TextStyle(
                                 fontFamily: "IBM",
                                 fontSize: 22,
-                                color: Colors.black.withOpacity(.8),
+                                color: kTextColor.withOpacity(.8),
                               ),
                               text: "التكلفة الشهرية: "),
                           TextSpan(
                               style: TextStyle(
                                 fontFamily: "IBM",
-                                color: Colors.black.withOpacity(.8),
+                                color: kTextColor.withOpacity(.8),
                                 fontSize: 22,
                               ),
                               text: "199"),
@@ -111,7 +112,7 @@ class TheAdIsFreeOrNot extends StatelessWidget {
                           child: FaIcon(
                             FontAwesomeIcons.shekelSign,
                             size: 18,
-                            color: Colors.black.withOpacity(.8),
+                            color: kTextColor.withOpacity(.8),
                           ),
                         ),
                       ],
@@ -136,7 +137,7 @@ class TheAdIsFreeOrNot extends StatelessWidget {
                                       style: TextStyle(
                                         fontFamily: "IBM",
                                         fontSize: 22,
-                                        color: Colors.black.withOpacity(.8),
+                                        color: kTextColor.withOpacity(.8),
                                       ),
                                       text: "التكلفة السنوية:"),
                                 ],
@@ -157,7 +158,7 @@ class TheAdIsFreeOrNot extends StatelessWidget {
                                             TextSpan(
                                                 style: TextStyle(
                                                   fontFamily: "IBM",
-                                                  color: Colors.grey,
+                                                  color: kTextColor,
                                                   decoration: TextDecoration
                                                       .lineThrough,decorationColor: Colors.red,
                                                   fontSize: 24,
@@ -168,10 +169,10 @@ class TheAdIsFreeOrNot extends StatelessWidget {
                                     const SizedBox(
                                       width: 3,
                                     ),
-                                    FaIcon(
+                                    const FaIcon(
                                       size: 20,
                                       FontAwesomeIcons.shekelSign,
-                                      color: Colors.black.withOpacity(.8),
+                                      color: kTextColor,
                                     ),
                                   ],
                                 ),
@@ -186,7 +187,7 @@ class TheAdIsFreeOrNot extends StatelessWidget {
                                         TextSpan(
                                           style: TextStyle(
                                             fontFamily: "IBM",
-                                            color: Colors.black.withOpacity(.8),
+                                            color: kTextColor.withOpacity(.8),
                                             fontSize: 20,
                                           ),
                                           text: "1999",
@@ -199,7 +200,7 @@ class TheAdIsFreeOrNot extends StatelessWidget {
                                     FaIcon(
                                       FontAwesomeIcons.shekelSign,
                                       size: 16,
-                                      color: Colors.black.withOpacity(.8),
+                                      color: kTextColor.withOpacity(.8),
                                     ),
                                   ],
                                 ),
@@ -210,7 +211,9 @@ class TheAdIsFreeOrNot extends StatelessWidget {
                       ],
                     ),
                   ),
-                  const Divider(thickness: 1),
+                  // const Divider(thickness: 1),
+                  const SizedBox(height: 10,),
+                  aline,
                   Row(
                     children: [
                       const Text(
@@ -218,6 +221,9 @@ class TheAdIsFreeOrNot extends StatelessWidget {
                           "إشترك الأن من خلال التواصل عبر ",style: TextStyle(
                         fontFamily: "IBM",
                         fontSize: 14,
+                        color: kTextColor
+
+
                       )),
                       TextButton(
                         style: ButtonStyle(overlayColor: MaterialStatePropertyAll(const Color(0xff25D366).withOpacity(.0),) ),

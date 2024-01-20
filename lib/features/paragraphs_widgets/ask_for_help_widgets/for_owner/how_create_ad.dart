@@ -30,7 +30,7 @@ class HowCreateAd extends StatelessWidget {
                         " كيف أنشئ إعلان؟",
                         style: TextStyle(
                           fontSize: 20.0,
-                          color: Colors.black87,
+                          color: kTextColor,
                           fontFamily: 'IBM',
                           inherit: true,
                         ),
@@ -47,13 +47,16 @@ class HowCreateAd extends StatelessWidget {
                     "لإنشاء إعلان خاص بك على تطبيق وين بلاقي ، إذهب إلى الصفحة الرئيسية",
                     style: TextStyle(
                       fontSize: 16.0,
-                      color: Colors.grey.shade800,
+                      color: kTextColor.withOpacity(.8),
                       fontFamily: 'IBM',
                       inherit: true,
                     ),
                   ),
                 ),
-                Image.asset("assets/images/apartments_images/Simulator Screenshot - iPhone 15 Pro Max - 2023-12-05 at 14.48.13.png",width: 300,height: 400,),
+                Image.asset(
+
+
+                  "assets/images/apartments_images/Simulator Screenshot - iPhone 15 Pro Max - 2023-12-05 at 14.48.13.png",width: 300,height: 400,),
                 Container(
                   width: double.infinity,
                   margin: const EdgeInsets.fromLTRB(25, 50, 30, 10),
@@ -61,7 +64,7 @@ class HowCreateAd extends StatelessWidget {
                     "إضعط على زر إضافة شقة المتواجد في اسفل الشاشة على اليمين",
                     style: TextStyle(
                       fontSize: 16.0,
-                      color: Colors.grey.shade800,
+                      color: kTextColor.withOpacity(.8),
                       fontFamily: 'IBM',
                       inherit: true,
                     ),
@@ -80,7 +83,7 @@ class HowCreateAd extends StatelessWidget {
                     "ثم أضغط على زر 'اطلب الإشتراك عبر واتس أب'",
                     style: TextStyle(
                       fontSize: 16.0,
-                      color: Colors.grey.shade800,
+                      color: kTextColor.withOpacity(.8),
                       fontFamily: 'IBM',
                       inherit: true,
                     ),
@@ -100,7 +103,7 @@ class HowCreateAd extends StatelessWidget {
                     "وسيتم الرد على رسالتك خلال بضع دقائق",
                     style: TextStyle(
                       fontSize: 16.0,
-                      color: Colors.grey.shade800,
+                      color: kTextColor.withOpacity(.8),
                       fontFamily: 'IBM',
                       inherit: true,
                     ),

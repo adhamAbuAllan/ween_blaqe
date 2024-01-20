@@ -21,11 +21,11 @@ class ApartmentPriceText extends StatelessWidget {
                 fontFamily: 'IBM',
               )),
         ),
-        Padding(
-          padding: const EdgeInsets.fromLTRB(10, 0, 3, 0),
+        const Padding(
+          padding: EdgeInsets.fromLTRB(10, 0, 3, 0),
           child: Text("ش/ش",
               style: TextStyle(
-                color: Colors.black.withOpacity(.5),
+                color: kTextColor,
                 fontSize: 12,
                 fontFamily: 'IBM',
               )),

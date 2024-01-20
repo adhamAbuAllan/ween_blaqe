@@ -2,6 +2,7 @@
 import 'package:flutter/material.dart';
 
 import '../../../api/apartments_api/one_apartment.dart';
+import '../../../constants/nums.dart';
 import '../../../controller/student_controller/student_controller.dart';
 
 
@@ -38,8 +39,8 @@ class _BottomNavigationBarOfStudentState
       // selectedIconTheme: const IconThemeData(opacity: 1),
       // unselectedIconTheme: const IconThemeData(opacity: .5),
       // enableFeedback: false,
-      backgroundColor:  const Color(0xB3ffffff),
-      selectedItemColor: const Color(0xffff9800),
+      backgroundColor:   kContainerColor,
+      selectedItemColor: kPrimaryColor,
       unselectedItemColor: Colors.grey,
       type: BottomNavigationBarType.fixed,
       iconSize: 30,

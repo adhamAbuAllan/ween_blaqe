@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:ween_blaqe/constants/nums.dart';
 
- Widget aline = Divider(
-  color: Colors.black.withOpacity(.5),
+ Widget aline = const Divider(
+  color: kTextColor,
   height: 1,
-  thickness: .1,
+  thickness: .5,
 );
 
 // Row(

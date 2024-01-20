@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:ween_blaqe/constants/nums.dart';
 
 import '../../../../utils/styles/button.dart';
 
@@ -49,9 +50,9 @@ class _BtnShowTypesOfApartmentsState extends State<BtnShowTypesOfApartments> {
             const EdgeInsets.only(
                 top: 4),
             height: 35,
-            color: Colors.white,
+            color:kContainerColor,
             child: widget.text?.isNotEmpty??false ? Text(
-                " ${widget.text} ") :   Text(
+                " ${widget.text} ") :   const Text(
                 " صنف السكن ")));
   }
 }

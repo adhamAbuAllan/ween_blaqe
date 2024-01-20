@@ -84,6 +84,7 @@ class _WhatTheInfoReqToCreateAdState extends State<WhatTheInfoReqToCreateAd> {
       bottomColor: Colors.transparent,
       color: kPrimaryColor,
       child: Scaffold(
+        backgroundColor: kBackgroundAppColor,
         appBar: AppBar(
           backgroundColor: kPrimaryColor,
         ),
@@ -107,6 +108,7 @@ class _WhatTheInfoReqToCreateAdState extends State<WhatTheInfoReqToCreateAd> {
                                 fontSize: 28.0,
                                 fontFamily: 'IBM',
                                 inherit: true,
+                                color: kTextColor,
                               ),
                               softWrap: true,
                             ),
@@ -123,6 +125,7 @@ class _WhatTheInfoReqToCreateAdState extends State<WhatTheInfoReqToCreateAd> {
                           fontSize: 26.0,
                           fontFamily: 'IBM',
                           inherit: true,
+                          color: kTextColor,
                         ),
                       ),
                     ),
@@ -137,6 +140,7 @@ class _WhatTheInfoReqToCreateAdState extends State<WhatTheInfoReqToCreateAd> {
                               fontSize: 22.0,
                               fontFamily: 'IBM',
                               inherit: true,
+                              color: kTextColor,
                             ),
                           ),
                         ),
@@ -152,35 +156,56 @@ class _WhatTheInfoReqToCreateAdState extends State<WhatTheInfoReqToCreateAd> {
                           fontSize: 16.0,
                           fontFamily: 'IBM',
                           inherit: true,
+                          color: kTextColor,
                         ),
                       ),
                     ),
                     DataTable(
+                      border:  const TableBorder(
+                        horizontalInside: BorderSide(
+                          width: .5,
+                          color: kTextColor
+                          // Change this to your desired color
+                        ),
+                      ),
+
+                      dataRowColor: const MaterialStatePropertyAll(kContainerColor),
+                      headingRowColor: const MaterialStatePropertyAll(kContainerColor),
                       horizontalMargin: 35,
                       sortAscending: false,
                       sortColumnIndex: 0,
                       columns: const [
                         DataColumn(
-                            numeric: false,
-                            label: Text("الاسم",
-                                style:
-                                    TextStyle(fontSize: 16, fontFamily: "IBM")),
-                            tooltip: "إسم المعلومة المطلوبة"),
+                          numeric: false,
+                          label: Text("الاسم",
+                              style: TextStyle(
+                                  fontSize: 16,
+                                  fontFamily: "IBM",
+                                  color: kTextColor)),
+                          tooltip: "إسم المعلومة المطلوبة",
+                        ),
                         DataColumn(
                           label: Text("مثال",
-                              style:
-                                  TextStyle(fontSize: 16, fontFamily: "IBM")),
+                              style: TextStyle(
+                                  fontSize: 16,
+                                  fontFamily: "IBM",
+                                  color: kTextColor)),
                           tooltip: "مثال على العلومة المطلوبة",
                         ),
                       ],
                       rows: const [
                         DataRow(cells: [
                           DataCell(Text("عنوان الإعلان",
-                              style:
-                                  TextStyle(fontSize: 14, fontFamily: "IBM"))),
+                              style: TextStyle(
+                                  fontSize: 14,
+                                  fontFamily: "IBM",
+                                  color: kTextColor))),
                           DataCell(Text(
                             "شقة مفروشة بالقرب من جامعة بولتكنك",
-                            style: TextStyle(fontSize: 14, fontFamily: "IBM"),
+                            style: TextStyle(
+                                fontSize: 14,
+                                fontFamily: "IBM",
+                                color: kTextColor),
                           )),
                           // DataCell(Text("عنوان الإعلان الخاص بالشقة")),
                         ]),
@@ -189,46 +214,67 @@ class _WhatTheInfoReqToCreateAdState extends State<WhatTheInfoReqToCreateAd> {
                               showEditIcon: false,
                               Text(
                                   style: TextStyle(
-                                      fontSize: 14, fontFamily: "IBM"),
+                                    fontSize: 14,
+                                    fontFamily: "IBM",
+                                    color: kTextColor,
+                                  ),
                                   "المكان"),
                               placeholder: false),
                           DataCell(Text(
-                              style: TextStyle(fontSize: 14, fontFamily: "IBM"),
+                              style: TextStyle(
+                                  fontSize: 14,
+                                  fontFamily: "IBM",
+                                  color: kTextColor),
                               "الخليل-واد الهرية-بالقرب من جامعة بولتكنك")),
                         ]),
                         DataRow(cells: [
                           DataCell(
                               showEditIcon: false,
                               Text(
-                                  style: TextStyle(
-                                      fontSize: 12, fontFamily: "IBM"),
-                                  "عدد الطلاب المسموح به"),
+                                style: TextStyle(
+                                    fontSize: 12,
+                                    fontFamily: "IBM",
+                                    color: kTextColor),
+                                "عدد الطلاب المسموح به",
+                              ),
                               placeholder: false),
                           DataCell(Text("3",
-                              style:
-                                  TextStyle(fontSize: 14, fontFamily: "IBM"))),
+                              style: TextStyle(
+                                  fontSize: 14,
+                                  fontFamily: "IBM",
+                                  color: kTextColor))),
                         ]),
                         DataRow(cells: [
                           DataCell(
                               showEditIcon: false,
                               Text("نوع السكن",
                                   style: TextStyle(
-                                      fontSize: 14, fontFamily: "IBM")),
+                                    fontSize: 14,
+                                    fontFamily: "IBM",
+                                    color: kTextColor,
+                                  )),
                               placeholder: false),
                           DataCell(Text("طلاب",
-                              style:
-                                  TextStyle(fontSize: 14, fontFamily: "IBM"))),
+                              style: TextStyle(
+                                  fontSize: 14,
+                                  fontFamily: "IBM",
+                                  color: kTextColor))),
                         ]),
                         DataRow(cells: [
                           DataCell(
                               showEditIcon: false,
                               Text("الأجرة الشهرية",
                                   style: TextStyle(
-                                      fontSize: 14, fontFamily: "IBM")),
+                                    fontSize: 14,
+                                    fontFamily: "IBM",
+                                    color: kTextColor,
+                                  )),
                               placeholder: false),
                           DataCell(Text("800",
-                              style:
-                                  TextStyle(fontSize: 14, fontFamily: "IBM"))),
+                              style: TextStyle(
+                                  fontSize: 14,
+                                  fontFamily: "IBM",
+                                  color: kTextColor))),
                         ]),
                       ],
                     ),
@@ -243,6 +289,7 @@ class _WhatTheInfoReqToCreateAdState extends State<WhatTheInfoReqToCreateAd> {
                           fontSize: 22.0,
                           fontFamily: 'IBM',
                           inherit: true,
+                          color: kTextColor,
                         ),
                       ),
                     ),
@@ -255,10 +302,21 @@ class _WhatTheInfoReqToCreateAdState extends State<WhatTheInfoReqToCreateAd> {
                           fontSize: 16.0,
                           fontFamily: 'IBM',
                           inherit: true,
+                          color: kTextColor,
                         ),
                       ),
                     ),
                     DataTable(
+                      border:  const TableBorder(
+                        horizontalInside: BorderSide(
+                            width: .5,
+                            color: kTextColor
+                          // Change this to your desired color
+                        ),
+                      ),
+
+                      dataRowColor: const MaterialStatePropertyAll(kContainerColor),
+                      headingRowColor: const MaterialStatePropertyAll(kContainerColor),
                       horizontalMargin: 35,
                       sortAscending: false,
                       sortColumnIndex: 0,
@@ -266,23 +324,31 @@ class _WhatTheInfoReqToCreateAdState extends State<WhatTheInfoReqToCreateAd> {
                         DataColumn(
                             numeric: false,
                             label: Text("الاسم",
-                                style:
-                                    TextStyle(fontSize: 16, fontFamily: "IBM")),
+                                style: TextStyle(
+                                    fontSize: 16,
+                                    fontFamily: "IBM",
+                                    color: kTextColor)),
                             tooltip: "إسم المعلومة المطلوبة"),
                         DataColumn(
                             label: Text("مثال",
-                                style:
-                                    TextStyle(fontSize: 16, fontFamily: "IBM")),
+                                style: TextStyle(
+                                    fontSize: 16,
+                                    fontFamily: "IBM",
+                                    color: kTextColor)),
                             tooltip: "مثال على العلومة المطلوبة")
                       ],
                       rows: const [
                         DataRow(cells: [
                           DataCell(Text("مساحة الشقة",
-                              style:
-                                  TextStyle(fontSize: 14, fontFamily: "IBM"))),
+                              style: TextStyle(
+                                  fontSize: 14,
+                                  fontFamily: "IBM",
+                                  color: kTextColor))),
                           DataCell(Text("70م",
-                              style:
-                                  TextStyle(fontSize: 14, fontFamily: "IBM"))),
+                              style: TextStyle(
+                                  fontSize: 14,
+                                  fontFamily: "IBM",
+                                  color: kTextColor))),
                           // DataCell(Text("عنوان الإعلان الخاص بالشقة")),
                         ]),
                         DataRow(cells: [
@@ -290,24 +356,33 @@ class _WhatTheInfoReqToCreateAdState extends State<WhatTheInfoReqToCreateAd> {
                               showEditIcon: false,
                               Text("عدد الغرف",
                                   style: TextStyle(
-                                      fontSize: 14, fontFamily: "IBM")),
+                                    fontSize: 14,
+                                    fontFamily: "IBM",
+                                    color: kTextColor,
+                                  )),
                               placeholder: false),
                           DataCell(Text("3",
-                              style:
-                                  TextStyle(fontSize: 14, fontFamily: "IBM"))),
+                              style: TextStyle(
+                                  fontSize: 14,
+                                  fontFamily: "IBM",
+                                  color: kTextColor))),
                         ]),
                         DataRow(cells: [
                           DataCell(
                               showEditIcon: false,
                               Text(
                                 "عدد الحمامات",
-                                style:
-                                    TextStyle(fontSize: 14, fontFamily: "IBM"),
+                                style: TextStyle(
+                                    fontSize: 14,
+                                    fontFamily: "IBM",
+                                    color: kTextColor),
                               ),
                               placeholder: false),
                           DataCell(Text("1",
-                              style:
-                                  TextStyle(fontSize: 14, fontFamily: "IBM"))),
+                              style: TextStyle(
+                                  fontSize: 14,
+                                  fontFamily: "IBM",
+                                  color: kTextColor))),
                         ]),
                       ],
                     ),
@@ -321,6 +396,7 @@ class _WhatTheInfoReqToCreateAdState extends State<WhatTheInfoReqToCreateAd> {
                           fontSize: 22.0,
                           fontFamily: 'IBM',
                           inherit: true,
+                          color: kTextColor,
                         ),
                       ),
                     ),
@@ -333,10 +409,21 @@ class _WhatTheInfoReqToCreateAdState extends State<WhatTheInfoReqToCreateAd> {
                           fontSize: 16.0,
                           fontFamily: 'IBM',
                           inherit: true,
+                          color: kTextColor,
                         ),
                       ),
                     ),
                     DataTable(
+                      border:  const TableBorder(
+                        horizontalInside: BorderSide(
+                            width: .5,
+                            color: kTextColor
+                          // Change this to your desired color
+                        ),
+                      ),
+
+                      dataRowColor: const MaterialStatePropertyAll(kContainerColor),
+                      headingRowColor: const MaterialStatePropertyAll(kContainerColor),
                       horizontalMargin: 35,
                       sortColumnIndex: 0,
                       columns: const [
@@ -344,13 +431,17 @@ class _WhatTheInfoReqToCreateAdState extends State<WhatTheInfoReqToCreateAd> {
                             numeric: false,
                             label: Text(
                               "الاسم",
-                              style: TextStyle(fontFamily: "IBM", fontSize: 16),
+                              style: TextStyle(
+                                  fontFamily: "IBM",
+                                  fontSize: 16,
+                                  color: kTextColor),
                             ),
                             tooltip: "إسم الميزة"),
                         DataColumn(
                             label: Text(
                               "ايقونة الميزة",
-                              style: TextStyle(fontFamily: "IBM"),
+                              style: TextStyle(
+                                  fontFamily: "IBM", color: kTextColor),
                             ),
                             tooltip: "الايقونة التي تظهر بجانب الميزة")
                       ],
@@ -360,13 +451,16 @@ class _WhatTheInfoReqToCreateAdState extends State<WhatTheInfoReqToCreateAd> {
                                 DataCell(Text(
                                     "${apartmentRes?.data?.last.advantages?[index].advName}",
                                     style: const TextStyle(
-                                        fontSize: 14, fontFamily: "IBM"))),
+                                        fontSize: 14,
+                                        fontFamily: "IBM",
+                                        color: kTextColor))),
                                 DataCell(Align(
                                     alignment: Alignment.center,
                                     child: Image.network(
                                       "${apartmentRes?.data?.last.advantages![index].icon ?? 1}",
                                       width: 24,
                                       height: 24,
+                                      color: kTextColor,
                                     )))
                               ])),
                     ),
@@ -380,6 +474,7 @@ class _WhatTheInfoReqToCreateAdState extends State<WhatTheInfoReqToCreateAd> {
                           fontSize: 22.0,
                           fontFamily: 'IBM',
                           inherit: true,
+                          color: kTextColor,
                         ),
                       ),
                     ),
@@ -392,6 +487,7 @@ class _WhatTheInfoReqToCreateAdState extends State<WhatTheInfoReqToCreateAd> {
                           fontSize: 16.0,
                           fontFamily: 'IBM',
                           inherit: true,
+                          color: kTextColor,
                         ),
                       ),
                     ),
@@ -404,6 +500,7 @@ class _WhatTheInfoReqToCreateAdState extends State<WhatTheInfoReqToCreateAd> {
                           fontSize: 26.0,
                           fontFamily: 'IBM',
                           inherit: true,
+                          color: kTextColor,
                         ),
                       ),
                     ),
@@ -416,11 +513,22 @@ class _WhatTheInfoReqToCreateAdState extends State<WhatTheInfoReqToCreateAd> {
                           fontSize: 16.0,
                           fontFamily: 'IBM',
                           inherit: true,
+                          color: kTextColor,
                         ),
                       ),
                     ),
 
                     DataTable(
+                      border:  const TableBorder(
+                        horizontalInside: BorderSide(
+                            width: .5,
+                            color: kTextColor
+                          // Change this to your desired color
+                        ),
+                      ),
+
+                      dataRowColor: const MaterialStatePropertyAll(kContainerColor),
+                      headingRowColor: const MaterialStatePropertyAll(kContainerColor),
                       horizontalMargin: 35,
                       sortAscending: false,
                       sortColumnIndex: 0,
@@ -428,23 +536,31 @@ class _WhatTheInfoReqToCreateAdState extends State<WhatTheInfoReqToCreateAd> {
                         DataColumn(
                             numeric: false,
                             label: Text("الاسم",
-                                style:
-                                    TextStyle(fontSize: 16, fontFamily: "IBM")),
+                                style: TextStyle(
+                                    fontSize: 16,
+                                    fontFamily: "IBM",
+                                    color: kTextColor)),
                             tooltip: "إسم المعلومة المطلوبة"),
                         DataColumn(
                             label: Text("مثال",
-                                style:
-                                    TextStyle(fontSize: 16, fontFamily: "IBM")),
+                                style: TextStyle(
+                                    fontSize: 16,
+                                    fontFamily: "IBM",
+                                    color: kTextColor)),
                             tooltip: "مثال على العلومة المطلوبة")
                       ],
                       rows: const [
                         DataRow(cells: [
                           DataCell(Text("اسم المالك",
-                              style:
-                                  TextStyle(fontSize: 14, fontFamily: "IBM"))),
+                              style: TextStyle(
+                                  fontSize: 14,
+                                  fontFamily: "IBM",
+                                  color: kTextColor))),
                           DataCell(Text("أدهم أنور أبوعلان",
-                              style:
-                                  TextStyle(fontSize: 14, fontFamily: "IBM"))),
+                              style: TextStyle(
+                                  fontSize: 14,
+                                  fontFamily: "IBM",
+                                  color: kTextColor))),
                           // DataCell(Text("عنوان الإعلان الخاص بالشقة")),
                         ]),
                         DataRow(cells: [
@@ -452,13 +568,17 @@ class _WhatTheInfoReqToCreateAdState extends State<WhatTheInfoReqToCreateAd> {
                               showEditIcon: false,
                               Text("رقم الهاتف",
                                   style: TextStyle(
-                                      fontSize: 14, fontFamily: "IBM")),
+                                    fontSize: 14,
+                                    fontFamily: "IBM",
+                                    color: kTextColor,
+                                  )),
                               placeholder: false),
                           DataCell(Text(
                             "+97256*****3",
                             style: TextStyle(
                               fontSize: 14,
                               fontFamily: "IBM",
+                              color: kTextColor
                             ),
                             textDirection: TextDirection.ltr,
                           )),
@@ -473,12 +593,13 @@ class _WhatTheInfoReqToCreateAdState extends State<WhatTheInfoReqToCreateAd> {
                       height: 30,
                     ),
                     const Text("إقرأ ايضًا",
-                        style: TextStyle(fontSize: 18, fontFamily: "IBM")),
-                    const SizedBox(height: 10,),
+                        style: TextStyle(fontSize: 18, fontFamily: "IBM",color: kTextColor)),
+                    const SizedBox(
+                      height: 10,
+                    ),
                     TextButton(
                         onPressed: () {
-                          myPushName(
-                              context, MyPagesRoutes.theAdIsFreeOrNot);
+                          myPushName(context, MyPagesRoutes.theAdIsFreeOrNot);
                         },
                         child: const Text(
                             " كم تكلفة نشر إعلان على تطبيق 'وين بلاقي'",
@@ -486,15 +607,15 @@ class _WhatTheInfoReqToCreateAdState extends State<WhatTheInfoReqToCreateAd> {
                                 fontSize: 14,
                                 fontFamily: "IBM",
                                 color: Colors.orange))),
-                    const SizedBox(height: 10,),
+                    const SizedBox(
+                      height: 10,
+                    ),
                     TextButton(
                         onPressed: () {
-                          myPushName(
-                              context, MyPagesRoutes.howCreateAd);
+                          myPushName(context, MyPagesRoutes.howCreateAd);
                         },
                         child: const Text(
-                            " كيف انشر إعلاني على تطبيق 'وين بلاقي'"
-                            ,
+                            " كيف انشر إعلاني على تطبيق 'وين بلاقي'",
                             style: TextStyle(
                                 fontSize: 14,
                                 fontFamily: "IBM",
@@ -505,6 +626,7 @@ class _WhatTheInfoReqToCreateAdState extends State<WhatTheInfoReqToCreateAd> {
       ),
     );
   }
+
   // API Call
   Future<OneApartment?> getDataFromAPI() async {
     Uri uri = Uri.parse(ServerWeenBalaqee.apartmentAll);

@@ -72,7 +72,6 @@ bool isHaveInternet = false;
     super.initState();
     isStart = true;
     _scrollController = ScrollController();
-
     _scrollController.addListener(() {
       //[_scrollController.addListener] this attribute usages to hide or show the button
       debugPrint("min scroll extent${_scrollController.position.minScrollExtent}");

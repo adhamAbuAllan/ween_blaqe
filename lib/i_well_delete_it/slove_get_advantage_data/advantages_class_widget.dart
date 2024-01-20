@@ -42,18 +42,18 @@ class _GetAdvantagesState extends State<GetAdvantages> {
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
-          Row(
+          const Row(
             children: [
               Padding(
-                padding: const EdgeInsets.fromLTRB(0, 0, 10, 0),
+                padding: EdgeInsets.fromLTRB(0, 0, 10, 0),
                 child: Text("المزايا",
                     style: TextStyle(
-                      color: Colors.black.withOpacity(.7),
+                      color: kTextColor,
                       fontSize: 20,
                       fontFamily: 'IBM',
                     )),
               ),
-              const Expanded(child: Text("")),
+              Expanded(child: Text("")),
             ],
           ),
           Column(
@@ -110,10 +110,10 @@ class _GetAdvantagesState extends State<GetAdvantages> {
             padding: const EdgeInsets.fromLTRB(12, 0, 12, 0),
             child: ListTile(
               title: Text(entry.advName,
-                  style: TextStyle(
+                  style: const TextStyle(
                       fontFamily: 'IBM',
                       fontSize: 16,
-                      color: Colors.black.withOpacity(.7))),
+                      color: kTextColor)),
               trailing: entry.icon.isEmpty ? const SizedBox(child: SkeletonAvatar(
                   style:
                   SkeletonAvatarStyle(width: 28, height: 28))) :Image.network(
@@ -126,7 +126,7 @@ class _GetAdvantagesState extends State<GetAdvantages> {
                       style:
                       SkeletonAvatarStyle(width: 28, height: 28,)));
                 },
-                color: Colors.black.withOpacity(.5),
+                color: kTextColor,
               ),
             ),
           );
@@ -219,7 +219,7 @@ class _ShowAllAdvantagesState extends State<ShowAllAdvantages> {
                       },
                       icon: const Icon(
                         Icons.arrow_back,
-                        color: Colors.black87,
+                        color: kTextColor,
                       )),
                 ),
                 const Expanded(child: Text("")),
@@ -240,7 +240,7 @@ class _ShowAllAdvantagesState extends State<ShowAllAdvantages> {
                         padding: EdgeInsets.fromLTRB(0, 0, 10, 0),
                         child: Text("المزايا",
                             style: TextStyle(
-                              color: Colors.black87,
+                              color: kTextColor,
                               fontSize: 20,
                               fontFamily: 'IBM',
                             )),
@@ -258,10 +258,10 @@ class _ShowAllAdvantagesState extends State<ShowAllAdvantages> {
                           itemBuilder: ((c, i) {
                             return ListTile(
                               title: Text(widget.features[i].advName,
-                                style: TextStyle(
+                                style: const TextStyle(
                                     fontFamily: 'IBM',
                                     fontSize: 16,
-                                    color: Colors.black.withOpacity(.7)),
+                                    color: kTextColor),
                               ),
 
                               trailing: widget.features[i].icon.isEmpty ? const SizedBox(child: CircularProgressIndicator(color: kPrimaryColor,strokeWidth: 3,)) :
@@ -271,7 +271,7 @@ class _ShowAllAdvantagesState extends State<ShowAllAdvantages> {
                                   widget.features[i].icon,
                                   height: 30,
                                   width: 30,
-                                  color: Colors.black.withOpacity(.5),
+                                  color: kTextColor,
                                 )
                             );
                           })),

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:ween_blaqe/constants/nums.dart';
 
 class ApartmentShowTypesTextButton extends StatefulWidget {
   final String textType;
@@ -19,12 +20,12 @@ class _ApartmentShowTypesTextButtonState
     return Expanded(
       flex: 7,
       child: TextButton(
-          style: ButtonStyle(
-              overlayColor: MaterialStatePropertyAll(Colors.orange.shade200)),
+          style: const ButtonStyle(
+              overlayColor: MaterialStatePropertyAll(kPrimaryColor300)),
           onPressed: widget.onPressed,
           child: Text("${widget.textType}           ",
-              style: TextStyle(
-                  color: Colors.black.withOpacity(.7), fontFamily: 'IBM'))),
+              style: const TextStyle(
+                  color:kTextColor, fontFamily: 'IBM'))),
     );
   }
 }

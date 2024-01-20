@@ -32,7 +32,7 @@ class SystemBooking extends StatelessWidget {
                   margin: const EdgeInsets.fromLTRB(10, 0, 10, 0),
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(7),
-                    color: Colors.white,
+                    color: kContainerColor,
                   ),
                   child: Column(
                     children: [
@@ -68,6 +68,7 @@ class HowCouldBookingApartment extends StatelessWidget {
       bottomColor: Colors.transparent,
       color: kPrimaryColor,
       child: Scaffold(
+        backgroundColor: kBackgroundAppColor,
         appBar: AppBar(
           backgroundColor: kPrimaryColor,
         ),
@@ -83,9 +84,10 @@ class HowCouldBookingApartment extends StatelessWidget {
                       "كيف يمكنني حجز شقة",
                       style: TextStyle(
                         fontSize: 20.0,
-                        color: Colors.black87,
+                        color: kTextColor,
                         fontFamily: 'IBM',
                         inherit: true,
+                        
                       ),
                     ),
                   ),
@@ -101,7 +103,7 @@ class HowCouldBookingApartment extends StatelessWidget {
                   "لحجز شقة إتبع الخطوات التالية:",
                   style: TextStyle(
                     fontSize: 16.0,
-                    color: Colors.grey.shade800,
+                    color:kTextColor.withOpacity(.8),
                     fontFamily: 'IBM',
                     inherit: true,
                   ),
@@ -117,6 +119,7 @@ class HowCouldBookingApartment extends StatelessWidget {
                     fontSize: 18.0,
                     fontFamily: 'IBM',
                     inherit: true,
+                    color: kTextColor
                   ),
                 ),
               ),
@@ -129,7 +132,7 @@ class HowCouldBookingApartment extends StatelessWidget {
                   "إذهب إلى القائمة الرئيسية من خلال الضغط على زر أيقونة المنزل المتواجدة في الجزء السفلي على يمين الواجهة. ",
                   style: TextStyle(
                     fontSize: 16.0,
-                    color: Colors.grey.shade800,
+                    color: kTextColor.withOpacity(.8),
                     fontFamily: 'IBM',
                     inherit: true,
                   ),
@@ -146,6 +149,8 @@ class HowCouldBookingApartment extends StatelessWidget {
                     fontSize: 18.0,
                     fontFamily: 'IBM',
                     inherit: true,
+                      color: kTextColor
+
                   ),
                 ),
               ),
@@ -158,7 +163,7 @@ class HowCouldBookingApartment extends StatelessWidget {
                   "إبحث عن الشقة المناسبة لك, يمكنك إختيار الصنف الذي تريده من خلال زر 'صنف السكن' المتواجد على يمين الواجهة في الجزء العلوي منها، ويظهر هذا الزر من خلال التمرير إلى الأسفل و من ثم إلى الأعلى أو من خلال الضغط على أي عنصر في الواجهة الرئيسية.",
                   style: TextStyle(
                     fontSize: 16.0,
-                    color: Colors.grey.shade800,
+                    color: kTextColor.withOpacity(.8),
                     fontFamily: 'IBM',
                     inherit: true,
                   ),
@@ -190,9 +195,11 @@ class HowCouldBookingApartment extends StatelessWidget {
                             "في حال لم تجد الشقة المناسبة تواصل مع أي مالك يمتلك شقة في المدينة التي لم تجد فيها الشقة المطلوبة ، فقد يتمكن من مساعدتك للتواصل مع شخص آخر يمتلك الشقة التي تبحث عنها.",
                         style: TextStyle(
                           fontSize: 16.0,
-                          color: Colors.black.withOpacity(.7),
+                          color:kTextColor
+                            .withOpacity(.7),
                           fontFamily: 'IBM',
                           inherit: true,
+
                         ))
                   ]),
                 ),
@@ -208,6 +215,8 @@ class HowCouldBookingApartment extends StatelessWidget {
                     fontSize: 18.0,
                     fontFamily: 'IBM',
                     inherit: true,
+                      color: kTextColor
+
                   ),
                 ),
               ),
@@ -220,7 +229,7 @@ class HowCouldBookingApartment extends StatelessWidget {
                   "قم بضغط على زر عرض المزيد، لعرض المزيد من التفاصيل حول الشقة المطلوبة.",
                   style: TextStyle(
                     fontSize: 16.0,
-                    color: Colors.grey.shade800,
+                    color: kTextColor.withOpacity(.8),
                     fontFamily: 'IBM',
                     inherit: true,
                   ),
@@ -236,6 +245,8 @@ class HowCouldBookingApartment extends StatelessWidget {
                     fontSize: 18.0,
                     fontFamily: 'IBM',
                     inherit: true,
+                      color: kTextColor
+
                   ),
                 ),
               ),
@@ -248,7 +259,7 @@ class HowCouldBookingApartment extends StatelessWidget {
                   "في مربع الأستفسار ، إختر وسيلة التواصل المناسبة لك، لتتمكن من التواصل مع مالك الشقة.",
                   style: TextStyle(
                     fontSize: 16.0,
-                    color: Colors.grey.shade800,
+                    color: kTextColor.withOpacity(.8),
                     fontFamily: 'IBM',
                     inherit: true,
                   ),
@@ -264,6 +275,8 @@ class HowCouldBookingApartment extends StatelessWidget {
                     fontSize: 18.0,
                     fontFamily: 'IBM',
                     inherit: true,
+                      color: kTextColor
+
                   ),
                 ),
               ),
@@ -276,7 +289,7 @@ class HowCouldBookingApartment extends StatelessWidget {
                   "قم بتواصل مع مالك الشقة لتحصل على المزيد من التفاصيل حول الشقة و آلية حجزها.",
                   style: TextStyle(
                     fontSize: 16.0,
-                    color: Colors.grey.shade800,
+                    color: kTextColor.withOpacity(.8),
                     fontFamily: 'IBM',
                     inherit: true,
                   ),
@@ -300,6 +313,7 @@ class CouldICancelABooking extends StatelessWidget {
       bottomColor: Colors.transparent,
       color: kPrimaryColor,
       child: Scaffold(
+        backgroundColor: kBackgroundAppColor,
         appBar: AppBar(
           backgroundColor: kPrimaryColor,
         ),
@@ -314,9 +328,10 @@ class CouldICancelABooking extends StatelessWidget {
                     " هل يمكنني إلغاء حجز شقة؟",
                     style: TextStyle(
                       fontSize: 20.0,
-                      color: Colors.black87,
+                      color: kTextColor,
                       fontFamily: 'IBM',
                       inherit: true,
+
                     ),
                   ),
                 ),
@@ -331,7 +346,7 @@ class CouldICancelABooking extends StatelessWidget {
                 "",
                 style: TextStyle(
                   fontSize: 16.0,
-                  color: Colors.grey.shade800,
+                  color: kTextColor.withOpacity(.8),
                   fontFamily: 'IBM',
                   inherit: true,
                 ),
@@ -355,6 +370,7 @@ class HowLongIsTheReservationAvailable extends StatelessWidget {
       bottomColor: Colors.transparent,
       color: kPrimaryColor,
       child: Scaffold(
+        backgroundColor: kBackgroundAppColor,
         appBar: AppBar(
           backgroundColor: kPrimaryColor,
         ),
@@ -369,7 +385,7 @@ class HowLongIsTheReservationAvailable extends StatelessWidget {
                     "ما هي مدة الحجز المتاحة؟",
                     style: TextStyle(
                       fontSize: 20.0,
-                      color: Colors.black87,
+                      color: kTextColor,
                       fontFamily: 'IBM',
                       inherit: true,
                     ),
@@ -388,7 +404,7 @@ class HowLongIsTheReservationAvailable extends StatelessWidget {
                 " يتم الاتفاق بينك و بين المؤجر على مدة الحجز مسبقًا.",
                 style: TextStyle(
                   fontSize: 16.0,
-                  color: Colors.grey.shade800,
+                  color: kTextColor.withOpacity(.8),
                   fontFamily: 'IBM',
                   inherit: true,
                 ),

@@ -40,6 +40,7 @@ import 'package:ween_blaqe/sesstion/new_session.dart';
 import 'package:ween_blaqe/features/splach_screen.dart';
 import 'constants/nums.dart';
 import 'constants/strings.dart';
+import 'controller/function_controller/api_functions_controller/get_data_of_apartment_api.dart';
 import 'controller/models_controller/apartment_model_controller.dart';
 import 'features/send_notice_for_us.dart';
 /*
@@ -82,6 +83,7 @@ void main() async {
   // var token = (await sp).get("token");
   Get.put(StudentController());
   Get.put(ApartmentModelController());
+  Get.put(ApiApartmentController());
 
   // Get.put(OwnerController());
   Get.put(MainController());

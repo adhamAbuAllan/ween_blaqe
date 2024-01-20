@@ -132,7 +132,7 @@ class _NewShowMoreState extends State<NewShowMore> {
             bottomColor: Colors.transparent,
             color: kPrimaryColor,
             child: Scaffold(
-              backgroundColor: Colors.grey.shade200,
+              backgroundColor: kBackgroundAppColor,
               body: SingleChildScrollView(
                   physics: const BouncingScrollPhysics(
                       decelerationRate: ScrollDecelerationRate.fast),
@@ -148,15 +148,15 @@ class _NewShowMoreState extends State<NewShowMore> {
                                 onPressed: () {
                                   Get.back();
                                 },
-                                icon: Icon(
+                                icon: const Icon(
                                   size: 34,
 
                                   Icons.arrow_back,
-                                  color: Colors.black.withOpacity(.7),
+                                  color:kTextColor,
                                 )),
                           ),
                           // const Expanded(child: Text("")),
-                          // SelectableText("رقم الإعلان: ${widget.oneApartment!.id}",style: TextStyle(color: Colors.grey.withOpacity(.6),fontFamily: "IBM",fontSize: 12),)
+                          // SelectableText("رقم الإعلان: ${widget.oneApartment!.id}",style: TextStyle(color: Colors.grey,fontFamily: "IBM",fontSize: 12),)
                           const SizedBox(
                             width: 35,
                           )
@@ -250,20 +250,22 @@ class _NewShowMoreState extends State<NewShowMore> {
                           // this children have ( general info that : title, price , and location
                           // .
                           children: [
-                            Row(
+                            const Row(
                               children: [
                                 Padding(
                                   padding:
-                                      const EdgeInsets.fromLTRB(0, 0, 10, 0),
+                                      EdgeInsets.fromLTRB(0, 0, 10, 0),
                                   child: Text(
                                     "معلومات عامة",
                                     style: TextStyle(
                                         fontSize: 20,
                                         fontFamily: 'IBM',
-                                        color: Colors.black.withOpacity(.7)),
+                                        color: kTextColor
+                                        //kTextColor
+                                    ),
                                   ),
                                 ),
-                                const Expanded(
+                                Expanded(
                                   child: Text(""),
                                 ),
                               ],
@@ -281,8 +283,8 @@ class _NewShowMoreState extends State<NewShowMore> {
                                         // data.
                                         ,
                                         softWrap: true,
-                                        style: TextStyle(
-                                          color: Colors.black.withOpacity(.7),
+                                        style: const TextStyle(
+                                          color:kTextColor,
                                           fontSize: 18,
                                           fontFamily: 'IBM',
                                         )),
@@ -308,8 +310,8 @@ class _NewShowMoreState extends State<NewShowMore> {
                                       }",
                                       softWrap: true,
                                       textDirection: TextDirection.rtl,
-                                      style: TextStyle(
-                                        color: Colors.black.withOpacity(.7),
+                                      style: const TextStyle(
+                                        color:kTextColor,
                                         fontFamily: 'IBM',
                                       ),
                                     ),
@@ -332,8 +334,8 @@ class _NewShowMoreState extends State<NewShowMore> {
                                               : (_isFamilies
                                                   ? "عدد الافراد المسموح به:${widget.oneApartment?.countOfStudnet ?? 0}"
                                                   : "عدد الافراد المسموح به:${widget.oneApartment?.countOfStudnet ?? 0}"))),
-                                      style: TextStyle(
-                                        color: Colors.black.withOpacity(.6),
+                                      style: const TextStyle(
+                                        color: kTextColor,
                                         fontSize: 16,
                                         fontFamily: 'IBM',
                                       )),
@@ -349,8 +351,8 @@ class _NewShowMoreState extends State<NewShowMore> {
                                       const EdgeInsets.fromLTRB(0, 0, 5, 10),
                                   child: Text(
                                       "نوع السكن:${widget.oneApartment?.type?.name ?? ""}",
-                                      style: TextStyle(
-                                        color: Colors.black.withOpacity(.6),
+                                      style: const TextStyle(
+                                        color: kTextColor,
                                         fontSize: 16,
                                         fontFamily: 'IBM',
                                       )),
@@ -398,20 +400,20 @@ class _NewShowMoreState extends State<NewShowMore> {
                         child: Column(
                           children: [
                             //about apartment  text
-                            Row(
+                            const Row(
                               children: [
                                 Padding(
                                   padding:
-                                      const EdgeInsets.fromLTRB(0, 0, 20, 0),
+                                      EdgeInsets.fromLTRB(0, 0, 20, 0),
                                   child: Text(
                                     "حول الشقة",
                                     style: TextStyle(
                                         fontSize: 20,
                                         fontFamily: 'IBM',
-                                        color: Colors.black.withOpacity(.7)),
+                                        color:kTextColor),
                                   ),
                                 ),
-                                const Expanded(child: Text("")),
+                                Expanded(child: Text("")),
                               ],
                             ),
 
@@ -459,9 +461,9 @@ class _NewShowMoreState extends State<NewShowMore> {
                                               ),
                                               Text(
                                                 titleAboutApartmentroom,
-                                                style: TextStyle(
-                                                    color: Colors.black
-                                                        .withOpacity(.7)),
+                                                style: const TextStyle(
+                                                    color: kTextColor
+                                                        ),
                                               ),
                                               const Expanded(
                                                 child: Text(""),
@@ -484,11 +486,8 @@ class _NewShowMoreState extends State<NewShowMore> {
                                                                 "${widget.oneApartment?.rooms ?? 0}"))
                                                         : Text(
                                                             "${widget.oneApartment?.rooms ?? 0}",
-                                                            style: TextStyle(
-                                                                color: Colors
-                                                                    .black
-                                                                    .withOpacity(
-                                                                        .7)),
+                                                            style: const TextStyle(
+                                                                color: kTextColor),
                                                           ),
                                                   ),
                                                   Image(
@@ -496,8 +495,8 @@ class _NewShowMoreState extends State<NewShowMore> {
                                                         imageAboutApartmentRoom),
                                                     width: 32,
                                                     height: 32,
-                                                    color: Colors.black
-                                                        .withOpacity(.6),
+                                                    color: kTextColor
+                                                        ,
                                                   ),
                                                   const Expanded(
                                                     child: Text(""),
@@ -551,11 +550,12 @@ class _NewShowMoreState extends State<NewShowMore> {
                                               const Expanded(
                                                 child: Text(""),
                                               ),
-                                              Text(
+                                              const Text(
                                                 "الحمامات",
                                                 style: TextStyle(
-                                                    color: Colors.black
-                                                        .withOpacity(.7)),
+                                                    color: kTextColor
+                                                        
+                                                ),
                                               ),
                                               const Expanded(
                                                 child: Text(""),
@@ -578,11 +578,8 @@ class _NewShowMoreState extends State<NewShowMore> {
                                                                 "${widget.oneApartment?.bathrooms ?? 0}"))
                                                         : Text(
                                                             "${widget.oneApartment?.bathrooms ?? 0}",
-                                                            style: TextStyle(
-                                                                color: Colors
-                                                                    .black
-                                                                    .withOpacity(
-                                                                        .7)),
+                                                            style: const TextStyle(
+                                                                color: kTextColor),
                                                           ),
                                                   ),
                                                   const Image(
@@ -590,6 +587,7 @@ class _NewShowMoreState extends State<NewShowMore> {
                                                         "assets/images/apartments_images/about_apartment/bathroom.png"),
                                                     width: 32,
                                                     height: 32,
+                                                    color: kTextColor,
                                                   ),
                                                   const Expanded(
                                                       child: Text("")),
@@ -641,11 +639,11 @@ class _NewShowMoreState extends State<NewShowMore> {
                                               const Expanded(
                                                 child: Text(""),
                                               ),
-                                              Text(
+                                              const Text(
                                                 "المساحة",
                                                 style: TextStyle(
-                                                    color: Colors.black
-                                                        .withOpacity(.7)),
+                                                    color: kTextColor
+                                                        ),
                                               ),
                                               const Expanded(
                                                 child: Text(""),
@@ -674,21 +672,18 @@ class _NewShowMoreState extends State<NewShowMore> {
                                                                 "²م${widget.oneApartment?.squareMeters ?? 0}"))
                                                         : Text(
                                                             "²م${widget.oneApartment?.squareMeters ?? 0}",
-                                                            style: TextStyle(
-                                                                color: Colors
-                                                                    .black
-                                                                    .withOpacity(
-                                                                        .7)),
+                                                            style: const TextStyle(
+                                                                color: kTextColor),
                                                           ),
                                                   ),
-                                                  Image(
-                                                    image: const AssetImage(
+                                                  const Image(
+                                                    image: AssetImage(
                                                       "assets/images/apartments_images/about_apartment/area.png",
                                                     ),
                                                     width: 32,
                                                     height: 32,
-                                                    color: Colors.black
-                                                        .withOpacity(.6),
+                                                    color: kTextColor
+                                                        ,
                                                   ),
                                                   const Expanded(
                                                       child: Text("")),
@@ -743,7 +738,7 @@ class _NewShowMoreState extends State<NewShowMore> {
                       //             padding: EdgeInsets.fromLTRB(0, 0, 10, 0),
                       //             child: Text("المزايا",
                       //                 style: TextStyle(
-                      //                   color: Colors.black.withOpacity(.7),
+                      //                   color:kTextColor,
                       //                   fontSize: 20,
                       //                   fontFamily: 'IBM',
                       //                 )),
@@ -769,19 +764,19 @@ class _NewShowMoreState extends State<NewShowMore> {
 // this children have ( general info that : title, price , and location.
                           children: [
 //title
-                            Row(
+                            const Row(
                               children: [
                                 Padding(
                                   padding:
-                                      const EdgeInsets.fromLTRB(0, 10, 10, 0),
+                                      EdgeInsets.fromLTRB(0, 10, 10, 0),
                                   child: Text("وصف الشقة",
                                       style: TextStyle(
-                                        color: Colors.black.withOpacity(.7),
+                                        color:kTextColor,
                                         fontSize: 20,
                                         fontFamily: 'IBM',
                                       )),
                                 ),
-                                const Expanded(child: Text(""))
+                                Expanded(child: Text(""))
                               ],
                             ),
 //description
@@ -789,8 +784,8 @@ class _NewShowMoreState extends State<NewShowMore> {
                               padding: const EdgeInsets.fromLTRB(10, 0, 10, 10),
                               child:
                                   Text(widget.oneApartment?.description ?? "",
-                                      style: TextStyle(
-                                        color: Colors.black.withOpacity(.7),
+                                      style: const TextStyle(
+                                        color:kTextColor,
                                         fontSize: 16,
                                         fontFamily: 'IBM',
 // fontWeight: FontWeight.bold
@@ -813,19 +808,19 @@ class _NewShowMoreState extends State<NewShowMore> {
 // this widget For inquiries that have title and social media
                           children: [
 //title
-                            Row(
+                            const Row(
                               children: [
                                 Padding(
                                   padding:
-                                      const EdgeInsets.fromLTRB(0, 10, 10, 10),
+                                      EdgeInsets.fromLTRB(0, 10, 10, 10),
                                   child: Text("للإستفسار",
                                       style: TextStyle(
-                                        color: Colors.black.withOpacity(.7),
+                                        color:kTextColor,
                                         fontSize: 20,
                                         fontFamily: 'IBM',
                                       )),
                                 ),
-                                const Expanded(child: Text(""))
+                                Expanded(child: Text(""))
                               ],
                             ),
 //phone number
@@ -864,12 +859,12 @@ class _NewShowMoreState extends State<NewShowMore> {
 // );
                                     },
                                     style: outlineButton,
-                                    child: Padding(
-                                      padding: const EdgeInsets.all(8.0),
+                                    child: const Padding(
+                                      padding: EdgeInsets.all(8.0),
                                       child: Row(
                                         children: [
 //whtsapp icon
-                                          const Padding(
+                                          Padding(
                                             padding:
                                                 EdgeInsets.fromLTRB(0, 0, 0, 0),
                                             child: Image(
@@ -882,12 +877,12 @@ class _NewShowMoreState extends State<NewShowMore> {
 
 //text
                                           Padding(
-                                            padding: const EdgeInsets.fromLTRB(
+                                            padding: EdgeInsets.fromLTRB(
                                                 0, 0, 0, 0),
                                             child: Text(" واتس اب",
                                                 style: TextStyle(
-                                                  color: Colors.black
-                                                      .withOpacity(.7),
+                                                  color: kTextColor
+                                                      ,
                                                   fontSize: 16,
                                                   fontFamily: 'IBM',
                                                 )),
@@ -950,7 +945,7 @@ class _NewShowMoreState extends State<NewShowMore> {
 //                                         child: Text(" جيميل",
 //                                             style: TextStyle(
 //                                               color:
-//                                                   Colors.black.withOpacity(.7),
+//                                                  kTextColor,
 //                                               fontSize: 16,
 //                                               fontFamily: 'IBM',
 //                                             )),

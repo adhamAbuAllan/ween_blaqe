@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:ween_blaqe/constants/nums.dart';
 Widget buttonAccount(Function onClick, Icon icon, String title, {Color ? color}) {
   return ListTile(
     onTap: () {
       onClick.call();
     },
-     splashColor: Colors.grey,
+     splashColor: kBackgroundAppColor,
     // minVerticalPadding: ,
 
     contentPadding: const EdgeInsets.fromLTRB(10, 0, 10, 0),
@@ -13,9 +14,9 @@ Widget buttonAccount(Function onClick, Icon icon, String title, {Color ? color})
     title: Text(
       title,
       style: const TextStyle(
-          fontSize: 16, fontFamily: 'IBM', color: Colors.black87),
+          fontSize: 16, fontFamily: 'IBM', color: kTextColor),
     ),
-    trailing: const Icon(Icons.arrow_forward_ios_rounded),
+    trailing: const Icon(Icons.arrow_forward_ios_rounded,color: kTextColor,),
   );
   // return Padding(
   //   padding: const EdgeInsets.fromLTRB(0, 10, 0, 10),
@@ -39,7 +40,7 @@ Widget buttonAccount(Function onClick, Icon icon, String title, {Color ? color})
   //         const Padding(
   //           padding: EdgeInsets.fromLTRB(10, 0, 0,0),
   //           child:  Icon(Icons.arrow_forward_ios_rounded,
-  //             color: Colors.black87,),
+  //             kTextColor,),
   //
   //         )
   //       ],),
@@ -60,9 +61,9 @@ Widget askForHelpButton(Function onClick, String title) {
     title: Text(
       title,
       style: const TextStyle(
-          fontSize: 18, fontFamily: 'IBM', color: Colors.black87),
+          fontSize: 18, fontFamily: 'IBM',color: kTextColor),
     ),
-    trailing: const Icon(Icons.arrow_forward_ios_rounded),
+    trailing: const Icon(Icons.arrow_forward_ios_rounded,color: kTextColor,),
   );
   // return Padding(
   //   padding: const EdgeInsets.fromLTRB(0, 10, 0, 10),
@@ -86,7 +87,7 @@ Widget askForHelpButton(Function onClick, String title) {
   //         const Padding(
   //           padding: EdgeInsets.fromLTRB(10, 0, 0,0),
   //           child:  Icon(Icons.arrow_forward_ios_rounded,
-  //             color: Colors.black87,),
+  //             kTextColor,),
   //
   //         )
   //       ],),
@@ -107,7 +108,7 @@ Widget askForHelpButton(Function onClick, String title) {
 //     title: Text(
 //       title,
 //       style: const TextStyle(
-//           fontSize: 16, fontFamily: 'IBM', color: Colors.black87),
+//           fontSize: 16, fontFamily: 'IBM', kTextColor),
 //     ),
 //     trailing: const Icon(Icons.arrow_forward_ios_rounded),
 //   );
@@ -120,7 +121,7 @@ Widget buttonHaveTitleAndIcon(Function onClick, String title, {Icon? icon,bool? 
     title: Text(
       title,
       style: const TextStyle(
-          fontSize: 16, fontFamily: 'IBM', color: Colors.black87),
+          fontSize: 16, fontFamily: 'IBM',color: kTextColor),
     ),
     trailing: isIcon?? false ? icon : image,
   );

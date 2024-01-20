@@ -93,7 +93,7 @@ class _AccountBeforeLoginInStudentState
       bottomColor: Colors.transparent ,
       color: kPrimaryColor,
       child: Scaffold(
-        backgroundColor: Colors.grey.shade200 ,
+        backgroundColor: kBackgroundAppColor,
         body: SingleChildScrollView(
           child: Column(            children: [
               //title
@@ -104,6 +104,7 @@ class _AccountBeforeLoginInStudentState
                     child: Text(
                       "الحساب",
                       style: TextStyle(
+                        color: kTextColor,
                         fontSize: 28.0,
                         fontFamily: 'IBM',
                         inherit: true,
@@ -184,7 +185,7 @@ class _AccountBeforeLoginInStudentState
                 margin: const EdgeInsets.fromLTRB(10, 0, 10, 0),
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(7),
-                  color: Colors.white,
+                  color:kContainerColor,
                 ),
                 child: Column(
                     mainAxisSize: MainAxisSize.min,
@@ -197,7 +198,7 @@ class _AccountBeforeLoginInStudentState
                       const Icon(
                         Icons.info_outline,
                         size: 32,
-                        color: Colors.black87,
+                        color: kTextColor,
                       ),
                       "اطلب المساعدة"),
 
@@ -209,7 +210,7 @@ class _AccountBeforeLoginInStudentState
                       const Icon(
                         Icons.privacy_tip_outlined,
                         size: 32,
-                        color: Colors.black87,
+                        color: kTextColor,
                       ),
                       "سياسة الخصوصية"),
                   // aline,
@@ -230,7 +231,7 @@ class _AccountBeforeLoginInStudentState
               //                 const Icon(
               //                   Icons.change_circle_outlined,
               //                   size: 32,
-              //                   color: Colors.black87,
+              //                   color: kTextColor,
               //                 ),
               //                 "التبديل إلى مالك",
               //               ),
@@ -242,7 +243,7 @@ class _AccountBeforeLoginInStudentState
                   //     const Icon(
                   //       Icons.share_outlined,
                   //       size: 32,
-                  //       color: Colors.black87,
+                  //       color: kTextColor,
                   //     ),
                   //     "شارك التطبيق"),
                   aline,
@@ -253,7 +254,7 @@ class _AccountBeforeLoginInStudentState
                       const Icon(
                         Icons.feedback_outlined,
                         size: 32,
-                        color: Colors.black87,
+                        color: kTextColor,
                       ),
                       "أرسل ملاحظات إلينا"),
 
@@ -292,7 +293,7 @@ class _AccountBeforeLoginInStudentState
                     child: Text(
                       "ألا تمتلك حساب؟",
                       style: TextStyle(
-                        color: Colors.black87,
+                        color: kTextColor,
                       ),
                     ),
                   ),
@@ -450,7 +451,7 @@ class _AccountBeforeLoginInStudentState
 //                   const Icon(
 //                     Icons.info_outline,
 //                     size: 32,
-//                     color: Colors.black87,
+//                     color: kTextColor,
 //                   ),
 //                   "اطلب المساعدة"),
 //
@@ -462,7 +463,7 @@ class _AccountBeforeLoginInStudentState
 //                   const Icon(
 //                     Icons.privacy_tip_outlined,
 //                     size: 32,
-//                     color: Colors.black87,
+//                     color: kTextColor,
 //                   ),
 //                   "سياسة الخصوصية"),
 //               aline,
@@ -478,7 +479,7 @@ class _AccountBeforeLoginInStudentState
 //                 const Icon(
 //                   Icons.change_circle_outlined,
 //                   size: 32,
-//                   color: Colors.black87,
+//                   color: kTextColor,
 //                 ),
 //                 "التبديل إلى طالب",
 //               ),
@@ -490,7 +491,7 @@ class _AccountBeforeLoginInStudentState
 //               //     const Icon(
 //               //       Icons.share_outlined,
 //               //       size: 32,
-//               //       color: Colors.black87,
+//               //       color: kTextColor,
 //               //     ),
 //               //     "شارك التطبيق"),
 //               aline,
@@ -501,7 +502,7 @@ class _AccountBeforeLoginInStudentState
 //                   const Icon(
 //                     Icons.feedback_outlined,
 //                     size: 32,
-//                     color: Colors.black87,
+//                     color: kTextColor,
 //                   ),
 //                   "أرسل ملاحظات إلينا"),
 //               aline,
@@ -534,7 +535,7 @@ class _AccountBeforeLoginInStudentState
 //                     child: Text(
 //                       "ألا تمتلك حساب؟",
 //                       style: TextStyle(
-//                         color: Colors.black87,
+//                         color: kTextColor,
 //                         fontFamily: "IBM"
 //                       ),
 //                     ),

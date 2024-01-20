@@ -35,7 +35,7 @@ class SystemPaying extends StatelessWidget {
                   margin: const EdgeInsets.fromLTRB(10, 0, 10, 0),
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(7),
-                    color: Colors.white,
+                    color: kContainerColor,
                   ),
                   child: Column(
                     //cancel
@@ -84,7 +84,7 @@ class WhatIsSystemPayingAllow extends StatelessWidget {
                     "ما هي طرق الدفع المقبولة؟",
                     style: TextStyle(
                       fontSize: 20.0,
-                      color: Colors.black87,
+                      color:kTextColor,
                       fontFamily: 'IBM',
                       inherit: true,
                     ),
@@ -97,12 +97,12 @@ class WhatIsSystemPayingAllow extends StatelessWidget {
             Container(
               width: double.infinity,
               margin: const EdgeInsets.fromLTRB(25, 0, 30, 10),
-              child: Text(
+              child:  Text(
                 "يتم الدفع عن طريق الاتفاق بينك و بين المالك ، وغالبًا ما تكون الصفقات بين المؤجر و المستأجر في الضفة الغربية بالدفع نقداً. ",
                 style: TextStyle(
                   fontSize: 16.0,
-                  color: Colors.grey.shade800,
-                  fontFamily: 'IBM',
+                  color: kTextColor.withOpacity(.8),
+                fontFamily: 'IBM',
                   inherit: true,
                 ),
               ),
@@ -110,13 +110,14 @@ class WhatIsSystemPayingAllow extends StatelessWidget {
             Container(
               width: double.infinity,
               margin: const EdgeInsets.fromLTRB(25, 0, 30, 10),
-              child: const Text(
+              child:  Text(
                 "سيتم العمل على إجاد طرق اخرى للدفع مثل"
                 " البطاقات الإتمانية و غيرها من الطرق مسقبلاً بإذن الله",
                 style: TextStyle(
                   fontSize: 16.0,
                   fontFamily: 'IBM',
                   inherit: true,
+                  color: kTextColor.withOpacity(.7)
                 ),
               ),
             ),
@@ -136,6 +137,7 @@ class CouldIPayByDeposit extends StatelessWidget {
     return ColorfulSafeArea(
       color: kPrimaryColor,
       child: Scaffold(
+        backgroundColor: kBackgroundAppColor,
         appBar: AppBar(
           backgroundColor: kPrimaryColor,
         ),
@@ -150,9 +152,10 @@ class CouldIPayByDeposit extends StatelessWidget {
                     "هل يمكنني دفع عربون؟",
                     style: TextStyle(
                       fontSize: 20.0,
-                      color: Colors.black87,
+                      color:kTextColor,
                       fontFamily: 'IBM',
                       inherit: true,
+
                     ),
                   ),
                 ),
@@ -163,11 +166,11 @@ class CouldIPayByDeposit extends StatelessWidget {
             Container(
               width: double.infinity,
               margin: const EdgeInsets.fromLTRB(25, 0, 30, 10),
-              child: Text(
+              child:  Text(
                 "حسب الاتفاق بينك و بين المؤجر، ولكن غالبًا ما يوافق المؤجرون على دفع عربون حتى يظمن المؤجر حقه.",
                 style: TextStyle(
                   fontSize: 16.0,
-                  color: Colors.grey.shade800,
+                  color: kTextColor.withOpacity(.8),
                   fontFamily: 'IBM',
                   inherit: true,
                 ),

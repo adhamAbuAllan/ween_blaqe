@@ -27,7 +27,7 @@ class WhatIsMeanSS extends StatelessWidget {
                     "ما المقصود ب ش/ش",
                     style: TextStyle(
                       fontSize: 20.0,
-                      color: Colors.black87,
+                      color: kTextColor,
                       fontFamily: 'IBM',
                       inherit: true,
                     ),
@@ -46,7 +46,7 @@ class WhatIsMeanSS extends StatelessWidget {
                 "(شيكل/شهري)",
                 style: TextStyle(
                   fontSize: 16.0,
-                  color: Colors.grey.shade800,
+                  color: kTextColor.withOpacity(.8),
                   fontFamily: 'IBM',
                   inherit: true,
                 ),

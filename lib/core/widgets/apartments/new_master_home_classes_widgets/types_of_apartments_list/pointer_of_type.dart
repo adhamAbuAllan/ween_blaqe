@@ -15,9 +15,7 @@ class ApartmentShowTypesPointer extends StatelessWidget {
               .circular(
               7 / 2),
           border: Border.all(
-              color: Colors
-                  .orange
-                  .shade200,
+              color: kPrimaryColor300,
               strokeAlign:
               BorderSide
                   .strokeAlignOutside,

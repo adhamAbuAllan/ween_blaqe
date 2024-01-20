@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:ween_blaqe/constants/nums.dart';
 class TitleClassWidget extends StatelessWidget {
   const TitleClassWidget({super.key, required this.title});
   final String title;
@@ -12,11 +13,11 @@ class TitleClassWidget extends StatelessWidget {
           padding: const EdgeInsets.fromLTRB(0, 50, 20, 0),
           child: Text(
             title,
-            style:  TextStyle(
+            style:  const TextStyle(
               fontSize: 26.0,
               fontFamily: 'IBM',
               inherit: true,
-              color: Colors.black.withOpacity(.7)
+              color: kTextColor
             ),
           ),
         ),

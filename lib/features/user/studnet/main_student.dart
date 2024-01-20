@@ -46,7 +46,7 @@ class _MainStudentState extends State<MainStudent> {
       child: Scaffold(
 
           // appBar: AppBar(bottomOpacity: 0,leadingWidth: 20,toolbarOpacity: 0,backgroundColor: Colors.transparent,elevation: 0,shadowColor: Colors.transparent,title: Text("Your wlecome "),),
-          backgroundColor: Colors.grey.shade200,
+          backgroundColor:kBackgroundAppColor,
           body: GetBuilder<StudentController>(
             builder: (context) {
               return ColorfulSafeArea(
