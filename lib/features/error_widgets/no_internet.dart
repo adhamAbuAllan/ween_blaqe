@@ -122,7 +122,7 @@ class _NoInternetState extends State<NoInternet> with WidgetsBindingObserver {
         stream: Connectivity().onConnectivityChanged,
         builder: (context, snapshot) {
           return Scaffold(
-            backgroundColor: Colors.grey.shade200,
+            backgroundColor: kBackgroundAppColor,
             body: AnimatedAlign(
               alignment: isWantToSepha ? Alignment.center : Alignment.topCenter,
               duration: const Duration(milliseconds: 800),
@@ -138,7 +138,7 @@ class _NoInternetState extends State<NoInternet> with WidgetsBindingObserver {
                 padding: const EdgeInsets.fromLTRB(10, 0, 10, 0),
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(7),
-                  color: Colors.white,
+                  color:kContainerColor,
                 ),
                 duration: const Duration(milliseconds: 800),
                 child: Column(
@@ -250,6 +250,7 @@ class _NoInternetState extends State<NoInternet> with WidgetsBindingObserver {
                                   },
                                   "إبدأ التسبيح",
                                   image: Image.asset("assets/images/tasbih.png",
+                                      color: kTextColor,
                                       width: 35, height: isContExpanding ? 0 : 35),
                                   isIcon: false,
                                 ),
@@ -300,6 +301,7 @@ class _NoInternetState extends State<NoInternet> with WidgetsBindingObserver {
         child: Image(
           image: AssetImage("assets/images/error_images/no network.png"),
           height: 60,
+          color: kTextColor,
           width: 60,
         ),
       ),
@@ -316,7 +318,7 @@ class _NoInternetState extends State<NoInternet> with WidgetsBindingObserver {
                         fontSize: 16.0,
                         fontFamily: 'IBM',
                         inherit: true,
-                        color: Colors.black87),
+                        color: kTextColor),
                   ),
                 ],
               ),
@@ -391,7 +393,7 @@ class _NoInternetState extends State<NoInternet> with WidgetsBindingObserver {
               alignment: Alignment.center,
               child: Text(
                 entry.value,
-                style: const TextStyle(fontSize: 24, fontFamily: "IBM"),
+                style: const TextStyle(fontSize: 24, fontFamily: "IBM",color: kTextColor),
               ));
         });
       }).toList(),

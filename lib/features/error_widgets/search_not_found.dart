@@ -150,7 +150,7 @@ class _TypeNotFoundState extends State<TypeNotFound> {
       bottomColor: Colors.transparent ,
       color: kPrimaryColor,
       child: Scaffold(
-        backgroundColor: Colors.grey.shade200,
+        backgroundColor: kBackgroundAppColor,
         body: SingleChildScrollView(
           child: Center(
             child: Column(
@@ -169,7 +169,7 @@ class _TypeNotFoundState extends State<TypeNotFound> {
                               fontSize: 18.0,
                               fontFamily: 'IBM',
                               inherit: true,
-                              color: Colors.grey.shade600,
+                              color: kTextColor.withOpacity(.6),
                             )),
                       ),
 
@@ -180,7 +180,7 @@ class _TypeNotFoundState extends State<TypeNotFound> {
                               fontSize: 16.0,
                               fontFamily: 'IBM',
                               inherit: true,
-                              color: Colors.grey.shade800,
+                              color: kTextColor.withOpacity(.8),
                             )),
                       ),
                       // Padding(
@@ -220,13 +220,14 @@ class _TypeNotFoundState extends State<TypeNotFound> {
                   ],
                 ),
                 //
-                const Padding(
+                   const Padding(
                   padding: EdgeInsets.fromLTRB(0, 150, 0, 0),
                   child: Image(
                     image: AssetImage(
-                        "assets/images/error_images/search_not_found.png",),
+                        "assets/images/error_images/search_not_found_dark_mode.png",),
                     height: 130*2,
                     width: 130*2,
+                    // color: kContainerColor.withOpacity(.7),
                   ),
                 ),
                 Padding(

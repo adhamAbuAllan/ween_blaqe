@@ -26,6 +26,7 @@ class _SendNoticeForUsState extends State<SendNoticeForUs> {
   var sendNoticeForUsHint = "أضف ملاحظاتك هنا";
       // "أقترح إضافة خاصية البحث عن شركاء حيث يستطيع الطالب البحث عن شريك له يشاركه في الشقة من خلال التطبيق";
   var messageOfToast = "شكراً لك لقد تم إرسال إقتراحك بنجاح";
+  bool darkModeTest = true;
   @override
   void initState() {
     super.initState();
@@ -44,17 +45,18 @@ class _SendNoticeForUsState extends State<SendNoticeForUs> {
 
             // Colors.grey.shade200,
             appBar: AppBar(
-              backgroundColor: Colors.white,
+              backgroundColor: kContainerColor,
 
               actions: [
                 Padding(
                   padding: const EdgeInsets.all(4),
                   child:
-                  IconButton(
+               IconButton(
+                 splashColor: Colors.transparent,
                     icon: Icon(
 
                       Icons.arrow_back,
-                      color: Colors.black.withOpacity(.7),
+                      color:darkModeTest ?  kTextColor.withOpacity(0):  kTextColor.withOpacity(.7),
                       size: 34,
                     ),
                     onPressed: () {
@@ -104,7 +106,8 @@ class _SendNoticeForUsState extends State<SendNoticeForUs> {
 
                   hintInput: sendNoticeForUsHint,
                   maxLines: 10,
-                  maxLength: 512,
+                  maxLength: darkModeTest ?null : 512,
+
                   hintMaxLines: 10,
                   inputType: TextInputType.text,
                   controller: sendNoticeForUcController,

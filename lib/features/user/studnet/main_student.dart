@@ -82,17 +82,19 @@ class _MainStudentState extends State<MainStudent> {
             //     borderRadius: BorderRadius.circular(16 / 2)),
             onPressed: () {
               showCupertinoModalPopup(
-                  context: context,
+
+                 context: context,
                   builder: (
                     context,
                   ) {
                     return CupertinoActionSheet(
+
                       /*
                       RichText(
-                  softWrap: true,
+                                      softWrap: true,
 
-                  // "إختر مدة إقامتك من خلال إضافة عدد الأشهر ",
-                  text: TextSpan(
+                                      // "إختر مدة إقامتك من خلال إضافة عدد الأشهر ",
+                                      text: TextSpan(
                       children: <TextSpan>[
                     const TextSpan(
                         text: "نصيحة:",
@@ -102,8 +104,8 @@ class _MainStudentState extends State<MainStudent> {
                           fontFamily: 'IBM',
                           inherit: true,
                         )),
-                  ]),
-                )
+                                      ]),
+                                    )
                        */
                       title: Text(
                         "إنشاء إعلان",

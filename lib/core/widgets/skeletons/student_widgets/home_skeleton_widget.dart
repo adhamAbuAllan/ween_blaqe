@@ -1,5 +1,6 @@
 import 'package:skeletons/skeletons.dart';
 import 'package:flutter/material.dart';
+import 'package:ween_blaqe/constants/nums.dart';
 
 class HomeSkeletonWidget extends StatefulWidget {
   const HomeSkeletonWidget({Key? key}) : super(key: key);
@@ -38,7 +39,7 @@ class _HomeSkeletonWidgetState extends State<HomeSkeletonWidget> {
         //     )
         //   ],
         // ),
-        backgroundColor: Colors.grey.shade200,
+        backgroundColor: kBackgroundAppColor,
         body: SingleChildScrollView(
           physics: const NeverScrollableScrollPhysics(),
           scrollDirection: Axis.vertical,
@@ -128,7 +129,7 @@ class _HomeSkeletonWidgetState extends State<HomeSkeletonWidget> {
                   padding: const EdgeInsets.all(10.0),
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(7),
-                    color: Colors.white,
+                    color: kContainerColor,
                   ),
                   child: SkeletonItem(
                       child: Column(
@@ -206,7 +207,7 @@ class _HomeSkeletonWidgetState extends State<HomeSkeletonWidget> {
                   padding: const EdgeInsets.all(10.0),
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(7),
-                    color: Colors.white,
+                    color:kContainerColor,
                   ),
                   child: SkeletonItem(
                       child: Column(
@@ -275,7 +276,7 @@ class _HomeSkeletonWidgetState extends State<HomeSkeletonWidget> {
                   padding: const EdgeInsets.all(10.0),
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(7),
-                    color: Colors.white,
+                    color:kContainerColor,
                   ),
                   child: SkeletonItem(
                       child: Column(
@@ -286,14 +287,17 @@ class _HomeSkeletonWidgetState extends State<HomeSkeletonWidget> {
                           Padding(
                             padding: EdgeInsets.fromLTRB(10, 5, 0, 5),
                             child: SkeletonAvatar(
+
                                 style:
-                                    SkeletonAvatarStyle(width: 28, height: 28)),
+                                    SkeletonAvatarStyle(width: 28, height: 28,)),
                           ),
                         ],
                       ),
                       const SizedBox(height: 12),
                       SkeletonAvatar(
+
                         style: SkeletonAvatarStyle(
+
                             width: double.infinity,
                             height: 240,
                             borderRadius: BorderRadius.circular(7)),
@@ -306,6 +310,7 @@ class _HomeSkeletonWidgetState extends State<HomeSkeletonWidget> {
                             style: SkeletonLineStyle(
                                 height: 18,
                                 width: 200,
+
                                 borderRadius: BorderRadius.circular(4)),
                           ),
                           SkeletonLine(
@@ -328,6 +333,7 @@ class _HomeSkeletonWidgetState extends State<HomeSkeletonWidget> {
                           ),
                           SkeletonLine(
                             style: SkeletonLineStyle(
+
                                 height: 18,
                                 width: 100,
                                 borderRadius: BorderRadius.circular(4)),

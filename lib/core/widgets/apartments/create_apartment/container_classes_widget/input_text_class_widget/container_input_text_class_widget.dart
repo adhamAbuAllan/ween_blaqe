@@ -1,6 +1,7 @@
 // import 'dart:html';
 
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 import '../../../../../../constants/nums.dart';
 
@@ -100,6 +101,7 @@ class _ContainerInputTextClassWidgetState
           Padding(
             padding: const EdgeInsets.fromLTRB(15, 0, 10, 10),
             child: TextFormField(
+              cursorColor:kPrimaryColor,
               //
               // onChanged: (value) {
               //   // autoFocus = false;
@@ -138,16 +140,17 @@ class _ContainerInputTextClassWidgetState
               initialValue: value,
               onChanged: widget.onEdit,
               maxLines: widget.maxLines,
+              // maxLengthEnforcement: MaxLengthEnforcement.truncateAfterCompositionEnds,
               maxLength: widget.maxLength,
               textDirection: TextDirection.rtl,
               keyboardType: inputType,
               autofocus: widget.autoFocus ?? false,
               // focusNode: focusNode,
               decoration: buildInputDecoration(hintInput),
-              style: TextStyle(
+              style: const TextStyle(
                 fontFamily: 'IBM',
                 fontSize: 16,
-                color: Colors.grey.shade800,
+                color:kTextColor,
               ),
             ),
           ),
@@ -170,15 +173,18 @@ class _ContainerInputTextClassWidgetState
 
   InputDecoration buildInputDecoration(String hintInput) {
     return InputDecoration(
+
         errorText: errorText.isEmpty ? null : errorText,
         hintTextDirection: TextDirection.rtl,
         hintText: hintInput,
         border: InputBorder.none,
+
         hintMaxLines: widget.hintMaxLines,
         hintStyle: const TextStyle(
           color: Colors.grey,
         ),
         focusedBorder: const OutlineInputBorder(
+
           borderSide: BorderSide(
             width: 1.5,
             color: kPrimaryColor,
