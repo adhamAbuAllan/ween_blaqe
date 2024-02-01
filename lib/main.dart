@@ -14,6 +14,7 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:ween_blaqe/controller/function_controller/change_theme_mode.dart';
 import 'package:ween_blaqe/controller/main_controller.dart';
 import 'package:flutter/services.dart';
 
@@ -84,6 +85,7 @@ void main() async {
   Get.put(StudentController());
   Get.put(ApartmentModelController());
   Get.put(ApiApartmentController());
+  Get.put(ChangeThemeMode());
 
   // Get.put(OwnerController());
   Get.put(MainController());
@@ -193,7 +195,7 @@ class _OwnMaterialAppState extends State<OwnMaterialApp> {
         //     const ApartmentOfOwnerBeforeAdd(),
         MyPagesRoutes.splashScreen: (context) => const SplashScreen(),
         // MyPagesRoutes.refactorApartment: (context) => const RefactorApartment(),
-        MyPagesRoutes.privacyPolicy: (context) => const PrivacyPolicy(),
+        MyPagesRoutes.privacyPolicy: (context) =>  PrivacyPolicy(),
         MyPagesRoutes.askForHelp: (context) => const AskForHelp(),
         MyPagesRoutes.systemPaying: (context) => const SystemPaying(),
         MyPagesRoutes.whatIsSystemPayingAllow: (context) =>
@@ -224,9 +226,9 @@ class _OwnMaterialAppState extends State<OwnMaterialApp> {
         MyPagesRoutes.skeletonParagraph: (context) =>
             const LongParagraphReadySkeleton(),
         MyPagesRoutes.newMasterHome: (context) => const NewMasterHome(),
-        MyPagesRoutes.newShowMore: (context) => const NewShowMore(),
+        MyPagesRoutes.newShowMore: (context) =>  NewShowMore(),
         MyPagesRoutes.whatTheInfoReqToCreateAd: (context) =>
-            const WhatTheInfoReqToCreateAd(),
+             WhatTheInfoReqToCreateAd(),
 
         //testing routes..
         // MyPagesRoutes.citiesTest:(context)=> CitiesTest(),
@@ -321,7 +323,7 @@ class _MainState extends State<Main> {
         // bottom: false,
         // top
         bottomColor: Colors.transparent,
-        color: kPrimaryColor,
+        color: themeMode.isDark ? kPrimaryColorLightMode : kPrimaryColorDarkMode,
         child: Scaffold(
             backgroundColor: Colors.grey.shade200,
             body: GetBuilder<MainController>(

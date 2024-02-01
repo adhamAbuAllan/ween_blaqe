@@ -33,7 +33,7 @@ class _SkeletonShowMoreWidgetState extends State<SkeletonShowMoreWidget> {
   Widget build(BuildContext context) {
     return ColorfulSafeArea(
       bottomColor: Colors.transparent ,
-      color: kPrimaryColor,
+      color: themeMode.isDark ? kPrimaryColorLightMode : kPrimaryColorDarkMode,
       child: Scaffold(
         backgroundColor: Colors.grey.shade200,
         body: SingleChildScrollView(
@@ -64,7 +64,7 @@ class _SkeletonShowMoreWidgetState extends State<SkeletonShowMoreWidget> {
               margin: const EdgeInsets.fromLTRB(10, 23, 10, 0),
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(7),
-                color: kContainerColor,
+                color: themeMode.isDark ? kContainerColorLightMode : kContainerColorDarkMode,
               ),
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -131,7 +131,7 @@ class _SkeletonShowMoreWidgetState extends State<SkeletonShowMoreWidget> {
               margin: const EdgeInsets.fromLTRB(10, 23, 10, 0),
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(7),
-                color: kContainerColor,
+                color: themeMode.isDark ? kContainerColorLightMode : kContainerColorDarkMode,
               ),
               child: Column(
                 children: [
@@ -190,7 +190,7 @@ class _SkeletonShowMoreWidgetState extends State<SkeletonShowMoreWidget> {
               margin: const EdgeInsets.fromLTRB(10, 23, 10, 0),
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(7),
-                color: kContainerColor,
+                color: themeMode.isDark ? kContainerColorLightMode : kContainerColorDarkMode,
               ),
               child: Column(
                 children: [
@@ -312,7 +312,7 @@ class _SkeletonShowMoreWidgetState extends State<SkeletonShowMoreWidget> {
                 width: 373,
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(7),
-                  color: kContainerColor,
+                  color: themeMode.isDark ? kContainerColorLightMode : kContainerColorDarkMode,
                 ),
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -401,7 +401,7 @@ class _SkeletonShowMoreWidgetState extends State<SkeletonShowMoreWidget> {
               margin: const EdgeInsets.fromLTRB(10, 23, 10, 0),
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(7),
-                color: kContainerColor,
+                color: themeMode.isDark ? kContainerColorLightMode : kContainerColorDarkMode,
               ),
               child: Column(
                 children: [

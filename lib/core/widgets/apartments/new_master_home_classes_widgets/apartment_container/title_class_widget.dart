@@ -16,8 +16,8 @@ class ApartmentTitleText extends StatelessWidget {
       padding: const EdgeInsets.all(8.0),
       child: Text(apartmentsRes.data?[index].title ?? "",
           softWrap: true,
-          style: const TextStyle(
-            color: kTextColor,
+          style:  TextStyle(
+            color: themeMode.isDark ? kTextColorLightMode : kTextColorDarkMode,
             fontFamily: 'IBM',
             fontSize: 15,
           )),

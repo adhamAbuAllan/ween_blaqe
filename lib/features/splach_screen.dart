@@ -44,8 +44,8 @@ class _SplashScreenState extends State<SplashScreen> {
     // setState(() {
     // });d
 
-    return  const Scaffold(
-      backgroundColor: Color(0x2ef0f0fe),
+    return   Scaffold(
+      backgroundColor: const Color(0x2ef0f0fe),
       body:
       // isInitialized ?
       // (
@@ -62,8 +62,8 @@ class _SplashScreenState extends State<SplashScreen> {
           // :  bulidSplashScreenWidget()
       ColorfulSafeArea(
         bottomColor: Colors.transparent ,
-        color: kPrimaryColor,
-        child: SingleChildScrollView(
+        color: themeMode.isDark ? kPrimaryColorLightMode : kPrimaryColorDarkMode,
+        child: const SingleChildScrollView(
           child: Center(
             //
             child: Column(

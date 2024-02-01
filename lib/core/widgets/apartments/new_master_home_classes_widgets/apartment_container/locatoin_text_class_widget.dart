@@ -12,11 +12,11 @@ class ApartmentLocatoinText extends StatelessWidget {
     return               SizedBox(
       child: Row(
         children: [
-          const Padding(
-            padding: EdgeInsets.fromLTRB(0, 0, 0, 0),
+           Padding(
+            padding: const EdgeInsets.fromLTRB(0, 0, 0, 0),
             child: Text("الموقع:",
                 style: TextStyle(
-                  color: kTextColor,
+                  color: themeMode.isDark ? kTextColorLightMode : kTextColorDarkMode,
                   fontSize: 16,
                   fontFamily: 'IBM',
                 )),
@@ -25,8 +25,8 @@ class ApartmentLocatoinText extends StatelessWidget {
             padding: const EdgeInsets.fromLTRB(10, 0, 0, 0),
             child: Text(apartmentsRes.data?[index].city?.name ?? "",
                 softWrap: true,
-                style: const TextStyle(
-                  color: kTextColor,
+                style:  TextStyle(
+                  color: themeMode.isDark ? kTextColorLightMode : kTextColorDarkMode,
                   fontSize: 16,
                   fontFamily: 'IBM',
                 )),

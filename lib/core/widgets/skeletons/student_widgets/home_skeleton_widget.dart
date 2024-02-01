@@ -39,7 +39,7 @@ class _HomeSkeletonWidgetState extends State<HomeSkeletonWidget> {
         //     )
         //   ],
         // ),
-        backgroundColor: kBackgroundAppColor,
+        backgroundColor: themeMode.isDark ? kBackgroundAppColorLightMode : kBackgroundAppColorDarkMode,
         body: SingleChildScrollView(
           physics: const NeverScrollableScrollPhysics(),
           scrollDirection: Axis.vertical,
@@ -129,7 +129,7 @@ class _HomeSkeletonWidgetState extends State<HomeSkeletonWidget> {
                   padding: const EdgeInsets.all(10.0),
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(7),
-                    color: kContainerColor,
+                    color: themeMode.isDark ? kContainerColorLightMode : kContainerColorDarkMode,
                   ),
                   child: SkeletonItem(
                       child: Column(
@@ -207,7 +207,7 @@ class _HomeSkeletonWidgetState extends State<HomeSkeletonWidget> {
                   padding: const EdgeInsets.all(10.0),
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(7),
-                    color:kContainerColor,
+                    color:themeMode.isDark ? kContainerColorLightMode : kContainerColorDarkMode,
                   ),
                   child: SkeletonItem(
                       child: Column(
@@ -276,7 +276,7 @@ class _HomeSkeletonWidgetState extends State<HomeSkeletonWidget> {
                   padding: const EdgeInsets.all(10.0),
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(7),
-                    color:kContainerColor,
+                    color:themeMode.isDark ? kContainerColorLightMode : kContainerColorDarkMode,
                   ),
                   child: SkeletonItem(
                       child: Column(

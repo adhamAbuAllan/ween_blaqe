@@ -16,7 +16,6 @@ class BottomNavigationBarOfStudent extends StatefulWidget {
   State<BottomNavigationBarOfStudent> createState() =>
       _BottomNavigationBarOfStudentState();
 }
-
 class _BottomNavigationBarOfStudentState
     extends State<BottomNavigationBarOfStudent> {
   String errorMessage  = "";
@@ -39,8 +38,8 @@ class _BottomNavigationBarOfStudentState
       // selectedIconTheme: const IconThemeData(opacity: 1),
       // unselectedIconTheme: const IconThemeData(opacity: .5),
       // enableFeedback: false,
-      backgroundColor:   kContainerColor,
-      selectedItemColor: kPrimaryColor,
+      backgroundColor:   themeMode.isDark ? kContainerColorLightMode : kContainerColorDarkMode,
+      selectedItemColor: themeMode.isDark ? kPrimaryColorLightMode : kPrimaryColorDarkMode,
       unselectedItemColor: Colors.grey,
       type: BottomNavigationBarType.fixed,
       iconSize: 30,

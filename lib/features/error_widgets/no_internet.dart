@@ -117,12 +117,12 @@ class _NoInternetState extends State<NoInternet> with WidgetsBindingObserver {
 
       ColorfulSafeArea(
       bottomColor: Colors.transparent,
-      color: kPrimaryColor,
+      color: themeMode.isDark ? kPrimaryColorLightMode : kPrimaryColorDarkMode,
       child: StreamBuilder<ConnectivityResult>(
         stream: Connectivity().onConnectivityChanged,
         builder: (context, snapshot) {
           return Scaffold(
-            backgroundColor: kBackgroundAppColor,
+            backgroundColor: themeMode.isDark ? kBackgroundAppColorLightMode : kBackgroundAppColorDarkMode,
             body: AnimatedAlign(
               alignment: isWantToSepha ? Alignment.center : Alignment.topCenter,
               duration: const Duration(milliseconds: 800),
@@ -138,7 +138,7 @@ class _NoInternetState extends State<NoInternet> with WidgetsBindingObserver {
                 padding: const EdgeInsets.fromLTRB(10, 0, 10, 0),
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(7),
-                  color:kContainerColor,
+                  color:themeMode.isDark ? kContainerColorLightMode : kContainerColorDarkMode,
                 ),
                 duration: const Duration(milliseconds: 800),
                 child: Column(
@@ -250,7 +250,7 @@ class _NoInternetState extends State<NoInternet> with WidgetsBindingObserver {
                                   },
                                   "إبدأ التسبيح",
                                   image: Image.asset("assets/images/tasbih.png",
-                                      color: kTextColor,
+                                      color: themeMode.isDark ? kTextColorLightMode : kTextColorDarkMode,
                                       width: 35, height: isContExpanding ? 0 : 35),
                                   isIcon: false,
                                 ),
@@ -280,7 +280,7 @@ class _NoInternetState extends State<NoInternet> with WidgetsBindingObserver {
               myPushName(context, MyPagesRoutes.main);
             },
               shape:ContinuousRectangleBorder(borderRadius: BorderRadius.circular(16/2)),
-              backgroundColor: kPrimaryColor,
+              backgroundColor: themeMode.isDark ? kPrimaryColorLightMode : kPrimaryColorDarkMode,
               child: const FaIcon(FontAwesomeIcons.redoAlt,),
             ):const SizedBox(),
           );
@@ -296,12 +296,12 @@ class _NoInternetState extends State<NoInternet> with WidgetsBindingObserver {
   //text counter , have two part
   Row buildCounterTextRow() {
     return Row(children: [
-      const Padding(
+       Padding(
         padding: EdgeInsets.fromLTRB(0, 10, 5, 10),
         child: Image(
           image: AssetImage("assets/images/error_images/no network.png"),
           height: 60,
-          color: kTextColor,
+          color: themeMode.isDark ? kTextColorLightMode : kTextColorDarkMode,
           width: 60,
         ),
       ),
@@ -310,7 +310,7 @@ class _NoInternetState extends State<NoInternet> with WidgetsBindingObserver {
           Padding(
             padding: const EdgeInsets.fromLTRB(100, 0, 5, 0),
             child: RichText(
-              text: const TextSpan(
+              text:  TextSpan(
                 children: <TextSpan>[
                   TextSpan(
                     text: 'لا يتوفّر اتصال بالانترنت.',
@@ -318,7 +318,7 @@ class _NoInternetState extends State<NoInternet> with WidgetsBindingObserver {
                         fontSize: 16.0,
                         fontFamily: 'IBM',
                         inherit: true,
-                        color: kTextColor),
+                        color: themeMode.isDark ? kTextColorLightMode : kTextColorDarkMode),
                   ),
                 ],
               ),
@@ -374,7 +374,7 @@ class _NoInternetState extends State<NoInternet> with WidgetsBindingObserver {
           borderRadius: const BorderRadius.all(Radius.circular(7)),
           border: Border.all(
             width: 1,
-            color: kPrimaryColor,
+            color: themeMode.isDark ? kPrimaryColorLightMode : kPrimaryColorDarkMode,
           )),
       height: 100,
       child: buildSebhaCarouselSlider(),
@@ -393,7 +393,7 @@ class _NoInternetState extends State<NoInternet> with WidgetsBindingObserver {
               alignment: Alignment.center,
               child: Text(
                 entry.value,
-                style: const TextStyle(fontSize: 24, fontFamily: "IBM",color: kTextColor),
+                style:  TextStyle(fontSize: 24, fontFamily: "IBM",color: themeMode.isDark ? kTextColorLightMode : kTextColorDarkMode),
               ));
         });
       }).toList(),

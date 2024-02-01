@@ -25,7 +25,7 @@ class _OrdersOfStudentState extends State<OrdersOfStudent> {
     // var image = "assets/images/apartments_images/image1.png";
     // var date = "04/14/2020";
     return Scaffold(
-      backgroundColor: kBackgroundAppColor,
+      backgroundColor: themeMode.isDark ? kBackgroundAppColorLightMode : kBackgroundAppColorDarkMode,
       body: SingleChildScrollView(
         child: Column(
           children: [
@@ -37,7 +37,7 @@ class _OrdersOfStudentState extends State<OrdersOfStudent> {
               padding: const EdgeInsets.symmetric(vertical: 25),
                   child: Image.asset(
                     "assets/images/mobile-development.png",width: 450/1.3,height: 420/1.3,color:
-                  kTextColor,
+                  themeMode.isDark ? kTextColorLightMode : kTextColorDarkMode,
                   ),
                 )
 
@@ -68,12 +68,12 @@ class _OrdersOfStudentState extends State<OrdersOfStudent> {
             //             dateOfBooking: date)
             // ),
             !isScreenIsReady  ?
-            const Padding(
-              padding: EdgeInsets.only(top: 15.0),
+             Padding(
+              padding: const EdgeInsets.only(top: 15.0),
               child: Text("هذه الميزة قيد التطوير وسيتم إضافتها قريبًا",style: TextStyle(
                 fontSize: 16,
                   fontFamily: 'IBM',
-                  color: kTextColor),),
+                  color: themeMode.isDark ? kTextColorLightMode : kTextColorDarkMode),),
             ):
           const Text("")
           ],

@@ -42,25 +42,25 @@ class _MainStudentState extends State<MainStudent> {
 
     return ColorfulSafeArea(
       bottomColor: Colors.transparent,
-      color: kPrimaryColor,
+      color: themeMode.isDark ? kPrimaryColorLightMode : kPrimaryColorDarkMode,
       child: Scaffold(
 
           // appBar: AppBar(bottomOpacity: 0,leadingWidth: 20,toolbarOpacity: 0,backgroundColor: Colors.transparent,elevation: 0,shadowColor: Colors.transparent,title: Text("Your wlecome "),),
-          backgroundColor:kBackgroundAppColor,
+          backgroundColor:themeMode.isDark ? kBackgroundAppColorLightMode : kBackgroundAppColorDarkMode,
           body: GetBuilder<StudentController>(
             builder: (context) {
               return ColorfulSafeArea(
                 bottomColor: Colors.transparent,
-                color: kPrimaryColor,
+                color: themeMode.isDark ? kPrimaryColorLightMode : kPrimaryColorDarkMode,
                 child: IndexedStack(
                   index: studentController.index,
-                  children: const [
+                  children:  [
                     // MasterHome(),
 
-                    NewMasterHome(),
+                    const NewMasterHome(),
                     // const NewMasterHomeTest(),
                     // NotificationOfStudentWithNotifi(),
-                    OrdersOfStudent(),
+                    const OrdersOfStudent(),
                     // const Bookmark(),
                     // NewSession.get("logged", "") == ""
                     //     ?
@@ -303,7 +303,7 @@ class _MainStudentState extends State<MainStudent> {
                     );
                   });
             },
-            backgroundColor: kPrimaryColor,
+            backgroundColor: themeMode.isDark ? kPrimaryColorLightMode : kPrimaryColorDarkMode,
             child: const Icon(
               Icons.add_home_outlined,
               size: 30,              // shadows: [

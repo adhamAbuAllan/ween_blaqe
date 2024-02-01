@@ -148,9 +148,9 @@ class _TypeNotFoundState extends State<TypeNotFound> {
   Widget build(BuildContext context) {
     return ColorfulSafeArea(
       bottomColor: Colors.transparent ,
-      color: kPrimaryColor,
+      color: themeMode.isDark ? kPrimaryColorLightMode : kPrimaryColorDarkMode,
       child: Scaffold(
-        backgroundColor: kBackgroundAppColor,
+        backgroundColor: themeMode.isDark ? kBackgroundAppColorLightMode : kBackgroundAppColorDarkMode,
         body: SingleChildScrollView(
           child: Center(
             child: Column(
@@ -169,7 +169,7 @@ class _TypeNotFoundState extends State<TypeNotFound> {
                               fontSize: 18.0,
                               fontFamily: 'IBM',
                               inherit: true,
-                              color: kTextColor.withOpacity(.6),
+                              color: themeMode.isDark ? kTextColorLightMode : kTextColorDarkMode.withOpacity(.6),
                             )),
                       ),
 
@@ -180,7 +180,7 @@ class _TypeNotFoundState extends State<TypeNotFound> {
                               fontSize: 16.0,
                               fontFamily: 'IBM',
                               inherit: true,
-                              color: kTextColor.withOpacity(.8),
+                              color: themeMode.isDark ? kTextColorLightMode : kTextColorDarkMode.withOpacity(.8),
                             )),
                       ),
                       // Padding(
@@ -233,10 +233,10 @@ class _TypeNotFoundState extends State<TypeNotFound> {
                 Padding(
                   padding: const EdgeInsets.fromLTRB(0, 150, 0, 0),
                   child: TextButton(
-                    child: const Text(
+                    child:  Text(
                       "إعادة الطلب",
                       style: TextStyle(
-                          color: kPrimaryColor,
+                          color: themeMode.isDark ? kPrimaryColorLightMode : kPrimaryColorDarkMode,
                           fontWeight: FontWeight.bold,
                           fontFamily: 'IBM',
                           decoration: TextDecoration.underline),

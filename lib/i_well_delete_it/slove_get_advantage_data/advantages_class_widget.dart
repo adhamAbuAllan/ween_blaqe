@@ -36,19 +36,19 @@ class _GetAdvantagesState extends State<GetAdvantages> {
     return Container(
       margin: const EdgeInsets.fromLTRB(10, 23, 10, 0),
       decoration: BoxDecoration(
-        color: kContainerColor,
+        color: themeMode.isDark ? kContainerColorLightMode : kContainerColorDarkMode,
         borderRadius: BorderRadius.circular(7),
       ),
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
-          const Row(
+           Row(
             children: [
               Padding(
                 padding: EdgeInsets.fromLTRB(0, 0, 10, 0),
                 child: Text("المزايا",
                     style: TextStyle(
-                      color: kTextColor,
+                      color: themeMode.isDark ? kTextColorLightMode : kTextColorDarkMode,
                       fontSize: 20,
                       fontFamily: 'IBM',
                     )),
@@ -110,10 +110,10 @@ class _GetAdvantagesState extends State<GetAdvantages> {
             padding: const EdgeInsets.fromLTRB(12, 0, 12, 0),
             child: ListTile(
               title: Text(entry.advName,
-                  style: const TextStyle(
+                  style:  TextStyle(
                       fontFamily: 'IBM',
                       fontSize: 16,
-                      color: kTextColor)),
+                      color: themeMode.isDark ? kTextColorLightMode : kTextColorDarkMode)),
               trailing: entry.icon.isEmpty ? const SizedBox(child: SkeletonAvatar(
                   style:
                   SkeletonAvatarStyle(width: 28, height: 28))) :Image.network(
@@ -126,7 +126,7 @@ class _GetAdvantagesState extends State<GetAdvantages> {
                       style:
                       SkeletonAvatarStyle(width: 28, height: 28,)));
                 },
-                color: kTextColor,
+                color: themeMode.isDark ? kTextColorLightMode : kTextColorDarkMode,
               ),
             ),
           );
@@ -201,9 +201,9 @@ class _ShowAllAdvantagesState extends State<ShowAllAdvantages> {
   Widget build(BuildContext context) {
     return ColorfulSafeArea(
       bottomColor: Colors.transparent ,
-      color: kPrimaryColor,
+      color: themeMode.isDark ? kPrimaryColorLightMode : kPrimaryColorDarkMode,
       child: Scaffold(
-        backgroundColor: Colors.grey.shade200,
+        backgroundColor: themeMode.isDark ? kBackgroundAppColorLightMode : kBackgroundAppColorDarkMode,
 
         body: Column(
 
@@ -217,9 +217,9 @@ class _ShowAllAdvantagesState extends State<ShowAllAdvantages> {
                       onPressed: () {
                         Navigator.of(context).pop(context);
                       },
-                      icon: const Icon(
+                      icon:  Icon(
                         Icons.arrow_back,
-                        color: kTextColor,
+                        color: themeMode.isDark ? kTextColorLightMode : kTextColorDarkMode,
                       )),
                 ),
                 const Expanded(child: Text("")),
@@ -230,17 +230,17 @@ class _ShowAllAdvantagesState extends State<ShowAllAdvantages> {
 
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(7),
-                color: kContainerColor,
+                color: themeMode.isDark ? kContainerColorLightMode : kContainerColorDarkMode,
               ),
               child: Column(
                 children: [
-                  const Row(
+                   Row(
                     children: [
                       Padding(
                         padding: EdgeInsets.fromLTRB(0, 0, 10, 0),
                         child: Text("المزايا",
                             style: TextStyle(
-                              color: kTextColor,
+                              color: themeMode.isDark ? kTextColorLightMode : kTextColorDarkMode,
                               fontSize: 20,
                               fontFamily: 'IBM',
                             )),
@@ -258,20 +258,20 @@ class _ShowAllAdvantagesState extends State<ShowAllAdvantages> {
                           itemBuilder: ((c, i) {
                             return ListTile(
                               title: Text(widget.features[i].advName,
-                                style: const TextStyle(
+                                style:  TextStyle(
                                     fontFamily: 'IBM',
                                     fontSize: 16,
-                                    color: kTextColor),
+                                    color: themeMode.isDark ? kTextColorLightMode : kTextColorDarkMode),
                               ),
 
-                              trailing: widget.features[i].icon.isEmpty ? const SizedBox(child: CircularProgressIndicator(color: kPrimaryColor,strokeWidth: 3,)) :
+                              trailing: widget.features[i].icon.isEmpty ?  SizedBox(child: CircularProgressIndicator(color: themeMode.isDark ? kPrimaryColorLightMode : kPrimaryColorDarkMode,strokeWidth: 3,)) :
 
 
                               Image.network(
                                   widget.features[i].icon,
                                   height: 30,
                                   width: 30,
-                                  color: kTextColor,
+                                  color: themeMode.isDark ? kTextColorLightMode : kTextColorDarkMode,
                                 )
                             );
                           })),

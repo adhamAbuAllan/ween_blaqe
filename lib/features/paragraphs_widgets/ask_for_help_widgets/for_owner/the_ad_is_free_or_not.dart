@@ -1,23 +1,32 @@
 import 'package:colorful_safe_area/colorful_safe_area.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:get/get.dart';
 import 'package:ween_blaqe/core/utils/styles/text_style/aline_style.dart';
 
 import '../../../../constants/nums.dart';
+import '../../../../controller/function_controller/change_theme_mode.dart';
 import '../../../../core/utils/funcations/go_url_launcher_methodes/go_to_whatsapp_method.dart';
 
-class TheAdIsFreeOrNot extends StatelessWidget {
+class TheAdIsFreeOrNot extends StatefulWidget {
   const TheAdIsFreeOrNot({Key? key}) : super(key: key);
+
+  @override
+  State<TheAdIsFreeOrNot> createState() => _TheAdIsFreeOrNotState();
+}
+
+class _TheAdIsFreeOrNotState extends State<TheAdIsFreeOrNot> {
+  ChangeThemeMode themeMode = Get.find();
 
   @override
   Widget build(BuildContext context) {
     return ColorfulSafeArea(
-      color: kPrimaryColor,
+      color: themeMode.isDark ? kPrimaryColorLightMode : kPrimaryColorDarkMode,
       bottomColor: Colors.transparent,
       child: Scaffold(
-        backgroundColor: kBackgroundAppColor,
+        backgroundColor: themeMode.isDark ? kBackgroundAppColorLightMode : kBackgroundAppColorDarkMode,
         appBar: AppBar(
-          backgroundColor: kPrimaryColor,
+          backgroundColor: themeMode.isDark ? kPrimaryColorLightMode : kPrimaryColorDarkMode,
         ),
         body: Column(
           children: [
@@ -29,7 +38,7 @@ class TheAdIsFreeOrNot extends StatelessWidget {
                 "كم يُكلفة الإشتراك لعرض إعلاناتي داخل تطبيق وين بلاقي؟",
                 style: TextStyle(
                   fontSize: 20.0,
-                  color: kTextColor.withOpacity(.8),
+                  color: themeMode.isDark ? kTextColorLightMode : kTextColorDarkMode.withOpacity(.8),
                   fontFamily: 'IBM',
                   inherit: false,
                 ),
@@ -75,7 +84,7 @@ class TheAdIsFreeOrNot extends StatelessWidget {
                     style: TextStyle(
                       fontSize: 18.0,
                       fontFamily: 'IBM',
-                      color: kTextColor.withOpacity(.8),
+                      color: themeMode.isDark ? kTextColorLightMode : kTextColorDarkMode.withOpacity(.8),
                       inherit: true,
                     ),
                   ),
@@ -93,13 +102,13 @@ class TheAdIsFreeOrNot extends StatelessWidget {
                               style: TextStyle(
                                 fontFamily: "IBM",
                                 fontSize: 22,
-                                color: kTextColor.withOpacity(.8),
+                                color: themeMode.isDark ? kTextColorLightMode : kTextColorDarkMode.withOpacity(.8),
                               ),
                               text: "التكلفة الشهرية: "),
                           TextSpan(
                               style: TextStyle(
                                 fontFamily: "IBM",
-                                color: kTextColor.withOpacity(.8),
+                                color: themeMode.isDark ? kTextColorLightMode : kTextColorDarkMode.withOpacity(.8),
                                 fontSize: 22,
                               ),
                               text: "199"),
@@ -112,7 +121,7 @@ class TheAdIsFreeOrNot extends StatelessWidget {
                           child: FaIcon(
                             FontAwesomeIcons.shekelSign,
                             size: 18,
-                            color: kTextColor.withOpacity(.8),
+                            color: themeMode.isDark ? kTextColorLightMode : kTextColorDarkMode.withOpacity(.8),
                           ),
                         ),
                       ],
@@ -137,7 +146,7 @@ class TheAdIsFreeOrNot extends StatelessWidget {
                                       style: TextStyle(
                                         fontFamily: "IBM",
                                         fontSize: 22,
-                                        color: kTextColor.withOpacity(.8),
+                                        color: themeMode.isDark ? kTextColorLightMode : kTextColorDarkMode.withOpacity(.8),
                                       ),
                                       text: "التكلفة السنوية:"),
                                 ],
@@ -154,11 +163,11 @@ class TheAdIsFreeOrNot extends StatelessWidget {
                                     SizedBox(
                                       child: RichText(
                                           softWrap: true,
-                                          text: const TextSpan(children: [
+                                          text:  TextSpan(children: [
                                             TextSpan(
                                                 style: TextStyle(
                                                   fontFamily: "IBM",
-                                                  color: kTextColor,
+                                                  color: themeMode.isDark ? kTextColorLightMode : kTextColorDarkMode,
                                                   decoration: TextDecoration
                                                       .lineThrough,decorationColor: Colors.red,
                                                   fontSize: 24,
@@ -169,10 +178,10 @@ class TheAdIsFreeOrNot extends StatelessWidget {
                                     const SizedBox(
                                       width: 3,
                                     ),
-                                    const FaIcon(
+                                     FaIcon(
                                       size: 20,
                                       FontAwesomeIcons.shekelSign,
-                                      color: kTextColor,
+                                      color: themeMode.isDark ? kTextColorLightMode : kTextColorDarkMode,
                                     ),
                                   ],
                                 ),
@@ -187,7 +196,7 @@ class TheAdIsFreeOrNot extends StatelessWidget {
                                         TextSpan(
                                           style: TextStyle(
                                             fontFamily: "IBM",
-                                            color: kTextColor.withOpacity(.8),
+                                            color: themeMode.isDark ? kTextColorLightMode : kTextColorDarkMode.withOpacity(.8),
                                             fontSize: 20,
                                           ),
                                           text: "1999",
@@ -200,7 +209,7 @@ class TheAdIsFreeOrNot extends StatelessWidget {
                                     FaIcon(
                                       FontAwesomeIcons.shekelSign,
                                       size: 16,
-                                      color: kTextColor.withOpacity(.8),
+                                      color: themeMode.isDark ? kTextColorLightMode : kTextColorDarkMode.withOpacity(.8),
                                     ),
                                   ],
                                 ),
@@ -216,12 +225,12 @@ class TheAdIsFreeOrNot extends StatelessWidget {
                   aline,
                   Row(
                     children: [
-                      const Text(
+                       Text(
                           softWrap: true,
                           "إشترك الأن من خلال التواصل عبر ",style: TextStyle(
                         fontFamily: "IBM",
                         fontSize: 14,
-                        color: kTextColor
+                        color: themeMode.isDark ? kTextColorLightMode : kTextColorDarkMode
 
 
                       )),

@@ -17,13 +17,13 @@ class _ApartmentTypeTextState extends State<ApartmentTypeText> {
     return           Row(
       children: [
         Padding(
-          padding: const EdgeInsets.all(8.0),
+          padding:  const EdgeInsets.all(8.0),
           child: Text(
             " سكن ${widget.apartmentsRes.data?[widget.index].type?.name ?? ""}",
-            style: const TextStyle(
+            style:  TextStyle(
                 fontSize: 14,
                 fontFamily: 'IBM',
-                color: kTextColor),
+                color: themeMode.isDark ? kTextColorLightMode : kTextColorDarkMode),
           ),
         ),
         const Expanded(child: Text("")),

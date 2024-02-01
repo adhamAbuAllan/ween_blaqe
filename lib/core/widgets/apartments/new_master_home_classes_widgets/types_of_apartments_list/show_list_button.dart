@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:ween_blaqe/constants/nums.dart';
+import 'package:ween_blaqe/controller/function_controller/change_theme_mode.dart';
 
 import '../../../../utils/styles/button.dart';
 
@@ -39,6 +41,8 @@ class BtnShowTypesOfApartments extends StatefulWidget {
 }
 
 class _BtnShowTypesOfApartmentsState extends State<BtnShowTypesOfApartments> {
+  ChangeThemeMode themeMode = Get.find();
+
   @override
   Widget build(BuildContext context) {
     return OutlinedButton(
@@ -50,7 +54,7 @@ class _BtnShowTypesOfApartmentsState extends State<BtnShowTypesOfApartments> {
             const EdgeInsets.only(
                 top: 4),
             height: 35,
-            color:kContainerColor,
+            color:themeMode.isDark ? kContainerColorLightMode : kContainerColorDarkMode,
             child: widget.text?.isNotEmpty??false ? Text(
                 " ${widget.text} ") :   const Text(
                 " صنف السكن ")));

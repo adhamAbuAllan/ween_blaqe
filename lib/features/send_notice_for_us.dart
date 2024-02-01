@@ -37,26 +37,26 @@ class _SendNoticeForUsState extends State<SendNoticeForUs> {
   Widget build(BuildContext context) {
     return ColorfulSafeArea(
         bottomColor: Colors.transparent ,
-        color: kPrimaryColor,
+        color: themeMode.isDark ? kPrimaryColorLightMode : kPrimaryColorDarkMode,
         child: GestureDetector(
           onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
           child: Scaffold(
-            backgroundColor: kBackgroundAppColor,
+            backgroundColor: themeMode.isDark ? kBackgroundAppColorLightMode : kBackgroundAppColorDarkMode,
 
             // Colors.grey.shade200,
             appBar: AppBar(
-              backgroundColor: kContainerColor,
+              backgroundColor: themeMode.isDark ? kContainerColorLightMode : kContainerColorDarkMode,
 
               actions: [
                 Padding(
-                  padding: const EdgeInsets.all(4),
+                  padding: const EdgeInsets.only(right: 6,top: 1,),
                   child:
                IconButton(
                  splashColor: Colors.transparent,
                     icon: Icon(
 
-                      Icons.arrow_back,
-                      color:darkModeTest ?  kTextColor.withOpacity(0):  kTextColor.withOpacity(.7),
+                      Icons.arrow_back_ios,
+                      color: themeMode.isDark ? kTextColorLightMode : kTextColorDarkMode,
                       size: 34,
                     ),
                     onPressed: () {

@@ -9,17 +9,17 @@ class WhatIsMeanSS extends StatelessWidget {
   Widget build(BuildContext context) {
     return ColorfulSafeArea(
       bottomColor: Colors.transparent ,
-      color: kPrimaryColor,
+      color: themeMode.isDark ? kPrimaryColorLightMode : kPrimaryColorDarkMode,
       child: Scaffold(
-        backgroundColor: kBackgroundAppColor,
+        backgroundColor: themeMode.isDark ? kBackgroundAppColorLightMode : kBackgroundAppColorDarkMode,
 
         appBar: AppBar(
-          backgroundColor: kPrimaryColor,
+          backgroundColor: themeMode.isDark ? kPrimaryColorLightMode : kPrimaryColorDarkMode,
         ),
         body: Column(
           children: [
             //title of what is system paying is allowed
-            const Row(
+             Row(
               children: [
                 Padding(
                   padding: EdgeInsets.fromLTRB(0, 50, 25, 10),
@@ -27,7 +27,7 @@ class WhatIsMeanSS extends StatelessWidget {
                     "ما المقصود ب ش/ش",
                     style: TextStyle(
                       fontSize: 20.0,
-                      color: kTextColor,
+                      color: themeMode.isDark ? kTextColorLightMode : kTextColorDarkMode,
                       fontFamily: 'IBM',
                       inherit: true,
                     ),
@@ -46,7 +46,7 @@ class WhatIsMeanSS extends StatelessWidget {
                 "(شيكل/شهري)",
                 style: TextStyle(
                   fontSize: 16.0,
-                  color: kTextColor.withOpacity(.8),
+                  color: themeMode.isDark ? kTextColorLightMode : kTextColorDarkMode.withOpacity(.8),
                   fontFamily: 'IBM',
                   inherit: true,
                 ),

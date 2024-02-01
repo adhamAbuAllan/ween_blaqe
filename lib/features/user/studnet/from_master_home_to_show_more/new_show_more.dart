@@ -21,11 +21,11 @@ import '../../../../i_well_delete_it/slove_get_advantage_data/advantages_class_w
 
 // import '../../../toast_widget.dart';
 main() {
-  runApp(const MaterialApp(home: NewShowMore()));
+  runApp(    MaterialApp(home: NewShowMore()));
 }
 
 class NewShowMore extends StatefulWidget {
-  const NewShowMore({
+      NewShowMore({
     Key? key,
     this.oneApartment,
   }) : super(key: key);
@@ -119,22 +119,22 @@ class _NewShowMoreState extends State<NewShowMore> {
         builder: (context, snapshot) {
           if (snapshot.data == ConnectivityResult.none) {
             isStart
-                ? const Text("")
+                ?     const Text("")
                 : showSnakBarInStreamBuilder(context, "انقطع الانترنت",
                     isIcon: true,
                     icon: Icons.wifi_off,
                     isConnect: false,
                     isStart: isStart);
 
-            return const NoInternet();
+            return     const NoInternet();
           }
           return ColorfulSafeArea(
             bottomColor: Colors.transparent,
-            color: kPrimaryColor,
+            color: themeMode.isDark ? kPrimaryColorLightMode : kPrimaryColorDarkMode,
             child: Scaffold(
-              backgroundColor: kBackgroundAppColor,
+              backgroundColor: themeMode.isDark ? kBackgroundAppColorLightMode : kBackgroundAppColorDarkMode,
               body: SingleChildScrollView(
-                  physics: const BouncingScrollPhysics(
+                  physics:     const BouncingScrollPhysics(
                       decelerationRate: ScrollDecelerationRate.fast),
                   child: Column(
                     // mainAxisAlignment: MainAxisAlignment.center,
@@ -143,21 +143,21 @@ class _NewShowMoreState extends State<NewShowMore> {
                       Row(
                         children: [
                           Padding(
-                            padding: const EdgeInsets.fromLTRB(0, 20, 8, 0),
+                            padding:     const EdgeInsets.fromLTRB(0, 20, 8, 0),
                             child: IconButton(
                                 onPressed: () {
                                   Get.back();
                                 },
-                                icon: const Icon(
+                                icon:     Icon(
                                   size: 34,
 
                                   Icons.arrow_back,
-                                  color:kTextColor,
+                                  color:themeMode.isDark ? kTextColorLightMode : kTextColorDarkMode,
                                 )),
                           ),
-                          // const Expanded(child: Text("")),
+                          //     Expanded(child: Text("")),
                           // SelectableText("رقم الإعلان: ${widget.oneApartment!.id}",style: TextStyle(color: Colors.grey,fontFamily: "IBM",fontSize: 12),)
-                          const SizedBox(
+                              const SizedBox(
                             width: 35,
                           )
                         ],
@@ -215,7 +215,7 @@ class _NewShowMoreState extends State<NewShowMore> {
                               child: ImageSliderWithPointer(
                                 controller: controller,
                                 items: photos!,
-                                duration: const Duration(milliseconds: 300),
+                                duration:     const Duration(milliseconds: 300),
                                 // curve: Curves.linear,
                                 current: current,
                                 // tag: tag,
@@ -224,7 +224,7 @@ class _NewShowMoreState extends State<NewShowMore> {
                                     current = index;
                                     controller.animateToPage(
                                       current,
-                                      duration: const Duration(
+                                      duration:     const Duration(
                                         milliseconds: 300,
                                       ),
                                     );
@@ -240,32 +240,32 @@ class _NewShowMoreState extends State<NewShowMore> {
                             ),
 
                       Container(
-                        margin: const EdgeInsets.fromLTRB(10, 23, 10, 0),
-                        padding: const EdgeInsets.all(5),
+                        margin:     const EdgeInsets.fromLTRB(10, 23, 10, 0),
+                        padding:     const EdgeInsets.all(5),
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(7),
-                          color: kContainerColor,
+                          color: themeMode.isDark ? kContainerColorLightMode : kContainerColorDarkMode,
                         ),
                         child: Column(
                           // this children have ( general info that : title, price , and location
                           // .
                           children: [
-                            const Row(
+                                Row(
                               children: [
                                 Padding(
                                   padding:
-                                      EdgeInsets.fromLTRB(0, 0, 10, 0),
+                                      const EdgeInsets.fromLTRB(0, 0, 10, 0),
                                   child: Text(
                                     "معلومات عامة",
                                     style: TextStyle(
                                         fontSize: 20,
                                         fontFamily: 'IBM',
-                                        color: kTextColor
+                                        color: themeMode.isDark ? kTextColorLightMode : kTextColorDarkMode
                                         //kTextColor
                                     ),
                                   ),
                                 ),
-                                Expanded(
+                                const Expanded(
                                   child: Text(""),
                                 ),
                               ],
@@ -276,15 +276,15 @@ class _NewShowMoreState extends State<NewShowMore> {
                                 SizedBox(
                                   width: 360,
                                   child: Padding(
-                                    padding: const EdgeInsets.fromLTRB(
+                                    padding:     const EdgeInsets.fromLTRB(
                                         10, 0, 10, 10),
                                     child: Text(
                                         widget.oneApartment?.title ?? ""
                                         // data.
                                         ,
                                         softWrap: true,
-                                        style: const TextStyle(
-                                          color:kTextColor,
+                                        style:     TextStyle(
+                                          color:themeMode.isDark ? kTextColorLightMode : kTextColorDarkMode,
                                           fontSize: 18,
                                           fontFamily: 'IBM',
                                         )),
@@ -299,7 +299,7 @@ class _NewShowMoreState extends State<NewShowMore> {
                                   width: 360,
                                   child: Padding(
                                     padding:
-                                        const EdgeInsets.fromLTRB(0, 0, 10, 10),
+                                            const EdgeInsets.fromLTRB(0, 0, 10, 10),
                                     child: Text(
                                       "المكان:${widget.oneApartment?.city?.name ?? ""
 
@@ -310,14 +310,14 @@ class _NewShowMoreState extends State<NewShowMore> {
                                       }",
                                       softWrap: true,
                                       textDirection: TextDirection.rtl,
-                                      style: const TextStyle(
-                                        color:kTextColor,
+                                      style:     TextStyle(
+                                        color:themeMode.isDark ? kTextColorLightMode : kTextColorDarkMode,
                                         fontFamily: 'IBM',
                                       ),
                                     ),
                                   ),
                                 ),
-                                const Expanded(child: Text("")),
+                                    const Expanded(child: Text("")),
                               ],
                             ),
                             //count of student
@@ -325,7 +325,7 @@ class _NewShowMoreState extends State<NewShowMore> {
                               children: [
                                 Padding(
                                   padding:
-                                      const EdgeInsets.fromLTRB(0, 0, 5, 10),
+                                          const EdgeInsets.fromLTRB(0, 0, 5, 10),
                                   child: Text(
                                       (_isBoyStudent
                                           ? "عدد الطلاب المسموح به:${widget.oneApartment?.countOfStudnet ?? 0}"
@@ -334,13 +334,13 @@ class _NewShowMoreState extends State<NewShowMore> {
                                               : (_isFamilies
                                                   ? "عدد الافراد المسموح به:${widget.oneApartment?.countOfStudnet ?? 0}"
                                                   : "عدد الافراد المسموح به:${widget.oneApartment?.countOfStudnet ?? 0}"))),
-                                      style: const TextStyle(
-                                        color: kTextColor,
+                                      style:     TextStyle(
+                                        color: themeMode.isDark ? kTextColorLightMode : kTextColorDarkMode,
                                         fontSize: 16,
                                         fontFamily: 'IBM',
                                       )),
                                 ),
-                                const Expanded(child: Text("")),
+                                    const Expanded(child: Text("")),
                               ],
                             ),
 
@@ -348,16 +348,16 @@ class _NewShowMoreState extends State<NewShowMore> {
                               children: [
                                 Padding(
                                   padding:
-                                      const EdgeInsets.fromLTRB(0, 0, 5, 10),
+                                          const EdgeInsets.fromLTRB(0, 0, 5, 10),
                                   child: Text(
                                       "نوع السكن:${widget.oneApartment?.type?.name ?? ""}",
-                                      style: const TextStyle(
-                                        color: kTextColor,
+                                      style:     TextStyle(
+                                        color: themeMode.isDark ? kTextColorLightMode : kTextColorDarkMode,
                                         fontSize: 16,
                                         fontFamily: 'IBM',
                                       )),
                                 ),
-                                const Expanded(child: Text("")),
+                                    const Expanded(child: Text("")),
                               ],
                             ),
                             //price
@@ -365,23 +365,23 @@ class _NewShowMoreState extends State<NewShowMore> {
                               children: [
                                 Padding(
                                   padding:
-                                      const EdgeInsets.fromLTRB(0, 0, 10, 10),
+                                          const EdgeInsets.fromLTRB(0, 0, 10, 10),
                                   child: Text(
                                     "الأجرة:${widget.oneApartment?.price ?? ""
                                     // data.
 
                                     }",
-                                    style: const TextStyle(
-                                      color: kPrimaryColor,
+                                    style:      TextStyle(
+                                      color: themeMode.isDark ? kPrimaryColorLightMode : kPrimaryColorDarkMode,
                                       fontFamily: 'IBM',
                                     ),
                                   ),
                                 ),
-                                const Padding(
-                                  padding: EdgeInsets.fromLTRB(0, 0, 3, 10),
+                                     Padding(
+                                  padding: const EdgeInsets.fromLTRB(0, 0, 3, 10),
                                   child: Text("شيكل/شهري",
                                       style: TextStyle(
-                                        color: kPrimaryColor,
+                                        color: themeMode.isDark ? kPrimaryColorLightMode : kPrimaryColorDarkMode,
                                         fontSize: 16,
                                         fontFamily: 'IBM',
                                       )),
@@ -392,48 +392,48 @@ class _NewShowMoreState extends State<NewShowMore> {
                         ),
                       ),
                       Container(
-                        margin: const EdgeInsets.fromLTRB(10, 23, 10, 0),
+                        margin:     const EdgeInsets.fromLTRB(10, 23, 10, 0),
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(7),
-                          color: kContainerColor,
+                          color: themeMode.isDark ? kContainerColorLightMode : kContainerColorDarkMode,
                         ),
                         child: Column(
                           children: [
                             //about apartment  text
-                            const Row(
+                                Row(
                               children: [
                                 Padding(
                                   padding:
-                                      EdgeInsets.fromLTRB(0, 0, 20, 0),
+                                      const EdgeInsets.fromLTRB(0, 0, 20, 0),
                                   child: Text(
                                     "حول الشقة",
                                     style: TextStyle(
                                         fontSize: 20,
                                         fontFamily: 'IBM',
-                                        color:kTextColor),
+                                        color:themeMode.isDark ? kTextColorLightMode : kTextColorDarkMode),
                                   ),
                                 ),
-                                Expanded(child: Text("")),
+                                const Expanded(child: Text("")),
                               ],
                             ),
 
                             //about apartment items
                             Padding(
-                              padding: const EdgeInsets.fromLTRB(0, 0, 0, 5),
+                              padding:     const EdgeInsets.fromLTRB(0, 0, 0, 5),
                               child: Row(
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: [
                                   Padding(
-                                    padding: const EdgeInsets.all(10.0),
+                                    padding:     const EdgeInsets.all(10.0),
                                     child: SizedBox(
                                       width: 80,
                                       height: 80,
                                       child: AnimatedSize(
                                         duration:
-                                            const Duration(milliseconds: 700),
+                                                const Duration(milliseconds: 700),
                                         curve: Curves.linear,
                                         reverseDuration:
-                                            const Duration(milliseconds: 700),
+                                                const Duration(milliseconds: 700),
                                         clipBehavior: Clip.antiAlias,
                                         child: OutlinedButton(
                                           onPressed: () {
@@ -444,7 +444,7 @@ class _NewShowMoreState extends State<NewShowMore> {
                                           },
                                           style: outlineButton.copyWith(
                                               overlayColor:
-                                                  const MaterialStatePropertyAll(
+                                                      const MaterialStatePropertyAll(
                                                       Colors.transparent),
                                               side: MaterialStatePropertyAll(
                                                   BorderSide(
@@ -452,31 +452,31 @@ class _NewShowMoreState extends State<NewShowMore> {
                                                           ? 1
                                                           : 2,
                                                       color: isRoomSizeChange
-                                                          ? kPrimaryColor
-                                                          : kPrimaryColor300))),
+                                                          ? themeMode.isDark ? kPrimaryColorLightMode : kPrimaryColorDarkMode
+                                                          : themeMode.isDark ? kPrimaryColor300LightMode : kPrimaryColor300DarkMode))),
                                           child: Column(
                                             children: [
-                                              const Expanded(
+                                                  const Expanded(
                                                 child: Text(""),
                                               ),
                                               Text(
                                                 titleAboutApartmentroom,
-                                                style: const TextStyle(
-                                                    color: kTextColor
+                                                style:     TextStyle(
+                                                    color: themeMode.isDark ? kTextColorLightMode : kTextColorDarkMode
                                                         ),
                                               ),
-                                              const Expanded(
+                                                  const Expanded(
                                                 child: Text(""),
                                               ),
                                               Row(
                                                 children: [
                                                   //Cubic meters
-                                                  const Expanded(
+                                                      const Expanded(
                                                     child: Text(""),
                                                   ),
 
                                                   Padding(
-                                                    padding: const EdgeInsets
+                                                    padding:     const EdgeInsets
                                                         .fromLTRB(5, 0, 5, 0),
                                                     child: isRoomSizeChange
                                                         ? SizedBox(
@@ -486,8 +486,8 @@ class _NewShowMoreState extends State<NewShowMore> {
                                                                 "${widget.oneApartment?.rooms ?? 0}"))
                                                         : Text(
                                                             "${widget.oneApartment?.rooms ?? 0}",
-                                                            style: const TextStyle(
-                                                                color: kTextColor),
+                                                            style:     TextStyle(
+                                                                color: themeMode.isDark ? kTextColorLightMode : kTextColorDarkMode),
                                                           ),
                                                   ),
                                                   Image(
@@ -495,15 +495,15 @@ class _NewShowMoreState extends State<NewShowMore> {
                                                         imageAboutApartmentRoom),
                                                     width: 32,
                                                     height: 32,
-                                                    color: kTextColor
+                                                    color: themeMode.isDark ? kTextColorLightMode : kTextColorDarkMode
                                                         ,
                                                   ),
-                                                  const Expanded(
+                                                      const Expanded(
                                                     child: Text(""),
                                                   ),
                                                 ],
                                               ),
-                                              const Expanded(
+                                                  const Expanded(
                                                 flex: 2,
                                                 child: Text(""),
                                               ),
@@ -514,16 +514,16 @@ class _NewShowMoreState extends State<NewShowMore> {
                                     ),
                                   ),
                                   Padding(
-                                    padding: const EdgeInsets.all(10.0),
+                                    padding:     const EdgeInsets.all(10.0),
                                     child: SizedBox(
                                       width: 80,
                                       height: 80,
                                       child: AnimatedSize(
                                         duration:
-                                            const Duration(milliseconds: 700),
+                                                const Duration(milliseconds: 700),
                                         curve: Curves.linear,
                                         reverseDuration:
-                                            const Duration(milliseconds: 700),
+                                                const Duration(milliseconds: 700),
                                         clipBehavior: Clip.antiAlias,
                                         child: OutlinedButton(
                                           onPressed: () {
@@ -534,7 +534,7 @@ class _NewShowMoreState extends State<NewShowMore> {
                                           },
                                           style: outlineButton.copyWith(
                                               overlayColor:
-                                                  const MaterialStatePropertyAll(
+                                                      const MaterialStatePropertyAll(
                                                       Colors.transparent),
                                               side: MaterialStatePropertyAll(
                                                   BorderSide(
@@ -543,32 +543,32 @@ class _NewShowMoreState extends State<NewShowMore> {
                                                               ? 1
                                                               : 2,
                                                       color: isRoomBathSizeChange
-                                                          ? kPrimaryColor
-                                                          : kPrimaryColor300))),
+                                                          ? themeMode.isDark ? kPrimaryColorLightMode : kPrimaryColorDarkMode
+                                                          : themeMode.isDark ? kPrimaryColor300LightMode : kPrimaryColor300DarkMode))),
                                           child: Column(
                                             children: [
-                                              const Expanded(
+                                                  const Expanded(
                                                 child: Text(""),
                                               ),
-                                              const Text(
+                                                  Text(
                                                 "الحمامات",
                                                 style: TextStyle(
-                                                    color: kTextColor
+                                                    color: themeMode.isDark ? kTextColorLightMode : kTextColorDarkMode
                                                         
                                                 ),
                                               ),
-                                              const Expanded(
+                                                  const Expanded(
                                                 child: Text(""),
                                               ),
                                               Row(
                                                 children: [
                                                   //Cubic meters
-                                                  const Expanded(
+                                                      const Expanded(
                                                     child: Text(""),
                                                   ),
 
                                                   Padding(
-                                                    padding: const EdgeInsets
+                                                    padding:     const EdgeInsets
                                                         .fromLTRB(5, 0, 5, 0),
                                                     child: isRoomBathSizeChange
                                                         ? SizedBox(
@@ -578,22 +578,22 @@ class _NewShowMoreState extends State<NewShowMore> {
                                                                 "${widget.oneApartment?.bathrooms ?? 0}"))
                                                         : Text(
                                                             "${widget.oneApartment?.bathrooms ?? 0}",
-                                                            style: const TextStyle(
-                                                                color: kTextColor),
+                                                            style:     TextStyle(
+                                                                color: themeMode.isDark ? kTextColorLightMode : kTextColorDarkMode),
                                                           ),
                                                   ),
-                                                  const Image(
-                                                    image: AssetImage(
+                                                      Image(
+                                                    image: const AssetImage(
                                                         "assets/images/apartments_images/about_apartment/bathroom.png"),
                                                     width: 32,
                                                     height: 32,
-                                                    color: kTextColor,
+                                                    color: themeMode.isDark ? kTextColorLightMode : kTextColorDarkMode,
                                                   ),
-                                                  const Expanded(
+                                                      const Expanded(
                                                       child: Text("")),
                                                 ],
                                               ),
-                                              const Expanded(
+                                                  const Expanded(
                                                 flex: 2,
                                                 child: Text(""),
                                               ),
@@ -604,16 +604,16 @@ class _NewShowMoreState extends State<NewShowMore> {
                                     ),
                                   ),
                                   Padding(
-                                    padding: const EdgeInsets.all(10.0),
+                                    padding:     const EdgeInsets.all(10.0),
                                     child: SizedBox(
                                       width: 100,
                                       height: 80,
                                       child: AnimatedSize(
                                         duration:
-                                            const Duration(milliseconds: 700),
+                                                const Duration(milliseconds: 700),
                                         curve: Curves.linear,
                                         reverseDuration:
-                                            const Duration(milliseconds: 700),
+                                                const Duration(milliseconds: 700),
                                         clipBehavior: Clip.antiAlias,
                                         child: OutlinedButton(
                                           onPressed: () {
@@ -624,7 +624,7 @@ class _NewShowMoreState extends State<NewShowMore> {
                                           },
                                           style: outlineButton.copyWith(
                                               overlayColor:
-                                                  const MaterialStatePropertyAll(
+                                                      const MaterialStatePropertyAll(
                                                       Colors.transparent),
                                               side: MaterialStatePropertyAll(
                                                   BorderSide(
@@ -632,31 +632,31 @@ class _NewShowMoreState extends State<NewShowMore> {
                                                           ? 1
                                                           : 2,
                                                       color: isAreaSizeChange
-                                                          ? kPrimaryColor
-                                                          : kPrimaryColor300))),
+                                                          ? themeMode.isDark ? kPrimaryColorLightMode : kPrimaryColorDarkMode
+                                                          : themeMode.isDark ? kPrimaryColor300LightMode : kPrimaryColor300DarkMode))),
                                           child: Column(
                                             children: [
-                                              const Expanded(
+                                                  const Expanded(
                                                 child: Text(""),
                                               ),
-                                              const Text(
+                                                  Text(
                                                 "المساحة",
                                                 style: TextStyle(
-                                                    color: kTextColor
+                                                    color: themeMode.isDark ? kTextColorLightMode : kTextColorDarkMode
                                                         ),
                                               ),
-                                              const Expanded(
+                                                  const Expanded(
                                                 child: Text(""),
                                               ),
                                               Row(
                                                 children: [
                                                   //Cubic meters
-                                                  const Expanded(
+                                                      const Expanded(
                                                     child: Text(""),
                                                   ),
 
                                                   Padding(
-                                                    padding: const EdgeInsets
+                                                    padding:     const EdgeInsets
                                                         .fromLTRB(5, 0, 5, 0),
                                                     child: isAreaSizeChange
                                                         ? SizedBox(
@@ -672,24 +672,24 @@ class _NewShowMoreState extends State<NewShowMore> {
                                                                 "²م${widget.oneApartment?.squareMeters ?? 0}"))
                                                         : Text(
                                                             "²م${widget.oneApartment?.squareMeters ?? 0}",
-                                                            style: const TextStyle(
-                                                                color: kTextColor),
+                                                            style:     TextStyle(
+                                                                color: themeMode.isDark ? kTextColorLightMode : kTextColorDarkMode),
                                                           ),
                                                   ),
-                                                  const Image(
-                                                    image: AssetImage(
+                                                      Image(
+                                                    image: const AssetImage(
                                                       "assets/images/apartments_images/about_apartment/area.png",
                                                     ),
                                                     width: 32,
                                                     height: 32,
-                                                    color: kTextColor
+                                                    color: themeMode.isDark ? kTextColorLightMode : kTextColorDarkMode
                                                         ,
                                                   ),
-                                                  const Expanded(
+                                                      const Expanded(
                                                       child: Text("")),
                                                 ],
                                               ),
-                                              const Expanded(
+                                                  const Expanded(
                                                 flex: 2,
                                                 child: Text(""),
                                               ),
@@ -724,12 +724,12 @@ class _NewShowMoreState extends State<NewShowMore> {
                       GetAdvantages(oneApartment: widget.oneApartment),
 
                       // Container(
-                      //   margin: const EdgeInsets.fromLTRB(10, 23, 10, 0),
+                      //   margin:     EdgeInsets.fromLTRB(10, 23, 10, 0),
                       //   decoration: BoxDecoration(
                       //     borderRadius: BorderRadius.circular(7),
                       //     color: kContainerColor,
                       //   ),
-                      //   child: const Column(
+                      //   child:     Column(
                       //     mainAxisSize: MainAxisSize.min,
                       //     children: [
                       //       Row(
@@ -753,39 +753,39 @@ class _NewShowMoreState extends State<NewShowMore> {
                       // ),
                       //notes of owner
                       Container(
-                        margin: const EdgeInsets.fromLTRB(10, 23, 10, 0),
+                        margin:     const EdgeInsets.fromLTRB(10, 23, 10, 0),
 // discription.length.toDouble() * 2,
 //decoration of show apartment style
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(7),
-                          color: kContainerColor,
+                          color: themeMode.isDark ? kContainerColorLightMode : kContainerColorDarkMode,
                         ),
                         child: Column(
 // this children have ( general info that : title, price , and location.
                           children: [
 //title
-                            const Row(
+                                Row(
                               children: [
                                 Padding(
                                   padding:
-                                      EdgeInsets.fromLTRB(0, 10, 10, 0),
+                                      const EdgeInsets.fromLTRB(0, 10, 10, 0),
                                   child: Text("وصف الشقة",
                                       style: TextStyle(
-                                        color:kTextColor,
+                                        color:themeMode.isDark ? kTextColorLightMode : kTextColorDarkMode,
                                         fontSize: 20,
                                         fontFamily: 'IBM',
                                       )),
                                 ),
-                                Expanded(child: Text(""))
+                                const Expanded(child: Text(""))
                               ],
                             ),
 //description
                             Padding(
-                              padding: const EdgeInsets.fromLTRB(10, 0, 10, 10),
+                              padding:     const EdgeInsets.fromLTRB(10, 0, 10, 10),
                               child:
                                   Text(widget.oneApartment?.description ?? "",
-                                      style: const TextStyle(
-                                        color:kTextColor,
+                                      style:     TextStyle(
+                                        color:themeMode.isDark ? kTextColorLightMode : kTextColorDarkMode,
                                         fontSize: 16,
                                         fontFamily: 'IBM',
 // fontWeight: FontWeight.bold
@@ -796,37 +796,37 @@ class _NewShowMoreState extends State<NewShowMore> {
                       ),
                       //number phone
                       Container(
-                        margin: const EdgeInsets.fromLTRB(10, 23, 10, 0),
+                        margin:     const EdgeInsets.fromLTRB(10, 23, 10, 0),
                         height: 120,
 // discription.length.toDouble() * 2,
 //decoration of show apartment style
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(7),
-                          color: kContainerColor,
+                          color: themeMode.isDark ? kContainerColorLightMode : kContainerColorDarkMode,
                         ),
                         child: Column(
 // this widget For inquiries that have title and social media
                           children: [
 //title
-                            const Row(
+                                Row(
                               children: [
                                 Padding(
                                   padding:
-                                      EdgeInsets.fromLTRB(0, 10, 10, 10),
+                                      const EdgeInsets.fromLTRB(0, 10, 10, 10),
                                   child: Text("للإستفسار",
                                       style: TextStyle(
-                                        color:kTextColor,
+                                        color:themeMode.isDark ? kTextColorLightMode : kTextColorDarkMode,
                                         fontSize: 20,
                                         fontFamily: 'IBM',
                                       )),
                                 ),
-                                Expanded(child: Text(""))
+                                const Expanded(child: Text(""))
                               ],
                             ),
 //phone number
                             Row(
                               children: [
-                                const Expanded(
+                                    const Expanded(
                                   child: Text(""),
                                 ),
                                 SizedBox(
@@ -859,12 +859,12 @@ class _NewShowMoreState extends State<NewShowMore> {
 // );
                                     },
                                     style: outlineButton,
-                                    child: const Padding(
-                                      padding: EdgeInsets.all(8.0),
+                                    child:     Padding(
+                                      padding: const EdgeInsets.all(8.0),
                                       child: Row(
                                         children: [
 //whtsapp icon
-                                          Padding(
+                                          const Padding(
                                             padding:
                                                 EdgeInsets.fromLTRB(0, 0, 0, 0),
                                             child: Image(
@@ -877,11 +877,11 @@ class _NewShowMoreState extends State<NewShowMore> {
 
 //text
                                           Padding(
-                                            padding: EdgeInsets.fromLTRB(
+                                            padding: const EdgeInsets.fromLTRB(
                                                 0, 0, 0, 0),
                                             child: Text(" واتس اب",
                                                 style: TextStyle(
-                                                  color: kTextColor
+                                                  color: themeMode.isDark ? kTextColorLightMode : kTextColorDarkMode
                                                       ,
                                                   fontSize: 16,
                                                   fontFamily: 'IBM',
@@ -892,8 +892,8 @@ class _NewShowMoreState extends State<NewShowMore> {
                                     ),
                                   ),
                                 ),
-                                // const SizedBox(width: 20,),
-//                           widget.oneApartment!.owner!.email.isEmpty? const SizedBox(): SizedBox(
+                                //     SizedBox(width: 20,),
+//                           widget.oneApartment!.owner!.email.isEmpty?     SizedBox(): SizedBox(
 //                               height: 50,
 //                               child: OutlinedButton(
 //                                 onPressed: () async {
@@ -923,11 +923,11 @@ class _NewShowMoreState extends State<NewShowMore> {
 //                                 },
 //                                 style: outlineButton,
 //                                 child: Padding(
-//                                   padding: const EdgeInsets.all(8.0),
+//                                   padding:     EdgeInsets.all(8.0),
 //                                   child: Row(
 //                                     children: [
 // //whtsapp icon
-//                                       const Padding(
+//                                           Padding(
 //                                         padding:
 //                                             EdgeInsets.fromLTRB(0, 0, 0, 0),
 //                                         child: Image(
@@ -940,7 +940,7 @@ class _NewShowMoreState extends State<NewShowMore> {
 //
 // //text
 //                                       Padding(
-//                                         padding: const EdgeInsets.fromLTRB(
+//                                         padding:     EdgeInsets.fromLTRB(
 //                                             0, 0, 0, 0),
 //                                         child: Text(" جيميل",
 //                                             style: TextStyle(
@@ -955,7 +955,7 @@ class _NewShowMoreState extends State<NewShowMore> {
 //                                 ),
 //                               ),
 //                             ),
-                                const Expanded(
+                                    const Expanded(
                                   flex: 20,
                                   child: Text(""),
                                 ),
@@ -967,7 +967,7 @@ class _NewShowMoreState extends State<NewShowMore> {
                       ),
 
                       Padding(
-                        padding: const EdgeInsets.fromLTRB(25, 25, 25, 25),
+                        padding:     const EdgeInsets.fromLTRB(25, 25, 25, 25),
                         child: SizedBox(
                           width: double.infinity,
                           height: 55,
@@ -986,9 +986,9 @@ class _NewShowMoreState extends State<NewShowMore> {
                               },
                               style: fullButton.copyWith(
                                   backgroundColor:
-                                      const MaterialStatePropertyAll(
+                                          const MaterialStatePropertyAll(
                                           Colors.grey)),
-                              child: const Text("إحجز الآن")),
+                              child:     const Text("إحجز الآن")),
                         ),
                       ),
                     ],
@@ -1032,8 +1032,8 @@ class _NewShowMoreState extends State<NewShowMore> {
       animatedTexts: [
         FadeAnimatedText(
           text,
-          textStyle: const TextStyle(fontFamily: "IBM", color: Colors.orange),
-          duration: const Duration(
+          textStyle:     const TextStyle(fontFamily: "IBM", color: Colors.orange),
+          duration:     const Duration(
             milliseconds: 100,
           ),
         ),
@@ -1052,10 +1052,10 @@ class _NewShowMoreState extends State<NewShowMore> {
 //               return
 //
 //               Container(
-//                 margin: const EdgeInsets.all(5.0),
+//                 margin:     EdgeInsets.all(5.0),
 //                 child: ClipRRect(
 //                     borderRadius:
-//                     const BorderRadius.all(Radius.circular(7.0)),
+//                         BorderRadius.all(Radius.circular(7.0)),
 //                     child: Stack(
 //                       children: <Widget>[
 //                         Image.network(
@@ -1067,7 +1067,7 @@ class _NewShowMoreState extends State<NewShowMore> {
 //                           left: 0.0,
 //                           right: 0.0,
 //                           child: Container(
-//                             decoration: const BoxDecoration(
+//                             decoration:     BoxDecoration(
 //                               gradient: LinearGradient(
 //                                   colors: [
 //                                     Color.fromARGB(0, 0, 0, 0),
@@ -1080,7 +1080,7 @@ class _NewShowMoreState extends State<NewShowMore> {
 //
 //                               ),
 //                             ),
-//                             padding: const EdgeInsets.symmetric(
+//                             padding:     EdgeInsets.symmetric(
 //                                 vertical: 10.0, horizontal: 20.0),
 //                           ),
 //                         ),
@@ -1132,7 +1132,7 @@ class _NewShowMoreState extends State<NewShowMore> {
 //         scrollDirection: Axis.horizontal,
 //         itemCount: photos.length,
 //         // widget.oneApartment?.photos?.length,
-// physics: const NeverScrollableScrollPhysics(),
+// physics:     NeverScrollableScrollPhysics(),
 //         itemBuilder: ((context, index) {
 //           return SizedBox(
 //             height: 240,
@@ -1170,10 +1170,10 @@ class _NewShowMoreState extends State<NewShowMore> {
 //                       }),
 //                   items: [
 //                     Container(
-//                       margin: const EdgeInsets.all(5.0),
+//                       margin:     EdgeInsets.all(5.0),
 //                       child: ClipRRect(
 //                           borderRadius:
-//                               const BorderRadius.all(Radius.circular(7.0)),
+//                                   BorderRadius.all(Radius.circular(7.0)),
 //                           child: Stack(
 //                             children: <Widget>[
 //                               Image.network(
@@ -1187,7 +1187,7 @@ class _NewShowMoreState extends State<NewShowMore> {
 //                                 left: 0.0,
 //                                 right: 0.0,
 //                                 child: Container(
-//                                   decoration: const BoxDecoration(
+//                                   decoration:     BoxDecoration(
 //                                     gradient: LinearGradient(
 //                                         colors: [
 //                                           Color.fromARGB(0, 0, 0, 0),
@@ -1200,7 +1200,7 @@ class _NewShowMoreState extends State<NewShowMore> {
 //
 //                                         ),
 //                                   ),
-//                                   padding: const EdgeInsets.symmetric(
+//                                   padding:     EdgeInsets.symmetric(
 //                                       vertical: 10.0, horizontal: 20.0),
 //                                 ),
 //                               ),
@@ -1210,7 +1210,7 @@ class _NewShowMoreState extends State<NewShowMore> {
 //                   ],
 //                 ),
 //               ),
-//               const Row(
+//                   Row(
 //                 mainAxisAlignment: MainAxisAlignment.center,
 //                 // children: [widget.onePlayer?.photos[index].urlentries.map((entry) {
 //                 //   return GestureDetector(
@@ -1219,7 +1219,7 @@ class _NewShowMoreState extends State<NewShowMore> {
 //                 //       width: 12.0,
 //                 //       height: 12.0,
 //                 //       margin:
-//                 //       const EdgeInsets.symmetric(vertical: 8.0, horizontal: 4.0),
+//                 //           EdgeInsets.symmetric(vertical: 8.0, horizontal: 4.0),
 //                 //       decoration: BoxDecoration(
 //                 //           borderRadius: BorderRadiusDirectional.circular(7 / 3.5),
 //                 //           shape: BoxShape.rectangle,
@@ -1241,7 +1241,7 @@ class _NewShowMoreState extends State<NewShowMore> {
 //               //         width: 12.0,
 //               //         height: 12.0,
 //               //         margin:
-//               //         const EdgeInsets.symmetric(vertical: 8.0, horizontal: 4.0),
+//               //             EdgeInsets.symmetric(vertical: 8.0, horizontal: 4.0),
 //               //         decoration: BoxDecoration(
 //               //             borderRadius: BorderRadiusDirectional.circular(7 / 3.5),
 //               //             shape: BoxShape.rectangle,
@@ -1286,19 +1286,19 @@ class _NewShowMoreState extends State<NewShowMore> {
 // }
 }
 // class GetImages extends StatelessWidget {
-//   const GetImages({super.key});
+//       GetImages({super.key});
 //
 //   @override
 //   Widget build(BuildContext context) {
-//     return const Placeholder();
+//     return     Placeholder();
 //   }
 //
 //
 //   final List<Widget>? imageSliders =
 //       ?.map((item) => Container(
-//   margin: const EdgeInsets.all(5.0),
+//   margin:     EdgeInsets.all(5.0),
 //   child: ClipRRect(
-//   borderRadius: const BorderRadius.all(Radius.circular(7.0)),
+//   borderRadius:     BorderRadius.all(Radius.circular(7.0)),
 //   child: Stack(
 //   children: <Widget>[
 //   Image.network(item.url?? "https://via.placeholder.com/150", fit: BoxFit.cover, width: 1000.0),
@@ -1307,7 +1307,7 @@ class _NewShowMoreState extends State<NewShowMore> {
 //   left: 0.0,
 //   right: 0.0,
 //   child: Container(
-//   decoration: const BoxDecoration(
+//   decoration:     BoxDecoration(
 //   gradient: LinearGradient(
 //   colors: [
 //   Color.fromARGB(0, 0, 0, 0),
@@ -1320,7 +1320,7 @@ class _NewShowMoreState extends State<NewShowMore> {
 //
 //   ),
 //   ),
-//   padding: const EdgeInsets.symmetric(
+//   padding:     EdgeInsets.symmetric(
 //   vertical: 10.0, horizontal: 20.0),
 //   ),
 //   ),

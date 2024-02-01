@@ -13,11 +13,11 @@ class TitleClassWidget extends StatelessWidget {
           padding: const EdgeInsets.fromLTRB(0, 50, 20, 0),
           child: Text(
             title,
-            style:  const TextStyle(
+            style:   TextStyle(
               fontSize: 26.0,
               fontFamily: 'IBM',
               inherit: true,
-              color: kTextColor
+              color: themeMode.isDark ? kTextColorLightMode : kTextColorDarkMode
             ),
           ),
         ),

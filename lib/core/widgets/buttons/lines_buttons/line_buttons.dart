@@ -5,7 +5,7 @@ Widget buttonAccount(Function onClick, Icon icon, String title, {Color ? color})
     onTap: () {
       onClick.call();
     },
-     splashColor: kBackgroundAppColor,
+     splashColor: themeMode.isDark ? kBackgroundAppColorLightMode : kBackgroundAppColorDarkMode,
     // minVerticalPadding: ,
 
     contentPadding: const EdgeInsets.fromLTRB(10, 0, 10, 0),
@@ -13,10 +13,10 @@ Widget buttonAccount(Function onClick, Icon icon, String title, {Color ? color})
     leading: icon,
     title: Text(
       title,
-      style: const TextStyle(
-          fontSize: 16, fontFamily: 'IBM', color: kTextColor),
+      style:  TextStyle(
+          fontSize: 16, fontFamily: 'IBM', color: themeMode.isDark ? kTextColorLightMode : kTextColorDarkMode),
     ),
-    trailing: const Icon(Icons.arrow_forward_ios_rounded,color: kTextColor,),
+    trailing:  Icon(Icons.arrow_forward_ios_rounded,color: themeMode.isDark ? kTextColorLightMode : kTextColorDarkMode,),
   );
   // return Padding(
   //   padding: const EdgeInsets.fromLTRB(0, 10, 0, 10),
@@ -60,10 +60,10 @@ Widget askForHelpButton(Function onClick, String title) {
     // leading: icon ,
     title: Text(
       title,
-      style: const TextStyle(
-          fontSize: 18, fontFamily: 'IBM',color: kTextColor),
+      style:  TextStyle(
+          fontSize: 18, fontFamily: 'IBM',color: themeMode.isDark ? kTextColorLightMode : kTextColorDarkMode),
     ),
-    trailing: const Icon(Icons.arrow_forward_ios_rounded,color: kTextColor,),
+    trailing:  Icon(Icons.arrow_forward_ios_rounded,color: themeMode.isDark ? kTextColorLightMode : kTextColorDarkMode,),
   );
   // return Padding(
   //   padding: const EdgeInsets.fromLTRB(0, 10, 0, 10),
@@ -120,8 +120,8 @@ Widget buttonHaveTitleAndIcon(Function onClick, String title, {Icon? icon,bool? 
     contentPadding: const EdgeInsets.fromLTRB(10, 0, 10, 0),
     title: Text(
       title,
-      style: const TextStyle(
-          fontSize: 16, fontFamily: 'IBM',color: kTextColor),
+      style:  TextStyle(
+          fontSize: 16, fontFamily: 'IBM',color: themeMode.isDark ? kTextColorLightMode : kTextColorDarkMode),
     ),
     trailing: isIcon?? false ? icon : image,
   );

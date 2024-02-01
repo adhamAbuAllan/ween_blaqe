@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:ween_blaqe/constants/nums.dart';
 
- Widget aline = const Divider(
-  color: kTextColor,
+
+ Widget aline =  Divider(
+  color: themeMode.isDark ? kTextColorLightMode : kTextColorDarkMode,
   height: 1,
   thickness: .5,
 );
