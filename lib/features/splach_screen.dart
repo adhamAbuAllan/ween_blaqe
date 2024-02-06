@@ -71,7 +71,7 @@ class _SplashScreenState extends State<SplashScreen> {
               children: [
                 Image(
                   image: AssetImage("assets/images/splash screen heigh qulity with large size.png"),
-            ) ]))),
+                            ) ]))),
       ));
       //         // Text(
       //         //   "وين",

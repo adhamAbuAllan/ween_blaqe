@@ -200,7 +200,8 @@ class _AccountBeforeLoginInStudentState
                           value: themeMode.isDark, onChanged: (bool value){
                         setState(() {
                           themeMode.onChanged(value);
-                          myPushName(context, MyPagesRoutes.splashScreen);
+                          // myPushName(context, MyPagesRoutes.splashScreen);
+                          myPushNameAnimation(context);
                         });
                       }),
                   aline,

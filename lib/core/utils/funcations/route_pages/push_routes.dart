@@ -1,4 +1,5 @@
-import 'package:flutter/material.dart'; //push to another page
+import 'package:flutter/material.dart';
+import 'package:ween_blaqe/features/splach_screen.dart'; //push to another page
 
 myPush(BuildContext context, Widget page, String routeName) {
   Navigator.of(context).push(MaterialPageRoute(
@@ -95,3 +96,30 @@ myPushNameAndRemoveUntil(BuildContext context, String routeName,
 myPushReplacementNamed( String routeName,{BuildContext? context}) {
   Navigator.of(context!).pushReplacementNamed(routeName);
 }
+//testing animation screen navigation
+
+Future<void> myPushNameAnimation(BuildContext context) async {
+  await Navigator.of(context).push(
+    PageRouteBuilder(
+      pageBuilder: (context, animation, secondaryAnimation) {
+        return const SplashScreen(); // Replace YourDestinationScreen with your actual destination screen
+      },
+      transitionsBuilder: (context, animation, secondaryAnimation, child) {
+        const begin = Offset(1.0, 0.0);
+        const end = Offset.zero;
+        const curve = Curves.fastEaseInToSlowEaseOut;
+        var tween = Tween(begin: begin, end: end).chain(CurveTween(curve: curve));
+        var offsetAnimation = animation.drive(tween);
+
+        return SlideTransition(
+          position: offsetAnimation,
+          child: child,
+        );
+      },
+    ),
+  );
+}
+
+
+// Example usage:
+// Call myPushNameAnimation(context, 'destination_route_name'); where you want to navigate with animation
