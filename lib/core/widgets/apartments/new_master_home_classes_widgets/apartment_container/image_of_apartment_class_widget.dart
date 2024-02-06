@@ -32,7 +32,7 @@ final  int index;
                   // 'https://via.placeholder.com/150'
           ),
 
-        height: 220,width: 367,
+        height: 220,width: MediaQuery.of(context).size.width-32,
           fit: BoxFit.cover,
         ));
   }
