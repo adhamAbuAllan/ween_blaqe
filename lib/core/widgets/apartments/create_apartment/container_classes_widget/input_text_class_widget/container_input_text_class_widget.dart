@@ -197,7 +197,7 @@ class _ContainerInputTextClassWidgetState
         enabledBorder: OutlineInputBorder(
             borderSide:   BorderSide(
               width: 1,
-              color: themeMode.isDark ? kPrimaryColorLightMode : kPrimaryColorDarkMode,
+              color: themeMode.isDark ? kPrimaryColorLightMode.withOpacity(.3) : kPrimaryColorDarkMode.withOpacity(.3),
             ),
             borderRadius: BorderRadius.circular(7)));
   }

@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 // import 'dart:html';
+import 'dart:io';
 
 import 'package:colorful_safe_area/colorful_safe_area.dart';
 import 'package:flutter/material.dart';
@@ -46,30 +47,39 @@ class _SendNoticeForUsState extends State<SendNoticeForUs> {
             // Colors.grey.shade200,
             appBar: AppBar(
               backgroundColor: themeMode.isDark ? kContainerColorLightMode : kContainerColorDarkMode,
-
               actions: [
-                Padding(
-                  padding: const EdgeInsets.only(right: 6,top: 1,),
-                  child:
-               IconButton(
-                 splashColor: Colors.transparent,
-                    icon: Icon(
+                Opacity(
+                  opacity: !themeMode.isDark ?0 :1 ,
+                  child: Padding(
+                    padding: const EdgeInsets.only(right: 6,top: 1,),
+                    child:
+                                 IconButton(
+                   splashColor: Colors.transparent,
+                      icon: Platform.isAndroid  ? const Icon(
 
-                      Icons.arrow_back_ios,
-                      color: themeMode.isDark ? kTextColorLightMode : kTextColorDarkMode,
-                      size: 34,
-                    ),
-                    onPressed: () {
-                          Navigator.pop(context);
+                        Icons.arrow_back,
+                        color:  kTextColorLightMode,
+                        size: 24,
 
-                    },)
-                  // OutlinedButton(
-                  //   onPressed: () {
-                  //     Navigator.pop(context);
-                  //   },
-                  //   style: outlineButton,
-                  //   child: const Text("رجوع"),
-                  // ),
+                      ) :Platform.isIOS ?  const Icon(
+
+                        Icons.arrow_back_ios,
+                        color:  kTextColorLightMode,
+                        size: 24,
+                      ):const Icon(Icons.arrow_back,color:  kTextColorDarkMode,
+                        size: 24,),
+                      onPressed: () {
+                            Navigator.pop(context);
+
+                      },)
+                    // OutlinedButton(
+                    //   onPressed: () {
+                    //     Navigator.pop(context);
+                    //   },
+                    //   style: outlineButton,
+                    //   child: const Text("رجوع"),
+                    // ),
+                  ),
                 ),
                 const Expanded(child: Text("")),
                 Padding(
@@ -105,8 +115,8 @@ class _SendNoticeForUsState extends State<SendNoticeForUs> {
                   title: sendNoticeForUsText,
 
                   hintInput: sendNoticeForUsHint,
-                  maxLines: 10,
-                  maxLength: darkModeTest ?null : 512,
+                  maxLines: 8,
+                  maxLength: darkModeTest ?null : 300,
 
                   hintMaxLines: 10,
                   inputType: TextInputType.text,

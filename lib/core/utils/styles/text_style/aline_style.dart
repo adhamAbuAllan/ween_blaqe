@@ -2,11 +2,19 @@ import 'package:flutter/material.dart';
 import 'package:ween_blaqe/constants/nums.dart';
 
 
- Widget aline =  Divider(
-  color: themeMode.isDark ? kTextColorLightMode : kTextColorDarkMode,
-  height: 1,
-  thickness: .5,
-);
+ Widget aline =  const Aline();
+class Aline extends StatelessWidget {
+  const Aline({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Divider(
+     color: themeMode.isDark ? kTextColorLightMode : kTextColorDarkMode,
+     height: 1,
+     thickness: .5,
+    );
+  }
+}
 
 // Row(
 //   children: [
