@@ -27,12 +27,11 @@ final  int index;
 
           },
           image: CachedNetworkImageProvider(
-
               apartmentsRes.data?[index].photos?[0].url ??apartmentsRes.data![0].photos![0].url!
                   // 'https://via.placeholder.com/150'
           ),
 
-        height: 220,width: 367,
+        height: 220,width: MediaQuery.of(context).size.width-32,
           fit: BoxFit.cover,
         ));
   }
