@@ -23,6 +23,7 @@ class _SplashScreenState extends State<SplashScreen> {
   @override
   void initState() {
     super.initState();
+    themeMode.loadValue();
     navigateToHome();
 
     debugPrint("initState Of splashScreen is work now ! ");

@@ -269,12 +269,14 @@ class _MainState extends State<Main> {
 
   @override
   void initState() {
+
     super.initState();
     controller.addListener(listener);
     SystemChrome.setPreferredOrientations([
       DeviceOrientation.portraitUp,
       DeviceOrientation.portraitDown,
     ]);
+
 
     // initializtion();
   }

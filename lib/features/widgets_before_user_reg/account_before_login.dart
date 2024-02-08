@@ -15,6 +15,7 @@ import '../../core/widgets/buttons/lines_buttons/line_buttons.dart';
 
 import '../../controller/main_controller.dart';
 import '../../controller/student_controller/student_controller.dart';
+// import '../../main.dart';
 // import 'login.dart';
 main (){
   runApp(MaterialApp(
@@ -84,7 +85,9 @@ class _AccountBeforeLoginInStudentState
     super.initState();
     setState(() {
       currentValue = true;
+      // loadValue();
     });
+
   }
 
   @override
@@ -197,10 +200,14 @@ class _AccountBeforeLoginInStudentState
 
                           title:Text("الشكل", style:TextStyle(
                               fontSize: 16, fontFamily: 'IBM', color: themeMode.isDark ? kTextColorLightMode : kTextColorDarkMode)),
-                          value: themeMode.isDark, onChanged: (bool value){
+                          value: themeMode.isDark, onChanged: (bool value)async{
+
                         setState(() {
                           themeMode.onChanged(value);
+                          // sp.get('isDark');
                           // myPushName(context, MyPagesRoutes.splashScreen);
+
+
                           myPushNameAnimation(context);
                         });
                       }),
@@ -364,6 +371,7 @@ class _AccountBeforeLoginInStudentState
       ),
     );
   }
+
 }
 //
 // //account before login in owner page widget

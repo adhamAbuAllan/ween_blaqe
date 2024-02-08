@@ -79,6 +79,7 @@ class _NoInternetState extends State<NoInternet> with WidgetsBindingObserver {
     setState(() {
       total = prefs.getInt('total') ?? 0;
     });
+
   }
 
 //   Container yourFirstChildWidget (){
