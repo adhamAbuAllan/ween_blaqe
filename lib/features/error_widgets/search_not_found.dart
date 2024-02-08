@@ -220,11 +220,12 @@ class _TypeNotFoundState extends State<TypeNotFound> {
                   ],
                 ),
                 //
-                   const Padding(
-                  padding: EdgeInsets.fromLTRB(0, 150, 0, 0),
+                    Padding(
+                  padding: const EdgeInsets.fromLTRB(0, 150, 0, 0),
                   child: Image(
-                    image: AssetImage(
-                        "assets/images/error_images/search_not_found_dark_mode.png",),
+                    image:themeMode.isDark ? const AssetImage(
+                      "assets/images/error_images/not_found_light_mode.png",):  const AssetImage(
+                        "assets/images/error_images/not_found_dark_mode.png",),
                     height: 130*2,
                     width: 130*2,
                     // color: kContainerColor.withOpacity(.7),
