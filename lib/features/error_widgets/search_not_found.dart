@@ -221,18 +221,18 @@ class _TypeNotFoundState extends State<TypeNotFound> {
                 ),
                 //
                     Padding(
-                  padding: const EdgeInsets.fromLTRB(0, 150, 0, 0),
+                  padding:  EdgeInsets.fromLTRB(0, MediaQuery.of(context).size.height/8, 0, 0),
                   child: Image(
                     image:themeMode.isDark ? const AssetImage(
                       "assets/images/error_images/not_found_light_mode.png",):  const AssetImage(
                         "assets/images/error_images/not_found_dark_mode.png",),
-                    height: 130*2,
-                    width: 130*2,
+                    height: 130*2.5,
+                    width: 130*2.5,
                     // color: kContainerColor.withOpacity(.7),
                   ),
                 ),
                 Padding(
-                  padding: const EdgeInsets.fromLTRB(0, 150, 0, 0),
+                  padding:  EdgeInsets.fromLTRB(0,MediaQuery.of(context).size.height<683.5 ?MediaQuery.of(context).size.height/40 : MediaQuery.of(context).size.height/9 , 0, 0),
                   child: TextButton(
                     child:  Text(
                       "إعادة الطلب",
@@ -243,7 +243,9 @@ class _TypeNotFoundState extends State<TypeNotFound> {
                           decoration: TextDecoration.underline),
                     ),
                     onPressed: () {
+
                       myPushReplacementNamed(MyPagesRoutes.main,context: context);
+
                     },
                   ),
                 )
