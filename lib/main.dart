@@ -62,6 +62,8 @@ import 'features/send_notice_for_us.dart';
 // late SharedPreferences sp;
 //main screen
 // final Future<SharedPreferences> sp = SharedPreferences.getInstance();
+//the line that could user to upload a file currently :
+//https://drive.google.com/uc?export=download&id=
 final Future<SharedPreferences> sp = SharedPreferences.getInstance();
 
 void main() async {
