@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:ween_blaqe/constants/nums.dart';
-Widget buttonAccount(Function onClick, Icon icon, String title, {Color ? color}) {
+Widget buttonAccount(Function onClick, String title, { Image ? image,Icon ?icon,Color ? color}) {
   return ListTile(
     onTap: () {
       onClick.call();
@@ -10,13 +10,15 @@ Widget buttonAccount(Function onClick, Icon icon, String title, {Color ? color})
 
     contentPadding: const EdgeInsets.fromLTRB(10, 0, 10, 0),
     // leading: icon ,
-    leading: icon,
+    leading: icon ?? image,
     title: Text(
       title,
       style:  TextStyle(
           fontSize: 16, fontFamily: 'IBM', color: themeMode.isDark ? kTextColorLightMode : kTextColorDarkMode),
     ),
-    trailing:  Icon(Icons.arrow_forward_ios_rounded,color: themeMode.isDark ? kTextColorLightMode : kTextColorDarkMode,),
+    trailing:  Icon(Icons.arrow_forward_ios_rounded,color: themeMode.isDark ? kTextColorLightMode : kTextColorDarkMode,)
+
+    ,
   );
   // return Padding(
   //   padding: const EdgeInsets.fromLTRB(0, 10, 0, 10),
@@ -64,6 +66,7 @@ Widget askForHelpButton(Function onClick, String title) {
           fontSize: 18, fontFamily: 'IBM',color: themeMode.isDark ? kTextColorLightMode : kTextColorDarkMode),
     ),
     trailing:  Icon(Icons.arrow_forward_ios_rounded,color: themeMode.isDark ? kTextColorLightMode : kTextColorDarkMode,),
+
   );
   // return Padding(
   //   padding: const EdgeInsets.fromLTRB(0, 10, 0, 10),

@@ -215,7 +215,7 @@ class _AccountBeforeLoginInStudentState
                   buttonAccount(() {
                     myPushName(context, MyPagesRoutes.askForHelp);
                   },
-                            Icon(
+                          icon:  Icon(
                         Icons.info_outline,
                         size: 32,
                         color: themeMode.isDark ? kTextColorLightMode : kTextColorDarkMode,
@@ -227,7 +227,7 @@ class _AccountBeforeLoginInStudentState
                   buttonAccount(() {
                     myPushName(context, MyPagesRoutes.privacyPolicy);
                   },
-                            Icon(
+                      icon:    Icon(
                         Icons.privacy_tip_outlined,
                         size: 32,
                         color: themeMode.isDark ? kTextColorLightMode : kTextColorDarkMode,
@@ -271,12 +271,22 @@ class _AccountBeforeLoginInStudentState
                   buttonAccount(() {
                     myPushName(context, MyPagesRoutes.sendNoticeForUs);
                   },
-                            Icon(
+                      icon:     Icon(
                         Icons.feedback_outlined,
                         size: 32,
                         color: themeMode.isDark ? kTextColorLightMode : kTextColorDarkMode,
                       ),
                       "أرسل ملاحظات إلينا"),
+                      aline,
+                      buttonAccount(() {
+                    myPushName(context, MyPagesRoutes.noInternet);
+                  },
+                       image:  Image.asset("assets/images/tasbih.png",
+                              color: themeMode.isDark ? kTextColorLightMode : kTextColorDarkMode,
+                              width: 35, height: 35) ,
+
+                      "السحبة"),
+
 
 
                 ]),

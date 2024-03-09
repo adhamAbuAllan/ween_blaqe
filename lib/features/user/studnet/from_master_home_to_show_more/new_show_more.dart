@@ -14,18 +14,17 @@ import 'package:ween_blaqe/core/utils/funcations/snakbar.dart';
 import 'package:ween_blaqe/core/utils/styles/button.dart';
 import 'package:ween_blaqe/features/error_widgets/no_internet.dart';
 import '../../../../constants/nums.dart';
-import '../../../../core/utils/funcations/snakbar_for_stream_builder.dart';
 import '../../../../core/widgets/apartments/show_more_classes_widget/image_slider/pointer.dart';
 import '../../../../core/widgets/apartments/show_more_classes_widget/image_slider/zoom_of_image/home.dart';
 import '../../../../i_well_delete_it/slove_get_advantage_data/advantages_class_widget.dart';
 
 // import '../../../toast_widget.dart';
-main() {
-  runApp(    MaterialApp(home: NewShowMore()));
-}
+// main() {
+//   runApp(    const MaterialApp(home: NewShowMore()));
+// }
 
 class NewShowMore extends StatefulWidget {
-      NewShowMore({
+      const NewShowMore({
     Key? key,
     this.oneApartment,
   }) : super(key: key);
@@ -118,13 +117,13 @@ class _NewShowMoreState extends State<NewShowMore> {
         stream: Connectivity().onConnectivityChanged,
         builder: (context, snapshot) {
           if (snapshot.data == ConnectivityResult.none) {
-            isStart
-                ?     const Text("")
-                : showSnakBarInStreamBuilder(context, "انقطع الانترنت",
-                    isIcon: true,
-                    icon: Icons.wifi_off,
-                    isConnect: false,
-                    isStart: isStart);
+            // isStart
+            //     ?     const Text("")
+            //     : showSnakBarInStreamBuilder(context, "انقطع الانترنت",
+            //         isIcon: true,
+            //         icon: Icons.wifi_off,
+            //         isConnect: false,
+            //         isStart: isStart);
 
             return     const NoInternet();
           }

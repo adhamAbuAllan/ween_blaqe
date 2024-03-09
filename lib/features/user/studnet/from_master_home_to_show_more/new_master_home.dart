@@ -16,7 +16,6 @@ import 'package:ween_blaqe/features/error_widgets/no_internet.dart';
 import 'package:ween_blaqe/features/error_widgets/search_not_found.dart';
 import '../../../../api/apartments_api/one_apartment.dart';
 import '../../../../api/photos.dart';
-import '../../../../core/utils/funcations/snakbar_for_stream_builder.dart';
 
 // main(){
 //   runApp( MaterialApp(
@@ -118,27 +117,27 @@ bool isHaveInternet = false;
         builder: (context, snapshot) { //check wifi
           if (snapshot.data == ConnectivityResult
               .wifi) { // show snackbar connection if have connection with wifi
-            isStart
-                ?
-          const Text("")
-                :
-          showSnakBarInStreamBuilder(
-                context, "تمت إعادة الاتصال",
-                isIcon: true,
-                icon: Icons.wifi,
-                isConnect: true,
-                isStart: isStart);
+          //   isStart
+          //       ?
+          // const Text("")
+          //       :
+          // showSnakBarInStreamBuilder(
+          //       context, "تمت إعادة الاتصال",
+          //       isIcon: true,
+          //       icon: Icons.wifi,
+          //       isConnect: true,
+          //       isStart: isStart);
 
               // Navigator.pop(context);
 
           } else if (snapshot.data == ConnectivityResult
               .none) { // show sanckbar no connectoin if no have connection with wifi and go to no Internet screen
-            showSnakBarInStreamBuilder(
-                context, "انقطع الانترنت",
-                isIcon: true,
-                icon: Icons.wifi_off,
-                isConnect: false,
-                isStart: isStart);
+            // showSnakBarInStreamBuilder(
+            //     context, "انقطع الانترنت",
+            //     isIcon: true,
+            //     icon: Icons.wifi_off,
+            //     isConnect: false,
+            //     isStart: isStart);
             isStart = false;
             return const NoInternet();
           }
@@ -369,7 +368,9 @@ bool isHaveInternet = false;
     debugPrint("uri --$uri");
     var response = await http.get(uri);
     debugPrint("response --$response");
+    // print(response.contentLength);
     if (response.statusCode == 200) {
+
       // All ok
       var responseBody = response.body;
       var json = jsonDecode(responseBody);
@@ -397,8 +398,10 @@ bool isHaveInternet = false;
     });
     Uri uri = Uri.parse(ServerWeenBalaqee.apartmentAll);
     final response = await http.get(uri);
+
     if (response.statusCode == 200) {
       List jsonResponse = jsonDecode(response.body);
+
 
       return jsonResponse.map((item) => Photos.fromJson(item)).toList();
     } else {
@@ -418,11 +421,11 @@ bool isHaveInternet = false;
 
       // Navigator.pushReplacementNamed(context, MyPagesRoutes.noInternet);
 
-return showSnakBarInStreamBuilder(context,withButton: true,textOfButton: "سّبح",onPressed: (){const NoInternet();}, "انقطع الانترنت",
-    isIcon: true,
-    icon: Icons.wifi_off,
-    isConnect: false,
-    isStart: false);
+// return showSnakBarInStreamBuilder(context,withButton: true,textOfButton: "سّبح",onPressed: (){const NoInternet();}, "انقطع الانترنت",
+//     isIcon: false,
+//     icon: Icons.wifi_off,
+//     isConnect: false,
+//     isStart: false);
 
       // checkWifiStatus();
     });
