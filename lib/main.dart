@@ -44,6 +44,12 @@ import 'constants/strings.dart';
 import 'controller/function_controller/api_functions_controller/get_data_of_apartment_api.dart';
 import 'controller/models_controller/apartment_model_controller.dart';
 import 'features/send_notice_for_us.dart';
+import 'features/user/owner/steps_to_create_apartment/first_step.dart';
+import 'features/user/owner/steps_to_create_apartment/fourth_step.dart';
+import 'features/user/owner/steps_to_create_apartment/second_step.dart';
+import 'features/user/owner/steps_to_create_apartment/third_step.dart';
+import 'features/widgets_before_user_reg/login.dart';
+import 'features/widgets_before_user_reg/registration.dart';
 /*
 **كيف ممكن ننشئ مشاريع في الفريق تاعنا و الكل يوخذ حقه**
 لما بدنا نقترح فكرة على بعض رح نوجه
@@ -166,12 +172,12 @@ class _OwnMaterialAppState extends State<OwnMaterialApp> {
         MyPagesRoutes.main: (context) => const Main(),
         // MyPagesRoutes.mainOwner: (context) => const MainOwner(),
         MyPagesRoutes.mainStudent: (context) => const MainStudent(),
-        // MyPagesRoutes.step1: (context) => const FirstStep(),
-        // MyPagesRoutes.step2: (context) => const SecondStep(),
-        // MyPagesRoutes.step3: (context) => const ThirdStep(),
-        // MyPagesRoutes.step4: (context) => const FourthStep(),
-        // MyPagesRoutes.login: (context) => const Login(),
-        // MyPagesRoutes.register: (context) => const Register(),
+        MyPagesRoutes.step1: (context) => const FirstStep(),
+        MyPagesRoutes.step2: (context) => const SecondStep(),
+        MyPagesRoutes.step3: (context) => const ThirdStep(),
+        MyPagesRoutes.step4: (context) => const FourthStep(),
+        MyPagesRoutes.login: (context) => const Login(),
+        MyPagesRoutes.register: (context) => const Register(),
         // MyPagesRoutes.masterHome: (context) => const MasterHome(),
         // MyPagesRoutes.showMore: (context) => const ShowMore(),
         // MyPagesRoutes.accountBeforeLoginInStudent: (context) =>

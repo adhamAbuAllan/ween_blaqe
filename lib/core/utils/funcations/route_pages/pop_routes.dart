@@ -16,6 +16,6 @@
 //   Navigator.of(context).popUntil((route) => route.isActive);
 // }
 
-// mypopAndPushNamed(BuildContext context, String routeName) {
-//   Navigator.of(context).popAndPushNamed(routeName);
-// }
+mypopAndPushNamed(BuildContext context, String routeName) {
+  Navigator.of(context).popAndPushNamed(routeName);
+}
