@@ -41,8 +41,10 @@ import 'package:ween_blaqe/sesstion/new_session.dart';
 import 'package:ween_blaqe/features/splach_screen.dart';
 import 'constants/nums.dart';
 import 'constants/strings.dart';
+import 'controller/function_controller/api_functions_controller/get_city_and_insert_it_in_a_list.dart';
 import 'controller/function_controller/api_functions_controller/get_data_of_apartment_api.dart';
 import 'controller/models_controller/apartment_model_controller.dart';
+import 'controller/models_controller/type_of_apartment_models_controller.dart';
 import 'features/send_notice_for_us.dart';
 import 'features/user/owner/steps_to_create_apartment/first_step.dart';
 import 'features/user/owner/steps_to_create_apartment/fourth_step.dart';
@@ -90,13 +92,17 @@ void main() async {
   // await EasyLocalization.ensureInitialized();
   // final Future<SharedPreferences> prefs = SharedPreferences.getInstance();
   // var token = (await sp).get("token");
+  //for put
   Get.put(StudentController());
   Get.put(ApartmentModelController());
   Get.put(ApiApartmentController());
   Get.put(ChangeThemeMode());
-
   // Get.put(OwnerController());
+  Get.put(ReadyCityAndApartmentTypeApi());
+  Get.put(TypeOfApartmentModelsController());
   Get.put(MainController());
+  //for get
+
   runApp(const OwnMaterialApp(
       // logged: token != null,
       ));
@@ -122,6 +128,7 @@ class OwnMaterialApp extends StatefulWidget {
 }
 
 class _OwnMaterialAppState extends State<OwnMaterialApp> {
+
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(
@@ -172,7 +179,7 @@ class _OwnMaterialAppState extends State<OwnMaterialApp> {
         MyPagesRoutes.main: (context) => const Main(),
         // MyPagesRoutes.mainOwner: (context) => const MainOwner(),
         MyPagesRoutes.mainStudent: (context) => const MainStudent(),
-        MyPagesRoutes.step1: (context) => const FirstStep(),
+        MyPagesRoutes.step1: (context) =>  FirstStep(),
         MyPagesRoutes.step2: (context) => const SecondStep(),
         MyPagesRoutes.step3: (context) => const ThirdStep(),
         MyPagesRoutes.step4: (context) => const FourthStep(),

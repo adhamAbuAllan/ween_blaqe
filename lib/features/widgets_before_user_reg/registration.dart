@@ -12,7 +12,6 @@ import 'package:ween_blaqe/constants/nums.dart';
 import '../../core/widgets/alirt_class_widget.dart';
 import '../../core/widgets/dropdown_classes_widgets/dropdown_type_of_user.dart';
 import '../../core/widgets/dropdown_classes_widgets/dropdown_unviversty.dart';
-import '../../core/widgets/registration/dropdown_button.dart';
 import '../../core/widgets/registration/text_field_of_password_class_widget.dart';
 import '../../core/widgets/registration/text_filed_class_widget.dart';
 import '../../sesstion/sesstion_of_user.dart';
@@ -426,36 +425,6 @@ bottomColor: Colors.transparent ,
                       // ),
                       const SizedBox(
                         height: 20,
-                      ),
-                      //gender text
-                      Row(
-                        children: [
-                          Padding(
-                            padding: const EdgeInsets.fromLTRB(0, 0, 30, 5),
-                            child: Text(
-                              "الجنس",
-                              style: TextStyle(
-                                  color: Colors.grey.shade800,
-                                  fontSize: 16,
-                                  fontFamily: 'IBM'),
-                            ),
-                          ),
-                          const Expanded(child: Text("")),
-                        ],
-                      ),
-                      //gender
-                      DropdownButtonClassWidget(
-                        items: itemsOfGenger,
-
-                        firstItem: firstItemOfGender,
-                        onSelected: (c) {
-                          setState(() {
-                            firstItemOfGender = c;
-                          });
-                        },
-
-                        // focusNode: focusNodeOfGender,
-                        fontSize: 14,
                       ),
                     ],
                   )),

@@ -69,6 +69,7 @@ bool isHaveInternet = false;
   @override
   void initState() {
     super.initState();
+
     isStart = true;
     _scrollController = ScrollController();
     _scrollController.addListener(() {
@@ -94,11 +95,14 @@ bool isHaveInternet = false;
         }
       });
     });
+    callAPIandAssignData(type: _type, isAll: true);
     debugPrint("the initState is work now ");
     // myPushName(context, MyPagesRoutes.skeletonShowMoreWidget);
     // SkeletonShowMoreWidget;
     _isAll = true;
-    callAPIandAssignData(type: _type, isAll: true);
+
+
+
     debugPrint("type in initState is :$_type ");
   }
 

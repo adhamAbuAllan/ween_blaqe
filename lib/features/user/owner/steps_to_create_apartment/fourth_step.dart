@@ -8,7 +8,6 @@ import 'package:http/http.dart' as http;
 import 'package:ween_blaqe/api/apartments_api/one_apartment.dart';
 import 'package:ween_blaqe/api/type_of_apartment.dart';
 import 'package:ween_blaqe/constants/strings.dart';
-import 'package:ween_blaqe/core/utils/funcations/route_pages/pop_routes.dart';
 import 'package:ween_blaqe/core/utils/funcations/route_pages/push_routes.dart';
 import 'package:ween_blaqe/core/utils/styles/button.dart';
 import 'package:ween_blaqe/core/widgets/alirt_class_widget.dart';
@@ -113,7 +112,8 @@ bottomColor: Colors.transparent ,
                   padding: const EdgeInsets.all(8.0),
                   child: OutlinedButton(
                     onPressed: () {
-                      mypopAndPushNamed(context, MyPagesRoutes.step3);
+                      // mypopAndPushNamed(context, MyPagesRoutes.step3);
+                      Navigator.pop(context);
                     },
                     style: outlineButton,
                     child: const Text("رجوع"),

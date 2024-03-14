@@ -2,9 +2,14 @@ import 'package:colorful_safe_area/colorful_safe_area.dart';
 import 'package:flutter/material.dart';
 import 'package:ween_blaqe/core/utils/styles/button.dart';
 
+import '../../../../controller/get_controllers.dart';
 import '../../../../core/widgets/alirt_class_widget.dart';
-import '../../../../core/widgets/apartments/create_apartment/container_classes_widget/input_text_class_widget/container_input_text_class_widget.dart';
-import '../../../../core/widgets/registration/dropdown_button.dart';
+import '../../../../core/widgets/apartments/create_apartment/'
+    'container_classes_widget/containers_choose_items_class_widget/'
+    'container_choose_items_class_widget.dart';
+import '../../../../core/widgets/apartments/create_apartment/'
+    'container_classes_widget/input_text_class_widget/'
+    'container_input_text_class_widget.dart';
 import '../../../../data_containers/add_ad_data_container.dart';
 import 'package:ween_blaqe/constants/strings.dart';
 import 'package:ween_blaqe/core/utils/funcations/route_pages/push_routes.dart';
@@ -18,6 +23,7 @@ var countOfStudent = AddAdDataContainer.countOfStudent;
 var squareMeters = AddAdDataContainer.squareMeters;
 
 var typeOfApartment = AddAdDataContainer.type;
+
 //
 //--------------
 // var studentId = 0;
@@ -31,6 +37,24 @@ class ThirdStep extends StatefulWidget {
 }
 
 class _ThirdStepState extends State<ThirdStep> {
+  dynamic aValueInDropDownButton;
+  @override
+  void initState() {
+  super.initState();
+  // WidgetsBinding.instance.addPostFrameCallback((timeStamp) async {
+  //  await
+  readyCityAndTypeOfApartmentApi.getDataCityApi(true,
+      dataStatusA: readyCityAndTypeOfApartmentApi.dataStatus,
+        index: readyCityAndTypeOfApartmentApi.indexApartmentType,
+      list: readyCityAndTypeOfApartmentApi.apartmentType,
+      // typeOfApartmentModelsController.apartmentTypes,
+        oneItem: readyCityAndTypeOfApartmentApi.currentApartmentType,
+      urlA: ServerWeenBalaqee.typeOfApartment);
+  // });
+
+  // print("current type in is : ${typeOfApartmentModelsController.currentType},"
+  //     "and the items is : ${typeOfApartmentModelsController.apartmentTypes}");
+  }
   //price box
   var priceText = "السعر";
   var priceHint = "يرجى إدخال الإيجار بشكل شهري";
@@ -61,9 +85,29 @@ class _ThirdStepState extends State<ThirdStep> {
 bottomColor: Colors.transparent ,
       color:themeMode.isDark ?kPrimaryColorLightMode :  kPrimaryColorDarkMode,
       child: GestureDetector(
-        onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
+        onTap: () {
+          setState(() {
+           print("the dataStatus is : ${readyCityAndTypeOfApartmentApi.dataStatus}");
+            // readyCityAndTypeOfApartmentApi.dataStatus = true;
+
+          });
+        //
+        //   // await   readyCityApi.getDataCityApi(true,dataStatusA:
+          //   typeOfApartmentModelsController.dataStatus,
+        //   //     index: typeOfApartmentModelsController.typeIndex,list:
+          //   typeOfApartmentModelsController.apartmentTypes,
+        //   //     oneItem: typeOfApartmentModelsController.currentType,urlA:
+          //   ServerWeenBalaqee.typeOfApartment);
+        //   // setState(() {
+        //   //   typeOfApartmentModelsController.dataStatus = true;
+        //   //
+        //   // });
+        //
+          FocusManager.instance.primaryFocus?.unfocus();
+        //
+        },
         child: Scaffold(
-          backgroundColor: Colors.grey.shade200,
+          backgroundColor:themeMode.isDark ? kBackgroundAppColorLightMode: kBackgroundAppColorDarkMode,
           body: SingleChildScrollView(
             child: Column(
               children: [
@@ -78,7 +122,21 @@ bottomColor: Colors.transparent ,
                         style: outlineButton,
                         child: const Text("رجوع"),
                       ),
-                      const Expanded(child: Text("")),
+                      Expanded(child: ElevatedButton(onPressed: (){
+                        setState(() {
+                          // print("undere prints methods is in print dropdown button");
+                          // print(typeOfApartmentModelsController
+                          // .apartmentTypes);
+                          // print("the First in the List
+                          // ${typeOfApartmentModelsController.apartmentTypes.first}");
+                          // print(typeOfApartmentModelsController.
+                          // typeIndex);
+                          // print(typeOfApartmentModelsController.
+                          // dataStatus);
+
+                        });
+                      }, child: const
+              Text("print valuse of dropdown"))),
                       ElevatedButton(
                         onPressed: () {
                           setState(() {
@@ -93,8 +151,7 @@ bottomColor: Colors.transparent ,
                                       int.parse(squareMetersController.text);
                                 });
                                 setState(() {
-                                  AddAdDataContainer.type =
-                                      firstValueTypeApartment;
+                                  // AddAdDataContainer.type = firstValueTypeApartment;
                                 });
                               });
 
@@ -104,13 +161,16 @@ bottomColor: Colors.transparent ,
                                   countOfStudent != null &&
                                   squareMeters != null) {
                                 debugPrint(
-                                    "type of apartment after add on class --$typeOfApartment");
+                                    "type of apartment after add on class "
+                                        "--$typeOfApartment");
                                 debugPrint(
                                     "prince  --${AddAdDataContainer.price}");
                                 debugPrint(
-                                    "count Of student  --${AddAdDataContainer.countOfStudent}");
+                                    "count Of student  "
+                                        "--${AddAdDataContainer.countOfStudent}");
                                 debugPrint(
-                                    "square meteres  --${AddAdDataContainer.squareMeters}");
+                                    "square meteres "
+                                        " --${AddAdDataContainer.squareMeters}");
                                 myPushName(context, MyPagesRoutes.step4);
                               }
                             } catch (c) {
@@ -182,38 +242,94 @@ bottomColor: Colors.transparent ,
                   height: 140,
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(7),
-                    color: themeMode.isDark?kContainerColorLightMode:kContainerColorLightMode,
+                    color:
+                    themeMode.isDark?
+                    kContainerColorLightMode:kContainerColorLightMode,
                   ),
-                  child: Column(
-                    children: [
-                      Row(
-                        children: [
-                          Padding(
-                            padding: const EdgeInsets.fromLTRB(0, 10, 10, 10),
-                            child: Text(
-                              "نوع السكن",
-                              style: TextStyle(
-                                color: Colors.grey.shade800,
-                                fontSize: 18,
-                                fontFamily: 'IBM',
-                              ),
-                            ),
-                          ),
-                        ],
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.fromLTRB(0, 0, 0, 10),
-                        child: DropdownButtonClassWidget(
-                          firstItem: firstValueTypeApartment,
-                          items: typeApartmentItems,
-                          fontSize: 15,
-                          onSelected: (c) {
-                            firstValueTypeApartment = c;
-                          },
-                        ),
-                      ),
-                    ],
-                  ),
+                  child:
+                  // typeOfApartmentModelsController.dataStatus
+                  //     ?
+                  ContainerChooseItemsClassWidget(
+                    items: readyCityAndTypeOfApartmentApi.apartmentType,
+                    title: "نوع السكن",
+                    currentValue: readyCityAndTypeOfApartmentApi.currentApartmentType,
+                  dataStatus:
+                  readyCityAndTypeOfApartmentApi.dataStatus,
+                  // typeOfApartmentModelsController.dataStatus,
+                  onSelected: (c) {
+                      // aValueInDropDownButton = c;
+                      setState(() {
+                      readyCityAndTypeOfApartmentApi.currentApartmentType = c;
+                      setState(() {
+                        for (var i = 0; i <
+                            readyCityAndTypeOfApartmentApi.apartmentType
+                                .length; ++i) {
+                          if (readyCityAndTypeOfApartmentApi.currentApartmentType ==
+                              readyCityAndTypeOfApartmentApi.apartmentType[i]) {
+                            setState(() {
+                              readyCityAndTypeOfApartmentApi.indexApartmentType = i + 1;
+                            });
+                          }
+                        }
+                      });
+                    },
+                    );
+                    // Column(
+                    //   children: [
+                    //     Row(
+                    //       children: [
+                    //         Padding(
+                    //           padding: const EdgeInsets.fromLTRB(0, 10, 10, 10),
+                    //           child: Text(
+                    //             "نوع السكن",
+                    //             style: TextStyle(
+                    //               color: Colors.grey.shade800,
+                    //               fontSize: 18,
+                    //               fontFamily: 'IBM',
+                    //             ),
+                    //           ),
+                    //         ),
+                    //       ],
+                    //     ),
+                    //     Padding(
+                    //       padding: const EdgeInsets.fromLTRB(0, 0, 0, 10),
+                    //       child: DropdownButtonClassWidget(
+                    //
+                    //         firstItem: typeOfApartmentModelsController.currentType,
+                    //         items: typeOfApartmentModelsController.apartmentTypes,
+                    //         onSelected: (e) {
+                    //           setState(() {
+                    //             typeOfApartmentModelsController.currentType = e;
+                    //             setState(() {
+                    //               for (var i = 0; i <
+                    //               typeOfApartmentModelsController.
+                    //               apartmentTypes.length; ++i) {
+                    //                 if(typeOfApartmentModelsController.
+                    //                 currentType == typeOfApartmentModelsController.
+                    //                 apartmentTypes[i]){
+                    //                   setState(() {
+                    //                     typeOfApartmentModelsController.
+                    //                     typeIndex = i+1;
+                    //                   });
+                    //                 }
+                    //               }
+                    //             });
+                    //
+                    //           });
+                    //
+                    //         },
+                    //       ),
+                    //     ),
+                    //   ],
+                    // )
+                  })
+                      // :            SizedBox(child: Text("جاري التحميل..",
+                  //     style: TextStyle(fontSize: 12,
+                  //         color: Colors.grey.shade400,
+                  //         fontFamily: 'IBM'
+                  //     )
+                  // ),)
+                  ,
                 ),
                 ContainerInputTextClassWidget(
                   title: countStudentText,

@@ -1,5 +1,6 @@
 import 'package:colorful_safe_area/colorful_safe_area.dart';
 import 'package:flutter/material.dart';
+import 'package:ween_blaqe/controller/get_controllers.dart';
 import 'package:ween_blaqe/core/utils/styles/button.dart';
 
 import '../../../../core/widgets/apartments/create_apartment/container_classes_widget/check_boxs/advatnages_check_box/add_advantages_container_class_widget.dart';
@@ -21,9 +22,11 @@ class _SecondStepState extends State<SecondStep> {
   @override
   void initState() {
     super.initState();
+
     // print("city_id --${AddAdDataContainer.cityId} -- in second_step page");
 
 // print(AddAdDataContainer.address);
+  readyCityAndTypeOfApartmentApi.dataStatus = false;
   }
 
   @override

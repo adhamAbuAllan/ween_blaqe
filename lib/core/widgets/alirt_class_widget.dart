@@ -20,8 +20,8 @@ class AlertWithTwoBtn {
           return AlertDialog(
             shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(7),
-                side: const BorderSide(
-                    color: kPrimaryColor, strokeAlign: 0, width: 0.5)),
+                side:  BorderSide(
+                    color: themeMode.isDark ?kPrimaryColorLightMode :kPrimaryColorDarkMode, strokeAlign: 0, width: 0.5)),
             actionsPadding: const EdgeInsets.fromLTRB(120, 0, 10, 0),
             title: Text(
               title,
@@ -65,7 +65,7 @@ class NormalAlert {
           return AlertDialog(
             shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(7),
-                side: const BorderSide(
+                side:  BorderSide(
                     color: themeMode.isDark ? kPrimaryColorLightMode:kPrimaryColorDarkMode, strokeAlign: 0, width: 0.5)),
             actionsPadding: const EdgeInsets.fromLTRB(120, 0, 10, 0),
             title: Text(

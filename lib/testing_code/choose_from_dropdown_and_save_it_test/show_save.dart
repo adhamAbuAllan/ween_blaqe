@@ -27,12 +27,12 @@ class _DataCityHereTestState extends State<DataCityHereTest> {
       crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           Text(
-            "the id of city is :${readyCityApiTest.cityItems?.first.id}",
+            "the id of city is :${readyCityApiTest.cityItems?.first}",
               style: const TextStyle(color: Colors.white))          ,
           Text(
-            "the city is :${readyCityApiTest.currentCity.name}",
-              style: const TextStyle(color: Colors.white))  ,        Text(
-            "the items of cities is :${CityVariableControllerTest.cityRes.data}",
+            // "the city is :${readyCityApiTest.selectedCity}",
+            //   style: const TextStyle(color: Colors.white))  ,        Text(
+            "the items of cities is :${readyCityApiTest.cityItems}",
               style: const TextStyle(color: Colors.white)),
         ],
       ),

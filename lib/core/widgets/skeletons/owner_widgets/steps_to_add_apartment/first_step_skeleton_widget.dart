@@ -23,7 +23,7 @@ class FirstStepSkeleton extends StatelessWidget {
                       SmallButtonReadySkeleton(),
                       Expanded(child: Text("")),
                       SmallButtonReadySkeleton()
-                    // ],
+                    ],
                   ),
                 ),
                 //text steps

@@ -19,7 +19,7 @@ class _AddConnectionMediaSkeletonReadyState extends State<AddConnectionMediaSkel
       margin: const EdgeInsets.fromLTRB(10, 0, 10, 10),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(7),
-        color: kContainerColor,
+        color: themeMode.isDark ? kContainerColorLightMode:kContainerColorDarkMode,
       ),
       child: Column(
         children: [

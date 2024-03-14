@@ -332,14 +332,14 @@ class _AccountBeforeLoginInStudentState
                     child: Text(
                       "إنشاء حساب",
                       style: TextStyle(
-                        color: isCodeActive ? Colors.black : Colors.grey,
+                        color: !isCodeActive ? Colors.black : Colors.grey,
                         decoration: TextDecoration.underline,
                         fontFamily: 'IBM',
                       ),
                     ),
                     onPressed: () {
-                      showSnakBar(context,
-                          "هذه الميزة قيد التطوير وسيتم إضافتها قريبًا");
+                      showSnakBar(context, "هذه الميزة قيد التطوير وسيتم إضافتها قريبًا");
+                      myPushName(context, MyPagesRoutes.register);
                       // Navigator.of(context).push(
                       //   MaterialPageRoute(builder: (context) {
                       //     return      Register();
