@@ -1,4 +1,4 @@
-// import 'package:flutter/material.dart';
+import 'package:flutter/material.dart';
 
 // myPopUntilRouteName(BuildContext context, String routeName) {
 //   Navigator.of(context).popUntil((route) => route.settings.name == routeName);
@@ -16,6 +16,6 @@
 //   Navigator.of(context).popUntil((route) => route.isActive);
 // }
 
-// mypopAndPushNamed(BuildContext context, String routeName) {
-//   Navigator.of(context).popAndPushNamed(routeName);
-// }
+mypopAndPushNamed(BuildContext context, String routeName) {
+  Navigator.of(context).popAndPushNamed(routeName);
+}

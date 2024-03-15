@@ -9,15 +9,13 @@ class ApartmentShowTypesPointer extends StatelessWidget {
     return Container(
       decoration: BoxDecoration(
           color:
-          kPrimaryColor,
+          themeMode.isDark ? kPrimaryColorLightMode : kPrimaryColorDarkMode,
           borderRadius:
           BorderRadiusDirectional
               .circular(
               7 / 2),
           border: Border.all(
-              color: Colors
-                  .orange
-                  .shade200,
+              color: themeMode.isDark ? kPrimaryColor300LightMode : kPrimaryColor300DarkMode,
               strokeAlign:
               BorderSide
                   .strokeAlignOutside,

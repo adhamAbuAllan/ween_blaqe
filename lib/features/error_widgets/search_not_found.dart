@@ -148,9 +148,9 @@ class _TypeNotFoundState extends State<TypeNotFound> {
   Widget build(BuildContext context) {
     return ColorfulSafeArea(
       bottomColor: Colors.transparent ,
-      color: kPrimaryColor,
+      color: themeMode.isDark ? kPrimaryColorLightMode : kPrimaryColorDarkMode,
       child: Scaffold(
-        backgroundColor: Colors.grey.shade200,
+        backgroundColor: themeMode.isDark ? kBackgroundAppColorLightMode : kBackgroundAppColorDarkMode,
         body: SingleChildScrollView(
           child: Center(
             child: Column(
@@ -169,7 +169,7 @@ class _TypeNotFoundState extends State<TypeNotFound> {
                               fontSize: 18.0,
                               fontFamily: 'IBM',
                               inherit: true,
-                              color: Colors.grey.shade600,
+                              color: themeMode.isDark ? kTextColorLightMode : kTextColorDarkMode.withOpacity(.6),
                             )),
                       ),
 
@@ -180,7 +180,7 @@ class _TypeNotFoundState extends State<TypeNotFound> {
                               fontSize: 16.0,
                               fontFamily: 'IBM',
                               inherit: true,
-                              color: Colors.grey.shade800,
+                              color: themeMode.isDark ? kTextColorLightMode : kTextColorDarkMode.withOpacity(.8),
                             )),
                       ),
                       // Padding(
@@ -220,28 +220,32 @@ class _TypeNotFoundState extends State<TypeNotFound> {
                   ],
                 ),
                 //
-                const Padding(
-                  padding: EdgeInsets.fromLTRB(0, 150, 0, 0),
+                    Padding(
+                  padding:  EdgeInsets.fromLTRB(0, MediaQuery.of(context).size.height/8, 0, 0),
                   child: Image(
-                    image: AssetImage(
-                        "assets/images/error_images/search_not_found.png",),
-                    height: 130*2,
-                    width: 130*2,
+                    image:themeMode.isDark ? const AssetImage(
+                      "assets/images/error_images/not_found_light_mode.png",):  const AssetImage(
+                        "assets/images/error_images/not_found_dark_mode.png",),
+                    height: 130*2.5,
+                    width: 130*2.5,
+                    // color: kContainerColor.withOpacity(.7),
                   ),
                 ),
                 Padding(
-                  padding: const EdgeInsets.fromLTRB(0, 150, 0, 0),
+                  padding:  EdgeInsets.fromLTRB(0,MediaQuery.of(context).size.height<683.5 ?MediaQuery.of(context).size.height/40 : MediaQuery.of(context).size.height/9 , 0, 0),
                   child: TextButton(
-                    child: const Text(
+                    child:  Text(
                       "إعادة الطلب",
                       style: TextStyle(
-                          color: kPrimaryColor,
+                          color: themeMode.isDark ? kPrimaryColorLightMode : kPrimaryColorDarkMode,
                           fontWeight: FontWeight.bold,
                           fontFamily: 'IBM',
                           decoration: TextDecoration.underline),
                     ),
                     onPressed: () {
+
                       myPushReplacementNamed(MyPagesRoutes.main,context: context);
+
                     },
                   ),
                 )

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:skeletons/skeletons.dart';
+import 'package:ween_blaqe/constants/nums.dart';
 //
 // class SmallParagraphSkeletonReady extends StatefulWidget {
 //   const SmallParagraphSkeletonReady({Key? key}) : super(key: key);
@@ -68,12 +69,15 @@ class LongParagraphReadySkeleton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: themeMode.isDark ? kBackgroundAppColorLightMode : kBackgroundAppColorDarkMode,
       body: SafeArea(
         child: SingleChildScrollView(
+
           child: Column(
             children: [
               SkeletonParagraph(
                   style: SkeletonParagraphStyle(
+
                       lines: 1,
                       padding: const EdgeInsets.fromLTRB(0, 50, 25, 20),
                       lineStyle: SkeletonLineStyle(

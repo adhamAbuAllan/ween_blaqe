@@ -4,17 +4,18 @@ import 'package:colorful_safe_area/colorful_safe_area.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:get/get.dart';
-import 'package:ween_blaqe/constants/strings.dart';
 import 'package:ween_blaqe/core/utils/funcations/route_pages/push_routes.dart';
 import 'package:ween_blaqe/core/utils/funcations/snakbar.dart';
 import 'package:ween_blaqe/core/utils/styles/button.dart';
 import 'package:ween_blaqe/core/utils/styles/text_style/aline_style.dart';
 
-import 'package:ween_blaqe/constants/nums.dart';
+import '../../constants/nums.dart';
+import '../../constants/strings.dart';
 import '../../core/widgets/buttons/lines_buttons/line_buttons.dart';
 
 import '../../controller/main_controller.dart';
 import '../../controller/student_controller/student_controller.dart';
+// import '../../main.dart';
 // import 'login.dart';
 main (){
   runApp(MaterialApp(
@@ -40,28 +41,28 @@ main (){
         // brightness: Brightness.,
 
         // scaffoldBackgroundColor: Colors.grey.shade200,
-        switchTheme: const SwitchThemeData(),
-        colorSchemeSeed: const Color(0xffff9800),
-        bottomNavigationBarTheme: const BottomNavigationBarThemeData(
+        switchTheme:      const SwitchThemeData(),
+        colorSchemeSeed:      const Color(0xffff9800),
+        bottomNavigationBarTheme:      const BottomNavigationBarThemeData(
             selectedIconTheme: IconThemeData(size: 26))),
     //make screen rtl
-    localizationsDelegates: const [
+    localizationsDelegates:      [
       GlobalCupertinoLocalizations.delegate,
       GlobalMaterialLocalizations.delegate,
       GlobalWidgetsLocalizations.delegate,
     ],
-    supportedLocales: const [
-      Locale("en", "US"),
-      Locale("ar", "SA"), // OR Locale('ar', 'AE') OR Other RTL locales
+    supportedLocales:      [
+      const Locale("en", "US"),
+      const Locale("ar", "SA"), // OR Locale('ar', 'AE') OR Other RTL locales
     ],
-    locale: const Locale("ar", "SA"),
+    locale:      const Locale("ar", "SA"),
 
-    home: const AccountBeforeLoginInStudent(),));
+    home:      AccountBeforeLoginInStudent(),));
 }
 //Account before login Screen
 
 class AccountBeforeLoginInStudent extends StatefulWidget {
-  const AccountBeforeLoginInStudent({Key? key}) : super(key: key);
+       AccountBeforeLoginInStudent({Key? key}) : super(key: key);
 
   @override
   State<AccountBeforeLoginInStudent> createState() =>
@@ -84,33 +85,36 @@ class _AccountBeforeLoginInStudentState
     super.initState();
     setState(() {
       currentValue = true;
+      // loadValue();
     });
+
   }
 
   @override
   Widget build(BuildContext context) {
     return ColorfulSafeArea(
       bottomColor: Colors.transparent ,
-      color: kPrimaryColor,
+      color: themeMode.isDark ? kPrimaryColorLightMode : kPrimaryColorDarkMode,
       child: Scaffold(
-        backgroundColor: Colors.grey.shade200 ,
+        backgroundColor:themeMode.isDark ? kBackgroundAppColorLightMode : kBackgroundAppColorDarkMode,
         body: SingleChildScrollView(
           child: Column(            children: [
               //title
-              const Row(
+                    Row(
                 children: [
                   Padding(
-                    padding: EdgeInsets.fromLTRB(0, 50, 20, 0),
+                    padding: const EdgeInsets.fromLTRB(0, 50, 20, 0),
                     child: Text(
                       "الحساب",
                       style: TextStyle(
+                        color: themeMode.isDark ? kTextColorLightMode : kTextColorDarkMode,
                         fontSize: 28.0,
                         fontFamily: 'IBM',
                         inherit: true,
                       ),
                     ),
                   ),
-                  Expanded(child: Text("")),
+                  const Expanded(child: Text("")),
                 ],
               ),
 
@@ -118,7 +122,7 @@ class _AccountBeforeLoginInStudentState
               Row(
                 children: [
                   Padding(
-                    padding: const EdgeInsets.fromLTRB(0, 0, 10, 75),
+                    padding:      const EdgeInsets.fromLTRB(0, 0, 10, 75),
                     child: Text(
                       // "قم بتسجيل الدخول لتحجز اول شقة لك ",
                       "لا يتطلب حجز شقة حساب جديد أو تسجيل الدخول ",
@@ -128,7 +132,7 @@ class _AccountBeforeLoginInStudentState
                           fontFamily: 'IBM'),
                     ),
                   ),
-                  const Expanded(child: Text("")),
+                       const Expanded(child: Text("")),
                 ],
               ),
               // aline,
@@ -144,23 +148,23 @@ class _AccountBeforeLoginInStudentState
               //   },
               //   child: Row(
               //     children: [
-              //       const Padding(
+              //            Padding(
               //         padding: EdgeInsets.fromLTRB(0, 0, 10, 0),
               //         child: Icon(
               //           Icons.notifications_outlined,
               //           size: 32,
               //         ),
               //       ),
-              //       const Text(
+              //            Text(
               //         "الاشعارات",
               //         style: TextStyle(
               //           fontSize: 18,
               //           fontFamily: 'IBM',
               //         ),
               //       ),
-              //       const Spacer(),
+              //            Spacer(),
               //       Padding(
-              //         padding: const EdgeInsets.fromLTRB(20, 0, 0, 0),
+              //         padding:      EdgeInsets.fromLTRB(20, 0, 0, 0),
               //         child: Switcher(
               //             light1: notificationState,
               //             onChanged: (currentValue) {
@@ -180,24 +184,41 @@ class _AccountBeforeLoginInStudentState
               // aline,
               //help
               Container(
-                padding: const EdgeInsets.fromLTRB(0, 0, 0, 10),
-                margin: const EdgeInsets.fromLTRB(10, 0, 10, 0),
+                padding:      const EdgeInsets.fromLTRB(0, 0, 0, 10),
+                margin:      const EdgeInsets.fromLTRB(10, 0, 10, 0),
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(7),
-                  color: Colors.white,
+                  color:themeMode.isDark ? kContainerColorLightMode : kContainerColorDarkMode,
                 ),
                 child: Column(
                     mainAxisSize: MainAxisSize.min,
 
                     children: [
+                        // Switch(value:themeMode.isDark , onChanged:
+                        // themeMode.onChanged),
+                      SwitchListTile(
 
+                          title:Text("الشكل", style:TextStyle(
+                              fontSize: 16, fontFamily: 'IBM', color: themeMode.isDark ? kTextColorLightMode : kTextColorDarkMode)),
+                          value: themeMode.isDark, onChanged: (bool value)async{
+
+                        setState(() {
+                          themeMode.onChanged(value);
+                          // sp.get('isDark');
+                          // myPushName(context, MyPagesRoutes.splashScreen);
+
+
+                          myPushNameAnimation(context);
+                        });
+                      }),
+                  aline,
                   buttonAccount(() {
                     myPushName(context, MyPagesRoutes.askForHelp);
                   },
-                      const Icon(
+                          icon:  Icon(
                         Icons.info_outline,
                         size: 32,
-                        color: Colors.black87,
+                        color: themeMode.isDark ? kTextColorLightMode : kTextColorDarkMode,
                       ),
                       "اطلب المساعدة"),
 
@@ -206,10 +227,10 @@ class _AccountBeforeLoginInStudentState
                   buttonAccount(() {
                     myPushName(context, MyPagesRoutes.privacyPolicy);
                   },
-                      const Icon(
+                      icon:    Icon(
                         Icons.privacy_tip_outlined,
                         size: 32,
-                        color: Colors.black87,
+                        color: themeMode.isDark ? kTextColorLightMode : kTextColorDarkMode,
                       ),
                       "سياسة الخصوصية"),
                   // aline,
@@ -227,10 +248,10 @@ class _AccountBeforeLoginInStudentState
               //                   // showSnakBar(
               //                   //     context, "هذه الميزة قيد التطوير وسيتم إضافتها قريبًا");
               //                 },
-              //                 const Icon(
+              //                      Icon(
               //                   Icons.change_circle_outlined,
               //                   size: 32,
-              //                   color: Colors.black87,
+              //                   color: kTextColor,
               //                 ),
               //                 "التبديل إلى مالك",
               //               ),
@@ -239,10 +260,10 @@ class _AccountBeforeLoginInStudentState
                   //share app
                   // ButtonAccount(
                   //     () {},
-                  //     const Icon(
+                  //          Icon(
                   //       Icons.share_outlined,
                   //       size: 32,
-                  //       color: Colors.black87,
+                  //       color: kTextColor,
                   //     ),
                   //     "شارك التطبيق"),
                   aline,
@@ -250,12 +271,22 @@ class _AccountBeforeLoginInStudentState
                   buttonAccount(() {
                     myPushName(context, MyPagesRoutes.sendNoticeForUs);
                   },
-                      const Icon(
+                      icon:     Icon(
                         Icons.feedback_outlined,
                         size: 32,
-                        color: Colors.black87,
+                        color: themeMode.isDark ? kTextColorLightMode : kTextColorDarkMode,
                       ),
                       "أرسل ملاحظات إلينا"),
+                      aline,
+                      buttonAccount(() {
+                    myPushName(context, MyPagesRoutes.noInternet);
+                  },
+                       image:  Image.asset("assets/images/tasbih.png",
+                              color: themeMode.isDark ? kTextColorLightMode : kTextColorDarkMode,
+                              width: 35, height: 35) ,
+
+                      "السحبة"),
+
 
 
                 ]),
@@ -263,7 +294,7 @@ class _AccountBeforeLoginInStudentState
               // aline,
               //button login
               Padding(
-                padding: const EdgeInsets.fromLTRB(25, 75, 25, 25),
+                padding:      const EdgeInsets.fromLTRB(25, 75, 25, 25),
                 child: SizedBox(
                   width: double.infinity,
                   height: 55,
@@ -271,7 +302,7 @@ class _AccountBeforeLoginInStudentState
                       onPressed: () {
                         // Navigator.of(context).push(
                         //   MaterialPageRoute(builder: (context) {
-                        //     return const Login();
+                        //     return      Login();
                         //   }),
                         // );
                         showSnakBar(context,
@@ -279,20 +310,20 @@ class _AccountBeforeLoginInStudentState
                       },
                       style: fullButton.copyWith(
                           backgroundColor:
-                          const MaterialStatePropertyAll(Colors.grey)),
-                      child: const Text("تسجيل الدخول")),
+                               const MaterialStatePropertyAll(Colors.grey)),
+                      child:      const Text("تسجيل الدخول")),
                 ),
               ),
               //ask user if don't have count and create account
               Row(
                 children: [
                   //ask user if don't have account
-                  const Padding(
+                        Padding(
                     padding: EdgeInsets.fromLTRB(0, 0, 20, 0),
                     child: Text(
                       "ألا تمتلك حساب؟",
                       style: TextStyle(
-                        color: Colors.black87,
+                        color: themeMode.isDark ? kTextColorLightMode : kTextColorDarkMode,
                       ),
                     ),
                   ),
@@ -301,17 +332,17 @@ class _AccountBeforeLoginInStudentState
                     child: Text(
                       "إنشاء حساب",
                       style: TextStyle(
-                        color: isCodeActive ? Colors.black : Colors.grey,
+                        color: !isCodeActive ? Colors.black : Colors.grey,
                         decoration: TextDecoration.underline,
                         fontFamily: 'IBM',
                       ),
                     ),
                     onPressed: () {
-                      showSnakBar(context,
-                          "هذه الميزة قيد التطوير وسيتم إضافتها قريبًا");
+                      showSnakBar(context, "هذه الميزة قيد التطوير وسيتم إضافتها قريبًا");
+                      myPushName(context, MyPagesRoutes.register);
                       // Navigator.of(context).push(
                       //   MaterialPageRoute(builder: (context) {
-                      //     return const Register();
+                      //     return      Register();
                       //   }),
                       // );
                     },
@@ -320,7 +351,7 @@ class _AccountBeforeLoginInStudentState
               ),
 
               // Padding(
-              //   padding: const EdgeInsets.only(top: 20*9.5,bottom: 30*2),
+              //   padding:      EdgeInsets.only(top: 20*9.5,bottom: 30*2),
               //   child: Row(
               //     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               //       children: [
@@ -340,7 +371,7 @@ class _AccountBeforeLoginInStudentState
               //       ]),
               //   // child: Divider(color: Colors.black.withOpacity(.6),thickness: 7,indent: 10,endIndent: 10),
               // ),
-              // const SizedBox(height: 150,),
+              //      SizedBox(height: 150,),
                // Align(alignment: Alignment.bottomRight,child: Text("إصدار:2023.1",style: TextStyle(fontFamily: "IBM",fontSize: 12,color: Colors.grey.withOpacity(.7)),))
 
 
@@ -350,11 +381,12 @@ class _AccountBeforeLoginInStudentState
       ),
     );
   }
+
 }
 //
 // //account before login in owner page widget
 // class AccountBeforeLoginInOwner extends StatefulWidget {
-//   const AccountBeforeLoginInOwner({Key? key}) : super(key: key);
+//        AccountBeforeLoginInOwner({Key? key}) : super(key: key);
 //
 //   @override
 //   State<AccountBeforeLoginInOwner> createState() =>
@@ -373,7 +405,7 @@ class _AccountBeforeLoginInStudentState
 //           child: Column(
 //             children: [
 //               //title
-//               const Row(
+//                    Row(
 //                 children: [
 //                   Padding(
 //                     padding: EdgeInsets.fromLTRB(0, 50, 20, 0),
@@ -394,7 +426,7 @@ class _AccountBeforeLoginInStudentState
 //               Row(
 //                 children: [
 //                   Padding(
-//                     padding: const EdgeInsets.fromLTRB(0, 0, 10, 55),
+//                     padding:      EdgeInsets.fromLTRB(0, 0, 10, 55),
 //                     child: Text(
 //                       "قم تسجيل الدخول لإعلان اول شقة لك ",
 //                       style: TextStyle(
@@ -403,7 +435,7 @@ class _AccountBeforeLoginInStudentState
 //                           fontFamily: 'IBM'),
 //                     ),
 //                   ),
-//                   const Expanded(child: Text("")),
+//                        Expanded(child: Text("")),
 //                 ],
 //               ),
 //               aline,
@@ -411,15 +443,15 @@ class _AccountBeforeLoginInStudentState
 //               //notification icon and text and switch
 //               Row(
 //                 children: [
-//                   const Padding(
+//                        Padding(
 //                     padding: EdgeInsets.fromLTRB(0, 0, 10, 0),
 //                     child: Icon(
 //                       Icons.notifications_outlined,
 //                       size: 32,
 //                     ),
 //                   ),
-//                   const Expanded(child: SizedBox()),
-//                   const Text(
+//                        Expanded(child: SizedBox()),
+//                        Text(
 //                     "الاشعارات",
 //                     style: TextStyle(
 //                       fontSize: 18,
@@ -427,7 +459,7 @@ class _AccountBeforeLoginInStudentState
 //                     ),
 //                   ),
 //                   Padding(
-//                     padding: const EdgeInsets.fromLTRB(20, 0, 0, 0),
+//                     padding:      EdgeInsets.fromLTRB(20, 0, 0, 0),
 //                     child: Switcher(
 //                         light1: notificationState,
 //                         onChanged: (value) {
@@ -447,10 +479,10 @@ class _AccountBeforeLoginInStudentState
 //               buttonAccount(() {
 //                 myPushName(context, MyPagesRoutes.askForHelp);
 //               },
-//                   const Icon(
+//                        Icon(
 //                     Icons.info_outline,
 //                     size: 32,
-//                     color: Colors.black87,
+//                     color: kTextColor,
 //                   ),
 //                   "اطلب المساعدة"),
 //
@@ -459,10 +491,10 @@ class _AccountBeforeLoginInStudentState
 //               buttonAccount(() {
 //                 myPushName(context, MyPagesRoutes.privacyPolicy);
 //               },
-//                   const Icon(
+//                        Icon(
 //                     Icons.privacy_tip_outlined,
 //                     size: 32,
-//                     color: Colors.black87,
+//                     color: kTextColor,
 //                   ),
 //                   "سياسة الخصوصية"),
 //               aline,
@@ -475,10 +507,10 @@ class _AccountBeforeLoginInStudentState
 //                     myPushName(context, MyPagesRoutes.mainStudent);
 //                   });
 //                 },
-//                 const Icon(
+//                      Icon(
 //                   Icons.change_circle_outlined,
 //                   size: 32,
-//                   color: Colors.black87,
+//                   color: kTextColor,
 //                 ),
 //                 "التبديل إلى طالب",
 //               ),
@@ -487,10 +519,10 @@ class _AccountBeforeLoginInStudentState
 //               //share app
 //               // ButtonAccount(
 //               //         () {},
-//               //     const Icon(
+//               //          Icon(
 //               //       Icons.share_outlined,
 //               //       size: 32,
-//               //       color: Colors.black87,
+//               //       color: kTextColor,
 //               //     ),
 //               //     "شارك التطبيق"),
 //               aline,
@@ -498,16 +530,16 @@ class _AccountBeforeLoginInStudentState
 //               buttonAccount(() {
 //                 myPushName(context, MyPagesRoutes.sendNoticeForUs);
 //               },
-//                   const Icon(
+//                        Icon(
 //                     Icons.feedback_outlined,
 //                     size: 32,
-//                     color: Colors.black87,
+//                     color: kTextColor,
 //                   ),
 //                   "أرسل ملاحظات إلينا"),
 //               aline,
 //               //button login
 //               Padding(
-//                 padding: const EdgeInsets.fromLTRB(25, 25, 25, 25),
+//                 padding:      EdgeInsets.fromLTRB(25, 25, 25, 25),
 //                 child: SizedBox(
 //                   width: double.infinity,
 //                   height: 55,
@@ -515,33 +547,33 @@ class _AccountBeforeLoginInStudentState
 //                       onPressed: () {
 //                         // Navigator.of(context).push(
 //                         //   MaterialPageRoute(builder: (context) {
-//                         //     return const Login();
+//                         //     return      Login();
 //                         //   }),
 //                         // );
 //                       },
 //                       style: fullButton.copyWith(
 //                           backgroundColor:
-//                               const MaterialStatePropertyAll(Colors.grey)),
-//                       child: const Text("تسجيل الدخول")),
+//                                    MaterialStatePropertyAll(Colors.grey)),
+//                       child:      Text("تسجيل الدخول")),
 //                 ),
 //               ),
 //               //ask user if don't have count and create account
 //               Row(
 //                 children: [
 //                   //ask user if don't have account
-//                   const Padding(
+//                        Padding(
 //                     padding: EdgeInsets.fromLTRB(0, 0, 20, 0),
 //                     child: Text(
 //                       "ألا تمتلك حساب؟",
 //                       style: TextStyle(
-//                         color: Colors.black87,
+//                         color: kTextColor,
 //                         fontFamily: "IBM"
 //                       ),
 //                     ),
 //                   ),
 //                   //reg
 //                   TextButton(
-//                     child: const Text(
+//                     child:      Text(
 //                       "إنشاء حساب",
 //                       style: TextStyle(
 //                         color: Colors.black,
@@ -552,7 +584,7 @@ class _AccountBeforeLoginInStudentState
 //                     onPressed: () {
 //                       // Navigator.of(context).push(
 //                       //   MaterialPageRoute(builder: (context) {
-//                       //     return const Register();
+//                       //     return      Register();
 //                       //   }),
 //                       // );
 //                     },

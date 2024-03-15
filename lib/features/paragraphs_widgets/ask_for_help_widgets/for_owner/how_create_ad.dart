@@ -10,33 +10,33 @@ class HowCreateAd extends StatelessWidget {
   Widget build(BuildContext context) {
     return ColorfulSafeArea(
       // bottomColor: Colors.transparent ,
-      color: kPrimaryColor,
+      color: themeMode.isDark ? kPrimaryColorLightMode : kPrimaryColorDarkMode,
       child: Scaffold(
-        backgroundColor: kBackgroundAppColor,
+        backgroundColor: themeMode.isDark ? kBackgroundAppColorLightMode : kBackgroundAppColorDarkMode,
 
         appBar: AppBar(
-          backgroundColor: kPrimaryColor,
+          backgroundColor: themeMode.isDark ? kPrimaryColorLightMode : kPrimaryColorDarkMode,
         ),
         body: SingleChildScrollView(
           child: SizedBox(
             child: Column(
               children: [
                 //title of what is system paying is allowed
-                const Row(
+                 Row(
                   children: [
                     Padding(
-                      padding: EdgeInsets.fromLTRB(0, 50, 25, 10),
+                      padding: const EdgeInsets .fromLTRB(0, 50, 25, 10),
                       child: Text(
                         " كيف أنشئ إعلان؟",
                         style: TextStyle(
                           fontSize: 20.0,
-                          color: Colors.black87,
+                          color: themeMode.isDark ? kTextColorLightMode : kTextColorDarkMode,
                           fontFamily: 'IBM',
                           inherit: true,
                         ),
                       ),
                     ),
-                    Expanded(child: Text("")),
+                    const Expanded(child: Text("")),
                   ],
                 ),
                 Container(
@@ -47,13 +47,16 @@ class HowCreateAd extends StatelessWidget {
                     "لإنشاء إعلان خاص بك على تطبيق وين بلاقي ، إذهب إلى الصفحة الرئيسية",
                     style: TextStyle(
                       fontSize: 16.0,
-                      color: Colors.grey.shade800,
+                      color: themeMode.isDark ? kTextColorLightMode : kTextColorDarkMode.withOpacity(.8),
                       fontFamily: 'IBM',
                       inherit: true,
                     ),
                   ),
                 ),
-                Image.asset("assets/images/apartments_images/Simulator Screenshot - iPhone 15 Pro Max - 2023-12-05 at 14.48.13.png",width: 300,height: 400,),
+                Image.asset(
+
+
+                  "assets/images/apartments_images/Simulator Screenshot - iPhone 15 Pro Max - 2023-12-05 at 14.48.13.png",width: 300,height: 400,),
                 Container(
                   width: double.infinity,
                   margin: const EdgeInsets.fromLTRB(25, 50, 30, 10),
@@ -61,7 +64,7 @@ class HowCreateAd extends StatelessWidget {
                     "إضعط على زر إضافة شقة المتواجد في اسفل الشاشة على اليمين",
                     style: TextStyle(
                       fontSize: 16.0,
-                      color: Colors.grey.shade800,
+                      color: themeMode.isDark ? kTextColorLightMode : kTextColorDarkMode.withOpacity(.8),
                       fontFamily: 'IBM',
                       inherit: true,
                     ),
@@ -80,7 +83,7 @@ class HowCreateAd extends StatelessWidget {
                     "ثم أضغط على زر 'اطلب الإشتراك عبر واتس أب'",
                     style: TextStyle(
                       fontSize: 16.0,
-                      color: Colors.grey.shade800,
+                      color: themeMode.isDark ? kTextColorLightMode : kTextColorDarkMode.withOpacity(.8),
                       fontFamily: 'IBM',
                       inherit: true,
                     ),
@@ -100,7 +103,7 @@ class HowCreateAd extends StatelessWidget {
                     "وسيتم الرد على رسالتك خلال بضع دقائق",
                     style: TextStyle(
                       fontSize: 16.0,
-                      color: Colors.grey.shade800,
+                      color: themeMode.isDark ? kTextColorLightMode : kTextColorDarkMode.withOpacity(.8),
                       fontFamily: 'IBM',
                       inherit: true,
                     ),

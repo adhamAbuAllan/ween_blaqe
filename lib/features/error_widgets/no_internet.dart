@@ -13,11 +13,13 @@ import 'package:ween_blaqe/constants/nums.dart';
 import '../../core/utils/styles/button.dart';
 import '../../core/widgets/buttons/lines_buttons/line_buttons.dart';
 
-main(){
-  runApp(const MaterialApp(home: NoInternet(),));
+main() {
+  runApp(const MaterialApp(
+    home: NoInternet(),
+  ));
 }
-class
-NoInternet extends StatefulWidget {
+
+class NoInternet extends StatefulWidget {
   const NoInternet({
     Key? key,
   }) : super(key: key);
@@ -113,178 +115,231 @@ class _NoInternetState extends State<NoInternet> with WidgetsBindingObserver {
 // }
   @override
   Widget build(BuildContext context) {
-    return
-
-      ColorfulSafeArea(
+    return ColorfulSafeArea(
       bottomColor: Colors.transparent,
-      color: kPrimaryColor,
+      color: themeMode.isDark ? kPrimaryColorLightMode : kPrimaryColorDarkMode,
       child: StreamBuilder<ConnectivityResult>(
-        stream: Connectivity().onConnectivityChanged,
-        builder: (context, snapshot) {
-          return Scaffold(
-            backgroundColor: Colors.grey.shade200,
-            body: AnimatedAlign(
-              alignment: isWantToSepha ? Alignment.center : Alignment.topCenter,
-              duration: const Duration(milliseconds: 800),
-              child: AnimatedContainer(
-                margin: const EdgeInsets.fromLTRB(0, 100, 0, 0),
-                width: 373,
-                height: isWantToSepha ? 500 : 170,
-                onEnd: () {
-                  setState(() {
-                    isContExpanding = false;
-                  });
-                },
-                padding: const EdgeInsets.fromLTRB(10, 0, 10, 0),
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(7),
-                  color: Colors.white,
+          stream: Connectivity().onConnectivityChanged,
+          builder: (context, snapshot) {
+            debugPrint("snapshot data : ${snapshot.data}");
+            return Scaffold(
+              appBar: snapshot.data == ConnectivityResult.wifi ||
+                      snapshot.data == null
+                  ?
+              AppBar(
+                  backgroundColor: themeMode.isDark
+                      ? kPrimaryColorLightMode
+                      : kPrimaryColorDarkMode)
+                  :
+              AppBar(
+                backgroundColor: Colors.transparent,
+                elevation: 0,
+                foregroundColor: Colors.transparent,
+                actionsIconTheme: const IconThemeData(
+                  color: Colors.transparent,
+                  size: 1,
+                  opacity: 0,
                 ),
-                duration: const Duration(milliseconds: 800),
-                child: Column(
-                  children: [
-                    //
-                    // isAnimate ? AnimatedAlign(duration: const Duration(milliseconds: 700),
-                    //     curve: Curves.linear,
-                    //     alignment: Alignment.bottomCenter,
-                    //     child: yourChildrenWidgets()) : yourPerantWidget(),
-                    //
-
-                    buildCounterTextRow(),
-                    aline,
-                    // !isContExpanding?const SizedBox() :  const AnimatedSize(
-                    //   duration: Duration(milliseconds: 2800),
-                    //   curve: Curves.linear,
-                    //   child: SizedBox(height: 80),
-                    // ),
-                    isWantToSepha
-                        ? AnimatedSize(
-                            duration: const Duration(milliseconds: 1000),
-                            curve: Curves.linear,
-                            child: SizedBox(height: !isContExpanding ? 60 : 0),
-                          )
-                        : const SizedBox(),
-                    isContExpanding
-                        ? const AnimatedSize(
-                            duration: Duration(milliseconds: 2900),
-                            curve: Curves.linear,
-                            child: SizedBox())
-                        : AnimatedAlign(
-                            duration: const Duration(milliseconds: 2900),
-                            alignment: Alignment.centerRight,
-                            child: SizedBox(
-                              height: 30,
-                              child: Row(
-                                mainAxisAlignment: MainAxisAlignment.start,
-                                mainAxisSize: MainAxisSize.max,
-                                children: [
-
-                                  isAnimate
-                                      ? SizedBox(
-                                          height: 28,
-                                          child: buildAnimatedTextKit(),
-                                        )
-                                      : Text("$total+",
-                                          style: const TextStyle(
-                                              fontFamily: "IBM",
-                                              color: Colors.orange)),
-
-                                ],
-                              ),
-                            ),
-                          ),
-
-                    isWantToSepha
-                        ? (!isContExpanding
-                            ? buildBorderSebhaContainer()
-                            : const SizedBox())
-                        : const SizedBox(),
-                    isWantToSepha
-                        ? AnimatedSize(
-                            duration: const Duration(milliseconds: 1000),
-                            curve: Curves.linear,
-                            child: SizedBox(height: !isContExpanding ? 80 : 80),
-                          )
-                        : const SizedBox(),
-
-                    isWantToSepha
-                        ? (!isContExpanding
-                            ? Column(
-                              children: [
-                                SizedBox(
-                                    width: double.infinity,
-                                    height: 55,
-                                    child: buildSebhaElevatedButton(),
-                                  )   ,
-                                SizedBox(height: 20,),
-                                SizedBox(
-                                    width: double.infinity,
-                                    height: 55,
-                                    child: OutlinedButton(
-
-                                        style: outlineButton,
-                                        onPressed: () {
-
-                                      setState(() {
-                                        total = 0;
-                                        saveTotal(total);
-                                      });
-                                    },
-                                    child: Text("تصفير")),
-                                  ),
-                              ],
-                            )
-                            : const SizedBox())
-                        : (isContExpanding
-                            ? const AnimatedSize(duration: Duration(seconds: 1))
-                            : AnimatedAlign(
-                                duration: const Duration(milliseconds: 100),
-                                curve: Curves.bounceInOut,
-                                alignment: Alignment.bottomCenter,
-                                child: buttonHaveTitleAndIcon(
-                                  () {
-                                    setState(() {
-                                      isWantToSepha = true;
-                                      isContExpanding = true;
-                                    });
-                                  },
-                                  "إبدأ التسبيح",
-                                  image: Image.asset("assets/images/tasbih.png",
-                                      width: 35, height: isContExpanding ? 0 : 35),
-                                  isIcon: false,
-                                ),
-                              ))
-                    // const Icon(
-                    //   // Icons.tasb,
-                    //   FontAwesomeIcons.tas
-                    //   color: Colors.black,
-                    //   size: 27,
-                    // )),
-                    // aline,
-                    // buttonHaveTitleAndIcon(
-                    //     () {},
-                    //     "تفعيل بيانات الهاتف",
-                    //     const Icon(
-                    //       Icons.cell_wifi_outlined,
-                    //       size: 27,
-                    //       color: Colors.black,
-                    //     ))
-                  ],
+                iconTheme: const IconThemeData(
+                  color: Colors.transparent,
+                  size: 1,
+                  opacity: 0,
                 ),
               ),
-            ),
-          floatingActionButton:snapshot.data == ConnectivityResult
-              .wifi  ?  FloatingActionButton(onPressed: () {
+              backgroundColor: themeMode.isDark
+                  ? kBackgroundAppColorLightMode
+                  : kBackgroundAppColorDarkMode,
+              body: AnimatedAlign(
+                alignment:
+                    isWantToSepha ? Alignment.center : Alignment.topCenter,
+                duration: const Duration(milliseconds: 800),
+                child: AnimatedContainer(
+                  margin: const EdgeInsets.fromLTRB(0, 100, 0, 0),
+                  width: 373,
+                  height: isWantToSepha
+                      ? 500
 
-              myPushName(context, MyPagesRoutes.main);
-            },
-              shape:ContinuousRectangleBorder(borderRadius: BorderRadius.circular(16/2)),
-              backgroundColor: kPrimaryColor,
-              child: const FaIcon(FontAwesomeIcons.redoAlt,),
-            ):const SizedBox(),
-          );
-        }
-      ),
+
+                          : 170,
+                  onEnd: () {
+                    setState(() {
+                      isContExpanding = false;
+                    });
+                  },
+                  padding: const EdgeInsets.fromLTRB(10, 0, 10, 0),
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(7),
+                    color: themeMode.isDark
+                        ? kContainerColorLightMode
+                        : kContainerColorDarkMode,
+                  ),
+                  duration: const Duration(milliseconds: 800),
+                  child: Column(
+                    children: [
+                      //
+                      // isAnimate ? AnimatedAlign(duration: const Duration(milliseconds: 700),
+                      //     curve: Curves.linear,
+                      //     alignment: Alignment.bottomCenter,
+                      //     child: yourChildrenWidgets()) : yourPerantWidget(),
+                      //
+                      snapshot.data == ConnectivityResult.wifi &&
+                              snapshot.data != null
+                          ? const SizedBox(
+                              height: 10 * 3,
+                            )
+                          : buildCounterTextRow(),
+                      snapshot.data == ConnectivityResult.wifi &&
+                              snapshot.data != null
+                          ? const SizedBox()
+                          : aline,
+                      // !isContExpanding?const SizedBox() :  const AnimatedSize(
+                      //   duration: Duration(milliseconds: 2800),
+                      //   curve: Curves.linear,
+                      //   child: SizedBox(height: 80),
+                      // ),
+                      isWantToSepha
+                          ? AnimatedSize(
+                              duration: const Duration(milliseconds: 1000),
+                              curve: Curves.linear,
+                              child:
+                                  SizedBox(height: !isContExpanding ? 60 : 0),
+                            )
+                          : const SizedBox(),
+
+                      isContExpanding
+                          ? const AnimatedSize(
+                              duration: Duration(milliseconds: 2900),
+                              curve: Curves.linear,
+                              child: SizedBox())
+                          : AnimatedAlign(
+                              duration: const Duration(milliseconds: 2900),
+                              alignment: Alignment.centerRight,
+                              child: SizedBox(
+                                height: 30,
+                                child: Row(
+                                  mainAxisAlignment: MainAxisAlignment.start,
+                                  mainAxisSize: MainAxisSize.max,
+                                  children: [
+                                    isAnimate
+                                        ? SizedBox(
+                                            height: 28,
+                                            child: buildAnimatedTextKit(),
+                                          )
+                                        : Text("$total+",
+                                            style: const TextStyle(
+                                                fontFamily: "IBM",
+                                                color: Colors.orange)),
+                                  ],
+                                ),
+                              ),
+                            ),
+
+                      isWantToSepha
+                          ? (!isContExpanding
+                              ? buildBorderSebhaContainer()
+                              : const SizedBox())
+                          : snapshot.data == ConnectivityResult.wifi &&
+                                  snapshot.data !=null
+                              ? aline
+                              : const SizedBox(),
+                      isWantToSepha
+                          ? AnimatedSize(
+                              duration: const Duration(milliseconds: 1000),
+                              curve: Curves.linear,
+                              child:
+                                  SizedBox(height: !isContExpanding ? 80 : 80),
+                            )
+                          : const SizedBox(),
+
+                      isWantToSepha
+                          ? (!isContExpanding
+                              ? Column(
+                                  children: [
+                                    SizedBox(
+                                      width: double.infinity,
+                                      height: 55,
+                                      child: buildSebhaElevatedButton(),
+                                    ),
+                                    const SizedBox(
+                                      height: 20,
+                                    ),
+                                    SizedBox(
+                                      width: double.infinity,
+                                      height: 55,
+                                      child: OutlinedButton(
+                                          style: outlineButton,
+                                          onPressed: () {
+                                            setState(() {
+                                              total = 0;
+                                              saveTotal(total);
+                                            });
+                                          },
+                                          child: const Text("تصفير")),
+                                    ),
+                                  ],
+                                )
+                              : const SizedBox())
+                          : (isContExpanding
+                              ? const AnimatedSize(
+                                  duration: Duration(seconds: 1))
+                              : AnimatedAlign(
+                                  duration: const Duration(milliseconds: 100),
+                                  curve: Curves.bounceInOut,
+                                  alignment: Alignment.bottomCenter,
+                                  child: buttonHaveTitleAndIcon(
+                                    () {
+                                      setState(() {
+                                        isWantToSepha = true;
+                                        isContExpanding = true;
+                                      });
+                                    },
+                                    "إبدأ التسبيح",
+                                    image: Image.asset(
+                                        "assets/images/tasbih.png",
+                                        color: themeMode.isDark
+                                            ? kTextColorLightMode
+                                            : kTextColorDarkMode,
+                                        width: 35,
+                                        height: isContExpanding ? 0 : 35),
+                                    isIcon: false,
+                                  ),
+                                ))
+                      // const Icon(
+                      //   // Icons.tasb,
+                      //   FontAwesomeIcons.tas
+                      //   color: Colors.black,
+                      //   size: 27,
+                      // )),
+                      // aline,
+                      // buttonHaveTitleAndIcon(
+                      //     () {},
+                      //     "تفعيل بيانات الهاتف",
+                      //     const Icon(
+                      //       Icons.cell_wifi_outlined,
+                      //       size: 27,
+                      //       color: Colors.black,
+                      //     ))
+                    ],
+                  ),
+                ),
+              ),
+              floatingActionButton: snapshot.data == ConnectivityResult.wifi
+                  ? FloatingActionButton(
+                      onPressed: () {
+                        myPushName(context, MyPagesRoutes.main);
+                      },
+                      shape: ContinuousRectangleBorder(
+                          borderRadius: BorderRadius.circular(16 / 2)),
+                      backgroundColor: themeMode.isDark
+                          ? kPrimaryColorLightMode
+                          : kPrimaryColorDarkMode,
+                      child: const FaIcon(
+                        FontAwesomeIcons.redoAlt,
+                      ),
+                    )
+                  : const SizedBox(),
+            );
+          }),
     );
   }
 
@@ -295,11 +350,12 @@ class _NoInternetState extends State<NoInternet> with WidgetsBindingObserver {
   //text counter , have two part
   Row buildCounterTextRow() {
     return Row(children: [
-      const Padding(
-        padding: EdgeInsets.fromLTRB(0, 10, 5, 10),
+      Padding(
+        padding: const EdgeInsets.fromLTRB(0, 10, 5, 10),
         child: Image(
-          image: AssetImage("assets/images/error_images/no network.png"),
+          image: const AssetImage("assets/images/error_images/no network.png"),
           height: 60,
+          color: themeMode.isDark ? kTextColorLightMode : kTextColorDarkMode,
           width: 60,
         ),
       ),
@@ -308,7 +364,7 @@ class _NoInternetState extends State<NoInternet> with WidgetsBindingObserver {
           Padding(
             padding: const EdgeInsets.fromLTRB(100, 0, 5, 0),
             child: RichText(
-              text: const TextSpan(
+              text: TextSpan(
                 children: <TextSpan>[
                   TextSpan(
                     text: 'لا يتوفّر اتصال بالانترنت.',
@@ -316,7 +372,9 @@ class _NoInternetState extends State<NoInternet> with WidgetsBindingObserver {
                         fontSize: 16.0,
                         fontFamily: 'IBM',
                         inherit: true,
-                        color: Colors.black87),
+                        color: themeMode.isDark
+                            ? kTextColorLightMode
+                            : kTextColorDarkMode),
                   ),
                 ],
               ),
@@ -372,7 +430,9 @@ class _NoInternetState extends State<NoInternet> with WidgetsBindingObserver {
           borderRadius: const BorderRadius.all(Radius.circular(7)),
           border: Border.all(
             width: 1,
-            color: kPrimaryColor,
+            color: themeMode.isDark
+                ? kPrimaryColorLightMode
+                : kPrimaryColorDarkMode,
           )),
       height: 100,
       child: buildSebhaCarouselSlider(),
@@ -391,7 +451,12 @@ class _NoInternetState extends State<NoInternet> with WidgetsBindingObserver {
               alignment: Alignment.center,
               child: Text(
                 entry.value,
-                style: const TextStyle(fontSize: 24, fontFamily: "IBM"),
+                style: TextStyle(
+                    fontSize: 24,
+                    fontFamily: "IBM",
+                    color: themeMode.isDark
+                        ? kTextColorLightMode
+                        : kTextColorDarkMode),
               ));
         });
       }).toList(),
@@ -490,8 +555,8 @@ class _NoInternetState extends State<NoInternet> with WidgetsBindingObserver {
   }
 
   var loading = false;
-
 }
+
 void saveTotal(int totalValue) async {
   SharedPreferences prefs = await SharedPreferences.getInstance();
   prefs.setInt('total', totalValue);

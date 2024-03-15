@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:ween_blaqe/constants/nums.dart';
 
 class ApartmentShowTypesContainer extends StatelessWidget {
   const ApartmentShowTypesContainer({super.key, required this.child});
@@ -13,9 +14,9 @@ class ApartmentShowTypesContainer extends StatelessWidget {
           decoration: BoxDecoration(
             border: Border.all(
                 width: 7,
-                color: Colors.grey.shade200,
+                color:themeMode.isDark ? kBackgroundAppColorLightMode : kBackgroundAppColorDarkMode,
                 strokeAlign: BorderSide.strokeAlignOutside),
-            color: Colors.white,
+            color: themeMode.isDark ? kContainerColorLightMode : kContainerColorDarkMode,
             borderRadius: BorderRadiusDirectional.circular(7),
           ),
           height: 200,

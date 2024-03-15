@@ -23,6 +23,7 @@ class _SplashScreenState extends State<SplashScreen> {
   @override
   void initState() {
     super.initState();
+    themeMode.loadValue();
     navigateToHome();
 
     debugPrint("initState Of splashScreen is work now ! ");
@@ -44,8 +45,8 @@ class _SplashScreenState extends State<SplashScreen> {
     // setState(() {
     // });d
 
-    return  const Scaffold(
-      backgroundColor: Color(0x2ef0f0fe),
+    return   Scaffold(
+      backgroundColor: const Color(0x2ef0f0fe),
       body:
       // isInitialized ?
       // (
@@ -62,8 +63,8 @@ class _SplashScreenState extends State<SplashScreen> {
           // :  bulidSplashScreenWidget()
       ColorfulSafeArea(
         bottomColor: Colors.transparent ,
-        color: kPrimaryColor,
-        child: SingleChildScrollView(
+        color: themeMode.isDark ? kPrimaryColorLightMode : kPrimaryColorDarkMode,
+        child: const SingleChildScrollView(
           child: Center(
             //
             child: Column(
@@ -71,7 +72,7 @@ class _SplashScreenState extends State<SplashScreen> {
               children: [
                 Image(
                   image: AssetImage("assets/images/splash screen heigh qulity with large size.png"),
-            ) ]))),
+                            ) ]))),
       ));
       //         // Text(
       //         //   "وين",

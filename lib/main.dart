@@ -14,6 +14,7 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:ween_blaqe/controller/function_controller/change_theme_mode.dart';
 import 'package:ween_blaqe/controller/main_controller.dart';
 import 'package:flutter/services.dart';
 
@@ -40,7 +41,17 @@ import 'package:ween_blaqe/sesstion/new_session.dart';
 import 'package:ween_blaqe/features/splach_screen.dart';
 import 'constants/nums.dart';
 import 'constants/strings.dart';
+import 'controller/function_controller/api_functions_controller/get_city_and_insert_it_in_a_list.dart';
+import 'controller/function_controller/api_functions_controller/get_data_of_apartment_api.dart';
+import 'controller/models_controller/apartment_model_controller.dart';
+import 'controller/models_controller/type_of_apartment_models_controller.dart';
 import 'features/send_notice_for_us.dart';
+import 'features/user/owner/steps_to_create_apartment/first_step.dart';
+import 'features/user/owner/steps_to_create_apartment/fourth_step.dart';
+import 'features/user/owner/steps_to_create_apartment/second_step.dart';
+import 'features/user/owner/steps_to_create_apartment/third_step.dart';
+import 'features/widgets_before_user_reg/login.dart';
+import 'features/widgets_before_user_reg/registration.dart';
 /*
 **كيف ممكن ننشئ مشاريع في الفريق تاعنا و الكل يوخذ حقه**
 لما بدنا نقترح فكرة على بعض رح نوجه
@@ -59,6 +70,8 @@ import 'features/send_notice_for_us.dart';
 // late SharedPreferences sp;
 //main screen
 // final Future<SharedPreferences> sp = SharedPreferences.getInstance();
+//the line that could user to upload a file currently :
+//https://drive.google.com/uc?export=download&id=
 final Future<SharedPreferences> sp = SharedPreferences.getInstance();
 
 void main() async {
@@ -79,9 +92,17 @@ void main() async {
   // await EasyLocalization.ensureInitialized();
   // final Future<SharedPreferences> prefs = SharedPreferences.getInstance();
   // var token = (await sp).get("token");
+  //for put
   Get.put(StudentController());
+  Get.put(ApartmentModelController());
+  Get.put(ApiApartmentController());
+  Get.put(ChangeThemeMode());
   // Get.put(OwnerController());
+  Get.put(ReadyCityAndApartmentTypeApi());
+  Get.put(TypeOfApartmentModelsController());
   Get.put(MainController());
+  //for get
+
   runApp(const OwnMaterialApp(
       // logged: token != null,
       ));
@@ -107,6 +128,7 @@ class OwnMaterialApp extends StatefulWidget {
 }
 
 class _OwnMaterialAppState extends State<OwnMaterialApp> {
+
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(
@@ -157,12 +179,12 @@ class _OwnMaterialAppState extends State<OwnMaterialApp> {
         MyPagesRoutes.main: (context) => const Main(),
         // MyPagesRoutes.mainOwner: (context) => const MainOwner(),
         MyPagesRoutes.mainStudent: (context) => const MainStudent(),
-        // MyPagesRoutes.step1: (context) => const FirstStep(),
-        // MyPagesRoutes.step2: (context) => const SecondStep(),
-        // MyPagesRoutes.step3: (context) => const ThirdStep(),
-        // MyPagesRoutes.step4: (context) => const FourthStep(),
-        // MyPagesRoutes.login: (context) => const Login(),
-        // MyPagesRoutes.register: (context) => const Register(),
+        MyPagesRoutes.step1: (context) =>  FirstStep(),
+        MyPagesRoutes.step2: (context) => const SecondStep(),
+        MyPagesRoutes.step3: (context) => const ThirdStep(),
+        MyPagesRoutes.step4: (context) => const FourthStep(),
+        MyPagesRoutes.login: (context) => const Login(),
+        MyPagesRoutes.register: (context) => const Register(),
         // MyPagesRoutes.masterHome: (context) => const MasterHome(),
         // MyPagesRoutes.showMore: (context) => const ShowMore(),
         // MyPagesRoutes.accountBeforeLoginInStudent: (context) =>
@@ -188,7 +210,7 @@ class _OwnMaterialAppState extends State<OwnMaterialApp> {
         //     const ApartmentOfOwnerBeforeAdd(),
         MyPagesRoutes.splashScreen: (context) => const SplashScreen(),
         // MyPagesRoutes.refactorApartment: (context) => const RefactorApartment(),
-        MyPagesRoutes.privacyPolicy: (context) => const PrivacyPolicy(),
+        MyPagesRoutes.privacyPolicy: (context) =>  PrivacyPolicy(),
         MyPagesRoutes.askForHelp: (context) => const AskForHelp(),
         MyPagesRoutes.systemPaying: (context) => const SystemPaying(),
         MyPagesRoutes.whatIsSystemPayingAllow: (context) =>
@@ -219,9 +241,10 @@ class _OwnMaterialAppState extends State<OwnMaterialApp> {
         MyPagesRoutes.skeletonParagraph: (context) =>
             const LongParagraphReadySkeleton(),
         MyPagesRoutes.newMasterHome: (context) => const NewMasterHome(),
-        MyPagesRoutes.newShowMore: (context) => const NewShowMore(),
+        MyPagesRoutes.newShowMore: (context) =>  NewShowMore(),
         MyPagesRoutes.whatTheInfoReqToCreateAd: (context) =>
-            const WhatTheInfoReqToCreateAd(),
+             WhatTheInfoReqToCreateAd(),
+
 
         //testing routes..
         // MyPagesRoutes.citiesTest:(context)=> CitiesTest(),
@@ -262,12 +285,14 @@ class _MainState extends State<Main> {
 
   @override
   void initState() {
+
     super.initState();
     controller.addListener(listener);
     SystemChrome.setPreferredOrientations([
       DeviceOrientation.portraitUp,
       DeviceOrientation.portraitDown,
     ]);
+
 
     // initializtion();
   }
@@ -301,6 +326,7 @@ class _MainState extends State<Main> {
   // var index = 0;
   MainController mainController = Get.find();
 
+
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
@@ -315,7 +341,7 @@ class _MainState extends State<Main> {
         // bottom: false,
         // top
         bottomColor: Colors.transparent,
-        color: kPrimaryColor,
+        color: themeMode.isDark ? kPrimaryColorLightMode : kPrimaryColorDarkMode,
         child: Scaffold(
             backgroundColor: Colors.grey.shade200,
             body: GetBuilder<MainController>(

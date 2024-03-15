@@ -1,7 +1,9 @@
 // import 'dart:html';
 
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:ween_blaqe/constants/strings.dart';
+import 'package:ween_blaqe/controller/function_controller/change_theme_mode.dart';
 import 'package:ween_blaqe/core/utils/funcations/route_pages/push_routes.dart';
 import 'package:ween_blaqe/core/utils/funcations/snakbar.dart';
 
@@ -79,6 +81,8 @@ class AddAcontact extends StatefulWidget {
 }
 
 class _AddAcontactState extends State<AddAcontact> {
+  ChangeThemeMode themeMode = Get.find();
+
   List<FeatureOfCheckBox> features = [];
   List<int> chosen = [];
   @override
@@ -109,7 +113,7 @@ class _AddAcontactState extends State<AddAcontact> {
       padding: const EdgeInsets.fromLTRB(0, 0, 0, 10),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(7),
-        color: kContainerColor,
+        color: themeMode.isDark ? kContainerColorLightMode : kContainerColorDarkMode,
       ),
       child: Column(
         children: features.map((feature) {
@@ -118,15 +122,15 @@ class _AddAcontactState extends State<AddAcontact> {
               Checkbox(
                   shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(2.6)),
-                  focusColor: kPrimaryColor,
+                  focusColor: themeMode.isDark ? kPrimaryColorLightMode : kPrimaryColorDarkMode,
                   checkColor: Colors.white,
                   // hoverColor: kPrimaryColor,
-                  activeColor: kPrimaryColor,
-                  side: const BorderSide(color: kPrimaryColor300),
+                  activeColor: themeMode.isDark ? kPrimaryColorLightMode : kPrimaryColorDarkMode,
+                  side:  BorderSide(color: themeMode.isDark ? kPrimaryColor300LightMode : kPrimaryColor300DarkMode),
                   splashRadius: 20,
                   // autofocus: false,
                   // tristate: true,
-                  overlayColor: MaterialStateProperty.all(kPrimaryColor),
+                  overlayColor: MaterialStateProperty.all(themeMode.isDark ? kPrimaryColorLightMode : kPrimaryColorDarkMode),
                   value: feature.checked,
                   onChanged: (a) {
                     if (a != null) {

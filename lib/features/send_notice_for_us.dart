@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 // import 'dart:html';
+import 'dart:io';
 
 import 'package:colorful_safe_area/colorful_safe_area.dart';
 import 'package:flutter/material.dart';
@@ -26,6 +27,7 @@ class _SendNoticeForUsState extends State<SendNoticeForUs> {
   var sendNoticeForUsHint = "أضف ملاحظاتك هنا";
       // "أقترح إضافة خاصية البحث عن شركاء حيث يستطيع الطالب البحث عن شريك له يشاركه في الشقة من خلال التطبيق";
   var messageOfToast = "شكراً لك لقد تم إرسال إقتراحك بنجاح";
+  bool darkModeTest = true;
   @override
   void initState() {
     super.initState();
@@ -36,38 +38,48 @@ class _SendNoticeForUsState extends State<SendNoticeForUs> {
   Widget build(BuildContext context) {
     return ColorfulSafeArea(
         bottomColor: Colors.transparent ,
-        color: kPrimaryColor,
+        color: themeMode.isDark ? kPrimaryColorLightMode : kPrimaryColorDarkMode,
         child: GestureDetector(
           onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
           child: Scaffold(
-            backgroundColor: kBackgroundAppColor,
+            backgroundColor: themeMode.isDark ? kBackgroundAppColorLightMode : kBackgroundAppColorDarkMode,
 
             // Colors.grey.shade200,
             appBar: AppBar(
-              backgroundColor: Colors.white,
-
+              backgroundColor: themeMode.isDark ? kContainerColorLightMode : kContainerColorDarkMode,
               actions: [
-                Padding(
-                  padding: const EdgeInsets.all(4),
-                  child:
-                  IconButton(
-                    icon: Icon(
+                Opacity(
+                  opacity: !themeMode.isDark ?0 :1 ,
+                  child: Padding(
+                    padding: const EdgeInsets.only(right: 6,top: 1,),
+                    child:
+                                 IconButton(
+                   splashColor: Colors.transparent,
+                      icon: Platform.isAndroid  ? const Icon(
 
-                      Icons.arrow_back,
-                      color: Colors.black.withOpacity(.7),
-                      size: 34,
-                    ),
-                    onPressed: () {
-                          Navigator.pop(context);
+                        Icons.arrow_back,
+                        color:  kTextColorLightMode,
+                        size: 24,
 
-                    },)
-                  // OutlinedButton(
-                  //   onPressed: () {
-                  //     Navigator.pop(context);
-                  //   },
-                  //   style: outlineButton,
-                  //   child: const Text("رجوع"),
-                  // ),
+                      ) :Platform.isIOS ?  const Icon(
+
+                        Icons.arrow_back_ios,
+                        color:  kTextColorLightMode,
+                        size: 24,
+                      ):const Icon(Icons.arrow_back,color:  kTextColorDarkMode,
+                        size: 24,),
+                      onPressed: () {
+                            Navigator.pop(context);
+
+                      },)
+                    // OutlinedButton(
+                    //   onPressed: () {
+                    //     Navigator.pop(context);
+                    //   },
+                    //   style: outlineButton,
+                    //   child: const Text("رجوع"),
+                    // ),
+                  ),
                 ),
                 const Expanded(child: Text("")),
                 Padding(
@@ -103,8 +115,9 @@ class _SendNoticeForUsState extends State<SendNoticeForUs> {
                   title: sendNoticeForUsText,
 
                   hintInput: sendNoticeForUsHint,
-                  maxLines: 10,
-                  maxLength: 512,
+                  maxLines: 8,
+                  maxLength: darkModeTest ?null : 300,
+
                   hintMaxLines: 10,
                   inputType: TextInputType.text,
                   controller: sendNoticeForUcController,

@@ -11,7 +11,7 @@ import '../../../core/widgets/apartments/show_more_classes_widget/advantages_cla
   Widget build(BuildContext context) {
     return ColorfulSafeArea(
       bottomColor: Colors.transparent ,
-      color: kPrimaryColor,
+      color: themeMode.isDark ? kPrimaryColorLightMode : kPrimaryColorDarkMode,
       child: Scaffold(
         backgroundColor: Colors.grey.shade200,
         body: SingleChildScrollView(
@@ -39,7 +39,7 @@ import '../../../core/widgets/apartments/show_more_classes_widget/advantages_cla
                 margin: const EdgeInsets.fromLTRB(10, 50, 10, 0),
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(7),
-                  color: kContainerColor,
+                  color: themeMode.isDark ? kContainerColorLightMode : kContainerColorDarkMode,
                 ),
                 child:   Column(
                   children: [

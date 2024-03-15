@@ -1,8 +1,10 @@
 import 'dart:convert';
 import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
 import 'package:ween_blaqe/constants/strings.dart';
+import 'package:ween_blaqe/controller/models_controller/apartment_model_controller.dart';
 import 'package:ween_blaqe/core/utils/funcations/route_pages/push_routes.dart';
 import 'package:ween_blaqe/core/widgets/apartments/new_master_home_classes_widgets/apartment_container/list_of_apartments.dart';
 import 'package:ween_blaqe/core/widgets/apartments/new_master_home_classes_widgets/types_of_apartments_list/container_types.dart';
@@ -14,7 +16,6 @@ import 'package:ween_blaqe/features/error_widgets/no_internet.dart';
 import 'package:ween_blaqe/features/error_widgets/search_not_found.dart';
 import '../../../../api/apartments_api/one_apartment.dart';
 import '../../../../api/photos.dart';
-import '../../../../core/utils/funcations/snakbar_for_stream_builder.dart';
 
 // main(){
 //   runApp( MaterialApp(
@@ -25,12 +26,15 @@ import '../../../../core/utils/funcations/snakbar_for_stream_builder.dart';
 class NewMasterHome extends StatefulWidget {
   const NewMasterHome({Key? key}) : super(key: key);
   // Future<OneApartment> getDataFromAPI();
+  //  MainController mainController = Get.find();
+
   @override
   State<NewMasterHome> createState() => _NewMasterHomeState();
 }
 
 class _NewMasterHomeState extends State<NewMasterHome> {
-  late OneApartment apartmentsRes;
+  ApartmentModelController apartmentModelController = Get.find();
+  // late OneApartment apartmentsRes;
   late String name;
 
   // for data is loaded flag
@@ -65,9 +69,9 @@ bool isHaveInternet = false;
   @override
   void initState() {
     super.initState();
+
     isStart = true;
     _scrollController = ScrollController();
-
     _scrollController.addListener(() {
       //[_scrollController.addListener] this attribute usages to hide or show the button
       debugPrint("min scroll extent${_scrollController.position.minScrollExtent}");
@@ -91,11 +95,14 @@ bool isHaveInternet = false;
         }
       });
     });
+    callAPIandAssignData(type: _type, isAll: true);
     debugPrint("the initState is work now ");
     // myPushName(context, MyPagesRoutes.skeletonShowMoreWidget);
     // SkeletonShowMoreWidget;
     _isAll = true;
-    callAPIandAssignData(type: _type, isAll: true);
+
+
+
     debugPrint("type in initState is :$_type ");
   }
 
@@ -105,7 +112,7 @@ bool isHaveInternet = false;
       isDataLoaded //if data is loading
           ? errorMessage.isNotEmpty // if have error from server
           ? Text(errorMessage) // then error will show
-          : (apartmentsRes.data?.isEmpty ??
+          : (apartmentModelController.apartment.data?.isEmpty ??
           false) // else if json of apartment - specific type of apartment -
           ? TypeNotFound(type: _type,) // then go to TypeNotFound screen
           : StreamBuilder<ConnectivityResult>(
@@ -114,27 +121,27 @@ bool isHaveInternet = false;
         builder: (context, snapshot) { //check wifi
           if (snapshot.data == ConnectivityResult
               .wifi) { // show snackbar connection if have connection with wifi
-            isStart
-                ?
-          const Text("")
-                :
-          showSnakBarInStreamBuilder(
-                context, "تمت إعادة الاتصال",
-                isIcon: true,
-                icon: Icons.wifi,
-                isConnect: true,
-                isStart: isStart);
+          //   isStart
+          //       ?
+          // const Text("")
+          //       :
+          // showSnakBarInStreamBuilder(
+          //       context, "تمت إعادة الاتصال",
+          //       isIcon: true,
+          //       icon: Icons.wifi,
+          //       isConnect: true,
+          //       isStart: isStart);
 
               // Navigator.pop(context);
 
           } else if (snapshot.data == ConnectivityResult
               .none) { // show sanckbar no connectoin if no have connection with wifi and go to no Internet screen
-            showSnakBarInStreamBuilder(
-                context, "انقطع الانترنت",
-                isIcon: true,
-                icon: Icons.wifi_off,
-                isConnect: false,
-                isStart: isStart);
+            // showSnakBarInStreamBuilder(
+            //     context, "انقطع الانترنت",
+            //     isIcon: true,
+            //     icon: Icons.wifi_off,
+            //     isConnect: false,
+            //     isStart: isStart);
             isStart = false;
             return const NoInternet();
           }
@@ -150,13 +157,16 @@ bool isHaveInternet = false;
 
                 children: [
 
-                  ApartmentsList(apartmentsRes: apartmentsRes,
+                  ApartmentsList(apartmentsRes: apartmentModelController.apartment,
                       scrollController: _scrollController), //aprtments list
 
                   Padding(
                     padding: const EdgeInsets.only(top: 10 * 7, right: 8.0),
                     child: AnimatedOpacity(
-                      opacity: (apartmentsRes.data?.isNotEmpty ?? true
+                      opacity: (
+                          apartmentModelController.apartment.data?.isNotEmpty
+
+                              ?? true
                           ? (_isVisible ? 1 : 0)
                           : 1),
                       duration: const Duration(milliseconds: 300),
@@ -362,7 +372,9 @@ bool isHaveInternet = false;
     debugPrint("uri --$uri");
     var response = await http.get(uri);
     debugPrint("response --$response");
+    // print(response.contentLength);
     if (response.statusCode == 200) {
+
       // All ok
       var responseBody = response.body;
       var json = jsonDecode(responseBody);
@@ -375,12 +387,12 @@ bool isHaveInternet = false;
       debugPrint("msg : ${apartmentsRes.msg}");
       debugPrint("the status is ${apartmentsRes.status}");
       return apartmentsRes;
-    } else if (apartmentsRes.msg?.isNotEmpty ?? false) {
+    } else if (apartmentModelController.apartment.msg?.isNotEmpty ?? false) {
       errorMessage = '${response.statusCode}: ${response.body} ';
       debugPrint(errorMessage);
       return OneApartment(data: []);
     }
-    return apartmentsRes;
+    return apartmentModelController.apartment;
   }
 
   Future<List<Photos>> fetchPhotos() async {
@@ -390,8 +402,10 @@ bool isHaveInternet = false;
     });
     Uri uri = Uri.parse(ServerWeenBalaqee.apartmentAll);
     final response = await http.get(uri);
+
     if (response.statusCode == 200) {
       List jsonResponse = jsonDecode(response.body);
+
 
       return jsonResponse.map((item) => Photos.fromJson(item)).toList();
     } else {
@@ -403,7 +417,7 @@ bool isHaveInternet = false;
   }
 
   callAPIandAssignData({String? type, required bool isAll}) async {
-    apartmentsRes = (await getDataFromAPI(type: type, isAll: isAll));
+    apartmentModelController.apartment = (await getDataFromAPI(type: type, isAll: isAll));
   }
 
   Future<void> showSnackBarAfter3Second() async {
@@ -411,11 +425,11 @@ bool isHaveInternet = false;
 
       // Navigator.pushReplacementNamed(context, MyPagesRoutes.noInternet);
 
-return showSnakBarInStreamBuilder(context,withButton: true,textOfButton: "سّبح",onPressed: (){const NoInternet();}, "انقطع الانترنت",
-    isIcon: true,
-    icon: Icons.wifi_off,
-    isConnect: false,
-    isStart: false);
+// return showSnakBarInStreamBuilder(context,withButton: true,textOfButton: "سّبح",onPressed: (){const NoInternet();}, "انقطع الانترنت",
+//     isIcon: false,
+//     icon: Icons.wifi_off,
+//     isConnect: false,
+//     isStart: false);
 
       // checkWifiStatus();
     });

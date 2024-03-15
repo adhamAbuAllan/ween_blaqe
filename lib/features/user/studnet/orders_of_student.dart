@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:ween_blaqe/constants/nums.dart';
 import 'package:ween_blaqe/core/widgets/subtitle_class_widget.dart';
 import 'package:ween_blaqe/core/widgets/title_class_widget.dart';
 
@@ -24,7 +25,7 @@ class _OrdersOfStudentState extends State<OrdersOfStudent> {
     // var image = "assets/images/apartments_images/image1.png";
     // var date = "04/14/2020";
     return Scaffold(
-      backgroundColor: Colors.grey.shade200,
+      backgroundColor: themeMode.isDark ? kBackgroundAppColorLightMode : kBackgroundAppColorDarkMode,
       body: SingleChildScrollView(
         child: Column(
           children: [
@@ -35,7 +36,8 @@ class _OrdersOfStudentState extends State<OrdersOfStudent> {
                 ? Padding(
               padding: const EdgeInsets.symmetric(vertical: 25),
                   child: Image.asset(
-                    "assets/images/mobile-development.png",width: 450/1.3,height: 420/1.3,color: Colors.black.withOpacity(.7),
+                    "assets/images/mobile-development.png",width: 450/1.3,height: 420/1.3,color:
+                  themeMode.isDark ? kTextColorLightMode : kTextColorDarkMode,
                   ),
                 )
 
@@ -66,12 +68,12 @@ class _OrdersOfStudentState extends State<OrdersOfStudent> {
             //             dateOfBooking: date)
             // ),
             !isScreenIsReady  ?
-            Padding(
+             Padding(
               padding: const EdgeInsets.only(top: 15.0),
               child: Text("هذه الميزة قيد التطوير وسيتم إضافتها قريبًا",style: TextStyle(
                 fontSize: 16,
                   fontFamily: 'IBM',
-                  color: Colors.black.withOpacity(.7)),),
+                  color: themeMode.isDark ? kTextColorLightMode : kTextColorDarkMode),),
             ):
           const Text("")
           ],

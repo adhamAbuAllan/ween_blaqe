@@ -21,7 +21,7 @@ final Widget child;
       //decoration of show apartment style
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(7),
-        color: kContainerColor,
+        color: themeMode.isDark ? kContainerColorLightMode : kContainerColorDarkMode,
       ),
       child: child,
     );

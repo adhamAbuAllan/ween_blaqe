@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../../../../api/apartments_api/one_apartment.dart';
+import '../../../../../constants/nums.dart';
 class ApartmentLocatoinText extends StatelessWidget {
   const ApartmentLocatoinText({super.key, required this.index, required this.apartmentsRes});
  final OneApartment apartmentsRes;
@@ -11,11 +12,11 @@ class ApartmentLocatoinText extends StatelessWidget {
     return               SizedBox(
       child: Row(
         children: [
-          Padding(
+           Padding(
             padding: const EdgeInsets.fromLTRB(0, 0, 0, 0),
             child: Text("الموقع:",
                 style: TextStyle(
-                  color: Colors.black.withOpacity(.65),
+                  color: themeMode.isDark ? kTextColorLightMode : kTextColorDarkMode,
                   fontSize: 16,
                   fontFamily: 'IBM',
                 )),
@@ -24,8 +25,8 @@ class ApartmentLocatoinText extends StatelessWidget {
             padding: const EdgeInsets.fromLTRB(10, 0, 0, 0),
             child: Text(apartmentsRes.data?[index].city?.name ?? "",
                 softWrap: true,
-                style: TextStyle(
-                  color: Colors.black.withOpacity(.6),
+                style:  TextStyle(
+                  color: themeMode.isDark ? kTextColorLightMode : kTextColorDarkMode,
                   fontSize: 16,
                   fontFamily: 'IBM',
                 )),

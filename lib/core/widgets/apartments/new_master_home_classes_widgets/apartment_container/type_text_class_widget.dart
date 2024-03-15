@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:ween_blaqe/api/apartments_api/one_apartment.dart';
+import 'package:ween_blaqe/constants/nums.dart';
 
 class ApartmentTypeText extends StatefulWidget {
  const ApartmentTypeText({super.key, required this.index, required this.apartmentsRes});
@@ -16,13 +17,13 @@ class _ApartmentTypeTextState extends State<ApartmentTypeText> {
     return           Row(
       children: [
         Padding(
-          padding: const EdgeInsets.all(8.0),
+          padding:  const EdgeInsets.all(8.0),
           child: Text(
             " سكن ${widget.apartmentsRes.data?[widget.index].type?.name ?? ""}",
-            style: TextStyle(
+            style:  TextStyle(
                 fontSize: 14,
                 fontFamily: 'IBM',
-                color: Colors.black.withOpacity(.9)),
+                color: themeMode.isDark ? kTextColorLightMode : kTextColorDarkMode),
           ),
         ),
         const Expanded(child: Text("")),

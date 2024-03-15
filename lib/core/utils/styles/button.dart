@@ -1,12 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:ween_blaqe/constants/nums.dart';
 
+
 // import 'package:ween_blaqe/styles/colors.dart';
 // button style widget
 //fullbutton
 final ButtonStyle fullButton = ElevatedButton.styleFrom(
-  
-    backgroundColor: kPrimaryColor,
+    // foregroundColor: !themeMode.isDark ? kPrimaryColorLightMode : kPrimaryColorDarkMode,
+
+    backgroundColor: !themeMode.isDark ? kPrimaryColorLightMode : kPrimaryColorDarkMode,
     elevation: 0,
     textStyle: const TextStyle(
       fontSize: 15,
@@ -17,14 +19,16 @@ final ButtonStyle fullButton = ElevatedButton.styleFrom(
 //outlineButton
 
 final ButtonStyle outlineButton = OutlinedButton.styleFrom(
-  foregroundColor: kPrimaryColor,
+  foregroundColor: themeMode.isDark ? kPrimaryColorLightMode : kPrimaryColorDarkMode,
   elevation: 0,
-  textStyle: const TextStyle(
+  textStyle:  TextStyle(
     fontSize: 14,
-    color: kPrimaryColor,
+    color: themeMode.isDark ? kPrimaryColorLightMode : kPrimaryColorDarkMode,
     fontFamily: 'IBM',
   ),
-  side: const BorderSide(width: 1, color: kPrimaryColor),
+  side:  BorderSide(width: 1,
+      color: themeMode.isDark ? kPrimaryColorLightMode : kPrimaryColorDarkMode
+  ),
   padding: const EdgeInsets.all(1),
   alignment: Alignment.center,
 );

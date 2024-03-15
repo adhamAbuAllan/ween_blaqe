@@ -164,8 +164,8 @@ class ThePointerOfImage extends StatelessWidget {
               //   borderRadius: BorderRadiusDirectional.circular((12/2)),
               shape: BoxShape.rectangle,
               color: (Theme.of(context).brightness == Brightness.dark
-                  ? kPrimaryColor300
-                  : kPrimaryColor
+                  ? themeMode.isDark ? kPrimaryColor300LightMode : kPrimaryColor300DarkMode
+                  : themeMode.isDark ? kPrimaryColorLightMode : kPrimaryColorDarkMode
                   // ? Colors.white.withOpacity(.9)
                   // : Colors.white.withOpacity(.7)
               )

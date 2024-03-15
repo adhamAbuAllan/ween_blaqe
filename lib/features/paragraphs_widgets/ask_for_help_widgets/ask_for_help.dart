@@ -18,11 +18,11 @@ class AskForHelp extends StatelessWidget {
       length: 2,
       child: ColorfulSafeArea(
         // bottomColor: Colors.transparent ,
-        color: kPrimaryColor,
+        color: themeMode.isDark ? kPrimaryColorLightMode : kPrimaryColorDarkMode,
         child: Scaffold(
-          backgroundColor: kBackgroundAppColor,
+          backgroundColor: themeMode.isDark ? kBackgroundAppColorLightMode : kBackgroundAppColorDarkMode,
           appBar: AppBar(
-            backgroundColor: kPrimaryColor,
+            backgroundColor: themeMode.isDark ? kPrimaryColorLightMode : kPrimaryColorDarkMode,
             title: const Text(
               'المساعدة',
               style: TextStyle(
@@ -30,10 +30,11 @@ class AskForHelp extends StatelessWidget {
                 fontFamily: 'IBM',
               ),
             ),
-            bottom: const TabBar(
-              dividerColor: Colors.white,
+            bottom:  TabBar(
+              dividerColor: themeMode.isDark ? kContainerColorLightMode : kContainerColorDarkMode,
 
-              tabs: [
+              tabs: const [
+
                 Tab(text: 'مُستأجر'),
                 Tab(text: 'مالك'),
               ],
@@ -52,7 +53,7 @@ class AskForHelp extends StatelessWidget {
                     margin: const EdgeInsets.fromLTRB(10, 0, 10, 0),
                     decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(7),
-                        color: Colors.white,
+                        color: themeMode.isDark ? kContainerColorLightMode : kContainerColorDarkMode,
                       ),
                     child: Column(
                       mainAxisSize: MainAxisSize.min,
@@ -63,7 +64,7 @@ class AskForHelp extends StatelessWidget {
                           aline,
                           askForHelpButton(() {
                             myPushName(context, MyPagesRoutes.systemBooking);
-                          }, "الحجز"),
+                      }, "الحجز"),
                           aline,
                           askForHelpButton(() {
                             myPushName(context, MyPagesRoutes.whatIsMeanSS);
@@ -84,7 +85,7 @@ class AskForHelp extends StatelessWidget {
                       margin: const EdgeInsets.fromLTRB(10, 0, 10, 0),
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(7),
-                        color: Colors.white,
+                        color: themeMode.isDark ? kContainerColorLightMode : kContainerColorDarkMode,
                       ),
                       child: Column(
                         children: [

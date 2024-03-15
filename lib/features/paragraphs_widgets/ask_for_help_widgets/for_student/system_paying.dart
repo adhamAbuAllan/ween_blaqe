@@ -15,16 +15,16 @@ class SystemPaying extends StatelessWidget {
   Widget build(BuildContext context) {
     return ColorfulSafeArea(
       bottomColor: Colors.transparent ,
-      color: kPrimaryColor,
+      color: themeMode.isDark ? kPrimaryColorLightMode : kPrimaryColorDarkMode,
       child: Scaffold(
-        backgroundColor: kBackgroundAppColor,
+        backgroundColor: themeMode.isDark ? kBackgroundAppColorLightMode : kBackgroundAppColorDarkMode,
 
         appBar: AppBar(
           title: const Text(
             'الدفع',
             style: TextStyle(fontFamily: 'IBM'),
           ),
-          backgroundColor: kPrimaryColor,
+          backgroundColor: themeMode.isDark ? kPrimaryColorLightMode : kPrimaryColorDarkMode,
         ),
         body: Column(
           children: [
@@ -35,7 +35,7 @@ class SystemPaying extends StatelessWidget {
                   margin: const EdgeInsets.fromLTRB(10, 0, 10, 0),
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(7),
-                    color: Colors.white,
+                    color: themeMode.isDark ? kContainerColorLightMode : kContainerColorDarkMode,
                   ),
                   child: Column(
                     //cancel
@@ -66,17 +66,17 @@ class WhatIsSystemPayingAllow extends StatelessWidget {
   Widget build(BuildContext context) {
     return ColorfulSafeArea(
       bottomColor: Colors.transparent ,
-      color: kPrimaryColor,
+      color: themeMode.isDark ? kPrimaryColorLightMode : kPrimaryColorDarkMode,
       child: Scaffold(
-        backgroundColor: kBackgroundAppColor,
+        backgroundColor: themeMode.isDark ? kBackgroundAppColorLightMode : kBackgroundAppColorDarkMode,
 
         appBar: AppBar(
-          backgroundColor: kPrimaryColor,
+          backgroundColor: themeMode.isDark ? kPrimaryColorLightMode : kPrimaryColorDarkMode,
         ),
         body: Column(
           children: [
             //title of what is system paying is allowed
-            const Row(
+             Row(
               children: [
                 Padding(
                   padding: EdgeInsets.fromLTRB(0, 50, 25, 10),
@@ -84,7 +84,7 @@ class WhatIsSystemPayingAllow extends StatelessWidget {
                     "ما هي طرق الدفع المقبولة؟",
                     style: TextStyle(
                       fontSize: 20.0,
-                      color: Colors.black87,
+                      color:themeMode.isDark ? kTextColorLightMode : kTextColorDarkMode,
                       fontFamily: 'IBM',
                       inherit: true,
                     ),
@@ -97,12 +97,12 @@ class WhatIsSystemPayingAllow extends StatelessWidget {
             Container(
               width: double.infinity,
               margin: const EdgeInsets.fromLTRB(25, 0, 30, 10),
-              child: Text(
+              child:  Text(
                 "يتم الدفع عن طريق الاتفاق بينك و بين المالك ، وغالبًا ما تكون الصفقات بين المؤجر و المستأجر في الضفة الغربية بالدفع نقداً. ",
                 style: TextStyle(
                   fontSize: 16.0,
-                  color: Colors.grey.shade800,
-                  fontFamily: 'IBM',
+                  color: themeMode.isDark ? kTextColorLightMode : kTextColorDarkMode.withOpacity(.8),
+                fontFamily: 'IBM',
                   inherit: true,
                 ),
               ),
@@ -110,13 +110,14 @@ class WhatIsSystemPayingAllow extends StatelessWidget {
             Container(
               width: double.infinity,
               margin: const EdgeInsets.fromLTRB(25, 0, 30, 10),
-              child: const Text(
+              child:  Text(
                 "سيتم العمل على إجاد طرق اخرى للدفع مثل"
                 " البطاقات الإتمانية و غيرها من الطرق مسقبلاً بإذن الله",
                 style: TextStyle(
                   fontSize: 16.0,
                   fontFamily: 'IBM',
                   inherit: true,
+                  color: themeMode.isDark ? kTextColorLightMode : kTextColorDarkMode.withOpacity(.7)
                 ),
               ),
             ),
@@ -134,15 +135,16 @@ class CouldIPayByDeposit extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ColorfulSafeArea(
-      color: kPrimaryColor,
+      color: themeMode.isDark ? kPrimaryColorLightMode : kPrimaryColorDarkMode,
       child: Scaffold(
+        backgroundColor: themeMode.isDark ? kBackgroundAppColorLightMode : kBackgroundAppColorDarkMode,
         appBar: AppBar(
-          backgroundColor: kPrimaryColor,
+          backgroundColor: themeMode.isDark ? kPrimaryColorLightMode : kPrimaryColorDarkMode,
         ),
         body: Column(
           children: [
             //title of what is system paying is allowed
-            const Row(
+             Row(
               children: [
                 Padding(
                   padding: EdgeInsets.fromLTRB(0, 30, 25, 10),
@@ -150,9 +152,10 @@ class CouldIPayByDeposit extends StatelessWidget {
                     "هل يمكنني دفع عربون؟",
                     style: TextStyle(
                       fontSize: 20.0,
-                      color: Colors.black87,
+                      color:themeMode.isDark ? kTextColorLightMode : kTextColorDarkMode,
                       fontFamily: 'IBM',
                       inherit: true,
+
                     ),
                   ),
                 ),
@@ -163,11 +166,11 @@ class CouldIPayByDeposit extends StatelessWidget {
             Container(
               width: double.infinity,
               margin: const EdgeInsets.fromLTRB(25, 0, 30, 10),
-              child: Text(
+              child:  Text(
                 "حسب الاتفاق بينك و بين المؤجر، ولكن غالبًا ما يوافق المؤجرون على دفع عربون حتى يظمن المؤجر حقه.",
                 style: TextStyle(
                   fontSize: 16.0,
-                  color: Colors.grey.shade800,
+                  color: themeMode.isDark ? kTextColorLightMode : kTextColorDarkMode.withOpacity(.8),
                   fontFamily: 'IBM',
                   inherit: true,
                 ),

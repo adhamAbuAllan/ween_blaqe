@@ -1,12 +1,12 @@
 class CityRes {
   CityRes({
-    required this.status,
-    required this.msg,
-    required this.data,
+     this.status,
+     this.msg,
+     this.data,
   });
-  late final bool status;
-  late final String msg;
-  late final List<City> data;
+  late final bool? status;
+  late final String ?msg;
+  late final List<City>? data;
 
   CityRes.fromJson(Map<String, dynamic> json){
     status = json['status'];
@@ -18,7 +18,7 @@ class CityRes {
     final _data = <String, dynamic>{};
     _data['status'] = status;
     _data['msg'] = msg;
-    _data['data'] = data.map((e)=>e.toJson()).toList();
+    _data['data'] = data?.map((e)=>e.toJson()).toList();
     return _data;
   }
 }
@@ -26,14 +26,14 @@ class CityRes {
 class City {
   City({
 
-    required this.id,
-    required this.name,
+     this.id,
+     this.name,
     this.active,
     this.createdAt,
     this.updatedAt,
   });
-  late final int id;
-  late final String name;
+  late final int? id;
+late final String ?name;
   late final int ? active;
   late final String? createdAt;
   late final String?updatedAt;

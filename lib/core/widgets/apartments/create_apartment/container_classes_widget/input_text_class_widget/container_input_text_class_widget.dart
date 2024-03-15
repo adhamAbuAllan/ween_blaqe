@@ -1,6 +1,9 @@
 // import 'dart:html';
 
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:get/get.dart';
+import 'package:ween_blaqe/controller/function_controller/change_theme_mode.dart';
 
 import '../../../../../../constants/nums.dart';
 
@@ -77,7 +80,7 @@ class _ContainerInputTextClassWidgetState
 
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(7),
-        color: kContainerColor,
+        color: themeMode.isDark ? kContainerColorLightMode : kContainerColorDarkMode,
       ),
 
       child: Column(
@@ -88,8 +91,8 @@ class _ContainerInputTextClassWidgetState
                 padding: const EdgeInsets.fromLTRB(0, 10, 10, 10),
                 child: Text(
                   title,
-                  style: const TextStyle(
-                    color: kTextColor,
+                  style:  TextStyle(
+                    color: themeMode.isDark ? kTextColorLightMode : kTextColorDarkMode,
                     fontSize: 18,
                     fontFamily: 'IBM',
                   ),
@@ -100,6 +103,7 @@ class _ContainerInputTextClassWidgetState
           Padding(
             padding: const EdgeInsets.fromLTRB(15, 0, 10, 10),
             child: TextFormField(
+              cursorColor:themeMode.isDark ? kPrimaryColorLightMode : kPrimaryColorDarkMode,
               //
               // onChanged: (value) {
               //   // autoFocus = false;
@@ -138,16 +142,17 @@ class _ContainerInputTextClassWidgetState
               initialValue: value,
               onChanged: widget.onEdit,
               maxLines: widget.maxLines,
+              // maxLengthEnforcement: MaxLengthEnforcement.truncateAfterCompositionEnds,
               maxLength: widget.maxLength,
               textDirection: TextDirection.rtl,
               keyboardType: inputType,
               autofocus: widget.autoFocus ?? false,
               // focusNode: focusNode,
               decoration: buildInputDecoration(hintInput),
-              style: TextStyle(
+              style:  TextStyle(
                 fontFamily: 'IBM',
                 fontSize: 16,
-                color: Colors.grey.shade800,
+                color:themeMode.isDark ? kTextColorLightMode : kTextColorDarkMode,
               ),
             ),
           ),
@@ -169,25 +174,30 @@ class _ContainerInputTextClassWidgetState
   }
 
   InputDecoration buildInputDecoration(String hintInput) {
+    ChangeThemeMode themeMode = Get.find();
+
     return InputDecoration(
+
         errorText: errorText.isEmpty ? null : errorText,
         hintTextDirection: TextDirection.rtl,
         hintText: hintInput,
         border: InputBorder.none,
+
         hintMaxLines: widget.hintMaxLines,
         hintStyle: const TextStyle(
           color: Colors.grey,
         ),
-        focusedBorder: const OutlineInputBorder(
+        focusedBorder:  OutlineInputBorder(
+
           borderSide: BorderSide(
             width: 1.5,
-            color: kPrimaryColor,
+            color: themeMode.isDark ? kPrimaryColorLightMode : kPrimaryColorDarkMode,
           ),
         ),
         enabledBorder: OutlineInputBorder(
-            borderSide:  const BorderSide(
+            borderSide:   BorderSide(
               width: 1,
-              color: kPrimaryColor,
+              color: themeMode.isDark ? kPrimaryColorLightMode.withOpacity(.3) : kPrimaryColorDarkMode.withOpacity(.3),
             ),
             borderRadius: BorderRadius.circular(7)));
   }
