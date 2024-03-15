@@ -350,7 +350,6 @@ class _MainState extends State<Main> {
                   index: mainController.index,
                   children: const [
                     MainStudent(),
-
                     //for Owner
                     // MainOwner(),
                   ],

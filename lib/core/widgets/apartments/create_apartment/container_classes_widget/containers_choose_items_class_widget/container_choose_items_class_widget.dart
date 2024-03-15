@@ -5,16 +5,19 @@ import '../../../../../../constants/nums.dart';
 class ContainerChooseItemsClassWidget extends StatefulWidget {
   final Function(dynamic) onSelected;
   final String title;
+  final Future<List<String?>?>? wholeListApi;
   String currentValue;
   final List<String> items;
-  bool dataStatus;
+  // bool dataStatus;
 
   ContainerChooseItemsClassWidget({super.key,
     required this.onSelected,
     required this.title,
+    required this.wholeListApi,
     required this.currentValue,
     required this.items,
-    required this.dataStatus});
+    // required this.dataStatus
+  });
 
   @override
   State<ContainerChooseItemsClassWidget> createState() =>
@@ -56,6 +59,7 @@ class _ContainerChooseItemsClassWidgetState
               padding: const EdgeInsets.fromLTRB(0, 0, 0, 0),
               child:
                  DropdownButtonClassWidget(
+                   wholeListApi: widget.wholeListApi,
                   items: widget.items,
                   firstItem: widget.currentValue,
                   onSelected: widget.onSelected,
@@ -96,7 +100,7 @@ class _ContainerChooseItemsClassWidgetState
                   //     );  }
                   //
                   // },
-                  dataStatus: widget.dataStatus,
+                  // dataStatus: widget.dataStatus,
                                  ),
           ),
         ]));

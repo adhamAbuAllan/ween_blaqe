@@ -26,7 +26,7 @@ class _SecondStepState extends State<SecondStep> {
     // print("city_id --${AddAdDataContainer.cityId} -- in second_step page");
 
 // print(AddAdDataContainer.address);
-  readyCityAndTypeOfApartmentApi.dataStatus = false;
+//   readyCityAndTypeOfApartmentApi.dataStatus = false;
   }
 
   @override
