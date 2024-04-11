@@ -13,14 +13,14 @@ Widget showAllAdvantages(Advantages advantages) {
           Padding(
             padding: const EdgeInsets.fromLTRB(200, 0, 10, 0),
             child: Text(
-              advantageName,
+              advantageName!,
               style: const TextStyle(
                 fontFamily: 'IBM',
               ),
             ),
           ),
           Image(
-            image: AssetImage(icon),
+            image: AssetImage(icon!),
             width: 32,
             height: 32,
           ),

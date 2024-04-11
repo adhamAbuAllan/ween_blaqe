@@ -1,4 +1,3 @@
-
 import 'package:colorful_safe_area/colorful_safe_area.dart';
 import 'package:flutter/material.dart';
 import 'package:skeletons/skeletons.dart';
@@ -36,29 +35,32 @@ class _GetAdvantagesState extends State<GetAdvantages> {
     return Container(
       margin: const EdgeInsets.fromLTRB(10, 23, 10, 0),
       decoration: BoxDecoration(
-        color: themeMode.isDark ? kContainerColorLightMode : kContainerColorDarkMode,
+        color: themeMode.isDark
+            ? kContainerColorLightMode
+            : kContainerColorDarkMode,
         borderRadius: BorderRadius.circular(7),
       ),
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
-           Row(
+          Row(
             children: [
               Padding(
-                padding: EdgeInsets.fromLTRB(0, 0, 10, 0),
+                padding: const EdgeInsets.fromLTRB(0, 0, 10, 0),
                 child: Text("المزايا",
                     style: TextStyle(
-                      color: themeMode.isDark ? kTextColorLightMode : kTextColorDarkMode,
+                      color: themeMode.isDark
+                          ? kTextColorLightMode
+                          : kTextColorDarkMode,
                       fontSize: 20,
                       fontFamily: 'IBM',
                     )),
               ),
-              Expanded(child: Text("")),
+              const Expanded(child: Text("")),
             ],
           ),
           Column(
-            children:
-            _advantageItemsWidget(advantages: advantages)
+            children: _advantageItemsWidget(advantages: advantages)
                 .toList()
                 .take(10)
                 .toList(),
@@ -75,14 +77,13 @@ class _GetAdvantagesState extends State<GetAdvantages> {
                         onPressed: () {
                           Navigator.of(context).push(
                             MaterialPageRoute(builder: (context) {
-                              return ShowAllAdvantages(
-                                  features: advantages!);
+                              return ShowAllAdvantages(features: advantages!);
                             }),
                           );
                         },
                         style: fullButton,
                         child: Text(
-                            "عرض الميزات ال${(advantages?.length ??0)-10} الآخرى")),
+                            "عرض الميزات ال${(advantages?.length ?? 0) - 10} الآخرى")),
                   ),
                 )
               : const SizedBox(),
@@ -109,25 +110,33 @@ class _GetAdvantagesState extends State<GetAdvantages> {
           return Padding(
             padding: const EdgeInsets.fromLTRB(12, 0, 12, 0),
             child: ListTile(
-              title: Text(entry.advName,
-                  style:  TextStyle(
+              title: Text(entry.advName!,
+                  style: TextStyle(
                       fontFamily: 'IBM',
                       fontSize: 16,
-                      color: themeMode.isDark ? kTextColorLightMode : kTextColorDarkMode)),
-              trailing: entry.icon.isEmpty ? const SizedBox(child: SkeletonAvatar(
-                  style:
-                  SkeletonAvatarStyle(width: 28, height: 28))) :Image.network(
-                entry.icon,
-                height: 30,
-                width: 30,
-                errorBuilder: (context, error, stackTrace) {
-                  return  const SizedBox(child: SkeletonAvatar(
-
-                      style:
-                      SkeletonAvatarStyle(width: 28, height: 28,)));
-                },
-                color: themeMode.isDark ? kTextColorLightMode : kTextColorDarkMode,
-              ),
+                      color: themeMode.isDark
+                          ? kTextColorLightMode
+                          : kTextColorDarkMode)),
+              trailing: entry.icon!.isEmpty
+                  ? const SizedBox(
+                      child: SkeletonAvatar(
+                          style: SkeletonAvatarStyle(width: 28, height: 28)))
+                  : Image.network(
+                      entry.icon!,
+                      height: 30,
+                      width: 30,
+                      errorBuilder: (context, error, stackTrace) {
+                        return const SizedBox(
+                            child: SkeletonAvatar(
+                                style: SkeletonAvatarStyle(
+                          width: 28,
+                          height: 28,
+                        )));
+                      },
+                      color: themeMode.isDark
+                          ? kTextColorLightMode
+                          : kTextColorDarkMode,
+                    ),
             ),
           );
         }) ??
@@ -200,26 +209,28 @@ class _ShowAllAdvantagesState extends State<ShowAllAdvantages> {
   @override
   Widget build(BuildContext context) {
     return ColorfulSafeArea(
-      bottomColor: Colors.transparent ,
+      bottomColor: Colors.transparent,
       color: themeMode.isDark ? kPrimaryColorLightMode : kPrimaryColorDarkMode,
       child: Scaffold(
-        backgroundColor: themeMode.isDark ? kBackgroundAppColorLightMode : kBackgroundAppColorDarkMode,
-
+        backgroundColor: themeMode.isDark
+            ? kBackgroundAppColorLightMode
+            : kBackgroundAppColorDarkMode,
         body: Column(
-
           children: [
             Row(
               children: [
                 Padding(
                   padding: const EdgeInsets.fromLTRB(0, 25, 0, 0),
                   child: IconButton(
-                    padding: const EdgeInsets.only(right: 10),
+                      padding: const EdgeInsets.only(right: 10),
                       onPressed: () {
                         Navigator.of(context).pop(context);
                       },
-                      icon:  Icon(
+                      icon: Icon(
                         Icons.arrow_back,
-                        color: themeMode.isDark ? kTextColorLightMode : kTextColorDarkMode,
+                        color: themeMode.isDark
+                            ? kTextColorLightMode
+                            : kTextColorDarkMode,
                       )),
                 ),
                 const Expanded(child: Text("")),
@@ -227,56 +238,64 @@ class _ShowAllAdvantagesState extends State<ShowAllAdvantages> {
             ),
             Container(
               margin: const EdgeInsets.fromLTRB(10, 30, 10, 0),
-
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(7),
-                color: themeMode.isDark ? kContainerColorLightMode : kContainerColorDarkMode,
+                color: themeMode.isDark
+                    ? kContainerColorLightMode
+                    : kContainerColorDarkMode,
               ),
               child: Column(
                 children: [
-                   Row(
+                  Row(
                     children: [
                       Padding(
-                        padding: EdgeInsets.fromLTRB(0, 0, 10, 0),
+                        padding: const EdgeInsets.fromLTRB(0, 0, 10, 0),
                         child: Text("المزايا",
                             style: TextStyle(
-                              color: themeMode.isDark ? kTextColorLightMode : kTextColorDarkMode,
+                              color: themeMode.isDark
+                                  ? kTextColorLightMode
+                                  : kTextColorDarkMode,
                               fontSize: 20,
                               fontFamily: 'IBM',
                             )),
                       ),
-                      Expanded(child: Text("")),
+                      const Expanded(child: Text("")),
                     ],
                   ),
-
-                     SizedBox(
-                       height: 530,
-                       child: ListView.builder(
-
-                           padding: const EdgeInsets.all(0),
-                          itemCount: widget.features.length,
-                          itemBuilder: ((c, i) {
-                            return ListTile(
-                              title: Text(widget.features[i].advName,
-                                style:  TextStyle(
+                  SizedBox(
+                    height: 530,
+                    child: ListView.builder(
+                        padding: const EdgeInsets.all(0),
+                        itemCount: widget.features.length,
+                        itemBuilder: ((c, i) {
+                          return ListTile(
+                              title: Text(
+                                widget.features[i].advName!,
+                                style: TextStyle(
                                     fontFamily: 'IBM',
                                     fontSize: 16,
-                                    color: themeMode.isDark ? kTextColorLightMode : kTextColorDarkMode),
+                                    color: themeMode.isDark
+                                        ? kTextColorLightMode
+                                        : kTextColorDarkMode),
                               ),
-
-                              trailing: widget.features[i].icon.isEmpty ?  SizedBox(child: CircularProgressIndicator(color: themeMode.isDark ? kPrimaryColorLightMode : kPrimaryColorDarkMode,strokeWidth: 3,)) :
-
-
-                              Image.network(
-                                  widget.features[i].icon,
-                                  height: 30,
-                                  width: 30,
-                                  color: themeMode.isDark ? kTextColorLightMode : kTextColorDarkMode,
-                                )
-                            );
-                          })),
-                     ),
-
+                              trailing: widget.features[i].icon!.isEmpty
+                                  ? SizedBox(
+                                      child: CircularProgressIndicator(
+                                      color: themeMode.isDark
+                                          ? kPrimaryColorLightMode
+                                          : kPrimaryColorDarkMode,
+                                      strokeWidth: 3,
+                                    ))
+                                  : Image.network(
+                                      widget.features[i].icon!,
+                                      height: 30,
+                                      width: 30,
+                                      color: themeMode.isDark
+                                          ? kTextColorLightMode
+                                          : kTextColorDarkMode,
+                                    ));
+                        })),
+                  ),
                 ],
               ),
             ),
@@ -286,4 +305,3 @@ class _ShowAllAdvantagesState extends State<ShowAllAdvantages> {
     );
   }
 }
-

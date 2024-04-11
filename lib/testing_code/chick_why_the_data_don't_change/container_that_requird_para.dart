@@ -34,7 +34,7 @@ class _HereShouldDataToPassState extends State<HereShouldDataToPass> {
           } else if (snapshot.hasError) {
             return Text('Error: ${snapshot.error}');
           } else {
-              widget.list = snapshot.data;
+              widget.list  = snapshot.data;
 
             widget.currentValue = (widget.list!.isNotEmpty ? widget.list?.first! : "")!;
             return DropdownButtonFormField<dynamic>(

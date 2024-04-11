@@ -14,7 +14,7 @@ class NewSession{
       case int: sp.setInt(key, value as int); break;
       case double: sp.setDouble(key, value as double); break;
       case bool: sp.setBool(key, value as bool); break;
-      case List<String>: sp.setStringList(key, value as List<String>); break;
+      case const (List<String>): sp.setStringList(key, value as List<String>); break;
     }
   }
 
@@ -24,7 +24,7 @@ class NewSession{
       case int: return (sp.getInt(key) ?? def) as T;
       case double: return (sp.getDouble(key) ?? def) as T;
       case bool: return (sp.getBool(key) ?? def) as T;
-      case List<String>: return (sp.getStringList(key) ?? def) as T;
+      case const (List<String>): return (sp.getStringList(key) ?? def) as T;
     }
     return def;
   }

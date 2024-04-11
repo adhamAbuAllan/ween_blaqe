@@ -4,6 +4,7 @@ import 'package:ween_blaqe/constants/strings.dart';
 import 'package:ween_blaqe/controller/get_controllers.dart';
 import 'package:ween_blaqe/core/utils/funcations/route_pages/push_routes.dart';
 import 'package:ween_blaqe/core/utils/styles/button.dart';
+import '../../../../api/advantages.dart';
 import '../../../../constants/nums.dart';
 import '../../../../core/widgets/alirt_class_widget.dart';
 import '../../../../core/widgets/apartments/create_apartment/'
@@ -29,8 +30,7 @@ TextEditingController countOfBathRoomsController = TextEditingController();
 // }/
 
 class FirstStep extends StatefulWidget {
-  const FirstStep({Key? key}) : super(key: key);
-
+  const FirstStep({Key? key, }) : super(key: key);
   @override
   State<FirstStep> createState() => _FirstStepState();
 }
@@ -121,6 +121,7 @@ class _FirstStepState extends State<FirstStep> {
                         onPressed: () {
                           setState(() {
                             try {
+
                               AddAdDataContainer.address =
                                   addressController.text;
                               AddAdDataContainer.rooms =
@@ -151,8 +152,10 @@ class _FirstStepState extends State<FirstStep> {
                                     "--${AddAdDataContainer.city}");
 
                                 myPushName(context, MyPagesRoutes.step2);
+
                               }
                             } catch (c) {
+
                               NormalAlert.show(
                                   context,
                                   "بيانات ناقصة",
@@ -291,26 +294,4 @@ class _FirstStepState extends State<FirstStep> {
   }
 
   String hintCountBathrooms = "0";
-}
-
-class HiGoodBayScreen extends StatefulWidget {
-  const HiGoodBayScreen({super.key});
-
-  @override
-  State<HiGoodBayScreen> createState() => _HiGoodBayScreenState();
-}
-
-class _HiGoodBayScreenState extends State<HiGoodBayScreen> {
-  @override
-  Widget build(BuildContext context) {
-    return const Scaffold(
-      backgroundColor: kBackgroundAppColorDarkMode,
-      body: Center(
-          child: Text(
-        "Hi"
-        " goodbay",
-        style: TextStyle(color: kTextColorDarkMode),
-      )),
-    );
-  }
 }

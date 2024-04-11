@@ -71,7 +71,7 @@ class _AdvantagesClassWidgetState extends State<AdvantagesClassWidget> {
           child: Row(
             children: [
               Text(
-                feature.advName,
+                feature.advName!,
                 style: TextStyle(
                     fontFamily: 'IBM',
                     fontSize: 16,
@@ -79,7 +79,7 @@ class _AdvantagesClassWidgetState extends State<AdvantagesClassWidget> {
               ),
               const Expanded(child: Text("")),
               Image(
-                image: AssetImage(feature.icon),
+                image: AssetImage(feature.icon!),
                 width: 30,
                 height: 30,
               )

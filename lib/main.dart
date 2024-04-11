@@ -14,9 +14,11 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:ween_blaqe/controller/function_controller/api_functions_controller/get_advatages_api.dart';
 import 'package:ween_blaqe/controller/function_controller/change_theme_mode.dart';
 import 'package:ween_blaqe/controller/main_controller.dart';
 import 'package:flutter/services.dart';
+import 'package:ween_blaqe/controller/models_controller/advantages_model_controller.dart';
 
 // import 'package:ween_blaqe/controller/owner_controller/owner_controller.dart';
 import 'package:ween_blaqe/controller/student_controller/student_controller.dart';
@@ -101,6 +103,8 @@ void main() async {
   Get.put(ReadyCityAndApartmentTypeApi());
   Get.put(TypeOfApartmentModelsController());
   Get.put(MainController());
+  Get.put(GetAdvantages());
+  Get.put(AdvantagesModelController());
   //for get
 
   runApp(const OwnMaterialApp(
@@ -179,7 +183,7 @@ class _OwnMaterialAppState extends State<OwnMaterialApp> {
         MyPagesRoutes.main: (context) => const Main(),
         // MyPagesRoutes.mainOwner: (context) => const MainOwner(),
         MyPagesRoutes.mainStudent: (context) => const MainStudent(),
-        MyPagesRoutes.step1: (context) =>  FirstStep(),
+        MyPagesRoutes.step1: (context) =>  const FirstStep(),
         MyPagesRoutes.step2: (context) => const SecondStep(),
         MyPagesRoutes.step3: (context) => const ThirdStep(),
         MyPagesRoutes.step4: (context) => const FourthStep(),

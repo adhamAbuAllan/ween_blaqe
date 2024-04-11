@@ -82,12 +82,12 @@ class _TestAdvState extends State<TestAdv> {
 
 class AdvantageRes {
   AdvantageRes({
-    required this.status,
-    required this.msg,
-    required this.data,
+     this.status,
+     this.msg,
+     this.data,
   });
-  late final bool status;
-  late final String msg;
+  late final bool? status;
+  late final String? msg;
   late final Advantages? data;
 
   AdvantageRes.fromJson(Map<String, dynamic> json){
@@ -107,20 +107,21 @@ class AdvantageRes {
 
 class Advantages{
   Advantages({
-    required this.id,
-    required this.advName,
-    required this.icon,
+     this.id,
+     this.advName,
+     this.icon,
+    this.checked=false,
     // required this.checkedId,
     this.createdAt,
     this.updatedAt,
   });
-  late final int id;
+  late final int ?id;
   // late final int ?checkedId;
-  late final String icon;
-  late final String advName;
+  late final String ?icon;
+  late final String ?advName;
   late final String? createdAt;
   late final String?updatedAt;
-
+  bool? checked;
   Advantages.fromJson(Map<String, dynamic> json){
     id = json['id'];
     // checkedId = json['checked_id'];
@@ -141,3 +142,5 @@ class Advantages{
     return _data;
   }
 }
+
+
