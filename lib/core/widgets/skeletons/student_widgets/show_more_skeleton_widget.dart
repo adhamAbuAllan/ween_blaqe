@@ -186,125 +186,7 @@ class _SkeletonShowMoreWidgetState extends State<SkeletonShowMoreWidget> {
               ),
             ),
             //advantages
-            Container(
-              margin: const EdgeInsets.fromLTRB(10, 23, 10, 0),
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(7),
-                color: themeMode.isDark ? kContainerColorLightMode : kContainerColorDarkMode,
-              ),
-              child: Column(
-                children: [
-                  //text of adv skeleton
-                  Row(
-                    children: [
-                      Padding(
-                        padding: const EdgeInsets.fromLTRB(0, 10, 10, 10),
-                        child: SkeletonLine(
-                          style: SkeletonLineStyle(
-                              height: 18,
-                              width: 100,
-                              borderRadius: BorderRadius.circular(4)),
-                        ),
-                      ),
-                      const Expanded(child: Text("")),
-                    ],
-                  ),
-                  //advantages skeleton
-                  Padding(
-                    padding: const EdgeInsets.fromLTRB(12, 8, 12, 8),
-                    child: Row(
-                      children: [
-                        SkeletonLine(
-                          style: SkeletonLineStyle(
-                              height: 50,
-                              width: 340,
-                              borderRadius: BorderRadius.circular(4)),
-                        ),
-                      ],
-                    ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.fromLTRB(12, 8, 12, 8),
-                    child: Row(
-                      children: [
-                        SkeletonLine(
-                          style: SkeletonLineStyle(
-                              height: 50,
-                              width: 340,
-                              borderRadius: BorderRadius.circular(4)),
-                        ),
-                      ],
-                    ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.fromLTRB(12, 8, 12, 8),
-                    child: Row(
-                      children: [
-                        SkeletonLine(
-                          style: SkeletonLineStyle(
-                              height: 50,
-                              width: 340,
-                              borderRadius: BorderRadius.circular(4)),
-                        ),
-                      ],
-                    ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.fromLTRB(12, 8, 12, 8),
-                    child: Row(
-                      children: [
-                        SkeletonLine(
-                          style: SkeletonLineStyle(
-                              height: 50,
-                              width: 340,
-                              borderRadius: BorderRadius.circular(4)),
-                        ),
-                      ],
-                    ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.fromLTRB(12, 8, 12, 8),
-                    child: Row(
-                      children: [
-                        SkeletonLine(
-                          style: SkeletonLineStyle(
-                              height: 50,
-                              width: 340,
-                              borderRadius: BorderRadius.circular(4)),
-                        ),
-                      ],
-                    ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.fromLTRB(12, 8, 12, 8),
-                    child: Row(
-                      children: [
-                        SkeletonLine(
-                          style: SkeletonLineStyle(
-                              height: 50,
-                              width: 340,
-                              borderRadius: BorderRadius.circular(4)),
-                        ),
-                      ],
-                    ),
-                  ),
-                  //button of advantages skeleton
-                  Padding(
-                    padding: const EdgeInsets.fromLTRB(0, 20, 10, 15),
-                    child: Row(
-                      children: [
-                        SkeletonLine(
-                          style: SkeletonLineStyle(
-                              width: 350,
-                              height: 55,
-                              borderRadius: BorderRadius.circular(4)),
-                        ),
-                      ],
-                    ),
-                  ),
-                ],
-              ),
-            ),
+            const SkeletonAdvantages(),
             //notes of owner
             Container(
                 padding: const EdgeInsets.all(10.0),
@@ -465,6 +347,135 @@ class _SkeletonShowMoreWidgetState extends State<SkeletonShowMoreWidget> {
             ),
           ],
         )),
+      ),
+    );
+  }
+}
+
+class SkeletonAdvantages extends StatelessWidget {
+  const SkeletonAdvantages({
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      margin: const EdgeInsets.fromLTRB(10, 23, 10, 0),
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(7),
+        color: themeMode.isDark ? kContainerColorLightMode : kContainerColorDarkMode,
+      ),
+      child: Column(
+        children: [
+          //text of adv skeleton
+          Row(
+            children: [
+              Padding(
+                padding: const EdgeInsets.fromLTRB(0, 10, 10, 10),
+                child: SkeletonLine(
+                  style: SkeletonLineStyle(
+                      height: 18,
+                      width: 100,
+                      borderRadius: BorderRadius.circular(4)),
+                ),
+              ),
+              const Expanded(child: Text("")),
+            ],
+          ),
+          //advantages skeleton
+          Padding(
+            padding: const EdgeInsets.fromLTRB(12, 8, 12, 8),
+            child: Row(
+              children: [
+                SkeletonLine(
+                  style: SkeletonLineStyle(
+                      height: 50,
+                      width: 340,
+                      borderRadius: BorderRadius.circular(4)),
+                ),
+              ],
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.fromLTRB(12, 8, 12, 8),
+            child: Row(
+              children: [
+                SkeletonLine(
+                  style: SkeletonLineStyle(
+                      height: 50,
+                      width: 340,
+                      borderRadius: BorderRadius.circular(4)),
+                ),
+              ],
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.fromLTRB(12, 8, 12, 8),
+            child: Row(
+              children: [
+                SkeletonLine(
+                  style: SkeletonLineStyle(
+                      height: 50,
+                      width: 340,
+                      borderRadius: BorderRadius.circular(4)),
+                ),
+              ],
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.fromLTRB(12, 8, 12, 8),
+            child: Row(
+              children: [
+                SkeletonLine(
+                  style: SkeletonLineStyle(
+                      height: 50,
+                      width: 340,
+                      borderRadius: BorderRadius.circular(4)),
+                ),
+              ],
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.fromLTRB(12, 8, 12, 8),
+            child: Row(
+              children: [
+                SkeletonLine(
+                  style: SkeletonLineStyle(
+                      height: 50,
+                      width: 340,
+                      borderRadius: BorderRadius.circular(4)),
+                ),
+              ],
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.fromLTRB(12, 8, 12, 8),
+            child: Row(
+              children: [
+                SkeletonLine(
+                  style: SkeletonLineStyle(
+                      height: 50,
+                      width: 340,
+                      borderRadius: BorderRadius.circular(4)),
+                ),
+              ],
+            ),
+          ),
+          //button of advantages skeleton
+          Padding(
+            padding: const EdgeInsets.fromLTRB(0, 20, 10, 15),
+            child: Row(
+              children: [
+                SkeletonLine(
+                  style: SkeletonLineStyle(
+                      width: 350,
+                      height: 55,
+                      borderRadius: BorderRadius.circular(4)),
+                ),
+              ],
+            ),
+          ),
+        ],
       ),
     );
   }

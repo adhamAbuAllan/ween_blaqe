@@ -1,11 +1,13 @@
 import 'package:colorful_safe_area/colorful_safe_area.dart';
 import 'package:flutter/material.dart';
+import 'package:ween_blaqe/controller/get_controllers.dart';
 import 'package:ween_blaqe/core/utils/styles/button.dart';
 import 'package:http/http.dart' as http;
 import 'package:ween_blaqe/core/widgets/apartments/create_apartment/container_classes_widget/check_boxs/advatnages_check_box/feature_of_advatnages.dart';
+import 'package:ween_blaqe/core/widgets/skeletons/student_widgets/show_more_skeleton_widget.dart';
 import 'dart:convert';
 import '../../../../api/advantages.dart';
-import '../../../../core/widgets/apartments/create_apartment/container_classes_widget/check_boxs/advatnages_check_box/add_advantages_container_class_widget.dart';
+// import '../../../../core/widgets/apartments/create_apartment/container_classes_widget/check_boxs/advatnages_check_box/add_advantages_container_class_widget.dart';
 import '../../../../data_containers/add_ad_data_container.dart';
 import 'package:ween_blaqe/constants/strings.dart';
 import 'package:ween_blaqe/core/utils/funcations/route_pages/push_routes.dart';
@@ -22,19 +24,19 @@ class SecondStep extends StatefulWidget {
 }
 
 class _SecondStepState extends State<SecondStep> {
-  var turnOnLocalFeatures = false;
+  // var turnOnLocalFeatures = false;
 
   List<Advantages> advantages = [];
-  Advantages? advantage;
+  // Advantages? advantage;
 
   bool checked = false;
-  List<Advantages> features = [];
+  // List<Advantages> features = [];
   late Future<List<AdvantageRes?>?> allFeatures;
-
+  late bool isDataLoading = false;
   List<int> featuresChosen = [];
   // List<int> chosen = [];
   // Map<int, bool> chosen = {};
-late FeatureOfAdvantagesCheckBox newCheck ;
+// late FeatureOfAdvantagesCheckBox newCheck ;
   @override
   void initState() {
     super.initState();
@@ -44,7 +46,7 @@ late FeatureOfAdvantagesCheckBox newCheck ;
     //   await go(advantages);
     //
     // });
-    allFeatures = go(advantages);
+    allFeatures = go(advantages,isDataLoading);
     allFeatures;
     // newCheck;
 
@@ -68,7 +70,7 @@ late FeatureOfAdvantagesCheckBox newCheck ;
           backgroundColor: themeMode.isDark
               ? kBackgroundAppColorLightMode
               : kBackgroundAppColorDarkMode,
-          body: SingleChildScrollView(
+          body: !isDataLoading ? const SkeletonAdvantages(): SingleChildScrollView(
             child: Column(
               children: [
                 Padding(
@@ -83,8 +85,10 @@ late FeatureOfAdvantagesCheckBox newCheck ;
                         child: const Text("رجوع"),
                       ),
                       const Expanded(child: Text("")),
+
                       ElevatedButton(
                         onPressed: () {
+                          advantagesModelController.chosen = featuresChosen;
                           debugPrint("${AddAdDataContainer.address}");
                           // print(AddAdDataContainer.currentCity?.name);
                           debugPrint("${AddAdDataContainer.rooms}");
@@ -104,7 +108,9 @@ late FeatureOfAdvantagesCheckBox newCheck ;
                   child: Text(
                     "الخطوة الثانية",
                     style: TextStyle(
-                      color: Colors.grey.shade800,
+                      color: themeMode.isDark
+                          ? kTextColorLightMode
+                          : kTextColorDarkMode,
                       fontSize: 20,
                       fontFamily: 'IBM',
                     ),
@@ -147,7 +153,9 @@ late FeatureOfAdvantagesCheckBox newCheck ;
                               style: TextStyle(
                                   fontFamily: 'IBM',
                                   fontSize: 20,
-                                  color: Colors.grey.shade800),
+                                  color: themeMode.isDark
+                                      ? kTextColorLightMode
+                                      : kTextColorDarkMode),
                             ),
                           ),
                           const Expanded(child: Text("")),
@@ -162,20 +170,22 @@ late FeatureOfAdvantagesCheckBox newCheck ;
                                 advantages.map((feature) {
                           return ListTile(
                               onTap: () {
-                                print(feature.id);
-                                // if(){}
-                                for (var item in features) {
-                                  // if(item.id??<=15){}
-                                  newCheck.checked = true;
-                                  //   item.id == newCheck.id ? newCheck = true :newCheck =
-                                  // item['id'] = newCheck.checked;
-                                }
-                                print("new check the check is --${newCheck.checked}");
-                                print("new check the id is --${newCheck.id}");
-                                print("new check the name is --${newCheck.name}");
-                                // chosen = ;
+                                  if(checked !=feature.checked){
+                                    setState(() {
+                                      feature.checked = checked;
+                                      // feature.checked != feature.checked??true;
+                                      // checked !=checked;
+                                    });
+
+                                  }else{
+                                    setState(() {
+                                      feature.checked = !checked;
+                                      // feature.checked !=checked;
+                                    });
+                                  }
                               },
-                              dense: true,
+                              horizontalTitleGap:2.5,
+                              dense: false,
                               // selected: checked,
 
                               // mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -205,6 +215,10 @@ late FeatureOfAdvantagesCheckBox newCheck ;
                                   // value: feature.checked,
                                   value: feature.checked,
                                   onChanged: (a) {
+                                      if(checked!=a){
+                                        checked = a??false;
+                                      }
+
                                     // features.first;
                                     if (a != null) {
                                       setState(() {
@@ -218,11 +232,29 @@ late FeatureOfAdvantagesCheckBox newCheck ;
                                         // feature.checked = _isTapped;
                                       });
                                       if (feature.checked == true) {
+                                        setState(() {
+                                          // advantagesModelController.addFeatures(advantagesModelController.chosen, feature.id??0);
+                                        });
+
                                         // chosen.add(feature.id);
-                                        print('the id of feature that you check is ${feature.id} and it is true');
+                                        // for (var index in featuresChosen) {
+                                          // index = feature.id??0;
+                                          featuresChosen.add(feature.id??0);
+                                          // featuresChosen.add(index);
+                                        // }
+                                        //         print("the number that you chosen is : $featuresChosen");
+                                        // print('the id of feature that you check is ${feature.id} and it is true');
                                         // chosen.add(advantage?.id??1);
                                       } else {
-                                        print('the id of feature that you not check is ${feature.id}false');
+                                        for (var index in featuresChosen) {
+                                          if(feature.id== index ){
+                                            featuresChosen.remove(index);
+                                          }
+                                          // print("the number that you remove them is $index, and the list is $featuresChosen");
+
+                                        }
+
+                                        // print('the id of feature that you not check is ${feature.id}false');
                                         // var index = chosen.indexOf(feature.id);
                                         // chosen.removeAt(index + 1);
                                       }
@@ -233,15 +265,21 @@ late FeatureOfAdvantagesCheckBox newCheck ;
                                     }
                                   }),
                               title: Text(
+
                                 feature.advName ?? "",
                                 // feature.advName,
                                 style: TextStyle(
                                     fontFamily: 'IBM',
                                     fontSize: 16,
-                                    color: Colors.grey.shade800),
+                                    color: themeMode.isDark
+                                        ? kTextColorLightMode
+                                        : kTextColorDarkMode ),
                               ),
                               // const Expanded(child: Text("")),
                               trailing: Image(
+                                color: themeMode.isDark
+                                    ? kTextColorLightMode
+                                    : kTextColorDarkMode,
                                 image: NetworkImage(
                                   feature.icon ?? "",
                                 ),
@@ -265,10 +303,12 @@ late FeatureOfAdvantagesCheckBox newCheck ;
     );
   }
 
-  Future<List<AdvantageRes?>?> go(List<Advantages> adv) async {
+  Future<List<AdvantageRes?>?> go(List<Advantages> adv,bool isDataLoading) async {
     setState(() {
       adv.clear();
+       isDataLoading = true;
     });
+
     var url = Uri.parse(ServerWeenBalaqee.advantagesAll);
     // var response = await http.post(url,body:{"adv_name": "apartment",
     //   // "icon":"assets/images/apartments_images/apartment.jpg"
@@ -276,10 +316,13 @@ late FeatureOfAdvantagesCheckBox newCheck ;
     var res = await http.get(url);
     var json = jsonDecode(res.body);
     var data = json["data"];
+
     // as List<dynamic>;
-    print("the data is --$data");
+    // print("the data is --$data");
     adv.clear();
+
     for (var value in data) {
+
       adv.add(Advantages(
         id: value['id'],
         advName: value['adv_name'],
@@ -293,16 +336,19 @@ late FeatureOfAdvantagesCheckBox newCheck ;
       // debugPrint("this is data :$data");
       setState(() {
         adv.first;
-        if (checked == false) {
-          // value['checked_id'] = 0;
-
-          // data[4] = 0;
-        } else {
-          // value['checked_id'] = 1;
-          debugPrint("$checked");
-        }
+        // if (checked == false) {
+        //   // value['checked_id'] = 0;
+        //
+        //   // data[4] = 0;
+        // } else {
+        //   // value['checked_id'] = 1;
+        //   debugPrint("$checked");
+        // }
       });
     }
+    setState(() {
+      isDataLoading = false;
+    });
     return allFeatures;
   }
 
@@ -324,9 +370,9 @@ late FeatureOfAdvantagesCheckBox newCheck ;
       setState(() {
         advantages.first;
         // advantages = chosen;
-        if (checked == false) {
-          // data[4] = 0;
-        } else {}
+        // if (checked == false) {
+        //   // data[4] = 0;
+        // } else {}
       });
     }
   }
