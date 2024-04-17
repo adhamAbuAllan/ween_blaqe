@@ -5,11 +5,10 @@ import 'package:flutter/material.dart';
 
 import 'package:ween_blaqe/constants/nums.dart';
 
- 
-
-main(){
-  runApp(const MaterialApp(home:SkeletonShowMoreWidget()));
+main() {
+  runApp(const MaterialApp(home: SkeletonShowMoreWidget()));
 }
+
 class SkeletonShowMoreWidget extends StatefulWidget {
   const SkeletonShowMoreWidget({Key? key}) : super(key: key);
 
@@ -32,7 +31,7 @@ class _SkeletonShowMoreWidgetState extends State<SkeletonShowMoreWidget> {
   @override
   Widget build(BuildContext context) {
     return ColorfulSafeArea(
-      bottomColor: Colors.transparent ,
+      bottomColor: Colors.transparent,
       color: themeMode.isDark ? kPrimaryColorLightMode : kPrimaryColorDarkMode,
       child: Scaffold(
         backgroundColor: Colors.grey.shade200,
@@ -64,7 +63,9 @@ class _SkeletonShowMoreWidgetState extends State<SkeletonShowMoreWidget> {
               margin: const EdgeInsets.fromLTRB(10, 23, 10, 0),
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(7),
-                color: themeMode.isDark ? kContainerColorLightMode : kContainerColorDarkMode,
+                color: themeMode.isDark
+                    ? kContainerColorLightMode
+                    : kContainerColorDarkMode,
               ),
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -131,7 +132,9 @@ class _SkeletonShowMoreWidgetState extends State<SkeletonShowMoreWidget> {
               margin: const EdgeInsets.fromLTRB(10, 23, 10, 0),
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(7),
-                color: themeMode.isDark ? kContainerColorLightMode : kContainerColorDarkMode,
+                color: themeMode.isDark
+                    ? kContainerColorLightMode
+                    : kContainerColorDarkMode,
               ),
               child: Column(
                 children: [
@@ -194,7 +197,9 @@ class _SkeletonShowMoreWidgetState extends State<SkeletonShowMoreWidget> {
                 width: 373,
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(7),
-                  color: themeMode.isDark ? kContainerColorLightMode : kContainerColorDarkMode,
+                  color: themeMode.isDark
+                      ? kContainerColorLightMode
+                      : kContainerColorDarkMode,
                 ),
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -283,7 +288,9 @@ class _SkeletonShowMoreWidgetState extends State<SkeletonShowMoreWidget> {
               margin: const EdgeInsets.fromLTRB(10, 23, 10, 0),
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(7),
-                color: themeMode.isDark ? kContainerColorLightMode : kContainerColorDarkMode,
+                color: themeMode.isDark
+                    ? kContainerColorLightMode
+                    : kContainerColorDarkMode,
               ),
               child: Column(
                 children: [
@@ -355,7 +362,10 @@ class _SkeletonShowMoreWidgetState extends State<SkeletonShowMoreWidget> {
 class SkeletonAdvantages extends StatelessWidget {
   const SkeletonAdvantages({
     super.key,
+    this.isAddAdvantages,
   });
+
+  final bool? isAddAdvantages;
 
   @override
   Widget build(BuildContext context) {
@@ -363,7 +373,9 @@ class SkeletonAdvantages extends StatelessWidget {
       margin: const EdgeInsets.fromLTRB(10, 23, 10, 0),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(7),
-        color: themeMode.isDark ? kContainerColorLightMode : kContainerColorDarkMode,
+        color: themeMode.isDark
+            ? kContainerColorLightMode
+            : kContainerColorDarkMode,
       ),
       child: Column(
         children: [
@@ -462,19 +474,21 @@ class SkeletonAdvantages extends StatelessWidget {
             ),
           ),
           //button of advantages skeleton
-          Padding(
-            padding: const EdgeInsets.fromLTRB(0, 20, 10, 15),
-            child: Row(
-              children: [
-                SkeletonLine(
-                  style: SkeletonLineStyle(
-                      width: 350,
-                      height: 55,
-                      borderRadius: BorderRadius.circular(4)),
-                ),
-              ],
-            ),
-          ),
+          isAddAdvantages == null
+              ? Padding(
+                  padding: const EdgeInsets.fromLTRB(0, 20, 10, 15),
+                  child: Row(
+                    children: [
+                      SkeletonLine(
+                        style: SkeletonLineStyle(
+                            width: 350,
+                            height: 55,
+                            borderRadius: BorderRadius.circular(4)),
+                      ),
+                    ],
+                  ),
+                )
+              : const SizedBox(),
         ],
       ),
     );
