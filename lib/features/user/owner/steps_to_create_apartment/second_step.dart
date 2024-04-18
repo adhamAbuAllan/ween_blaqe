@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:ween_blaqe/controller/get_controllers.dart';
 import 'package:ween_blaqe/core/utils/styles/button.dart';
 import 'package:http/http.dart' as http;
-import 'package:ween_blaqe/core/widgets/apartments/create_apartment/container_classes_widget/check_boxs/advatnages_check_box/feature_of_advatnages.dart';
+// import 'package:ween_blaqe/core/widgets/apartments/create_apartment/container_classes_widget/check_boxs/advatnages_check_box/feature_of_advatnages.dart';
 import 'package:ween_blaqe/core/widgets/skeletons/student_widgets/show_more_skeleton_widget.dart';
 import 'dart:convert';
 import '../../../../api/advantages.dart';
@@ -50,7 +50,7 @@ class _SecondStepState extends State<SecondStep> {
     //   await go(advantages);
     //
     // });
-    allFeatures = go(advantages, isDataLoading);
+    allFeatures = go(advantages);
     allFeatures;
     // newCheck;
 
@@ -108,6 +108,8 @@ class _SecondStepState extends State<SecondStep> {
                             debugPrint(
                                 'this is a feature you are chosen numbers $featuresChosen');
                             advantagesModelController.chosen = featuresChosen;
+                            debugPrint(
+                                'a numbers you chosen that in api ${advantagesModelController.chosen}');
                           });
 
                           debugPrint("${AddAdDataContainer.address}");
@@ -340,7 +342,7 @@ class _SecondStepState extends State<SecondStep> {
   }
 
   Future<List<AdvantageRes?>?> go(
-      List<Advantages> adv, bool isDataLoading) async {
+      List<Advantages> adv) async {
     setState(() {
       adv.clear();
       isDataLoading = true;
