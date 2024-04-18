@@ -38,18 +38,23 @@ class ThirdStep extends StatefulWidget {
 
 class _ThirdStepState extends State<ThirdStep> {
   dynamic aValueInDropDownButton;
+
   @override
   void initState() {
-  super.initState();
-  // WidgetsBinding.instance.addPostFrameCallback((timeStamp) async {
-  //  await
-wholeListApi =  readyCityAndTypeOfApartmentApi.
-getDataCityApi(typeApartmentItems,"",ServerWeenBalaqee.typeOfApartment,);
-  // });
+    super.initState();
+    // WidgetsBinding.instance.addPostFrameCallback((timeStamp) async {
+    //  await
+    wholeListApi = readyCityAndTypeOfApartmentApi.getDataCityApi(
+      typeApartmentItems,
+      "",
+      ServerWeenBalaqee.typeOfApartment,
+    );
+    // });
 
 //print("current type in is : ${typeOfApartmentModelsController.currentType},"
 //     "and the items is : ${typeOfApartmentModelsController.apartmentTypes}");
   }
+
   //price box
   var priceText = "السعر";
   var priceHint = "يرجى إدخال الإيجار بشكل شهري";
@@ -73,37 +78,42 @@ getDataCityApi(typeApartmentItems,"",ServerWeenBalaqee.typeOfApartment,);
   var firstValueTypeApartment = "";
   var typeOfApartmentFoucsNode = FocusNode();
   List<String> typeApartmentItems = [];
+  int indexOfTypeOfApartment = 1;
 
   @override
   Widget build(BuildContext context) {
     return ColorfulSafeArea(
-bottomColor: Colors.transparent ,
-      color:themeMode.isDark ?kPrimaryColorLightMode :  kPrimaryColorDarkMode,
+      bottomColor: Colors.transparent,
+      color: themeMode.isDark ? kPrimaryColorLightMode : kPrimaryColorDarkMode,
       child: GestureDetector(
         onTap: () {
+          debugPrint(
+              "a list of types of apartment is $typeApartmentItems, and the  current value is $firstValueTypeApartment");
+          debugPrint("a current local index is $indexOfTypeOfApartment ,"
+              "a current of index in api is ${readyCityAndTypeOfApartmentApi.indexApartmentType} ");
           setState(() {
- // print("the dataStatus is : ${readyCityAndTypeOfApartmentApi.dataStatus}");
+            // print("the dataStatus is : ${readyCityAndTypeOfApartmentApi.dataStatus}");
             // readyCityAndTypeOfApartmentApi.dataStatus = true;
-
           });
-        //
-        //   // await   readyCityApi.getDataCityApi(true,dataStatusA:
+          //
+          //   // await   readyCityApi.getDataCityApi(true,dataStatusA:
           //   typeOfApartmentModelsController.dataStatus,
-        //   //     index: typeOfApartmentModelsController.typeIndex,list:
+          //   //     index: typeOfApartmentModelsController.typeIndex,list:
           //   typeOfApartmentModelsController.apartmentTypes,
-        //   //     oneItem: typeOfApartmentModelsController.currentType,urlA:
+          //   //     oneItem: typeOfApartmentModelsController.currentType,urlA:
           //   ServerWeenBalaqee.typeOfApartment);
-        //   // setState(() {
-        //   //   typeOfApartmentModelsController.dataStatus = true;
-        //   //
-        //   // });
-        //
+          //   // setState(() {
+          //   //   typeOfApartmentModelsController.dataStatus = true;
+          //   //
+          //   // });
+          //
           FocusManager.instance.primaryFocus?.unfocus();
-        //
+          //
         },
         child: Scaffold(
-          backgroundColor:themeMode.isDark ?
-          kBackgroundAppColorLightMode: kBackgroundAppColorDarkMode,
+          backgroundColor: themeMode.isDark
+              ? kBackgroundAppColorLightMode
+              : kBackgroundAppColorDarkMode,
           body: SingleChildScrollView(
             child: Column(
               children: [
@@ -121,7 +131,6 @@ bottomColor: Colors.transparent ,
                       const Expanded(child: SizedBox()),
                       ElevatedButton(
                         onPressed: () {
-
                           setState(() {
                             try {
                               setState(() {
@@ -134,7 +143,17 @@ bottomColor: Colors.transparent ,
                                       int.parse(squareMetersController.text);
                                 });
                                 setState(() {
-                    // AddAdDataContainer.type = firstValueTypeApartment;
+                                  for (var i = 0; i < typeApartmentItems.length; ++i) {
+                                    if (typeApartmentItems[i] == firstValueTypeApartment) {
+                                      setState(() {
+                                        indexOfTypeOfApartment = i + 1;
+                                      });
+                                      readyCityAndTypeOfApartmentApi.saveData(indexOfTypeOfApartment,
+                                          isCity: false);
+                                    }
+                                  }
+
+                                  // AddAdDataContainer.type = firstValueTypeApartment;
                                 });
                               });
 
@@ -145,15 +164,13 @@ bottomColor: Colors.transparent ,
                                   squareMeters != null) {
                                 debugPrint(
                                     "type of apartment after add on class "
-                                        "--$typeOfApartment");
+                                    "--$typeOfApartment");
                                 debugPrint(
                                     "prince  --${AddAdDataContainer.price}");
-                                debugPrint(
-                                    "count Of student  "
-                                      "--${AddAdDataContainer.countOfStudent}");
-                                debugPrint(
-                                    "square meteres "
-                                      " --${AddAdDataContainer.squareMeters}");
+                                debugPrint("count Of student  "
+                                    "--${AddAdDataContainer.countOfStudent}");
+                                debugPrint("square meteres "
+                                    " --${AddAdDataContainer.squareMeters}");
                                 myPushName(context, MyPagesRoutes.step4);
                               }
                             } catch (c) {
@@ -187,7 +204,9 @@ bottomColor: Colors.transparent ,
                   child: Text(
                     "الخطوة الثالثة",
                     style: TextStyle(
-                      color:themeMode.isDark ? kTextColorLightMode:kTextColorDarkMode,
+                      color: themeMode.isDark
+                          ? kTextColorLightMode
+                          : kTextColorDarkMode,
                       fontSize: 20,
                       fontFamily: 'IBM',
                     ),
@@ -220,83 +239,83 @@ bottomColor: Colors.transparent ,
                 ),
                 //countStudent padding
                 ContainerChooseItemsClassWidget(
-                  wholeListApi: wholeListApi,
-                  items:typeApartmentItems,
-                  title: "نوع السكن",
-                  currentValue: firstValueTypeApartment,
-                onSelected: (c) {
-                    // aValueInDropDownButton = c;
-                    setState(() {
-                    firstValueTypeApartment = c;
-                    setState(() {
-                      for (var i = 0; i <
-                          typeApartmentItems
-                              .length; ++i) {
-                        if (firstValueTypeApartment ==
-                            typeApartmentItems[i]) {
+                    wholeListApi: wholeListApi,
+                    items: typeApartmentItems,
+                    title: "نوع السكن",
+                    currentValue: firstValueTypeApartment,
+                    onSelected: (c) {
+                      // aValueInDropDownButton = c;
+                      setState(
+                        () {
+                          firstValueTypeApartment = c;
                           setState(() {
-                // readyCityAndTypeOfApartmentApi.indexApartmentType = i + 1;
-
+                            for (var i = 0;
+                                i < typeApartmentItems.length;
+                                ++i) {
+                              if (firstValueTypeApartment ==
+                                  typeApartmentItems[i]) {
+                                setState(() {
+                                  // readyCityAndTypeOfApartmentApi.indexApartmentType = i + 1;
+                                });
+                                readyCityAndTypeOfApartmentApi.saveData(i + 1,
+                                    isCity: false);
+                              }
+                            }
                           });
-                  readyCityAndTypeOfApartmentApi.saveData(i+1,isCity: false);
-
-                        }
-                      }
-                    });
-                  },
-                  );
-                    print("the index of type of city from get "
-                        "data controller in third step is"
-                " : --${readyCityAndTypeOfApartmentApi.indexApartmentType}");
-                  // Column(
-                  //   children: [
-                  //     Row(
-                  //       children: [
-                  //         Padding(
-                                //           padding: const EdgeInsets.fromLTRB(0, 10, 10, 10),
-                  //           child: Text(
-                  //             "نوع السكن",
-                  //             style: TextStyle(
-                  //               color: Colors.grey.shade800,
-                  //               fontSize: 18,
-                  //               fontFamily: 'IBM',
-                  //             ),
-                  //           ),
-                  //         ),
-                  //       ],
-                  //     ),
-                  //     Padding(
-                  //       padding: const EdgeInsets.fromLTRB(0, 0, 0, 10),
-                  //       child: DropdownButtonClassWidget(
-                  //
-                              //         firstItem: typeOfApartmentModelsController.currentType,
-                              //         items: typeOfApartmentModelsController.apartmentTypes,
-                  //         onSelected: (e) {
-                  //           setState(() {
-                                //             typeOfApartmentModelsController.currentType = e;
-                  //             setState(() {
-                  //               for (var i = 0; i <
-                  //               typeOfApartmentModelsController.
-                  //               apartmentTypes.length; ++i) {
-                  //                 if(typeOfApartmentModelsController.
-                              //                 currentType == typeOfApartmentModelsController.
-                  //                 apartmentTypes[i]){
-                  //                   setState(() {
-                  //                     typeOfApartmentModelsController.
-                  //                     typeIndex = i+1;
-                  //                   });
-                  //                 }
-                  //               }
-                  //             });
-                  //
-                  //           });
-                  //
-                  //         },
-                  //       ),
-                  //     ),
-                  //   ],
-                  // )
-                }),
+                        },
+                      );
+                      print("the index of type of city from get "
+                          "data controller in third step is"
+                          " : --${readyCityAndTypeOfApartmentApi.indexApartmentType}");
+                      // Column(
+                      //   children: [
+                      //     Row(
+                      //       children: [
+                      //         Padding(
+                      //           padding: const EdgeInsets.fromLTRB(0, 10, 10, 10),
+                      //           child: Text(
+                      //             "نوع السكن",
+                      //             style: TextStyle(
+                      //               color: Colors.grey.shade800,
+                      //               fontSize: 18,
+                      //               fontFamily: 'IBM',
+                      //             ),
+                      //           ),
+                      //         ),
+                      //       ],
+                      //     ),
+                      //     Padding(
+                      //       padding: const EdgeInsets.fromLTRB(0, 0, 0, 10),
+                      //       child: DropdownButtonClassWidget(
+                      //
+                      //         firstItem: typeOfApartmentModelsController.currentType,
+                      //         items: typeOfApartmentModelsController.apartmentTypes,
+                      //         onSelected: (e) {
+                      //           setState(() {
+                      //             typeOfApartmentModelsController.currentType = e;
+                      //             setState(() {
+                      //               for (var i = 0; i <
+                      //               typeOfApartmentModelsController.
+                      //               apartmentTypes.length; ++i) {
+                      //                 if(typeOfApartmentModelsController.
+                      //                 currentType == typeOfApartmentModelsController.
+                      //                 apartmentTypes[i]){
+                      //                   setState(() {
+                      //                     typeOfApartmentModelsController.
+                      //                     typeIndex = i+1;
+                      //                   });
+                      //                 }
+                      //               }
+                      //             });
+                      //
+                      //           });
+                      //
+                      //         },
+                      //       ),
+                      //     ),
+                      //   ],
+                      // )
+                    }),
                 ContainerInputTextClassWidget(
                   title: countStudentText,
                   hintInput: countStudentHint,
