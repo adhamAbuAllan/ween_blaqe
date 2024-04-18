@@ -104,104 +104,107 @@ bottomColor: Colors.transparent ,
         child: GestureDetector(
           onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
           child: Scaffold(
-            backgroundColor: Colors.grey.shade200,
-            appBar: AppBar(
-              backgroundColor: Colors.white,
-              actions: [
-                Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: OutlinedButton(
-                    onPressed: () {
-                      // mypopAndPushNamed(context, MyPagesRoutes.step3);
-                      Navigator.pop(context);
-                    },
-                    style: outlineButton,
-                    child: const Text("رجوع"),
-                  ),
-                ),
-                const Expanded(child: Text("")),
-                Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: ElevatedButton(
-                    onPressed: () {
-                      setState(() {
-                        FocusScopeNode currentFocus = FocusScope.of(context);
-                        if (!currentFocus.hasPrimaryFocus) {
-                          currentFocus.unfocus();
-                        }
-                      });
-                      setState(() {
-                        try {
-                          AddAdDataContainer.title = titleController.text;
-                          AddAdDataContainer.description =
-                              descriptionController.text;
-                          if (title != null && description != null) {
-                            setState(() {
-                              try {
-                                createApartment(
-                                    address!,
-                                    bathRooms!,
-                                    rooms!,
-                                    price!,
-                                    //be careful don't delete it!!!
-                                    //-------------------
-                                    //  typeOfApartment!,
-                                    //-------------------
-                                    city!,
-                                    squareMeters!,
-                                    type!,
-                                    //be careful don't delete it!!!
-                                    //-------------------
-                                    //  city!,
-                                    //-------------------
-                                    title!,
-                                    description!,
-                                    countOfStudent!,
-                                    // email
-
-                                    // NewSession.get("id", User),
-                                    );
-                                myPushName(context, MyPagesRoutes.main);
-                              } catch (e) {
-                                rethrow;
-                              }
-                            });
-                          }
-                        } catch (e) {
-                          // print(AddAdDataContainer.city);
-                          // print("owner id  --${NewSession.get("token", "")}");
-                          // print(AddAdDataContainer.ownerId);
-
-                          NormalAlert.show(
-                              context,
-                              "مشكلة فنية",
-                              "يوجد "
-                                  "مشكلة"
-                                  " فنية "
-                                  "، سيتم "
-                                  "إصلاحها "
-                                  " قريبًا،"
-                                  "لا تقلق لقد تم حفظ بياناتك،،يمكنك "
-                                  "الرجوع "
-                                  "و المتابعة"
-                                  " في وقتٍ لاحق",
-                              "حسنًا");
-                        }
-                        // AddAdDataContainer.photos = AddImages;
-
-                        // AddAdDataContainer.tesing();
-                      });
-                      // Get.to(ApartmentsOfOwnerAfterAdd());
-                    },
-                    style: fullButton,
-                    child: const Text("حفظ"),
-                  ),
-                ),
-              ],
-            ),
+            backgroundColor: themeMode.isDark
+                ? kBackgroundAppColorLightMode
+                : kBackgroundAppColorDarkMode,
+            // appBar: AppBar(
+            //   backgroundColor: Colors.white,
+            //   actions: ,
+            // ),
             body: SingleChildScrollView(
               child: Column(
                 children: [
+                  Row(children: [                    Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: OutlinedButton(
+                      onPressed: () {
+                        // mypopAndPushNamed(context, MyPagesRoutes.step3);
+                        Navigator.pop(context);
+                      },
+                      style: outlineButton,
+                      child: const Text("رجوع"),
+                    ),
+                  ),
+                    const Expanded(child: Text("")),
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: ElevatedButton(
+                        onPressed: () {
+                          setState(() {
+                            FocusScopeNode currentFocus = FocusScope.of(context);
+                            if (!currentFocus.hasPrimaryFocus) {
+                              currentFocus.unfocus();
+                            }
+                          });
+                          setState(() {
+                            try {
+                              AddAdDataContainer.title = titleController.text;
+                              AddAdDataContainer.description =
+                                  descriptionController.text;
+                              if (title != null && description != null) {
+                                setState(() {
+                                  try {
+                                    createApartment(
+                                      address!,
+                                      bathRooms!,
+                                      rooms!,
+                                      price!,
+                                      //be careful don't delete it!!!
+                                      //-------------------
+                                      //  typeOfApartment!,
+                                      //-------------------
+                                      city!,
+                                      squareMeters!,
+                                      type!,
+                                      //be careful don't delete it!!!
+                                      //-------------------
+                                      //  city!,
+                                      //-------------------
+                                      title!,
+                                      description!,
+                                      countOfStudent!,
+                                      // email
+
+                                      // NewSession.get("id", User),
+                                    );
+                                    myPushName(context, MyPagesRoutes.main);
+                                  } catch (e) {
+                                    rethrow;
+                                  }
+                                });
+                              }
+                            } catch (e) {
+                              // print(AddAdDataContainer.city);
+                              // print("owner id  --${NewSession.get("token", "")}");
+                              // print(AddAdDataContainer.ownerId);
+
+                              NormalAlert.show(
+                                  context,
+                                  "مشكلة فنية",
+                                  "يوجد "
+                                      "مشكلة"
+                                      " فنية "
+                                      "، سيتم "
+                                      "إصلاحها "
+                                      " قريبًا،"
+                                      "لا تقلق لقد تم حفظ بياناتك،،يمكنك "
+                                      "الرجوع "
+                                      "و المتابعة"
+                                      " في وقتٍ لاحق",
+                                  "حسنًا");
+                            }
+                            // AddAdDataContainer.photos = AddImages;
+
+                            // AddAdDataContainer.tesing();
+                          });
+                          // Get.to(ApartmentsOfOwnerAfterAdd());
+                        },
+                        style: fullButton,
+                        child: const Text("حفظ"),
+                      ),
+                    ),],),
+
+
                   //text steps
                   Padding(
                     padding: const EdgeInsets.fromLTRB(0, 10, 0, 0),

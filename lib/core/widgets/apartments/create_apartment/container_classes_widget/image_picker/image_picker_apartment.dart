@@ -40,86 +40,92 @@ class _AddImagesState extends State<AddImages> {
   //widgets
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: Colors.grey.shade200,
-      appBar: AppBar(
-        backgroundColor: Colors.white,
-        actions: [
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: OutlinedButton(
-              onPressed: () {
-                Navigator.pop(context);
-              },
-              style: outlineButton,
-              child: const Text(" رجوع "),
+    return GestureDetector(
+      onTap: (){
+        debugPrint("");
+      },
+      child: Scaffold(
+        backgroundColor: Colors.grey.shade200,
+        appBar: AppBar(
+          backgroundColor: Colors.white,
+          actions: [
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: OutlinedButton(
+                onPressed: () {
+                  Navigator.pop(context);
+                },
+                style: outlineButton,
+                child: const Text(" رجوع "),
+              ),
             ),
-          ),
-          const Expanded(child: Text("")),
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: ElevatedButton(
-              onPressed: checkArray,
-              style: fullButton,
-              child: const Text("تم"),
+            const Expanded(child: Text("")),
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: ElevatedButton(
+                onPressed: checkArray,
+                style: fullButton,
+                child: const Text("تم"),
+              ),
             ),
-          ),
-        ],
-      ),
-      body: Padding(
-        padding: const EdgeInsets.fromLTRB(10, 10, 10, 0),
-        child: Center(
-          child: !kIsWeb && defaultTargetPlatform == TargetPlatform.android
-              ? FutureBuilder<void>(
-                  future: retrieveLostData(),
-                  builder: processImagePicker,
-                )
-              : _handlePreview(),
+          ],
         ),
-      ),
-      floatingActionButton: Column(
-        mainAxisAlignment: MainAxisAlignment.end,
-        children: <Widget>[
-          // Semantics(
-          //   label: 'image_picker_example_from_gallery',
-          //   child: FloatingActionButton(
-          //     onPressed: () {
-          //       _onImageButtonPressed(ImageSource.gallery, context: context);
-          //     },
-          //     heroTag: 'image0',
-          //     tooltip: 'Pick Image from gallery',
-          //     child: const Icon(Icons.photo),
-          //   ),
-          // ),
-          Padding(
-            padding: const EdgeInsets.only(top: 16.0),
-            child: FloatingActionButton(
-              onPressed: () {
-                _onImageButtonPressed(
-                  ImageSource.gallery,
-                  context: context,
-                  isMultiImage: true,
-                );
-              },
-              heroTag: 'image0',
-              backgroundColor: themeMode.isDark ?kPrimaryColorLightMode:kPrimaryColorDarkMode ,
-              tooltip: 'أضف صور من المعرض',
-              child: const Icon(Icons.photo_library),
-            ),
+        body: Padding(
+          padding: const EdgeInsets.fromLTRB(10, 10, 10, 0),
+          child: Center(
+            child: !kIsWeb && defaultTargetPlatform == TargetPlatform.android
+                ?
+            FutureBuilder<void>(
+                    future: retrieveLostData(),
+                    builder: processImagePicker,
+                  )
+                : _handlePreview(),
           ),
-          Padding(
-            padding: const EdgeInsets.only(top: 16.0),
-            child: FloatingActionButton(
-              onPressed: () {
-                _onImageButtonPressed(ImageSource.camera, context: context);
-              },
-              heroTag: 'image1',
-              tooltip: 'إلتقط صورة',
-              backgroundColor: themeMode.isDark ?kPrimaryColorLightMode:kPrimaryColorDarkMode,
-              child: const Icon(Icons.camera_alt),
+        ),
+        floatingActionButton: Column(
+          mainAxisAlignment: MainAxisAlignment.end,
+          children: <Widget>[
+            // Semantics(
+            //   label: 'image_picker_example_from_gallery',
+            //   child: FloatingActionButton(
+            //     onPressed: () {
+            //       _onImageButtonPressed(ImageSource.gallery, context: context);
+            //     },
+            //     heroTag: 'image0',
+            //     tooltip: 'Pick Image from gallery',
+            //     child: const Icon(Icons.photo),
+            //   ),
+            // ),
+            Padding(
+              padding: const EdgeInsets.only(top: 16.0),
+              child: FloatingActionButton(
+                onPressed: () {
+                  _onImageButtonPressed(
+                    ImageSource.gallery,
+                    context: context,
+                    isMultiImage: true,
+                  );
+                },
+                heroTag: 'image0',
+                backgroundColor: themeMode.isDark ?kPrimaryColorLightMode:kPrimaryColorDarkMode ,
+                tooltip: 'أضف صور من المعرض',
+                child: const Icon(Icons.photo_library),
+              ),
             ),
-          ),
-        ],
+            Padding(
+              padding: const EdgeInsets.only(top: 16.0),
+              child: FloatingActionButton(
+                onPressed: () {
+                  _onImageButtonPressed(ImageSource.camera, context: context);
+                },
+                heroTag: 'image1',
+                tooltip: 'إلتقط صورة',
+                backgroundColor: themeMode.isDark ?kPrimaryColorLightMode:kPrimaryColorDarkMode,
+                child: const Icon(Icons.camera_alt),
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }
