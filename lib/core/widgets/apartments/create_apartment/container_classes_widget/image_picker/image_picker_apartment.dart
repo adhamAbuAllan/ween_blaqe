@@ -46,7 +46,9 @@ class _AddImagesState extends State<AddImages> {
   final TextEditingController maxWidthController = TextEditingController();
   final TextEditingController maxHeightController = TextEditingController();
   final TextEditingController qualityController = TextEditingController();
-
+  // the user should delete an images that is same ting ,
+//in a another way , you should could make user couldn't add an image 2 times ,
+//that mean if an image is added , that programmatically make image is selected ,
   Future<void> _onImageButtonPressed(ImageSource source,
       {BuildContext? context, bool isMultiImage = false}) async {
     if (isMultiImage) {
@@ -62,7 +64,7 @@ class _AddImagesState extends State<AddImages> {
             if (_imageFileList != null) {
               for (var images in pickedFileList) {
                 setState(() {
-                  _imageFileList?.add(images);
+                   _imageFileList?.add(images);
                   debugPrint("the pickedFileList is : $images");
                 });
               }
