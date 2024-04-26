@@ -211,7 +211,7 @@ bottomColor: Colors.transparent ,
                     child: Text(
                       "الخطوة الأخيرة",
                       style: TextStyle(
-                        color: Colors.grey.shade800,
+                        color:themeMode.isDark ? kTextColorLightMode :kTextColorDarkMode,
                         fontSize: 20,
                         fontFamily: 'IBM',
                       ),

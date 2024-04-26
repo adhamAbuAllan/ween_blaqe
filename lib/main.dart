@@ -46,6 +46,7 @@ import 'constants/strings.dart';
 import 'controller/function_controller/api_functions_controller/get_city_and_insert_it_in_a_list.dart';
 import 'controller/function_controller/api_functions_controller/get_data_of_apartment_api.dart';
 import 'controller/models_controller/apartment_model_controller.dart';
+import 'controller/models_controller/images_model_controller.dart';
 import 'controller/models_controller/type_of_apartment_models_controller.dart';
 import 'features/send_notice_for_us.dart';
 import 'features/user/owner/steps_to_create_apartment/first_step.dart';
@@ -105,6 +106,7 @@ void main() async {
   Get.put(MainController());
   Get.put(GetAdvantages());
   Get.put(AdvantagesModelController());
+  Get.put(ImagesModelController());
   //for get
 
   runApp(const OwnMaterialApp(
