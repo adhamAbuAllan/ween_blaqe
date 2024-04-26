@@ -298,9 +298,9 @@ bottomColor: Colors.transparent ,
       //   // City city,
       //   //-------------------
       //
-      City city,
+      City ?city,
       int squareMeters,
-      TypeOfApartment type,
+      TypeOfApartment? type,
       String title,
       String description,
       int countOfStudent,
@@ -329,8 +329,8 @@ bottomColor: Colors.transparent ,
       //-------------------
       //   "city_id": city,
       //-------------------
-      "type": type,
-      "city": city,
+      // "type": type,
+      // "city": city,
       "email": email,
       "square_meters": squareMeters.toString(),
       "title": title,
@@ -345,13 +345,13 @@ bottomColor: Colors.transparent ,
       var res = DataOfOneApartment.fromJson(json);
       // var resUser = User.fromJson(json);
       // res. = AddAdDataContainer.countOfStudent;
-      res.type = AddAdDataContainer.type!;
+      // res.type = AddAdDataContainer.type!;
       res.squareMeters = AddAdDataContainer.squareMeters!;
       res.bathrooms = AddAdDataContainer.bathRooms!;
       res.rooms = AddAdDataContainer.rooms!;
       res.description = AddAdDataContainer.description!;
       res.location = AddAdDataContainer.address!;
-      res.city = AddAdDataContainer.city!;
+      // res.city = AddAdDataContainer.city!;
       res.title = AddAdDataContainer.title!;
       res.price = AddAdDataContainer.price!;
       // resUser.email = AddAdDataContainer.email;
