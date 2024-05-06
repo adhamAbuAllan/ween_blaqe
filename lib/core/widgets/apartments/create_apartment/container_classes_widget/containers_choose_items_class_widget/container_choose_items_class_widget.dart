@@ -8,9 +8,11 @@ class ContainerChooseItemsClassWidget extends StatefulWidget {
   final Future<List<String?>?>? wholeListApi;
   String currentValue;
   final List<String> items;
+
   // bool dataStatus;
 
-  ContainerChooseItemsClassWidget({super.key,
+  ContainerChooseItemsClassWidget({
+    super.key,
     required this.onSelected,
     required this.title,
     required this.wholeListApi,
@@ -56,52 +58,51 @@ class _ContainerChooseItemsClassWidgetState
             ],
           ),
           Padding(
-              padding: const EdgeInsets.fromLTRB(0, 0, 0, 0),
-              child:
-                 DropdownButtonClassWidget(
-                   wholeListApi: widget.wholeListApi,
-                  items: widget.items,
-                  firstItem: widget.currentValue,
-                  onSelected: widget.onSelected,
-                  //     (c) {
-                  //   if (!readyCityAndTypeOfApartmentApi.isApartmentApi) {
-                  //     setState(() {
-                  //       setState(() {
-                  //         readyCityAndTypeOfApartmentApi.oneCityName = c;
-                  //       });
-                  //       for (var i = 0;
-                  //           i < readyCityAndTypeOfApartmentApi.citiesName.length;
-                  //           ++i) {
-                  //         if (readyCityAndTypeOfApartmentApi.oneCityName ==
-                  //             readyCityAndTypeOfApartmentApi.citiesName[i]) {
-                  //           setState(() {
-                  //             readyCityAndTypeOfApartmentApi.indexOfCity = i + 1;
-                  //           });
-                  //         }
-                  //       }
-                  //     });
-                  //   }else{
-                  //     setState(() {
-                  //
-                  //       readyCityAndTypeOfApartmentApi.currentApartmentType = c;
-                  //       setState(() {
-                  //         for (var i = 0; i <
-                  //             readyCityAndTypeOfApartmentApi.apartmentType
-                  //                 .length; ++i) {
-                  //           if (readyCityAndTypeOfApartmentApi.currentApartmentType ==
-                  //               readyCityAndTypeOfApartmentApi.apartmentType[i]) {
-                  //             setState(() {
-                  //               readyCityAndTypeOfApartmentApi.indexApartmentType = i + 1;
-                  //             });
-                  //           }
-                  //         }
-                  //       });
-                  //       },
-                  //     );  }
-                  //
-                  // },
-                  // dataStatus: widget.dataStatus,
-                                 ),
+            padding: const EdgeInsets.fromLTRB(0, 0, 0, 0),
+            child: DropdownButtonClassWidget(
+              wholeListApi: widget.wholeListApi,
+              items: widget.items,
+              firstItem: widget.currentValue,
+              onSelected: widget.onSelected,
+              //     (c) {
+              //   if (!readyCityAndTypeOfApartmentApi.isApartmentApi) {
+              //     setState(() {
+              //       setState(() {
+              //         readyCityAndTypeOfApartmentApi.oneCityName = c;
+              //       });
+              //       for (var i = 0;
+              //           i < readyCityAndTypeOfApartmentApi.citiesName.length;
+              //           ++i) {
+              //         if (readyCityAndTypeOfApartmentApi.oneCityName ==
+              //             readyCityAndTypeOfApartmentApi.citiesName[i]) {
+              //           setState(() {
+              //             readyCityAndTypeOfApartmentApi.indexOfCity = i + 1;
+              //           });
+              //         }
+              //       }
+              //     });
+              //   }else{
+              //     setState(() {
+              //
+              //       readyCityAndTypeOfApartmentApi.currentApartmentType = c;
+              //       setState(() {
+              //         for (var i = 0; i <
+              //             readyCityAndTypeOfApartmentApi.apartmentType
+              //                 .length; ++i) {
+              //           if (readyCityAndTypeOfApartmentApi.currentApartmentType ==
+              //               readyCityAndTypeOfApartmentApi.apartmentType[i]) {
+              //             setState(() {
+              //               readyCityAndTypeOfApartmentApi.indexApartmentType = i + 1;
+              //             });
+              //           }
+              //         }
+              //       });
+              //       },
+              //     );  }
+              //
+              // },
+              // dataStatus: widget.dataStatus,
+            ),
           ),
         ]));
   }

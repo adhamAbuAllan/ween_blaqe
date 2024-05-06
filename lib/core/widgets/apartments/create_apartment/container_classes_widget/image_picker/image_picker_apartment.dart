@@ -195,7 +195,7 @@ class _AddImagesState extends State<AddImages> {
         //     "image :$image");
         //   debugPrint("images in imagesModelC");
       }
-      Get.to(FourthStep());
+      Get.to(const FourthStep());
     } else {
       // toast("أضف صورة واحدة على الاقل");
     }
@@ -406,13 +406,13 @@ class _AddImagesState extends State<AddImages> {
               Padding(
                 padding: const EdgeInsets.fromLTRB(110, 0, 0, 0),
                 child: OutlinedButton(
-                  child: const Text(
-                    'رجوع',
-                  ),
                   onPressed: () {
                     Navigator.of(context).pop();
                   },
                   style: outlineButton,
+                  child: const Text(
+                    'رجوع',
+                  ),
                 ),
               ),
             ],

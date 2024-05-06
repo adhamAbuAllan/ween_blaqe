@@ -1,9 +1,16 @@
+import 'package:flutter/material.dart';
+import 'package:ween_blaqe/controller/get_controllers.dart';
+
 import '../api/users.dart';
 
 import 'new_session.dart';
 saveUserInfo(User data ) {
   NewSession.save("logged", "OK");
-  // NewSession.save("token", data.token);
+  if(apartmentModelController.ownerToken!=null){
+    NewSession.save("token", apartmentModelController.ownerToken);
+    debugPrint("the token of owner is ${apartmentModelController.ownerToken}");
+
+  }
   NewSession.save<int>("id", data.id);
   // Session.save("profile", data.profile);
 

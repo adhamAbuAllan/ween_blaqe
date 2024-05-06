@@ -22,7 +22,7 @@ var price = AddAdDataContainer.price;
 var countOfStudent = AddAdDataContainer.countOfStudent;
 var squareMeters = AddAdDataContainer.squareMeters;
 
-var typeOfApartment = AddAdDataContainer.type;
+// var typeOfApartment = AddAdDataContainer.type;
 
 //
 //--------------
@@ -162,9 +162,9 @@ class _ThirdStepState extends State<ThirdStep> {
                               if (price != null &&
                                   countOfStudent != null &&
                                   squareMeters != null) {
-                                debugPrint(
-                                    "type of apartment after add on class "
-                                    "--$typeOfApartment");
+                                // debugPrint(
+                                //     "type of apartment after add on class "
+                                //     "--$typeOfApartment");
                                 debugPrint(
                                     "prince  --${AddAdDataContainer.price}");
                                 debugPrint("count Of student  "

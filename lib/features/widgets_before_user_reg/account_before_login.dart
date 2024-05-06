@@ -15,6 +15,7 @@ import '../../core/widgets/buttons/lines_buttons/line_buttons.dart';
 
 import '../../controller/main_controller.dart';
 import '../../controller/student_controller/student_controller.dart';
+import 'login.dart';
 // import '../../main.dart';
 // import 'login.dart';
 main (){
@@ -300,13 +301,13 @@ class _AccountBeforeLoginInStudentState
                   height: 55,
                   child: ElevatedButton(
                       onPressed: () {
-                        // Navigator.of(context).push(
-                        //   MaterialPageRoute(builder: (context) {
-                        //     return      Login();
-                        //   }),
-                        // );
-                        showSnakBar(context,
-                            "هذه الميزة قيد التطوير وسيتم إضافتها قريبًا");
+                        Navigator.of(context).push(
+                          MaterialPageRoute(builder: (context) {
+                            return      const Login();
+                          }),
+                        );
+                        // showSnakBar(context,
+                        //     "هذه الميزة قيد التطوير وسيتم إضافتها قريبًا");
                       },
                       style: fullButton.copyWith(
                           backgroundColor:

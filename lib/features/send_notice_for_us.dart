@@ -92,7 +92,8 @@ class _SendNoticeForUsState extends State<SendNoticeForUs> {
                         showSnakBar(context, "يرجى كتابة سطر واحد مكون من 35 حرف على الاقل");
 
                         // toast("يرجى كتابة سطر واحد مكون من 35 حرف على الاقل");
-                      } else {
+                      }
+                      else {
                         // toast(messageOfToast);
                         go(sendNoticeForUcController.text);
                         showSnakBar(context, "شكرًا لك على ملاحظتك, سيتم أخذها بعين الاعتبار ");

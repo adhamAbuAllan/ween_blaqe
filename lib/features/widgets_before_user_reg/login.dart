@@ -6,6 +6,7 @@ import 'package:colorful_safe_area/colorful_safe_area.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:ween_blaqe/constants/strings.dart';
+import 'package:ween_blaqe/controller/get_controllers.dart';
 import 'package:ween_blaqe/core/utils/funcations/route_pages/push_routes.dart';
 import 'package:ween_blaqe/core/utils/function_that_effect_widgets/hide_keyboard.dart';
 import 'package:ween_blaqe/core/utils/function_that_effect_widgets/remove_zero_from_phone_number.dart';
@@ -303,7 +304,7 @@ bottomColor: Colors.transparent ,
 
   go(String phone, String password) async {
     isLoading == true;
-    var url = Uri.parse(ServerLocalDiv.userLogin);
+    var url = Uri.parse(ServerWeenBalaqee.userLogin);
     var response =
         await http.post(url, body: {"phone": phone, "password": password});
     debugPrint("response:$response");
@@ -318,6 +319,7 @@ bottomColor: Colors.transparent ,
         // toast("your not found");
         NormalAlert.show(context, titleOfAlirt, messageOfAlirt, textOfOkButton);
         autoFocus = false;
+        debugPrint("response status is false ");
       });
       removeUserInfo();
       isLoading = false;
@@ -337,6 +339,16 @@ bottomColor: Colors.transparent ,
       });
       isLoading = true;
       var data = res.data;
+        if(data.token!=null){
+          setState(() {
+            apartmentModelController.ownerToken = data.token;
+          });
+          debugPrint("the token is  Not null ${data.token} || ${apartmentModelController.ownerToken}");
+        }else{
+          debugPrint("the token is null");
+        }
+
+
       saveUserInfo(data);
       pushToMainPage();
       // FocusScopeNode currentFocus = FocusScope.of(context);

@@ -7,7 +7,7 @@ import '../api/type_of_apartment.dart';
 class AddAdDataContainer {
   static int ? id;
   static String? address;
-  static String? email;
+  // static String? email;
   static User? ownerId;
   static int? bathRooms;
   static int? rooms;
@@ -27,10 +27,10 @@ class AddAdDataContainer {
 
   static String? title;
   static String? description;
-  static City? city;
-  static TypeOfApartment? type;
-  static List<int>? advantages;
-  static List<Photos>? photos;
+  // static City? city;
+  // static TypeOfApartment? type;
+  // static List<int>? advantages;
+  // static List<Photos>? photos;
 
   // static int ? cityId ;
 

@@ -6,37 +6,40 @@ import 'package:colorful_safe_area/colorful_safe_area.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:ween_blaqe/api/apartments_api/one_apartment.dart';
-import 'package:ween_blaqe/api/type_of_apartment.dart';
+
+// import 'package:ween_blaqe/api/type_of_apartment.dart';
 import 'package:ween_blaqe/constants/strings.dart';
+import 'package:ween_blaqe/controller/get_controllers.dart';
 import 'package:ween_blaqe/core/utils/funcations/route_pages/push_routes.dart';
 import 'package:ween_blaqe/core/utils/styles/button.dart';
 import 'package:ween_blaqe/core/widgets/alirt_class_widget.dart';
 import 'package:ween_blaqe/data_containers/add_ad_data_container.dart';
 import 'package:ween_blaqe/main.dart';
 
-import '../../../../api/cities.dart';
+// import '../../../../api/cities.dart';
 import '../../../../api/users.dart';
 
 import '../../../../core/widgets/apartments/create_apartment/container_classes_widget/check_boxs/connection_check_box/add_a_contact_class_widget.dart';
 import '../../../../core/widgets/apartments/create_apartment/container_classes_widget/image_picker/image_picker_apartment.dart';
 import '../../../../core/widgets/apartments/create_apartment/container_classes_widget/input_text_class_widget/container_input_text_class_widget.dart';
 import '../../../../constants/nums.dart';
+
 // import 'fourth_step.dart';
 // User ownerId;
 
 TextEditingController titleController = TextEditingController();
 TextEditingController descriptionController = TextEditingController();
-var title = AddAdDataContainer.title;
-var description = AddAdDataContainer.description;
+// var title = AddAdDataContainer.title;
+// var description = AddAdDataContainer.description;
 // TextEditingController titleController = TextEditingController();
-var address = AddAdDataContainer.address;
-var countOfStudent = AddAdDataContainer.countOfStudent;
-var bathRooms = AddAdDataContainer.bathRooms;
-var rooms = AddAdDataContainer.rooms;
-var price = AddAdDataContainer.price;
-var type = AddAdDataContainer.type;
-var city = AddAdDataContainer.city;
-var email = AddAdDataContainer.email;
+// var address = AddAdDataContainer.address;
+// var countOfStudent = AddAdDataContainer.countOfStudent;
+// var bathRooms = AddAdDataContainer.bathRooms;
+// var rooms = AddAdDataContainer.rooms;
+// var price = AddAdDataContainer.price;
+// var type = AddAdDataContainer.type;
+// var city = AddAdDataContainer.city;
+// var email = AddAdDataContainer.email;
 
 // var owner = AddAdDataContainer.ownerId?.id;
 
@@ -52,13 +55,15 @@ var city = AddAdDataContainer.cityId ;
 var squareMeters = AddAdDataContainer.squareMeters;
 
 class FourthStep extends StatefulWidget {
-  const FourthStep(
-      {super.key,
-      this.userInfo,
-       this.oneApartmentId,
-      });
+  const FourthStep({
+    super.key,
+    this.userInfo,
+    this.oneApartmentId,
+  });
+
   final User? userInfo;
-  final DataOfOneApartment ? oneApartmentId;
+  final DataOfOneApartment? oneApartmentId;
+
   @override
   State<FourthStep> createState() => _FourthStepState();
 }
@@ -72,7 +77,6 @@ class _FourthStepState extends State<FourthStep> {
 
   @override
   Widget build(BuildContext context) {
-
     // Ad box
     var addSuitableTitleForAdText = "أضف عنوان";
     var addSuitableTitleForAdHnit = "سكن طلاب مفروش";
@@ -99,8 +103,9 @@ class _FourthStepState extends State<FourthStep> {
     // ];
 
     return ColorfulSafeArea(
-bottomColor: Colors.transparent ,
-        color: themeMode.isDark?kPrimaryColorLightMode:kPrimaryColorDarkMode,
+        bottomColor: Colors.transparent,
+        color:
+            themeMode.isDark ? kPrimaryColorLightMode : kPrimaryColorDarkMode,
         child: GestureDetector(
           onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
           child: Scaffold(
@@ -114,96 +119,108 @@ bottomColor: Colors.transparent ,
             body: SingleChildScrollView(
               child: Column(
                 children: [
-                  Row(children: [                    Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: OutlinedButton(
-                      onPressed: () {
-                        // mypopAndPushNamed(context, MyPagesRoutes.step3);
-                        Navigator.pop(context);
-                      },
-                      style: outlineButton,
-                      child: const Text("رجوع"),
-                    ),
-                  ),
-                    const Expanded(child: Text("")),
-                    Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: ElevatedButton(
-                        onPressed: () {
-                          setState(() {
-                            FocusScopeNode currentFocus = FocusScope.of(context);
-                            if (!currentFocus.hasPrimaryFocus) {
-                              currentFocus.unfocus();
-                            }
-                          });
-                          setState(() {
-                            try {
-                              AddAdDataContainer.title = titleController.text;
-                              AddAdDataContainer.description =
-                                  descriptionController.text;
-                              if (title != null && description != null) {
-                                setState(() {
-                                  try {
-                                    createApartment(
-                                      address!,
-                                      bathRooms!,
-                                      rooms!,
-                                      price!,
-                                      //be careful don't delete it!!!
-                                      //-------------------
-                                      //  typeOfApartment!,
-                                      //-------------------
-                                      city!,
-                                      squareMeters!,
-                                      type!,
-                                      //be careful don't delete it!!!
-                                      //-------------------
-                                      //  city!,
-                                      //-------------------
-                                      title!,
-                                      description!,
-                                      countOfStudent!,
-                                      // email
-
-                                      // NewSession.get("id", User),
-                                    );
-                                    myPushName(context, MyPagesRoutes.main);
-                                  } catch (e) {
-                                    rethrow;
-                                  }
-                                });
-                              }
-                            } catch (e) {
-                              // print(AddAdDataContainer.city);
-                              // print("owner id  --${NewSession.get("token", "")}");
-                              // print(AddAdDataContainer.ownerId);
-
-                              NormalAlert.show(
-                                  context,
-                                  "مشكلة فنية",
-                                  "يوجد "
-                                      "مشكلة"
-                                      " فنية "
-                                      "، سيتم "
-                                      "إصلاحها "
-                                      " قريبًا،"
-                                      "لا تقلق لقد تم حفظ بياناتك،،يمكنك "
-                                      "الرجوع "
-                                      "و المتابعة"
-                                      " في وقتٍ لاحق",
-                                  "حسنًا");
-                            }
-                            // AddAdDataContainer.photos = AddImages;
-
-                            // AddAdDataContainer.tesing();
-                          });
-                          // Get.to(ApartmentsOfOwnerAfterAdd());
-                        },
-                        style: fullButton,
-                        child: const Text("حفظ"),
+                  Row(
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: OutlinedButton(
+                          onPressed: () {
+                            // mypopAndPushNamed(context, MyPagesRoutes.step3);
+                            Navigator.pop(context);
+                          },
+                          style: outlineButton,
+                          child: const Text("رجوع"),
+                        ),
                       ),
-                    ),],),
+                      const Expanded(child: Text("")),
+                      Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: ElevatedButton(
+                          onPressed: () {
+                            setState(() {
+                              FocusScopeNode currentFocus =
+                                  FocusScope.of(context);
+                              if (!currentFocus.hasPrimaryFocus) {
+                                currentFocus.unfocus();
+                              }
+                            });
+                            setState(() {
+                              try {
+                                AddAdDataContainer.title = titleController.text;
+                                AddAdDataContainer.description =
+                                    descriptionController.text;
+                                if (
+                                // title != null && description != null
+                                apartmentModelController.ownerToken!=null
+                                ) {
+                                  setState(() {
+                                    try {
+                                      // createApartment(
+                                      //   address ?? "",
+                                      //   bathRooms ?? -1,
+                                      //   rooms ?? -1,
+                                      //   price ?? -1,
+                                      //   //be careful don't delete it!!!
+                                      //   //-------------------
+                                      //   //  typeOfApartment!,
+                                      //   //-------------------
+                                      //   // city!,
+                                      //   squareMeters ?? -1,
+                                      //   // type!,
+                                      //   //be careful don't delete it!!!
+                                      //   //-------------------
+                                      //   //  city!,
+                                      //   //-------------------
+                                      //   title ?? "",
+                                      //   description ?? "",
+                                      //   countOfStudent ?? -1,
+                                      //   // email
+                                      //
+                                      //   // NewSession.get("id", User),
+                                      // );
 
+
+                                      print(
+                                          "successfuly created apartment ad !");
+
+                                      myPushName(context, MyPagesRoutes.main);
+                                    } catch (e) {
+                                      rethrow;
+                                    }
+                                  });
+                                }
+                              } catch (e) {
+                                // print(AddAdDataContainer.city);
+                                // print("owner id  --${NewSession.get("token", "")}");
+                                // print(AddAdDataContainer.ownerId);
+
+                                NormalAlert.show(
+                                    context,
+                                    "مشكلة فنية",
+                                    "يوجد "
+                                        "مشكلة"
+                                        " فنية "
+                                        "، سيتم "
+                                        "إصلاحها "
+                                        " قريبًا،"
+                                        "لا تقلق لقد تم حفظ بياناتك،،يمكنك "
+                                        "الرجوع "
+                                        "و المتابعة"
+                                        " في وقتٍ لاحق",
+                                    "حسنًا");
+                              }
+                              // AddAdDataContainer.photos = AddImages;
+
+                              // AddAdDataContainer.tesing();
+                            });
+                            // Get.to(ApartmentsOfOwnerAfterAdd());
+                          },
+                          style: fullButton,
+                          child: const Text("حفظ"),
+                        ),
+                      ),
+                    ],
+                  ),
 
                   //text steps
                   Padding(
@@ -211,7 +228,9 @@ bottomColor: Colors.transparent ,
                     child: Text(
                       "الخطوة الأخيرة",
                       style: TextStyle(
-                        color:themeMode.isDark ? kTextColorLightMode :kTextColorDarkMode,
+                        color: themeMode.isDark
+                            ? kTextColorLightMode
+                            : kTextColorDarkMode,
                         fontSize: 20,
                         fontFamily: 'IBM',
                       ),
@@ -266,61 +285,68 @@ bottomColor: Colors.transparent ,
               ),
             ),
             floatingActionButton: FloatingActionButton.extended(
-
               onPressed: () {
                 // Get.to(ImagePickerTesting);
                 Navigator.of(context).push(MaterialPageRoute(
                   builder: (context) =>
-                      AddImages(oneApartmentId: widget.oneApartmentId?.id?? 0),
+                      AddImages(oneApartmentId: widget.oneApartmentId?.id ?? 0),
                 ));
               },
               label: const Text('أضف صور'),
               icon: const Icon(Icons.photo),
-              backgroundColor: themeMode.isDark ?kPrimaryColorLightMode:kPrimaryColorDarkMode,
+              backgroundColor: themeMode.isDark
+                  ? kPrimaryColorLightMode
+                  : kPrimaryColorDarkMode,
             ),
           ),
         ));
   }
 
   String msg = "";
+
   createApartment(
-      String address,
-      int bathRooms,
-      int rooms,
-      int price,
-      //
-      //   //be careful don't delete it!!!
-      //   //-------------------
-      //   // TypeOfApartment typeOfApartment,
-      //   //-------------------
-      //   //be careful don't delete it!!!
-      //   //-------------------
-      //   // City city,
-      //   //-------------------
-      //
-      City ?city,
-      int squareMeters,
-      TypeOfApartment? type,
-      String title,
-      String description,
-      int countOfStudent,
-      // String? email,
-      // User ? ownerId,
-      // DropDownTypeOfUser typeId
-      // String value
-      ) async {
+    // String address,
+    // int bathRooms,
+    // int rooms,
+    // int price,
+    //
+    //   //be careful don't delete it!!!
+    //   //-------------------
+    //   // TypeOfApartment typeOfApartment,
+    //   //-------------------
+    //   //be careful don't delete it!!!
+    //   //-------------------
+    //   // City city,
+    //   //-------------------
+    //
+    // City? city,
+    // int squareMeters,
+    // TypeOfApartment? type,
+    // String title,
+    // String description,
+    // int countOfStudent,
+    // String? email,
+    // User ? ownerId,
+    // DropDownTypeOfUser typeId
+    // String value
+  ) async {
     // try{
-    var url = Uri.parse(ServerLocalDiv.apartmentAdd);
-    var token = (await sp).get("token");
+    var url = Uri.parse(ServerWeenBalaqee.apartmentAdd);
+    // var token = (await sp).get("token");
     final headers = {
-      'Authorization': 'Bearer $token',
+      'Authorization':
+          // 'Bearer ${apartmentModelController.ownerToken}',
+          'Bearer 59|kO3wxOnjan40Ps4OO7D14nC0tt4tUAhq5oABl7f23256a9b0',
       'Content-Type': 'application/json',
     };
     var body = jsonEncode({
-      "location": address,
-      "bathrooms": bathRooms.toString(),
-      "rooms": rooms.toString(),
-      "price": price.toString(),
+      "location": "address",
+      "bathrooms":'1',
+      // bathRooms.toString(),
+      "rooms": '1',
+      // rooms.toString(),
+      "price": '1',
+      // price.toString(),
       //be careful don't delete it!!!
       //-------------------
       //   "type_id": typeOfApartment,
@@ -331,11 +357,14 @@ bottomColor: Colors.transparent ,
       //-------------------
       // "type": type,
       // "city": city,
-      "email": email,
-      "square_meters": squareMeters.toString(),
-      "title": title,
-      "description": description.toString(),
-      "count_of_student": countOfStudent.toString(),
+      // "email": email,
+      "square_meters": "1",
+      // squareMeters.toString(),
+      "title": "title",
+      "description":"desc",
+      // description.toString(),
+      "count_of_student": '1',
+      // countOfStudent.toString(),
       // "owner_id":ownerId
       // "type_id":typeId
     });
@@ -346,17 +375,17 @@ bottomColor: Colors.transparent ,
       // var resUser = User.fromJson(json);
       // res. = AddAdDataContainer.countOfStudent;
       // res.type = AddAdDataContainer.type!;
-      res.squareMeters = AddAdDataContainer.squareMeters!;
-      res.bathrooms = AddAdDataContainer.bathRooms!;
-      res.rooms = AddAdDataContainer.rooms!;
-      res.description = AddAdDataContainer.description!;
-      res.location = AddAdDataContainer.address!;
+      res.squareMeters = AddAdDataContainer.squareMeters ?? -1;
+      res.bathrooms = AddAdDataContainer.bathRooms ?? -1;
+      res.rooms = AddAdDataContainer.rooms ?? -1;
+      res.description = AddAdDataContainer.description ?? "";
+      res.location = AddAdDataContainer.address ?? "";
       // res.city = AddAdDataContainer.city!;
-      res.title = AddAdDataContainer.title!;
-      res.price = AddAdDataContainer.price!;
+      res.title = AddAdDataContainer.title ?? "";
+      res.price = AddAdDataContainer.price ?? -1;
       // resUser.email = AddAdDataContainer.email;
       // res.owner?.phone = AddAdDataContainer.user!.phone;
-      pushToApartmentOfOwnerAfterAdd();
+      // pushToApartmentOfOwnerAfterAdd();//not nessarry
 
       return res;
     }
@@ -376,15 +405,16 @@ bottomColor: Colors.transparent ,
   }
 
   void pushToApartmentOfOwnerAfterAdd() {
-    myPushReplacementNamed( MyPagesRoutes.apartmentOfOwnerAfterAdd,context: context);
+    myPushReplacementNamed(MyPagesRoutes.apartmentOfOwnerAfterAdd,
+        context: context);
   }
 }
 
-    // }catch(e){
+// }catch(e){
 
-    // }
+// }
 
-  // }
+// }
 // }
 
 // getUserData(User){
