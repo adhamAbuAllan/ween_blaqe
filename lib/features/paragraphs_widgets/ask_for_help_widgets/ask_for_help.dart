@@ -15,7 +15,7 @@ class AskForHelp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(
-      length: 2,
+      length: 1,
       child: ColorfulSafeArea(
         // bottomColor: Colors.transparent ,
         color: themeMode.isDark ? kPrimaryColorLightMode : kPrimaryColorDarkMode,
@@ -36,7 +36,7 @@ class AskForHelp extends StatelessWidget {
               tabs: const [
 
                 Tab(text: 'مُستأجر'),
-                Tab(text: 'مالك'),
+                // Tab(text: 'مالك'),
               ],
             ),
           ),
@@ -77,39 +77,39 @@ class AskForHelp extends StatelessWidget {
               // Expanded(child: Text("")),
 
               //owner tab
-              Column(
-                children: [
-                  const SizedBox(height: 20,),
-                  Container(
-                      padding: const EdgeInsets.fromLTRB(0, 0, 0, 10),
-                      margin: const EdgeInsets.fromLTRB(10, 0, 10, 0),
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(7),
-                        color: themeMode.isDark ? kContainerColorLightMode : kContainerColorDarkMode,
-                      ),
-                      child: Column(
-                        children: [
-                          askForHelpButton(() {
-                            myPushName(context, MyPagesRoutes.howCreateAd);
-                          }, "طريقة نشر إعلان"),
-                          aline,
-
-                          askForHelpButton((){
-                            myPushName(context, MyPagesRoutes.whatTheInfoReqToCreateAd);
-                          }, "ما هي البيانات المطلوبة لنشر إعلان"),
-                          // aline,
-                          // askForHelpButton(() {
-                          //   myPushName(context,
-                          //       MyPagesRoutes.couldBeOwnerAndStudentInOneTime);
-                          // }, "هل يمكن أن أكون مؤجر و مستأجر في نفس الوقت؟"),
-                          aline,
-                          askForHelpButton(() {
-                            myPushName(context, MyPagesRoutes.theAdIsFreeOrNot);
-                          }, "هل يتطلب إنشاء إعلان الإشتراك أو دفع رسوم؟"),
-                        ],
-                      )),
-                ],
-              ),
+              // Column(
+              //   children: [
+              //     const SizedBox(height: 20,),
+              //     Container(
+              //         padding: const EdgeInsets.fromLTRB(0, 0, 0, 10),
+              //         margin: const EdgeInsets.fromLTRB(10, 0, 10, 0),
+              //         decoration: BoxDecoration(
+              //           borderRadius: BorderRadius.circular(7),
+              //           color: themeMode.isDark ? kContainerColorLightMode : kContainerColorDarkMode,
+              //         ),
+              //         child: Column(
+              //           children: [
+              //             askForHelpButton(() {
+              //               myPushName(context, MyPagesRoutes.howCreateAd);
+              //             }, "طريقة نشر إعلان"),
+              //             aline,
+              //
+              //             askForHelpButton((){
+              //               myPushName(context, MyPagesRoutes.whatTheInfoReqToCreateAd);
+              //             }, "ما هي البيانات المطلوبة لنشر إعلان"),
+              //             // aline,
+              //             // askForHelpButton(() {
+              //             //   myPushName(context,
+              //             //       MyPagesRoutes.couldBeOwnerAndStudentInOneTime);
+              //             // }, "هل يمكن أن أكون مؤجر و مستأجر في نفس الوقت؟"),
+              //             aline,
+              //             askForHelpButton(() {
+              //               myPushName(context, MyPagesRoutes.theAdIsFreeOrNot);
+              //             }, "هل يتطلب إنشاء إعلان الإشتراك أو دفع رسوم؟"),
+              //           ],
+              //         )),
+              //   ],
+              // ),
             ],
           ),
         floatingActionButton:
@@ -120,7 +120,7 @@ class AskForHelp extends StatelessWidget {
 
             // shape:ContinuousRectangleBorder(borderRadius: BorderRadius.circular(16/2),) ,
             onPressed: (){                              sendMessageToWhatsApp(
-                '2569339613', "السلام عليكم، ممكن مساعدة، ");},backgroundColor: const Color(0xff25D366),
+                '2569339613', "السلام عليكم، ");},backgroundColor: const Color(0xff25D366),
 
 
             child: const FaIcon(FontAwesomeIcons.whatsapp,size: 30,),),
