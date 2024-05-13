@@ -21,7 +21,7 @@ class _ApartmentPriceTextState extends State<ApartmentPriceText> {
     return               Row(
       children: [
         Padding(
-          padding: const EdgeInsets.fromLTRB(0, 0, 3, 0),
+          padding: const EdgeInsets.fromLTRB(10, 0, 3, 0),
           child:
           Text((widget.apartmentsRes.data?[widget.index].price.toString()) ?? "0",
               style:  TextStyle(
@@ -30,15 +30,15 @@ class _ApartmentPriceTextState extends State<ApartmentPriceText> {
                 fontFamily: 'IBM',
               )),
         ),
-         Padding(
-          padding: const EdgeInsets.fromLTRB(10, 0, 3, 0),
-          child: Text("ش/ش",
-              style: TextStyle(
-                color: themeMode.isDark ? kTextColorLightMode : kTextColorDarkMode,
-                fontSize: 12,
-                fontFamily: 'IBM',
-              )),
-        ),
+        //  Padding(
+        //   padding: const EdgeInsets.fromLTRB(10, 0, 3, 0),
+        //   child: Text("ش/ش",
+        //       style: TextStyle(
+        //         color: themeMode.isDark ? kTextColorLightMode : kTextColorDarkMode,
+        //         fontSize: 12,
+        //         fontFamily: 'IBM',
+        //       )),
+        // ),
       ],
     );
 

@@ -26,8 +26,8 @@ class _WholeWidgetOfApartmentState extends State<WholeWidgetOfApartment> {
     return ApartmentContainer(
       child: Column(
         children: [
-          ApartmentTypeText(
-              index: widget.index, apartmentsRes: widget.apartmentsRes),
+          // ApartmentTypeText(
+          //     index: widget.index, apartmentsRes: widget.apartmentsRes),
           ApartmentMainImage(
             index: widget.index,
             apartmentsRes: widget.apartmentsRes,

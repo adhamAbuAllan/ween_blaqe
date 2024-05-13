@@ -74,12 +74,12 @@ class _BottomNavigationBarOfStudentState
         //   )
         // ),
         //orders item
-        BottomNavigationBarItem(
-          icon: Icon(Icons.home_repair_service_outlined,),
-          label: 'الحجوزات',
-          activeIcon: Icon(Icons.home_repair_service),
-
-        ),
+        // BottomNavigationBarItem(
+        //   icon: Icon(Icons.home_repair_service_outlined,),
+        //   label: 'الحجوزات',
+        //   activeIcon: Icon(Icons.home_repair_service),
+        //
+        // ),
         //bookmarks item
         // BottomNavigationBarItem(
         //   icon: Icon(Icons.bookmark_outline),

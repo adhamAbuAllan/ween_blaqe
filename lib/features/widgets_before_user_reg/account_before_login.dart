@@ -125,7 +125,7 @@ class _AccountBeforeLoginInStudentState
                     padding:      const EdgeInsets.fromLTRB(0, 0, 10, 75),
                     child: Text(
                       // "قم بتسجيل الدخول لتحجز اول شقة لك ",
-                      "لا يتطلب حجز شقة حساب جديد أو تسجيل الدخول ",
+                      "لا يتطلب شراء شقة حساب جديد أو تسجيل الدخول ",
                       style: TextStyle(
                           color: Colors.grey.shade600,
                           fontSize: 14,
@@ -211,16 +211,16 @@ class _AccountBeforeLoginInStudentState
                           myPushNameAnimation(context);
                         });
                       }),
-                  aline,
-                  buttonAccount(() {
-                    myPushName(context, MyPagesRoutes.askForHelp);
-                  },
-                            Icon(
-                        Icons.info_outline,
-                        size: 32,
-                        color: themeMode.isDark ? kTextColorLightMode : kTextColorDarkMode,
-                      ),
-                      "اطلب المساعدة"),
+                  // aline,
+                  // buttonAccount(() {
+                  //   myPushName(context, MyPagesRoutes.askForHelp);
+                  // },
+                  //           Icon(
+                  //       Icons.info_outline,
+                  //       size: 32,
+                  //       color: themeMode.isDark ? kTextColorLightMode : kTextColorDarkMode,
+                  //     ),
+                  //     "اطلب المساعدة"),
 
                   aline,
                   //privacy policy

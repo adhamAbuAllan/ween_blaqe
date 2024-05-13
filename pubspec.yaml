@@ -3,7 +3,7 @@
 name: ween_blaqe
 description: A new Flutter project.
 publish_to: none
-version: 1.0.0+9
+version: 2.0.0
 environment:
   sdk: '>=2.17.0 <3.0.0'
 dependencies:

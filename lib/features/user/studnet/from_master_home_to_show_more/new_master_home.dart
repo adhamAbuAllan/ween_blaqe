@@ -154,7 +154,7 @@ bool isHaveInternet = false;
 
                 children: [
 
-                  ApartmentsList(apartmentsRes: apartmentModelController.apartment,
+                  ApartmentList(apartmentsRes: apartmentModelController.apartment,
                       scrollController: _scrollController), //aprtments list
 
                   Padding(
@@ -167,7 +167,8 @@ bool isHaveInternet = false;
                           ? (_isVisible ? 1 : 0)
                           : 1),
                       duration: const Duration(milliseconds: 300),
-                      child: !_isVisible
+                      child: true //the v for apartments sale , after make it for rent you can active this :
+                      // !_isVisible
                           ? const SizedBox()
                           : ApartmentShowTypesButton(onPressed: () {
                         setState(() {
@@ -182,8 +183,10 @@ bool isHaveInternet = false;
                         opacity: (_isListOfTypes ? (_isVisible ? 1 : 0) : 0),
                         duration: const Duration(milliseconds: 350),
 
-                        child: !_isVisible
-                            ? const SizedBox()
+                        child: true //the v for apartments sale , after make it for rent you can active this :
+                        // !_isVisible
+
+                            ? const SizedBox() //you don't reomve under lines of code , keep them Or save a last v
                             : ApartmentShowTypesContainer(child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           mainAxisSize: MainAxisSize.min,

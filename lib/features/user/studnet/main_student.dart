@@ -60,7 +60,7 @@ class _MainStudentState extends State<MainStudent> {
                     const NewMasterHome(),
                     // const NewMasterHomeTest(),
                     // NotificationOfStudentWithNotifi(),
-                    const OrdersOfStudent(),
+                    // const OrdersOfStudent(),
                     // const Bookmark(),
                     // NewSession.get("logged", "") == ""
                     //     ?

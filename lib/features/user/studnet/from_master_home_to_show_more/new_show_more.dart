@@ -321,45 +321,45 @@ class _NewShowMoreState extends State<NewShowMore> {
                               ],
                             ),
                             //count of student
-                            Row(
-                              children: [
-                                Padding(
-                                  padding:
-                                          const EdgeInsets.fromLTRB(0, 0, 5, 10),
-                                  child: Text(
-                                      (_isBoyStudent
-                                          ? "عدد الطلاب المسموح به:${widget.oneApartment?.countOfStudnet ?? 0}"
-                                          : (_isGirlStudent
-                                              ? "عدد الطالبات المسموح به:${widget.oneApartment?.countOfStudnet ?? 0}"
-                                              : (_isFamilies
-                                                  ? "عدد الافراد المسموح به:${widget.oneApartment?.countOfStudnet ?? 0}"
-                                                  : "عدد الافراد المسموح به:${widget.oneApartment?.countOfStudnet ?? 0}"))),
-                                      style:     TextStyle(
-                                        color: themeMode.isDark ? kTextColorLightMode : kTextColorDarkMode,
-                                        fontSize: 16,
-                                        fontFamily: 'IBM',
-                                      )),
-                                ),
-                                    const Expanded(child: Text("")),
-                              ],
-                            ),
+                            // Row(
+                            //   children: [
+                            //     Padding(
+                            //       padding:
+                            //               const EdgeInsets.fromLTRB(0, 0, 5, 10),
+                            //       child: Text(
+                            //           (_isBoyStudent
+                            //               ? "عدد الطلاب المسموح به:${widget.oneApartment?.countOfStudnet ?? 0}"
+                            //               : (_isGirlStudent
+                            //                   ? "عدد الطالبات المسموح به:${widget.oneApartment?.countOfStudnet ?? 0}"
+                            //                   : (_isFamilies
+                            //                       ? "عدد الافراد المسموح به:${widget.oneApartment?.countOfStudnet ?? 0}"
+                            //                       : "عدد الافراد المسموح به:${widget.oneApartment?.countOfStudnet ?? 0}"))),
+                            //           style:     TextStyle(
+                            //             color: themeMode.isDark ? kTextColorLightMode : kTextColorDarkMode,
+                            //             fontSize: 16,
+                            //             fontFamily: 'IBM',
+                            //           )),
+                            //     ),
+                            //         const Expanded(child: Text("")),
+                            //   ],
+                            // ),
 
-                            Row(
-                              children: [
-                                Padding(
-                                  padding:
-                                          const EdgeInsets.fromLTRB(0, 0, 5, 10),
-                                  child: Text(
-                                      "نوع السكن:${widget.oneApartment?.type?.name ?? ""}",
-                                      style:     TextStyle(
-                                        color: themeMode.isDark ? kTextColorLightMode : kTextColorDarkMode,
-                                        fontSize: 16,
-                                        fontFamily: 'IBM',
-                                      )),
-                                ),
-                                    const Expanded(child: Text("")),
-                              ],
-                            ),
+                            // Row(
+                            //   children: [
+                            //     Padding(
+                            //       padding:
+                            //               const EdgeInsets.fromLTRB(0, 0, 5, 10),
+                            //       child: Text(
+                            //           "نوع السكن:${widget.oneApartment?.type?.name ?? ""}",
+                            //           style:     TextStyle(
+                            //             color: themeMode.isDark ? kTextColorLightMode : kTextColorDarkMode,
+                            //             fontSize: 16,
+                            //             fontFamily: 'IBM',
+                            //           )),
+                            //     ),
+                            //         const Expanded(child: Text("")),
+                            //   ],
+                            // ),
                             //price
                             Row(
                               children: [
@@ -367,7 +367,7 @@ class _NewShowMoreState extends State<NewShowMore> {
                                   padding:
                                           const EdgeInsets.fromLTRB(0, 0, 10, 10),
                                   child: Text(
-                                    "الأجرة:${widget.oneApartment?.price ?? ""
+                                    "السعر : ${widget.oneApartment?.price ?? ""
                                     // data.
 
                                     }",
@@ -379,7 +379,7 @@ class _NewShowMoreState extends State<NewShowMore> {
                                 ),
                                      Padding(
                                   padding: const EdgeInsets.fromLTRB(0, 0, 3, 10),
-                                  child: Text("شيكل/شهري",
+                                  child: Text("الف شيكل",
                                       style: TextStyle(
                                         color: themeMode.isDark ? kPrimaryColorLightMode : kPrimaryColorDarkMode,
                                         fontSize: 16,
