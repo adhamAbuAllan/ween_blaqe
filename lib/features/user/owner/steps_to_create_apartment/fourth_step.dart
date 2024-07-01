@@ -155,6 +155,7 @@ class _FourthStepState extends State<FourthStep> {
                                 ) {
                                   setState(() {
                                     try {
+                                      createApartment();
                                       // createApartment(
                                       //   address ?? "",
                                       //   bathRooms ?? -1,
@@ -213,6 +214,7 @@ class _FourthStepState extends State<FourthStep> {
 
                               // AddAdDataContainer.tesing();
                             });
+
                             // Get.to(ApartmentsOfOwnerAfterAdd());
                           },
                           style: fullButton,
@@ -332,62 +334,68 @@ class _FourthStepState extends State<FourthStep> {
   ) async {
     // try{
     var url = Uri.parse(ServerWeenBalaqee.apartmentAdd);
-    // var token = (await sp).get("token");
-    final headers = {
-      'Authorization':
-          // 'Bearer ${apartmentModelController.ownerToken}',
-          'Bearer 59|kO3wxOnjan40Ps4OO7D14nC0tt4tUAhq5oABl7f23256a9b0',
-      'Content-Type': 'application/json',
-    };
-    var body = jsonEncode({
-      "location": "address",
-      "bathrooms":'1',
-      // bathRooms.toString(),
-      "rooms": '1',
-      // rooms.toString(),
-      "price": '1',
-      // price.toString(),
-      //be careful don't delete it!!!
-      //-------------------
-      //   "type_id": typeOfApartment,
-      //-------------------
-      //be careful don't delete it!!!
-      //-------------------
-      //   "city_id": city,
-      //-------------------
-      // "type": type,
-      // "city": city,
-      // "email": email,
-      "square_meters": "1",
-      // squareMeters.toString(),
-      "title": "title",
-      "description":"desc",
-      // description.toString(),
-      "count_of_student": '1',
-      // countOfStudent.toString(),
-      // "owner_id":ownerId
-      // "type_id":typeId
-    });
-    var response = await http.post(url, headers: headers, body: body);
-    if (response.statusCode == 200) {
-      var json = await jsonDecode(response.body);
-      var res = DataOfOneApartment.fromJson(json);
-      // var resUser = User.fromJson(json);
-      // res. = AddAdDataContainer.countOfStudent;
-      // res.type = AddAdDataContainer.type!;
-      res.squareMeters = AddAdDataContainer.squareMeters ?? -1;
-      res.bathrooms = AddAdDataContainer.bathRooms ?? -1;
-      res.rooms = AddAdDataContainer.rooms ?? -1;
-      res.description = AddAdDataContainer.description ?? "";
-      res.location = AddAdDataContainer.address ?? "";
-      // res.city = AddAdDataContainer.city!;
-      res.title = AddAdDataContainer.title ?? "";
-      res.price = AddAdDataContainer.price ?? -1;
-      // resUser.email = AddAdDataContainer.email;
-      // res.owner?.phone = AddAdDataContainer.user!.phone;
-      // pushToApartmentOfOwnerAfterAdd();//not nessarry
+    var token = (await sp).get("token");
+    if(token != null){
+      final headers = {
+        'Authorization':
+        // 'Bearer ${apartmentModelController.ownerToken}',
+        // 'Bearer 59|kO3wxOnjan40Ps4OO7D14nC0tt4tUAhq5oABl7f23256a9b0',
+        'Bearer $token',
+        'Content-Type': 'application/json',
+      };
+      var body = jsonEncode({
+        "location": "address",
+        "bathrooms":'1',
+        // bathRooms.toString(),
+        "rooms": '1',
+        // rooms.toString(),
+        "price": '1',
+        // price.toString(),
+        //be careful don't delete it!!!
+        //-------------------
+        //   "type_id": typeOfApartment,
+        //-------------------
+        //be careful don't delete it!!!
+        //-------------------
+        //   "city_id": city,
+        //-------------------
+        // "type": type,
+        // "city": city,
+        // "email": email,
+        "square_meters": "1",
+        // squareMeters.toString(),
+        "title": "title",
+        "description":"desc",
+        // description.toString(),
+        "count_of_student": '1',
+        // countOfStudent.toString(),
+        // "owner_id":ownerId
+        // "type_id":typeId
+      });
+      var response = await http.post(url, headers: headers, body: body);
+      if (response.statusCode == 200) {
+        var json = await jsonDecode(response.body);
+        var res = DataOfOneApartment.fromJson(json);
+        // var resUser = User.fromJson(json);
+        // res. = AddAdDataContainer.countOfStudent;
+        // res.type = AddAdDataContainer.type!;
+        res.squareMeters = AddAdDataContainer.squareMeters ?? -1;
+        res.bathrooms = AddAdDataContainer.bathRooms ?? -1;
+        res.rooms = AddAdDataContainer.rooms ?? -1;
+        res.description = AddAdDataContainer.description ?? "";
+        res.location = AddAdDataContainer.address ?? "";
+        // res.city = AddAdDataContainer.city!;
+        res.title = AddAdDataContainer.title ?? "";
+        res.price = AddAdDataContainer.price ?? -1;
+        // resUser.email = AddAdDataContainer.email;
+        // res.owner?.phone = AddAdDataContainer.user!.phone;
+        // pushToApartmentOfOwnerAfterAdd();//not nessarry
 
-      return res;
+        return res;
+      }
+      debugPrint("the token is not null $token");
+    }else{
+      debugPrint("the token is null $token");
     }
 
     // var user = User.fromJson(json);
