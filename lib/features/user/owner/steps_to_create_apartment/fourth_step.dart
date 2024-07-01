@@ -149,10 +149,10 @@ class _FourthStepState extends State<FourthStep> {
                                 AddAdDataContainer.title = titleController.text;
                                 AddAdDataContainer.description =
                                     descriptionController.text;
-                                if (
+                                // if (
                                 // title != null && description != null
-                                apartmentModelController.ownerToken!=null
-                                ) {
+                                // apartmentModelController.ownerToken!=null
+                                // ) {
                                   setState(() {
                                     try {
                                       createApartment();
@@ -189,7 +189,7 @@ class _FourthStepState extends State<FourthStep> {
                                       rethrow;
                                     }
                                   });
-                                }
+                                // }
                               } catch (e) {
                                 // print(AddAdDataContainer.city);
                                 // print("owner id  --${NewSession.get("token", "")}");
