@@ -383,17 +383,26 @@ class _FourthStepState extends State<FourthStep> {
         res.bathrooms = AddAdDataContainer.bathRooms ?? -1;
         res.rooms = AddAdDataContainer.rooms ?? -1;
         res.description = AddAdDataContainer.description ?? "";
+        // res.type.id = AddAdDataContainer.
         res.location = AddAdDataContainer.address ?? "";
         // res.city = AddAdDataContainer.city!;
         res.title = AddAdDataContainer.title ?? "";
         res.price = AddAdDataContainer.price ?? -1;
+        res.type?.id = readyCityAndTypeOfApartmentApi.indexApartmentType;
+        res.city?.id = readyCityAndTypeOfApartmentApi.indexApartmentType;
         // resUser.email = AddAdDataContainer.email;
         // res.owner?.phone = AddAdDataContainer.user!.phone;
         // pushToApartmentOfOwnerAfterAdd();//not nessarry
-
+        debugPrint("  the response is $res");
         return res;
+
+      }else{
+        debugPrint("the statee of code is not true : ${response.statusCode}");
+        debugPrint("you have somehting null in this response :${response.body}");
+
       }
       debugPrint("the token is not null $token");
+
     }else{
       debugPrint("the token is null $token");
     }
