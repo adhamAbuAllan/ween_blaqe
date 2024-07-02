@@ -368,6 +368,8 @@ class _FourthStepState extends State<FourthStep> {
         "description":"desc",
         // description.toString(),
         "count_of_student": '1',
+        "type_id":"1",
+        "city_id":"1",
         // countOfStudent.toString(),
         // "owner_id":ownerId
         // "type_id":typeId
