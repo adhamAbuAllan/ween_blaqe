@@ -34,6 +34,8 @@ class _StringLen extends StatelessWidget {
     static String university = "${server}universities/all";
     static String advantagesAll = "${server}advantages/all";
     static String advantagesAdd = "${server}advantages/add";
+    static String apartmentAdvantagesInsert = '${server}apartment_advantage/insertAdv'
+        'InApartment3';
     static String citizenAdd = "${server}citizen/add";
     static String cityNewAll = "${server}cityTest/all";
     static String apartmentNewAll = "${server}apartmentTest/all";

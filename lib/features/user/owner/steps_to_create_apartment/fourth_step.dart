@@ -15,6 +15,7 @@ import 'package:ween_blaqe/core/utils/styles/button.dart';
 import 'package:ween_blaqe/core/widgets/alirt_class_widget.dart';
 import 'package:ween_blaqe/data_containers/add_ad_data_container.dart';
 import 'package:ween_blaqe/main.dart';
+import 'package:ween_blaqe/sesstion/new_session.dart';
 
 // import '../../../../api/cities.dart';
 import '../../../../api/users.dart';
@@ -75,6 +76,7 @@ class _FourthStepState extends State<FourthStep> {
     // getUserData(User);
   }
 
+  var  apartmentId = '';
   @override
   Widget build(BuildContext context) {
     // Ad box
@@ -153,42 +155,61 @@ class _FourthStepState extends State<FourthStep> {
                                 // title != null && description != null
                                 // apartmentModelController.ownerToken!=null
                                 // ) {
-                                  setState(() {
-                                    try {
-                                      createApartment();
-                                      // createApartment(
-                                      //   address ?? "",
-                                      //   bathRooms ?? -1,
-                                      //   rooms ?? -1,
-                                      //   price ?? -1,
-                                      //   //be careful don't delete it!!!
-                                      //   //-------------------
-                                      //   //  typeOfApartment!,
-                                      //   //-------------------
-                                      //   // city!,
-                                      //   squareMeters ?? -1,
-                                      //   // type!,
-                                      //   //be careful don't delete it!!!
-                                      //   //-------------------
-                                      //   //  city!,
-                                      //   //-------------------
-                                      //   title ?? "",
-                                      //   description ?? "",
-                                      //   countOfStudent ?? -1,
-                                      //   // email
-                                      //
-                                      //   // NewSession.get("id", User),
-                                      // );
+                                setState(() {
+                                  try {
+                                    createApartment();
+                                    debugPrint("current value of local "
+                                        "apartmantId is $apartmentId");
+                                    // apartmentModelController.apartmentId =
+                                    //     apartmentId;
+                                    // debugPrint("currently the apartment Id "
+                                    //     "from API is "
+                                    //     "${}");
+                                    //                                print("an apartment Id from SP :${NewSession
+                                    //                                    .get
+                                    //                                 ('apartmentId','-'
+                                    // '1')}");
 
+                                    //
+                                    // //    var token = (await sp).get("token");
+                                    //
+                                    // debugPrint("the apartment id now is : ${widget.oneApartmentId?.id}");
+                                    // advantagesModelController
+                                    //     .insertAdvInApartment3("${}",
+                                    //     ["${advantagesModelController
+                                    //         .chosen}"]);
+                                    // createApartment(
+                                    //   address ?? "",
+                                    //   bathRooms ?? -1,
+                                    //   rooms ?? -1,
+                                    //   price ?? -1,
+                                    //   //be careful don't delete it!!!
+                                    //   //-------------------
+                                    //   //  typeOfApartment!,
+                                    //   //-------------------
+                                    //   // city!,
+                                    //   squareMeters ?? -1,
+                                    //   // type!,
+                                    //   //be careful don't delete it!!!
+                                    //   //-------------------
+                                    //   //  city!,
+                                    //   //-------------------
+                                    //   title ?? "",
+                                    //   description ?? "",
+                                    //   countOfStudent ?? -1,
+                                    //   // email
+                                    //
+                                    //   // NewSession.get("id", User),
+                                    // );
 
-                                      print(
-                                          "successfuly created apartment ad !");
+                                    debugPrint("successfuly created apartment "
+                                        "ad !");
 
-                                      myPushName(context, MyPagesRoutes.main);
-                                    } catch (e) {
-                                      rethrow;
-                                    }
-                                  });
+                                    myPushName(context, MyPagesRoutes.main);
+                                  } catch (e) {
+                                    rethrow;
+                                  }
+                                });
                                 // }
                               } catch (e) {
                                 // print(AddAdDataContainer.city);
@@ -306,36 +327,37 @@ class _FourthStepState extends State<FourthStep> {
 
   String msg = "";
 
-  createApartment(
-    // String address,
-    // int bathRooms,
-    // int rooms,
-    // int price,
-    //
-    //   //be careful don't delete it!!!
-    //   //-------------------
-    //   // TypeOfApartment typeOfApartment,
-    //   //-------------------
-    //   //be careful don't delete it!!!
-    //   //-------------------
-    //   // City city,
-    //   //-------------------
-    //
-    // City? city,
-    // int squareMeters,
-    // TypeOfApartment? type,
-    // String title,
-    // String description,
-    // int countOfStudent,
-    // String? email,
-    // User ? ownerId,
-    // DropDownTypeOfUser typeId
-    // String value
-  ) async {
+  createApartment({ DataOfOneApartment? dataOfOneApartment}
+      // String address,
+      // int bathRooms,
+      // int rooms,
+      // int price,
+      //
+      //   //be careful don't delete it!!!
+      //   //-------------------
+      //   // TypeOfApartment typeOfApartment,
+      //   //-------------------
+      //   //be careful don't delete it!!!
+      //   //-------------------
+      //   // City city,
+      //   //-------------------
+      //
+      // City? city,
+      // int squareMeters,
+      // TypeOfApartment? type,
+      // String title,
+      // String description,
+      // int countOfStudent,
+      // String? email,
+      // User ? ownerId,
+      // DropDownTypeOfUser typeId
+      // String value
+      ) async {
     // try{
     var url = Uri.parse(ServerWeenBalaqee.apartmentAdd);
     var token = (await sp).get("token");
-    if(token != null){
+
+    if (token != null) {
       final headers = {
         'Authorization':
         // 'Bearer ${apartmentModelController.ownerToken}',
@@ -343,13 +365,16 @@ class _FourthStepState extends State<FourthStep> {
         'Bearer $token',
         'Content-Type': 'application/json',
       };
+
+      debugPrint("the token is : $token");
+
       var body = jsonEncode({
-        "location": "address",
-        "bathrooms":'1',
+        "location": AddAdDataContainer.address ?? "",
+        "bathrooms": "${AddAdDataContainer.bathRooms ?? -1}",
         // bathRooms.toString(),
-        "rooms": '1',
+        "rooms": "${AddAdDataContainer.rooms ?? -1}",
         // rooms.toString(),
-        "price": '1',
+        "price": "${AddAdDataContainer.price ?? -1}",
         // price.toString(),
         //be careful don't delete it!!!
         //-------------------
@@ -362,50 +387,76 @@ class _FourthStepState extends State<FourthStep> {
         // "type": type,
         // "city": city,
         // "email": email,
-        "square_meters": "1",
+        "square_meters": "${AddAdDataContainer.squareMeters ?? -1}",
         // squareMeters.toString(),
-        "title": "title",
-        "description":"desc",
+        "title": AddAdDataContainer.title ?? "",
+        "description": AddAdDataContainer.description ?? "",
         // description.toString(),
-        "count_of_student": '1',
-        "type_id":"1",
-        "city_id":"1",
+        "count_of_student": "${AddAdDataContainer.countOfStudent ?? -1}",
+        "type_id": "${readyCityAndTypeOfApartmentApi.indexApartmentType}",
+        "city_id": "${readyCityAndTypeOfApartmentApi.indexApartmentType}",
         // countOfStudent.toString(),
         // "owner_id":ownerId
         // "type_id":typeId
       });
       var response = await http.post(url, headers: headers, body: body);
       if (response.statusCode == 200) {
+        // debugPrint("apartment basic data creating...");
+
         var json = await jsonDecode(response.body);
+
+        // apartmentId = json['data']['id'];
+        setState(() {
+          apartmentId = '-2';
+
+        });
+
+
         var res = DataOfOneApartment.fromJson(json);
+        // dataOfOneApartment = res;
+
+        // if (res.id != null) {
+        //   await advantagesModelController.insertAdvInApartment3(
+        //       "${res.id}", ["${advantagesModelController.chosen}"]);q
+        // } else {
+        //
+        //   debugPrint("your method is not working , that could not to get id "
+        //       "without retrn the res first!");
+        //
+        // }
         // var resUser = User.fromJson(json);
         // res. = AddAdDataContainer.countOfStudent;
         // res.type = AddAdDataContainer.type!;
-        res.squareMeters = AddAdDataContainer.squareMeters ?? -1;
-        res.bathrooms = AddAdDataContainer.bathRooms ?? -1;
-        res.rooms = AddAdDataContainer.rooms ?? -1;
-        res.description = AddAdDataContainer.description ?? "";
+        // res.squareMeters = AddAdDataContainer.squareMeters ?? -1;
+        // res.bathrooms = AddAdDataContainer.bathRooms ?? -1;
+        // res.rooms = AddAdDataContainer.rooms ?? -1;
+        // res.description = AddAdDataContainer.description ?? "";
         // res.type.id = AddAdDataContainer.
-        res.location = AddAdDataContainer.address ?? "";
+        // res.location = AddAdDataContainer.address ?? "";
         // res.city = AddAdDataContainer.city!;
-        res.title = AddAdDataContainer.title ?? "";
-        res.price = AddAdDataContainer.price ?? -1;
-        res.type?.id = readyCityAndTypeOfApartmentApi.indexApartmentType;
-        res.city?.id = readyCityAndTypeOfApartmentApi.indexApartmentType;
+        // res.title = AddAdDataContainer.title ?? "";
+        // res.price = AddAdDataContainer.price ?? -1;
+        // res.type?.id = readyCityAndTypeOfApartmentApi.indexApartmentType;
+        // res.city?.id = readyCityAndTypeOfApartmentApi.indexApartmentType;
         // resUser.email = AddAdDataContainer.email;
         // res.owner?.phone = AddAdDataContainer.user!.phone;
         // pushToApartmentOfOwnerAfterAdd();//not nessarry
-        debugPrint("  the response is $res");
+        // if(res.id!=null){
+        //   debugPrint("the new id of aparmtant is ${res.id}");
+        //
+        // }else{
+        //   debugPrint("the id is not ready that is ${res.id}");
+        // }
+        // var apartmentSpId = (await sp).save('apartmentId');
+
         return res;
-
-      }else{
+      } else {
         debugPrint("the statee of code is not true : ${response.statusCode}");
-        debugPrint("you have somehting null in this response :${response.body}");
-
+        debugPrint(
+            "you have somehting null in this response :${response.body}");
       }
       debugPrint("the token is not null $token");
-
-    }else{
+    } else {
       debugPrint("the token is null $token");
     }
 
@@ -422,6 +473,7 @@ class _FourthStepState extends State<FourthStep> {
     //   if (res.data != null) {
     // var data = res.data;
   }
+
 
   void pushToApartmentOfOwnerAfterAdd() {
     myPushReplacementNamed(MyPagesRoutes.apartmentOfOwnerAfterAdd,
