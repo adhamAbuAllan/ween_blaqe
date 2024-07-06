@@ -15,7 +15,7 @@ class AdvantagesModelController extends GetxController {
   bool isChecked = false;
   bool dataStatus = false;
 
-  Future<void> insertAdvInApartment3(String apartmentId, List<String>
+  Future<void> insertAdvInApartment3(String apartmentId, List<int>
   advantageIds) async {
     debugPrint("loading...");
     final String url = ServerWeenBalaqee.apartmentAdvantagesInsert;

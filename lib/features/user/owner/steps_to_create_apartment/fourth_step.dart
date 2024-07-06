@@ -15,11 +15,11 @@ import 'package:ween_blaqe/core/utils/styles/button.dart';
 import 'package:ween_blaqe/core/widgets/alirt_class_widget.dart';
 import 'package:ween_blaqe/data_containers/add_ad_data_container.dart';
 import 'package:ween_blaqe/main.dart';
-import 'package:ween_blaqe/sesstion/new_session.dart';
 
 // import '../../../../api/cities.dart';
 import '../../../../api/users.dart';
 
+import '../../../../controller/models_controller/advantages_model_controller.dart';
 import '../../../../core/widgets/apartments/create_apartment/container_classes_widget/check_boxs/connection_check_box/add_a_contact_class_widget.dart';
 import '../../../../core/widgets/apartments/create_apartment/container_classes_widget/image_picker/image_picker_apartment.dart';
 import '../../../../core/widgets/apartments/create_apartment/container_classes_widget/input_text_class_widget/container_input_text_class_widget.dart';
@@ -326,8 +326,7 @@ class _FourthStepState extends State<FourthStep> {
   }
 
   String msg = "";
-
-  createApartment({ DataOfOneApartment? dataOfOneApartment}
+  Future<DataOfOneApartment?>createApartment(
       // String address,
       // int bathRooms,
       // int rooms,
@@ -353,6 +352,7 @@ class _FourthStepState extends State<FourthStep> {
       // DropDownTypeOfUser typeId
       // String value
       ) async {
+
     // try{
     var url = Uri.parse(ServerWeenBalaqee.apartmentAdd);
     var token = (await sp).get("token");
@@ -399,17 +399,49 @@ class _FourthStepState extends State<FourthStep> {
         // "owner_id":ownerId
         // "type_id":typeId
       });
+
       var response = await http.post(url, headers: headers, body: body);
       if (response.statusCode == 200) {
         // debugPrint("apartment basic data creating...");
 
         var json = await jsonDecode(response.body);
 
-        // apartmentId = json['data']['id'];
-        setState(() {
-          apartmentId = '-2';
+        var apartmentId = json['data']['id'];
+        // setState(() {
+        //   apartmentIdPram = apartmentId;
+        AddAdDataContainer.id = await apartmentId;
+        debugPrint(
+            "the apartment from AddAdDataContainer is : ${AddAdDataContainer
+                .id}");
+        // });
+        debugPrint("the new apartment Id is : $apartmentId");
 
-        });
+        // debugPrint("insert advantages is done!");
+
+        await AdvantagesModelController().insertAdvInApartment3
+          ("${await apartmentId}",
+            advantagesModelController.chosen);
+        // alert("تم اضافة أعلانك","تم إنشاء إعلان جديد ،ببيانات تم ادخالها "
+        //     "يدويا بالإضافة إلى إدخال قائمة من المزايا بشكل يدوي","حسنًا");
+
+
+        // });
+        // if(apartmentModelController.apartmentId != '-1'){
+        //   WidgetsBinding.instance.addPostFrameCallback((timeStamp) async {
+        //   });
+        // }else{
+        //   debugPrint("apartment id is not found! ${apartmentModelController.apartmentId}");
+        // }
+
+        //
+        // debugPrint(" the apartmentIdPram is : $apartmentIdPram");
+        // debugPrint("the id of AddAdDataContainer is: ${AddAdDataContainer.id}");
+
+
+        // setState(() {
+        //   apartmentId = '-2';
+        //
+        // });
 
 
         var res = DataOfOneApartment.fromJson(json);
@@ -449,7 +481,8 @@ class _FourthStepState extends State<FourthStep> {
         // }
         // var apartmentSpId = (await sp).save('apartmentId');
 
-        return res;
+        return  res;
+
       } else {
         debugPrint("the statee of code is not true : ${response.statusCode}");
         debugPrint(
@@ -459,6 +492,7 @@ class _FourthStepState extends State<FourthStep> {
     } else {
       debugPrint("the token is null $token");
     }
+    return null;
 
     // var user = User.fromJson(json);
 
@@ -473,8 +507,6 @@ class _FourthStepState extends State<FourthStep> {
     //   if (res.data != null) {
     // var data = res.data;
   }
-
-
   void pushToApartmentOfOwnerAfterAdd() {
     myPushReplacementNamed(MyPagesRoutes.apartmentOfOwnerAfterAdd,
         context: context);
