@@ -76,7 +76,8 @@ class _FourthStepState extends State<FourthStep> {
     // getUserData(User);
   }
 
-  var  apartmentId = '';
+  var apartmentId = '';
+
   @override
   Widget build(BuildContext context) {
     // Ad box
@@ -326,8 +327,8 @@ class _FourthStepState extends State<FourthStep> {
   }
 
   String msg = "";
-  Future<DataOfOneApartment?>createApartment(
-      // String address,
+
+  Future<DataOfOneApartment?> createApartment(// String address,
       // int bathRooms,
       // int rooms,
       // int price,
@@ -352,7 +353,6 @@ class _FourthStepState extends State<FourthStep> {
       // DropDownTypeOfUser typeId
       // String value
       ) async {
-
     // try{
     var url = Uri.parse(ServerWeenBalaqee.apartmentAdd);
     var token = (await sp).get("token");
@@ -360,9 +360,9 @@ class _FourthStepState extends State<FourthStep> {
     if (token != null) {
       final headers = {
         'Authorization':
-        // 'Bearer ${apartmentModelController.ownerToken}',
-        // 'Bearer 59|kO3wxOnjan40Ps4OO7D14nC0tt4tUAhq5oABl7f23256a9b0',
-        'Bearer $token',
+            // 'Bearer ${apartmentModelController.ownerToken}',
+            // 'Bearer 59|kO3wxOnjan40Ps4OO7D14nC0tt4tUAhq5oABl7f23256a9b0',
+            'Bearer $token',
         'Content-Type': 'application/json',
       };
 
@@ -410,20 +410,19 @@ class _FourthStepState extends State<FourthStep> {
         // setState(() {
         //   apartmentIdPram = apartmentId;
         AddAdDataContainer.id = await apartmentId;
+        // apartmentModelController.apartmentId = await apartmentId;
+
         debugPrint(
-            "the apartment from AddAdDataContainer is : ${AddAdDataContainer
-                .id}");
+            "the apartment from AddAdDataContainer is : ${AddAdDataContainer.id}");
         // });
         debugPrint("the new apartment Id is : $apartmentId");
 
         // debugPrint("insert advantages is done!");
 
-        await AdvantagesModelController().insertAdvInApartment3
-          ("${await apartmentId}",
-            advantagesModelController.chosen);
+        await AdvantagesModelController().insertAdvInApartment3(
+            "${await apartmentId}", advantagesModelController.chosen);
         // alert("تم اضافة أعلانك","تم إنشاء إعلان جديد ،ببيانات تم ادخالها "
         //     "يدويا بالإضافة إلى إدخال قائمة من المزايا بشكل يدوي","حسنًا");
-
 
         // });
         // if(apartmentModelController.apartmentId != '-1'){
@@ -437,12 +436,11 @@ class _FourthStepState extends State<FourthStep> {
         // debugPrint(" the apartmentIdPram is : $apartmentIdPram");
         // debugPrint("the id of AddAdDataContainer is: ${AddAdDataContainer.id}");
 
-
         // setState(() {
         //   apartmentId = '-2';
         //
         // });
-
+        await imagesModelController.uploadImages();
 
         var res = DataOfOneApartment.fromJson(json);
         // dataOfOneApartment = res;
@@ -481,8 +479,7 @@ class _FourthStepState extends State<FourthStep> {
         // }
         // var apartmentSpId = (await sp).save('apartmentId');
 
-        return  res;
-
+        return res;
       } else {
         debugPrint("the statee of code is not true : ${response.statusCode}");
         debugPrint(
@@ -507,6 +504,7 @@ class _FourthStepState extends State<FourthStep> {
     //   if (res.data != null) {
     // var data = res.data;
   }
+
   void pushToApartmentOfOwnerAfterAdd() {
     myPushReplacementNamed(MyPagesRoutes.apartmentOfOwnerAfterAdd,
         context: context);

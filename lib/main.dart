@@ -16,6 +16,7 @@ import 'package:get/get.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:ween_blaqe/controller/function_controller/api_functions_controller/get_advatages_api.dart';
 import 'package:ween_blaqe/controller/function_controller/change_theme_mode.dart';
+import 'package:ween_blaqe/controller/get_controllers.dart';
 import 'package:ween_blaqe/controller/main_controller.dart';
 import 'package:flutter/services.dart';
 import 'package:ween_blaqe/controller/models_controller/advantages_model_controller.dart';
@@ -55,6 +56,7 @@ import 'features/user/owner/steps_to_create_apartment/second_step.dart';
 import 'features/user/owner/steps_to_create_apartment/third_step.dart';
 import 'features/widgets_before_user_reg/login.dart';
 import 'features/widgets_before_user_reg/registration.dart';
+
 /*
 **كيف ممكن ننشئ مشاريع في الفريق تاعنا و الكل يوخذ حقه**
 لما بدنا نقترح فكرة على بعض رح نوجه
@@ -134,7 +136,7 @@ class OwnMaterialApp extends StatefulWidget {
 }
 
 class _OwnMaterialAppState extends State<OwnMaterialApp> {
-
+  String newestApartmentId = '-1';
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(
@@ -185,10 +187,12 @@ class _OwnMaterialAppState extends State<OwnMaterialApp> {
         MyPagesRoutes.main: (context) => const Main(),
         // MyPagesRoutes.mainOwner: (context) => const MainOwner(),
         MyPagesRoutes.mainStudent: (context) => const MainStudent(),
-        MyPagesRoutes.step1: (context) =>  const FirstStep(),
+        MyPagesRoutes.step1: (context) => const FirstStep(),
         MyPagesRoutes.step2: (context) => const SecondStep(),
         MyPagesRoutes.step3: (context) => const ThirdStep(),
-        MyPagesRoutes.step4: (context) => const FourthStep(),
+        MyPagesRoutes.step4: (context) => FourthStep(
+              oneApartmentId: apartmentModelController.apartment.data?.first,
+            ),
         MyPagesRoutes.login: (context) => const Login(),
         MyPagesRoutes.register: (context) => const Register(),
         // MyPagesRoutes.masterHome: (context) => const MasterHome(),
@@ -216,7 +220,7 @@ class _OwnMaterialAppState extends State<OwnMaterialApp> {
         //     const ApartmentOfOwnerBeforeAdd(),
         MyPagesRoutes.splashScreen: (context) => const SplashScreen(),
         // MyPagesRoutes.refactorApartment: (context) => const RefactorApartment(),
-        MyPagesRoutes.privacyPolicy: (context) =>  PrivacyPolicy(),
+        MyPagesRoutes.privacyPolicy: (context) => PrivacyPolicy(),
         MyPagesRoutes.askForHelp: (context) => const AskForHelp(),
         MyPagesRoutes.systemPaying: (context) => const SystemPaying(),
         MyPagesRoutes.whatIsSystemPayingAllow: (context) =>
@@ -247,18 +251,25 @@ class _OwnMaterialAppState extends State<OwnMaterialApp> {
         MyPagesRoutes.skeletonParagraph: (context) =>
             const LongParagraphReadySkeleton(),
         MyPagesRoutes.newMasterHome: (context) => const NewMasterHome(),
-        MyPagesRoutes.newShowMore: (context) =>  NewShowMore(),
+        MyPagesRoutes.newShowMore: (context) => NewShowMore(),
         MyPagesRoutes.whatTheInfoReqToCreateAd: (context) =>
-             WhatTheInfoReqToCreateAd(),
-
+            WhatTheInfoReqToCreateAd(),
 
         //testing routes..
         // MyPagesRoutes.citiesTest:(context)=> CitiesTest(),
         // MyPagesRoutes.showAllAdvantages:(context)=>ShowAllAdvantages,
       },
+
       // Main(),
       //The ThemeData of ween blaqe application
     );
+  }
+
+  void putValue(String value) async {
+    newestApartmentId = value;
+    debugPrint(value);
+
+
   }
 }
 
@@ -291,14 +302,12 @@ class _MainState extends State<Main> {
 
   @override
   void initState() {
-
     super.initState();
     controller.addListener(listener);
     SystemChrome.setPreferredOrientations([
       DeviceOrientation.portraitUp,
       DeviceOrientation.portraitDown,
     ]);
-
 
     // initializtion();
   }
@@ -315,6 +324,7 @@ class _MainState extends State<Main> {
         (route) => route.settings.name == MyPagesRoutes.main,
         MyPagesRoutes.main);
   }
+
   @override
   void dispose() {
     super.dispose();
@@ -325,13 +335,13 @@ class _MainState extends State<Main> {
       DeviceOrientation.landscapeRight,
     ]);
   }
+
   void listener() {
     // \(controller.position.pixel);
   }
 
   // var index = 0;
   MainController mainController = Get.find();
-
 
   @override
   Widget build(BuildContext context) {
@@ -347,7 +357,8 @@ class _MainState extends State<Main> {
         // bottom: false,
         // top
         bottomColor: Colors.transparent,
-        color: themeMode.isDark ? kPrimaryColorLightMode : kPrimaryColorDarkMode,
+        color:
+            themeMode.isDark ? kPrimaryColorLightMode : kPrimaryColorDarkMode,
         child: Scaffold(
             backgroundColor: Colors.grey.shade200,
             body: GetBuilder<MainController>(

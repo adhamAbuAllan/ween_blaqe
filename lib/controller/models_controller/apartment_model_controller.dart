@@ -6,5 +6,5 @@ class ApartmentModelController extends GetxController {
   OneApartment apartment = OneApartment();
   late String? ownerToken =
       apartmentModelController.apartment.data?[1].owner?.token;
-  late String ? apartmentId = '-1';
+  late dynamic apartmentId = '-1';
 }

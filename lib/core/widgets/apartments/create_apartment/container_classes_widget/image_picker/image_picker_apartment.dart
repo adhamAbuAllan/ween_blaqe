@@ -195,6 +195,10 @@ class _AddImagesState extends State<AddImages> {
         //     "image :$image");
         //   debugPrint("images in imagesModelC");
       }
+      setState(() {
+        imagesModelController.imageFiles = _imageFileList;
+      });
+
       Get.to(const FourthStep());
     } else {
       // toast("أضف صورة واحدة على الاقل");
