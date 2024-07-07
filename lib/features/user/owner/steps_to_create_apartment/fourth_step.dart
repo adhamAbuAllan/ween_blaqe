@@ -77,6 +77,7 @@ class _FourthStepState extends State<FourthStep> {
   }
 
   var apartmentId = '';
+  bool isLoading = false;
 
   @override
   Widget build(BuildContext context) {
@@ -158,7 +159,10 @@ class _FourthStepState extends State<FourthStep> {
                               // ) {
                               // setState(() {
                               try {
-                                createApartment();
+                                setState(() {
+                                  createApartment();
+                                });
+
                                 debugPrint("current value of local "
                                     "apartmantId is $apartmentId");
                                 // apartmentModelController.apartmentId =
@@ -238,7 +242,11 @@ class _FourthStepState extends State<FourthStep> {
                             // Get.to(ApartmentsOfOwnerAfterAdd());
                           },
                           style: fullButton,
-                          child: const Text("حفظ"),
+                          child: isLoading
+                              ? const CircularProgressIndicator(
+                                  color: Colors.white,
+                                )
+                              : const Text("حفظ"),
                         ),
                       ),
                     ],
@@ -351,6 +359,8 @@ class _FourthStepState extends State<FourthStep> {
       // DropDownTypeOfUser typeId
       // String value
       ) async {
+    isLoading = true;
+
     // try{
     var url = Uri.parse(ServerWeenBalaqee.apartmentAdd);
     var token = (await sp).get("token");
@@ -439,6 +449,7 @@ class _FourthStepState extends State<FourthStep> {
         //
         // });
         await imagesModelController.uploadImages();
+        isLoading = false;
         pushToMainPage();
         var res = DataOfOneApartment.fromJson(json);
 
@@ -494,7 +505,7 @@ class _FourthStepState extends State<FourthStep> {
     // ownerId = user.id as User;
     // AddAdDataContainer.ownerId = ownerId;
     // if (res.status == false) {
-    //   setState(() {
+    //   setState(() { ¢
     //     msg = res.msg;
     //   });
     //   print(json);

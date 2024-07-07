@@ -10,6 +10,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:permission_handler/permission_handler.dart';
 import 'package:ween_blaqe/constants/nums.dart';
 import 'package:ween_blaqe/controller/get_controllers.dart';
 import 'package:ween_blaqe/core/utils/styles/button.dart';
@@ -51,7 +52,11 @@ class _AddImagesState extends State<AddImages> {
 //that mean if an image is added , that programmatically make image is selected
   Future<void> _onImageButtonPressed(ImageSource source,
       {BuildContext? context, bool isMultiImage = false}) async {
-    if (isMultiImage) {
+
+     requestPhotoPermission();
+
+
+    if ( isMultiImage) {
       await _displayPickImageDialog(context!,
           (double? maxWidth, double? maxHeight, int? quality) async {
         try {
@@ -221,6 +226,18 @@ class _AddImagesState extends State<AddImages> {
       });
     } else {
       _retrieveDataError = response.exception!.code;
+    }
+  }
+  Future<void> requestPhotoPermission() async {
+    final status = await Permission.photos.request();
+
+    if (status.isGranted) {
+      // Permission granted, proceed with image picking
+    } else if (status.isDenied) {
+      // Permission denied, handle accordingly (e.g., show a dialog)
+    } else if (status.isPermanentlyDenied) {
+      // Permission permanently denied, guide the user to app settings
+      // openAppSettings();
     }
   }
 
