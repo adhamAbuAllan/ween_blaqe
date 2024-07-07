@@ -11,17 +11,18 @@ import 'package:ween_blaqe/data_containers/add_ad_data_container.dart';
 class ImagesModelController extends GetxController {
   List<String> images = [];
   List<XFile>? imageFiles;
-
+  bool isImagesUploaded = false;
   Future<void> uploadImages() async {
-    if (imageFiles == null || imageFiles!.isEmpty && apartmentModelController
-        .apartmentId==null || apartmentModelController.apartmentId!.isEmpty) {
+    if (imageFiles == null ||
+        imageFiles!.isEmpty && apartmentModelController.apartmentId == null ||
+        apartmentModelController.apartmentId!.isEmpty) {
       debugPrint("No images selected. Or , the apartment id is not selected "
           "${apartmentModelController.apartmentId}");
 
       return;
     }
 
-     // Replace
+    // Replace
     // with actual
     // apartment ID
     Uri url =
@@ -50,10 +51,13 @@ class ImagesModelController extends GetxController {
 
       if (response.statusCode == 200) {
         debugPrint("Images uploaded successfully.");
+        isImagesUploaded = true;
+
         // Handle success response
       } else {
-        debugPrint("Failed to upload images. Status code: ${response.statusCode}");
-        if(response.statusCode == 404){
+        debugPrint(
+            "Failed to upload images. Status code: ${response.statusCode}");
+        if (response.statusCode == 404) {
           debugPrint("and You got 404 , because one of those is null value "
               "imageFiles List:$imageFiles , apartmentId : "
               "${apartmentModelController.apartmentId} ");

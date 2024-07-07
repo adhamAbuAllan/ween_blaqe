@@ -140,102 +140,100 @@ class _FourthStepState extends State<FourthStep> {
                         padding: const EdgeInsets.all(8.0),
                         child: ElevatedButton(
                           onPressed: () {
-                            setState(() {
-                              FocusScopeNode currentFocus =
-                                  FocusScope.of(context);
-                              if (!currentFocus.hasPrimaryFocus) {
-                                currentFocus.unfocus();
-                              }
-                            });
-                            setState(() {
+                            // setState(() {
+                            FocusScopeNode currentFocus =
+                                FocusScope.of(context);
+                            if (!currentFocus.hasPrimaryFocus) {
+                              currentFocus.unfocus();
+                            }
+                            // });
+                            // setState(() {
+                            try {
+                              AddAdDataContainer.title = titleController.text;
+                              AddAdDataContainer.description =
+                                  descriptionController.text;
+                              // if (
+                              // title != null && description != null
+                              // apartmentModelController.ownerToken!=null
+                              // ) {
+                              // setState(() {
                               try {
-                                AddAdDataContainer.title = titleController.text;
-                                AddAdDataContainer.description =
-                                    descriptionController.text;
-                                // if (
-                                // title != null && description != null
-                                // apartmentModelController.ownerToken!=null
-                                // ) {
-                                setState(() {
-                                  try {
-                                    createApartment();
-                                    debugPrint("current value of local "
-                                        "apartmantId is $apartmentId");
-                                    // apartmentModelController.apartmentId =
-                                    //     apartmentId;
-                                    // debugPrint("currently the apartment Id "
-                                    //     "from API is "
-                                    //     "${}");
-                                    //                                print("an apartment Id from SP :${NewSession
-                                    //                                    .get
-                                    //                                 ('apartmentId','-'
-                                    // '1')}");
+                                createApartment();
+                                debugPrint("current value of local "
+                                    "apartmantId is $apartmentId");
+                                // apartmentModelController.apartmentId =
+                                //     apartmentId;
+                                // debugPrint("currently the apartment Id "
+                                //     "from API is "
+                                //     "${}");
+                                //                                print("an apartment Id from SP :${NewSession
+                                //                                    .get
+                                //                                 ('apartmentId','-'
+                                // '1')}");
 
-                                    //
-                                    // //    var token = (await sp).get("token");
-                                    //
-                                    // debugPrint("the apartment id now is : ${widget.oneApartmentId?.id}");
-                                    // advantagesModelController
-                                    //     .insertAdvInApartment3("${}",
-                                    //     ["${advantagesModelController
-                                    //         .chosen}"]);
-                                    // createApartment(
-                                    //   address ?? "",
-                                    //   bathRooms ?? -1,
-                                    //   rooms ?? -1,
-                                    //   price ?? -1,
-                                    //   //be careful don't delete it!!!
-                                    //   //-------------------
-                                    //   //  typeOfApartment!,
-                                    //   //-------------------
-                                    //   // city!,
-                                    //   squareMeters ?? -1,
-                                    //   // type!,
-                                    //   //be careful don't delete it!!!
-                                    //   //-------------------
-                                    //   //  city!,
-                                    //   //-------------------
-                                    //   title ?? "",
-                                    //   description ?? "",
-                                    //   countOfStudent ?? -1,
-                                    //   // email
-                                    //
-                                    //   // NewSession.get("id", User),
-                                    // );
+                                //
+                                // //    var token = (await sp).get("token");
+                                //
+                                // debugPrint("the apartment id now is : ${widget.oneApartmentId?.id}");
+                                // advantagesModelController
+                                //     .insertAdvInApartment3("${}",
+                                //     ["${advantagesModelController
+                                //         .chosen}"]);
+                                // createApartment(
+                                //   address ?? "",
+                                //   bathRooms ?? -1,
+                                //   rooms ?? -1,
+                                //   price ?? -1,
+                                //   //be careful don't delete it!!!
+                                //   //-------------------
+                                //   //  typeOfApartment!,
+                                //   //-------------------
+                                //   // city!,
+                                //   squareMeters ?? -1,
+                                //   // type!,
+                                //   //be careful don't delete it!!!
+                                //   //-------------------
+                                //   //  city!,
+                                //   //-------------------
+                                //   title ?? "",
+                                //   description ?? "",
+                                //   countOfStudent ?? -1,
+                                //   // email
+                                //
+                                //   // NewSession.get("id", User),
+                                // );
 
-                                    debugPrint("successfuly created apartment "
-                                        "ad !");
-
-                                    myPushName(context, MyPagesRoutes.main);
-                                  } catch (e) {
-                                    rethrow;
-                                  }
-                                });
-                                // }
+                                debugPrint("successfuly created apartment "
+                                    "ad !");
                               } catch (e) {
-                                // print(AddAdDataContainer.city);
-                                // print("owner id  --${NewSession.get("token", "")}");
-                                // print(AddAdDataContainer.ownerId);
-
-                                NormalAlert.show(
-                                    context,
-                                    "مشكلة فنية",
-                                    "يوجد "
-                                        "مشكلة"
-                                        " فنية "
-                                        "، سيتم "
-                                        "إصلاحها "
-                                        " قريبًا،"
-                                        "لا تقلق لقد تم حفظ بياناتك،،يمكنك "
-                                        "الرجوع "
-                                        "و المتابعة"
-                                        " في وقتٍ لاحق",
-                                    "حسنًا");
+                                rethrow;
                               }
-                              // AddAdDataContainer.photos = AddImages;
+                              // });
+                              // }
+                            } catch (e) {
+                              // print(AddAdDataContainer.city);
+                              // print("owner id  --${NewSession.get("token", "")}");
+                              // print(AddAdDataContainer.ownerId);
 
-                              // AddAdDataContainer.tesing();
-                            });
+                              NormalAlert.show(
+                                  context,
+                                  "مشكلة فنية",
+                                  "يوجد "
+                                      "مشكلة"
+                                      " فنية "
+                                      "، سيتم "
+                                      "إصلاحها "
+                                      " قريبًا،"
+                                      "لا تقلق لقد تم حفظ بياناتك،،يمكنك "
+                                      "الرجوع "
+                                      "و المتابعة"
+                                      " في وقتٍ لاحق",
+                                  "حسنًا");
+                            }
+                            // AddAdDataContainer.photos = AddImages;
+
+                            // AddAdDataContainer.tesing();
+                            // });
 
                             // Get.to(ApartmentsOfOwnerAfterAdd());
                           },
@@ -441,8 +439,9 @@ class _FourthStepState extends State<FourthStep> {
         //
         // });
         await imagesModelController.uploadImages();
-
+        pushToMainPage();
         var res = DataOfOneApartment.fromJson(json);
+
         // dataOfOneApartment = res;
 
         // if (res.id != null) {
@@ -478,7 +477,6 @@ class _FourthStepState extends State<FourthStep> {
         //   debugPrint("the id is not ready that is ${res.id}");
         // }
         // var apartmentSpId = (await sp).save('apartmentId');
-
         return res;
       } else {
         debugPrint("the statee of code is not true : ${response.statusCode}");
@@ -503,6 +501,15 @@ class _FourthStepState extends State<FourthStep> {
     // } else {
     //   if (res.data != null) {
     // var data = res.data;
+  }
+
+  Future<void> pushToMainPage() async {
+    await myPushName(context, MyPagesRoutes.main);
+    // await  Navigator.of(context).push(MaterialPageRoute(
+    //       builder: (BuildContext context) => const HomeBeforeAddData())
+    // );
+
+    // studentController.index = 0;
   }
 
   void pushToApartmentOfOwnerAfterAdd() {
