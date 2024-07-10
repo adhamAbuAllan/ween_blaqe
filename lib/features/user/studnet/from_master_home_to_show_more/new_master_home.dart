@@ -112,12 +112,12 @@ bool isHaveInternet = false;
           : (apartmentModelController.apartment.data?.isEmpty ??
           false) // else if json of apartment - specific type of apartment -
           ? TypeNotFound(type: _type,) // then go to TypeNotFound screen
-          : StreamBuilder<ConnectivityResult>(
+          : StreamBuilder<List<ConnectivityResult>>(
 
           stream: Connectivity().onConnectivityChanged,
         builder: (context, snapshot) { //check wifi
           if (snapshot.data == ConnectivityResult
-              .wifi) { // show snackbar connection if have connection with wifi
+              .values) { // show snackbar connection if have connection with wifi
             isStart
                 ?
           const Text("")
@@ -132,7 +132,8 @@ bool isHaveInternet = false;
               // Navigator.pop(context);
 
           } else if (snapshot.data == ConnectivityResult
-              .none) { // show sanckbar no connectoin if no have connection with wifi and go to no Internet screen
+              .values) { // show sanckbar no connectoin if no have connection with
+            // wifi and go to no Internet screen
             showSnakBarInStreamBuilder(
                 context, "انقطع الانترنت",
                 isIcon: true,

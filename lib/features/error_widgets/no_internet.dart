@@ -19,8 +19,8 @@ main(){
 class
 NoInternet extends StatefulWidget {
   const NoInternet({
-    Key? key,
-  }) : super(key: key);
+    super.key,
+  });
 
   @override
   State<NoInternet> createState() => _NoInternetState();
@@ -119,7 +119,7 @@ class _NoInternetState extends State<NoInternet> with WidgetsBindingObserver {
       ColorfulSafeArea(
       bottomColor: Colors.transparent,
       color: themeMode.isDark ? kPrimaryColorLightMode : kPrimaryColorDarkMode,
-      child: StreamBuilder<ConnectivityResult>(
+      child: StreamBuilder<List<ConnectivityResult>>(
         stream: Connectivity().onConnectivityChanged,
         builder: (context, snapshot) {
           return Scaffold(
@@ -217,7 +217,7 @@ class _NoInternetState extends State<NoInternet> with WidgetsBindingObserver {
                                     height: 55,
                                     child: buildSebhaElevatedButton(),
                                   )   ,
-                                SizedBox(height: 20,),
+                                const SizedBox(height: 20,),
                                 SizedBox(
                                     width: double.infinity,
                                     height: 55,
@@ -231,7 +231,7 @@ class _NoInternetState extends State<NoInternet> with WidgetsBindingObserver {
                                         saveTotal(total);
                                       });
                                     },
-                                    child: Text("تصفير")),
+                                    child: const Text("تصفير")),
                                   ),
                               ],
                             )
@@ -275,14 +275,14 @@ class _NoInternetState extends State<NoInternet> with WidgetsBindingObserver {
                 ),
               ),
             ),
-          floatingActionButton:snapshot.data == ConnectivityResult
-              .wifi  ?  FloatingActionButton(onPressed: () {
+          floatingActionButton:snapshot.data == ConnectivityResult.values?
+              FloatingActionButton(onPressed: () {
 
               myPushName(context, MyPagesRoutes.main);
             },
               shape:ContinuousRectangleBorder(borderRadius: BorderRadius.circular(16/2)),
               backgroundColor: themeMode.isDark ? kPrimaryColorLightMode : kPrimaryColorDarkMode,
-              child: const FaIcon(FontAwesomeIcons.redoAlt,),
+              child: const FaIcon(FontAwesomeIcons.rotateRight,),
             ):const SizedBox(),
           );
         }
@@ -298,9 +298,9 @@ class _NoInternetState extends State<NoInternet> with WidgetsBindingObserver {
   Row buildCounterTextRow() {
     return Row(children: [
        Padding(
-        padding: EdgeInsets.fromLTRB(0, 10, 5, 10),
+        padding: const EdgeInsets.fromLTRB(0, 10, 5, 10),
         child: Image(
-          image: AssetImage("assets/images/error_images/no network.png"),
+          image: const AssetImage("assets/images/error_images/no network.png"),
           height: 60,
           color: themeMode.isDark ? kTextColorLightMode : kTextColorDarkMode,
           width: 60,
