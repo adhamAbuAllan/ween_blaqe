@@ -77,6 +77,7 @@ class _FourthStepState extends State<FourthStep> {
   }
 
   var apartmentId = '';
+  bool isDataLoaded = false;
 
   @override
   Widget build(BuildContext context) {
@@ -158,7 +159,10 @@ class _FourthStepState extends State<FourthStep> {
                               // ) {
                               // setState(() {
                               try {
-                                createApartment();
+                                setState(() {
+                                  createApartment();
+                                });
+
                                 debugPrint("current value of local "
                                     "apartmantId is $apartmentId");
                                 // apartmentModelController.apartmentId =
@@ -238,7 +242,11 @@ class _FourthStepState extends State<FourthStep> {
                             // Get.to(ApartmentsOfOwnerAfterAdd());
                           },
                           style: fullButton,
-                          child: const Text("حفظ"),
+                          child: isDataLoaded
+                              ? const CircularProgressIndicator(
+                                  color: Colors.white,
+                                )
+                              : const Text("حفظ"),
                         ),
                       ),
                     ],
@@ -397,7 +405,7 @@ class _FourthStepState extends State<FourthStep> {
         // "owner_id":ownerId
         // "type_id":typeId
       });
-
+        isDataLoaded = true;
       var response = await http.post(url, headers: headers, body: body);
       if (response.statusCode == 200) {
         // debugPrint("apartment basic data creating...");
@@ -439,6 +447,7 @@ class _FourthStepState extends State<FourthStep> {
         //
         // });
         await imagesModelController.uploadImages();
+        isDataLoaded = false;
         pushToMainPage();
         var res = DataOfOneApartment.fromJson(json);
 
