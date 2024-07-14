@@ -1,17 +1,18 @@
-import 'package:flutter/material.dart';
-import 'package:ween_blaqe/controller/get_controllers.dart';
+// import 'package:flutter/material.dart';
+import 'package:ween_blaqe/api/apartments_api/one_apartment.dart';
 
 import '../api/users.dart';
 
 import 'new_session.dart';
-saveUserInfo(User data ) {
+saveUserInfo(User data,{DataOfOneApartment ? apartment} ) {
   NewSession.save("logged", "OK");
-  if(apartmentModelController.ownerToken!=null){
-    NewSession.save("token", apartmentModelController.ownerToken);
-    debugPrint("the token of owner is ${apartmentModelController.ownerToken}");
-
-  }
+  // if(apartmentModelController.ownerToken!=null){
+  //   NewSession.save("token", apartmentModelController.ownerToken);
+  //   debugPrint("the token of owner is ${apartmentModelController.ownerToken}");
+  //
+  // }
   NewSession.save<int>("id", data.id);
+  NewSession.save<String>("token", data.token??"null");
   // Session.save("profile", data.profile);
 
   NewSession.save("name", data.name);
@@ -30,6 +31,7 @@ saveUserInfo(User data ) {
   // NewSession.save("type", data.type);
 
   NewSession.save("phone", data.phone);
+  NewSession.save("apartmentId",apartment?.id??-1 );
   // NewSession.save("gender", data.gender);
   // NewSession.save("university", data.university);
 

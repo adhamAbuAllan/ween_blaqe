@@ -7,6 +7,7 @@ import 'package:http/http.dart' as http;
 import '../../../api/apartments_api/one_apartment.dart';
 import '../../../api/photos.dart';
 import '../../../constants/strings.dart';
+import '../../../main.dart';
 import '../../models_controller/apartment_model_controller.dart';
 
 class ApiApartmentController extends GetxController{
@@ -52,6 +53,41 @@ class ApiApartmentController extends GetxController{
     debugPrint(" call api and assign data");
    apartmentModelController.apartment = (await getDataFromAPI(type: type, isAll: isAll));
   }
+
+  Future<void> getApartmentsByOwner() async {
+    final url = Uri.parse(ServerWeenBalaqee.apartmentOwner);
+
+    var token = (await sp).get("token");
+    var ownerId = (await sp).get("id");
+
+    final response = await http.post(
+      url,
+      headers: {
+        'Authorization': 'Bearer $token',
+            // '$token',
+        'Content-Type': 'application/json',
+        'Accept': 'application/json',
+      },
+      body: jsonEncode({'owner_id': '$ownerId'}),
+    );
+    debugPrint("the response :${response.body} your token is $token , and "
+        "your ownerId is :$ownerId");
+
+    if (response.statusCode == 200) {
+      final data = jsonDecode(response.body);
+      final apartments = data['data'];
+
+      // Handle the apartments data
+      debugPrint(apartments);
+    } else {
+      final error = jsonDecode(response.body);
+      debugPrint('Error: ${error['error']}');
+    }
+
+
+
+  }
+
 
   Future<List<Photos>> fetchPhotos() async {
     update();

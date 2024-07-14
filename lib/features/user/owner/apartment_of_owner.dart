@@ -332,3 +332,35 @@
 //     );
 //   }
 // }
+import 'package:flutter/material.dart';
+
+import '../../../controller/function_controller/api_functions_controller/get_data_of_apartment_api.dart';
+class ApartmentOwnerTesting extends StatefulWidget {
+  const ApartmentOwnerTesting({super.key});
+
+  @override
+  State<ApartmentOwnerTesting> createState() => _ApartmentOwnerTestingState();
+}
+
+class _ApartmentOwnerTestingState extends State<ApartmentOwnerTesting> {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      backgroundColor: Colors.black87,
+      body:Center(child: ElevatedButton(onPressed: (){
+        // try{
+        // getApartmentsByOwner();
+        // setState(() {
+        ApiApartmentController().getApartmentsByOwner();
+
+        // });
+        // }catch(c){}
+
+
+      },
+        child: const Text
+          ("get "
+            "Data"),),),);
+  }
+}
+
