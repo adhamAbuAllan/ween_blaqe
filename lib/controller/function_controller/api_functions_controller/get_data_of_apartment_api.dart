@@ -13,6 +13,7 @@ import '../../models_controller/apartment_model_controller.dart';
 class ApiApartmentController extends GetxController{
   ApartmentModelController apartmentModelController = Get.find();
   bool isDataLoaded = false;
+
   Future<OneApartment>  getDataFromAPI({String? type, bool? isAll,String? errorMessage}) async {
     Uri uri = Uri.parse("${ServerWeenBalaqee.apartmentAll}?type=$type");
     if (isAll == true) {
@@ -53,8 +54,13 @@ class ApiApartmentController extends GetxController{
     debugPrint(" call api and assign data");
    apartmentModelController.apartment = (await getDataFromAPI(type: type, isAll: isAll));
   }
+  callApiApartmentOfOwner()async{
+    apartmentModelController.apartment = (await getApartmentsByOwner());
+  }
 
-  Future<void> getApartmentsByOwner() async {
+
+  Future<OneApartment> getApartmentsByOwner() async {
+
     final url = Uri.parse(ServerWeenBalaqee.apartmentOwner);
 
     var token = (await sp).get("token");
@@ -74,15 +80,21 @@ class ApiApartmentController extends GetxController{
         "your ownerId is :$ownerId");
 
     if (response.statusCode == 200) {
-      final data = jsonDecode(response.body);
-      final apartments = data['data'];
+      var responseBody = response.body;
+      var json = jsonDecode(responseBody);
 
+      OneApartment apartmentsRes = OneApartment.fromJson(json);
+      update();
       // Handle the apartments data
-      debugPrint(apartments);
+
+      // update();
+      debugPrint("the data of apartments of owner is :${apartmentModelController.apartment}");
+      return apartmentsRes;
     } else {
       final error = jsonDecode(response.body);
       debugPrint('Error: ${error['error']}');
     }
+    return apartmentModelController.apartment;
 
 
 

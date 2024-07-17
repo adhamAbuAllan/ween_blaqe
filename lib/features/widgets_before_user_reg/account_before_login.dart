@@ -8,7 +8,6 @@ import 'package:ween_blaqe/core/utils/funcations/route_pages/push_routes.dart';
 import 'package:ween_blaqe/core/utils/funcations/snakbar.dart';
 import 'package:ween_blaqe/core/utils/styles/button.dart';
 import 'package:ween_blaqe/core/utils/styles/text_style/aline_style.dart';
-import 'package:ween_blaqe/features/user/owner/apartment_of_owner.dart';
 
 import '../../constants/nums.dart';
 import '../../constants/strings.dart';
@@ -48,14 +47,14 @@ main (){
         bottomNavigationBarTheme:      const BottomNavigationBarThemeData(
             selectedIconTheme: IconThemeData(size: 26))),
     //make screen rtl
-    localizationsDelegates:      [
+    localizationsDelegates:      const [
       GlobalCupertinoLocalizations.delegate,
       GlobalMaterialLocalizations.delegate,
       GlobalWidgetsLocalizations.delegate,
     ],
-    supportedLocales:      [
-      const Locale("en", "US"),
-      const Locale("ar", "SA"), // OR Locale('ar', 'AE') OR Other RTL locales
+    supportedLocales:      const [
+      Locale("en", "US"),
+      Locale("ar", "SA"), // OR Locale('ar', 'AE') OR Other RTL locales
     ],
     locale:      const Locale("ar", "SA"),
 
@@ -288,15 +287,7 @@ class _AccountBeforeLoginInStudentState
                               width: 35, height: 35) ,
 
                       "السحبة"),
-                      aline,
-                      buttonAccount(() {
-                    Navigator.push(context, MaterialPageRoute(builder: (context) => const ApartmentOwnerTesting(),));
-                  },
-                          icon: Icon(Icons.apartment,color:themeMode.isDark ? kTextColorLightMode : kTextColorDarkMode,
-                             size: 35, ) ,
 
-
-                      "شققك"),
 
 
 
@@ -321,7 +312,9 @@ class _AccountBeforeLoginInStudentState
                       },
                       style: fullButton.copyWith(
                           backgroundColor:
-                               const MaterialStatePropertyAll(Colors.grey)),
+                                WidgetStatePropertyAll(  themeMode.isDark
+                                   ? kPrimaryColorLightMode
+                                   : kPrimaryColorDarkMode,)),
                       child:      const Text("تسجيل الدخول")),
                 ),
               ),
@@ -340,10 +333,10 @@ class _AccountBeforeLoginInStudentState
                   ),
                   //reg
                   TextButton(
-                    child: Text(
+                    child: const Text(
                       "إنشاء حساب",
                       style: TextStyle(
-                        color: !isCodeActive ? Colors.black : Colors.grey,
+                        color:  Colors.blueAccent,
                         decoration: TextDecoration.underline,
                         fontFamily: 'IBM',
                       ),

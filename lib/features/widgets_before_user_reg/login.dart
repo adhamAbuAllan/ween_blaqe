@@ -1,4 +1,5 @@
 import 'dart:convert';
+
 // import 'dart:html';
 // import 'dart:io';
 // import 'dart:ui';
@@ -11,6 +12,7 @@ import 'package:ween_blaqe/core/utils/funcations/route_pages/push_routes.dart';
 import 'package:ween_blaqe/core/utils/function_that_effect_widgets/hide_keyboard.dart';
 import 'package:ween_blaqe/core/utils/function_that_effect_widgets/remove_zero_from_phone_number.dart';
 import 'package:ween_blaqe/core/utils/styles/button.dart';
+// import 'package:ween_blaqe/core/utils/styles/show_more_widget/about_apartment_style.dart';
 import 'package:ween_blaqe/features/widgets_before_user_reg/registration.dart';
 
 //
@@ -18,6 +20,7 @@ import 'package:ween_blaqe/features/widgets_before_user_reg/registration.dart';
 // //YOUR INFO
 // ////////////////////////////////////////////////////////////////////////
 import '../../api/users.dart';
+
 // ////////////////////////////////////////////////////////////////
 // ////////////////////////////////////////////////////////////////
 // import '../../main.dart';
@@ -37,6 +40,7 @@ import '../../sesstion/sesstion_of_user.dart';
 //Login screen
 class Login extends StatefulWidget {
   const Login({Key? key}) : super(key: key);
+
   @override
   State<Login> createState() => _LoginState();
 }
@@ -56,9 +60,11 @@ class _LoginState extends State<Login> {
   FocusNode passwordFocus = FocusNode();
   TextEditingController phoneController = TextEditingController();
   String msg = "";
+
   // bool _isvisible = true;
   bool autoFocus = false;
   bool autoFocusOfPassword = false;
+
   // String errorText = "";
   //alert box
   var titleOfAlirt = "بيانات خاطئة";
@@ -88,25 +94,45 @@ class _LoginState extends State<Login> {
     return GestureDetector(
       onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
       child: ColorfulSafeArea(
-bottomColor: Colors.transparent ,
-        color:themeMode.isDark ?kPrimaryColorLightMode: kPrimaryColorDarkMode,
+        bottomColor: Colors.transparent,
+        color:
+            themeMode.isDark ? kPrimaryColorLightMode : kPrimaryColorDarkMode,
         child: Scaffold(
-          backgroundColor: Colors.grey.shade200,
+
+          backgroundColor: themeMode.isDark
+              ? kBackgroundAppColorLightMode
+              : kBackgroundAppColorDarkMode,
           body: SingleChildScrollView(
             child: Column(
               children: [
                 //back arrow button
-                //title-nameApp
-                const Row(
+                Row(
                   children: [
                     Padding(
-                      padding: EdgeInsets.fromLTRB(0, 50, 20, 0),
+                      padding: const EdgeInsets.fromLTRB(0, 25, 0, 0),
+                      child: BackButton(
+                        color: themeMode.isDark ? kTextColorLightMode : kTextColorDarkMode,
+
+                      ),
+                    ),
+                    const Expanded(child: Text("")),
+                  ],
+                ),
+
+                //title-nameApp
+                 Row(
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.fromLTRB(0, 50, 20, 0),
                       child: Text(
                         "تسجيل الدخول",
                         style: TextStyle(
                           fontSize: 28.0,
                           fontFamily: 'IBM',
                           inherit: true,
+                          color: themeMode.isDark ? kTextColorLightMode :
+                          kTextColorDarkMode
+
                         ),
                       ),
                     ),
@@ -114,19 +140,22 @@ bottomColor: Colors.transparent ,
                   ],
                 ),
                 //nameApp
-                 Row(
+                Row(
                   children: [
                     Padding(
                       padding: const EdgeInsets.fromLTRB(0, 0, 20, 30),
                       child: Row(
                         children: [
-                          const Text(
+                           Text(
                             "في ",
                             style: TextStyle(
                                 fontSize: 28,
                                 fontFamily: 'IBM',
                                 inherit: true,
-                                fontWeight: FontWeight.bold),
+                                fontWeight: FontWeight.bold,
+                            color: themeMode.isDark ? kTextColorLightMode :
+                            kTextColorDarkMode
+                            ),
                           ),
                           Text(
                             "وين بلاقي",
@@ -134,7 +163,9 @@ bottomColor: Colors.transparent ,
                                 fontSize: 28,
                                 fontFamily: 'IBM',
                                 inherit: true,
-                                color: themeMode.isDark?kPrimaryColorLightMode: kPrimaryColorDarkMode,
+                                color: themeMode.isDark
+                                    ? kPrimaryColorLightMode
+                                    : kPrimaryColorDarkMode,
                                 fontWeight: FontWeight.bold),
                           ),
                         ],
@@ -171,6 +202,7 @@ bottomColor: Colors.transparent ,
 
                   hintInput: hintPassword,
                   title: passwordtext,
+
 
                   controller: passwordController,
                   // focusNode: passwordFocus,
@@ -339,15 +371,15 @@ bottomColor: Colors.transparent ,
       });
       isLoading = true;
       var data = res.data;
-        if(data.token!=null){
-          setState(() {
-            apartmentModelController.ownerToken = data.token;
-          });
-          debugPrint("the token is  Not null ${data.token} || ${apartmentModelController.ownerToken}");
-        }else{
-          debugPrint("the token is null");
-        }
-
+      if (data.token != null) {
+        setState(() {
+          apartmentModelController.ownerToken = data.token;
+        });
+        debugPrint(
+            "the token is  Not null ${data.token} || ${apartmentModelController.ownerToken}");
+      } else {
+        debugPrint("the token is null");
+      }
 
       saveUserInfo(data);
       pushToMainPage();
@@ -357,7 +389,7 @@ bottomColor: Colors.transparent ,
       // }
       // myPushName(context, MyPagesRoutes.citiesTest);
       isLoading = false;
-          isLoading = false;
+      isLoading = false;
     }
     isLoading = false;
   }
@@ -370,24 +402,24 @@ bottomColor: Colors.transparent ,
 
   Future<void> pushToMainPage() async {
     await myPushName(context, MyPagesRoutes.main);
-  // await  Navigator.of(context).push(MaterialPageRoute(
-  //       builder: (BuildContext context) => const HomeBeforeAddData())
-  // );
+    // await  Navigator.of(context).push(MaterialPageRoute(
+    //       builder: (BuildContext context) => const HomeBeforeAddData())
+    // );
 
     // studentController.index = 0;
   }
-  // on SocketException {
-  //   print("check your internet connection");
-  // } on FormatException {
-  //   print("Problem retrieving data contact !");
-  // }
+// on SocketException {
+//   print("check your internet connection");
+// } on FormatException {
+//   print("Problem retrieving data contact !");
+// }
 
-  // if(user_response.data!=null) {
-  //   var profile = user_response.data!.profile;
-  //   print(profile);
-  // }
+// if(user_response.data!=null) {
+//   var profile = user_response.data!.profile;
+//   print(profile);
+// }
 }
- // loginProcess(String username, String password) async{
+// loginProcess(String username, String password) async{
 //
 //   var url = Uri.parse(Server.userLogin);
 //   var response = await http

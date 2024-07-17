@@ -66,7 +66,7 @@ class _PasswordContainerClassWidgetState
                 child: Text(
                   title,
                   style: TextStyle(
-                    color: Colors.grey.shade800,
+                    color: themeMode.isDark ? kTextColorLightMode:kTextColorDarkMode,
                     fontSize: 18,
                     fontFamily: 'IBM',
                   ),

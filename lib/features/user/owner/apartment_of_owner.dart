@@ -332,35 +332,57 @@
 //     );
 //   }
 // }
-import 'package:flutter/material.dart';
 
-import '../../../controller/function_controller/api_functions_controller/get_data_of_apartment_api.dart';
-class ApartmentOwnerTesting extends StatefulWidget {
-  const ApartmentOwnerTesting({super.key});
+import 'package:flutter/material.dart';
+import 'package:ween_blaqe/core/widgets/skeletons/student_widgets/home_skeleton_widget.dart';
+
+import '../../../constants/nums.dart';
+import 'package:get/get.dart';
+
+import '../../../controller/models_controller/apartment_model_controller.dart';
+import '../../../core/widgets/apartments/new_master_home_classes_widgets/apartment_container/list_of_apartments.dart';
+// ... other imports
+
+
+class ApartmentsScreen extends StatefulWidget {
+
+   const ApartmentsScreen({super.key});
 
   @override
-  State<ApartmentOwnerTesting> createState() => _ApartmentOwnerTestingState();
+  State<ApartmentsScreen> createState() => _ApartmentsScreenState();
 }
 
-class _ApartmentOwnerTestingState extends State<ApartmentOwnerTesting> {
+class _ApartmentsScreenState extends State<ApartmentsScreen> {
+  final ApartmentModelController apartmentController = Get.put(ApartmentModelController());
+  @override
+  void initState() {
+    super.initState();
+    setState(() {
+      apartmentController.fetchApartments();
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.black87,
-      body:Center(child: ElevatedButton(onPressed: (){
-        // try{
-        // getApartmentsByOwner();
-        // setState(() {
-        ApiApartmentController().getApartmentsByOwner();
-
-        // });
-        // }catch(c){}
-
-
-      },
-        child: const Text
-          ("get "
-            "Data"),),),);
+      backgroundColor: themeMode.isDark
+          ? kBackgroundAppColorLightMode
+          : kBackgroundAppColorDarkMode,
+      appBar: AppBar(
+        title: const Text('شققك'),
+      ),
+      body: Obx(() {
+        if (apartmentController.isLoading.value) {
+          return const Center(child: HomeSkeletonWidget());
+        } else {
+          return ApartmentsList(
+            apartmentsRes: apartmentController.apartments.value,
+            scrollController: ScrollController(),
+          );
+        }
+      }),
+    );
   }
 }
+
 

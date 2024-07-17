@@ -48,6 +48,7 @@ removeUserInfo() {
   NewSession.remove("name");
   // NewSession.remove("gender");
   NewSession.remove("type_id");
+  NewSession.remove('phone');
   // NewSession.remove("university_id");
 }
 
