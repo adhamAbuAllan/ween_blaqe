@@ -29,8 +29,8 @@ String errorText = '';
 //reg screen
 class Register extends StatefulWidget {
   const Register({
-    Key? key,
-  }) : super(key: key);
+    super.key,
+  });
 
   @override
   State<Register> createState() => _RegisterState();
@@ -75,6 +75,8 @@ class _RegisterState extends State<Register> {
   //sure password box
   TextEditingController surePasswordController = TextEditingController();
   var surePasswordLabelName = "تأكيد كلمة المرور";
+  bool isObscure = true;
+
   // var dropdownButtonOfViability = false;
   // var focusNodeOfSurePassword = FocusNode();
   //choose type box
@@ -283,6 +285,12 @@ bottomColor: Colors.transparent ,
               ),
               //password
               TextFieldOfPasswordClassWidget(
+                isObscure: isObscure,
+                onObscureChanged: (newValue){
+                  setState(() {
+                    isObscure = newValue;
+                  });
+                },
                 controller: passwordController,
                 inputType: textFormFieldTypePassword,
                 labelInput: passwordLabelName,
@@ -292,6 +300,11 @@ bottomColor: Colors.transparent ,
               ),
               //sure password
               TextFieldOfPasswordClassWidget(
+                  isObscure: isObscure,
+                  onObscureChanged: (newValue){
+                    setState(() {
+                      isObscure = newValue;
+                    });},
                 // focusNode: fn,
                 controller: surePasswordController,
                 // focusNode: focusNodeOfPassword,

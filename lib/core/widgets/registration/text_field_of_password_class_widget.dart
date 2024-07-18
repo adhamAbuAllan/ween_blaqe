@@ -2,9 +2,6 @@ import 'package:flutter/material.dart';
 
 import 'package:ween_blaqe/constants/nums.dart';
 
-
-
-
 //text filed password for registration
 class TextFieldOfPasswordClassWidget extends StatefulWidget {
   final TextInputType? inputType;
@@ -16,10 +13,11 @@ class TextFieldOfPasswordClassWidget extends StatefulWidget {
   late final String? displayText;
   final Function(String)? checkPass;
   late final double? strength;
-
+  final bool isObscure;
+  final void Function(bool) onObscureChanged;
   final TextEditingController? controller;
 
-   TextFieldOfPasswordClassWidget(
+  TextFieldOfPasswordClassWidget(
       {Key? key,
       this.inputType,
       this.labelInput,
@@ -30,7 +28,9 @@ class TextFieldOfPasswordClassWidget extends StatefulWidget {
       this.hide,
       this.autoFocus,
       this.checkPass,
-      this.controller})
+      this.controller,
+      required this.isObscure,
+      required this.onObscureChanged})
       : super(key: key);
 
   @override
@@ -42,7 +42,7 @@ class _TextFieldOfPasswordClassWidgetState
     extends State<TextFieldOfPasswordClassWidget> {
   // late String password;
 
-  bool isObscure = false;
+  // bool isObscure = false;
   // double strength = 0;
   // 0: No password
   // 1/4: Weak
@@ -93,12 +93,12 @@ class _TextFieldOfPasswordClassWidgetState
   Widget build(BuildContext context) {
     // IconData invisible_ic = Icons.visibility_off;
     // IconData visible_ic = Icons.visibility;
-    IconData currentIcon = Icons.visibility_off;
+    // IconData currentIcon = Icons.visibility_off;
 
     var labelInput = widget.labelInput;
     var inputType = widget.inputType;
     // bool visible = false;
-    var focusNode = FocusNode();
+    // var focusNode = FocusNode();
     return Padding(
         // padding: const EdgeInsets.fromLTRB(25, 0, 25, 12),
         padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 25),
@@ -108,47 +108,41 @@ class _TextFieldOfPasswordClassWidgetState
           controller: widget.controller,
           // autofocus: widget.autoFocus ?? false,
 
-          textInputAction: TextInputAction.next,
-          obscureText: widget.hide ?? true,
+          // textInputAction: TextInputAction.next,
+          obscureText: widget.isObscure,
           style: const TextStyle(fontFamily: 'IBM'),
-          focusNode: focusNode,
+          // focusNode: focusNode,
           keyboardType: inputType,
           decoration: InputDecoration(
               labelText: labelInput,
               labelStyle: TextStyle(
                   color: Colors.grey.shade500, fontFamily: 'IBM', fontSize: 16),
               suffixIcon: IconButton(
-                icon: Icon(currentIcon = Icons.visibility),
+                icon: widget.isObscure
+                    ? const Icon(Icons.visibility)
+                    : const Icon(Icons.visibility_off),
                 onPressed: () {
-                  if (currentIcon == Icons.visibility_off) {
-                    setState(() {
-                      widget.hide = false;
-                      setState(() {
-                        currentIcon = Icons.visibility_off;
-                      });
-                    });
-                  } else {
-                    setState(() {
-                      widget.hide = true;
-                      setState(() {
-                        currentIcon = Icons.visibility;
-                      });
-                    });
-                  }
+                  setState(() {
+                    widget.onObscureChanged(!widget.isObscure);
+                  });
                 },
               ),
               hintStyle: const TextStyle(color: Colors.grey),
               border: InputBorder.none,
-              focusedBorder:  OutlineInputBorder(
+              focusedBorder: OutlineInputBorder(
                 borderSide: BorderSide(
                   width: 1,
-                  color:themeMode.isDark ? kPrimaryColorLightMode: kPrimaryColorDarkMode,
+                  color: themeMode.isDark
+                      ? kPrimaryColorLightMode
+                      : kPrimaryColorDarkMode,
                 ),
               ),
               enabledBorder: OutlineInputBorder(
-                  borderSide:  BorderSide(
+                  borderSide: BorderSide(
                     width: 0.5,
-                  color: themeMode.isDark ?kPrimaryColor300LightMode:kPrimaryColor300DarkMode,
+                    color: themeMode.isDark
+                        ? kPrimaryColor300LightMode
+                        : kPrimaryColor300DarkMode,
                   ),
                   borderRadius: BorderRadius.circular(7))),
         ));
