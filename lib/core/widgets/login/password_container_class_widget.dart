@@ -142,6 +142,7 @@ class _PasswordContainerClassWidgetState
                   //   },
                   // ),
                   suffixIcon: IconButton(
+                    color: themeMode.isDark ? kTextColorLightMode : kTextColorDarkMode,
                     icon: widget.isObscure
                         ? const Icon(Icons.visibility)
                         : const Icon(Icons.visibility_off),

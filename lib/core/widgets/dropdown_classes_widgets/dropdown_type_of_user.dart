@@ -3,8 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:ween_blaqe/constants/nums.dart';
 
 
-
-class DropDownTypeOfUser extends StatefulWidget {
+@immutable
+ class DropDownTypeOfUser extends StatefulWidget {
 // static TypeOfUser? currentValue = currentType;
 // static bool ?testing = visible;
   DropDownTypeOfUser({
@@ -16,7 +16,7 @@ class DropDownTypeOfUser extends StatefulWidget {
     // this.test
   }) : super(key: key);
   final Function(String)? onSelected;
-  List<String> typeOfUserItems = [];
+   List<String> typeOfUserItems = [];
   String? currentType;
   bool? visible = false;
 
@@ -48,8 +48,10 @@ class _DropDownTypeOfUserState extends State<DropDownTypeOfUser> {
     return Padding(
         padding: const EdgeInsets.fromLTRB(25, 0, 25, 0),
         child: widget.typeOfUserItems.isNotEmpty
-            ? DropdownButtonFormField<dynamic>(
-                // focusNode: focusNode,
+            ? DropdownButtonFormField<dynamic>(                        dropdownColor: themeMode.isDark ? kContainerColorLightMode : kContainerColorDarkMode,
+
+
+          // focusNode: focusNode,
                 style: const TextStyle(fontSize: 14),
                 // autofocus: true,
                 decoration:  InputDecoration(
@@ -70,13 +72,14 @@ class _DropDownTypeOfUserState extends State<DropDownTypeOfUser> {
 
                     .map(
                       (c) => DropdownMenuItem(
+
                         value: c,
                         child: Text(
                           c,
                           // c.name,
                           style: TextStyle(
                               fontSize: 15.0,
-                              color: Colors.grey.shade800,
+                              color: themeMode.isDark ? kTextColorLightMode : kTextColorDarkMode,
                               fontFamily: 'IBM'),
                         ),
                       ),
@@ -100,7 +103,7 @@ class _DropDownTypeOfUserState extends State<DropDownTypeOfUser> {
                 child: Text("جاري التحميل..",
                     style: TextStyle(
                         fontSize: 12,
-                        color: Colors.grey.shade400,
+                        color: themeMode.isDark ? kTextColorLightMode : kTextColorDarkMode,
                         fontFamily: 'IBM')),
               ));
   }

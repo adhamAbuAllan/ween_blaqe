@@ -20,7 +20,7 @@ import 'package:ween_blaqe/main.dart';
 import '../../../../api/users.dart';
 
 import '../../../../controller/models_controller/advantages_model_controller.dart';
-import '../../../../core/widgets/apartments/create_apartment/container_classes_widget/check_boxs/connection_check_box/add_a_contact_class_widget.dart';
+// import '../../../../core/widgets/apartments/create_apartment/container_classes_widget/check_boxs/connection_check_box/add_a_contact_class_widget.dart';
 import '../../../../core/widgets/apartments/create_apartment/container_classes_widget/image_picker/image_picker_apartment.dart';
 import '../../../../core/widgets/apartments/create_apartment/container_classes_widget/input_text_class_widget/container_input_text_class_widget.dart';
 import '../../../../constants/nums.dart';
@@ -74,6 +74,7 @@ class _FourthStepState extends State<FourthStep> {
   void initState() {
     super.initState();
     // getUserData(User);
+    // debugPrint("the city is ${readyCityAndTypeOfApartmentApi.city}");
   }
 
   var apartmentId = '';
@@ -308,9 +309,9 @@ class _FourthStepState extends State<FourthStep> {
                       maxLength: 255,
                       hintMaxLines: 7,
                       focusNode: discrptionFocusedNode),
-                  AddAcontact(
-                    userInfo: widget.userInfo,
-                  )
+                  // AddAcontact(
+                  //   userInfo: widget.userInfo,
+                  // )
                 ],
               ),
             ),
@@ -402,7 +403,7 @@ class _FourthStepState extends State<FourthStep> {
         // description.toString(),
         "count_of_student": "${AddAdDataContainer.countOfStudent ?? -1}",
         "type_id": "${readyCityAndTypeOfApartmentApi.indexApartmentType}",
-        "city_id": "${readyCityAndTypeOfApartmentApi.indexApartmentType}",
+        "city_id": "${readyCityAndTypeOfApartmentApi.indexOfCity}",
         // countOfStudent.toString(),
         // "owner_id":ownerId
         // "type_id":typeId

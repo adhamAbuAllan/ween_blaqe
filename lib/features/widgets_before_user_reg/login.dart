@@ -48,7 +48,7 @@ class Login extends StatefulWidget {
 
 class _LoginState extends State<Login> {
   String phoneText = "رقم الهاتف";
-  String hintPhone = "أدخل رقمك بدءًا من الرقم 5";
+  String hintPhone = "أدخل رقمك بدءًا  برمز الدولة";
   bool isLoading = false;
 
   TextInputType phone = TextInputType.phone;

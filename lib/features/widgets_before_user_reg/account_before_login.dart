@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:get/get.dart';
 import 'package:ween_blaqe/core/utils/funcations/route_pages/push_routes.dart';
-import 'package:ween_blaqe/core/utils/funcations/snakbar.dart';
+// import 'package:ween_blaqe/core/utils/funcations/snakbar.dart';
 import 'package:ween_blaqe/core/utils/styles/button.dart';
 import 'package:ween_blaqe/core/utils/styles/text_style/aline_style.dart';
 
@@ -341,7 +341,7 @@ class _AccountBeforeLoginInStudentState
                       ),
                     ),
                     onPressed: () {
-                      showSnakBar(context, "هذه الميزة قيد التطوير وسيتم إضافتها قريبًا");
+                      // showSnakBar(context, "هذه الميزة قيد التطوير وسيتم إضافتها قريبًا");
                       myPushName(context, MyPagesRoutes.register);
                       // Navigator.of(context).push(
                       //   MaterialPageRoute(builder: (context) {

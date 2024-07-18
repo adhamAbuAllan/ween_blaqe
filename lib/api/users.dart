@@ -40,8 +40,10 @@ class User {
   late final String phone;
   // late final TypeOfUser typeId;
  // late final CountryPhoneNumberId countryPhoneNumberId;
+ //  late final String countryPhoneNumberId;
   late final String createdAt;
   late final String ? token;
+
 
   User.fromJson(Map<String, dynamic> json){
     id = json['id'];

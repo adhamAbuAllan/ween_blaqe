@@ -1,9 +1,22 @@
+import 'package:flutter/cupertino.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 void sendMessageToWhatsApp(String phoneNumber, String message, {bool?  isMyNumber ,String ? image}) async {
   
     // String urlWith970 = 'https://wa.me/970$phoneNumber/?text=${Uri.encodeFull(message)}';
-    String urlWith97 = 'https://wa.me/97$phoneNumber/?text=${Uri.encodeFull("$message $image" )
+  //chick if phone number have "+" or not
+  debugPrint("the phone number is $phoneNumber");
+  if(phoneNumber.startsWith("+")){
+    //remove "+" from phone number
+    phoneNumber.replaceFirst("+", "");
+    debugPrint("the phone after remove '+' number is $phoneNumber");
+
+
+  }
+//should urlWith92 await until phoneNumber is remove "+"
+
+    String urlWith97 = 'https://wa.me/$phoneNumber/?text=${Uri.encodeFull
+      ("$message $image" )
     }';
 
     //this code could not be good work

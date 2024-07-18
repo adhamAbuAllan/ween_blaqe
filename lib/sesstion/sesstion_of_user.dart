@@ -32,6 +32,7 @@ saveUserInfo(User data,{DataOfOneApartment ? apartment} ) {
 
   NewSession.save("phone", data.phone);
   NewSession.save("apartmentId",apartment?.id??-1 );
+  // NewSession.save("countryPhoneNumberId", data.)
   // NewSession.save("gender", data.gender);
   // NewSession.save("university", data.university);
 

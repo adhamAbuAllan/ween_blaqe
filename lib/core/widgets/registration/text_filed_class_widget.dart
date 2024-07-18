@@ -22,7 +22,7 @@ class TextFieldClassWdiget extends StatelessWidget {
     this.foucsNode,
     this.onFieldSubmitted,
     this.controller,
-    this.autoFocus,
+    this.autoFocus,Z
   }) : super(key: key);
 
   @override
@@ -31,18 +31,19 @@ class TextFieldClassWdiget extends StatelessWidget {
         padding: const EdgeInsets.fromLTRB(25, 0, 25, 0),
         child: TextFormField(
           controller: controller,
+
           textInputAction: TextInputAction.next,
 
           autofocus: autoFocus ?? false,
           // focusNode: foucsNode,
           keyboardType: textInputType,
-          style: const TextStyle(fontFamily: 'IBM'),
+          style:  TextStyle(fontFamily: 'IBM',color: themeMode.isDark ? kTextColorLightMode : kTextColorDarkMode),
 
           decoration: InputDecoration(
               // contentPadding: EdgeInsets.symmetric(vertical: 20,horizontal: 10),
               labelText: labelName,
               labelStyle: TextStyle(
-                  color: Colors.grey.shade500,
+                  color: themeMode.isDark ? kTextColorLightMode : kTextColorDarkMode,
                   fontFamily: 'IBM',
                   fontSize: fontSize),
               // alignLabelWithHint: true,
