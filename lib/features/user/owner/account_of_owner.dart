@@ -265,7 +265,7 @@ class _AccountOfOwnerState extends State<AccountOfOwner> {
                             : kTextColorDarkMode,
                         width: 35,
                         height: 35),
-                    "السحبة"),
+                    "السبحة"),
               ]),
             ),
             //button sign out

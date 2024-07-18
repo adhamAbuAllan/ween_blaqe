@@ -286,8 +286,7 @@ class _AccountBeforeLoginInStudentState
                               color: themeMode.isDark ? kTextColorLightMode : kTextColorDarkMode,
                               width: 35, height: 35) ,
 
-                      "السحبة"),
-
+                      "السبحة"),
 
 
 

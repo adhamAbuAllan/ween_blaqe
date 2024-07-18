@@ -20,14 +20,13 @@ class ApartmentModelController extends GetxController {
 
   Future<void> fetchApartments() async {
     isLoading.value = true;
-    try {
-      apartments.value = await getApartmentsByOwner();
-    } catch (e) {
-      // Handle errors
+    getApartmentsByOwner().then((value) {
+      apartments.value = value;
+    }).catchError((e) {
       debugPrint('Error fetching apartments: $e');
-    } finally {
+    }).whenComplete(() {
       isLoading.value = false;
-    }
+    });
   }
 
   Future<OneApartment> getApartmentsByOwner() async {
@@ -51,7 +50,8 @@ class ApartmentModelController extends GetxController {
       var json = jsonDecode(responseBody);
 
       OneApartment apartmentsRes = OneApartment.fromJson(json);
-      apartmentsRes.data?.sort((a, b) => b.updatedAt!.compareTo(a.updatedAt!));
+      apartmentsRes.data?.sort((a, b) => b.updatedAt!.compareTo(a.updatedAt!)
+      );//to get the newest data
       return apartmentsRes;
     } else {
       final error = jsonDecode(response.body);

@@ -12,6 +12,7 @@ import 'package:ween_blaqe/core/utils/funcations/route_pages/push_routes.dart';
 import 'package:ween_blaqe/core/utils/function_that_effect_widgets/hide_keyboard.dart';
 import 'package:ween_blaqe/core/utils/function_that_effect_widgets/remove_zero_from_phone_number.dart';
 import 'package:ween_blaqe/core/utils/styles/button.dart';
+
 // import 'package:ween_blaqe/core/utils/styles/show_more_widget/about_apartment_style.dart';
 import 'package:ween_blaqe/features/widgets_before_user_reg/registration.dart';
 
@@ -60,6 +61,7 @@ class _LoginState extends State<Login> {
   FocusNode passwordFocus = FocusNode();
   TextEditingController phoneController = TextEditingController();
   String msg = "";
+  bool isObscure = true;
 
   // bool _isvisible = true;
   bool autoFocus = false;
@@ -98,7 +100,6 @@ class _LoginState extends State<Login> {
         color:
             themeMode.isDark ? kPrimaryColorLightMode : kPrimaryColorDarkMode,
         child: Scaffold(
-
           backgroundColor: themeMode.isDark
               ? kBackgroundAppColorLightMode
               : kBackgroundAppColorDarkMode,
@@ -111,8 +112,9 @@ class _LoginState extends State<Login> {
                     Padding(
                       padding: const EdgeInsets.fromLTRB(0, 25, 0, 0),
                       child: BackButton(
-                        color: themeMode.isDark ? kTextColorLightMode : kTextColorDarkMode,
-
+                        color: themeMode.isDark
+                            ? kTextColorLightMode
+                            : kTextColorDarkMode,
                       ),
                     ),
                     const Expanded(child: Text("")),
@@ -120,20 +122,19 @@ class _LoginState extends State<Login> {
                 ),
 
                 //title-nameApp
-                 Row(
+                Row(
                   children: [
                     Padding(
                       padding: const EdgeInsets.fromLTRB(0, 50, 20, 0),
                       child: Text(
                         "تسجيل الدخول",
                         style: TextStyle(
-                          fontSize: 28.0,
-                          fontFamily: 'IBM',
-                          inherit: true,
-                          color: themeMode.isDark ? kTextColorLightMode :
-                          kTextColorDarkMode
-
-                        ),
+                            fontSize: 28.0,
+                            fontFamily: 'IBM',
+                            inherit: true,
+                            color: themeMode.isDark
+                                ? kTextColorLightMode
+                                : kTextColorDarkMode),
                       ),
                     ),
                     Expanded(child: Text("")),
@@ -146,16 +147,16 @@ class _LoginState extends State<Login> {
                       padding: const EdgeInsets.fromLTRB(0, 0, 20, 30),
                       child: Row(
                         children: [
-                           Text(
+                          Text(
                             "في ",
                             style: TextStyle(
                                 fontSize: 28,
                                 fontFamily: 'IBM',
                                 inherit: true,
                                 fontWeight: FontWeight.bold,
-                            color: themeMode.isDark ? kTextColorLightMode :
-                            kTextColorDarkMode
-                            ),
+                                color: themeMode.isDark
+                                    ? kTextColorLightMode
+                                    : kTextColorDarkMode),
                           ),
                           Text(
                             "وين بلاقي",
@@ -197,12 +198,17 @@ class _LoginState extends State<Login> {
                 PasswordContainerClassWidget(
                   autoFocus: autoFocusOfPassword,
                   inputType: password,
+
                   // isVisible: true,
-                  isObscure: true,
+                 onObscureChanged: (newValue){
+                    setState(() {
+                      isObscure = newValue;
+                    });
+                 },
+                  isObscure: isObscure,
 
                   hintInput: hintPassword,
                   title: passwordtext,
-
 
                   controller: passwordController,
                   // focusNode: passwordFocus,

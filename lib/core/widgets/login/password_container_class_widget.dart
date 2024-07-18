@@ -2,9 +2,6 @@ import 'package:flutter/material.dart';
 
 import 'package:ween_blaqe/constants/nums.dart';
 
-
-
-
 String errorText = '';
 
 class PasswordContainerClassWidget extends StatefulWidget {
@@ -13,16 +10,17 @@ class PasswordContainerClassWidget extends StatefulWidget {
   final TextInputType inputType;
   final FocusNode? focusNode;
   final bool? isVisible;
-  final bool? isObscure;
+  final bool isObscure;
   final bool? autoFocus;
   final Function? onFieldSubmitted;
   final Function(bool)? setPassword;
   final TextEditingController? controller;
+  final void Function(bool)  onObscureChanged;
 
   const PasswordContainerClassWidget({
-    Key? key,
+    super.key,
     required this.title,
-    this.isObscure,
+    required this.isObscure,
     required this.hintInput,
     required this.inputType,
     this.focusNode,
@@ -31,10 +29,12 @@ class PasswordContainerClassWidget extends StatefulWidget {
     this.autoFocus,
     this.controller,
     this.setPassword,
+   required this.onObscureChanged
+
 
     // this.autoFocus
     // this.autoFocus,
-  }) : super(key: key);
+  });
 
   @override
   State<PasswordContainerClassWidget> createState() =>
@@ -48,14 +48,16 @@ class _PasswordContainerClassWidgetState
     var title = widget.title;
     var hihtInput = widget.hintInput;
     var inputType = widget.inputType;
-    var   autoFocus = widget.autoFocus;
-    var focusNode = FocusNode();
+    var autoFocus = widget.autoFocus;
+    // var focusNode = FocusNode();
     return Container(
       margin: const EdgeInsets.fromLTRB(10, 2, 10, 10),
       padding: const EdgeInsets.fromLTRB(0, 0, 0, 10),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(7),
-        color: themeMode.isDark ? kContainerColorLightMode:kContainerColorDarkMode,
+        color: themeMode.isDark
+            ? kContainerColorLightMode
+            : kContainerColorDarkMode,
       ),
       child: Column(
         children: [
@@ -66,7 +68,9 @@ class _PasswordContainerClassWidgetState
                 child: Text(
                   title,
                   style: TextStyle(
-                    color: themeMode.isDark ? kTextColorLightMode:kTextColorDarkMode,
+                    color: themeMode.isDark
+                        ? kTextColorLightMode
+                        : kTextColorDarkMode,
                     fontSize: 18,
                     fontFamily: 'IBM',
                   ),
@@ -79,15 +83,15 @@ class _PasswordContainerClassWidgetState
             child: TextFormField(
 // enableInteractiveSelection:true ,
 
-              obscureText: widget.isObscure ?? true,
+              obscureText: widget.isObscure,
               keyboardType: inputType,
               onFieldSubmitted: (value) {
                 // FocusScope.of(context).requestFocus(focusNode);
               },
               enableSuggestions: false,
               autocorrect: false,
-              focusNode: focusNode,
-              autofocus: autoFocus??false,
+              // focusNode: focusNode,
+              autofocus: autoFocus ?? false,
 
               textInputAction: TextInputAction.next,
               // onChanged: (value) {
@@ -123,7 +127,6 @@ class _PasswordContainerClassWidgetState
               controller: widget.controller,
 
               decoration: InputDecoration(
-
                   hintText: hihtInput,
                   // errorText: errorText.isEmpty ? null : errorText,
                   border: InputBorder.none,
@@ -139,30 +142,32 @@ class _PasswordContainerClassWidgetState
                   //   },
                   // ),
                   suffixIcon: IconButton(
-                    icon: Icon(
-                      widget.isObscure ?? false
-                          ? Icons.visibility
-                          : Icons.visibility_off,
-                    ),
-                    onPressed: () {
+                    icon: widget.isObscure
+                        ? const Icon(Icons.visibility)
+                        : const Icon(Icons.visibility_off),
+                    onPressed: (){
                       setState(() {
-                        widget.isObscure != widget.isObscure;
+                        widget.onObscureChanged(!widget.isObscure);
                       });
                     },
                   ),
                   hintStyle: const TextStyle(
                     color: Colors.grey,
                   ),
-                  focusedBorder:  OutlineInputBorder(
+                  focusedBorder: OutlineInputBorder(
                     borderSide: BorderSide(
                       width: 1,
-                      color: themeMode.isDark ?kPrimaryColorLightMode:kPrimaryColorDarkMode,
+                      color: themeMode.isDark
+                          ? kPrimaryColorLightMode
+                          : kPrimaryColorDarkMode,
                     ),
                   ),
                   enabledBorder: OutlineInputBorder(
-                      borderSide:  BorderSide(
+                      borderSide: BorderSide(
                         width: 0.5,
-                        color: themeMode.isDark ?kPrimaryColor300LightMode: kPrimaryColor300DarkMode,
+                        color: themeMode.isDark
+                            ? kPrimaryColor300LightMode
+                            : kPrimaryColor300DarkMode,
                       ),
                       borderRadius: BorderRadius.circular(7))),
               style: TextStyle(
