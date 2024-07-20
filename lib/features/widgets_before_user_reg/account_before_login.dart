@@ -8,6 +8,7 @@ import 'package:ween_blaqe/core/utils/funcations/route_pages/push_routes.dart';
 // import 'package:ween_blaqe/core/utils/funcations/snakbar.dart';
 import 'package:ween_blaqe/core/utils/styles/button.dart';
 import 'package:ween_blaqe/core/utils/styles/text_style/aline_style.dart';
+import 'package:ween_blaqe/testing_code/bookmark_test.dart';
 
 import '../../constants/nums.dart';
 import '../../constants/strings.dart';
@@ -287,6 +288,12 @@ class _AccountBeforeLoginInStudentState
                               width: 35, height: 35) ,
 
                       "السبحة"),
+                    aline,
+                      buttonAccount((){
+                        Navigator.push(context, MaterialPageRoute(builder: (context) {
+                          return   Apa();
+                        }));
+                      }, "الششق المحفوضة" )
 
 
 

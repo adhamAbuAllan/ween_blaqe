@@ -42,6 +42,7 @@ import 'package:ween_blaqe/features/user/studnet/main_student.dart';
 
 import 'package:ween_blaqe/sesstion/new_session.dart';
 import 'package:ween_blaqe/features/splach_screen.dart';
+import 'package:ween_blaqe/testing_code/bookmark_test.dart';
 import 'constants/nums.dart';
 import 'constants/strings.dart';
 import 'controller/function_controller/api_functions_controller/get_city_and_insert_it_in_a_list.dart';
@@ -109,6 +110,8 @@ void main() async {
   Get.put(GetAdvantages());
   Get.put(AdvantagesModelController());
   Get.put(ImagesModelController());
+  Get.put(BookmarkController());//for testing
+  Get.put(Apa());//for testing
   //for get
 
   runApp(const OwnMaterialApp(

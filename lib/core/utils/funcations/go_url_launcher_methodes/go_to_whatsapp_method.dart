@@ -32,13 +32,13 @@ void sendMessageToWhatsApp(String phoneNumber, String message, {bool?  isMyNumbe
   //   }
   //   throw "something was wrong";
 // this code could be good work
-  //that launch two urls that mean if [url with 972] didn't work that will
+  //that launch two urls that mean if [url with 972] didn't work that will`
   // launch [url with 970] in anywhere
   if(
   // await canLaunchUrl(Uri.parse(urlWith970)) ||
       await canLaunchUrl(Uri.parse(urlWith97))){
      await launch(urlWith97);
-      // await launch(urlWith970);
+      // await launch(urlWith970);`
   }else{throw "something was wrong";}
 }
 // switch ()

@@ -18,6 +18,7 @@ class ApartmentModelController extends GetxController {
   var isLoading = false.obs;
   var apartments = OneApartment(data: []).obs;
 
+
   Future<void> fetchApartments() async {
     isLoading.value = true;
     getApartmentsByOwner().then((value) {
