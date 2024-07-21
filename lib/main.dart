@@ -42,14 +42,16 @@ import 'package:ween_blaqe/features/user/studnet/main_student.dart';
 
 import 'package:ween_blaqe/sesstion/new_session.dart';
 import 'package:ween_blaqe/features/splach_screen.dart';
-import 'package:ween_blaqe/testing_code/bookmark_test.dart';
+// import 'package:ween_blaqe/testing_code/bookmark_test.dart';
 import 'constants/nums.dart';
 import 'constants/strings.dart';
+import 'controller/bookmark_controller.dart';
 import 'controller/function_controller/api_functions_controller/get_city_and_insert_it_in_a_list.dart';
 import 'controller/function_controller/api_functions_controller/get_data_of_apartment_api.dart';
 import 'controller/models_controller/apartment_model_controller.dart';
 import 'controller/models_controller/images_model_controller.dart';
 import 'controller/models_controller/type_of_apartment_models_controller.dart';
+// import 'features/bookmark.dart';
 import 'features/send_notice_for_us.dart';
 import 'features/user/owner/steps_to_create_apartment/first_step.dart';
 import 'features/user/owner/steps_to_create_apartment/fourth_step.dart';
@@ -111,7 +113,7 @@ void main() async {
   Get.put(AdvantagesModelController());
   Get.put(ImagesModelController());
   Get.put(BookmarkController());//for testing
-  Get.put(Apa());//for testing
+  // Get.put(BookmarkApartment());//for testing
   //for get
 
   runApp(const OwnMaterialApp(

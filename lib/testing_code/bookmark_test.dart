@@ -371,104 +371,14 @@
 //   }
 // }
 //////////////////// 20/7/2024 testing code ////////////////
-import 'package:flutter/material.dart';
-import 'package:get/get.dart';
-import 'package:ween_blaqe/controller/get_controllers.dart';
-import 'package:ween_blaqe/core/widgets/apartments/new_master_home_classes_widgets/apartment_container/list_of_apartments.dart';
+//a code that solve bookmark issue
+// import 'package:flutter/material.dart';
+// import 'package:get/get.dart';
+// import 'package:ween_blaqe/controller/get_controllers.dart';
+// import 'package:ween_blaqe/core/widgets/apartments/new_master_home_classes_widgets/apartment_container/list_of_apartments.dart';
+//
+// import '../api/apartments_api/one_apartment.dart';
 
-import '../api/apartments_api/one_apartment.dart';
-
-class BookmarkController extends GetxController {
-  final RxList<int> bookmarks = <int>[].obs;
-
-  void toggleBookmark(int apartmentIndex) {
-    if (bookmarks.contains(apartmentIndex)) {
-      bookmarks.remove(apartmentIndex);
-    } else {
-      bookmarks.add(apartmentIndex);
-    }
-  }
-
-  bool isBookmarked(int apartmentIndex) {
-    return bookmarks.contains(apartmentIndex);
-  }
-}
-
-class BookmarkButton extends StatelessWidget {
-  final int apartmentIndex;
-
-  const BookmarkButton({Key? key, required this.apartmentIndex}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    final BookmarkController bookmarkController = Get.find();
-
-    return Obx(
-          () => IconButton(
-        icon: Icon(
-          bookmarkController.isBookmarked(apartmentIndex) ? Icons.bookmark :
-          Icons.bookmark_border,
-          color: bookmarkController.isBookmarked(apartmentIndex) ? Colors.red : null,
-        ),
-        onPressed: () {
-          bookmarkController.toggleBookmark(apartmentIndex);
-        },
-      ),
-    );
-  }
-}
-
-class Apa extends StatefulWidget {
-  Apa({super.key});
-
-  @override
-  State<Apa> createState() => _ApaState();
-}
-
-class _ApaState extends State<Apa> {
-  final scrollController = ScrollController();
-
-  final BookmarkController bookmarkController = Get.find();
-
-  // Method to get apartments from bookmarks with valid indices
-  OneApartment getApartmentsFromBookmarks(List<int> bookmarks) {
-    OneApartment result = OneApartment(data: []);
-    final List<DataOfOneApartment> apartments = apartmentModelController.apartment
-        .data ??
-        [];
-
-    for (int index in bookmarks) {
-      if (index >= 0 && index < apartments.length) {
-        result.data?.add(apartments[index]);
-      }
-    }
-
-    return result;
-  }
-
-  late OneApartment bookk;
-
-  @override
-  void initState() {
-    super.initState();
-    getSpcficApartments();
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      body: ApartmentsList(apartmentsRes: bookk,
-          scrollController:
-      scrollController),
-    );
-  }
-
-  getSpcficApartments() {
-    setState(() {
-      bookk = getApartmentsFromBookmarks(bookmarkController.bookmarks);
-    });
-  }
-}
 
 
 // Example usage in your ApartmentsList widget:

@@ -8,7 +8,6 @@ import 'package:ween_blaqe/core/utils/funcations/route_pages/push_routes.dart';
 // import 'package:ween_blaqe/core/utils/funcations/snakbar.dart';
 import 'package:ween_blaqe/core/utils/styles/button.dart';
 import 'package:ween_blaqe/core/utils/styles/text_style/aline_style.dart';
-import 'package:ween_blaqe/testing_code/bookmark_test.dart';
 
 import '../../constants/nums.dart';
 import '../../constants/strings.dart';
@@ -16,6 +15,7 @@ import '../../core/widgets/buttons/lines_buttons/line_buttons.dart';
 
 import '../../controller/main_controller.dart';
 import '../../controller/student_controller/student_controller.dart';
+import '../bookmark.dart';
 import 'login.dart';
 // import '../../main.dart';
 // import 'login.dart';
@@ -291,7 +291,7 @@ class _AccountBeforeLoginInStudentState
                     aline,
                       buttonAccount((){
                         Navigator.push(context, MaterialPageRoute(builder: (context) {
-                          return   Apa();
+                          return   BookmarkApartment();
                         }));
                       }, "الششق المحفوضة" )
 

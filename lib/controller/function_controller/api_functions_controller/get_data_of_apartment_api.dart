@@ -8,6 +8,7 @@ import '../../../api/apartments_api/one_apartment.dart';
 import '../../../api/photos.dart';
 import '../../../constants/strings.dart';
 import '../../../main.dart';
+import '../../get_controllers.dart';
 import '../../models_controller/apartment_model_controller.dart';
 
 class ApiApartmentController extends GetxController{
@@ -101,6 +102,36 @@ class ApiApartmentController extends GetxController{
   }
 
 
+  Future<void> deleteApartment(int apartmentId) async {
+    try {
+      // Call your API to delete the apartment
+      final response = await http.post(
+        Uri.parse('YOUR_API_BASE_URL/apartments/delete'), // Replace with your actual API endpoint
+        body: jsonEncode({'id': apartmentId}),
+        headers: {'Content-Type': 'application/json'},
+      );
+
+      if (response.statusCode == 200) {
+        // Remove the apartment from the local list
+        apartmentModelController.apartments.update((val) {
+          val?.data?.removeWhere((apartment) => apartment.id == apartmentId);
+        });
+
+        // Remove the apartment from bookmarks if it's bookmarked
+        bookmarkController.bookmarks.remove(apartmentModelController.apartments
+            .value.data?.indexWhere((apartment) => apartment.id == apartmentId));
+
+        // Show success message or handle success as needed
+        Get.snackbar('Success', 'Apartment deleted successfully');
+      } else {
+        // Handle API error
+        Get.snackbar('Error', 'Failed to delete apartment');
+      }
+    } catch (e) {
+      // Handle any exceptions
+      Get.snackbar('Error', 'An error occurred');
+    }
+  }
   Future<List<Photos>> fetchPhotos() async {
     update();
       isDataLoaded = true;

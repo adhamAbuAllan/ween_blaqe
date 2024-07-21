@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:ween_blaqe/api/apartments_api/one_apartment.dart';
 import 'package:ween_blaqe/constants/nums.dart';
-import 'package:ween_blaqe/testing_code/bookmark_test.dart';
+
+import 'bookmark_button_class_widget.dart';
 
 class ApartmentTypeText extends StatefulWidget {
  const ApartmentTypeText({super.key, required this.index, required this.apartmentsRes});
@@ -29,36 +30,6 @@ class _ApartmentTypeTextState extends State<ApartmentTypeText> {
         ),
         const Expanded(child: Text("")),
         BookmarkButton(apartmentIndex: widget.index),
-        // Padding(
-        //     padding: const EdgeInsets.fromLTRB(5, 0, 0, 0),
-        //     child:
-        //     // clicked
-        //     //     ?
-        //     isCodeActive
-        //         ? IconButton(
-        //         onPressed: () {
-        //           setState(() {
-        //             clicked = !clicked;
-        //           });
-        //         },
-        //         icon: Icon(
-        //           clicked
-        //               ? Icons.bookmark
-        //               : Icons.bookmark_outline,
-        //           size: 28,
-        //         ))
-        //         : const SizedBox()
-        //   // : IconButton(
-        //   //     onPressed: () {
-        //   //       setState(() {
-        //   //         clicked = !clicked;
-        //   //       });
-        //   //     },
-        //   //     icon: const Icon(
-        //   //       Icons.bookmark,
-        //   //       size: 28,
-        //   //     )),
-        // ),
       ],
     );
   }
