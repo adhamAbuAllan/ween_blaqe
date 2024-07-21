@@ -293,7 +293,7 @@ class _AccountBeforeLoginInStudentState
                         Navigator.push(context, MaterialPageRoute(builder: (context) {
                           return   BookmarkApartment();
                         }));
-                      }, "الششق المحفوضة" )
+                      }, "المفضلة" ,icon: Icon(Icons.bookmark_outlined,color: themeMode.isDark ? kTextColorLightMode : kTextColorDarkMode,))
 
 
 

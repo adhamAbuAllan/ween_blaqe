@@ -369,7 +369,9 @@ class _ApartmentsScreenState extends State<ApartmentsScreen> {
           ? kBackgroundAppColorLightMode
           : kBackgroundAppColorDarkMode,
       appBar: AppBar(
+        backgroundColor: themeMode.isDark ? kPrimaryColorLightMode : kPrimaryColorDarkMode,
         title: const Text('شققك'),
+
       ),
       body: Obx(() {
         if (apartmentController.isLoading.value) {

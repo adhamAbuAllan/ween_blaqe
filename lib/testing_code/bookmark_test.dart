@@ -370,7 +370,7 @@
 //     apartmentsRes = (await getDataFromAPI(type: type, isAll: isAll));
 //   }
 // }
-//////////////////// 20/7/2024 testing code ////////////////
+//////////////////// 20/7/2024 testing code is Done! ////////////////
 //a code that solve bookmark issue
 // import 'package:flutter/material.dart';
 // import 'package:get/get.dart';

@@ -8,6 +8,7 @@ import 'package:ween_blaqe/core/utils/styles/button.dart';
 import 'package:ween_blaqe/core/utils/styles/text_style/aline_style.dart';
 import '../../../core/widgets/buttons/lines_buttons/line_buttons.dart';
 import '../../../main.dart';
+import '../../bookmark.dart';
 import 'apartment_of_owner.dart';
 import '../../../sesstion/new_session.dart';
 import '../../../sesstion/sesstion_of_user.dart';
@@ -266,6 +267,13 @@ class _AccountOfOwnerState extends State<AccountOfOwner> {
                         width: 35,
                         height: 35),
                     "السبحة"),
+                aline,
+                buttonAccount((){
+                  Navigator.push(context, MaterialPageRoute(builder: (context) {
+                    return   BookmarkApartment();
+                  }));
+                }, "المفضلة" ,icon: Icon(Icons.bookmark_outlined,color: themeMode.isDark ? kTextColorLightMode : kTextColorDarkMode,))
+
               ]),
             ),
             //button sign out
