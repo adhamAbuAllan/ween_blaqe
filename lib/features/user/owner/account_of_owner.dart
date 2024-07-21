@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:ween_blaqe/constants/nums.dart';
 import 'package:ween_blaqe/constants/strings.dart';
+// import 'package:ween_blaqe/controller/get_controllers.dart';
 import 'package:ween_blaqe/core/utils/funcations/route_pages/push_routes.dart';
 import 'package:ween_blaqe/core/utils/styles/button.dart';
 
@@ -199,7 +200,7 @@ class _AccountOfOwnerState extends State<AccountOfOwner> {
                 aline,
                 //apartments of owner
                 buttonAccount(() {
-                  Navigator.push(context, MaterialPageRoute(builder: (context) =>  ApartmentsScreen(),));
+                  Navigator.push(context, MaterialPageRoute(builder: (context) =>  ApartmentsOwner(),));
                 },
                     icon: Icon(Icons.apartment,color:themeMode.isDark ? kTextColorLightMode : kTextColorDarkMode,
                       size: 35, ) ,

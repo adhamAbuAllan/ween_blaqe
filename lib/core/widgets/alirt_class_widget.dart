@@ -34,13 +34,18 @@ class AlertWithTwoBtn {
                   color: Colors.grey.shade800, fontFamily: 'IBM', fontSize: 18),
             ),
             actions: [
-              ElevatedButton(
+              OutlinedButton(
                   onPressed: () {
                     onClicked();
                   },
-                  style: fullButton,
+                  style: outlineButton,
                   child: Text(
                     textOfOkButton,
+                    style: const TextStyle(
+                      fontSize: 16,
+                      fontFamily: 'IBM',
+                      color: Colors.red,//for delete apartment button
+                    ),
                   )),
               // SizedBox(width: 1,),
 

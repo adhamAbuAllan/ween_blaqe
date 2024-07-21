@@ -14,6 +14,7 @@ import '../../models_controller/apartment_model_controller.dart';
 class ApiApartmentController extends GetxController{
   ApartmentModelController apartmentModelController = Get.find();
   bool isDataLoaded = false;
+  final RxBool isDeleteMode = false.obs;
 
   Future<OneApartment>  getDataFromAPI({String? type, bool? isAll,String? errorMessage}) async {
     Uri uri = Uri.parse("${ServerWeenBalaqee.apartmentAll}?type=$type");
@@ -102,13 +103,19 @@ class ApiApartmentController extends GetxController{
   }
 
 
-  Future<void> deleteApartment(int apartmentId) async {
+  Future<void> deleteApartmentWithUpdate(int apartmentId) async {
+    var token = (await sp).get("token");
     try {
       // Call your API to delete the apartment
       final response = await http.post(
-        Uri.parse('YOUR_API_BASE_URL/apartments/delete'), // Replace with your actual API endpoint
+        Uri.parse(ServerWeenBalaqee.apartmentDelete), // Replace with your actual API endpoint
         body: jsonEncode({'id': apartmentId}),
-        headers: {'Content-Type': 'application/json'},
+        headers: {
+      'Authorization': 'Bearer $token',
+      // '$token',
+      'Content-Type': 'application/json',
+      'Accept': 'application/json',
+        },
       );
 
       if (response.statusCode == 200) {
@@ -117,21 +124,35 @@ class ApiApartmentController extends GetxController{
           val?.data?.removeWhere((apartment) => apartment.id == apartmentId);
         });
 
+
         // Remove the apartment from bookmarks if it's bookmarked
         bookmarkController.bookmarks.remove(apartmentModelController.apartments
             .value.data?.indexWhere((apartment) => apartment.id == apartmentId));
 
         // Show success message or handle success as needed
-        Get.snackbar('Success', 'Apartment deleted successfully');
+        Get.snackbar('حذف شقة', 'تم حذف الشقة بنجاح');
       } else {
         // Handle API error
-        Get.snackbar('Error', 'Failed to delete apartment');
+        Get.snackbar('فشل الحذف', 'لا يمكن حذف نفس الشقة مرتين');
       }
     } catch (e) {
       // Handle any exceptions
       Get.snackbar('Error', 'An error occurred');
     }
   }
+
+  void deleteBookmarkedApartment(int apartmentId) {
+    apartmentModelController.apartments.update((val) {
+      val?.data?.removeWhere((apartment) => apartment.id == apartmentId);
+    });
+    // Remove the apartment from bookmarks if it's bookmarked
+    bookmarkController.bookmarks.remove(apartmentModelController.apartments
+        .value.data?.indexWhere((apartment) => apartment.id == apartmentId));
+  }
+
+  void toggleDeleteMode() {
+    isDeleteMode.toggle();}
+
   Future<List<Photos>> fetchPhotos() async {
     update();
       isDataLoaded = true;

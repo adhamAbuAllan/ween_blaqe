@@ -339,26 +339,59 @@ import 'package:ween_blaqe/core/widgets/skeletons/student_widgets/home_skeleton_
 import '../../../constants/nums.dart';
 import 'package:get/get.dart';
 
-import '../../../controller/models_controller/apartment_model_controller.dart';
+import '../../../controller/get_controllers.dart';
+// import '../../../controller/models_controller/apartment_model_controller.dart';
 import '../../../core/widgets/apartments/new_master_home_classes_widgets/apartment_container/list_of_apartments.dart';
 // ... other imports
 
 
-class ApartmentsScreen extends StatefulWidget {
+class ApartmentsOwner extends StatefulWidget {
 
-   const ApartmentsScreen({super.key});
+   const ApartmentsOwner({super.key});
 
   @override
-  State<ApartmentsScreen> createState() => _ApartmentsScreenState();
+  State<ApartmentsOwner> createState() => _ApartmentsOwnerState();
 }
 
-class _ApartmentsScreenState extends State<ApartmentsScreen> {
-  final ApartmentModelController apartmentController = Get.put(ApartmentModelController());
+class _ApartmentsOwnerState extends State<ApartmentsOwner>with SingleTickerProviderStateMixin  {
+  // final ApartmentModelController apartmentController = Get.put(ApartmentModelController());
+  bool isDeleteMode = false;
+  late AnimationController _animationController;
+  late Animation<Color?> _iconColorAnimation;
   @override
   void initState() {
     super.initState();
+    _animationController = AnimationController(
+        vsync: this,
+        duration: const Duration(milliseconds: 300),);
+    _iconColorAnimation = ColorTween(begin: themeMode.isDark ?
+    kTextColorLightMode : kTextColorDarkMode, end: themeMode.isDark ?
+    kTextColorLightMode : kTextColorDarkMode)
+        .animate(_animationController);
+    _animationController.addListener(() {
+      setState(() {});
+    });
+    _animationController.forward();
+
     setState(() {
-      apartmentController.fetchApartments();
+      apartmentModelController.fetchApartments();
+    });
+  }
+
+  @override
+  void dispose() {
+    _animationController.dispose();
+    super.dispose();
+  }
+
+  void toggleDeleteMode() {
+    setState(() {
+      isDeleteMode = !isDeleteMode;
+      if (isDeleteMode) {
+        _animationController.forward();
+      } else {
+        _animationController.reverse();
+      }
     });
   }
 
@@ -371,15 +404,33 @@ class _ApartmentsScreenState extends State<ApartmentsScreen> {
       appBar: AppBar(
         backgroundColor: themeMode.isDark ? kPrimaryColorLightMode : kPrimaryColorDarkMode,
         title: const Text('شققك'),
-
+        actions: [
+          AnimatedBuilder(
+            animation: _animationController,
+            builder: (context, child) => IconButton(
+              icon: Icon(
+                isDeleteMode ? Icons.delete : Icons.bookmark,
+                color: _iconColorAnimation.value,
+              ),
+              onPressed: toggleDeleteMode,
+            ),
+          ),
+        ],
       ),
       body: Obx(() {
-        if (apartmentController.isLoading.value) {
+        if (apartmentModelController.isLoading.value) {
           return const Center(child: HomeSkeletonWidget());
         } else {
           return ApartmentsList(
-            apartmentsRes: apartmentController.apartments.value,
+            apartmentsRes: apartmentModelController.apartments.value,
             scrollController: ScrollController(),
+            isDeleteMode: isDeleteMode,
+            onPressed: (){
+              setState(() {
+                apartmentModelController.fetchApartments();
+
+              });
+            },
           );
         }
       }),

@@ -80,6 +80,7 @@ class _MainStudentState extends State<MainStudent> {
             },
           ),
           bottomNavigationBar: BottomNavigationBarOfStudent(
+
             controller: studentController,
           ),
 // floatingActionButtonLocation: FloatingActionButtonLocation.miniEndFloat,

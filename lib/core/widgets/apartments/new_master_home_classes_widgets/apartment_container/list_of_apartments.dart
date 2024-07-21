@@ -3,9 +3,12 @@ import 'package:ween_blaqe/api/apartments_api/one_apartment.dart';
 import 'package:ween_blaqe/core/widgets/apartments/new_master_home_classes_widgets/apartment_container/whole_widgets_class_widget.dart';
 
 class ApartmentsList extends StatelessWidget {
-  const ApartmentsList({super.key,required this.apartmentsRes,required this.scrollController,});
+  const ApartmentsList({super.key,required this.apartmentsRes,required this
+      .scrollController, this.isDeleteMode = false, this.onPressed});
   final OneApartment apartmentsRes;
   final ScrollController scrollController;
+  final bool isDeleteMode ;
+  final void Function()? onPressed;
 
   @override
   Widget build(BuildContext context) {
@@ -34,6 +37,7 @@ class ApartmentsList extends StatelessWidget {
           return const SizedBox();
         }
 
-       return  WholeWidgetOfApartment(index: index,apartmentsRes: apartmentsRes,);} );
+       return  WholeWidgetOfApartment(index: index,apartmentsRes:
+       apartmentsRes,isDarkMode: isDeleteMode,onPressed: onPressed,);} );
   }
 }
