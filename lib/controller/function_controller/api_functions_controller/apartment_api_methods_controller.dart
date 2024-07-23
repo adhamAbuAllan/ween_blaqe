@@ -11,7 +11,7 @@ import '../../../main.dart';
 import '../../get_controllers.dart';
 import '../../models_controller/apartment_model_controller.dart';
 
-class ApiApartmentController extends GetxController{
+class MethodsApiApartmentController extends GetxController{
   ApartmentModelController apartmentModelController = Get.find();
   bool isDataLoaded = false;
   final RxBool isDeleteMode = false.obs;
@@ -172,6 +172,34 @@ class ApiApartmentController extends GetxController{
         debugPrint("Failed load data photos");
         update();
         throw Exception('Failed to load photos from API');
+    }
+  }
+
+  Future<void> updateApartment(DataOfOneApartment apartment) async {
+    final url = Uri.parse(ServerWeenBalaqee.apartmentUpdate); // Replace with
+    // your API
+    // endpoint
+
+    try {
+      final response = await http.put(
+        url,
+        body: apartment.toJson(), // Send the updated data
+        headers: {
+          'Content-Type': 'application/json',
+          // Add any necessary authorization headers here
+        },
+      );
+
+      if (response.statusCode == 200) {
+        // Update successful, handle success scenario (e.g., show a success message)
+        print('Apartment updated successfully');
+      } else {
+        // Update failed, handle error scenario (e.g., show an error message)
+        print('Failed to update apartment: ${response.body}');
+      }
+    } catch (e) {
+      // Handle network or other exceptions
+      print('Error updating apartment: $e');
     }
   }
 

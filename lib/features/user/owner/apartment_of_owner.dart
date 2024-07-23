@@ -341,7 +341,8 @@ import 'package:get/get.dart';
 
 import '../../../controller/get_controllers.dart';
 // import '../../../controller/models_controller/apartment_model_controller.dart';
-import '../../../core/widgets/apartments/new_master_home_classes_widgets/apartment_container/list_of_apartments.dart';
+import '..'
+    '/../../core/widgets/apartments/new_master_home_classes_widgets/apartment_container/list_of_apartments.dart';
 // ... other imports
 
 
