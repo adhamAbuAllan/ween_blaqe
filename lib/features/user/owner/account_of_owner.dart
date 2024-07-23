@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:ween_blaqe/constants/nums.dart';
 import 'package:ween_blaqe/constants/strings.dart';
+
 // import 'package:ween_blaqe/controller/get_controllers.dart';
 import 'package:ween_blaqe/core/utils/funcations/route_pages/push_routes.dart';
 import 'package:ween_blaqe/core/utils/styles/button.dart';
@@ -13,7 +14,6 @@ import '../../bookmark.dart';
 import 'apartment_of_owner.dart';
 import '../../../sesstion/new_session.dart';
 import '../../../sesstion/sesstion_of_user.dart';
-
 
 //account screen
 class AccountOfOwner extends StatefulWidget {
@@ -65,7 +65,14 @@ class _AccountOfOwnerState extends State<AccountOfOwner> {
 
             Container(
               width: double.infinity,
+              padding: const EdgeInsets.fromLTRB(0, 14, 10, 14),
               margin: const EdgeInsets.fromLTRB(10, 0, 10, 0),
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(7),
+                color: themeMode.isDark
+                    ? kContainerColorLightMode
+                    : kContainerColorDarkMode,
+              ),
               child: GestureDetector(
                 onTap: () {
                   // Navigator.of(context).push(
@@ -76,43 +83,51 @@ class _AccountOfOwnerState extends State<AccountOfOwner> {
                 },
                 child: Row(
                   children: [
-                    const Padding(
-                      padding: EdgeInsets.all(8.0),
-                      child: CircleAvatar(
-                        backgroundImage: NetworkImage(
-                            "https://robohash.org/hicveldicta.png/"),
-                        radius: 30,
-                      ),
-                    ),
+                    // const Padding(
+                    //   padding: EdgeInsets.all(8.0),
+                    //   child: CircleAvatar(
+                    //     backgroundImage: NetworkImage(
+                    //         "https://robohash.org/hicveldicta.png/"),
+                    //     radius: 30,
+                    //   ),
+                    // ),
+
                     Column(
                       children: [
-                        Text(
-                          NewSession.get("name", ""),
-                          style: TextStyle(
-                            fontSize: 16,
-                            fontFamily: 'IBM',
-                            color: themeMode.isDark
-                                ? kTextColorLightMode
-                                : kTextColorDarkMode,
-                          ),
-                        ),
-                         Padding(
-                          padding: const EdgeInsets.fromLTRB(0, 0, 0, 0),
+                        Padding(
+                          padding: const EdgeInsets.only(right: 15),
                           child: Text(
-                            // "عرض الملف الشخصي",
-                            NewSession.get("phone", ""),
-                            style: const TextStyle(
-                                fontSize: 12,
-                                fontFamily: 'IBM',
-                                color: Colors.grey),
+                            NewSession.get("name", ""),
+                            style: TextStyle(
+                              fontSize: 18,
+                              fontFamily: 'IBM',
+                              color: themeMode.isDark
+                                  ? kTextColorLightMode
+                                  : kTextColorDarkMode,
+                            ),
                           ),
                         ),
+
                       ],
                     ),
                     const Expanded(
                         child: SizedBox(
                       child: Text(""),
                     )),
+                    Padding(
+                      padding: const EdgeInsets.only(left: 25),
+                      child: Text(
+                        // "عرض الملف الشخصي",
+                        NewSession.get("phone", ""),
+                        // "972569339613",
+                        style:  TextStyle(
+                            fontSize: 16,
+                            fontFamily: 'IBM',
+                            color: themeMode.isDark
+                                ? kTextColorLightMode
+                                : kTextColorDarkMode),
+                      ),
+                    )
                     // Padding(
                     //   padding: const EdgeInsets.fromLTRB(0, 0, 0, 0),
                     //   child: Icon(
@@ -200,12 +215,19 @@ class _AccountOfOwnerState extends State<AccountOfOwner> {
                 aline,
                 //apartments of owner
                 buttonAccount(() {
-                  Navigator.push(context, MaterialPageRoute(builder: (context) =>  ApartmentsOwner(),));
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => ApartmentsOwner(),
+                      ));
                 },
-                    icon: Icon(Icons.apartment,color:themeMode.isDark ? kTextColorLightMode : kTextColorDarkMode,
-                      size: 35, ) ,
-
-
+                    icon: Icon(
+                      Icons.apartment,
+                      color: themeMode.isDark
+                          ? kTextColorLightMode
+                          : kTextColorDarkMode,
+                      size: 35,
+                    ),
                     "شققك"),
                 //ask for help
                 aline,
@@ -269,12 +291,17 @@ class _AccountOfOwnerState extends State<AccountOfOwner> {
                         height: 35),
                     "السبحة"),
                 aline,
-                buttonAccount((){
+                buttonAccount(() {
                   Navigator.push(context, MaterialPageRoute(builder: (context) {
-                    return   BookmarkApartment();
+                    return BookmarkApartment();
                   }));
-                }, "المفضلة" ,icon: Icon(Icons.bookmark_outlined,color: themeMode.isDark ? kTextColorLightMode : kTextColorDarkMode,))
-
+                }, "المفضلة",
+                    icon: Icon(
+                      Icons.bookmark_outlined,
+                      color: themeMode.isDark
+                          ? kTextColorLightMode
+                          : kTextColorDarkMode,
+                    ))
               ]),
             ),
             //button sign out
