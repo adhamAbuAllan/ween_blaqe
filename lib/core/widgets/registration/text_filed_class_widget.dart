@@ -43,7 +43,7 @@ class TextFieldClassWdiget extends StatelessWidget {
               // contentPadding: EdgeInsets.symmetric(vertical: 20,horizontal: 10),
               labelText: labelName,
               labelStyle: TextStyle(
-                  color: themeMode.isDark ? kTextColorLightMode : kTextColorDarkMode,
+                  color: Colors.grey,
                   fontFamily: 'IBM',
                   fontSize: fontSize),
               // alignLabelWithHint: true,

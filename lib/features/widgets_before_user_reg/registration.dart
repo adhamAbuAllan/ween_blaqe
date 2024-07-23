@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'package:colorful_safe_area/colorful_safe_area.dart';
 import 'package:flutter/material.dart';
+// import 'package:get/get.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:ween_blaqe/constants/strings.dart';
 import 'package:ween_blaqe/core/utils/funcations/go_url_launcher_methodes/go_to_whatsapp_method.dart';
@@ -9,8 +10,10 @@ import 'package:ween_blaqe/core/utils/styles/button.dart';
 import '../../api/type_of_user.dart';
 
 import 'package:ween_blaqe/constants/nums.dart';
+import '../../core/utils/funcations/route_pages/push_routes.dart';
 import '../../core/widgets/alirt_class_widget.dart';
 import '../../core/widgets/dropdown_classes_widgets/dropdown_type_of_user.dart';
+
 // import '../../core/widgets/dropdown_classes_widgets/dropdown_unviversty.dart';
 import '../../core/widgets/registration/text_field_of_password_class_widget.dart';
 import '../../core/widgets/registration/text_filed_class_widget.dart';
@@ -69,7 +72,6 @@ class _RegisterState extends State<Register> {
   TextEditingController phoneController = TextEditingController();
   var phoneBoxName = "رقم الهاتف";
   var textFormFieldTypePhone = TextInputType.phone;
-
 
   // var focusNodeOfPhone = FocusNode();
   //password box
@@ -167,6 +169,7 @@ class _RegisterState extends State<Register> {
   late Function(TypeOfUser) inset;
   String selectedCountryCode = '970'; // Default country code
   final List<String> countryCodes = ['970', '972'];
+  bool isLoading = false;
   // int idOfCountryCodesList = 1;
 
   @override
@@ -177,7 +180,6 @@ class _RegisterState extends State<Register> {
       child: Scaffold(
 
           // primary: true,
-
 
           backgroundColor: themeMode.isDark
               ? kBackgroundAppColorLightMode
@@ -301,7 +303,6 @@ class _RegisterState extends State<Register> {
                     Expanded(
                       child: DropdownButtonFormField<String>(
                         decoration: InputDecoration(
-
                           enabledBorder: OutlineInputBorder(
                             //<-- SEE HERE
                             borderSide: BorderSide(
@@ -323,28 +324,29 @@ class _RegisterState extends State<Register> {
                         onChanged: (newValue) {
                           setState(() {
                             selectedCountryCode = newValue!;
-
                           });
                         },
-                        dropdownColor: themeMode.isDark ? kContainerColorLightMode : kContainerColorDarkMode,
+                        dropdownColor: themeMode.isDark
+                            ? kContainerColorLightMode
+                            : kContainerColorDarkMode,
                         items: countryCodes
                             .map<DropdownMenuItem<String>>((String value) {
                           return DropdownMenuItem<String>(
                             value: value,
-
                             child: Text(
-                              "+$value",style: TextStyle(
-                              color: themeMode.isDark
-                                  ? kTextColorLightMode
-                                  : kTextColorDarkMode,
-                            )
-                              ,),
-
+                              "+$value",
+                              style: TextStyle(
+                                color: themeMode.isDark
+                                    ? kTextColorLightMode
+                                    : kTextColorDarkMode,
+                              ),
+                            ),
                           );
                         }).toList(),
                       ),
                     ),
-                    Expanded(flex: 3,
+                    Expanded(
+                      flex: 3,
                       child: TextFieldClassWdiget(
                           fontSize: textFormFieldFontsSize,
                           controller: phoneController,
@@ -363,22 +365,30 @@ class _RegisterState extends State<Register> {
                         "التحقق عن طريق الواتساب",
                         // "ستصلك رسالة لتأكيد رقمك ",
                         style: TextStyle(
-                          color: themeMode.isDark ? kTextColorLightMode :kTextColorDarkMode ,
+                          color: themeMode.isDark
+                              ? kTextColorLightMode
+                              : kTextColorDarkMode,
                           fontSize: 16,
                           fontFamily: 'IBM',
                         ),
                       ),
                     ),
                     // const Expanded(child: Text("")),
-                    TextButton(onPressed: (){
-                      sendMessageToWhatsApp(selectedCountryCode+phoneController
-                          .text
-                          , "رقم الهاتف صحيح ، يرجى الرجوع و إتمام عملية "
+                    TextButton(
+                        onPressed: () {
+                          sendMessageToWhatsApp(
+                              selectedCountryCode + phoneController.text,
+                              "رقم الهاتف صحيح ، يرجى الرجوع و إتمام عملية "
                               "إنشاء حساب جديد"
                               " ");
-                    }, child: const Text("تحقق",
-                      style: TextStyle(color:Colors.blue,fontSize: 16,
-                          fontFamily: 'IBM'),))
+                        },
+                        child: const Text(
+                          "تحقق",
+                          style: TextStyle(
+                              color: Colors.blue,
+                              fontSize: 16,
+                              fontFamily: 'IBM'),
+                        ))
                   ],
                 ),
                 const SizedBox(
@@ -550,14 +560,23 @@ class _RegisterState extends State<Register> {
                 //test of privacy policy
                 Padding(
                   padding: const EdgeInsets.fromLTRB(25, 20, 25, 0),
-                  child: Text(
-                    "من خلال تحديد إنشاء حساب ، فإنني أوافق على بنود الخدمة ، و أقر بسياسة الخصوصية",
-                    style: TextStyle(
-                        color: themeMode.isDark
-                            ? kTextColorLightMode
-                            : kTextColorDarkMode,
-                        fontSize: 14.5,
-                        fontFamily: 'IBM'),
+                  child: GestureDetector(
+                    onTap: () {
+                      myPushName(context, MyPagesRoutes.privacyPolicy);
+                    },
+                    child: const Opacity(
+                      opacity: .5,
+                      child: Text(
+                        "من خلال تحديد إنشاء حساب ، فإنني أوافق على شروط سياسة "
+                        "الخصوصية",
+                        style: TextStyle(
+                          decoration: TextDecoration.underline,
+                          color: Colors.blue,
+                          fontSize: 14.5,
+                          fontFamily: 'IBM',
+                        ),
+                      ),
+                    ),
                   ),
                 ),
                 // create account button
@@ -568,6 +587,7 @@ class _RegisterState extends State<Register> {
                     height: 55,
                     child: ElevatedButton(
                         onPressed: () async {
+
                           phoneController.text =
                               removeZeroNumber(phoneController.text);
                           // if(){};
@@ -607,7 +627,9 @@ class _RegisterState extends State<Register> {
                           debugPrint("type_id --$typeId");
                         },
                         style: fullButton,
-                        child: const Text("إنشاء حساب")),
+                        child: isLoading ? const CircularProgressIndicator(
+                          color: Colors.white,
+                        ): const Text("إنشاء حساب")),
                   ),
                 ),
               ],
@@ -630,6 +652,7 @@ class _RegisterState extends State<Register> {
       // DropDownTypeOfUser typeId
       // String value
       ) async {
+    isLoading = true;
     var url = Uri.parse(ServerWeenBalaqee.register);
     debugPrint(url.path);
     var response = await http.post(url, body: {
@@ -655,6 +678,7 @@ class _RegisterState extends State<Register> {
     //return;
     debugPrint("this is response  : $res");
     if (res.status == false) {
+      isLoading = false;
       setState(() {
         msg = res.msg;
         if (msg == "The phone has already been taken.") {
@@ -682,6 +706,7 @@ class _RegisterState extends State<Register> {
       return;
     } else {
       setState(() {
+        isLoading = false;
         // toast("قم تسجيل الدخول لتتأكد من كتابة بياناتك بشكل صحيح");
       });
 
@@ -693,9 +718,12 @@ class _RegisterState extends State<Register> {
       try {
         var data = res.data;
         saveUserInfo(data);
+
         pushToLoginPage();
+        isLoading = false;
       } catch (e) {
         debugPrint("$e");
+        isLoading = false;
       }
     }
     // }on SocketException{
@@ -703,6 +731,7 @@ class _RegisterState extends State<Register> {
     // }on FormatException{
     //   print("Problem retrieving data contact !");
     // print(visable);
+
   }
 
   void pushToLoginPage() {

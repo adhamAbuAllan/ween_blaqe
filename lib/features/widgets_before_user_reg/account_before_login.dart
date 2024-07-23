@@ -62,7 +62,7 @@ main (){
     home:      AccountBeforeLoginInStudent(),));
 }
 //Account before login Screen
-
+@immutable
 class AccountBeforeLoginInStudent extends StatefulWidget {
        AccountBeforeLoginInStudent({Key? key}) : super(key: key);
 
@@ -291,7 +291,7 @@ class _AccountBeforeLoginInStudentState
                     aline,
                       buttonAccount((){
                         Navigator.push(context, MaterialPageRoute(builder: (context) {
-                          return   BookmarkApartment();
+                          return   const BookmarkApartment();
                         }));
                       }, "المفضلة" ,icon: Icon(Icons.bookmark_outlined,color: themeMode.isDark ? kTextColorLightMode : kTextColorDarkMode,))
 
@@ -329,7 +329,7 @@ class _AccountBeforeLoginInStudentState
                 children: [
                   //ask user if don't have account
                         Padding(
-                    padding: EdgeInsets.fromLTRB(0, 0, 20, 0),
+                    padding: const EdgeInsets.fromLTRB(0, 0, 20, 0),
                     child: Text(
                       "ألا تمتلك حساب؟",
                       style: TextStyle(
