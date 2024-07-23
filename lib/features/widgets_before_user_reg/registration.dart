@@ -3,6 +3,7 @@ import 'package:colorful_safe_area/colorful_safe_area.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:ween_blaqe/constants/strings.dart';
+import 'package:ween_blaqe/core/utils/funcations/go_url_launcher_methodes/go_to_whatsapp_method.dart';
 import 'package:ween_blaqe/core/utils/function_that_effect_widgets/remove_zero_from_phone_number.dart';
 import 'package:ween_blaqe/core/utils/styles/button.dart';
 import '../../api/type_of_user.dart';
@@ -68,6 +69,7 @@ class _RegisterState extends State<Register> {
   TextEditingController phoneController = TextEditingController();
   var phoneBoxName = "رقم الهاتف";
   var textFormFieldTypePhone = TextInputType.phone;
+
 
   // var focusNodeOfPhone = FocusNode();
   //password box
@@ -351,22 +353,32 @@ class _RegisterState extends State<Register> {
                     ),
                   ],
                 ),
+
                 //hint under number phone filed
                 Row(
                   children: [
                     Padding(
                       padding: const EdgeInsets.fromLTRB(0, 0, 30, 0),
                       child: Text(
-                        "",
+                        "التحقق عن طريق الواتساب",
                         // "ستصلك رسالة لتأكيد رقمك ",
                         style: TextStyle(
-                          color: Colors.grey.shade600,
-                          fontSize: 12,
+                          color: themeMode.isDark ? kTextColorLightMode :kTextColorDarkMode ,
+                          fontSize: 16,
                           fontFamily: 'IBM',
                         ),
                       ),
                     ),
-                    const Expanded(child: Text("")),
+                    // const Expanded(child: Text("")),
+                    TextButton(onPressed: (){
+                      sendMessageToWhatsApp(selectedCountryCode+phoneController
+                          .text
+                          , "رقم الهاتف صحيح ، يرجى الرجوع و إتمام عملية "
+                              "إنشاء حساب جديد"
+                              " ");
+                    }, child: const Text("تحقق",
+                      style: TextStyle(color:Colors.blue,fontSize: 16,
+                          fontFamily: 'IBM'),))
                   ],
                 ),
                 const SizedBox(

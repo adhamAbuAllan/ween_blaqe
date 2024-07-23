@@ -9,7 +9,7 @@
 flutter clean واعمل بيلد تاني وارفعه وكل ما تيجي ترفع تحديث
  لازم تعمل نفس العملية
  //
- owner -> 1. update apartment , 2. remove the profile image ,
+ owner -> 1. update apartment , 2. remove the profile image...isDone ,
  3.solve UI response and adaptive , 4.make the advantages to show instade of
  apartment of id = 1 , 5. add the cities bar. 6.check the phone number that
  is current or Not , that from Whatsapp api , 7. make the user could to

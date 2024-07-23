@@ -18,11 +18,16 @@ class AskForHelp extends StatelessWidget {
       length: 2,
       child: ColorfulSafeArea(
         // bottomColor: Colors.transparent ,
-        color: themeMode.isDark ? kPrimaryColorLightMode : kPrimaryColorDarkMode,
+        color:
+            themeMode.isDark ? kPrimaryColorLightMode : kPrimaryColorDarkMode,
         child: Scaffold(
-          backgroundColor: themeMode.isDark ? kBackgroundAppColorLightMode : kBackgroundAppColorDarkMode,
+          backgroundColor: themeMode.isDark
+              ? kBackgroundAppColorLightMode
+              : kBackgroundAppColorDarkMode,
           appBar: AppBar(
-            backgroundColor: themeMode.isDark ? kPrimaryColorLightMode : kPrimaryColorDarkMode,
+            backgroundColor: themeMode.isDark
+                ? kPrimaryColorLightMode
+                : kPrimaryColorDarkMode,
             title: const Text(
               'المساعدة',
               style: TextStyle(
@@ -30,11 +35,11 @@ class AskForHelp extends StatelessWidget {
                 fontFamily: 'IBM',
               ),
             ),
-            bottom:  TabBar(
-              dividerColor: themeMode.isDark ? kContainerColorLightMode : kContainerColorDarkMode,
-
+            bottom: TabBar(
+              dividerColor: themeMode.isDark
+                  ? kContainerColorLightMode
+                  : kContainerColorDarkMode,
               tabs: const [
-
                 Tab(text: 'مُستأجر'),
                 Tab(text: 'مالك'),
               ],
@@ -45,32 +50,34 @@ class AskForHelp extends StatelessWidget {
               //student Tab
               Column(
                 children: [
-                  const SizedBox(height: 20,),
-
+                  const SizedBox(
+                    height: 20,
+                  ),
                   Container(
-
                     padding: const EdgeInsets.fromLTRB(0, 0, 0, 10),
                     margin: const EdgeInsets.fromLTRB(10, 0, 10, 0),
                     decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(7),
-                        color: themeMode.isDark ? kContainerColorLightMode : kContainerColorDarkMode,
-                      ),
+                      borderRadius: BorderRadius.circular(7),
+                      color: themeMode.isDark
+                          ? kContainerColorLightMode
+                          : kContainerColorDarkMode,
+                    ),
                     child: Column(
                       mainAxisSize: MainAxisSize.min,
-                        children: [
-                          askForHelpButton(() {
-                            myPushName(context, MyPagesRoutes.systemPaying);
-                          }, "الدفع"),
-                          aline,
-                          askForHelpButton(() {
-                            myPushName(context, MyPagesRoutes.systemBooking);
-                      }, "الحجز"),
-                          aline,
-                          askForHelpButton(() {
-                            myPushName(context, MyPagesRoutes.whatIsMeanSS);
-                          }, "ما المقصود ب ش/ش"),
-                        ],
-                      ),
+                      children: [
+                        askForHelpButton(() {
+                          myPushName(context, MyPagesRoutes.systemPaying);
+                        }, "الدفع"),
+                        aline,
+                        askForHelpButton(() {
+                          myPushName(context, MyPagesRoutes.systemBooking);
+                        }, "الحجز"),
+                        aline,
+                        askForHelpButton(() {
+                          myPushName(context, MyPagesRoutes.whatIsMeanSS);
+                        }, "ما المقصود ب ش/ش"),
+                      ],
+                    ),
                   ),
                 ],
               ),
@@ -79,13 +86,17 @@ class AskForHelp extends StatelessWidget {
               //owner tab
               Column(
                 children: [
-                  const SizedBox(height: 20,),
+                  const SizedBox(
+                    height: 20,
+                  ),
                   Container(
                       padding: const EdgeInsets.fromLTRB(0, 0, 0, 10),
                       margin: const EdgeInsets.fromLTRB(10, 0, 10, 0),
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(7),
-                        color: themeMode.isDark ? kContainerColorLightMode : kContainerColorDarkMode,
+                        color: themeMode.isDark
+                            ? kContainerColorLightMode
+                            : kContainerColorDarkMode,
                       ),
                       child: Column(
                         children: [
@@ -94,8 +105,9 @@ class AskForHelp extends StatelessWidget {
                           }, "طريقة نشر إعلان"),
                           aline,
 
-                          askForHelpButton((){
-                            myPushName(context, MyPagesRoutes.whatTheInfoReqToCreateAd);
+                          askForHelpButton(() {
+                            myPushName(context,
+                                MyPagesRoutes.whatTheInfoReqToCreateAd);
                           }, "ما هي البيانات المطلوبة لنشر إعلان"),
                           // aline,
                           // askForHelpButton(() {
@@ -112,22 +124,25 @@ class AskForHelp extends StatelessWidget {
               ),
             ],
           ),
-        floatingActionButton:
+          floatingActionButton: Padding(
+            padding: const EdgeInsets.only(bottom: 45.0),
+            child: FloatingActionButton(
+              // shape:ContinuousRectangleBorder(borderRadius: BorderRadius.circular(16/2),) ,
+              onPressed: () {
+                sendMessageToWhatsApp(
+                    '972569339613', "السلام عليكم، ممكن مساعدة، ");
 
-        Padding(
-          padding: const EdgeInsets.only(bottom: 45.0),
-          child: FloatingActionButton(
+              },
+              backgroundColor: const Color(0xff25D366),
 
-            // shape:ContinuousRectangleBorder(borderRadius: BorderRadius.circular(16/2),) ,
-            onPressed: (){                              sendMessageToWhatsApp(
-                '2569339613', "السلام عليكم، ممكن مساعدة، ");},backgroundColor: const Color(0xff25D366),
-
-
-            child: const FaIcon(FontAwesomeIcons.whatsapp,size: 30,),),
-        ),
+              child: const FaIcon(
+                FontAwesomeIcons.whatsapp,
+                size: 30,
+              ),
+            ),
+          ),
         ),
       ),
     );
-
   }
 }
