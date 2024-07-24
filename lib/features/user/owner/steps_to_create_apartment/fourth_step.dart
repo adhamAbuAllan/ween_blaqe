@@ -141,6 +141,7 @@ class _FourthStepState extends State<FourthStep> {
                       Padding(
                         padding: const EdgeInsets.all(8.0),
                         child: ElevatedButton(
+
                           onPressed: () {
                             // setState(() {
                             FocusScopeNode currentFocus =
@@ -161,6 +162,9 @@ class _FourthStepState extends State<FourthStep> {
                               // setState(() {
                               try {
                                 setState(() {
+                                  if(isLoading){
+                                    return;
+                                  }
                                   createApartment();
                                 });
 
@@ -242,10 +246,12 @@ class _FourthStepState extends State<FourthStep> {
 
                             // Get.to(ApartmentsOfOwnerAfterAdd());
                           },
+
                           style: fullButton,
                           child: isLoading
                               ? const CircularProgressIndicator(
                                   color: Colors.white,
+
                                 )
                               : const Text("حفظ"),
                         ),
@@ -420,7 +426,6 @@ class _FourthStepState extends State<FourthStep> {
         //   apartmentIdPram = apartmentId;
         AddAdDataContainer.id = await apartmentId;
         // apartmentModelController.apartmentId = await apartmentId;
-
         debugPrint(
             "the apartment from AddAdDataContainer is : ${AddAdDataContainer.id}");
         // });
