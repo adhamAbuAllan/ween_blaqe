@@ -228,8 +228,7 @@ class _LoginState extends State<Login> {
                           isLoading = true;
                           // if(phoneController.text.indexOf(RegExp('0'),0) == 0){
 
-                          phoneController.text =
-                              removeZeroNumber(phoneController.text);
+                          phoneController.text = removePlusSymbol(phoneController.text);
                           // }
                           setState(() {
                             hideKeyboard(context);

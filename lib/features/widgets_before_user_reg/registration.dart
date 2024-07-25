@@ -589,7 +589,7 @@ class _RegisterState extends State<Register> {
                         onPressed: () async {
 
                           phoneController.text =
-                              removeZeroNumber(phoneController.text);
+                              removePlusSymbol(phoneController.text);
                           // if(){};
                           setState(() {
                             if (passwordController.text !=
