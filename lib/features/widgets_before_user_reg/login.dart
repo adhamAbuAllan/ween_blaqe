@@ -225,7 +225,7 @@ class _LoginState extends State<Login> {
                     child: ElevatedButton(
                         style: fullButton,
                         onPressed: () {
-                          isLoading = true;
+                          // isLoading = true;
                           // if(phoneController.text.indexOf(RegExp('0'),0) == 0){
 
                           phoneController.text = removePlusSymbol(phoneController.text);
@@ -253,7 +253,9 @@ class _LoginState extends State<Login> {
                             msg = "Loading..";
                             setState(() {
                               // checkCurrentAuthState(context);
-                              go(phoneController.text, passwordController.text);
+                             if(isLoading){return;} go(phoneController.text,
+                                 passwordController
+                                 .text);
                               // isLoading = false;
                             });
 

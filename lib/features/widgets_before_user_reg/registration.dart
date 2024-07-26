@@ -600,6 +600,9 @@ class _RegisterState extends State<Register> {
                                   "برجاء إدخال كلمة مرور متطابقة في كلا الحقلين",
                                   "حسنًا");
                             }
+                            if(isLoading){
+                              return;
+                            }
                             go(
                               nameController.text,
                               selectedCountryCode + phoneController.text,
