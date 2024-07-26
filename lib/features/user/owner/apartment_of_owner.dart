@@ -334,6 +334,7 @@
 // }
 
 import 'package:flutter/material.dart';
+import 'package:ween_blaqe/core/widgets/empty_screen_class_widget.dart';
 import 'package:ween_blaqe/core/widgets/skeletons/student_widgets/home_skeleton_widget.dart';
 
 import '../../../constants/nums.dart';
@@ -417,8 +418,13 @@ class _ApartmentsOwnerState extends State<ApartmentsOwner>with SingleTickerProvi
             ),
           ),
         ],
+
       ),
-      body: Obx(() {
+      body: apartmentModelController.apartments.value.data?.isNotEmpty??false ?
+         const EmptyScreenClassWidget(centerIcon:  Icons.apartment, centerText:
+         "تًعرض إعلاناتك هنا", underCenterText: 'انقر على الزر + للبدء في'
+             ' إنشاء إعلان جديد',)
+          :Obx(() {
         if (apartmentModelController.isLoading.value) {
           return const Center(child: HomeSkeletonWidget());
         } else {

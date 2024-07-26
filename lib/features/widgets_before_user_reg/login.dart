@@ -10,7 +10,7 @@ import 'package:ween_blaqe/constants/strings.dart';
 import 'package:ween_blaqe/controller/get_controllers.dart';
 import 'package:ween_blaqe/core/utils/funcations/route_pages/push_routes.dart';
 import 'package:ween_blaqe/core/utils/function_that_effect_widgets/hide_keyboard.dart';
-import 'package:ween_blaqe/core/utils/function_that_effect_widgets/remove_zero_from_phone_number.dart';
+import 'package:ween_blaqe/core/utils/function_that_effect_widgets/remove_plus_from_phone_number.dart';
 import 'package:ween_blaqe/core/utils/styles/button.dart';
 
 // import 'package:ween_blaqe/core/utils/styles/show_more_widget/about_apartment_style.dart';
