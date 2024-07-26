@@ -337,38 +337,44 @@ import 'package:flutter/material.dart';
 import 'package:ween_blaqe/core/widgets/empty_screen_class_widget.dart';
 import 'package:ween_blaqe/core/widgets/skeletons/student_widgets/home_skeleton_widget.dart';
 
+// import '../../../api/apartments_api/one_apartment.dart';
 import '../../../constants/nums.dart';
 import 'package:get/get.dart';
 
+import '../../../constants/strings.dart';
 import '../../../controller/get_controllers.dart';
+
 // import '../../../controller/models_controller/apartment_model_controller.dart';
+import '../../../core/utils/funcations/route_pages/push_routes.dart';
 import '..'
     '/../../core/widgets/apartments/new_master_home_classes_widgets/apartment_container/list_of_apartments.dart';
 // ... other imports
 
-
 class ApartmentsOwner extends StatefulWidget {
-
-   const ApartmentsOwner({super.key});
+  const ApartmentsOwner({super.key});
 
   @override
   State<ApartmentsOwner> createState() => _ApartmentsOwnerState();
 }
 
-class _ApartmentsOwnerState extends State<ApartmentsOwner>with SingleTickerProviderStateMixin  {
+class _ApartmentsOwnerState extends State<ApartmentsOwner>
+    with SingleTickerProviderStateMixin {
   // final ApartmentModelController apartmentController = Get.put(ApartmentModelController());
   bool isDeleteMode = false;
+  bool isApartmentsListEmpty = false;
   late AnimationController _animationController;
   late Animation<Color?> _iconColorAnimation;
+
   @override
   void initState() {
     super.initState();
     _animationController = AnimationController(
-        vsync: this,
-        duration: const Duration(milliseconds: 300),);
-    _iconColorAnimation = ColorTween(begin: themeMode.isDark ?
-    kTextColorLightMode : kTextColorDarkMode, end: themeMode.isDark ?
-    kTextColorLightMode : kTextColorDarkMode)
+      vsync: this,
+      duration: const Duration(milliseconds: 300),
+    );
+    _iconColorAnimation = ColorTween(
+            begin: themeMode.isDark ? kTextColorLightMode : kTextColorDarkMode,
+            end: themeMode.isDark ? kTextColorLightMode : kTextColorDarkMode)
         .animate(_animationController);
     _animationController.addListener(() {
       setState(() {});
@@ -378,6 +384,13 @@ class _ApartmentsOwnerState extends State<ApartmentsOwner>with SingleTickerProvi
     setState(() {
       apartmentModelController.fetchApartments();
     });
+    // apartmentModelController.apartments.value == OneApartment(data: [])
+    //     ? setState(() {
+    //         isApartmentsListEmpty = true;
+    //       })
+    //     : setState(() {
+    //         isApartmentsListEmpty = false;
+    //       });
   }
 
   @override
@@ -400,49 +413,63 @@ class _ApartmentsOwnerState extends State<ApartmentsOwner>with SingleTickerProvi
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: themeMode.isDark
-          ? kBackgroundAppColorLightMode
-          : kBackgroundAppColorDarkMode,
-      appBar: AppBar(
-        backgroundColor: themeMode.isDark ? kPrimaryColorLightMode : kPrimaryColorDarkMode,
-        title: const Text('شققك'),
-        actions: [
-          AnimatedBuilder(
-            animation: _animationController,
-            builder: (context, child) => IconButton(
-              icon: Icon(
-                isDeleteMode ? Icons.delete : Icons.bookmark,
-                color: _iconColorAnimation.value,
+        backgroundColor: themeMode.isDark
+            ? kBackgroundAppColorLightMode
+            : kBackgroundAppColorDarkMode,
+        appBar: AppBar(
+          backgroundColor:
+              themeMode.isDark ? kPrimaryColorLightMode : kPrimaryColorDarkMode,
+          title: const Text('شققك'),
+          actions: [
+            AnimatedBuilder(
+              animation: _animationController,
+              builder: (context, child) => IconButton(
+                icon: Icon(
+                  isDeleteMode ? Icons.delete : Icons.bookmark,
+                  color: _iconColorAnimation.value,
+                ),
+                onPressed: toggleDeleteMode,
               ),
-              onPressed: toggleDeleteMode,
             ),
+          ],
+        ),
+        body:
+            Obx(() {
+                if (apartmentModelController.isLoading.value) {
+                  return const Center(child: HomeSkeletonWidget());
+                } else {
+                  return apartmentModelController.isApartmentNull ?
+                  const EmptyScreenClassWidget(
+                    centerIcon: Icons.apartment,
+                    centerText: "تًعرض إعلاناتك هنا",
+                    // underCenterText: 'انقر على الزر + للبدء في'
+                    //     ' إنشاء إعلان جديد',
+                    centerIconInUnderCenterText: Icons.add_home_outlined,
+                    underCenterTextBeforeIcon: 'انقر على الزر ',
+                    underCenterTextAfterIcon:'  للبدء في إنشاء إعلان جديد',)
+                      :
+                  ApartmentsList(
+                    apartmentsRes: apartmentModelController.apartments.value,
+                    scrollController: ScrollController(),
+                    isDeleteMode: isDeleteMode,
+                    onPressed: () {
+                      setState(() {
+                        apartmentModelController.fetchApartments();
+                      });
+                    },
+                  );
+                }
+              }),
+        floatingActionButton: FloatingActionButton(
+          backgroundColor:
+              themeMode.isDark ? kPrimaryColorLightMode : kPrimaryColorDarkMode,
+          onPressed: () {
+            myPushName(context, MyPagesRoutes.step1);
+          },
+          child: const Icon(
+            Icons.add_home_outlined,
+            color: Colors.white,
           ),
-        ],
-
-      ),
-      body: apartmentModelController.apartments.value.data?.isNotEmpty??false ?
-         const EmptyScreenClassWidget(centerIcon:  Icons.apartment, centerText:
-         "تًعرض إعلاناتك هنا", underCenterText: 'انقر على الزر + للبدء في'
-             ' إنشاء إعلان جديد',)
-          :Obx(() {
-        if (apartmentModelController.isLoading.value) {
-          return const Center(child: HomeSkeletonWidget());
-        } else {
-          return ApartmentsList(
-            apartmentsRes: apartmentModelController.apartments.value,
-            scrollController: ScrollController(),
-            isDeleteMode: isDeleteMode,
-            onPressed: (){
-              setState(() {
-                apartmentModelController.fetchApartments();
-
-              });
-            },
-          );
-        }
-      }),
-    );
+        ));
   }
 }
-
-

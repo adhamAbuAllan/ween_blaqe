@@ -11,6 +11,7 @@ import '../../main.dart';
 
 class ApartmentModelController extends GetxController {
   OneApartment apartment = OneApartment();
+  bool isApartmentNull = false;
   late String? ownerToken =
       apartmentModelController.apartment.data?[1].owner?.token;
   late dynamic apartmentId = '-1';
@@ -18,11 +19,19 @@ class ApartmentModelController extends GetxController {
   var isLoading = false.obs;
   var apartments = OneApartment(data: []).obs;
 
-
   Future<void> fetchApartments() async {
     isLoading.value = true;
     getApartmentsByOwner().then((value) {
+      if (value.data?.isEmpty??false) {
+        isApartmentNull = true;
+        update();
+        return;
+      }else{
+        isApartmentNull = false;
+        update();
+      }
       apartments.value = value;
+      debugPrint(" the length of data is ${apartments.value.data?.length}");
     }).catchError((e) {
       debugPrint('Error fetching apartments: $e');
     }).whenComplete(() {
@@ -51,13 +60,14 @@ class ApartmentModelController extends GetxController {
       var json = jsonDecode(responseBody);
 
       OneApartment apartmentsRes = OneApartment.fromJson(json);
-      apartmentsRes.data?.sort((a, b) => b.updatedAt!.compareTo(a.updatedAt!)
-      );//to get the newest data
+      apartmentsRes.data?.sort((a, b) =>
+          b.updatedAt!.compareTo(a.updatedAt!)); //to get the newest data
       return apartmentsRes;
     } else {
       final error = jsonDecode(response.body);
       debugPrint('Error: ${error['error']}');
-      throw Exception('Failed to fetch apartments'); // Throw an exception to be caught in fetchApartments
+      throw Exception(
+          'Failed to fetch apartments'); // Throw an exception to be caught in fetchApartments
     }
   }
 }
