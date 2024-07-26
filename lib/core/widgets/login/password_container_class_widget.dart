@@ -128,6 +128,7 @@ class _PasswordContainerClassWidgetState
 
               decoration: InputDecoration(
                   hintText: hihtInput,
+
                   // errorText: errorText.isEmpty ? null : errorText,
                   border: InputBorder.none,
                   // suffixIcon: IconButton(
@@ -172,7 +173,7 @@ class _PasswordContainerClassWidgetState
                       ),
                       borderRadius: BorderRadius.circular(7))),
               style: TextStyle(
-                  fontFamily: 'IBM', fontSize: 16, color: Colors.grey.shade800),
+                  fontFamily: 'IBM', fontSize: 16, color: themeMode.isDark ? kTextColorLightMode : kTextColorDarkMode),
             ),
           ),
         ],

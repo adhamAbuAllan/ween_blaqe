@@ -320,6 +320,15 @@ class _AccountOfOwnerState extends State<AccountOfOwner> {
                     child: const Text("تسجيل الخروج")),
               ),
             ),
+            //Beta Version
+            Padding(
+              padding: const EdgeInsets.symmetric(vertical:30.0),
+              child:  Text("الإصدار التجريبي: 1.0.0",style: TextStyle(
+                  color: themeMode.isDark ? kTextColorLightMode.withOpacity(.5) :
+                  kTextColorDarkMode.withOpacity(.5)
+              ),),
+            )
+
           ],
         ),
       ),

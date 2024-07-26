@@ -306,34 +306,34 @@ class _LoginState extends State<Login> {
                   ),
                 ),
                 //forget password?
-                Padding(
-                  padding: const EdgeInsets.fromLTRB(0, 30, 0, 0),
-                  child: TextButton(
-                    child: const Text(
-                      "نسيت كلمة المرور؟",
-                      style: TextStyle(
-                          color: Colors.blue,
-                          fontWeight: FontWeight.bold,
-                          fontFamily: 'IBM'),
-                    ),
-                    onPressed: () {},
-                  ),
-                ),
-                const SizedBox(
-                  height: 50,
-                ),
-                TextButton(
-                    onPressed: () {
-                      myPushName(context, MyPagesRoutes.screensWillAddFuture);
-                    },
-                    child: Text(
-                      "شاشات سيتم إضافتها مستقبلاً",
-                      style: TextStyle(
-                        fontFamily: "IBM",
-                        fontSize: 14,
-                        color: Colors.grey.shade400,
-                      ),
-                    )),
+                // Padding(
+                //   padding: const EdgeInsets.fromLTRB(0, 30, 0, 0),
+                //   child: TextButton(
+                //     child: const Text(
+                //       "نسيت كلمة المرور؟",
+                //       style: TextStyle(
+                //           color: Colors.blue,
+                //           fontWeight: FontWeight.bold,
+                //           fontFamily: 'IBM'),
+                //     ),
+                //     onPressed: () {},
+                //   ),
+                // ),
+                // const SizedBox(
+                //   height: 50,
+                // ),
+                // TextButton(
+                //     onPressed: () {
+                //       myPushName(context, MyPagesRoutes.screensWillAddFuture);
+                //     },
+                //     child: Text(
+                //       "شاشات سيتم إضافتها مستقبلاً",
+                //       style: TextStyle(
+                //         fontFamily: "IBM",
+                //         fontSize: 14,
+                //         color: Colors.grey.shade400,
+                //       ),
+                //     )),
               ],
             ),
           ),

@@ -321,7 +321,7 @@ class _AccountBeforeLoginInStudentState
                                 WidgetStatePropertyAll(  themeMode.isDark
                                    ? kPrimaryColorLightMode
                                    : kPrimaryColorDarkMode,)),
-                      child:      const Text("تسجيل الدخول")),
+                      child:      const Text("تسجيل الدخول",)),
                 ),
               ),
               //ask user if don't have count and create account
@@ -359,6 +359,14 @@ class _AccountBeforeLoginInStudentState
                   ),
                 ],
               ),
+              //Beta Version
+              Padding(
+                padding: const EdgeInsets.symmetric(vertical:30.0),
+                child:  Text("الإصدار التجريبي: 1.0.0",style: TextStyle(
+                  color: themeMode.isDark ? kTextColorLightMode.withOpacity(.5) :
+                    kTextColorDarkMode.withOpacity(.5)
+                ),),
+              )
 
               // Padding(
               //   padding:      EdgeInsets.only(top: 20*9.5,bottom: 30*2),
