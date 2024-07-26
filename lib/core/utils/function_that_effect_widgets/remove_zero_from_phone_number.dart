@@ -1,5 +1,5 @@
-String removeZeroNumber(String value){
-  value =  value.replaceFirst(RegExp('0'), '');
+String removePlusSymbol(String value){
+  value =  value.replaceFirst(RegExp(r"\+"), '');
   // print(value);
   return value;
 
