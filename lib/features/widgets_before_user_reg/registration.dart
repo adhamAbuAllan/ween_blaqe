@@ -1,12 +1,11 @@
 import 'dart:convert';
 import 'package:colorful_safe_area/colorful_safe_area.dart';
 import 'package:flutter/material.dart';
-
 // import 'package:get/get.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:ween_blaqe/constants/strings.dart';
 import 'package:ween_blaqe/core/utils/funcations/go_url_launcher_methodes/go_to_whatsapp_method.dart';
-import 'package:ween_blaqe/core/utils/function_that_effect_widgets/remove_zero_from_phone_number.dart';
+import 'package:ween_blaqe/core/utils/function_that_effect_widgets/remove_plus_from_phone_number.dart';
 import 'package:ween_blaqe/core/utils/styles/button.dart';
 import '../../api/type_of_user.dart';
 
@@ -153,10 +152,10 @@ class _RegisterState extends State<Register> {
 
   // var focusNodeOfUniversities = FocusNode();
   //gender box
-  List<String> itemsOfGenger = [
-    'ذكر',
-    'أنثى',
-  ];
+  // List<String> itemsOfGenger = [
+  //   'ذكر',
+  //   'أنثى',
+  // ];
   String? firstItemOfGender = 'ذكر';
 
   // var focusNodeOfGender = FocusNode();
@@ -171,7 +170,6 @@ class _RegisterState extends State<Register> {
   String selectedCountryCode = '970'; // Default country code
   final List<String> countryCodes = ['970', '972'];
   bool isLoading = false;
-
   // int idOfCountryCodesList = 1;
 
   @override
@@ -589,6 +587,8 @@ class _RegisterState extends State<Register> {
                     height: 55,
                     child: ElevatedButton(
                         onPressed: () async {
+                          isLoading = true;
+
                           phoneController.text =
                               removePlusSymbol(phoneController.text);
                           // if(){};
@@ -601,9 +601,9 @@ class _RegisterState extends State<Register> {
                                   "برجاء إدخال كلمة مرور متطابقة في كلا الحقلين",
                                   "حسنًا");
                             }
-                            if (isLoading) {
-                              return;
-                            }
+                            // if(isLoading){
+                            //   return;
+                            // }
                             go(
                               nameController.text,
                               selectedCountryCode + phoneController.text,
@@ -611,6 +611,7 @@ class _RegisterState extends State<Register> {
 
                               //     (c){{
                               // typeId = c.id;
+
                               // }
                               //     },
                               //   typeOfUserItems[3]
@@ -621,7 +622,7 @@ class _RegisterState extends State<Register> {
                               typeId,
                               universityId,
 
-                              firstItemOfGender!,
+                              // firstItemOfGender!,
                             );
 
                             // if(typeOfUserItems!=null){
@@ -631,11 +632,9 @@ class _RegisterState extends State<Register> {
                           debugPrint("type_id --$typeId");
                         },
                         style: fullButton,
-                        child: isLoading
-                            ? const CircularProgressIndicator(
-                                color: Colors.white,
-                              )
-                            : const Text("إنشاء حساب")),
+                        child: isLoading ? const CircularProgressIndicator(
+                          color: Colors.white,
+                        ): const Text("إنشاء حساب")),
                   ),
                 ),
               ],
@@ -654,11 +653,11 @@ class _RegisterState extends State<Register> {
       // TypeOfUser type,
       int typeId,
       int universityId,
-      String gender
+      // String gender
       // DropDownTypeOfUser typeId
       // String value
       ) async {
-    isLoading = true;
+    // isLoading = true;
     var url = Uri.parse(ServerWeenBalaqee.register);
     debugPrint(url.path);
     var response = await http.post(url, body: {
@@ -673,14 +672,9 @@ class _RegisterState extends State<Register> {
     debugPrint(response.body);
     // print(response.body);
     var json = await jsonDecode(response.body);
-    //
-    // debugPrint("this is json : $json");
-    // debugPrint(
-    //     // "id : ${json.data.id},"
-    //     " name : ${json.data.name},phone: ${json.data.phone}"
-    //     " token: ${json.data.token}");
-    var res = UserRes.fromJson(json);
 
+    debugPrint("this is json : $json");
+    var res = UserRes.fromJson(json);
     // debugPrint("the id of country codes in api is : 1 + "
     //     " phone number is :$phone ");
 
@@ -689,45 +683,35 @@ class _RegisterState extends State<Register> {
     //return;
     debugPrint("this is response  : $res");
     if (res.status == false) {
-      isLoading = false;
+      // isLoading = false;
       setState(() {
         msg = res.msg;
         if (msg == "The phone has already been taken.") {
-          debugPrint("the phone has already been taken.");
           NormalAlert.show(
               context, "بيانات خاطئة", "جرب إستخدام رقم هاتف مختلف", "حسنًا");
-          isLoading = false;
           return;
         }
         if (msg == "The name field is required.") {
-          debugPrint("The name field is required.");
           NormalAlert.show(
               context, "حقل مطلوب", "يرجى تعبئة حقل 'الاسم الكامل'", "حسنًا");
-          isLoading = false;
           return;
         }
         if (msg == "The phone field is required.") {
-          debugPrint("The phone field is required");
           NormalAlert.show(
               context, "حقل مطلوب", "يرجى تعبئة حقل 'رقم الهاتف'", "حسنًا");
-          isLoading = false;
           return;
         }
         if (msg == "The password field is required.") {
-          debugPrint("The passwrod field is required.");
           NormalAlert.show(
               context, "حقل مطلوب", "يرجى تعبئة حقل 'كلمة المرور'", "حسنًا");
-          isLoading = false;
           return;
         }
       });
-
       removeUserInfo();
-      isLoading = false;
       return;
     } else {
       setState(() {
-        isLoading = false;
+        // isLoading = false;
         // toast("قم تسجيل الدخول لتتأكد من كتابة بياناتك بشكل صحيح");
       });
 
@@ -741,10 +725,10 @@ class _RegisterState extends State<Register> {
         saveUserInfo(data);
 
         pushToLoginPage();
-        isLoading = false;
+        // isLoading = false;
       } catch (e) {
         debugPrint("$e");
-        isLoading = false;
+        // isLoading = false;
       }
     }
     // }on SocketException{
@@ -752,6 +736,7 @@ class _RegisterState extends State<Register> {
     // }on FormatException{
     //   print("Problem retrieving data contact !");
     // print(visable);
+
   }
 
   void pushToLoginPage() {

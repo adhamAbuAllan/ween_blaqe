@@ -5,6 +5,7 @@ import '../api/apartments_api/one_apartment.dart';
 import '../constants/nums.dart';
 import '../controller/get_controllers.dart';
 import '../core/widgets/apartments/new_master_home_classes_widgets/apartment_container/list_of_apartments.dart';
+import '../core/widgets/empty_screen_class_widget.dart';
 
 class BookmarkApartment extends StatefulWidget {
   const BookmarkApartment({super.key});
@@ -64,7 +65,11 @@ class _BookmarkApartmentState extends State<BookmarkApartment> {
           kPrimaryColorDarkMode,
         title: const Text('المفضلة'),
       ),
-      body: ApartmentsList(
+      body: apartmentsBookmarked.data?.isEmpty??true?const EmptyScreenClassWidget(
+          centerIcon: Icons.bookmark_outline,
+          centerText: "تًعرض الشقق المفضلة هُنا",
+          underCenterText:"  "
+      ): ApartmentsList(
           apartmentsRes: apartmentsBookmarked,
           scrollController: scrollController),
     );
