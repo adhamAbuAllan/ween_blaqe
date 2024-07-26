@@ -200,11 +200,11 @@ class _LoginState extends State<Login> {
                   inputType: password,
 
                   // isVisible: true,
-                 onObscureChanged: (newValue){
+                  onObscureChanged: (newValue) {
                     setState(() {
                       isObscure = newValue;
                     });
-                 },
+                  },
                   isObscure: isObscure,
 
                   hintInput: hintPassword,
@@ -225,7 +225,7 @@ class _LoginState extends State<Login> {
                     child: ElevatedButton(
                         style: fullButton,
                         onPressed: () {
-                          // isLoading = true;
+                          isLoading = true;
                           // if(phoneController.text.indexOf(RegExp('0'),0) == 0){
 
                           phoneController.text =
@@ -254,9 +254,10 @@ class _LoginState extends State<Login> {
                             msg = "Loading..";
                             setState(() {
                               // checkCurrentAuthState(context);
-                             if(isLoading){return;} go(phoneController.text,
-                                 passwordController
-                                 .text);
+                              // if (isLoading) {
+                              //   return;
+                              // }
+                              go(phoneController.text, passwordController.text);
                               // isLoading = false;
                             });
 
