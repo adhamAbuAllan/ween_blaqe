@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'package:colorful_safe_area/colorful_safe_area.dart';
 import 'package:flutter/material.dart';
+
 // import 'package:get/get.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:ween_blaqe/constants/strings.dart';
@@ -170,6 +171,7 @@ class _RegisterState extends State<Register> {
   String selectedCountryCode = '970'; // Default country code
   final List<String> countryCodes = ['970', '972'];
   bool isLoading = false;
+
   // int idOfCountryCodesList = 1;
 
   @override
@@ -587,7 +589,6 @@ class _RegisterState extends State<Register> {
                     height: 55,
                     child: ElevatedButton(
                         onPressed: () async {
-
                           phoneController.text =
                               removePlusSymbol(phoneController.text);
                           // if(){};
@@ -600,7 +601,7 @@ class _RegisterState extends State<Register> {
                                   "برجاء إدخال كلمة مرور متطابقة في كلا الحقلين",
                                   "حسنًا");
                             }
-                            if(isLoading){
+                            if (isLoading) {
                               return;
                             }
                             go(
@@ -630,9 +631,11 @@ class _RegisterState extends State<Register> {
                           debugPrint("type_id --$typeId");
                         },
                         style: fullButton,
-                        child: isLoading ? const CircularProgressIndicator(
-                          color: Colors.white,
-                        ): const Text("إنشاء حساب")),
+                        child: isLoading
+                            ? const CircularProgressIndicator(
+                                color: Colors.white,
+                              )
+                            : const Text("إنشاء حساب")),
                   ),
                 ),
               ],
@@ -662,7 +665,7 @@ class _RegisterState extends State<Register> {
       "name": name, "phone": phone, "password": password,
       "type_id": typeId.toString(),
       "university_id": universityId.toString(),
-      "gender": gender,
+      // "gender": gender,
       "country_phone_number_id": "1",
 // "type_id":insetType,
       // "type_id":typeOfUser.id
@@ -670,9 +673,14 @@ class _RegisterState extends State<Register> {
     debugPrint(response.body);
     // print(response.body);
     var json = await jsonDecode(response.body);
-
-    debugPrint("this is json : $json");
+    //
+    // debugPrint("this is json : $json");
+    // debugPrint(
+    //     // "id : ${json.data.id},"
+    //     " name : ${json.data.name},phone: ${json.data.phone}"
+    //     " token: ${json.data.token}");
     var res = UserRes.fromJson(json);
+
     // debugPrint("the id of country codes in api is : 1 + "
     //     " phone number is :$phone ");
 
@@ -685,27 +693,37 @@ class _RegisterState extends State<Register> {
       setState(() {
         msg = res.msg;
         if (msg == "The phone has already been taken.") {
+          debugPrint("the phone has already been taken.");
           NormalAlert.show(
               context, "بيانات خاطئة", "جرب إستخدام رقم هاتف مختلف", "حسنًا");
+          isLoading = false;
           return;
         }
         if (msg == "The name field is required.") {
+          debugPrint("The name field is required.");
           NormalAlert.show(
               context, "حقل مطلوب", "يرجى تعبئة حقل 'الاسم الكامل'", "حسنًا");
+          isLoading = false;
           return;
         }
         if (msg == "The phone field is required.") {
+          debugPrint("The phone field is required");
           NormalAlert.show(
               context, "حقل مطلوب", "يرجى تعبئة حقل 'رقم الهاتف'", "حسنًا");
+          isLoading = false;
           return;
         }
         if (msg == "The password field is required.") {
+          debugPrint("The passwrod field is required.");
           NormalAlert.show(
               context, "حقل مطلوب", "يرجى تعبئة حقل 'كلمة المرور'", "حسنًا");
+          isLoading = false;
           return;
         }
       });
+
       removeUserInfo();
+      isLoading = false;
       return;
     } else {
       setState(() {
@@ -734,7 +752,6 @@ class _RegisterState extends State<Register> {
     // }on FormatException{
     //   print("Problem retrieving data contact !");
     // print(visable);
-
   }
 
   void pushToLoginPage() {
