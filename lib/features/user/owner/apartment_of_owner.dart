@@ -420,35 +420,36 @@ class _ApartmentsOwnerState extends State<ApartmentsOwner>
           backgroundColor:
               themeMode.isDark ? kPrimaryColorLightMode : kPrimaryColorDarkMode,
           title: const Text('شققك'),
-          actions: [
-            AnimatedBuilder(
-              animation: _animationController,
-              builder: (context, child) => IconButton(
-                icon: Icon(
-                  isDeleteMode ? Icons.delete : Icons.bookmark,
-                  color: _iconColorAnimation.value,
-                ),
-                onPressed: toggleDeleteMode,
-              ),
-            ),
-          ],
+          actions: apartmentModelController.isApartmentNull == false
+              ? [
+                  AnimatedBuilder(
+                    animation: _animationController,
+                    builder: (context, child) => IconButton(
+                      icon: Icon(
+                        isDeleteMode ? Icons.delete : Icons.bookmark,
+                        color: _iconColorAnimation.value,
+                      ),
+                      onPressed: toggleDeleteMode,
+                    ),
+                  ),
+                ]
+              : null,
         ),
-        body:
-            Obx(() {
-                if (apartmentModelController.isLoading.value) {
-                  return const Center(child: HomeSkeletonWidget());
-                } else {
-                  return apartmentModelController.isApartmentNull ?
-                  const EmptyScreenClassWidget(
+        body: Obx(() {
+          if (apartmentModelController.isLoading.value) {
+            return const Center(child: HomeSkeletonWidget());
+          } else {
+            return apartmentModelController.isApartmentNull
+                ? const EmptyScreenClassWidget(
                     centerIcon: Icons.apartment,
-                    centerText: "تًعرض إعلاناتك هنا",
+                    centerText: "تُعرض إعلاناتك هنا",
                     // underCenterText: 'انقر على الزر + للبدء في'
                     //     ' إنشاء إعلان جديد',
                     centerIconInUnderCenterText: Icons.add_home_outlined,
                     underCenterTextBeforeIcon: 'انقر على الزر ',
-                    underCenterTextAfterIcon:'  للبدء في إنشاء إعلان جديد',)
-                      :
-                  ApartmentsList(
+                    underCenterTextAfterIcon: '  للبدء في إنشاء إعلان جديد',
+                  )
+                : ApartmentsList(
                     apartmentsRes: apartmentModelController.apartments.value,
                     scrollController: ScrollController(),
                     isDeleteMode: isDeleteMode,
@@ -458,8 +459,8 @@ class _ApartmentsOwnerState extends State<ApartmentsOwner>
                       });
                     },
                   );
-                }
-              }),
+          }
+        }),
         floatingActionButton: FloatingActionButton(
           backgroundColor:
               themeMode.isDark ? kPrimaryColorLightMode : kPrimaryColorDarkMode,

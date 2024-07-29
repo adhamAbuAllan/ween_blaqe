@@ -67,7 +67,7 @@ class _BookmarkApartmentState extends State<BookmarkApartment> {
       ),
       body: apartmentsBookmarked.data?.isEmpty??true?const EmptyScreenClassWidget(
           centerIcon: Icons.bookmark_outline,
-          centerText: "تًعرض الشقق المفضلة هُنا",
+          centerText: "تُعرض الشقق المفضلة هُنا",
           underCenterText:"  "
       ): ApartmentsList(
           apartmentsRes: apartmentsBookmarked,

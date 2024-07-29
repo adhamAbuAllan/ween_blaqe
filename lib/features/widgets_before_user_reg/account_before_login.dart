@@ -334,6 +334,7 @@ class _AccountBeforeLoginInStudentState
                       "ألا تمتلك حساب؟",
                       style: TextStyle(
                         color: themeMode.isDark ? kTextColorLightMode : kTextColorDarkMode,
+                        fontFamily: "IBM"
                       ),
                     ),
                   ),
