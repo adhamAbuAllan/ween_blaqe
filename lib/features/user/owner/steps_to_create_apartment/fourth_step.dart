@@ -454,7 +454,7 @@ class _FourthStepState extends State<FourthStep> {
         //   apartmentId = '-2';
         //
         // });
-        await imagesModelController.uploadImages();
+        await imagesModelController.compressAndUploadImages();
         isLoading = false;
         pushToMainPage();
         var res = DataOfOneApartment.fromJson(json);
