@@ -112,9 +112,9 @@ class ImagesModelController extends GetxController {
     var response = await request.send();
     if (response.statusCode == 200) {
       isImagesUploaded = true;
-      print('Upload successful');
+      debugPrint('Upload successful');
     } else {
-      print('Upload failed');
+      debugPrint('Upload failed');
     }
   }
 }

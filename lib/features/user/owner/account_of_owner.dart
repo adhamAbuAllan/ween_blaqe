@@ -323,7 +323,7 @@ class _AccountOfOwnerState extends State<AccountOfOwner> {
             //Beta Version
             Padding(
               padding: const EdgeInsets.symmetric(vertical:30.0),
-              child:  Text("الإصدار التجريبي: 1.0.0",style: TextStyle(
+              child:  Text("الإصدار التجريبي: 3.0.1",style: TextStyle(
                   color: themeMode.isDark ? kTextColorLightMode.withOpacity(.5) :
                   kTextColorDarkMode.withOpacity(.5)
               ),),
