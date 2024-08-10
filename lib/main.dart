@@ -50,6 +50,7 @@ import 'package:ween_blaqe/features/user/studnet/main_student.dart';
 import 'package:ween_blaqe/sesstion/new_session.dart';
 import 'package:ween_blaqe/features/splach_screen.dart';
 // import 'package:ween_blaqe/testing_code/bookmark_test.dart';
+import 'constants/injection.dart';
 import 'constants/nums.dart';
 import 'constants/strings.dart';
 import 'controller/bookmark_controller.dart';
@@ -122,7 +123,7 @@ void main() async {
   Get.put(BookmarkController());//for testing
   // Get.put(BookmarkApartment());//for testing
   //for get
-
+  await configureInjection();
   runApp(const OwnMaterialApp(
       // logged: token != null,
       ));

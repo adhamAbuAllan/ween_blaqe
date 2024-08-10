@@ -13,6 +13,8 @@ import 'package:ween_blaqe/core/utils/funcations/go_url_launcher_methodes/go_to_
 import 'package:ween_blaqe/core/utils/funcations/snakbar.dart';
 import 'package:ween_blaqe/core/utils/styles/button.dart';
 import 'package:ween_blaqe/features/error_widgets/no_internet.dart';
+import '../../../../constants/coordination.dart';
+import '../../../../constants/injection.dart';
 import '../../../../constants/nums.dart';
 import '../../../../core/widgets/apartments/show_more_classes_widget/image_slider/pointer.dart';
 import '../../../../core/widgets/apartments/show_more_classes_widget/image_slider/zoom_of_image/home.dart';
@@ -281,7 +283,9 @@ class _NewShowMoreState extends State<NewShowMore> {
                             Row(
                               children: [
                                 SizedBox(
-                                  width: 360,
+                                  width: getIt<AppDimension>()
+                                      .isSmallOrIsMediumScreen(context)
+                                      ?360/1.5:360,
                                   child: Padding(
                                     padding: const EdgeInsets.fromLTRB(
                                         10, 0, 10, 10),
@@ -305,7 +309,9 @@ class _NewShowMoreState extends State<NewShowMore> {
                             Row(
                               children: [
                                 SizedBox(
-                                  width: 360,
+                                  width: getIt<AppDimension>()
+                                      .isSmallOrIsMediumScreen(context)
+                                      ?360/1.1:360,
                                   child: Padding(
                                     padding:
                                         const EdgeInsets.fromLTRB(0, 0, 10, 10),
@@ -331,7 +337,7 @@ class _NewShowMoreState extends State<NewShowMore> {
                                 const Expanded(child: Text("")),
                               ],
                             ),
-                            //count of student
+                            // count of student
                             Row(
                               children: [
                                 Padding(

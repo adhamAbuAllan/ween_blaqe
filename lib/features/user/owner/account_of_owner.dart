@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:ween_blaqe/constants/coordination.dart';
 import 'package:ween_blaqe/constants/nums.dart';
 import 'package:ween_blaqe/constants/strings.dart';
 
@@ -8,6 +9,7 @@ import 'package:ween_blaqe/core/utils/styles/button.dart';
 
 // import 'package:ween_blaqe/core/utils/styles/show_more_widget/about_apartment_style.dart';
 import 'package:ween_blaqe/core/utils/styles/text_style/aline_style.dart';
+import '../../../constants/injection.dart';
 import '../../../core/widgets/buttons/lines_buttons/line_buttons.dart';
 import '../../../main.dart';
 import '../../bookmark.dart';
@@ -29,6 +31,8 @@ class _AccountOfOwnerState extends State<AccountOfOwner> {
   // static const String rountName = "/accountOfOwner";
   @override
   Widget build(BuildContext context) {
+    var paddingOfOwnerInfoBox =
+        getIt<AppDimension>().isSmallOrIsMediumScreen(context) ? 9.0 : 14.0;
     // MainController controller = Get.find();
     return Scaffold(
       backgroundColor: themeMode.isDark
@@ -41,7 +45,13 @@ class _AccountOfOwnerState extends State<AccountOfOwner> {
             Row(
               children: [
                 Padding(
-                  padding: const EdgeInsets.fromLTRB(0, 50, 20, 0),
+                  padding: EdgeInsets.fromLTRB(
+                      0,
+                      getIt<AppDimension>().isSmallOrIsMediumScreen(context)
+                          ? 50 / 1.6
+                          : 50,
+                      20,
+                      0),
                   child: Text(
                     "الحساب",
                     style: TextStyle(
@@ -57,15 +67,18 @@ class _AccountOfOwnerState extends State<AccountOfOwner> {
                 const Expanded(child: Text("")),
               ],
             ),
-            const SizedBox(
-              height: 50,
+            SizedBox(
+              height: getIt<AppDimension>().isSmallOrIsMediumScreen(context)
+                  ? 50 / 2.1
+                  : 50,
             ),
 
             //use GestureDetector that when user click on container make action
 
             Container(
               width: double.infinity,
-              padding: const EdgeInsets.fromLTRB(0, 14, 10, 14),
+              padding:  EdgeInsets.fromLTRB(0, paddingOfOwnerInfoBox, 10, paddingOfOwnerInfoBox
+              ),
               margin: const EdgeInsets.fromLTRB(10, 0, 10, 0),
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(7),
@@ -73,72 +86,61 @@ class _AccountOfOwnerState extends State<AccountOfOwner> {
                     ? kContainerColorLightMode
                     : kContainerColorDarkMode,
               ),
-              child: GestureDetector(
-                onTap: () {
-                  // Navigator.of(context).push(
-                  //   MaterialPageRoute(builder: (context) {
-                  //     return const ProfileOfOwner();
-                  //   }),
-                  // );
-                },
-                child: Row(
-                  children: [
-                    // const Padding(
-                    //   padding: EdgeInsets.all(8.0),
-                    //   child: CircleAvatar(
-                    //     backgroundImage: NetworkImage(
-                    //         "https://robohash.org/hicveldicta.png/"),
-                    //     radius: 30,
-                    //   ),
-                    // ),
+              child: Row(
+                children: [
+                  // const Padding(
+                  //   padding: EdgeInsets.all(8.0),
+                  //   child: CircleAvatar(
+                  //     backgroundImage: NetworkImage(
+                  //         "https://robohash.org/hicveldicta.png/"),
+                  //     radius: 30,
+                  //   ),
+                  // ),
 
-                    Column(
-                      children: [
-                        Padding(
-                          padding: const EdgeInsets.only(right: 15),
-                          child: Text(
-                            NewSession.get("name", ""),
-                            style: TextStyle(
-                              fontSize: 18,
-                              fontFamily: 'IBM',
-                              color: themeMode.isDark
-                                  ? kTextColorLightMode
-                                  : kTextColorDarkMode,
-                            ),
-                          ),
-                        ),
-
-                      ],
-                    ),
-                    const Expanded(
-                        child: SizedBox(
-                      child: Text(""),
-                    )),
-                    Padding(
-                      padding: const EdgeInsets.only(left: 25),
-                      child: Text(
-                        // "عرض الملف الشخصي",
-                        NewSession.get("phone", ""),
-                        // "972569339613",
-                        style:  TextStyle(
-                            fontSize: 16,
-                            fontFamily: 'IBM',
-                            color: themeMode.isDark
-                                ? kTextColorLightMode
-                                : kTextColorDarkMode),
+                  Padding(
+                    padding: const EdgeInsets.only(right: 15),
+                    child: Text(
+                      NewSession.get("name", ""),
+                      style: TextStyle(
+                        fontSize: getIt<AppDimension>()
+                                .isSmallOrIsMediumScreen(context)
+                            ? 16
+                            : 18,
+                        fontFamily: 'IBM',
+                        color: themeMode.isDark
+                            ? kTextColorLightMode
+                            : kTextColorDarkMode,
                       ),
-                    )
-                    // Padding(
-                    //   padding: const EdgeInsets.fromLTRB(0, 0, 0, 0),
-                    //   child: Icon(
-                    //     Icons.arrow_forward_ios_rounded,
-                    //     color: themeMode.isDark
-                    //         ? kTextColorLightMode
-                    //         : kTextColorDarkMode,
-                    //   ),
-                    // ),
-                  ],
-                ),
+                    ),
+                  ),
+                  const Expanded(
+                      child: SizedBox(
+                    child: Text(""),
+                  )),
+                  Padding(
+                    padding: const EdgeInsets.only(left: 25),
+                    child: Text(
+                      // "عرض الملف الشخصي",
+                      NewSession.get("phone", ""),
+                      // "972569339613",
+                      style: TextStyle(
+                          fontSize: 16,
+                          fontFamily: 'IBM',
+                          color: themeMode.isDark
+                              ? kTextColorLightMode
+                              : kTextColorDarkMode),
+                    ),
+                  )
+                  // Padding(
+                  //   padding: const EdgeInsets.fromLTRB(0, 0, 0, 0),
+                  //   child: Icon(
+                  //     Icons.arrow_forward_ios_rounded,
+                  //     color: themeMode.isDark
+                  //         ? kTextColorLightMode
+                  //         : kTextColorDarkMode,
+                  //   ),
+                  // ),
+                ],
               ),
             ),
 
@@ -151,7 +153,9 @@ class _AccountOfOwnerState extends State<AccountOfOwner> {
             //         padding: EdgeInsets.only(left: 10),
             //         child: Icon(
             //           Icons.notifications_outlined,
-            //           size: 32,
+            //           size: getIt<AppDimension>()
+            //           .isSmallOrIsMediumScreen(context)
+// ?32-5:32,
             //           color:themeMode.isDark ? kTextColorLightMode :
             //           kTextColorDarkMode ,
             //         ),
@@ -179,11 +183,13 @@ class _AccountOfOwnerState extends State<AccountOfOwner> {
             //     // )
             //   ],
             // ),
-            const SizedBox(
-              height: 20 * 3,
+            SizedBox(
+              height: getIt<AppDimension>().isSmallOrIsMediumScreen(context)
+                  ? 60 / 2.5
+                  : 60,
             ),
             Container(
-              padding: const EdgeInsets.fromLTRB(0, 0, 0, 10),
+              padding: const EdgeInsets.fromLTRB(0, 0, 0, 0),
               margin: const EdgeInsets.fromLTRB(10, 0, 10, 0),
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(7),
@@ -195,6 +201,8 @@ class _AccountOfOwnerState extends State<AccountOfOwner> {
                 // Switch(value:themeMode.isDark , onChanged:
                 // themeMode.onChanged),
                 SwitchListTile(
+                    dense:
+                        getIt<AppDimension>().isSmallOrIsMediumScreen(context),
                     title: Text("الشكل",
                         style: TextStyle(
                             fontSize: 16,
@@ -218,7 +226,7 @@ class _AccountOfOwnerState extends State<AccountOfOwner> {
                   Navigator.push(
                       context,
                       MaterialPageRoute(
-                        builder: (context) => ApartmentsOwner(),
+                        builder: (context) => const ApartmentsOwner(),
                       ));
                 },
                     icon: Icon(
@@ -226,9 +234,13 @@ class _AccountOfOwnerState extends State<AccountOfOwner> {
                       color: themeMode.isDark
                           ? kTextColorLightMode
                           : kTextColorDarkMode,
-                      size: 35,
+                      size:
+                          getIt<AppDimension>().isSmallOrIsMediumScreen(context)
+                              ? 35 - 5
+                              : 35,
                     ),
-                    "شققك"),
+                    "شققك",
+                    context: context),
                 //ask for help
                 aline,
                 buttonAccount(() {
@@ -236,12 +248,16 @@ class _AccountOfOwnerState extends State<AccountOfOwner> {
                 },
                     icon: Icon(
                       Icons.info_outline,
-                      size: 32,
+                      size:
+                          getIt<AppDimension>().isSmallOrIsMediumScreen(context)
+                              ? 32 - 5
+                              : 32,
                       color: themeMode.isDark
                           ? kTextColorLightMode
                           : kTextColorDarkMode,
                     ),
-                    "اطلب المساعدة"),
+                    "اطلب المساعدة",
+                    context: context),
 
                 aline,
                 //privacy policy
@@ -250,19 +266,25 @@ class _AccountOfOwnerState extends State<AccountOfOwner> {
                 },
                     icon: Icon(
                       Icons.privacy_tip_outlined,
-                      size: 32,
+                      size:
+                          getIt<AppDimension>().isSmallOrIsMediumScreen(context)
+                              ? 32 - 5
+                              : 32,
                       color: themeMode.isDark
                           ? kTextColorLightMode
                           : kTextColorDarkMode,
                     ),
-                    "سياسة الخصوصية"),
+                    "سياسة الخصوصية",
+                    context: context),
                 // aline,
                 //share app
                 // ButtonAccount(
                 //     () {},
                 //          Icon(
                 //       Icons.share_outlined,
-                //       size: 32,
+                //       size: getIt<AppDimension>()
+                //       .isSmallOrIsMediumScreen(context)
+// ?32-5:32,
                 //       color: kTextColor,
                 //     ),
                 //     "شارك التطبيق"),
@@ -273,12 +295,16 @@ class _AccountOfOwnerState extends State<AccountOfOwner> {
                 },
                     icon: Icon(
                       Icons.feedback_outlined,
-                      size: 32,
+                      size:
+                          getIt<AppDimension>().isSmallOrIsMediumScreen(context)
+                              ? 32 - 5
+                              : 32,
                       color: themeMode.isDark
                           ? kTextColorLightMode
                           : kTextColorDarkMode,
                     ),
-                    "أرسل ملاحظات إلينا"),
+                    "أرسل ملاحظات إلينا",
+                    context: context),
                 aline,
                 buttonAccount(() {
                   myPushName(context, MyPagesRoutes.noInternet);
@@ -288,12 +314,16 @@ class _AccountOfOwnerState extends State<AccountOfOwner> {
                             ? kTextColorLightMode
                             : kTextColorDarkMode,
                         width: 35,
-                        height: 35),
-                    "السبحة"),
+                        height: getIt<AppDimension>()
+                                .isSmallOrIsMediumScreen(context)
+                            ? 35 - 5
+                            : 35),
+                    "السبحة",
+                    context: context),
                 aline,
                 buttonAccount(() {
                   Navigator.push(context, MaterialPageRoute(builder: (context) {
-                    return BookmarkApartment();
+                    return const BookmarkApartment();
                   }));
                 }, "المفضلة",
                     icon: Icon(
@@ -301,15 +331,24 @@ class _AccountOfOwnerState extends State<AccountOfOwner> {
                       color: themeMode.isDark
                           ? kTextColorLightMode
                           : kTextColorDarkMode,
-                    ))
+                    ),
+                    context: context)
               ]),
             ),
             //button sign out
             Padding(
-              padding: const EdgeInsets.fromLTRB(25, 20 * 3, 25, 5),
+              padding: EdgeInsets.fromLTRB(
+                  25,
+                  getIt<AppDimension>().isSmallOrIsMediumScreen(context)
+                      ? 60 / 1.8
+                      : 60,
+                  25,
+                  5),
               child: SizedBox(
                 width: double.infinity,
-                height: 55,
+                height: getIt<AppDimension>().isSmallOrIsMediumScreen(context)
+                    ? 55 / 1.2
+                    : 55,
                 child: OutlinedButton(
                     onPressed: () {
                       removeUserInfo();
@@ -322,13 +361,17 @@ class _AccountOfOwnerState extends State<AccountOfOwner> {
             ),
             //Beta Version
             Padding(
-              padding: const EdgeInsets.symmetric(vertical:30.0),
-              child:  Text("الإصدار التجريبي: 3.0.1",style: TextStyle(
-                  color: themeMode.isDark ? kTextColorLightMode.withOpacity(.5) :
-                  kTextColorDarkMode.withOpacity(.5)
-              ),),
+              padding: const EdgeInsets.symmetric(
+                  vertical:
+                  30),
+              child: Text(
+                "الإصدار التجريبي: 3.0.1",
+                style: TextStyle(
+                    color: themeMode.isDark
+                        ? kTextColorLightMode.withOpacity(.5)
+                        : kTextColorDarkMode.withOpacity(.5)),
+              ),
             )
-
           ],
         ),
       ),

@@ -5,10 +5,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:get/get.dart';
 import 'package:ween_blaqe/core/utils/funcations/route_pages/push_routes.dart';
+
 // import 'package:ween_blaqe/core/utils/funcations/snakbar.dart';
 import 'package:ween_blaqe/core/utils/styles/button.dart';
 import 'package:ween_blaqe/core/utils/styles/text_style/aline_style.dart';
 
+import '../../constants/coordination.dart';
+import '../../constants/injection.dart';
 import '../../constants/nums.dart';
 import '../../constants/strings.dart';
 import '../../core/widgets/buttons/lines_buttons/line_buttons.dart';
@@ -17,19 +20,17 @@ import '../../controller/main_controller.dart';
 import '../../controller/student_controller/student_controller.dart';
 import '../bookmark.dart';
 import 'login.dart';
+
 // import '../../main.dart';
 // import 'login.dart';
-main (){
+main() {
   runApp(MaterialApp(
     debugShowCheckedModeBanner: false,
 
     darkTheme: ThemeData(
-
       useMaterial3: false,
 
-
       colorScheme: ColorScheme.fromSwatch().copyWith(secondary: Colors.grey),
-
 
       // brightness: Brightness.darkf
     ),
@@ -43,28 +44,30 @@ main (){
         // brightness: Brightness.,
 
         // scaffoldBackgroundColor: Colors.grey.shade200,
-        switchTheme:      const SwitchThemeData(),
-        colorSchemeSeed:      const Color(0xffff9800),
-        bottomNavigationBarTheme:      const BottomNavigationBarThemeData(
+        switchTheme: const SwitchThemeData(),
+        colorSchemeSeed: const Color(0xffff9800),
+        bottomNavigationBarTheme: const BottomNavigationBarThemeData(
             selectedIconTheme: IconThemeData(size: 26))),
     //make screen rtl
-    localizationsDelegates:      const [
+    localizationsDelegates: const [
       GlobalCupertinoLocalizations.delegate,
       GlobalMaterialLocalizations.delegate,
       GlobalWidgetsLocalizations.delegate,
     ],
-    supportedLocales:      const [
+    supportedLocales: const [
       Locale("en", "US"),
       Locale("ar", "SA"), // OR Locale('ar', 'AE') OR Other RTL locales
     ],
-    locale:      const Locale("ar", "SA"),
+    locale: const Locale("ar", "SA"),
 
-    home:      AccountBeforeLoginInStudent(),));
+    home: AccountBeforeLoginInStudent(),
+  ));
 }
+
 //Account before login Screen
 @immutable
 class AccountBeforeLoginInStudent extends StatefulWidget {
-       AccountBeforeLoginInStudent({Key? key}) : super(key: key);
+  AccountBeforeLoginInStudent({Key? key}) : super(key: key);
 
   @override
   State<AccountBeforeLoginInStudent> createState() =>
@@ -89,27 +92,37 @@ class _AccountBeforeLoginInStudentState
       currentValue = true;
       // loadValue();
     });
-
   }
 
   @override
   Widget build(BuildContext context) {
     return ColorfulSafeArea(
-      bottomColor: Colors.transparent ,
+      bottomColor: Colors.transparent,
       color: themeMode.isDark ? kPrimaryColorLightMode : kPrimaryColorDarkMode,
       child: Scaffold(
-        backgroundColor:themeMode.isDark ? kBackgroundAppColorLightMode : kBackgroundAppColorDarkMode,
+        backgroundColor: themeMode.isDark
+            ? kBackgroundAppColorLightMode
+            : kBackgroundAppColorDarkMode,
         body: SingleChildScrollView(
-          child: Column(            children: [
+          child: Column(
+            children: [
               //title
-                    Row(
+              Row(
                 children: [
                   Padding(
-                    padding: const EdgeInsets.fromLTRB(0, 50, 20, 0),
+                    padding: EdgeInsets.fromLTRB(
+                        0,
+                        getIt<AppDimension>().isSmallOrIsMediumScreen(context)
+                            ? 50 / 1.6
+                            : 50,
+                        20,
+                        0),
                     child: Text(
                       "الحساب",
                       style: TextStyle(
-                        color: themeMode.isDark ? kTextColorLightMode : kTextColorDarkMode,
+                        color: themeMode.isDark
+                            ? kTextColorLightMode
+                            : kTextColorDarkMode,
                         fontSize: 28.0,
                         fontFamily: 'IBM',
                         inherit: true,
@@ -124,7 +137,13 @@ class _AccountBeforeLoginInStudentState
               Row(
                 children: [
                   Padding(
-                    padding:      const EdgeInsets.fromLTRB(0, 0, 10, 75),
+                    padding: EdgeInsets.fromLTRB(
+                        0,
+                        0,
+                        10,
+                        getIt<AppDimension>().isSmallOrIsMediumScreen(context)
+                            ? 75 / 1.5
+                            : 75),
                     child: Text(
                       // "قم بتسجيل الدخول لتحجز اول شقة لك ",
                       "لا يتطلب حجز شقة حساب جديد أو تسجيل الدخول ",
@@ -134,7 +153,7 @@ class _AccountBeforeLoginInStudentState
                           fontFamily: 'IBM'),
                     ),
                   ),
-                       const Expanded(child: Text("")),
+                  const Expanded(child: Text("")),
                 ],
               ),
               // aline,
@@ -186,29 +205,33 @@ class _AccountBeforeLoginInStudentState
               // aline,
               //help
               Container(
-                padding:      const EdgeInsets.fromLTRB(0, 0, 0, 10),
-                margin:      const EdgeInsets.fromLTRB(10, 0, 10, 0),
+                padding: const EdgeInsets.fromLTRB(0, 0, 0, 0),
+                margin: const EdgeInsets.fromLTRB(10, 0, 10, 0),
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(7),
-                  color:themeMode.isDark ? kContainerColorLightMode : kContainerColorDarkMode,
+                  color: themeMode.isDark
+                      ? kContainerColorLightMode
+                      : kContainerColorDarkMode,
                 ),
-                child: Column(
-                    mainAxisSize: MainAxisSize.min,
-
-                    children: [
-                        // Switch(value:themeMode.isDark , onChanged:
-                        // themeMode.onChanged),
-                      SwitchListTile(
-
-                          title:Text("الشكل", style:TextStyle(
-                              fontSize: 16, fontFamily: 'IBM', color: themeMode.isDark ? kTextColorLightMode : kTextColorDarkMode)),
-                          value: themeMode.isDark, onChanged: (bool value)async{
-
+                child: Column(mainAxisSize: MainAxisSize.min, children: [
+                  // Switch(value:themeMode.isDark , onChanged:
+                  // themeMode.onChanged),
+                  SwitchListTile(
+                      dense: getIt<AppDimension>()
+                          .isSmallOrIsMediumScreen(context),
+                      title: Text("الشكل",
+                          style: TextStyle(
+                              fontSize: 16,
+                              fontFamily: 'IBM',
+                              color: themeMode.isDark
+                                  ? kTextColorLightMode
+                                  : kTextColorDarkMode)),
+                      value: themeMode.isDark,
+                      onChanged: (bool value) async {
                         setState(() {
                           themeMode.onChanged(value);
                           // sp.get('isDark');
                           // myPushName(context, MyPagesRoutes.splashScreen);
-
 
                           myPushNameAnimation(context);
                         });
@@ -217,46 +240,58 @@ class _AccountBeforeLoginInStudentState
                   buttonAccount(() {
                     myPushName(context, MyPagesRoutes.askForHelp);
                   },
-                          icon:  Icon(
+                      icon: Icon(
                         Icons.info_outline,
-                        size: 32,
-                        color: themeMode.isDark ? kTextColorLightMode : kTextColorDarkMode,
+                        size: getIt<AppDimension>()
+                                .isSmallOrIsMediumScreen(context)
+                            ? 32 - 5
+                            : 32,
+                        color: themeMode.isDark
+                            ? kTextColorLightMode
+                            : kTextColorDarkMode,
                       ),
-                      "اطلب المساعدة"),
+                      "اطلب المساعدة",
+                      context: context),
 
                   aline,
                   //privacy policy
                   buttonAccount(() {
                     myPushName(context, MyPagesRoutes.privacyPolicy);
                   },
-                      icon:    Icon(
+                      icon: Icon(
                         Icons.privacy_tip_outlined,
-                        size: 32,
-                        color: themeMode.isDark ? kTextColorLightMode : kTextColorDarkMode,
+                        size: getIt<AppDimension>()
+                                .isSmallOrIsMediumScreen(context)
+                            ? 32 - 5
+                            : 32,
+                        color: themeMode.isDark
+                            ? kTextColorLightMode
+                            : kTextColorDarkMode,
                       ),
-                      "سياسة الخصوصية"),
+                      "سياسة الخصوصية",
+                      context: context),
                   // aline,
                   //switch to owner
-              //               buttonAccount(
-              //                 () {
-              // // myPushReplacementNamed(context,MyPagesRoutes.mainOwner);
-              //                   myPushName(context, MyPagesRoutes.mainOwner);
-              //                   setState(() {
-              //                     ownerController.changeTo(0);
-              //                     controller.changeTo(1);
-              //
-              //                     myPushName(context, MyPagesRoutes.mainOwner);
-              //                   });
-              //                   // showSnakBar(
-              //                   //     context, "هذه الميزة قيد التطوير وسيتم إضافتها قريبًا");
-              //                 },
-              //                      Icon(
-              //                   Icons.change_circle_outlined,
-              //                   size: 32,
-              //                   color: kTextColor,
-              //                 ),
-              //                 "التبديل إلى مالك",
-              //               ),
+                  //               buttonAccount(
+                  //                 () {
+                  // // myPushReplacementNamed(context,MyPagesRoutes.mainOwner);
+                  //                   myPushName(context, MyPagesRoutes.mainOwner);
+                  //                   setState(() {
+                  //                     ownerController.changeTo(0);
+                  //                     controller.changeTo(1);
+                  //
+                  //                     myPushName(context, MyPagesRoutes.mainOwner);
+                  //                   });
+                  //                   // showSnakBar(
+                  //                   //     context, "هذه الميزة قيد التطوير وسيتم إضافتها قريبًا");
+                  //                 },
+                  //                      Icon(
+                  //                   Icons.change_circle_outlined,
+                  //                   size: 32,
+                  //                   color: kTextColor,
+                  //                 ),
+                  //                 "التبديل إلى مالك",
+                  //               ),
                   // aline,
 
                   //share app
@@ -273,69 +308,100 @@ class _AccountBeforeLoginInStudentState
                   buttonAccount(() {
                     myPushName(context, MyPagesRoutes.sendNoticeForUs);
                   },
-                      icon:     Icon(
+                      icon: Icon(
                         Icons.feedback_outlined,
-                        size: 32,
-                        color: themeMode.isDark ? kTextColorLightMode : kTextColorDarkMode,
+                        size: getIt<AppDimension>()
+                                .isSmallOrIsMediumScreen(context)
+                            ? 32 - 5
+                            : 32,
+                        color: themeMode.isDark
+                            ? kTextColorLightMode
+                            : kTextColorDarkMode,
                       ),
-                      "أرسل ملاحظات إلينا"),
-                      aline,
-                      buttonAccount(() {
+                      "أرسل ملاحظات إلينا",
+                      context: context),
+                  aline,
+                  buttonAccount(() {
                     myPushName(context, MyPagesRoutes.noInternet);
                   },
-                       image:  Image.asset("assets/images/tasbih.png",
-                              color: themeMode.isDark ? kTextColorLightMode : kTextColorDarkMode,
-                              width: 35, height: 35) ,
-
-                      "السبحة"),
-                    aline,
-                      buttonAccount((){
-                        Navigator.push(context, MaterialPageRoute(builder: (context) {
-                          return   const BookmarkApartment();
-                        }));
-                      }, "المفضلة" ,icon: Icon(Icons.bookmark_outlined,color: themeMode.isDark ? kTextColorLightMode : kTextColorDarkMode,))
-
-
-
+                      image: Image.asset("assets/images/tasbih.png",
+                          color: themeMode.isDark
+                              ? kTextColorLightMode
+                              : kTextColorDarkMode,
+                          width: 35,
+                          height: getIt<AppDimension>()
+                                  .isSmallOrIsMediumScreen(context)
+                              ? 32 - 5
+                              : 32),
+                      "السبحة",
+                      context: context),
+                  aline,
+                  buttonAccount(() {
+                    Navigator.push(context,
+                        MaterialPageRoute(builder: (context) {
+                      return const BookmarkApartment();
+                    }));
+                  }, "المفضلة",
+                      icon: Icon(
+                        Icons.bookmark_outlined,
+                        color: themeMode.isDark
+                            ? kTextColorLightMode
+                            : kTextColorDarkMode,
+                      ),
+                      context: context)
                 ]),
-                            ),
+              ),
               // aline,
               //button login
               Padding(
-                padding:      const EdgeInsets.fromLTRB(25, 75, 25, 25),
+                padding: EdgeInsets.fromLTRB(
+                    25,
+                    getIt<AppDimension>().isSmallOrIsMediumScreen(context)
+                        ? 60 / 1.8
+                        : 60,
+                    25,
+                    getIt<AppDimension>().isSmallOrIsMediumScreen(context)
+                        ? 25 / 1.5
+                        : 25),
                 child: SizedBox(
                   width: double.infinity,
-                  height: 55,
+                  height: getIt<AppDimension>().isSmallOrIsMediumScreen(context)
+                      ? 55 / 1.2
+                      : 55,
                   child: ElevatedButton(
                       onPressed: () {
                         Navigator.of(context).push(
                           MaterialPageRoute(builder: (context) {
-                            return      const Login();
+                            return const Login();
                           }),
                         );
                         // showSnakBar(context,
                         //     "هذه الميزة قيد التطوير وسيتم إضافتها قريبًا");
                       },
                       style: fullButton.copyWith(
-                          backgroundColor:
-                                WidgetStatePropertyAll(  themeMode.isDark
-                                   ? kPrimaryColorLightMode
-                                   : kPrimaryColorDarkMode,)),
-                      child:      const Text("تسجيل الدخول",)),
+                          backgroundColor: WidgetStatePropertyAll(
+                        themeMode.isDark
+                            ? kPrimaryColorLightMode
+                            : kPrimaryColorDarkMode,
+                      )),
+                      child: const Text(
+                        "تسجيل الدخول",
+                      )),
                 ),
               ),
               //ask user if don't have count and create account
               Row(
                 children: [
                   //ask user if don't have account
-                        Padding(
+                  Padding(
                     padding: const EdgeInsets.fromLTRB(0, 0, 20, 0),
                     child: Text(
                       "ألا تمتلك حساب؟",
                       style: TextStyle(
-                        color: themeMode.isDark ? kTextColorLightMode : kTextColorDarkMode,
-                        fontFamily: "IBM"
-                      ),
+                          color: themeMode.isDark
+                              ? kTextColorLightMode
+                              : kTextColorDarkMode,
+                          fontFamily: "IBM"),
                     ),
                   ),
                   //reg
@@ -343,7 +409,7 @@ class _AccountBeforeLoginInStudentState
                     child: const Text(
                       "إنشاء حساب",
                       style: TextStyle(
-                        color:  Colors.blueAccent,
+                        color: Colors.blueAccent,
                         decoration: TextDecoration.underline,
                         fontFamily: 'IBM',
                       ),
@@ -362,11 +428,14 @@ class _AccountBeforeLoginInStudentState
               ),
               //Beta Version
               Padding(
-                padding: const EdgeInsets.symmetric(vertical:30.0),
-                child:  Text("الإصدار التجريبي: 3.0.1",style: TextStyle(
-                  color: themeMode.isDark ? kTextColorLightMode.withOpacity(.5) :
-                    kTextColorDarkMode.withOpacity(.5)
-                ),),
+                padding: const EdgeInsets.symmetric(vertical: 30.0),
+                child: Text(
+                  "الإصدار التجريبي: 3.0.1",
+                  style: TextStyle(
+                      color: themeMode.isDark
+                          ? kTextColorLightMode.withOpacity(.5)
+                          : kTextColorDarkMode.withOpacity(.5)),
+                ),
               )
 
               // Padding(
@@ -391,16 +460,13 @@ class _AccountBeforeLoginInStudentState
               //   // child: Divider(color: Colors.black.withOpacity(.6),thickness: 7,indent: 10,endIndent: 10),
               // ),
               //      SizedBox(height: 150,),
-               // Align(alignment: Alignment.bottomRight,child: Text("إصدار:2023.1",style: TextStyle(fontFamily: "IBM",fontSize: 12,color: Colors.grey.withOpacity(.7)),))
-
-
+              // Align(alignment: Alignment.bottomRight,child: Text("إصدار:2023.1",style: TextStyle(fontFamily: "IBM",fontSize: 12,color: Colors.grey.withOpacity(.7)),))
             ],
           ),
         ),
       ),
     );
   }
-
 }
 //
 // //account before login in owner page widget

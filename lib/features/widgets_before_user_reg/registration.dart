@@ -10,6 +10,8 @@ import 'package:ween_blaqe/core/utils/styles/button.dart';
 import '../../api/type_of_user.dart';
 
 import 'package:ween_blaqe/constants/nums.dart';
+import '../../constants/coordination.dart';
+import '../../constants/injection.dart';
 import '../../core/utils/funcations/route_pages/push_routes.dart';
 import '../../core/widgets/alirt_class_widget.dart';
 import '../../core/widgets/dropdown_classes_widgets/dropdown_type_of_user.dart';
@@ -346,7 +348,8 @@ class _RegisterState extends State<Register> {
                       ),
                     ),
                     Expanded(
-                      flex: 3,
+                      flex: getIt<AppDimension>().isSmallOrIsMediumScreen
+                        (context)?2:3,
                       child: TextFieldClassWdiget(
                           fontSize: textFormFieldFontsSize,
                           controller: phoneController,
