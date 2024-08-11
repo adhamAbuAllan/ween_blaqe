@@ -2,6 +2,9 @@ import 'package:flutter/material.dart';
 
 import 'package:ween_blaqe/constants/nums.dart';
 
+import '../../../constants/coordination.dart';
+import '../../../constants/injection.dart';
+
 String errorText = '';
 
 class PasswordContainerClassWidget extends StatefulWidget {
@@ -127,6 +130,11 @@ class _PasswordContainerClassWidgetState
               controller: widget.controller,
 
               decoration: InputDecoration(
+                   contentPadding:  EdgeInsets.symmetric(
+                     vertical: getIt<AppDimension>().isSmallScreen(context) ? 20/2 :
+                     20,
+                     horizontal: 12,
+                   ),
                   hintText: hihtInput,
 
                   // errorText: errorText.isEmpty ? null : errorText,

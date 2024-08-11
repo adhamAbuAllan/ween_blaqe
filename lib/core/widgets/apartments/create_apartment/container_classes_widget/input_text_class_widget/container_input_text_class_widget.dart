@@ -5,6 +5,8 @@ import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:ween_blaqe/controller/function_controller/change_theme_mode.dart';
 
+import '../../../../../../constants/coordination.dart';
+import '../../../../../../constants/injection.dart';
 import '../../../../../../constants/nums.dart';
 
 
@@ -177,6 +179,11 @@ class _ContainerInputTextClassWidgetState
     ChangeThemeMode themeMode = Get.find();
 
     return InputDecoration(
+      contentPadding:  EdgeInsets.symmetric(
+        vertical: getIt<AppDimension>().isSmallScreen(context) ? 20/2 :
+        20,
+        horizontal: 12,
+      ),
 
         errorText: errorText.isEmpty ? null : errorText,
         hintTextDirection: TextDirection.rtl,

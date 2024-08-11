@@ -27,6 +27,8 @@ import '../../api/users.dart';
 // import '../../main.dart';
 // ////////////////////////////////////////////////////////////////
 import 'package:ween_blaqe/constants/nums.dart';
+import '../../constants/coordination.dart';
+import '../../constants/injection.dart';
 import '../../core/widgets/alirt_class_widget.dart';
 import '../../core/widgets/apartments/create_apartment/container_classes_widget/input_text_class_widget/container_input_text_class_widget.dart';
 import '../../core/widgets/login/password_container_class_widget.dart';
@@ -98,7 +100,7 @@ class _LoginState extends State<Login> {
       child: ColorfulSafeArea(
         bottomColor: Colors.transparent,
         color:
-            themeMode.isDark ? kPrimaryColorLightMode : kPrimaryColorDarkMode,
+        themeMode.isDark ? kPrimaryColorLightMode : kPrimaryColorDarkMode,
         child: Scaffold(
           backgroundColor: themeMode.isDark
               ? kBackgroundAppColorLightMode
@@ -125,7 +127,8 @@ class _LoginState extends State<Login> {
                 Row(
                   children: [
                     Padding(
-                      padding: const EdgeInsets.fromLTRB(0, 50, 20, 0),
+                      padding: EdgeInsets.fromLTRB(0, getIt<AppDimension>
+                        ().isSmallScreen(context) ? 20 : 30, 20, 0),
                       child: Text(
                         "تسجيل الدخول",
                         style: TextStyle(
@@ -215,20 +218,27 @@ class _LoginState extends State<Login> {
                   //   onFieldSubmitted: (value){
                   //   FocusScope.of(context).unfocus();
                   // }
-                ), //buttons
+                ),
+                //buttons
                 //login button
                 Padding(
-                  padding: const EdgeInsets.fromLTRB(20, 50, 20, 10),
+                  padding: EdgeInsets.fromLTRB(
+                      20, getIt<AppDimension>().isSmallScreen(context) ?
+                  50/1.5:50,
+                      20,
+                      10),
                   child: SizedBox(
                     width: double.infinity,
-                    height: 55,
+                    height: getIt< AppDimension>().isSmallScreen(context) ?
+                    55/1.2 :55,
                     child: ElevatedButton(
                         style: fullButton,
                         onPressed: () {
                           isLoading = true;
                           // if(phoneController.text.indexOf(RegExp('0'),0) == 0){
 
-                          phoneController.text = removePlusSymbol(phoneController.text);
+                          phoneController.text =
+                              removePlusSymbol(phoneController.text);
                           // }
                           setState(() {
                             hideKeyboard(context);
@@ -281,8 +291,8 @@ class _LoginState extends State<Login> {
                         child: isLoading == false
                             ? const Text("تسجيل الدخول")
                             : const CircularProgressIndicator(
-                                color: Colors.white,
-                              )),
+                          color: Colors.white,
+                        )),
                   ),
                 ),
                 //signup button
@@ -290,7 +300,7 @@ class _LoginState extends State<Login> {
                   padding: const EdgeInsets.fromLTRB(20, 10, 20, 10),
                   child: SizedBox(
                     width: double.infinity,
-                    height: 55,
+                    height: getIt< AppDimension>().isSmallScreen(context) ? 55/1.2 : 55,
                     child: OutlinedButton(
                         onPressed: () {
                           hideKeyboard(context);
@@ -346,7 +356,7 @@ class _LoginState extends State<Login> {
     isLoading == true;
     var url = Uri.parse(ServerWeenBalaqee.userLogin);
     var response =
-        await http.post(url, body: {"phone": phone, "password": password});
+    await http.post(url, body: {"phone": phone, "password": password});
     debugPrint("response:$response");
     var json = jsonDecode(response.body);
     debugPrint("json --$json");
@@ -384,7 +394,8 @@ class _LoginState extends State<Login> {
           apartmentModelController.ownerToken = data.token;
         });
         debugPrint(
-            "the token is  Not null ${data.token} || ${apartmentModelController.ownerToken}");
+            "the token is  Not null ${data.token} || ${apartmentModelController
+                .ownerToken}");
       } else {
         debugPrint("the token is null");
       }
