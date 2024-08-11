@@ -32,7 +32,7 @@ class _AccountOfOwnerState extends State<AccountOfOwner> {
   @override
   Widget build(BuildContext context) {
     var paddingOfOwnerInfoBox =
-        getIt<AppDimension>().isSmallOrIsMediumScreen(context) ? 9.0 : 14.0;
+        getIt<AppDimension>().isSmallScreen(context) ? 9.0 : 14.0;
     // MainController controller = Get.find();
     return Scaffold(
       backgroundColor: themeMode.isDark
@@ -47,7 +47,7 @@ class _AccountOfOwnerState extends State<AccountOfOwner> {
                 Padding(
                   padding: EdgeInsets.fromLTRB(
                       0,
-                      getIt<AppDimension>().isSmallOrIsMediumScreen(context)
+                      getIt<AppDimension>().isSmallScreen(context)
                           ? 50 / 1.6
                           : 50,
                       20,
@@ -68,7 +68,7 @@ class _AccountOfOwnerState extends State<AccountOfOwner> {
               ],
             ),
             SizedBox(
-              height: getIt<AppDimension>().isSmallOrIsMediumScreen(context)
+              height: getIt<AppDimension>().isSmallScreen(context)
                   ? 50 / 2.1
                   : 50,
             ),
@@ -103,7 +103,7 @@ class _AccountOfOwnerState extends State<AccountOfOwner> {
                       NewSession.get("name", ""),
                       style: TextStyle(
                         fontSize: getIt<AppDimension>()
-                                .isSmallOrIsMediumScreen(context)
+                                .isSmallScreen(context)
                             ? 16
                             : 18,
                         fontFamily: 'IBM',
@@ -184,7 +184,7 @@ class _AccountOfOwnerState extends State<AccountOfOwner> {
             //   ],
             // ),
             SizedBox(
-              height: getIt<AppDimension>().isSmallOrIsMediumScreen(context)
+              height: getIt<AppDimension>().isSmallScreen(context)
                   ? 60 / 2.5
                   : 60,
             ),
@@ -202,7 +202,7 @@ class _AccountOfOwnerState extends State<AccountOfOwner> {
                 // themeMode.onChanged),
                 SwitchListTile(
                     dense:
-                        getIt<AppDimension>().isSmallOrIsMediumScreen(context),
+                        getIt<AppDimension>().isSmallScreen(context),
                     title: Text("الشكل",
                         style: TextStyle(
                             fontSize: 16,
@@ -235,7 +235,7 @@ class _AccountOfOwnerState extends State<AccountOfOwner> {
                           ? kTextColorLightMode
                           : kTextColorDarkMode,
                       size:
-                          getIt<AppDimension>().isSmallOrIsMediumScreen(context)
+                          getIt<AppDimension>().isSmallScreen(context)
                               ? 35 - 5
                               : 35,
                     ),
@@ -249,7 +249,7 @@ class _AccountOfOwnerState extends State<AccountOfOwner> {
                     icon: Icon(
                       Icons.info_outline,
                       size:
-                          getIt<AppDimension>().isSmallOrIsMediumScreen(context)
+                          getIt<AppDimension>().isSmallScreen(context)
                               ? 32 - 5
                               : 32,
                       color: themeMode.isDark
@@ -267,7 +267,7 @@ class _AccountOfOwnerState extends State<AccountOfOwner> {
                     icon: Icon(
                       Icons.privacy_tip_outlined,
                       size:
-                          getIt<AppDimension>().isSmallOrIsMediumScreen(context)
+                          getIt<AppDimension>().isSmallScreen(context)
                               ? 32 - 5
                               : 32,
                       color: themeMode.isDark
@@ -296,7 +296,7 @@ class _AccountOfOwnerState extends State<AccountOfOwner> {
                     icon: Icon(
                       Icons.feedback_outlined,
                       size:
-                          getIt<AppDimension>().isSmallOrIsMediumScreen(context)
+                          getIt<AppDimension>().isSmallScreen(context)
                               ? 32 - 5
                               : 32,
                       color: themeMode.isDark
@@ -315,7 +315,7 @@ class _AccountOfOwnerState extends State<AccountOfOwner> {
                             : kTextColorDarkMode,
                         width: 35,
                         height: getIt<AppDimension>()
-                                .isSmallOrIsMediumScreen(context)
+                                .isSmallScreen(context)
                             ? 35 - 5
                             : 35),
                     "السبحة",
@@ -339,14 +339,14 @@ class _AccountOfOwnerState extends State<AccountOfOwner> {
             Padding(
               padding: EdgeInsets.fromLTRB(
                   25,
-                  getIt<AppDimension>().isSmallOrIsMediumScreen(context)
+                  getIt<AppDimension>().isSmallScreen(context)
                       ? 60 / 1.8
                       : 60,
                   25,
                   5),
               child: SizedBox(
                 width: double.infinity,
-                height: getIt<AppDimension>().isSmallOrIsMediumScreen(context)
+                height: getIt<AppDimension>().isSmallScreen(context)
                     ? 55 / 1.2
                     : 55,
                 child: OutlinedButton(

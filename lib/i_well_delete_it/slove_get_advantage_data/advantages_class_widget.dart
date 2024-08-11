@@ -268,7 +268,7 @@ class _ShowAllAdvantagesState extends State<ShowAllAdvantages> {
                     ),
                     SizedBox(
                       height: getIt<AppDimension>()
-                          .isSmallOrIsMediumScreen(context)
+                          .isSmallScreen(context)
                           ? 525/1.1:585,
                       child: ListView.builder(
                           padding: const EdgeInsets.all(0),

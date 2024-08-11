@@ -51,9 +51,9 @@ class AppDimension {
   }
 
   // if a screen height under or equal 600dp give true else give false
-  bool isSmallScreen(BuildContext context) {
-    return MediaQuery.of(context).size.height <= 600;
-  }
+  // bool isSmallScreen(BuildContext context) {
+  //   return MediaQuery.of(context).size.height <= 600;
+  // }
 
   // if a screen height above or equal 600dp  and in under or equal 900 give true else give false
 
@@ -63,8 +63,8 @@ class AppDimension {
   }
 
 //if a screen under 600dp height give true or if screen between 600dp and 900dp give true else give false
-  bool isSmallOrIsMediumScreen(BuildContext context) {
-    return isSmallScreen(context) || isMediumScreen(context);
+  bool isSmallScreen(BuildContext context) {
+    return MediaQuery.of(context).size.height <= 670;
   }
 
   bool isSmallScreenToAppBar(BuildContext context) {

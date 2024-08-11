@@ -284,7 +284,7 @@ class _NewShowMoreState extends State<NewShowMore> {
                               children: [
                                 SizedBox(
                                   width: getIt<AppDimension>()
-                                      .isSmallOrIsMediumScreen(context)
+                                      .isSmallScreen(context)
                                       ?360/1.5:360,
                                   child: Padding(
                                     padding: const EdgeInsets.fromLTRB(
@@ -310,7 +310,7 @@ class _NewShowMoreState extends State<NewShowMore> {
                               children: [
                                 SizedBox(
                                   width: getIt<AppDimension>()
-                                      .isSmallOrIsMediumScreen(context)
+                                      .isSmallScreen(context)
                                       ?360/1.1:360,
                                   child: Padding(
                                     padding:

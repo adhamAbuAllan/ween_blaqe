@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
+// import 'package:flutter_animate/flutter_animate.dart';
 
 import 'package:ween_blaqe/constants/nums.dart';
+
+import '../../../constants/coordination.dart';
+import '../../../constants/injection.dart';
 
 
 
@@ -28,7 +32,7 @@ class TextFieldClassWdiget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-        padding: const EdgeInsets.fromLTRB(25, 0, 25, 0),
+        padding: const EdgeInsets.fromLTRB(0, 0, 0, 0),
         child: TextFormField(
           controller: controller,
 
@@ -40,7 +44,10 @@ class TextFieldClassWdiget extends StatelessWidget {
           style:  TextStyle(fontFamily: 'IBM',color: themeMode.isDark ? kTextColorLightMode : kTextColorDarkMode),
 
           decoration: InputDecoration(
-              // contentPadding: EdgeInsets.symmetric(vertical: 20,horizontal: 10),
+
+              contentPadding:  EdgeInsets.symmetric(vertical:
+              getIt<AppDimension>().isSmallScreen(context) ? 20/2 : 20,
+                  horizontal: 10),
               labelText: labelName,
               labelStyle: TextStyle(
                   color: Colors.grey,

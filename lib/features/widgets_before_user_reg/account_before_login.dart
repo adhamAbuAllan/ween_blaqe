@@ -112,7 +112,7 @@ class _AccountBeforeLoginInStudentState
                   Padding(
                     padding: EdgeInsets.fromLTRB(
                         0,
-                        getIt<AppDimension>().isSmallOrIsMediumScreen(context)
+                        getIt<AppDimension>().isSmallScreen(context)
                             ? 50 / 1.6
                             : 50,
                         20,
@@ -141,7 +141,7 @@ class _AccountBeforeLoginInStudentState
                         0,
                         0,
                         10,
-                        getIt<AppDimension>().isSmallOrIsMediumScreen(context)
+                        getIt<AppDimension>().isSmallScreen(context)
                             ? 75 / 1.5
                             : 75),
                     child: Text(
@@ -218,7 +218,7 @@ class _AccountBeforeLoginInStudentState
                   // themeMode.onChanged),
                   SwitchListTile(
                       dense: getIt<AppDimension>()
-                          .isSmallOrIsMediumScreen(context),
+                          .isSmallScreen(context),
                       title: Text("الشكل",
                           style: TextStyle(
                               fontSize: 16,
@@ -243,7 +243,7 @@ class _AccountBeforeLoginInStudentState
                       icon: Icon(
                         Icons.info_outline,
                         size: getIt<AppDimension>()
-                                .isSmallOrIsMediumScreen(context)
+                                .isSmallScreen(context)
                             ? 32 - 5
                             : 32,
                         color: themeMode.isDark
@@ -261,7 +261,7 @@ class _AccountBeforeLoginInStudentState
                       icon: Icon(
                         Icons.privacy_tip_outlined,
                         size: getIt<AppDimension>()
-                                .isSmallOrIsMediumScreen(context)
+                                .isSmallScreen(context)
                             ? 32 - 5
                             : 32,
                         color: themeMode.isDark
@@ -311,7 +311,7 @@ class _AccountBeforeLoginInStudentState
                       icon: Icon(
                         Icons.feedback_outlined,
                         size: getIt<AppDimension>()
-                                .isSmallOrIsMediumScreen(context)
+                                .isSmallScreen(context)
                             ? 32 - 5
                             : 32,
                         color: themeMode.isDark
@@ -330,7 +330,7 @@ class _AccountBeforeLoginInStudentState
                               : kTextColorDarkMode,
                           width: 35,
                           height: getIt<AppDimension>()
-                                  .isSmallOrIsMediumScreen(context)
+                                  .isSmallScreen(context)
                               ? 32 - 5
                               : 32),
                       "السبحة",
@@ -356,16 +356,16 @@ class _AccountBeforeLoginInStudentState
               Padding(
                 padding: EdgeInsets.fromLTRB(
                     25,
-                    getIt<AppDimension>().isSmallOrIsMediumScreen(context)
+                    getIt<AppDimension>().isSmallScreen(context)
                         ? 60 / 1.8
                         : 60,
                     25,
-                    getIt<AppDimension>().isSmallOrIsMediumScreen(context)
+                    getIt<AppDimension>().isSmallScreen(context)
                         ? 25 / 1.5
                         : 25),
                 child: SizedBox(
                   width: double.infinity,
-                  height: getIt<AppDimension>().isSmallOrIsMediumScreen(context)
+                  height: getIt<AppDimension>().isSmallScreen(context)
                       ? 55 / 1.2
                       : 55,
                   child: ElevatedButton(

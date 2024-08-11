@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'package:colorful_safe_area/colorful_safe_area.dart';
 import 'package:flutter/material.dart';
+
 // import 'package:get/get.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:ween_blaqe/constants/strings.dart';
@@ -172,6 +173,7 @@ class _RegisterState extends State<Register> {
   String selectedCountryCode = '970'; // Default country code
   final List<String> countryCodes = ['970', '972'];
   bool isLoading = false;
+
   // int idOfCountryCodesList = 1;
 
   @override
@@ -196,7 +198,6 @@ class _RegisterState extends State<Register> {
                 //         :
                 child: Column(
               children: [
-                //back arrow button
                 Row(
                   children: [
                     Padding(
@@ -210,434 +211,485 @@ class _RegisterState extends State<Register> {
                     const Expanded(child: Text("")),
                   ],
                 ),
-                //title signup
-                Row(
-                  children: [
-                    Padding(
-                      padding: const EdgeInsets.fromLTRB(0, 30, 20, 0),
-                      child: Text(
-                        "إبدأ التسجيل",
-                        style: TextStyle(
-                          fontSize: 28.0,
-                          fontFamily: 'IBM',
-                          inherit: true,
-                          color: themeMode.isDark
-                              ? kTextColorLightMode
-                              : kTextColorDarkMode,
-                        ),
-                      ),
-                    ),
-                    const Expanded(child: Text("")),
-                  ],
-                ),
-                //nameApp
-                Row(
-                  children: [
-                    Padding(
-                      padding: const EdgeInsets.fromLTRB(0, 0, 20, 30),
-                      child: Row(
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 20.0),
+                  child: Column(
+                    children: [
+                      //back arrow button
+
+                      //title signup
+                      Row(
                         children: [
-                          Text(
-                            "في",
-                            style: TextStyle(
-                                fontSize: 28,
-                                fontFamily: 'IBM',
-                                inherit: true,
-                                color: themeMode.isDark
-                                    ? kTextColorLightMode
-                                    : kTextColorDarkMode,
-                                fontWeight: FontWeight.bold),
-                          ),
-                          Text(
-                            " وين بلاقي",
-                            style: TextStyle(
-                                fontSize: 28,
-                                fontFamily: 'IBM',
-                                inherit: true,
-                                color: themeMode.isDark
-                                    ? kPrimaryColorLightMode
-                                    : kPrimaryColorDarkMode,
-                                fontWeight: FontWeight.bold),
-                          ),
-                        ],
-                      ),
-                    ),
-                    const Expanded(child: Text("")),
-                  ],
-                ),
-                // full name
-                TextFieldClassWdiget(
-                    fontSize: textFormFieldFontsSize,
-                    // foucsNode: focusNodeOfFullName,
-                    labelName: fullName,
-                    autoFocus: true,
-                    controller: nameController,
-                    // onFieldSubmitted: () {
-                    //   focusNodeOfPhone.requestFocus();
-                    // },
-                    textInputType: textFormFieldType),
-                //hint under full name field
-                Row(
-                  children: [
-                    Padding(
-                      padding: const EdgeInsets.fromLTRB(0, 0, 30, 10),
-                      child: Text(
-                        "تأكد من مطابقته للاسم الموجود في بطاقة هويتك",
-                        style: TextStyle(
-                          color: Colors.grey.shade600,
-                          fontFamily: "IBM",
-                          fontSize: 12,
-                        ),
-                      ),
-                    ),
-                    const Expanded(child: Text("")),
-                  ],
-                ),
-                const SizedBox(
-                  height: 20,
-                ),
-                //number phone
-                Row(
-                  children: [
-                    const SizedBox(
-                      width: 25,
-                    ),
-                    Expanded(
-                      child: DropdownButtonFormField<String>(
-                        decoration: InputDecoration(
-                          enabledBorder: OutlineInputBorder(
-                            //<-- SEE HERE
-                            borderSide: BorderSide(
-                                color: themeMode.isDark
-                                    ? kPrimaryColor300LightMode
-                                    : kPrimaryColor300DarkMode,
-                                width: 0.5),
-                          ),
-                          focusedBorder: OutlineInputBorder(
-                            //<-- SEE HERE
-                            borderSide: BorderSide(
-                                color: themeMode.isDark
-                                    ? kPrimaryColorLightMode
-                                    : kPrimaryColorDarkMode,
-                                width: 1),
-                          ),
-                        ),
-                        value: selectedCountryCode,
-                        onChanged: (newValue) {
-                          setState(() {
-                            selectedCountryCode = newValue!;
-                          });
-                        },
-                        dropdownColor: themeMode.isDark
-                            ? kContainerColorLightMode
-                            : kContainerColorDarkMode,
-                        items: countryCodes
-                            .map<DropdownMenuItem<String>>((String value) {
-                          return DropdownMenuItem<String>(
-                            value: value,
+                          Padding(
+                            padding: EdgeInsets.fromLTRB(
+                                0,
+                                getIt<AppDimension>().isSmallScreen(context)
+                                    ? 20
+                                    : 30,
+                                0,
+                                0),
                             child: Text(
-                              "+$value",
+                              "إبدأ التسجيل",
                               style: TextStyle(
+                                fontSize: 28.0,
+                                fontFamily: 'IBM',
+                                inherit: true,
                                 color: themeMode.isDark
                                     ? kTextColorLightMode
                                     : kTextColorDarkMode,
                               ),
                             ),
-                          );
-                        }).toList(),
+                          ),
+                          const Expanded(child: Text("")),
+                        ],
                       ),
-                    ),
-                    Expanded(
-                      flex: getIt<AppDimension>().isSmallOrIsMediumScreen
-                        (context)?2:3,
-                      child: TextFieldClassWdiget(
-                          fontSize: textFormFieldFontsSize,
-                          controller: phoneController,
-                          labelName: phoneBoxName,
-                          textInputType: textFormFieldTypePhone),
-                    ),
-                  ],
-                ),
-
-                //hint under number phone filed
-                Row(
-                  children: [
-                    Padding(
-                      padding: const EdgeInsets.fromLTRB(0, 0, 30, 0),
-                      child: Text(
-                        "التحقق عن طريق الواتساب",
-                        // "ستصلك رسالة لتأكيد رقمك ",
-                        style: TextStyle(
-                          color: themeMode.isDark
-                              ? kTextColorLightMode
-                              : kTextColorDarkMode,
-                          fontSize: 16,
-                          fontFamily: 'IBM',
-                        ),
+                      //nameApp
+                      Row(
+                        children: [
+                          Padding(
+                            padding: const EdgeInsets.fromLTRB(0, 0, 0, 30),
+                            child: Row(
+                              children: [
+                                Text(
+                                  "في",
+                                  style: TextStyle(
+                                      fontSize: 28,
+                                      fontFamily: 'IBM',
+                                      inherit: true,
+                                      color: themeMode.isDark
+                                          ? kTextColorLightMode
+                                          : kTextColorDarkMode,
+                                      fontWeight: FontWeight.bold),
+                                ),
+                                Text(
+                                  " وين بلاقي",
+                                  style: TextStyle(
+                                      fontSize: 28,
+                                      fontFamily: 'IBM',
+                                      inherit: true,
+                                      color: themeMode.isDark
+                                          ? kPrimaryColorLightMode
+                                          : kPrimaryColorDarkMode,
+                                      fontWeight: FontWeight.bold),
+                                ),
+                              ],
+                            ),
+                          ),
+                          const Expanded(child: Text("")),
+                        ],
                       ),
-                    ),
-                    // const Expanded(child: Text("")),
-                    TextButton(
-                        onPressed: () {
-                          sendMessageToWhatsApp(
-                              selectedCountryCode + phoneController.text,
-                              "رقم الهاتف صحيح ، يرجى الرجوع و إتمام عملية "
-                              "إنشاء حساب جديد"
-                              " ");
-                        },
-                        child: const Text(
-                          "تحقق",
-                          style: TextStyle(
-                              color: Colors.blue,
-                              fontSize: 16,
-                              fontFamily: 'IBM'),
-                        ))
-                  ],
-                ),
-                const SizedBox(
-                  height: 25,
-                ),
-                //password
-                TextFieldOfPasswordClassWidget(
-                  isObscure: isObscure,
-                  onObscureChanged: (newValue) {
-                    setState(() {
-                      isObscure = newValue;
-                    });
-                  },
-                  controller: passwordController,
-                  inputType: textFormFieldTypePassword,
-                  labelInput: passwordLabelName,
-                  // onFieldSubmitted: () {
-                  //   focusNodeOfSurePassword.requestFocus();
-                  // },
-                ),
-                //sure password
-                TextFieldOfPasswordClassWidget(
-                  isObscure: isSureObscure,
-                  onObscureChanged: (newValue) {
-                    setState(() {
-                      isSureObscure = newValue;
-                    });
-                  },
-                  // focusNode: fn,
-                  controller: surePasswordController,
-                  // focusNode: focusNodeOfPassword,
+                      // full name
+                      Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 5.0),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            TextFieldClassWdiget(
+                                fontSize: textFormFieldFontsSize,
+                                // foucsNode: focusNodeOfFullName,
+                                labelName: fullName,
+                                autoFocus: true,
+                                controller: nameController,
+                                // onFieldSubmitted: () {
+                                //   focusNodeOfPhone.requestFocus();
+                                // },
+                                textInputType: textFormFieldType),
+                            //hint under full name field
+                            Row(
+                              children: [
+                                Padding(
+                                  padding:
+                                      const EdgeInsets.fromLTRB(0, 2.5, 0, 10),
+                                  child: Text(
+                                    "تأكد من مطابقته للاسم الموجود في بطاقة هويتك",
+                                    style: TextStyle(
+                                      color: Colors.grey.shade600,
+                                      fontFamily: "IBM",
+                                      fontSize: 12,
+                                    ),
+                                  ),
+                                ),
+                                const Expanded(child: Text("")),
+                              ],
+                            ),
+                            SizedBox(
+                              height:
+                                  getIt<AppDimension>().isSmallScreen(context)
+                                      ? 20 / 1.6
+                                      : 20,
+                            ),
+                            //number phone
+                            Row(
+                              children: [
+                                Expanded(
+                                  child: DropdownButtonFormField<String>(
+                                    decoration: InputDecoration(
+                                      contentPadding: EdgeInsets.symmetric(
+                                          vertical: getIt<AppDimension>()
+                                                  .isSmallScreen(context)
+                                              ? 20 / 2
+                                              : 20,
+                                          horizontal: 10),
+                                      enabledBorder: OutlineInputBorder(
+                                        //<-- SEE HERE
+                                        borderSide: BorderSide(
+                                            color: themeMode.isDark
+                                                ? kPrimaryColor300LightMode
+                                                : kPrimaryColor300DarkMode,
+                                            width: 0.5),
+                                      ),
+                                      focusedBorder: OutlineInputBorder(
+                                        //<-- SEE HERE
+                                        borderSide: BorderSide(
+                                            color: themeMode.isDark
+                                                ? kPrimaryColorLightMode
+                                                : kPrimaryColorDarkMode,
+                                            width: 1),
+                                      ),
+                                    ),
+                                    value: selectedCountryCode,
+                                    onChanged: (newValue) {
+                                      setState(() {
+                                        selectedCountryCode = newValue!;
+                                      });
+                                    },
+                                    dropdownColor: themeMode.isDark
+                                        ? kContainerColorLightMode
+                                        : kContainerColorDarkMode,
+                                    items: countryCodes
+                                        .map<DropdownMenuItem<String>>(
+                                            (String value) {
+                                      return DropdownMenuItem<String>(
+                                        value: value,
+                                        child: Text(
+                                          "+$value",
+                                          style: TextStyle(
+                                            color: themeMode.isDark
+                                                ? kTextColorLightMode
+                                                : kTextColorDarkMode,
+                                          ),
+                                        ),
+                                      );
+                                    }).toList(),
+                                  ),
+                                ),
+                                const SizedBox(
+                                  width: 10,
+                                ),
+                                Expanded(
+                                  flex: 2,
+                                  child: TextFieldClassWdiget(
+                                      fontSize: textFormFieldFontsSize,
+                                      controller: phoneController,
+                                      labelName: phoneBoxName,
+                                      textInputType: textFormFieldTypePhone),
+                                ),
+                              ],
+                            ),
 
-                  inputType: textFormFieldTypePassword,
-                  labelInput: surePasswordLabelName,
-                  // onFieldSubmitted: () {
-                  //   foucsNodeOfType.requestFocus();
-                  // },
-                  // focusNode: focusNodeOfSurePassword,
-                ),
-                const SizedBox(
-                  height: 20,
-                ),
-                // type_text
-                Row(
-                  children: [
-                    Padding(
-                      padding: const EdgeInsets.fromLTRB(0, 0, 30, 5),
-                      child: Text(
-                        "اختر النوع",
-                        style: TextStyle(
-                          color: themeMode.isDark
-                              ? kTextColorLightMode
-                              : kTextColorDarkMode,
-                          fontSize: 16,
-                          fontFamily: "IBM",
-                        ),
-                      ),
-                    ),
-                    const Expanded(child: Text("")),
-                  ],
-                ),
-                // type of user
-                // DropdownButtonClassWidget(
-                //   firstItem: firstItemOfType,
-                //   items: itemsType,
-                //   // controller: textTypeController,
-                //   // myKey: ,
-                //   // response: typeOfUserKey,
-                //   // controller: ,
-                //   fontSize: 14,
-                //   visible: dropdownButtonOfViability,
-                // ),
-                // DropdownButtonClassWidget(items: areas, firstItem: currentArea, fontSize: 16, name: currentArea!.name),
-                DropDownTypeOfUser(
-                  currentType: typeOfUser,
-                  typeOfUserItems: itemsType,
-                  visible: isVisible,
+                            //hint under number phone filed
+                            Row(
+                              children: [
+                                Padding(
+                                  padding:
+                                      const EdgeInsets.fromLTRB(0, 0, 0, 0),
+                                  child: Text(
+                                    "التحقق عن طريق الواتساب",
+                                    // "ستصلك رسالة لتأكيد رقمك ",
+                                    style: TextStyle(
+                                      color: themeMode.isDark
+                                          ? kTextColorLightMode
+                                          : kTextColorDarkMode,
+                                      fontSize: 16,
+                                      fontFamily: 'IBM',
+                                    ),
+                                  ),
+                                ),
+                                // const Expanded(child: Text("")),
+                                TextButton(
+                                    onPressed: () {
+                                      sendMessageToWhatsApp(
+                                          selectedCountryCode +
+                                              phoneController.text,
+                                          "رقم الهاتف صحيح ، يرجى الرجوع و إتمام عملية "
+                                          "إنشاء حساب جديد"
+                                          " ");
+                                    },
+                                    child: const Text(
+                                      "تحقق",
+                                      style: TextStyle(
+                                          color: Colors.blue,
+                                          fontSize: 16,
+                                          fontFamily: 'IBM'),
+                                    ))
+                              ],
+                            ),
+                            SizedBox(
+                              height:
+                                  getIt<AppDimension>().isSmallScreen(context)
+                                      ? 25 / 2
+                                      : 25,
+                            ),
+                            //password
+                            TextFieldOfPasswordClassWidget(
+                              isObscure: isObscure,
+                              onObscureChanged: (newValue) {
+                                setState(() {
+                                  isObscure = newValue;
+                                });
+                              },
+                              controller: passwordController,
+                              inputType: textFormFieldTypePassword,
+                              labelInput: passwordLabelName,
+                              // onFieldSubmitted: () {
+                              //   focusNodeOfSurePassword.requestFocus();
+                              // },
+                            ),
+                            //sure password
+                            TextFieldOfPasswordClassWidget(
+                              isObscure: isSureObscure,
+                              onObscureChanged: (newValue) {
+                                setState(() {
+                                  isSureObscure = newValue;
+                                });
+                              },
+                              // focusNode: fn,
+                              controller: surePasswordController,
+                              // focusNode: focusNodeOfPassword,
 
-                  onSelected: (c) {
-                    setState(() {
-                      typeOfUser = c;
-                      // isVisible = true;
-                    });
-                    setState(() {
-                      c == "طالب" ? isVisible = true : isVisible = false;
-                      // if(c=="طالب"){
-                      //   setState(() {
-                      //     isVisible = true;
-                      //   }
-                      //   );
-                      // }else{
-                      //   setState(() {
-                      //     isVisible = false;
-                      //
-                      //   });
-                      //
-                      // }
-                    });
-                  },
+                              inputType: textFormFieldTypePassword,
+                              labelInput: surePasswordLabelName,
+                              // onFieldSubmitted: () {
+                              //   foucsNodeOfType.requestFocus();
+                              // },
+                              // focusNode: focusNodeOfSurePassword,
+                            ),
+                            SizedBox(
+                              height:
+                                  getIt<AppDimension>().isSmallScreen(context)
+                                      ? 20 / 1.6
+                                      : 20,
+                            ),
+                            // type_text
+                            Row(
+                              children: [
+                                Padding(
+                                  padding:
+                                      const EdgeInsets.fromLTRB(0, 0, 0, 5),
+                                  child: Text(
+                                    "اختر النوع",
+                                    style: TextStyle(
+                                      color: themeMode.isDark
+                                          ? kTextColorLightMode
+                                          : kTextColorDarkMode,
+                                      fontSize: 16,
+                                      fontFamily: "IBM",
+                                    ),
+                                  ),
+                                ),
+                                const Expanded(child: Text("")),
+                              ],
+                            ),
+                            // type of user
+                            // DropdownButtonClassWidget(
+                            //   firstItem: firstItemOfType,
+                            //   items: itemsType,
+                            //   // controller: textTypeController,
+                            //   // myKey: ,
+                            //   // response: typeOfUserKey,
+                            //   // controller: ,
+                            //   fontSize: 14,
+                            //   visible: dropdownButtonOfViability,
+                            // ),
+                            // DropdownButtonClassWidget(items: areas, firstItem: currentArea, fontSize: 16, name: currentArea!.name),
+                            DropDownTypeOfUser(
+                              currentType: typeOfUser,
+                              typeOfUserItems: itemsType,
+                              visible: isVisible,
 
-                  // onSelected: (c){
-                  // typeId = c.id;
-                  // print("type TypeOfUser id --${c.id}");
+                              onSelected: (c) {
+                                setState(() {
+                                  typeOfUser = c;
+                                  // isVisible = true;
+                                });
+                                setState(() {
+                                  c == "طالب"
+                                      ? isVisible = true
+                                      : isVisible = false;
+                                  // if(c=="طالب"){
+                                  //   setState(() {
+                                  //     isVisible = true;
+                                  //   }
+                                  //   );
+                                  // }else{
+                                  //   setState(() {
+                                  //     isVisible = false;
+                                  //
+                                  //   });
+                                  //
+                                  // }
+                                });
+                              },
 
-                  // },
-                  // test: test,
-                ),
-                // DropdownButtonClassWidget(items: itemsType, firstItem: firstItemOfType,, fontSize: 14, name: name)
-                // Visibility(
-                //   visible: _selectedItem == null,
-                //   child: DropdownButton(
-                //     value: _selectedItem,
-                //     items: _dropdownMenuItems,
-                //     onChanged: (value) {
-                //       setState(() {
-                //         _selectedItem = value;
-                //       });
-                //     },
-                //   ),
-                // ),x4
-                Visibility(
-                    visible: isVisible ?? true,
-                    child: const Column(
-                      children: [
-                        SizedBox(
-                          height: 20,
-                        ),
-                        //unvierity text
-                        // Row(
-                        //   children: [
-                        //     Padding(
-                        //       padding: const EdgeInsets.fromLTRB(0, 0, 30, 0),
-                        //       child: Text(
-                        //         "اختر جامعتك",
-                        //         style: TextStyle(
-                        //           color: themeMode.isDark
-                        //               ? kTextColorLightMode
-                        //               : kTextColorDarkMode,
-                        //           fontSize: 16,
-                        //           fontFamily: 'IBM',
-                        //         ),
-                        //       ),
-                        //     ),
-                        //     const Expanded(child: Text("")),
-                        //   ],
-                        // ),
-                        //universeities
-                        // DropDownUniversity(
-                        //   currentValue: currentUniversity,
-                        //   items: itmesOfUniversities,
-                        //   onSelected: (c) {
-                        //     currentUniversity = c;
-                        //     // universityId = c.id;
-                        //   },
-                        // ),
-                        //   DropdownButtonClassWidget(items: universities, firstItem: currentUniversiy, fontSize: 12, name:nameOfUniversity! ),
-
-                        // DropdownButtonClassWidget(
-                        //   firstItem: firstItemOfUniversities,
-                        //   // focusNode: focusNodeOfUniversities,
-                        //   items: itmesOfUniversities,
-                        //   fontSize: 13,
-                        // ),
-                        SizedBox(
-                          height: 20,
-                        ),
-                      ],
-                    )),
-                //test of privacy policy
-                Padding(
-                  padding: const EdgeInsets.fromLTRB(25, 20, 25, 0),
-                  child: GestureDetector(
-                    onTap: () {
-                      myPushName(context, MyPagesRoutes.privacyPolicy);
-                    },
-                    child: const Opacity(
-                      opacity: .5,
-                      child: Text(
-                        "من خلال تحديد إنشاء حساب ، فإنني أوافق على شروط سياسة "
-                        "الخصوصية",
-                        style: TextStyle(
-                          decoration: TextDecoration.underline,
-                          color: Colors.blue,
-                          fontSize: 14.5,
-                          fontFamily: 'IBM',
-                        ),
-                      ),
-                    ),
-                  ),
-                ),
-                // create account button
-                Padding(
-                  padding: const EdgeInsets.fromLTRB(25, 25, 25, 25),
-                  child: SizedBox(
-                    width: double.infinity,
-                    height: 55,
-                    child: ElevatedButton(
-                        onPressed: () async {
-                          isLoading = true;
-
-                          phoneController.text =
-                              removePlusSymbol(phoneController.text);
-                          // if(){};
-                          setState(() {
-                            if (passwordController.text !=
-                                surePasswordController.text) {
-                              NormalAlert.show(
-                                  context,
-                                  "كلمة المرور غير متطابقة",
-                                  "برجاء إدخال كلمة مرور متطابقة في كلا الحقلين",
-                                  "حسنًا");
-                            }
-                            // if(isLoading){
-                            //   return;
-                            // }
-                            go(
-                              nameController.text,
-                              selectedCountryCode + phoneController.text,
-                              passwordController.text,
-
-                              //     (c){{
+                              // onSelected: (c){
                               // typeId = c.id;
+                              // print("type TypeOfUser id --${c.id}");
 
-                              // }
-                              //     },
-                              //   typeOfUserItems[3]
+                              // },
+                              // test: test,
+                            ),
+                            // DropdownButtonClassWidget(items: itemsType, firstItem: firstItemOfType,, fontSize: 14, name: name)
+                            // Visibility(
+                            //   visible: _selectedItem == null,
+                            //   child: DropdownButton(
+                            //     value: _selectedItem,
+                            //     items: _dropdownMenuItems,
+                            //     onChanged: (value) {
+                            //       setState(() {
+                            //         _selectedItem = value;
+                            //       });
+                            //     },
+                            //   ),
+                            // ),x4
+                            // Visibility(
+                            //     visible: isVisible ?? true,
+                            //     child: const Column(
+                            //       children: [
+                            //         SizedBox(
+                            //           height: 20,
+                            //         ),
+                            //         //unvierity text
+                            //         // Row(
+                            //         //   children: [
+                            //         //     Padding(
+                            //         //       padding: const EdgeInsets.fromLTRB(0, 0, 30, 0),
+                            //         //       child: Text(
+                            //         //         "اختر جامعتك",
+                            //         //         style: TextStyle(
+                            //         //           color: themeMode.isDark
+                            //         //               ? kTextColorLightMode
+                            //         //               : kTextColorDarkMode,
+                            //         //           fontSize: 16,
+                            //         //           fontFamily: 'IBM',
+                            //         //         ),
+                            //         //       ),
+                            //         //     ),
+                            //         //     const Expanded(child: Text("")),
+                            //         //   ],
+                            //         // ),
+                            //         //universeities
+                            //         // DropDownUniversity(
+                            //         //   currentValue: currentUniversity,
+                            //         //   items: itmesOfUniversities,
+                            //         //   onSelected: (c) {
+                            //         //     currentUniversity = c;
+                            //         //     // universityId = c.id;
+                            //         //   },
+                            //         // ),
+                            //         //   DropdownButtonClassWidget(items: universities, firstItem: currentUniversiy, fontSize: 12, name:nameOfUniversity! ),
+                            //
+                            //                     // DropdownButtonClassWidget(
+                            //                     //   firstItem: firstItemOfUniversities,
+                            //                     //   // focusNode: focusNodeOfUniversities,
+                            //                     //   items: itmesOfUniversities,
+                            //                     //   fontSize: 13,
+                            //                     // ),
+                            //                     SizedBox(
+                            //                       height: 20,
+                            //                     ),
+                            //                   ],
+                            //                 )),
 
-                              // typeId as TypeOfUser,universityId as University,
+                            Padding(
+                              padding: const EdgeInsets.only(top: 30.0),
+                              child: GestureDetector(
+                                onTap: () {
+                                  myPushName(
+                                      context, MyPagesRoutes.privacyPolicy);
+                                },
+                                child: const Opacity(
+                                  opacity: .5,
+                                  child: Text(
+                                    "من خلال تحديد إنشاء حساب ، فإنني أوافق على شروط سياسة "
+                                    "الخصوصية",
+                                    style: TextStyle(
+                                      decoration: TextDecoration.underline,
+                                      color: Colors.blue,
+                                      fontSize: 14.5,
+                                      fontFamily: 'IBM',
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            ),
+                            // create account button
+                            Padding(
+                              padding: const EdgeInsets.fromLTRB(0, 15, 0, 25),
+                              child: SizedBox(
+                                width: double.infinity,
+                                height:
+                                    getIt<AppDimension>().isSmallScreen(context)
+                                        ? 55 / 1.2
+                                        : 55,
+                                child: ElevatedButton(
+                                    onPressed: () async {
+                                      isLoading = true;
 
-                              // firstItemOfType.name,
-                              typeId,
-                              universityId,
+                                      phoneController.text = removePlusSymbol(
+                                          phoneController.text);
+                                      // if(){};
+                                      setState(() {
+                                        if (passwordController.text !=
+                                            surePasswordController.text) {
+                                          NormalAlert.show(
+                                              context,
+                                              "كلمة المرور غير متطابقة",
+                                              "برجاء إدخال كلمة مرور متطابقة في كلا الحقلين",
+                                              "حسنًا");
+                                        }
+                                        // if(isLoading){
+                                        //   return;
+                                        // }
+                                        go(
+                                          nameController.text,
+                                          selectedCountryCode +
+                                              phoneController.text,
+                                          passwordController.text,
 
-                              // firstItemOfGender!,
-                            );
+                                          //     (c){{
+                                          // typeId = c.id;
 
-                            // if(typeOfUserItems!=null){
-                            //   print(typeOfUserItems);
-                            // }
-                          });
-                          debugPrint("type_id --$typeId");
-                        },
-                        style: fullButton,
-                        child: isLoading ? const CircularProgressIndicator(
-                          color: Colors.white,
-                        ): const Text("إنشاء حساب")),
+                                          // }
+                                          //     },
+                                          //   typeOfUserItems[3]
+
+                                          // typeId as TypeOfUser,universityId as University,
+
+                                          // firstItemOfType.name,
+                                          typeId,
+                                          universityId,
+
+                                          // firstItemOfGender!,
+                                        );
+
+                                        // if(typeOfUserItems!=null){
+                                        //   print(typeOfUserItems);
+                                        // }
+                                      });
+                                      debugPrint("type_id --$typeId");
+                                    },
+                                    style: fullButton,
+                                    child: isLoading
+                                        ? const CircularProgressIndicator(
+                                            color: Colors.white,
+                                          )
+                                        : const Text("إنشاء حساب")),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ],
                   ),
                 ),
               ],
@@ -648,18 +700,18 @@ class _RegisterState extends State<Register> {
   }
 
   go(
-      String name,
-      String phone,
-      String password,
-      // Function(TypeOfUser) insetType
-      //   TypeOfUser typeOfUser
-      // TypeOfUser type,
-      int typeId,
-      int universityId,
-      // String gender
-      // DropDownTypeOfUser typeId
-      // String value
-      ) async {
+    String name,
+    String phone,
+    String password,
+    // Function(TypeOfUser) insetType
+    //   TypeOfUser typeOfUser
+    // TypeOfUser type,
+    int typeId,
+    int universityId,
+    // String gender
+    // DropDownTypeOfUser typeId
+    // String value
+  ) async {
     // isLoading = true;
     var url = Uri.parse(ServerWeenBalaqee.register);
     debugPrint(url.path);
@@ -739,7 +791,6 @@ class _RegisterState extends State<Register> {
     // }on FormatException{
     //   print("Problem retrieving data contact !");
     // print(visable);
-
   }
 
   void pushToLoginPage() {

@@ -11,7 +11,7 @@ Widget buttonAccount(Function onClick, String title,
       onClick.call();
     },
     dense:
-        getIt<AppDimension>().isSmallOrIsMediumScreen(context),
+        getIt<AppDimension>().isSmallScreen(context),
     splashColor: themeMode.isDark
         ? kBackgroundAppColorLightMode
         : kBackgroundAppColorDarkMode,

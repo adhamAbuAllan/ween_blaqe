@@ -2,6 +2,9 @@ import 'package:flutter/material.dart';
 
 import 'package:ween_blaqe/constants/nums.dart';
 
+import '../../../constants/coordination.dart';
+import '../../../constants/injection.dart';
+
 //text filed password for registration
 class TextFieldOfPasswordClassWidget extends StatefulWidget {
   final TextInputType? inputType;
@@ -101,7 +104,7 @@ class _TextFieldOfPasswordClassWidgetState
     // var focusNode = FocusNode();
     return Padding(
         // padding: const EdgeInsets.fromLTRB(25, 0, 25, 12),
-        padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 25),
+        padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 0),
         child: TextFormField(
           // onChanged: (value) => checkPassword(value),
           // onChanged: (v) => widget.checkPass!(widget.displayText??v),
@@ -114,6 +117,9 @@ class _TextFieldOfPasswordClassWidgetState
           // focusNode: focusNode,
           keyboardType: inputType,
           decoration: InputDecoration(
+              contentPadding:  EdgeInsets.symmetric(vertical:
+              getIt<AppDimension>().isSmallScreen(context) ? 20/2 : 20,
+                  horizontal: 10),
               labelText: labelInput,
               labelStyle: TextStyle(
                   color: Colors.grey.shade500, fontFamily: 'IBM', fontSize: 16),
