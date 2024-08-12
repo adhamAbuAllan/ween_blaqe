@@ -90,7 +90,7 @@ class AskForHelp extends StatelessWidget {
                     height: 20,
                   ),
                   Container(
-                      padding: const EdgeInsets.fromLTRB(0, 0, 0, 10),
+                      padding: const EdgeInsets.fromLTRB(0, 0, 0, 0),
                       margin: const EdgeInsets.fromLTRB(10, 0, 10, 0),
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(7),
@@ -100,10 +100,10 @@ class AskForHelp extends StatelessWidget {
                       ),
                       child: Column(
                         children: [
-                          askForHelpButton(() {
-                            myPushName(context, MyPagesRoutes.howCreateAd);
-                          }, "طريقة نشر إعلان"),
-                          aline,
+                          // askForHelpButton(() {
+                          //   myPushName(context, MyPagesRoutes.howCreateAd);
+                          // }, "طريقة نشر إعلان"),
+                          // aline,
 
                           askForHelpButton(() {
                             myPushName(context,
@@ -114,10 +114,10 @@ class AskForHelp extends StatelessWidget {
                           //   myPushName(context,
                           //       MyPagesRoutes.couldBeOwnerAndStudentInOneTime);
                           // }, "هل يمكن أن أكون مؤجر و مستأجر في نفس الوقت؟"),
-                          aline,
-                          askForHelpButton(() {
-                            myPushName(context, MyPagesRoutes.theAdIsFreeOrNot);
-                          }, "هل يتطلب إنشاء إعلان الإشتراك أو دفع رسوم؟"),
+                          // aline,
+                          // askForHelpButton(() {
+                          //   myPushName(context, MyPagesRoutes.theAdIsFreeOrNot);
+                          // }, "هل يتطلب إنشاء إعلان الإشتراك أو دفع رسوم؟"),
                         ],
                       )),
                 ],

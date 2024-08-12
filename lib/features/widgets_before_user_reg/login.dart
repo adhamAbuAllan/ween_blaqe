@@ -42,7 +42,7 @@ import '../../sesstion/sesstion_of_user.dart';
 
 //Login screen
 class Login extends StatefulWidget {
-  const Login({Key? key}) : super(key: key);
+  const Login({super.key});
 
   @override
   State<Login> createState() => _LoginState();
@@ -140,7 +140,7 @@ class _LoginState extends State<Login> {
                                 : kTextColorDarkMode),
                       ),
                     ),
-                    Expanded(child: Text("")),
+                    const Expanded(child: Text("")),
                   ],
                 ),
                 //nameApp
