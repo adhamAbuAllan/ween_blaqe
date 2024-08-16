@@ -6,10 +6,12 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:vibration/vibration.dart';
+import 'package:ween_blaqe/constants/coordination.dart';
 import 'package:ween_blaqe/constants/strings.dart';
 import 'package:ween_blaqe/core/utils/funcations/route_pages/push_routes.dart';
 import 'package:ween_blaqe/core/utils/styles/text_style/aline_style.dart';
 import 'package:ween_blaqe/constants/nums.dart';
+import '../../constants/injection.dart';
 import '../../core/utils/styles/button.dart';
 import '../../core/widgets/buttons/lines_buttons/line_buttons.dart';
 
@@ -21,8 +23,11 @@ main() {
 
 class NoInternet extends StatefulWidget {
   const NoInternet({
-    Key? key,
-  }) : super(key: key);
+    super.key,
+    this.isHaveAppBar,
+  });
+
+  final bool? isHaveAppBar;
 
   @override
   State<NoInternet> createState() => _NoInternetState();
@@ -125,27 +130,25 @@ class _NoInternetState extends State<NoInternet> with WidgetsBindingObserver {
             return Scaffold(
               appBar: snapshot.data == ConnectivityResult.wifi ||
                       snapshot.data == null
-                  ?
-              AppBar(
-                  backgroundColor: themeMode.isDark
-                      ? kPrimaryColorLightMode
-                      : kPrimaryColorDarkMode)
-                  :
-              AppBar(
-                backgroundColor: Colors.transparent,
-                elevation: 0,
-                foregroundColor: Colors.transparent,
-                actionsIconTheme: const IconThemeData(
-                  color: Colors.transparent,
-                  size: 1,
-                  opacity: 0,
-                ),
-                iconTheme: const IconThemeData(
-                  color: Colors.transparent,
-                  size: 1,
-                  opacity: 0,
-                ),
-              ),
+                  ? AppBar(
+                      backgroundColor: themeMode.isDark
+                          ? kPrimaryColorLightMode
+                          : kPrimaryColorDarkMode)
+                  : AppBar(
+                      backgroundColor: Colors.transparent,
+                      elevation: 0,
+                      foregroundColor: Colors.transparent,
+                      actionsIconTheme: const IconThemeData(
+                        color: Colors.transparent,
+                        size: 1,
+                        opacity: 0,
+                      ),
+                      iconTheme: const IconThemeData(
+                        color: Colors.transparent,
+                        size: 1,
+                        opacity: 0,
+                      ),
+                    ),
               backgroundColor: themeMode.isDark
                   ? kBackgroundAppColorLightMode
                   : kBackgroundAppColorDarkMode,
@@ -155,12 +158,14 @@ class _NoInternetState extends State<NoInternet> with WidgetsBindingObserver {
                 duration: const Duration(milliseconds: 800),
                 child: AnimatedContainer(
                   margin: const EdgeInsets.fromLTRB(0, 100, 0, 0),
-                  width: 373,
+                  width: getIt<AppDimension>().isSmallScreen(context)
+                      ? 373 / 1.1
+                      : 373,
                   height: isWantToSepha
-                      ? 500
-
-
-                          : 170,
+                      ? (getIt<AppDimension>().isSmallScreen(context)
+                          ? 500 / 1.15
+                          : 500)
+                      : 170,
                   onEnd: () {
                     setState(() {
                       isContExpanding = false;
@@ -239,15 +244,18 @@ class _NoInternetState extends State<NoInternet> with WidgetsBindingObserver {
                               ? buildBorderSebhaContainer()
                               : const SizedBox())
                           : snapshot.data == ConnectivityResult.wifi &&
-                                  snapshot.data !=null
+                                  snapshot.data != null
                               ? aline
                               : const SizedBox(),
                       isWantToSepha
                           ? AnimatedSize(
                               duration: const Duration(milliseconds: 1000),
                               curve: Curves.linear,
-                              child:
-                                  SizedBox(height: !isContExpanding ? 80 : 80),
+                              child: SizedBox(
+                                  height: getIt<AppDimension>()
+                                              .isSmallScreen(context)
+                                      ? 80/1.3
+                                      : 80),
                             )
                           : const SizedBox(),
 
@@ -257,7 +265,10 @@ class _NoInternetState extends State<NoInternet> with WidgetsBindingObserver {
                                   children: [
                                     SizedBox(
                                       width: double.infinity,
-                                      height: 55,
+                                      height: getIt<AppDimension>()
+                                                  .isSmallScreen(context) 
+                                          ? 55 / 1.2
+                                          : 55,
                                       child: buildSebhaElevatedButton(),
                                     ),
                                     const SizedBox(
@@ -265,7 +276,10 @@ class _NoInternetState extends State<NoInternet> with WidgetsBindingObserver {
                                     ),
                                     SizedBox(
                                       width: double.infinity,
-                                      height: 55,
+                                      height: getIt<AppDimension>()
+                                                  .isSmallScreen(context) 
+                                          ? 55 / 1.2
+                                          : 55,
                                       child: OutlinedButton(
                                           style: outlineButton,
                                           onPressed: () {
@@ -334,7 +348,7 @@ class _NoInternetState extends State<NoInternet> with WidgetsBindingObserver {
                           ? kPrimaryColorLightMode
                           : kPrimaryColorDarkMode,
                       child: const FaIcon(
-                        FontAwesomeIcons.redoAlt,
+                        FontAwesomeIcons.rotateRight,
                       ),
                     )
                   : const SizedBox(),
@@ -354,9 +368,13 @@ class _NoInternetState extends State<NoInternet> with WidgetsBindingObserver {
         padding: const EdgeInsets.fromLTRB(0, 10, 5, 10),
         child: Image(
           image: const AssetImage("assets/images/error_images/no network.png"),
-          height: 60,
+          height: getIt<AppDimension>().isSmallScreen(context)
+              ? 60 / 1.5
+              : 60,
           color: themeMode.isDark ? kTextColorLightMode : kTextColorDarkMode,
-          width: 60,
+          width: getIt<AppDimension>().isSmallScreen(context)
+              ? 60 / 1.5
+              : 60,
         ),
       ),
       Column(
@@ -364,6 +382,7 @@ class _NoInternetState extends State<NoInternet> with WidgetsBindingObserver {
           Padding(
             padding: const EdgeInsets.fromLTRB(100, 0, 5, 0),
             child: RichText(
+              softWrap: true,
               text: TextSpan(
                 children: <TextSpan>[
                   TextSpan(
@@ -560,6 +579,32 @@ class _NoInternetState extends State<NoInternet> with WidgetsBindingObserver {
 void saveTotal(int totalValue) async {
   SharedPreferences prefs = await SharedPreferences.getInstance();
   prefs.setInt('total', totalValue);
+}
+
+class InternetConnectivityChecker extends StatelessWidget {
+  final Widget child;
+
+  const InternetConnectivityChecker({super.key, required this.child});
+
+  @override
+  Widget build(BuildContext context) {
+    return FutureBuilder(
+      future: Connectivity().checkConnectivity(),
+      builder: (context, snapshot) {
+        if (snapshot.hasData) {
+          if (snapshot.data == ConnectivityResult.none) {
+            return const NoInternet(
+              isHaveAppBar: false,
+            );
+          } else {
+            return child;
+          }
+        } else {
+          return const Center(child: CircularProgressIndicator());
+        }
+      },
+    );
+  }
 }
 
 // void main() {

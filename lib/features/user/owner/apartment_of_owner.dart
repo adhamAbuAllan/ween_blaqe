@@ -348,6 +348,7 @@ import '../../../controller/get_controllers.dart';
 import '../../../core/utils/funcations/route_pages/push_routes.dart';
 import '..'
     '/../../core/widgets/apartments/new_master_home_classes_widgets/apartment_container/list_of_apartments.dart';
+import '../../error_widgets/no_internet.dart';
 // ... other imports
 
 class ApartmentsOwner extends StatefulWidget {
@@ -433,32 +434,31 @@ class _ApartmentsOwnerState extends State<ApartmentsOwner>
                     ),
                   ),
                 ]
-              : null,
-        ),
-        body: Obx(() {
+              : null,),
+             body: Obx(() {
           if (apartmentModelController.isLoading.value) {
             return const Center(child: HomeSkeletonWidget());
           } else {
-            return apartmentModelController.isApartmentNull
-                ? const EmptyScreenClassWidget(
-                    centerIcon: Icons.apartment,
-                    centerText: "تُعرض إعلاناتك هنا",
-                    // underCenterText: 'انقر على الزر + للبدء في'
-                    //     ' إنشاء إعلان جديد',
-                    centerIconInUnderCenterText: Icons.add_home_outlined,
-                    underCenterTextBeforeIcon: 'انقر على الزر ',
-                    underCenterTextAfterIcon: '  للبدء في إنشاء إعلان جديد',
-                  )
-                : ApartmentsList(
-                    apartmentsRes: apartmentModelController.apartments.value,
-                    scrollController: ScrollController(),
-                    isDeleteMode: isDeleteMode,
-                    onPressed: () {
-                      setState(() {
-                        apartmentModelController.fetchApartments();
-                      });
-                    },
-                  );
+            return InternetConnectivityChecker(
+              child: apartmentModelController.isApartmentNull
+                  ? const EmptyScreenClassWidget(
+                centerIcon: Icons.apartment,
+                centerText: "تُعرض إعلاناتك هنا",
+                centerIconInUnderCenterText: Icons.add_home_outlined,
+                underCenterTextBeforeIcon: 'انقر على الزر ',
+                underCenterTextAfterIcon: '  للبدء في إنشاء إعلان جديد',
+              )
+                  : ApartmentsList(
+                apartmentsRes: apartmentModelController.apartments.value,
+                scrollController: ScrollController(),
+                isDeleteMode: isDeleteMode,
+                onPressed: () {
+                  setState(() {
+                    apartmentModelController.fetchApartments();
+                  });
+                },
+              ),
+            );
           }
         }),
         floatingActionButton: FloatingActionButton(

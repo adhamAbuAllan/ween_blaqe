@@ -53,13 +53,13 @@ class _NewMasterHomeState extends State<NewMasterHome> {
 
   // bool clicked = false;//to chnage bookmark icon
   late ScrollController
-  _scrollController; //[_scroolController] usgae to show or hide a types button when user scroll.
+      _scrollController; //[_scroolController] usgae to show or hide a types button when user scroll.
 
   bool _isVisible =
-  false; //[_isVisable] usage to hide or show button and a list of types when user scroll or tab on screen.
+      false; //[_isVisable] usage to hide or show button and a list of types when user scroll or tab on screen.
 
   bool _isSebhaVisible =
-  false; //[_isSebhaVisible] usage to hide or show button of Sebha.
+      false; //[_isSebhaVisible] usage to hide or show button of Sebha.
   //those values : [_isBoyStudent] , [_isGirlStudent] , [_isFamilies] , [_isAll] usege to make point on the type of apartment when user chose one of them .
   bool _isGirlStudent = false; //for boy students
   bool _isBoyStudent = false; //for gril studnts
@@ -83,8 +83,8 @@ class _NewMasterHomeState extends State<NewMasterHome> {
           "min scroll extent${_scrollController.position.minScrollExtent}");
       debugPrint(
           " scroll div PR${_scrollController.position.devicePixelRatio}");
-      debugPrint(" isScrollingNotifier${_scrollController.position
-          .isScrollingNotifier}");
+      debugPrint(
+          " isScrollingNotifier${_scrollController.position.isScrollingNotifier}");
       debugPrint("axis${_scrollController.position.axis}");
       // debugPrint("axis${_scrollController.position.}");
       Future.delayed(const Duration(milliseconds: 350), () {
@@ -109,7 +109,6 @@ class _NewMasterHomeState extends State<NewMasterHome> {
     // SkeletonShowMoreWidget;
     _isAll = true;
 
-
     debugPrint("type in initState is :$_type ");
     debugPrint("the api is: $callAPIAndAssignData(isAll: isAll)");
     debugPrint("a user info is:$User");
@@ -117,270 +116,326 @@ class _NewMasterHomeState extends State<NewMasterHome> {
 
   @override
   Widget build(BuildContext context) {
-    return
-      RefreshIndicator(
-        semanticsValue: const Text("refresh").toString(),
-        color: kPrimaryColorDarkMode,
-        onRefresh: () async {
-          setState(() {
-            isDataLoaded = false;
-            callAPIAndAssignData(isAll: _isAll,type: _type);
-          });
-        },
-        child: isDataLoaded //if data is loading
-            ? errorMessage.isNotEmpty // if have error from server
-            ? Text(errorMessage) // then error will show
-            : (apartmentModelController.apartment.data?.isEmpty ??
-            false) // else if json of apartment - specific type of apartment -
-            ? TypeNotFound(type: _type,) // then go to TypeNotFound screen
-            : StreamBuilder<ConnectivityResult>(
-        
-            stream: Connectivity().onConnectivityChanged,
-            builder: (context, snapshot) { //check wifi
-              if (snapshot.data == ConnectivityResult
-                  .wifi) { // show snackbar connection if have connection with wifi
-                //   isStart
-                //       ?
-                // const Text("")
-                //       :
-                // showSnakBarInStreamBuilder(
-                //       context, "تمت إعادة الاتصال",
-                //       isIcon: true,
-                //       icon: Icons.wifi,
-                //       isConnect: true,
-                //       isStart: isStart);
-        
-                // Navigator.pop(context);
-        
-              } else if (snapshot.data == ConnectivityResult
-                  .none) { // show sanckbar no connectoin if no have connection with wifi and go to no Internet screen
-                // showSnakBarInStreamBuilder(
-                //     context, "انقطع الانترنت",
-                //     isIcon: true,
-                //     icon: Icons.wifi_off,
-                //     isConnect: false,
-                //     isStart: isStart);
-                isStart = false;
-                return const NoInternet();
-              }
-        
-              return GestureDetector(
-                onTap: () { //make list of types of apartment type and button that show a list is inviable when click on screen
+    return RefreshIndicator(
+      semanticsValue: const Text("refresh").toString(),
+      color: kPrimaryColorDarkMode,
+      onRefresh: () async {
+        setState(() {
+          isDataLoaded = false;
+          callAPIAndAssignData(isAll: _isAll, type: _type);
+        });
+      },
+      child: isDataLoaded //if data is loading
+          ? errorMessage.isNotEmpty // if have error from server
+              ? Text(errorMessage) // then error will show
+              : (apartmentModelController.apartment.data?.isEmpty ??
+                      false) // else if json of apartment - specific type of apartment -
+                  ? TypeNotFound(
+                      type: _type,
+                    ) // then go to TypeNotFound screen
+                  : StreamBuilder<ConnectivityResult>(
+                      stream: Connectivity().onConnectivityChanged,
+                      builder: (context, snapshot) {
+                        //check wifi
+                        if (snapshot.data == ConnectivityResult.wifi) {
+                          // show snackbar connection if have connection with wifi
+                          //   isStart
+                          //       ?
+                          // const Text("")
+                          //       :
+                          // showSnakBarInStreamBuilder(
+                          //       context, "تمت إعادة الاتصال",
+                          //       isIcon: true,
+                          //       icon: Icons.wifi,
+                          //       isConnect: true,
+                          //       isStart: isStart);
+
+                          // Navigator.pop(context);
+                        } else if (snapshot.data == ConnectivityResult.none) {
+                          // show sanckbar no connectoin if no have connection with wifi and go to no Internet screen
+                          // showSnakBarInStreamBuilder(
+                          //     context, "انقطع الانترنت",
+                          //     isIcon: true,
+                          //     icon: Icons.wifi_off,
+                          //     isConnect: false,
+                          //     isStart: isStart);
+                          isStart = false;
+                          return const NoInternet();
+                        }
+
+                        return GestureDetector(
+                          onTap: () {
+                            //make list of types of apartment type and button that show a list is inviable when click on screen
+                            setState(() {
+                              _isVisible = !_isVisible;
+                            });
+                          },
+                          child:
+                              Stack(alignment: Alignment.topRight, children: [
+                            ApartmentsList(
+                                apartmentsRes:
+                                    apartmentModelController.apartment,
+                                scrollController:
+                                    _scrollController), //aprtments list
+
+                            Padding(
+                              padding: const EdgeInsets.only(
+                                  top: 10 * 7, right: 8.0),
+                              child: AnimatedOpacity(
+                                opacity: (apartmentModelController
+                                            .apartment.data?.isNotEmpty ??
+                                        true
+                                    ? (_isVisible ? 1 : 0)
+                                    : 1),
+                                duration: const Duration(milliseconds: 300),
+                                child: !_isVisible
+                                    ? const SizedBox()
+                                    : ApartmentShowTypesButton(onPressed: () {
+                                        setState(() {
+                                          _isListOfTypes = !_isListOfTypes;
+                                        });
+                                      }),
+                              ),
+                            ), //btn show types of apartments
+                            Padding(
+                              padding:
+                                  const EdgeInsets.only(top: 10 * 7, left: 8.0),
+                              child: !_isListOfTypes
+                                  ? const SizedBox()
+                                  : AnimatedOpacity(
+                                      opacity: (_isListOfTypes
+                                          ? (_isVisible ? 1 : 0)
+                                          : 0),
+                                      duration:
+                                          const Duration(milliseconds: 350),
+                                      child: !_isVisible
+                                          ? const SizedBox()
+                                          : ApartmentShowTypesContainer(
+                                              child: Column(
+                                                crossAxisAlignment:
+                                                    CrossAxisAlignment.start,
+                                                mainAxisSize: MainAxisSize.min,
+                                                children: [
+                                                  SizedBox(
+                                                    child: Row(
+                                                      children: [
+                                                        ApartmentShowTypesTextButton(
+                                                          textType: 'طلاب',
+                                                          onPressed: () {
+                                                            setState(() {
+                                                              isDataLoaded =
+                                                                  false;
+                                                              _type = "طلاب";
+                                                              callAPIAndAssignData(
+                                                                  type: _type,
+                                                                  isAll: false);
+                                                              _isBoyStudent =
+                                                                  true;
+                                                              _isGirlStudent =
+                                                                  false;
+                                                              _isFamilies =
+                                                                  false;
+                                                              _isAll = false;
+                                                            });
+                                                          },
+                                                        ),
+                                                        Padding(
+                                                          padding:
+                                                              const EdgeInsets
+                                                                  .only(
+                                                                  right: 5),
+                                                          child: AnimatedOpacity(
+                                                              opacity:
+                                                                  _isBoyStudent
+                                                                      ? 1
+                                                                      : 0,
+                                                              duration:
+                                                                  const Duration(
+                                                                      milliseconds:
+                                                                          200),
+                                                              child:
+                                                                  const ApartmentShowTypesPointer()),
+                                                        ),
+                                                        const SizedBox(
+                                                          width: 10,
+                                                        )
+                                                      ],
+                                                    ),
+                                                  ),
+                                                  SizedBox(
+                                                    child: Row(
+                                                      children: [
+                                                        ApartmentShowTypesTextButton(
+                                                          textType: 'طالبات',
+                                                          onPressed: () {
+                                                            setState(() {
+                                                              isDataLoaded =
+                                                                  false;
+
+                                                              _type = "طالبات";
+                                                              callAPIAndAssignData(
+                                                                  type: _type,
+                                                                  isAll: false);
+                                                              _isBoyStudent =
+                                                                  false;
+                                                              _isGirlStudent =
+                                                                  true;
+                                                              _isFamilies =
+                                                                  false;
+                                                              _isAll = false;
+                                                            });
+                                                          },
+                                                        ),
+                                                        Padding(
+                                                          padding:
+                                                              const EdgeInsets
+                                                                  .only(
+                                                                  right: 5),
+                                                          child: AnimatedOpacity(
+                                                              opacity:
+                                                                  _isGirlStudent
+                                                                      ? 1
+                                                                      : 0,
+                                                              duration:
+                                                                  const Duration(
+                                                                      milliseconds:
+                                                                          200),
+                                                              child:
+                                                                  const ApartmentShowTypesPointer()),
+                                                        ),
+                                                        const SizedBox(
+                                                          width: 10,
+                                                        )
+                                                      ],
+                                                    ),
+                                                  ),
+                                                  SizedBox(
+                                                    child: Row(
+                                                      children: [
+                                                        ApartmentShowTypesTextButton(
+                                                          textType: 'عائلات',
+                                                          onPressed: () {
+                                                            setState(() {
+                                                              isDataLoaded =
+                                                                  false;
+
+                                                              _type = "عائلات";
+                                                              callAPIAndAssignData(
+                                                                  type: _type,
+                                                                  isAll: false);
+                                                              _isBoyStudent =
+                                                                  false;
+                                                              _isGirlStudent =
+                                                                  false;
+                                                              _isFamilies =
+                                                                  true;
+                                                              _isAll = false;
+                                                            });
+                                                          },
+                                                        ),
+                                                        Padding(
+                                                          padding:
+                                                              const EdgeInsets
+                                                                  .only(
+                                                                  right: 5),
+                                                          child: AnimatedOpacity(
+                                                              opacity:
+                                                                  _isFamilies
+                                                                      ? 1
+                                                                      : 0,
+                                                              duration:
+                                                                  const Duration(
+                                                                      milliseconds:
+                                                                          200),
+                                                              child:
+                                                                  const ApartmentShowTypesPointer()),
+                                                        ),
+                                                        const SizedBox(
+                                                          width: 10,
+                                                        )
+                                                      ],
+                                                    ),
+                                                  ),
+                                                  SizedBox(
+                                                    child: Row(
+                                                      children: [
+                                                        ApartmentShowTypesTextButton(
+                                                          textType: 'الكل',
+                                                          onPressed: () {
+                                                            setState(() {
+                                                              isDataLoaded =
+                                                                  false;
+                                                              // _type = "عائلات";
+
+                                                              callAPIAndAssignData(
+                                                                  isAll: true);
+                                                              _isBoyStudent =
+                                                                  false;
+                                                              _isGirlStudent =
+                                                                  false;
+                                                              _isFamilies =
+                                                                  false;
+                                                              _isAll = true;
+                                                            });
+                                                          },
+                                                        ),
+                                                        Padding(
+                                                          padding:
+                                                              const EdgeInsets
+                                                                  .only(
+                                                                  right: 5),
+                                                          child: AnimatedOpacity(
+                                                              opacity: _isAll
+                                                                  ? 1
+                                                                  : 0,
+                                                              duration:
+                                                                  const Duration(
+                                                                      milliseconds:
+                                                                          200),
+                                                              child:
+                                                                  const ApartmentShowTypesPointer()),
+                                                        ),
+                                                        const SizedBox(
+                                                          width: 10,
+                                                        )
+                                                      ],
+                                                    ),
+                                                  ),
+                                                ],
+                                              ),
+                                            )),
+                            ) //list of types of apartments
+                          ]),
+                        ); //this widget have a list of apartment and a button that show types list of types of apartments
+                      }) // streamBuilder will show if json of apartment is not have a null value
+
+          : Stack(children: [
+              GestureDetector(
+                child: const HomeSkeletonWidget(),
+                onDoubleTap: () {
                   setState(() {
-                    _isVisible = !_isVisible;
+                    _isSebhaVisible = !_isSebhaVisible;
                   });
                 },
-                child: Stack(
-                    alignment: Alignment.topRight,
-        
-                    children: [
-        
-                      ApartmentsList(
-                          apartmentsRes: apartmentModelController.apartment,
-                          scrollController: _scrollController), //aprtments list
-        
-                      Padding(
-                        padding: const EdgeInsets.only(top: 10 * 7, right: 8.0),
-                        child: AnimatedOpacity(
-                          opacity: (
-                              apartmentModelController.apartment.data?.isNotEmpty
-        
-                                  ?? true
-                                  ? (_isVisible ? 1 : 0)
-                                  : 1),
-                          duration: const Duration(milliseconds: 300),
-                          child: !_isVisible
-                              ? const SizedBox()
-                              : ApartmentShowTypesButton(onPressed: () {
+              ),
+              Padding(
+                padding: const EdgeInsets.only(top: 10 * 7, right: 8.0),
+                child: AnimatedOpacity(
+                  opacity: (_isSebhaVisible ? 1 : 0),
+                  duration: const Duration(milliseconds: 300),
+                  child: !_isSebhaVisible
+                      ? const SizedBox()
+                      : ApartmentShowTypesButton(
+                          onPressed: () {
                             setState(() {
-                              _isListOfTypes = !_isListOfTypes;
+                              myPushName(context, MyPagesRoutes.noInternet);
                             });
-                          }),
-                        ),
-                      ), //btn show types of apartments
-                      Padding(
-                        padding: const EdgeInsets.only(top: 10 * 7, left: 8.0),
-                        child: !_isListOfTypes
-                            ? const SizedBox()
-                            : AnimatedOpacity(
-                            opacity: (_isListOfTypes ? (_isVisible ? 1 : 0) : 0),
-                            duration: const Duration(milliseconds: 350),
-        
-                            child: !_isVisible
-                                ? const SizedBox()
-                                : ApartmentShowTypesContainer(child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              mainAxisSize: MainAxisSize.min,
-                              children: [
-                                SizedBox(
-                                  child: Row(
-                                    children: [
-                                      ApartmentShowTypesTextButton(
-                                        textType: 'طلاب',
-                                        onPressed: () {
-                                          setState(() {
-                                            isDataLoaded = false;
-                                            _type = "طلاب";
-                                            callAPIAndAssignData(
-                                                type: _type, isAll: false);
-                                            _isBoyStudent = true;
-                                            _isGirlStudent = false;
-                                            _isFamilies = false;
-                                            _isAll = false;
-                                          });
-                                        },
-                                      ),
-        
-                                      Padding(
-                                        padding: const EdgeInsets.only(right: 5),
-                                        child: AnimatedOpacity(
-                                            opacity: _isBoyStudent ? 1 : 0,
-                                            duration: const Duration(
-                                                milliseconds: 200),
-                                            child: const ApartmentShowTypesPointer()),
-                                      ),
-                                      const SizedBox(
-                                        width: 10,
-                                      )
-                                    ],
-                                  ),
-                                ),
-                                SizedBox(
-                                  child: Row(
-                                    children: [
-                                      ApartmentShowTypesTextButton(
-                                        textType: 'طالبات',
-                                        onPressed: () {
-                                          setState(() {
-                                            isDataLoaded = false;
-        
-                                            _type = "طالبات";
-                                            callAPIAndAssignData(
-                                                type: _type, isAll: false);
-                                            _isBoyStudent = false;
-                                            _isGirlStudent = true;
-                                            _isFamilies = false;
-                                            _isAll = false;
-                                          });
-                                        },
-                                      ),
-        
-                                      Padding(
-        
-                                        padding: const EdgeInsets.only(right: 5),
-                                        child: AnimatedOpacity(
-                                            opacity: _isGirlStudent ? 1 : 0,
-                                            duration: const Duration(
-                                                milliseconds: 200),
-                                            child: const ApartmentShowTypesPointer()),
-                                      ),
-                                      const SizedBox(
-                                        width: 10,
-                                      )
-                                    ],
-                                  ),
-                                ),
-                                SizedBox(
-                                  child: Row(
-                                    children: [
-                                      ApartmentShowTypesTextButton(
-                                        textType: 'عائلات',
-                                        onPressed: () {
-                                          setState(() {
-                                            isDataLoaded = false;
-        
-                                            _type = "عائلات";
-                                            callAPIAndAssignData(
-                                                type: _type, isAll: false);
-                                            _isBoyStudent = false;
-                                            _isGirlStudent = false;
-                                            _isFamilies = true;
-                                            _isAll = false;
-                                          });
-                                        },
-                                      ),
-                                      Padding(
-                                        padding: const EdgeInsets.only(right: 5),
-                                        child: AnimatedOpacity(
-                                            opacity: _isFamilies ? 1 : 0,
-                                            duration: const Duration(
-                                                milliseconds: 200),
-                                            child: const ApartmentShowTypesPointer()),
-                                      ),
-                                      const SizedBox(
-                                        width: 10,
-                                      )
-                                    ],
-                                  ),
-                                ),
-                                SizedBox(
-        
-                                  child: Row(
-                                    children: [
-                                      ApartmentShowTypesTextButton(
-                                        textType: 'الكل',
-                                        onPressed: () {
-                                          setState(() {
-                                            isDataLoaded = false;
-                                            // _type = "عائلات";
-        
-                                            callAPIAndAssignData(isAll: true);
-                                            _isBoyStudent = false;
-                                            _isGirlStudent = false;
-                                            _isFamilies = false;
-                                            _isAll = true;
-                                          });
-                                        },
-                                      ),
-                                      Padding(
-                                        padding: const EdgeInsets.only(right: 5),
-                                        child: AnimatedOpacity(
-                                            opacity: _isAll ? 1 : 0,
-                                            duration: const Duration(
-                                                milliseconds: 200),
-                                            child: const ApartmentShowTypesPointer()),
-                                      ),
-                                      const SizedBox(
-                                        width: 10,
-                                      )
-                                    ],
-                                  ),
-                                ),
-                              ],
-                            ),)
-                        ),
-                      ) //list of types of apartments
-                    ]),
-              ); //this widget have a list of apartment and a button that show types list of types of apartments
-            }
-        ) // streamBuilder will show if json of apartment is not have a null value
-        
-            : Stack(children: [
-        
-          GestureDetector(child: const HomeSkeletonWidget(), onDoubleTap: () {
-            setState(() {
-              _isSebhaVisible = !_isSebhaVisible;
-            });
-          },),
-          Padding(
-            padding: const EdgeInsets.only(top: 10 * 7, right: 8.0),
-            child: AnimatedOpacity(
-              opacity: (
-                  _isSebhaVisible ? 1 : 0)
-              ,
-              duration: const Duration(milliseconds: 300),
-              child: !_isSebhaVisible
-                  ? const SizedBox()
-                  : ApartmentShowTypesButton(onPressed: () {
-                setState(() {
-                  myPushName(context, MyPagesRoutes.noInternet);
-                });
-              }, text: "   سّبح   "),
-            ),
-          )
-        
-        ]),
-      ); // show HomeSkeletonWdiget if data is loading
+                          },
+                          text: "   سّبح   "),
+                ),
+              )
+            ]),
+    ); // show HomeSkeletonWdiget if data is loading
   }
 
   // API Call
@@ -408,8 +463,8 @@ class _NewMasterHomeState extends State<NewMasterHome> {
       debugPrint("the status is ${apartmentsRes.status}");
       return apartmentsRes;
     } else if (apartmentModelController.apartment.msg?.isNotEmpty ?? false) {
-      errorMessage = ' a messsage of response of apartment is : ${response
-          .statusCode}: ${response.body} ';
+      errorMessage =
+          ' a messsage of response of apartment is : ${response.statusCode}: ${response.body} ';
       debugPrint(errorMessage);
       return OneApartment(data: []);
     }
@@ -429,7 +484,6 @@ class _NewMasterHomeState extends State<NewMasterHome> {
     if (response.statusCode == 200) {
       List jsonResponse = jsonDecode(response.body);
 
-
       return jsonResponse.map((item) => Photos.fromJson(item)).toList();
     } else {
       setState(() {
@@ -441,7 +495,7 @@ class _NewMasterHomeState extends State<NewMasterHome> {
 
   void callAPIAndAssignData({String? type, required bool isAll}) async {
     apartmentModelController.apartment =
-    (await getDataFromAPI(type: type, isAll: isAll));
+        (await getDataFromAPI(type: type, isAll: isAll));
   }
 
   Future<void> showSnackBarAfter3Second() async {
@@ -457,8 +511,6 @@ class _NewMasterHomeState extends State<NewMasterHome> {
       // checkWifiStatus();
     });
 
-
     // Navigator.pushReplacementNamed(context,MyPagesRoutes.noInternet);
   }
-
 }

@@ -6,7 +6,6 @@ import '../constants/nums.dart';
 import '../controller/get_controllers.dart';
 import '../core/widgets/apartments/new_master_home_classes_widgets/apartment_container/list_of_apartments.dart';
 import '../core/widgets/empty_screen_class_widget.dart';
-
 class BookmarkApartment extends StatefulWidget {
   const BookmarkApartment({super.key});
 
