@@ -434,30 +434,31 @@ class _ApartmentsOwnerState extends State<ApartmentsOwner>
                     ),
                   ),
                 ]
-              : null,),
-             body: Obx(() {
+              : null,
+        ),
+        body: Obx(() {
           if (apartmentModelController.isLoading.value) {
             return const Center(child: HomeSkeletonWidget());
           } else {
             return InternetConnectivityChecker(
               child: apartmentModelController.isApartmentNull
                   ? const EmptyScreenClassWidget(
-                centerIcon: Icons.apartment,
-                centerText: "تُعرض إعلاناتك هنا",
-                centerIconInUnderCenterText: Icons.add_home_outlined,
-                underCenterTextBeforeIcon: 'انقر على الزر ',
-                underCenterTextAfterIcon: '  للبدء في إنشاء إعلان جديد',
-              )
+                      centerIcon: Icons.apartment,
+                      centerText: "تُعرض إعلاناتك هنا",
+                      centerIconInUnderCenterText: Icons.add_home_outlined,
+                      underCenterTextBeforeIcon: 'انقر على الزر ',
+                      underCenterTextAfterIcon: '  للبدء في إنشاء إعلان جديد',
+                    )
                   : ApartmentsList(
-                apartmentsRes: apartmentModelController.apartments.value,
-                scrollController: ScrollController(),
-                isDeleteMode: isDeleteMode,
-                onPressed: () {
-                  setState(() {
-                    apartmentModelController.fetchApartments();
-                  });
-                },
-              ),
+                      apartmentsRes: apartmentModelController.apartments.value,
+                      scrollController: ScrollController(),
+                      isDeleteMode: isDeleteMode,
+                      onPressed: () {
+                        setState(() {
+                          apartmentModelController.fetchApartments();
+                        });
+                      },
+                    ),
             );
           }
         }),

@@ -49,6 +49,7 @@ import 'package:ween_blaqe/features/user/studnet/main_student.dart';
 
 import 'package:ween_blaqe/sesstion/new_session.dart';
 import 'package:ween_blaqe/features/splach_screen.dart';
+
 // import 'package:ween_blaqe/testing_code/bookmark_test.dart';
 import 'constants/injection.dart';
 import 'constants/nums.dart';
@@ -59,6 +60,7 @@ import 'controller/function_controller/api_functions_controller/apartment_api_me
 import 'controller/models_controller/apartment_model_controller.dart';
 import 'controller/models_controller/images_model_controller.dart';
 import 'controller/models_controller/type_of_apartment_models_controller.dart';
+
 // import 'features/bookmark.dart';
 import 'features/send_notice_for_us.dart';
 import 'features/user/owner/steps_to_create_apartment/first_step.dart';
@@ -120,7 +122,7 @@ void main() async {
   Get.put(GetAdvantages());
   Get.put(AdvantagesModelController());
   Get.put(ImagesModelController());
-  Get.put(BookmarkController());//for testing
+  Get.put(BookmarkController()); //for testing
   // Get.put(BookmarkApartment());//for testing
   //for get
   await configureInjection();
@@ -150,6 +152,7 @@ class OwnMaterialApp extends StatefulWidget {
 
 class _OwnMaterialAppState extends State<OwnMaterialApp> {
   String newestApartmentId = '-1';
+
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(
@@ -281,8 +284,6 @@ class _OwnMaterialAppState extends State<OwnMaterialApp> {
   void putValue(String value) async {
     newestApartmentId = value;
     debugPrint(value);
-
-
   }
 }
 

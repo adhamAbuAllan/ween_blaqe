@@ -1,10 +1,12 @@
 // import 'dart:ffi';
+import 'package:flutter/material.dart';
 import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:skeletons/skeletons.dart';
-import 'package:carousel_slider/carousel_slider.dart';
+import 'package:carousel_slider_plus/carousel_slider_plus.dart';
 import 'package:colorful_safe_area/colorful_safe_area.dart';
-import 'package:flutter/material.dart';
+
+// import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:ween_blaqe/api/apartments_api/one_apartment.dart';
 import 'package:ween_blaqe/api/photos.dart';
@@ -106,7 +108,7 @@ class _NewShowMoreState extends State<NewShowMore> {
   PointerController pointerController = PointerController();
 
   // Assuming playersRes is the response you received
-  final CarouselController controller = CarouselController();
+  CarouselSliderController controller = CarouselSliderController();
   PageController pageController = PageController();
   bool isRoomSizeChange = false;
   bool isRoomBathSizeChange = false;
@@ -151,23 +153,23 @@ class _NewShowMoreState extends State<NewShowMore> {
                           Padding(
                             padding: const EdgeInsets.fromLTRB(0, 20, 8, 0),
                             child: BackButton(
-
-                              style:   const ButtonStyle(
-                             // iconSize : WidgetStateProperty.all(34),
-                             //    maximumSize: WidgetStateProperty.all(Size(32,
-                             //        32)),
+                              style: const ButtonStyle(
+                                // iconSize : WidgetStateProperty.all(34),
+                                //    maximumSize: WidgetStateProperty.all(Size(32,
+                                //        32)),
                                 tapTargetSize: MaterialTapTargetSize.shrinkWrap,
-
                               ),
                               color: themeMode.isDark
                                   ? kTextColorLightMode
                                   : kTextColorDarkMode,
                             ),
                           ),
-                          const Expanded(child: Text("")),
                         ],
                       ),
-                      // image/s of apartment
+
+                      const SizedBox(
+                        height: 20,
+                      ), // image/s of apartment
                       _isDataLoaded
                           ? SkeletonAvatar(
                               style: SkeletonAvatarStyle(
@@ -284,8 +286,9 @@ class _NewShowMoreState extends State<NewShowMore> {
                               children: [
                                 SizedBox(
                                   width: getIt<AppDimension>()
-                                      .isSmallScreen(context)
-                                      ?360/1.5:360,
+                                          .isSmallScreen(context)
+                                      ? 360 / 1.5
+                                      : 360,
                                   child: Padding(
                                     padding: const EdgeInsets.fromLTRB(
                                         10, 0, 10, 10),
@@ -310,8 +313,9 @@ class _NewShowMoreState extends State<NewShowMore> {
                               children: [
                                 SizedBox(
                                   width: getIt<AppDimension>()
-                                      .isSmallScreen(context)
-                                      ?360/1.1:360,
+                                          .isSmallScreen(context)
+                                      ? 360 / 1.1
+                                      : 360,
                                   child: Padding(
                                     padding:
                                         const EdgeInsets.fromLTRB(0, 0, 10, 10),
@@ -1043,9 +1047,8 @@ class _NewShowMoreState extends State<NewShowMore> {
                                     "هذه الميزة قيد التطوير وسيتم إضافتها قريبًا");
                               },
                               style: fullButton.copyWith(
-                                  backgroundColor:
-                                      const WidgetStatePropertyAll(
-                                          Colors.grey)),
+                                  backgroundColor: const WidgetStatePropertyAll(
+                                      Colors.grey)),
                               child: const Text("إحجز الآن")),
                         ),
                       ),

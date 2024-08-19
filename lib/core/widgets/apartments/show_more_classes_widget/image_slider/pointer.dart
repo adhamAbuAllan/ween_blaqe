@@ -1,9 +1,15 @@
-import 'package:carousel_slider/carousel_slider.dart';
+
+// import 'package:carousel_slider_plus/carousel_controller.dart';
+// import 'package:flutter/material.dart';
+// import 'package:flutter/material.dart';
+import 'package:carousel_slider_plus/carousel_controller.dart';
+import 'package:carousel_slider_plus/carousel_options.dart';
 import 'package:flutter/material.dart';
+
 import '../../../../../api/photos.dart';
 import '../../../../../constants/nums.dart';
 import 'custom_slider.dart';
-
+// import 'package:carousel_slider_plus/carousel_slider_plus.dart' ;
 // import 'package:smooth_page_indicator/src/painters/worm_painter.dart';
 class ImageSliderWithPointer extends StatefulWidget {
  const ImageSliderWithPointer({
@@ -21,9 +27,10 @@ class ImageSliderWithPointer extends StatefulWidget {
   });
 
    final List<Photos> items;
-  final dynamic Function(int, CarouselPageChangedReason)? onPageChange;
+  final dynamic Function(int, CarouselPageChangedReason)?
+  onPageChange;
    final int current;
-  final CarouselController controller;
+  final CarouselSliderController controller;
  final  Duration duration;
       // Curve curve;
     // final   Object tag;

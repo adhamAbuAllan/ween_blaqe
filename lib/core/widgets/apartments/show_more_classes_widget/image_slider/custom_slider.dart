@@ -1,20 +1,23 @@
 import 'package:cached_network_image/cached_network_image.dart';
-import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/material.dart' hide CarouselController;
 import 'package:skeletons/skeletons.dart';
 import '../../../../../api/photos.dart';
+import 'package:carousel_slider_plus/carousel_slider_plus.dart' ;
 
 StatefulBuilder buildCarouselSlider({
   List<Photos>? photos,
   required BuildContext context,
-  CarouselController? controller,
-  dynamic Function(int, CarouselPageChangedReason)? onPageChange,
+  CarouselSliderController? controller,
+  dynamic Function(int, CarouselPageChangedReason)?
+      onPageChange,
   // required Object tag,
   int? current,
 }) {
   return StatefulBuilder(
     builder: (context, setState) {
       return CarouselSlider(
+        controller: controller,
           items: photos?.map((photo) {
             return Builder(
               builder: (BuildContext context) {
@@ -28,7 +31,7 @@ StatefulBuilder buildCarouselSlider({
                           CachedNetworkImage(
                             fit: BoxFit.cover,
                             width: 1000.0,
-                            imageUrl: photo.url??"",
+                            imageUrl: photo.url ?? "",
                             progressIndicatorBuilder: (context, url, progress) {
                               if (progress.progress != null) {
                                 // final percent = progress.progress! * 100;
@@ -82,7 +85,7 @@ StatefulBuilder buildCarouselSlider({
             );
           }).toList(),
           // widget.getImages!.generateImageSliders,
-          carouselController: controller,
+          // caourselSliderController: controller,
           options: CarouselOptions(
               // padEnds: true,
               // animateToClosest: true,

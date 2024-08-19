@@ -1,8 +1,10 @@
 import 'package:animated_text_kit/animated_text_kit.dart';
-import 'package:carousel_slider/carousel_slider.dart';
+import 'package:carousel_slider_plus/carousel_slider_plus.dart';
+// import 'package:carousel_slider/carousel_slider.dart';
 import 'package:colorful_safe_area/colorful_safe_area.dart';
 import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:flutter/material.dart';
+// import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:vibration/vibration.dart';
@@ -14,6 +16,7 @@ import 'package:ween_blaqe/constants/nums.dart';
 import '../../constants/injection.dart';
 import '../../core/utils/styles/button.dart';
 import '../../core/widgets/buttons/lines_buttons/line_buttons.dart';
+// import 'package:carousel_slider_plus/carousel_controller.dart';
 
 main() {
   runApp(const MaterialApp(
@@ -48,7 +51,8 @@ class _NoInternetState extends State<NoInternet> with WidgetsBindingObserver {
   int total = 0;
   int onLongPressCounter = 17;
 
-  CarouselController controller = CarouselController();
+  CarouselSliderController controller = CarouselSliderController();
+
   List<String> sephaText = [
     "سبحان الله",
     "الحمد لله",
@@ -479,7 +483,7 @@ class _NoInternetState extends State<NoInternet> with WidgetsBindingObserver {
               ));
         });
       }).toList(),
-      carouselController: controller,
+      controller: controller,
       options: CarouselOptions(
 
           // onPageChanged: (i, reason) {

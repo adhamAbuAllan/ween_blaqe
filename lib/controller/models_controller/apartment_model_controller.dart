@@ -1,6 +1,6 @@
 import 'dart:convert';
 
-import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:ween_blaqe/api/apartments_api/one_apartment.dart';
 import 'package:ween_blaqe/controller/get_controllers.dart';
