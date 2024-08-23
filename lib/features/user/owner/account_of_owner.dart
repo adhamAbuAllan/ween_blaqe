@@ -11,6 +11,7 @@ import 'package:ween_blaqe/core/utils/styles/button.dart';
 // import 'package:ween_blaqe/core/utils/styles/show_more_widget/about_apartment_style.dart';
 import 'package:ween_blaqe/core/utils/styles/text_style/aline_style.dart';
 import '../../../constants/injection.dart';
+import '../../../core/utils/funcations/get_app_version.dart';
 import '../../../core/utils/funcations/snakbar.dart';
 import '../../../core/widgets/buttons/lines_buttons/line_buttons.dart';
 import '../../../main.dart';
@@ -374,13 +375,25 @@ class _AccountOfOwnerState extends State<AccountOfOwner> {
                   padding: const EdgeInsets.symmetric(
                       vertical:
                       30),
-                  child: Text(
-                    "الإصدار التجريبي: 3.0.1",
-                    style: TextStyle(
-                        color: themeMode.isDark
-                            ? kTextColorLightMode.withOpacity(.5)
-                            : kTextColorDarkMode.withOpacity(.5)),
-                  ),
+                  child: FutureBuilder<String>(
+                    future: getAppVersion(),
+                    builder: (BuildContext context, AsyncSnapshot<String> snapshot) {
+                      if (snapshot.hasData) {
+                        return Text("الإصدار التجريبي: ${snapshot.data} "
+                          ,style: TextStyle(
+                              color: themeMode.isDark
+                                  ? kTextColorLightMode.withOpacity(.5)
+                                  : kTextColorDarkMode.withOpacity(
+                                  .5)), textDirection: TextDirection
+                              .rtl,);
+                      } else if (snapshot.hasError) {
+                        return Text("${snapshot.error}خطأ: ");
+                      } else {
+                        return const CircularProgressIndicator();
+                      }
+                    },
+                  )
+                  ,
                 )
               ],
             ),
