@@ -33,6 +33,7 @@ import 'package:ween_blaqe/controller/student_controller/student_controller.dart
 import 'package:ween_blaqe/core/utils/funcations/route_pages/push_routes.dart';
 import 'package:ween_blaqe/core/widgets/skeletons/general_skeleton_ready_widgets/paragraph_ready_skeleton.dart';
 import 'package:ween_blaqe/core/widgets/skeletons/student_widgets/show_more_skeleton_widget.dart';
+import 'package:ween_blaqe/features/bookmark.dart';
 import 'package:ween_blaqe/features/error_widgets/no_internet.dart';
 import 'package:ween_blaqe/features/paragraphs_widgets/ask_for_help_widgets/another_asks.dart';
 import 'package:ween_blaqe/features/paragraphs_widgets/ask_for_help_widgets/ask_for_help.dart';
@@ -140,9 +141,9 @@ void main() async {
 //ownMaterialApp that could play any screen in this class from admin
 class OwnMaterialApp extends StatefulWidget {
   const OwnMaterialApp({
-    Key? key,
+    super.key,
     // required this.logged
-  }) : super(key: key);
+  });
 
   // final bool logged = false;
 
@@ -224,7 +225,7 @@ class _OwnMaterialAppState extends State<OwnMaterialApp> {
         // MyPagesRoutes.searchFilter: (context) => const SearchFilter(),
         // MyPagesRoutes.profile: (context) => const Profile(),
         // MyPagesRoutes.ordersOfStudent: (context) => const OrdersOfStudent(),
-        // MyPagesRoutes.bookmark: (context) => const Bookmark(),
+        MyPagesRoutes.bookmarkApartment: (context) => const BookmarkApartment(),
         // MyPagesRoutes.orders: (context) => const Orders(),
         // MyPagesRoutes.notificationOfStudent: (context) =>
         //     const NotificationOfStudentWithNotifi(),
@@ -267,9 +268,9 @@ class _OwnMaterialAppState extends State<OwnMaterialApp> {
         MyPagesRoutes.skeletonParagraph: (context) =>
             const LongParagraphReadySkeleton(),
         MyPagesRoutes.newMasterHome: (context) => const NewMasterHome(),
-        MyPagesRoutes.newShowMore: (context) => NewShowMore(),
+        MyPagesRoutes.newShowMore: (context) => const NewShowMore(),
         MyPagesRoutes.whatTheInfoReqToCreateAd: (context) =>
-            WhatTheInfoReqToCreateAd(),
+            const WhatTheInfoReqToCreateAd(),
 
         //testing routes..
         // MyPagesRoutes.citiesTest:(context)=> CitiesTest(),
@@ -302,9 +303,9 @@ class Main extends StatefulWidget {
   final Future<void> Function(BuildContext, String)? navigatorOfMainClass;
 
   const Main({
-    Key? key,
+    super.key,
     this.navigatorOfMainClass,
-  }) : super(key: key);
+  });
 
   // myPushName(context, MyPagesRoutes.showMore);
   @override

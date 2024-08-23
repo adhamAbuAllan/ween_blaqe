@@ -176,7 +176,7 @@ class MyPagesRoutes {
   static const profileOfOwner = "/profile_of_owner";
   static const refactorApartment = "/refactor_apartment";
   static const showProfileOfStudent = "/show_profile_of_studnet";
-  static const bookmark = "/bookmark";
+  static const bookmarkApartment = "/bookmark_apartment";
   static const ordersOfStudent = "/order_of_student";
   static const profile = "/profile";
   static const searchFilter = "/search_filter";

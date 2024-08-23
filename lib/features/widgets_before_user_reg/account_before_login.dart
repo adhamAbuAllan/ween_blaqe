@@ -1,6 +1,7 @@
 // import 'dart:ffi';
 
 import 'package:colorful_safe_area/colorful_safe_area.dart';
+import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:get/get.dart';
@@ -14,12 +15,12 @@ import '../../constants/coordination.dart';
 import '../../constants/injection.dart';
 import '../../constants/nums.dart';
 import '../../constants/strings.dart';
+import '../../core/utils/funcations/snakbar.dart';
 import '../../core/widgets/buttons/lines_buttons/line_buttons.dart';
 
 import '../../controller/main_controller.dart';
 import '../../controller/student_controller/student_controller.dart';
-import '../bookmark.dart';
-import 'login.dart';
+// import '../bookmark.dart';
 
 // import '../../main.dart';
 // import 'login.dart';
@@ -60,14 +61,14 @@ main() {
     ],
     locale: const Locale("ar", "SA"),
 
-    home: AccountBeforeLoginInStudent(),
+    home: const AccountBeforeLoginInStudent(),
   ));
 }
 
 //Account before login Screen
 @immutable
 class AccountBeforeLoginInStudent extends StatefulWidget {
-  AccountBeforeLoginInStudent({Key? key}) : super(key: key);
+  const AccountBeforeLoginInStudent({super.key});
 
   @override
   State<AccountBeforeLoginInStudent> createState() =>
@@ -99,372 +100,399 @@ class _AccountBeforeLoginInStudentState
     return ColorfulSafeArea(
       bottomColor: Colors.transparent,
       color: themeMode.isDark ? kPrimaryColorLightMode : kPrimaryColorDarkMode,
-      child: Scaffold(
-        backgroundColor: themeMode.isDark
-            ? kBackgroundAppColorLightMode
-            : kBackgroundAppColorDarkMode,
-        body: SingleChildScrollView(
-          child: Column(
-            children: [
-              //title
-              Row(
-                children: [
-                  Padding(
-                    padding: EdgeInsets.fromLTRB(
-                        0,
-                        getIt<AppDimension>().isSmallScreen(context)
-                            ? 50 / 1.6
-                            : 50,
-                        20,
-                        0),
-                    child: Text(
-                      "الحساب",
-                      style: TextStyle(
-                        color: themeMode.isDark
-                            ? kTextColorLightMode
-                            : kTextColorDarkMode,
-                        fontSize: 28.0,
-                        fontFamily: 'IBM',
-                        inherit: true,
-                      ),
-                    ),
-                  ),
-                  const Expanded(child: Text("")),
-                ],
-              ),
-
-              //subtitle of title
-              Row(
-                children: [
-                  Padding(
-                    padding: EdgeInsets.fromLTRB(
-                        0,
-                        0,
-                        10,
-                        getIt<AppDimension>().isSmallScreen(context)
-                            ? 75 / 1.5
-                            : 75),
-                    child: Text(
-                      // "قم بتسجيل الدخول لتحجز اول شقة لك ",
-                      "لا يتطلب حجز شقة حساب جديد أو تسجيل الدخول ",
-                      style: TextStyle(
-                          color: Colors.grey.shade600,
-                          fontSize: 14,
-                          fontFamily: 'IBM'),
-                    ),
-                  ),
-                  const Expanded(child: Text("")),
-                ],
-              ),
-              // aline,
-
-              // notification icon and text and switch
-
-              // GestureDetector(
-              //   onTap: () {
-              //     setState(() {
-              //       notificationState = !currentValue;
-              //     });
-              //     currentValue = notificationState;
-              //   },
-              //   child: Row(
-              //     children: [
-              //            Padding(
-              //         padding: EdgeInsets.fromLTRB(0, 0, 10, 0),
-              //         child: Icon(
-              //           Icons.notifications_outlined,
-              //           size: 32,
-              //         ),
-              //       ),
-              //            Text(
-              //         "الاشعارات",
-              //         style: TextStyle(
-              //           fontSize: 18,
-              //           fontFamily: 'IBM',
-              //         ),
-              //       ),
-              //            Spacer(),
-              //       Padding(
-              //         padding:      EdgeInsets.fromLTRB(20, 0, 0, 0),
-              //         child: Switcher(
-              //             light1: notificationState,
-              //             onChanged: (currentValue) {
-              //               setState(() {
-              //                 // currentValue = value;
-              //                 notificationState = currentValue;
-              //                 // value ==
-              //                 // false
-              //                 // ? toast("تم كتم الاشعارات")
-              //                 // : toast("تم تفعيل الاشعارات");
-              //               });
-              //             }),
-              //       )
-              //     ],
-              //   ),
-              // ),
-              // aline,
-              //help
-              Container(
-                padding: const EdgeInsets.fromLTRB(0, 0, 0, 0),
-                margin: const EdgeInsets.fromLTRB(10, 0, 10, 0),
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(7),
-                  color: themeMode.isDark
-                      ? kContainerColorLightMode
-                      : kContainerColorDarkMode,
-                ),
-                child: Column(mainAxisSize: MainAxisSize.min, children: [
-                  // Switch(value:themeMode.isDark , onChanged:
-                  // themeMode.onChanged),
-                  SwitchListTile(
-                      dense: getIt<AppDimension>()
-                          .isSmallScreen(context),
-                      title: Text("الشكل",
-                          style: TextStyle(
-                              fontSize: 16,
-                              fontFamily: 'IBM',
+      child: StreamBuilder<ConnectivityResult>(
+          stream: Connectivity().onConnectivityChanged,
+          builder: (context, snapshot) {
+            return Scaffold(
+              backgroundColor: themeMode.isDark
+                  ? kBackgroundAppColorLightMode
+                  : kBackgroundAppColorDarkMode,
+              body: SingleChildScrollView(
+                child: Column(
+                  children: [
+                    //title
+                    Row(
+                      children: [
+                        Padding(
+                          padding: EdgeInsets.fromLTRB(
+                              0,
+                              getIt<AppDimension>().isSmallScreen(context)
+                                  ? 50 / 1.6
+                                  : 50,
+                              20,
+                              0),
+                          child: Text(
+                            "الحساب",
+                            style: TextStyle(
                               color: themeMode.isDark
                                   ? kTextColorLightMode
-                                  : kTextColorDarkMode)),
-                      value: themeMode.isDark,
-                      onChanged: (bool value) async {
-                        setState(() {
-                          themeMode.onChanged(value);
-                          // sp.get('isDark');
-                          // myPushName(context, MyPagesRoutes.splashScreen);
+                                  : kTextColorDarkMode,
+                              fontSize: 28.0,
+                              fontFamily: 'IBM',
+                              inherit: true,
+                            ),
+                          ),
+                        ),
+                        const Expanded(child: Text("")),
+                      ],
+                    ),
 
-                          myPushNameAnimation(context);
-                        });
-                      }),
-                  aline,
-                  buttonAccount(() {
-                    myPushName(context, MyPagesRoutes.askForHelp);
-                  },
-                      icon: Icon(
-                        Icons.info_outline,
-                        size: getIt<AppDimension>()
-                                .isSmallScreen(context)
-                            ? 32 - 5
-                            : 32,
-                        color: themeMode.isDark
-                            ? kTextColorLightMode
-                            : kTextColorDarkMode,
-                      ),
-                      "اطلب المساعدة",
-                      context: context),
+                    //subtitle of title
+                    Row(
+                      children: [
+                        Padding(
+                          padding: EdgeInsets.fromLTRB(
+                              0,
+                              0,
+                              10,
+                              getIt<AppDimension>().isSmallScreen(context)
+                                  ? 75 / 1.5
+                                  : 75),
+                          child: Text(
+                            // "قم بتسجيل الدخول لتحجز اول شقة لك ",
+                            "لا يتطلب حجز شقة حساب جديد أو تسجيل الدخول ",
+                            style: TextStyle(
+                                color: Colors.grey.shade600,
+                                fontSize: 14,
+                                fontFamily: 'IBM'),
+                          ),
+                        ),
+                        const Expanded(child: Text("")),
+                      ],
+                    ),
+                    // aline,
 
-                  aline,
-                  //privacy policy
-                  buttonAccount(() {
-                    myPushName(context, MyPagesRoutes.privacyPolicy);
-                  },
-                      icon: Icon(
-                        Icons.privacy_tip_outlined,
-                        size: getIt<AppDimension>()
-                                .isSmallScreen(context)
-                            ? 32 - 5
-                            : 32,
-                        color: themeMode.isDark
-                            ? kTextColorLightMode
-                            : kTextColorDarkMode,
-                      ),
-                      "سياسة الخصوصية",
-                      context: context),
-                  // aline,
-                  //switch to owner
-                  //               buttonAccount(
-                  //                 () {
-                  // // myPushReplacementNamed(context,MyPagesRoutes.mainOwner);
-                  //                   myPushName(context, MyPagesRoutes.mainOwner);
-                  //                   setState(() {
-                  //                     ownerController.changeTo(0);
-                  //                     controller.changeTo(1);
-                  //
-                  //                     myPushName(context, MyPagesRoutes.mainOwner);
-                  //                   });
-                  //                   // showSnakBar(
-                  //                   //     context, "هذه الميزة قيد التطوير وسيتم إضافتها قريبًا");
-                  //                 },
-                  //                      Icon(
-                  //                   Icons.change_circle_outlined,
-                  //                   size: 32,
-                  //                   color: kTextColor,
-                  //                 ),
-                  //                 "التبديل إلى مالك",
-                  //               ),
-                  // aline,
+                    // notification icon and text and switch
 
-                  //share app
-                  // ButtonAccount(
-                  //     () {},
-                  //          Icon(
-                  //       Icons.share_outlined,
-                  //       size: 32,
-                  //       color: kTextColor,
-                  //     ),
-                  //     "شارك التطبيق"),
-                  aline,
-                  //send feedback for us
-                  buttonAccount(() {
-                    myPushName(context, MyPagesRoutes.sendNoticeForUs);
-                  },
-                      icon: Icon(
-                        Icons.feedback_outlined,
-                        size: getIt<AppDimension>()
-                                .isSmallScreen(context)
-                            ? 32 - 5
-                            : 32,
+                    // GestureDetector(
+                    //   onTap: () {
+                    //     setState(() {
+                    //       notificationState = !currentValue;
+                    //     });
+                    //     currentValue = notificationState;
+                    //   },
+                    //   child: Row(
+                    //     children: [
+                    //            Padding(
+                    //         padding: EdgeInsets.fromLTRB(0, 0, 10, 0),
+                    //         child: Icon(
+                    //           Icons.notifications_outlined,
+                    //           size: 32,
+                    //         ),
+                    //       ),
+                    //            Text(
+                    //         "الاشعارات",
+                    //         style: TextStyle(
+                    //           fontSize: 18,
+                    //           fontFamily: 'IBM',
+                    //         ),
+                    //       ),
+                    //            Spacer(),
+                    //       Padding(
+                    //         padding:      EdgeInsets.fromLTRB(20, 0, 0, 0),
+                    //         child: Switcher(
+                    //             light1: notificationState,
+                    //             onChanged: (currentValue) {
+                    //               setState(() {
+                    //                 // currentValue = value;
+                    //                 notificationState = currentValue;
+                    //                 // value ==
+                    //                 // false
+                    //                 // ? toast("تم كتم الاشعارات")
+                    //                 // : toast("تم تفعيل الاشعارات");
+                    //               });
+                    //             }),
+                    //       )
+                    //     ],
+                    //   ),
+                    // ),
+                    // aline,
+                    //help
+                    Container(
+                      padding: const EdgeInsets.fromLTRB(0, 0, 0, 0),
+                      margin: const EdgeInsets.fromLTRB(10, 0, 10, 0),
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(7),
                         color: themeMode.isDark
-                            ? kTextColorLightMode
-                            : kTextColorDarkMode,
+                            ? kContainerColorLightMode
+                            : kContainerColorDarkMode,
                       ),
-                      "أرسل ملاحظات إلينا",
-                      context: context),
-                  aline,
-                  buttonAccount(() {
-                    myPushName(context, MyPagesRoutes.noInternet);
-                  },
-                      image: Image.asset("assets/images/tasbih.png",
-                          color: themeMode.isDark
-                              ? kTextColorLightMode
-                              : kTextColorDarkMode,
-                          width: 35,
-                          height: getIt<AppDimension>()
-                                  .isSmallScreen(context)
-                              ? 32 - 5
-                              : 32),
-                      "السبحة",
-                      context: context),
-                  aline,
-                  buttonAccount(() {
-                    Navigator.push(context,
-                        MaterialPageRoute(builder: (context) {
-                      return const BookmarkApartment();
-                    }));
-                  }, "المفضلة",
-                      icon: Icon(
-                        Icons.bookmark_outlined,
-                        color: themeMode.isDark
-                            ? kTextColorLightMode
-                            : kTextColorDarkMode,
+                      child: Column(mainAxisSize: MainAxisSize.min, children: [
+                        // Switch(value:themeMode.isDark , onChanged:
+                        // themeMode.onChanged),
+                        SwitchListTile(
+                            dense: getIt<AppDimension>().isSmallScreen(context),
+                            title: Text("الشكل",
+                                style: TextStyle(
+                                    fontSize: 16,
+                                    fontFamily: 'IBM',
+                                    color: themeMode.isDark
+                                        ? kTextColorLightMode
+                                        : kTextColorDarkMode)),
+                            value: themeMode.isDark,
+                            onChanged: (bool value) async {
+                              setState(() {
+                                themeMode.onChanged(value);
+                                // sp.get('isDark');
+                                // myPushName(context, MyPagesRoutes.splashScreen);
+
+                                myPushNameAnimation(context);
+                              });
+                            }),
+                        aline,
+                        buttonAccount(() {
+                          myPushName(context, MyPagesRoutes.askForHelp);
+                        },
+                            icon: Icon(
+                              Icons.info_outline,
+                              size: getIt<AppDimension>().isSmallScreen(context)
+                                  ? 32 - 5
+                                  : 32,
+                              color: themeMode.isDark
+                                  ? kTextColorLightMode
+                                  : kTextColorDarkMode,
+                            ),
+                            "اطلب المساعدة",
+                            context: context),
+
+                        aline,
+                        //privacy policy
+                        buttonAccount(() {
+                          myPushName(context, MyPagesRoutes.privacyPolicy);
+                        },
+                            icon: Icon(
+                              Icons.privacy_tip_outlined,
+                              size: getIt<AppDimension>().isSmallScreen(context)
+                                  ? 32 - 5
+                                  : 32,
+                              color: themeMode.isDark
+                                  ? kTextColorLightMode
+                                  : kTextColorDarkMode,
+                            ),
+                            "سياسة الخصوصية",
+                            context: context),
+                        // aline,
+                        //switch to owner
+                        //               buttonAccount(
+                        //                 () {
+                        // // myPushReplacementNamed(context,MyPagesRoutes.mainOwner);
+                        //                   myPushName(context, MyPagesRoutes.mainOwner);
+                        //                   setState(() {
+                        //                     ownerController.changeTo(0);
+                        //                     controller.changeTo(1);
+                        //
+                        //                     myPushName(context, MyPagesRoutes.mainOwner);
+                        //                   });
+                        //                   // showSnakBar(
+                        //                   //     context, "هذه الميزة قيد التطوير وسيتم إضافتها قريبًا");
+                        //                 },
+                        //                      Icon(
+                        //                   Icons.change_circle_outlined,
+                        //                   size: 32,
+                        //                   color: kTextColor,
+                        //                 ),
+                        //                 "التبديل إلى مالك",
+                        //               ),
+                        // aline,
+
+                        //share app
+                        // ButtonAccount(
+                        //     () {},
+                        //          Icon(
+                        //       Icons.share_outlined,
+                        //       size: 32,
+                        //       color: kTextColor,
+                        //     ),
+                        //     "شارك التطبيق"),
+                        aline,
+                        /*
+                        status
+                        1:
+                        -> check have wifi or Mobile ?
+                        -> go and don't say any thing ,
+                        2:
+                        else :
+                        go and say no Interent;
+                         */
+                        //send feedback for us
+                        buttonAccount(() {
+                          if (snapshot.data != ConnectivityResult.none) {
+                          }else{
+                            showSnakBar(context, "انت غير متصل بالانترنت");
+                          }
+                          myPushName(context, MyPagesRoutes.sendNoticeForUs);
+
+
+                        },
+                            icon: Icon(
+                              Icons.feedback_outlined,
+                              size: getIt<AppDimension>().isSmallScreen(context)
+                                  ? 32 - 5
+                                  : 32,
+                              color: themeMode.isDark
+                                  ? kTextColorLightMode
+                                  : kTextColorDarkMode,
+                            ),
+                            "أرسل ملاحظات إلينا",
+                            context: context),
+                        aline,
+                        buttonAccount(() {
+                          myPushName(context, MyPagesRoutes.noInternet);
+                        },
+                            image: Image.asset("assets/images/tasbih.png",
+                                color: themeMode.isDark
+                                    ? kTextColorLightMode
+                                    : kTextColorDarkMode,
+                                width: 35,
+                                height:
+                                    getIt<AppDimension>().isSmallScreen(context)
+                                        ? 32 - 5
+                                        : 32),
+                            "السبحة",
+                            context: context),
+                        aline,
+                        buttonAccount(() {
+                          myPushName(context, MyPagesRoutes.bookmarkApartment);
+                        }, "المفضلة",
+                            icon: Icon(
+                              Icons.bookmark_outlined,
+                              color: themeMode.isDark
+                                  ? kTextColorLightMode
+                                  : kTextColorDarkMode,
+                            ),
+                            context: context)
+                      ]),
+                    ),
+                    // aline,
+                    //button login
+                    Padding(
+                      padding: EdgeInsets.fromLTRB(
+                          25,
+                          getIt<AppDimension>().isSmallScreen(context)
+                              ? 60 / 1.8
+                              : 60,
+                          25,
+                          getIt<AppDimension>().isSmallScreen(context)
+                              ? 25 / 1.5
+                              : 25),
+                      child: SizedBox(
+                        width: double.infinity,
+                        height: getIt<AppDimension>().isSmallScreen(context)
+                            ? 55 / 1.2
+                            : 55,
+                        child: ElevatedButton(
+                            onPressed: () {
+                              if (snapshot.data != ConnectivityResult.none) {
+                                myPushName(context, MyPagesRoutes.login);
+                              } else {
+                                myPushName(context, MyPagesRoutes.noInternet);
+                              }
+
+                              // Navigator.of(context).push(
+                              //   MaterialPageRoute(builder: (context) {
+                              //     return const Login();
+                              //   }),
+                              // );
+                              // showSnakBar(context,
+                              //     "هذه الميزة قيد التطوير وسيتم إضافتها قريبًا");
+                            },
+                            style: fullButton.copyWith(
+                                backgroundColor: WidgetStatePropertyAll(
+                              themeMode.isDark
+                                  ? kPrimaryColorLightMode
+                                  : kPrimaryColorDarkMode,
+                            )),
+                            child: const Text(
+                              "تسجيل الدخول",
+                            )),
                       ),
-                      context: context)
-                ]),
-              ),
-              // aline,
-              //button login
-              Padding(
-                padding: EdgeInsets.fromLTRB(
-                    25,
-                    getIt<AppDimension>().isSmallScreen(context)
-                        ? 60 / 1.8
-                        : 60,
-                    25,
-                    getIt<AppDimension>().isSmallScreen(context)
-                        ? 25 / 1.5
-                        : 25),
-                child: SizedBox(
-                  width: double.infinity,
-                  height: getIt<AppDimension>().isSmallScreen(context)
-                      ? 55 / 1.2
-                      : 55,
-                  child: ElevatedButton(
-                      onPressed: () {
-                        Navigator.of(context).push(
-                          MaterialPageRoute(builder: (context) {
-                            return const Login();
-                          }),
-                        );
-                        // showSnakBar(context,
-                        //     "هذه الميزة قيد التطوير وسيتم إضافتها قريبًا");
-                      },
-                      style: fullButton.copyWith(
-                          backgroundColor: WidgetStatePropertyAll(
-                        themeMode.isDark
-                            ? kPrimaryColorLightMode
-                            : kPrimaryColorDarkMode,
-                      )),
-                      child: const Text(
-                        "تسجيل الدخول",
-                      )),
+                    ),
+                    //ask user if don't have count and create account
+                    Row(
+                      children: [
+                        //ask user if don't have account
+                        Padding(
+                          padding: const EdgeInsets.fromLTRB(0, 0, 20, 0),
+                          child: Text(
+                            "ألا تمتلك حساب؟",
+                            style: TextStyle(
+                                color: themeMode.isDark
+                                    ? kTextColorLightMode
+                                    : kTextColorDarkMode,
+                                fontFamily: "IBM"),
+                          ),
+                        ),
+                        //reg
+                        TextButton(
+                          child: const Text(
+                            "إنشاء حساب",
+                            style: TextStyle(
+                              color: Colors.blueAccent,
+                              decoration: TextDecoration.underline,
+                              fontFamily: 'IBM',
+                            ),
+                          ),
+                          onPressed: () {
+                            // showSnakBar(context, "هذه الميزة قيد التطوير وسيتم إضافتها قريبًا");
+                            if (snapshot.data != ConnectivityResult.none                                // ||
+                                // snapshot.data == null
+                                ) {
+                              debugPrint("snapshot.data = ${snapshot.data}");
+                              myPushName(context, MyPagesRoutes.register);
+                            } else {
+                              debugPrint("snapshot.data = ${snapshot.data}");
+                              myPushName(context, MyPagesRoutes.noInternet);
+                            }
+
+                            // Navigator.of(context).push(
+                            //   MaterialPageRoute(builder: (context) {
+                            //     return      Register();
+                            //   }),
+                            // );
+                          },
+                        ),
+                      ],
+                    ),
+                    //Beta Version
+                    Padding(
+                      padding: const EdgeInsets.symmetric(vertical: 30.0),
+                      child: Text(
+                        "الإصدار التجريبي: 3.0.1",
+                        style: TextStyle(
+                            color: themeMode.isDark
+                                ? kTextColorLightMode.withOpacity(.5)
+                                : kTextColorDarkMode.withOpacity(.5)),
+                      ),
+                    )
+
+                    // Padding(
+                    //   padding:      EdgeInsets.only(top: 20*9.5,bottom: 30*2),
+                    //   child: Row(
+                    //     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    //       children: [
+                    //         IconButton(
+                    //         onPressed: (){},
+                    //           icon: Icon(FontAwesomeIcons.facebookMessenger,color: Colors.black.withOpacity(.65),size: 30)),
+                    //         IconButton(
+                    //         onPressed: (){},
+                    //           icon: Icon(FontAwesomeIcons.whatsapp,color: Colors.black.withOpacity(.65),size: 30,)),
+                    //         IconButton(
+                    //         onPressed: (){},
+                    //           icon: Icon(FontAwesomeIcons.facebook,color: Colors.black.withOpacity(.65),size: 30)),
+                    //         IconButton(
+                    //         onPressed: (){},
+                    //           icon: Icon(FontAwesomeIcons.tiktok,color: Colors.black.withOpacity(.65),size: 30)),
+                    //
+                    //       ]),
+                    //   // child: Divider(color: Colors.black.withOpacity(.6),thickness: 7,indent: 10,endIndent: 10),
+                    // ),
+                    //      SizedBox(height: 150,),
+                    // Align(alignment: Alignment.bottomRight,child: Text("إصدار:2023.1",style: TextStyle(fontFamily: "IBM",fontSize: 12,color: Colors.grey.withOpacity(.7)),))
+                  ],
                 ),
               ),
-              //ask user if don't have count and create account
-              Row(
-                children: [
-                  //ask user if don't have account
-                  Padding(
-                    padding: const EdgeInsets.fromLTRB(0, 0, 20, 0),
-                    child: Text(
-                      "ألا تمتلك حساب؟",
-                      style: TextStyle(
-                          color: themeMode.isDark
-                              ? kTextColorLightMode
-                              : kTextColorDarkMode,
-                          fontFamily: "IBM"),
-                    ),
-                  ),
-                  //reg
-                  TextButton(
-                    child: const Text(
-                      "إنشاء حساب",
-                      style: TextStyle(
-                        color: Colors.blueAccent,
-                        decoration: TextDecoration.underline,
-                        fontFamily: 'IBM',
-                      ),
-                    ),
-                    onPressed: () {
-                      // showSnakBar(context, "هذه الميزة قيد التطوير وسيتم إضافتها قريبًا");
-                      myPushName(context, MyPagesRoutes.register);
-                      // Navigator.of(context).push(
-                      //   MaterialPageRoute(builder: (context) {
-                      //     return      Register();
-                      //   }),
-                      // );
-                    },
-                  ),
-                ],
-              ),
-              //Beta Version
-              Padding(
-                padding: const EdgeInsets.symmetric(vertical: 30.0),
-                child: Text(
-                  "الإصدار التجريبي: 3.0.1",
-                  style: TextStyle(
-                      color: themeMode.isDark
-                          ? kTextColorLightMode.withOpacity(.5)
-                          : kTextColorDarkMode.withOpacity(.5)),
-                ),
-              )
-
-              // Padding(
-              //   padding:      EdgeInsets.only(top: 20*9.5,bottom: 30*2),
-              //   child: Row(
-              //     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              //       children: [
-              //         IconButton(
-              //         onPressed: (){},
-              //           icon: Icon(FontAwesomeIcons.facebookMessenger,color: Colors.black.withOpacity(.65),size: 30)),
-              //         IconButton(
-              //         onPressed: (){},
-              //           icon: Icon(FontAwesomeIcons.whatsapp,color: Colors.black.withOpacity(.65),size: 30,)),
-              //         IconButton(
-              //         onPressed: (){},
-              //           icon: Icon(FontAwesomeIcons.facebook,color: Colors.black.withOpacity(.65),size: 30)),
-              //         IconButton(
-              //         onPressed: (){},
-              //           icon: Icon(FontAwesomeIcons.tiktok,color: Colors.black.withOpacity(.65),size: 30)),
-              //
-              //       ]),
-              //   // child: Divider(color: Colors.black.withOpacity(.6),thickness: 7,indent: 10,endIndent: 10),
-              // ),
-              //      SizedBox(height: 150,),
-              // Align(alignment: Alignment.bottomRight,child: Text("إصدار:2023.1",style: TextStyle(fontFamily: "IBM",fontSize: 12,color: Colors.grey.withOpacity(.7)),))
-            ],
-          ),
-        ),
-      ),
+            );
+          }),
     );
   }
 }
