@@ -3,13 +3,14 @@
 name: ween_blaqe
 description: A new Flutter project.
 publish_to: none
-version: 1.0.0+8
+version: 3.0.3
 environment:
   sdk: '>=3.1.5 <4.0.0'
 dependencies:
 #  flutter_image_compress: ^2.3.0
   animated_text_kit: ^4.2.2
   get_it: ^7.6.7
+  package_info_plus: ^8.0.2
   image: ^4.2.0
 #  draggable_widget: ^2.0.0
 #  draggable_float_widget: ^0.1.0
