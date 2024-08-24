@@ -26,7 +26,7 @@ import '../../../../api/users.dart';
 // }
 
 class NewMasterHome extends StatefulWidget {
-  const NewMasterHome({Key? key}) : super(key: key);
+  const NewMasterHome({super.key});
 
   // Future<OneApartment> getDataFromAPI();
   //  MainController mainController = Get.find();
@@ -117,6 +117,10 @@ class _NewMasterHomeState extends State<NewMasterHome> {
   @override
   Widget build(BuildContext context) {
     return RefreshIndicator(
+
+      displacement: 100*3,
+
+      // edgeOffset: -10*10,
       semanticsValue: const Text("refresh").toString(),
       color: kPrimaryColorDarkMode,
       onRefresh: () async {
@@ -453,7 +457,7 @@ class _NewMasterHomeState extends State<NewMasterHome> {
       var responseBody = response.body;
       var json = jsonDecode(responseBody);
       OneApartment apartmentsRes = OneApartment.fromJson(json);
-      debugPrint("a json of apartment is: -- ${json}");
+      debugPrint("a json of apartment is: -- $json");
       setState(() {
         isDataLoaded = true;
       });

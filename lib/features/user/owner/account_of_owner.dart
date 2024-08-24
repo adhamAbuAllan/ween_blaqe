@@ -381,6 +381,7 @@ class _AccountOfOwnerState extends State<AccountOfOwner> {
                       if (snapshot.hasData) {
                         return Text("الإصدار التجريبي: ${snapshot.data} "
                           ,style: TextStyle(
+                                fontFamily: 'IBM',
                               color: themeMode.isDark
                                   ? kTextColorLightMode.withOpacity(.5)
                                   : kTextColorDarkMode.withOpacity(
