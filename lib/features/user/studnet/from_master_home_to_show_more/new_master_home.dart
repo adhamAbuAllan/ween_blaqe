@@ -18,6 +18,7 @@ import 'package:ween_blaqe/features/error_widgets/search_not_found.dart';
 import '../../../../api/apartments_api/one_apartment.dart';
 import '../../../../api/photos.dart';
 import '../../../../api/users.dart';
+import '../../../../controller/get_controllers.dart';
 
 // main(){
 //   runApp( MaterialApp(
@@ -26,9 +27,7 @@ import '../../../../api/users.dart';
 // }
 
 class NewMasterHome extends StatefulWidget {
-  @immutable
-   NewMasterHome({super.key,required this.scrollController});
-  late final ScrollController scrollController;
+  const NewMasterHome({super.key});
 
   // Future<OneApartment> getDataFromAPI();
   //  MainController mainController = Get.find();
@@ -79,24 +78,27 @@ class _NewMasterHomeState extends State<NewMasterHome> {
 
     isStart = true;
     // _scrollController = ScrollController();
-    widget.scrollController.addListener(() {
+    controllerScroll.scrollController.addListener(() {
       //[scrollController.addListener] this attribute usages to hide or show the button
       debugPrint(
-          "min scroll extent${widget.scrollController.position.minScrollExtent}");
+          "min scroll extent${controllerScroll.scrollController.position.minScrollExtent}");
       debugPrint(
-          " scroll div PR${widget.scrollController.position.devicePixelRatio}");
+          " scroll div PR${controllerScroll.scrollController.position.devicePixelRatio}");
       debugPrint(
-          " isScrollingNotifier${widget.scrollController.position.isScrollingNotifier}");
-      debugPrint("axis${widget.scrollController.position.axis}");
-      // debugPrint("axis${widget.scrollController.position.}");
+          " isScrollingNotifier${controllerScroll.scrollController.position.isScrollingNotifier}");
+      debugPrint("axis${controllerScroll.scrollController.position.axis}");
+      // debugPrint("axis${controllerScroll.scrollController.position.}");
       Future.delayed(const Duration(milliseconds: 350), () {
         //when user make scrolling , the udenr code execute after 350 milisec. ///don't remove it///
-        if (widget.scrollController.position.userScrollDirection.name == "forward") {
+        if (controllerScroll
+                .scrollController.position.userScrollDirection.name ==
+            "forward") {
           //if user scroll to up , the button will visible after 350 milisec
           setState(() {
             _isVisible = true;
           });
-        } else if (widget.scrollController.position.userScrollDirection.name ==
+        } else if (controllerScroll
+                .scrollController.position.userScrollDirection.name ==
             "reverse") {
           //when user scroll to down , the button will invisible after 350 milisec
           setState(() {
@@ -119,8 +121,7 @@ class _NewMasterHomeState extends State<NewMasterHome> {
   @override
   Widget build(BuildContext context) {
     return RefreshIndicator(
-
-      displacement: 100*3,
+      displacement: 100 * 3,
 
       // edgeOffset: -10*10,
       semanticsValue: const Text("refresh").toString(),
@@ -181,8 +182,8 @@ class _NewMasterHomeState extends State<NewMasterHome> {
                             ApartmentsList(
                                 apartmentsRes:
                                     apartmentModelController.apartment,
-                                scrollController:
-                                    widget.scrollController), //aprtments list
+                                scrollController: controllerScroll
+                                    .scrollController), //aprtments list
 
                             Padding(
                               padding: const EdgeInsets.only(

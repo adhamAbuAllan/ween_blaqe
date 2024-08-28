@@ -63,6 +63,7 @@ import 'controller/models_controller/images_model_controller.dart';
 import 'controller/models_controller/type_of_apartment_models_controller.dart';
 
 // import 'features/bookmark.dart';
+import 'controller/scroll_controller.dart';
 import 'features/send_notice_for_us.dart';
 import 'features/user/owner/steps_to_create_apartment/first_step.dart';
 import 'features/user/owner/steps_to_create_apartment/fourth_step.dart';
@@ -113,6 +114,7 @@ void main() async {
   // var token = (await sp).get("token");
   //for put
   Get.put(StudentController());
+  Get.put(ControllerScroll());
   Get.put(ApartmentModelController());
   Get.put(MethodsApiApartmentController());
   Get.put(ChangeThemeMode());
@@ -268,8 +270,8 @@ class _OwnMaterialAppState extends State<OwnMaterialApp> {
         //     const BookingNowSkeletonWidget(),
         MyPagesRoutes.skeletonParagraph: (context) =>
         const LongParagraphReadySkeleton(),
-        MyPagesRoutes.newMasterHome: (context) =>  NewMasterHome
-          (scrollController: ScrollController(),),
+        MyPagesRoutes.newMasterHome: (context) =>  const NewMasterHome
+          (),
         MyPagesRoutes.newShowMore: (context) => const NewShowMore(),
         MyPagesRoutes.whatTheInfoReqToCreateAd: (context) =>
         const WhatTheInfoReqToCreateAd(),

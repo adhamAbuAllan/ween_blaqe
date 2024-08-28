@@ -3,16 +3,17 @@ import 'package:flutter/material.dart';
 
 import '../../../api/apartments_api/one_apartment.dart';
 import '../../../constants/nums.dart';
+import '../../../controller/get_controllers.dart';
 import '../../../controller/student_controller/student_controller.dart';
 
 class BottomNavigationBarOfStudent extends StatefulWidget {
   final StudentController controller;
-  final ScrollController scrollController;
+
 
   const BottomNavigationBarOfStudent({
     super.key,
     required this.controller,
-    required this.scrollController,
+
   });
 
   @override
@@ -69,7 +70,7 @@ class _BottomNavigationBarOfStudentState
         });
         if (isHomeIndex) {
           //if the index is 0 then go to the top of the screen
-          widget.scrollController.animateTo(
+          controllerScroll.scrollController.animateTo(
             0,
             duration: const Duration(milliseconds: 300),
             curve: Curves.easeInOut,

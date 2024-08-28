@@ -67,7 +67,7 @@ class _MainStudentState extends State<MainStudent> {
                         children: [
                           // MasterHome(),
 
-                           NewMasterHome(scrollController: scrollController,),
+                           const NewMasterHome(),
                           // const NewMasterHomeTest(),
                           // NotificationOfStudentWithNotifi(),
                           const OrdersOfStudent(),
@@ -83,7 +83,7 @@ class _MainStudentState extends State<MainStudent> {
                 ),
                 bottomNavigationBar: BottomNavigationBarOfStudent(
                   controller: studentController,
-                  scrollController: scrollController,
+
                 ),
                 // floatingActionButtonLocation: FloatingActionButtonLocation.miniEndFloat,
                 floatingActionButton:
