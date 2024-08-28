@@ -21,7 +21,7 @@ class MyApp extends StatelessWidget {
             future: getAppVersion(),
             builder: (BuildContext context, AsyncSnapshot<String> snapshot) {
               if (snapshot.hasData) {
-                return Text("Version: ${snapshot.data}");
+                return Text("Version: ${snapshot.data}",);
               } else if (snapshot.hasError) {
                 return Text("Error: ${snapshot.error}");
               } else {
