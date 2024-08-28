@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../../constants/strings.dart';
 import '../../controller/student_controller/student_controller.dart';
 
 class BottomNavigatoinBarTest extends StatefulWidget {
@@ -21,6 +22,9 @@ class _BottomNavigatoinBarTestState extends State<BottomNavigatoinBarTest> {
             controller.changeTo(i);
             // this.index = index;
           });
+          if(i == 0){
+            Navigator.pushReplacementNamed(context, MyPagesRoutes.main);
+          }
         },
         items: const [
       BottomNavigationBarItem(

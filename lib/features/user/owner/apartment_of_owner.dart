@@ -383,7 +383,7 @@ class _ApartmentsOwnerState extends State<ApartmentsOwner>
     _animationController.forward();
 
     setState(() {
-      apartmentModelController.fetchApartments();
+      apartmentModelController.fetchApartments(isOwnerApartments: true);
     });
     // apartmentModelController.apartments.value == OneApartment(data: [])
     //     ? setState(() {
@@ -455,7 +455,7 @@ class _ApartmentsOwnerState extends State<ApartmentsOwner>
                       isDeleteMode: isDeleteMode,
                       onPressed: () {
                         setState(() {
-                          apartmentModelController.fetchApartments();
+                          apartmentModelController.fetchApartments(isOwnerApartments: true);
                         });
                       },
                     ),

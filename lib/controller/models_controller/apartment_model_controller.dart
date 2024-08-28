@@ -19,24 +19,54 @@ class ApartmentModelController extends GetxController {
   var isLoading = false.obs;
   var apartments = OneApartment(data: []).obs;
 
-  Future<void> fetchApartments() async {
+  Future<OneApartment> fetchApartments({required bool isOwnerApartments })
+  async {
     isLoading.value = true;
-    getApartmentsByOwner().then((value) {
-      if (value.data?.isEmpty??false) {
-        isApartmentNull = true;
-        update();
-        return;
-      }else{
-        isApartmentNull = false;
-        update();
+    if (isOwnerApartments) {
+      getApartmentsByOwner().then((value) {
+        if (value.data?.isEmpty ?? false) {
+          isApartmentNull = true;
+          update();
+          return;
+        } else {
+          isApartmentNull = false;
+          update();
+        }
+        apartments.value = value;
+        debugPrint(" the length of data is ${apartments.value.data?.length}");
+      }).catchError((e) {
+        debugPrint('Error fetching apartments: $e');
+      }).whenComplete(() {
+        isLoading.value = false;
+      });
+    } else {
+      final uri = Uri.parse(ServerWeenBalaqee.apartmentAll);
+      final response = await http.get(uri);
+      if (response.statusCode == 200) {
+        // All ok
+        var responseBody = response.body;
+        var json = jsonDecode(responseBody);
+        OneApartment apartmentsRes = OneApartment.fromJson(json);
+        apartments.value = apartmentsRes;
+        debugPrint("a json of apartment is: -- $json");
+        // setState(() {
+        //   isDataLoaded = true;
+        // });
+        // debugPrint("the id is : ${apartmentsRes.data?.first.ownerId}");
+        debugPrint("data : ${apartmentsRes.data}");
+        debugPrint("msg : ${apartmentsRes.msg}");
+        debugPrint("the status is ${apartmentsRes.status}");
+        isLoading.value = false;
+        return apartments.value;
+      } else if (apartmentModelController.apartment.msg?.isNotEmpty ?? false) {
+        var errorMessage =
+            ' a messsage of response of apartment is : ${response.statusCode}: ${response.body} ';
+        debugPrint(errorMessage);
+        return OneApartment(data: []);
       }
-      apartments.value = value;
-      debugPrint(" the length of data is ${apartments.value.data?.length}");
-    }).catchError((e) {
-      debugPrint('Error fetching apartments: $e');
-    }).whenComplete(() {
-      isLoading.value = false;
-    });
+    }
+
+    return OneApartment(data: []);
   }
 
   Future<OneApartment> getApartmentsByOwner() async {

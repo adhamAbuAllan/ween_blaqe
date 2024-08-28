@@ -7,11 +7,13 @@ import '../../../controller/student_controller/student_controller.dart';
 
 class BottomNavigationBarOfStudent extends StatefulWidget {
   final StudentController controller;
+  final ScrollController scrollController;
 
   const BottomNavigationBarOfStudent({
-    Key? key,
+    super.key,
     required this.controller,
-  }) : super(key: key);
+    required this.scrollController,
+  });
 
   @override
   State<BottomNavigationBarOfStudent> createState() =>
@@ -23,6 +25,7 @@ class _BottomNavigationBarOfStudentState
   String errorMessage = "";
   late OneApartment apartmentsRes;
   bool isDataLoaded = false; //data load from server
+  bool isHomeIndex = false; // to check the current index is home or not.
 
   @override
   void initState() {
@@ -55,9 +58,23 @@ class _BottomNavigationBarOfStudentState
       currentIndex: controller.index,
       onTap: (i) {
         setState(() {
+          if (i == 0 && controller.index == 0) {
+            //make the [isHomeIndex] true if the index is 0
+            isHomeIndex = true;
+          } else {
+            isHomeIndex = false;
+          }
           controller.changeTo(i);
           // this.index = index;
         });
+        if (isHomeIndex) {
+          //if the index is 0 then go to the top of the screen
+          widget.scrollController.animateTo(
+            0,
+            duration: const Duration(milliseconds: 300),
+            curve: Curves.easeInOut,
+          );
+        }
       },
       //items of BottomNavigationBer Widget
       items: const [

@@ -26,7 +26,9 @@ import '../../../../api/users.dart';
 // }
 
 class NewMasterHome extends StatefulWidget {
-  const NewMasterHome({super.key});
+  @immutable
+   NewMasterHome({super.key,required this.scrollController});
+  late final ScrollController scrollController;
 
   // Future<OneApartment> getDataFromAPI();
   //  MainController mainController = Get.find();
@@ -52,8 +54,8 @@ class _NewMasterHomeState extends State<NewMasterHome> {
   bool isHaveInternet = false;
 
   // bool clicked = false;//to chnage bookmark icon
-  late ScrollController
-      _scrollController; //[_scroolController] usgae to show or hide a types button when user scroll.
+  // late ScrollController
+  //     _scrollController; //[_scroolController] usgae to show or hide a types button when user scroll.
 
   bool _isVisible =
       false; //[_isVisable] usage to hide or show button and a list of types when user scroll or tab on screen.
@@ -76,25 +78,25 @@ class _NewMasterHomeState extends State<NewMasterHome> {
     super.initState();
 
     isStart = true;
-    _scrollController = ScrollController();
-    _scrollController.addListener(() {
-      //[_scrollController.addListener] this attribute usages to hide or show the button
+    // _scrollController = ScrollController();
+    widget.scrollController.addListener(() {
+      //[scrollController.addListener] this attribute usages to hide or show the button
       debugPrint(
-          "min scroll extent${_scrollController.position.minScrollExtent}");
+          "min scroll extent${widget.scrollController.position.minScrollExtent}");
       debugPrint(
-          " scroll div PR${_scrollController.position.devicePixelRatio}");
+          " scroll div PR${widget.scrollController.position.devicePixelRatio}");
       debugPrint(
-          " isScrollingNotifier${_scrollController.position.isScrollingNotifier}");
-      debugPrint("axis${_scrollController.position.axis}");
-      // debugPrint("axis${_scrollController.position.}");
+          " isScrollingNotifier${widget.scrollController.position.isScrollingNotifier}");
+      debugPrint("axis${widget.scrollController.position.axis}");
+      // debugPrint("axis${widget.scrollController.position.}");
       Future.delayed(const Duration(milliseconds: 350), () {
         //when user make scrolling , the udenr code execute after 350 milisec. ///don't remove it///
-        if (_scrollController.position.userScrollDirection.name == "forward") {
+        if (widget.scrollController.position.userScrollDirection.name == "forward") {
           //if user scroll to up , the button will visible after 350 milisec
           setState(() {
             _isVisible = true;
           });
-        } else if (_scrollController.position.userScrollDirection.name ==
+        } else if (widget.scrollController.position.userScrollDirection.name ==
             "reverse") {
           //when user scroll to down , the button will invisible after 350 milisec
           setState(() {
@@ -180,7 +182,7 @@ class _NewMasterHomeState extends State<NewMasterHome> {
                                 apartmentsRes:
                                     apartmentModelController.apartment,
                                 scrollController:
-                                    _scrollController), //aprtments list
+                                    widget.scrollController), //aprtments list
 
                             Padding(
                               padding: const EdgeInsets.only(

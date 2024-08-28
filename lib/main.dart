@@ -128,8 +128,8 @@ void main() async {
   //for get
   await configureInjection();
   runApp(const OwnMaterialApp(
-      // logged: token != null,
-      ));
+    // logged: token != null,
+  ));
   // await Firebase.initializeApp(
   //   options: DefaultFirebaseOptions.currentPlatform,
   // );
@@ -207,7 +207,8 @@ class _OwnMaterialAppState extends State<OwnMaterialApp> {
         MyPagesRoutes.step1: (context) => const FirstStep(),
         MyPagesRoutes.step2: (context) => const SecondStep(),
         MyPagesRoutes.step3: (context) => const ThirdStep(),
-        MyPagesRoutes.step4: (context) => FourthStep(
+        MyPagesRoutes.step4: (context) =>
+            FourthStep(
               oneApartmentId: apartmentModelController.apartment.data?.first,
             ),
         MyPagesRoutes.login: (context) => const Login(),
@@ -241,24 +242,24 @@ class _OwnMaterialAppState extends State<OwnMaterialApp> {
         MyPagesRoutes.askForHelp: (context) => const AskForHelp(),
         MyPagesRoutes.systemPaying: (context) => const SystemPaying(),
         MyPagesRoutes.whatIsSystemPayingAllow: (context) =>
-            const WhatIsSystemPayingAllow(),
+        const WhatIsSystemPayingAllow(),
         MyPagesRoutes.couldIPayByDeposit: (context) =>
-            const CouldIPayByDeposit(),
+        const CouldIPayByDeposit(),
         MyPagesRoutes.whatIsMeanSS: (context) => const WhatIsMeanSS(),
         MyPagesRoutes.howCouldBookingApartment: (context) =>
-            const HowCouldBookingApartment(),
+        const HowCouldBookingApartment(),
         MyPagesRoutes.systemBooking: (context) => const SystemBooking(),
         MyPagesRoutes.couldICancelABooking: (context) =>
-            const CouldICancelABooking(),
+        const CouldICancelABooking(),
         MyPagesRoutes.howLongIsTheReservationAvailable: (context) =>
-            const HowLongIsTheReservationAvailable(),
+        const HowLongIsTheReservationAvailable(),
         MyPagesRoutes.howCreateAd: (context) => const HowCreateAd(),
         // MyPagesRoutes.couldBeOwnerAndStudentInOneTime: (context) =>
         //     const CouldBeOwnerAndStudentInOneTime(),
         MyPagesRoutes.sendNoticeForUs: (context) => const SendNoticeForUs(),
         MyPagesRoutes.theAdIsFreeOrNot: (context) => const TheAdIsFreeOrNot(),
         MyPagesRoutes.skeletonShowMoreWidget: (context) =>
-            const SkeletonShowMoreWidget(),
+        const SkeletonShowMoreWidget(),
         // MyPagesRoutes.screensWillAddFuture: (context) =>
         //     const ScreensWillAddFuture(),
         MyPagesRoutes.noInternet: (context) => const NoInternet(),
@@ -266,11 +267,12 @@ class _OwnMaterialAppState extends State<OwnMaterialApp> {
         // MyPagesRoutes.skeletonBookingNow: (context) =>
         //     const BookingNowSkeletonWidget(),
         MyPagesRoutes.skeletonParagraph: (context) =>
-            const LongParagraphReadySkeleton(),
-        MyPagesRoutes.newMasterHome: (context) => const NewMasterHome(),
+        const LongParagraphReadySkeleton(),
+        MyPagesRoutes.newMasterHome: (context) =>  NewMasterHome
+          (scrollController: ScrollController(),),
         MyPagesRoutes.newShowMore: (context) => const NewShowMore(),
         MyPagesRoutes.whatTheInfoReqToCreateAd: (context) =>
-            const WhatTheInfoReqToCreateAd(),
+        const WhatTheInfoReqToCreateAd(),
 
         //testing routes..
         // MyPagesRoutes.citiesTest:(context)=> CitiesTest(),
@@ -336,7 +338,7 @@ class _MainState extends State<Main> {
     myPushNameAndRemoveUntil(
         context,
         MyPagesRoutes.main,
-        (route) => route.settings.name == MyPagesRoutes.main,
+            (route) => route.settings.name == MyPagesRoutes.main,
         MyPagesRoutes.main);
   }
 
@@ -373,7 +375,7 @@ class _MainState extends State<Main> {
         // top
         bottomColor: Colors.transparent,
         color:
-            themeMode.isDark ? kPrimaryColorLightMode : kPrimaryColorDarkMode,
+        themeMode.isDark ? kPrimaryColorLightMode : kPrimaryColorDarkMode,
         child: Scaffold(
             backgroundColor: Colors.grey.shade200,
             body: GetBuilder<MainController>(
@@ -389,8 +391,8 @@ class _MainState extends State<Main> {
               },
             )
 
-            //
-            ),
+          //
+        ),
       ),
     );
   }

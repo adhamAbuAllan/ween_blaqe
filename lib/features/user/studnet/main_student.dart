@@ -38,7 +38,7 @@ class _MainStudentState extends State<MainStudent> {
   String apartmentIdLocal = "";
 
   StudentController controller = Get.find();
-
+  ScrollController scrollController = ScrollController();
   @override
   Widget build(BuildContext context) {
     var studentController = controller;
@@ -67,7 +67,7 @@ class _MainStudentState extends State<MainStudent> {
                         children: [
                           // MasterHome(),
 
-                          const NewMasterHome(),
+                           NewMasterHome(scrollController: scrollController,),
                           // const NewMasterHomeTest(),
                           // NotificationOfStudentWithNotifi(),
                           const OrdersOfStudent(),
@@ -83,6 +83,7 @@ class _MainStudentState extends State<MainStudent> {
                 ),
                 bottomNavigationBar: BottomNavigationBarOfStudent(
                   controller: studentController,
+                  scrollController: scrollController,
                 ),
                 // floatingActionButtonLocation: FloatingActionButtonLocation.miniEndFloat,
                 floatingActionButton:
