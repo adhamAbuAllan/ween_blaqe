@@ -1,18 +1,21 @@
 import 'package:flutter/material.dart';
+import 'package:ween_blaqe/features/user/studnet/from_master_home_to_show_more/new_master_home.dart';
 // import 'package:ween_blaqe/controller/get_controllers.dart';
 
 import '../../../api/apartments_api/one_apartment.dart';
 import '../../../constants/nums.dart';
-import '../../../controller/get_controllers.dart';
+// import '../../../controller/get_controllers.dart';
 import '../../../controller/student_controller/student_controller.dart';
 
 class BottomNavigationBarOfStudent extends StatefulWidget {
   final StudentController controller;
+  final ScrollController ? scrollController;
 
 
   const BottomNavigationBarOfStudent({
     super.key,
-    required this.controller,
+    required this.controller, this.scrollController,
+
 
   });
 
@@ -23,10 +26,10 @@ class BottomNavigationBarOfStudent extends StatefulWidget {
 
 class _BottomNavigationBarOfStudentState
     extends State<BottomNavigationBarOfStudent> {
+  NewMasterHome newMasterHome = const NewMasterHome();
   String errorMessage = "";
   late OneApartment apartmentsRes;
   bool isDataLoaded = false; //data load from server
-  bool isHomeIndex = false; // to check the current index is home or not.
 
   @override
   void initState() {
@@ -59,23 +62,39 @@ class _BottomNavigationBarOfStudentState
       currentIndex: controller.index,
       onTap: (i) {
         setState(() {
-          if (i == 0 && controller.index == 0) {
+          if (i == 0 && controller.index == 0 && widget.scrollController!.offset >
+              400) {
+
+              //if the index is 0 then go to the top of the screen
+            debugPrint("the i = $i and the controller.index = ${controller.index}");
+            setState(() {
+              widget.scrollController!.animateTo(
+                0,
+                duration: const Duration(milliseconds: 300),
+                curve: Curves.easeInOut,
+              );
+
+            });
+
+
+            // new
             //make the [isHomeIndex] true if the index is 0
-            isHomeIndex = true;
+            // isHomeIndex = true;
+
           } else {
-            isHomeIndex = false;
+            // isHomeIndex = false;
           }
           controller.changeTo(i);
           // this.index = index;
         });
-        if (isHomeIndex) {
-          //if the index is 0 then go to the top of the screen
-          controllerScroll.scrollController.animateTo(
-            0,
-            duration: const Duration(milliseconds: 300),
-            curve: Curves.easeInOut,
-          );
-        }
+        // if ( !controllerScroll.isHomeIndex ) {
+        //   //if the index is 0 then go to the top of the screen
+        //   controllerScroll.scrollController.animateTo(
+        //     0,
+        //     duration: const Duration(milliseconds: 300),
+        //     curve: Curves.easeInOut,
+        //   );
+        // }
       },
       //items of BottomNavigationBer Widget
       items: const [

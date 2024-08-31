@@ -451,7 +451,7 @@ class _ApartmentsOwnerState extends State<ApartmentsOwner>
                     )
                   : ApartmentsList(
                       apartmentsRes: apartmentModelController.apartments.value,
-                      scrollController: ScrollController(),
+                      // scrollController: ScrollController(),
                       isDeleteMode: isDeleteMode,
                       onPressed: () {
                         setState(() {

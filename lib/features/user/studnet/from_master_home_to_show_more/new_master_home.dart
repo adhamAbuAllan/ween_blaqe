@@ -18,7 +18,7 @@ import 'package:ween_blaqe/features/error_widgets/search_not_found.dart';
 import '../../../../api/apartments_api/one_apartment.dart';
 import '../../../../api/photos.dart';
 import '../../../../api/users.dart';
-import '../../../../controller/get_controllers.dart';
+// import '../../../../controller/get_controllers.dart';
 
 // main(){
 //   runApp( MaterialApp(
@@ -27,8 +27,8 @@ import '../../../../controller/get_controllers.dart';
 // }
 
 class NewMasterHome extends StatefulWidget {
-  const NewMasterHome({super.key});
-
+  const NewMasterHome({super.key,  this.scrollController});
+ final ScrollController? scrollController;
   // Future<OneApartment> getDataFromAPI();
   //  MainController mainController = Get.find();
 
@@ -41,7 +41,6 @@ class _NewMasterHomeState extends State<NewMasterHome> {
 
   // late OneApartment apartmentsRes;
   late String name;
-
   // for data is loaded flag
   bool isDataLoaded = false; //data load from server
   // bool isCodeActive = false;//chick if code is action
@@ -53,8 +52,6 @@ class _NewMasterHomeState extends State<NewMasterHome> {
   bool isHaveInternet = false;
 
   // bool clicked = false;//to chnage bookmark icon
-  // late ScrollController
-  //     _scrollController; //[_scroolController] usgae to show or hide a types button when user scroll.
 
   bool _isVisible =
       false; //[_isVisable] usage to hide or show button and a list of types when user scroll or tab on screen.
@@ -71,34 +68,33 @@ class _NewMasterHomeState extends State<NewMasterHome> {
 
   //[_type] value that mean the type of apartment
   String _type = 'طلاب'; //first type
-
+  // late ScrollController scrollController;
   @override
   void initState() {
     super.initState();
 
     isStart = true;
-    // _scrollController = ScrollController();
-    controllerScroll.scrollController.addListener(() {
+    // scrollController = ScrollController();
+    widget.scrollController!.addListener(() {
       //[scrollController.addListener] this attribute usages to hide or show the button
-      debugPrint(
-          "min scroll extent${controllerScroll.scrollController.position.minScrollExtent}");
-      debugPrint(
-          " scroll div PR${controllerScroll.scrollController.position.devicePixelRatio}");
-      debugPrint(
-          " isScrollingNotifier${controllerScroll.scrollController.position.isScrollingNotifier}");
-      debugPrint("axis${controllerScroll.scrollController.position.axis}");
-      // debugPrint("axis${controllerScroll.scrollController.position.}");
+      // debugPrint(widget.scrollController!.position.userScrollDirection.name);
+      // debugPrint(
+      //     "min scroll extent${widget.scrollController!.position.minScrollExtent}");
+      // debugPrint(
+      //     " scroll div PR${widget.scrollController!.position.devicePixelRatio}");
+      // debugPrint(
+      //     " isScrollingNotifier${widget.scrollController!.position.isScrollingNotifier}");
+      // debugPrint("axis${widget.scrollController!.position.axis}");
+      // debugPrint("axis${widget.scrollController!.position.off}");
       Future.delayed(const Duration(milliseconds: 350), () {
         //when user make scrolling , the udenr code execute after 350 milisec. ///don't remove it///
-        if (controllerScroll
-                .scrollController.position.userScrollDirection.name ==
+        if (widget.scrollController!.position.userScrollDirection.name ==
             "forward") {
           //if user scroll to up , the button will visible after 350 milisec
           setState(() {
             _isVisible = true;
           });
-        } else if (controllerScroll
-                .scrollController.position.userScrollDirection.name ==
+        } else if (widget.scrollController!.position.userScrollDirection.name ==
             "reverse") {
           //when user scroll to down , the button will invisible after 350 milisec
           setState(() {
@@ -182,8 +178,7 @@ class _NewMasterHomeState extends State<NewMasterHome> {
                             ApartmentsList(
                                 apartmentsRes:
                                     apartmentModelController.apartment,
-                                scrollController: controllerScroll
-                                    .scrollController), //aprtments list
+                                scrollController: widget.scrollController), //aprtments list
 
                             Padding(
                               padding: const EdgeInsets.only(
@@ -440,7 +435,7 @@ class _NewMasterHomeState extends State<NewMasterHome> {
                           },
                           text: "   سّبح   "),
                 ),
-              )
+              ),
             ]),
     ); // show HomeSkeletonWdiget if data is loading
   }
@@ -520,4 +515,6 @@ class _NewMasterHomeState extends State<NewMasterHome> {
 
     // Navigator.pushReplacementNamed(context,MyPagesRoutes.noInternet);
   }
+
+
 }

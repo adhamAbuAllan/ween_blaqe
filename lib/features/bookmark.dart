@@ -70,7 +70,8 @@ class _BookmarkApartmentState extends State<BookmarkApartment> {
           underCenterText:"  "
       ): ApartmentsList(
           apartmentsRes: apartmentsBookmarked,
-          scrollController: scrollController),
+          // scrollController: scrollController
+      ),
     );
   }
 

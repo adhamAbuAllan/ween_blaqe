@@ -67,7 +67,7 @@ class _MainStudentState extends State<MainStudent> {
                         children: [
                           // MasterHome(),
 
-                           const NewMasterHome(),
+                            NewMasterHome(scrollController: scrollController,),
                           // const NewMasterHomeTest(),
                           // NotificationOfStudentWithNotifi(),
                           const OrdersOfStudent(),
@@ -83,9 +83,10 @@ class _MainStudentState extends State<MainStudent> {
                 ),
                 bottomNavigationBar: BottomNavigationBarOfStudent(
                   controller: studentController,
-
+                  scrollController: scrollController,
                 ),
-                // floatingActionButtonLocation: FloatingActionButtonLocation.miniEndFloat,
+                floatingActionButtonLocation:
+                    FloatingActionButtonLocation.endFloat,
                 floatingActionButton:
                     // isTest
                     //     ? FloatingActionButton(
@@ -350,9 +351,12 @@ class _MainStudentState extends State<MainStudent> {
                     //       )
                     // buildSpeedDial()
                     FloatingActionButton(
+                  tooltip: "اضافة أعلان",
                   backgroundColor: themeMode.isDark
                       ? kPrimaryColorLightMode
                       : kPrimaryColorDarkMode,
+                  shape: ContinuousRectangleBorder(
+                      borderRadius: BorderRadius.circular(16)),
                   onPressed: () {
                     if (snapshot.data != ConnectivityResult.none) {
                       NewSession.get("logged", "") == ""
