@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:ween_blaqe/core/utils/styles/button.dart';
+// import 'package:ween_blaqe/core/utils/styles/button.dart';
 
 import '../../../api/cities.dart';
 
 
 
-Widget city(City city, Function onClick) {
+Widget city(City city, Function onClick,{ButtonStyle? style,}) {
   return Padding(
     padding: const EdgeInsets.all(10.0),
     child: SizedBox(
@@ -15,7 +15,7 @@ Widget city(City city, Function onClick) {
           onPressed: () {
             onClick.call();
           },
-          style: outlineButton,
+          style:style,
           child: Text(city.name??"جاري التحميل...")),
     ),
   );

@@ -7,7 +7,7 @@ class CitiesBarSkeleton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const SingleChildScrollView(
+    return  const SingleChildScrollView(
       scrollDirection: Axis.horizontal,
       child: SkeletonItem(
           child: Row(
@@ -15,7 +15,7 @@ class CitiesBarSkeleton extends StatelessWidget {
           Padding(
             padding: EdgeInsets.fromLTRB(10, 5, 0, 5),
             child: SkeletonAvatar(
-                style: SkeletonAvatarStyle(width: 90, height: 40)),
+                style: SkeletonAvatarStyle(width: 90, height: 40,),),
           ),
           Padding(
             padding: EdgeInsets.fromLTRB(10, 5, 0, 5),

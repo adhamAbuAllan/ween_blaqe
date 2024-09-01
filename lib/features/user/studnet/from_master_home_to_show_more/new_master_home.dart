@@ -1,11 +1,13 @@
 import 'dart:convert';
 import 'package:connectivity_plus/connectivity_plus.dart';
+
 // import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
 import 'package:ween_blaqe/constants/nums.dart';
 import 'package:ween_blaqe/constants/strings.dart';
+import 'package:ween_blaqe/controller/get_controllers.dart';
 import 'package:ween_blaqe/controller/models_controller/apartment_model_controller.dart';
 import 'package:ween_blaqe/core/utils/funcations/route_pages/push_routes.dart';
 import 'package:ween_blaqe/core/widgets/apartments/new_master_home_classes_widgets/apartment_container/list_of_apartments.dart';
@@ -19,6 +21,7 @@ import 'package:ween_blaqe/features/error_widgets/search_not_found.dart';
 import '../../../../api/apartments_api/one_apartment.dart';
 import '../../../../api/photos.dart';
 import '../../../../api/users.dart';
+
 // import '../../../../core/widgets/apartments/home_screen/bar_cities.dart';
 // import '../../../../controller/get_controllers.dart';
 
@@ -108,14 +111,15 @@ class _NewMasterHomeState extends State<NewMasterHome> {
         }
       });
     });
-    callAPIAndAssignData(type: _type, isAll: true);
+    callAPIAndAssignData(type: _type, isAll: true, cityId: 0);
+    cityModelController.cityId.value = 0;
     debugPrint("the initState is work now ");
     // myPushName(context, MyPagesRoutes.skeletonShowMoreWidget);
     // SkeletonShowMoreWidget;
     _isAll = true;
 
     debugPrint("type in initState is :$_type ");
-    debugPrint("the api is: $callAPIAndAssignData(isAll: isAll)");
+    debugPrint("the api is: $callAPIAndAssignData(isAll: _isAll)");
     debugPrint("a user info is:$User");
   }
 
@@ -131,7 +135,10 @@ class _NewMasterHomeState extends State<NewMasterHome> {
       onRefresh: () async {
         setState(() {
           isDataLoaded = false;
-          callAPIAndAssignData(isAll: _isAll, type: _type);
+          callAPIAndAssignData(
+              isAll: _isAll,
+              type: _type,
+              cityId: cityModelController.cityId.value);
         });
       },
       child: isDataLoaded //if data is loading
@@ -143,7 +150,6 @@ class _NewMasterHomeState extends State<NewMasterHome> {
                       type: _type,
                     ) // then go to TypeNotFound screen
                   : StreamBuilder<ConnectivityResult>(
-
                       stream: Connectivity().onConnectivityChanged,
                       builder: (context, snapshot) {
                         //check wifi
@@ -174,7 +180,6 @@ class _NewMasterHomeState extends State<NewMasterHome> {
                         }
 
                         return GestureDetector(
-
                           onTap: () {
                             //make list of types of apartment type and button that show a list is inviable when click on screen
                             setState(() {
@@ -182,11 +187,26 @@ class _NewMasterHomeState extends State<NewMasterHome> {
                             });
                           },
                           child:
-                              Stack(
-
-
-                                  alignment: Alignment.topRight, children: [
+                              Stack(alignment: Alignment.topRight, children: [
                             ApartmentsList(
+                                onClick: () async {
+                                  if (_isAll) {
+                                    callAPIAndAssignData(
+                                        isAll: true,
+                                        cityId:
+                                            cityModelController.cityId.value);
+
+                                  } else {
+                                    setState(() {
+                                      _isAll = false;
+                                      callAPIAndAssignData(
+                                          isAll: _isAll,
+                                          cityId:
+                                              cityModelController.cityId.value,
+                                          type: _type);
+                                    });
+                                  }
+                                },
                                 apartmentsRes:
                                     apartmentModelController.apartment,
                                 scrollController:
@@ -240,9 +260,12 @@ class _NewMasterHomeState extends State<NewMasterHome> {
                                                               isDataLoaded =
                                                                   false;
                                                               _type = "طلاب";
+
                                                               callAPIAndAssignData(
                                                                   type: _type,
-                                                                  isAll: false);
+                                                                  isAll: false,
+                                                                  cityId:
+                                                                  cityModelController.cityId.value);
                                                               _isBoyStudent =
                                                                   true;
                                                               _isGirlStudent =
@@ -288,8 +311,10 @@ class _NewMasterHomeState extends State<NewMasterHome> {
 
                                                               _type = "طالبات";
                                                               callAPIAndAssignData(
-                                                                  type: _type,
-                                                                  isAll: false);
+                                                                type: _type,
+                                                                isAll: false,
+                                                                cityId: cityModelController.cityId.value,
+                                                              );
                                                               _isBoyStudent =
                                                                   false;
                                                               _isGirlStudent =
@@ -336,7 +361,8 @@ class _NewMasterHomeState extends State<NewMasterHome> {
                                                               _type = "عائلات";
                                                               callAPIAndAssignData(
                                                                   type: _type,
-                                                                  isAll: false);
+                                                                  isAll: false,
+                                                                  cityId: cityModelController.cityId.value);
                                                               _isBoyStudent =
                                                                   false;
                                                               _isGirlStudent =
@@ -377,12 +403,15 @@ class _NewMasterHomeState extends State<NewMasterHome> {
                                                           textType: 'الكل',
                                                           onPressed: () {
                                                             setState(() {
+                                                              // cityModelController.cityId.value = 0;
                                                               isDataLoaded =
                                                                   false;
                                                               // _type = "عائلات";
 
                                                               callAPIAndAssignData(
-                                                                  isAll: true);
+                                                                isAll: true,
+                                                                cityId: cityModelController.cityId.value,
+                                                              );
                                                               _isBoyStudent =
                                                                   false;
                                                               _isGirlStudent =
@@ -453,11 +482,32 @@ class _NewMasterHomeState extends State<NewMasterHome> {
   }
 
   // API Call
-  Future<OneApartment> getDataFromAPI({String? type, bool? isAll}) async {
-    Uri uri = Uri.parse("${ServerWeenBalaqee.apartmentAll}?type=$type");
-    if (isAll == true) {
-      uri = Uri.parse(ServerWeenBalaqee.apartmentAll);
+  Future<OneApartment> getDataFromAPI(
+      {String? type, bool? isAll, int? cityId}) async {
+    late Uri uri;
+    if (isAll ?? true) {
+      uri = Uri.parse("${ServerWeenBalaqee.apartmentAll}?city_id=${cityId??0}");
+    } else {
+      uri = Uri.parse("${ServerWeenBalaqee
+          .apartmentAll}?type=$type&&city_id=${cityId??0}");
     }
+
+    // Uri uri = Uri.parse(ServerWeenBalaqee.apartmentAll);
+    // if (cityId != null && type != null) {
+    //   uri = Uri.parse(
+    //       "${ServerWeenBalaqee.apartmentAll}?type=$type&city_id=$cityId");
+    // }
+    // if (cityId != null && isAll == true) {
+    //   uri = Uri.parse("${ServerWeenBalaqee.apartmentAll}?city_id=$cityId");
+    // }
+    //
+    // if (isAll == false && type != null) {
+    //   uri = Uri.parse("${ServerWeenBalaqee.apartmentAll}?type=$type");
+    // }
+    // if (isAll == true) {
+    //   uri = Uri.parse(ServerWeenBalaqee.apartmentAll);
+    // }
+
     debugPrint("uri --$uri");
     var response = await http.get(uri);
     debugPrint("response --$response");
@@ -507,9 +557,10 @@ class _NewMasterHomeState extends State<NewMasterHome> {
     }
   }
 
-  void callAPIAndAssignData({String? type, required bool isAll}) async {
+  void callAPIAndAssignData(
+      {String? type, int? cityId, required bool isAll}) async {
     apartmentModelController.apartment =
-        (await getDataFromAPI(type: type, isAll: isAll));
+        (await getDataFromAPI(type: type, isAll: isAll, cityId: cityId));
   }
 
   Future<void> showSnackBarAfter3Second() async {

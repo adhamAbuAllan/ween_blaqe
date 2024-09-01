@@ -13,6 +13,7 @@ final ButtonStyle fullButton = ElevatedButton.styleFrom(
     textStyle: const TextStyle(
       fontSize: 15,
       fontFamily: 'IBM',
+      color: Colors.white,
     ),
     shape: const RoundedRectangleBorder(
         borderRadius: BorderRadius.all(Radius.circular(7))));

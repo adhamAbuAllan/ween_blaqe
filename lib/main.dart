@@ -27,6 +27,7 @@ import 'package:ween_blaqe/controller/get_controllers.dart';
 import 'package:ween_blaqe/controller/main_controller.dart';
 import 'package:flutter/services.dart';
 import 'package:ween_blaqe/controller/models_controller/advantages_model_controller.dart';
+import 'package:ween_blaqe/controller/models_controller/city_model_controller.dart';
 
 // import 'package:ween_blaqe/controller/owner_controller/owner_controller.dart';
 import 'package:ween_blaqe/controller/student_controller/student_controller.dart';
@@ -115,6 +116,7 @@ void main() async {
   //for put
   Get.put(StudentController());
   Get.put(ControllerScroll());
+  Get.put(CityModelController());
   Get.put(ApartmentModelController());
   Get.put(MethodsApiApartmentController());
   Get.put(ChangeThemeMode());
