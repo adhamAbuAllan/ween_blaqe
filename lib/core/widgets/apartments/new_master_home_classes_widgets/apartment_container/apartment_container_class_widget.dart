@@ -7,7 +7,7 @@ final Widget child;
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: const EdgeInsets.fromLTRB(10, 23, 10, 0),
+      margin: const EdgeInsets.fromLTRB(10, 0, 10, 23),
       // width: 373,
       /*
       this is  wrong don't add height in the container

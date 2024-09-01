@@ -13,6 +13,7 @@ import 'package:ween_blaqe/constants/nums.dart';
 import '../../../sesstion/new_session.dart';
 import '../../widgets_before_user_reg/account_before_login.dart';
 import 'from_master_home_to_show_more/new_master_home.dart';
+// import 'master_home.dart';
 import 'orders_of_student.dart';
 
 class MainStudent extends StatefulWidget {
@@ -65,7 +66,8 @@ class _MainStudentState extends State<MainStudent> {
                       child: IndexedStack(
                         index: studentController.index,
                         children: [
-                          // MasterHome(),
+                          // const MasterHome(),
+
 
                             NewMasterHome(scrollController: scrollController,),
                           // const NewMasterHomeTest(),

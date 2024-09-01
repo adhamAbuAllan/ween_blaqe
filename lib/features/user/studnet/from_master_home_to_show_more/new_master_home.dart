@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'package:connectivity_plus/connectivity_plus.dart';
+// import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
@@ -18,6 +19,7 @@ import 'package:ween_blaqe/features/error_widgets/search_not_found.dart';
 import '../../../../api/apartments_api/one_apartment.dart';
 import '../../../../api/photos.dart';
 import '../../../../api/users.dart';
+// import '../../../../core/widgets/apartments/home_screen/bar_cities.dart';
 // import '../../../../controller/get_controllers.dart';
 
 // main(){
@@ -27,8 +29,10 @@ import '../../../../api/users.dart';
 // }
 
 class NewMasterHome extends StatefulWidget {
-  const NewMasterHome({super.key,  this.scrollController});
- final ScrollController? scrollController;
+  const NewMasterHome({super.key, this.scrollController});
+
+  final ScrollController? scrollController;
+
   // Future<OneApartment> getDataFromAPI();
   //  MainController mainController = Get.find();
 
@@ -41,6 +45,7 @@ class _NewMasterHomeState extends State<NewMasterHome> {
 
   // late OneApartment apartmentsRes;
   late String name;
+
   // for data is loaded flag
   bool isDataLoaded = false; //data load from server
   // bool isCodeActive = false;//chick if code is action
@@ -88,13 +93,13 @@ class _NewMasterHomeState extends State<NewMasterHome> {
       // debugPrint("axis${widget.scrollController!.position.off}");
       Future.delayed(const Duration(milliseconds: 350), () {
         //when user make scrolling , the udenr code execute after 350 milisec. ///don't remove it///
-        if (widget.scrollController!.position.userScrollDirection.name ==
+        if (widget.scrollController?.position.userScrollDirection.name ==
             "forward") {
           //if user scroll to up , the button will visible after 350 milisec
           setState(() {
             _isVisible = true;
           });
-        } else if (widget.scrollController!.position.userScrollDirection.name ==
+        } else if (widget.scrollController?.position.userScrollDirection.name ==
             "reverse") {
           //when user scroll to down , the button will invisible after 350 milisec
           setState(() {
@@ -122,6 +127,7 @@ class _NewMasterHomeState extends State<NewMasterHome> {
       // edgeOffset: -10*10,
       semanticsValue: const Text("refresh").toString(),
       color: kPrimaryColorDarkMode,
+
       onRefresh: () async {
         setState(() {
           isDataLoaded = false;
@@ -137,6 +143,7 @@ class _NewMasterHomeState extends State<NewMasterHome> {
                       type: _type,
                     ) // then go to TypeNotFound screen
                   : StreamBuilder<ConnectivityResult>(
+
                       stream: Connectivity().onConnectivityChanged,
                       builder: (context, snapshot) {
                         //check wifi
@@ -167,6 +174,7 @@ class _NewMasterHomeState extends State<NewMasterHome> {
                         }
 
                         return GestureDetector(
+
                           onTap: () {
                             //make list of types of apartment type and button that show a list is inviable when click on screen
                             setState(() {
@@ -174,11 +182,15 @@ class _NewMasterHomeState extends State<NewMasterHome> {
                             });
                           },
                           child:
-                              Stack(alignment: Alignment.topRight, children: [
+                              Stack(
+
+
+                                  alignment: Alignment.topRight, children: [
                             ApartmentsList(
                                 apartmentsRes:
                                     apartmentModelController.apartment,
-                                scrollController: widget.scrollController), //aprtments list
+                                scrollController:
+                                    widget.scrollController), //aprtments list
 
                             Padding(
                               padding: const EdgeInsets.only(
@@ -515,6 +527,4 @@ class _NewMasterHomeState extends State<NewMasterHome> {
 
     // Navigator.pushReplacementNamed(context,MyPagesRoutes.noInternet);
   }
-
-
 }
