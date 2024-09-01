@@ -27,6 +27,9 @@ class _ApartmentsListState extends State<ApartmentsList> {
   @override
   Widget build(BuildContext context) {
     return CustomScrollView(
+      // clipBehavior: Clip.antiAliasWithSaveLayer,
+      physics: const BouncingScrollPhysics(decelerationRate: ScrollDecelerationRate.fast),
+      
       controller: widget.scrollController,
       slivers: [
         SliverToBoxAdapter(
@@ -34,7 +37,9 @@ class _ApartmentsListState extends State<ApartmentsList> {
               .onClick,)),
         ),
         SliverList(
+
           delegate: SliverChildBuilderDelegate(
+
             (context, index) {
               if (widget.apartmentsRes.data?[index].type?.name.isEmpty ?? false) {
                 return const SizedBox();

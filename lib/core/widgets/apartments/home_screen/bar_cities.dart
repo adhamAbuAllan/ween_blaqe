@@ -20,11 +20,6 @@ class CitiesBar extends StatefulWidget {
 }
 
 class _CitiesBarState extends State<CitiesBar> {
-  @override
-  void initState() {
-    super.initState();
-    cityModelController.getCity();
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -53,8 +48,8 @@ class _CitiesBarState extends State<CitiesBar> {
                               setState(() {
                                 cityModelController.cityId.value == c.id
                                     ? cityModelController.cityId.value = 0
-                                    : cityModelController.cityId.value = c
-                                    .id??0;
+                                    : cityModelController.cityId.value =
+                                        c.id ?? 0;
                               });
                               await widget.onClick!();
                             }
@@ -64,8 +59,10 @@ class _CitiesBarState extends State<CitiesBar> {
                           },
                               style: c.id == cityModelController.cityId.value &&
                                       cityModelController.cityId.value != 0
-                                  ? fullButton
-                                  : outlineButton))
+                                  ? fullButton.copyWith(
+                                foregroundColor: WidgetStateProperty.all<Color>(Colors.white),
+                              )
+                      : outlineButton))
                       .toList()),
         );
       }),

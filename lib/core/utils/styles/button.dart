@@ -11,9 +11,9 @@ final ButtonStyle fullButton = ElevatedButton.styleFrom(
     backgroundColor: !themeMode.isDark ? kPrimaryColorLightMode : kPrimaryColorDarkMode,
     elevation: 0,
     textStyle: const TextStyle(
-      fontSize: 15,
+      fontSize: 16,
       fontFamily: 'IBM',
-      color: Colors.white,
+
     ),
     shape: const RoundedRectangleBorder(
         borderRadius: BorderRadius.all(Radius.circular(7))));
@@ -23,7 +23,7 @@ final ButtonStyle outlineButton = OutlinedButton.styleFrom(
   foregroundColor: themeMode.isDark ? kPrimaryColorLightMode : kPrimaryColorDarkMode,
   elevation: 0,
   textStyle:  TextStyle(
-    fontSize: 14,
+    fontSize: 16,
     color: themeMode.isDark ? kPrimaryColorLightMode : kPrimaryColorDarkMode,
     fontFamily: 'IBM',
   ),

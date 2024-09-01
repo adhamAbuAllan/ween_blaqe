@@ -3,6 +3,7 @@ import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:ween_blaqe/constants/strings.dart';
+import 'package:ween_blaqe/controller/get_controllers.dart';
 import 'package:ween_blaqe/core/utils/funcations/route_pages/push_routes.dart';
 import 'package:ween_blaqe/core/utils/funcations/snakbar.dart';
 import 'package:ween_blaqe/features/user/owner/account_of_owner.dart';
@@ -32,6 +33,12 @@ class _MainStudentState extends State<MainStudent> {
   void initState() {
     super.initState();
     // checkWifiStatus();
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      setState(() {
+        cityModelController.getCity();
+// Your state update logic here
+      });
+    });
   }
 
   var studentController = StudentController();

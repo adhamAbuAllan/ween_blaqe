@@ -188,7 +188,7 @@ class _NewMasterHomeState extends State<NewMasterHome> {
                           },
                           child:
                               Stack(alignment: Alignment.topRight, children: [
-                            ApartmentsList(
+                             ApartmentsList(
                                 onClick: () async {
                                   if (_isAll) {
                                     callAPIAndAssignData(
@@ -492,22 +492,6 @@ class _NewMasterHomeState extends State<NewMasterHome> {
           .apartmentAll}?type=$type&&city_id=${cityId??0}");
     }
 
-    // Uri uri = Uri.parse(ServerWeenBalaqee.apartmentAll);
-    // if (cityId != null && type != null) {
-    //   uri = Uri.parse(
-    //       "${ServerWeenBalaqee.apartmentAll}?type=$type&city_id=$cityId");
-    // }
-    // if (cityId != null && isAll == true) {
-    //   uri = Uri.parse("${ServerWeenBalaqee.apartmentAll}?city_id=$cityId");
-    // }
-    //
-    // if (isAll == false && type != null) {
-    //   uri = Uri.parse("${ServerWeenBalaqee.apartmentAll}?type=$type");
-    // }
-    // if (isAll == true) {
-    //   uri = Uri.parse(ServerWeenBalaqee.apartmentAll);
-    // }
-
     debugPrint("uri --$uri");
     var response = await http.get(uri);
     debugPrint("response --$response");
@@ -520,6 +504,7 @@ class _NewMasterHomeState extends State<NewMasterHome> {
       debugPrint("a json of apartment is: -- $json");
       setState(() {
         isDataLoaded = true;
+
       });
       // debugPrint("the id is : ${apartmentsRes.data?.first.ownerId}");
       debugPrint("data : ${apartmentsRes.data}");
