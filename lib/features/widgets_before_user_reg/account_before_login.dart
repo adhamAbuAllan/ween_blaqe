@@ -123,7 +123,7 @@ class _AccountBeforeLoginInStudentState
                               20,
                               0),
                           child: Text(
-                            "الحساب",
+                            "حسابي",
                             style: TextStyle(
                               color: themeMode.isDark
                                   ? kTextColorLightMode
@@ -222,14 +222,33 @@ class _AccountBeforeLoginInStudentState
                         // Switch(value:themeMode.isDark , onChanged:
                         // themeMode.onChanged),
                         SwitchListTile(
-                            dense: getIt<AppDimension>().isSmallScreen(context),
-                            title: Text("الشكل",
-                                style: TextStyle(
-                                    fontSize: 16,
-                                    fontFamily: 'IBM',
-                                    color: themeMode.isDark
-                                        ? kTextColorLightMode
-                                        : kTextColorDarkMode)),
+                            inactiveThumbColor: kBackgroundAppColorLightMode,
+
+                            activeColor: themeMode.isDark ? kPrimaryColorLightMode : kPrimaryColorDarkMode,
+                            dense:
+                            getIt<AppDimension>().isSmallScreen(context),
+                            title: Row(
+                              children: [
+                                Icon(
+                                  themeMode.isDark ? Icons.light_mode_outlined : Icons.dark_mode_outlined,
+                                  color: themeMode.isDark
+                                      ? kTextColorLightMode
+                                      : kTextColorDarkMode,
+                                  size:
+                                  getIt<AppDimension>().isSmallScreen(context)
+                                      ? 32 - 5
+                                      : 32,
+                                ),
+                                const SizedBox(width: 18,),
+                                Text("المظهر",
+                                    style: TextStyle(
+                                        fontSize: 16,
+                                        fontFamily: 'IBM',
+                                        color: themeMode.isDark
+                                            ? kTextColorLightMode
+                                            : kTextColorDarkMode)),
+                              ],
+                            ),
                             value: themeMode.isDark,
                             onChanged: (bool value) async {
                               setState(() {

@@ -59,7 +59,7 @@ class _AccountOfOwnerState extends State<AccountOfOwner> {
                           20,
                           0),
                       child: Text(
-                        "الحساب",
+                        "حسابي",
                         style: TextStyle(
                           fontSize: 26.0,
                           fontFamily: 'IBM',
@@ -207,15 +207,33 @@ class _AccountOfOwnerState extends State<AccountOfOwner> {
                     // Switch(value:themeMode.isDark , onChanged:
                     // themeMode.onChanged),
                     SwitchListTile(
+                      inactiveThumbColor: kBackgroundAppColorLightMode,
+
+                        activeColor: themeMode.isDark ? kPrimaryColorLightMode : kPrimaryColorDarkMode,
                         dense:
                             getIt<AppDimension>().isSmallScreen(context),
-                        title: Text("الشكل",
-                            style: TextStyle(
-                                fontSize: 16,
-                                fontFamily: 'IBM',
-                                color: themeMode.isDark
-                                    ? kTextColorLightMode
-                                    : kTextColorDarkMode)),
+                        title: Row(
+                          children: [
+                            Icon(
+                             themeMode.isDark ? Icons.light_mode_outlined : Icons.dark_mode_outlined,
+                              color: themeMode.isDark
+                                  ? kTextColorLightMode
+                                  : kTextColorDarkMode,
+                              size:
+                                  getIt<AppDimension>().isSmallScreen(context)
+                                      ? 32 - 5
+                                      : 32,
+                            ),
+                            const SizedBox(width: 18,),
+                            Text("المظهر",
+                                style: TextStyle(
+                                    fontSize: 16,
+                                    fontFamily: 'IBM',
+                                    color: themeMode.isDark
+                                        ? kTextColorLightMode
+                                        : kTextColorDarkMode)),
+                          ],
+                        ),
                         value: themeMode.isDark,
                         onChanged: (bool value) async {
                           setState(() {
@@ -242,8 +260,8 @@ class _AccountOfOwnerState extends State<AccountOfOwner> {
                               : kTextColorDarkMode,
                           size:
                               getIt<AppDimension>().isSmallScreen(context)
-                                  ? 35 - 5
-                                  : 35,
+                                  ? 32 - 5
+                                  : 32,
                         ),
                         "شققك",
                         context: context),

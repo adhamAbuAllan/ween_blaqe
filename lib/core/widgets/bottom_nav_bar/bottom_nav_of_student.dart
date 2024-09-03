@@ -131,7 +131,7 @@ class _BottomNavigationBarOfStudentState
         //account item
         BottomNavigationBarItem(
             icon: Icon(Icons.person_2_outlined),
-            label: 'الحساب',
+            label: 'حسابي',
             activeIcon: Icon(Icons.person_2)),
       ],
     );
