@@ -234,6 +234,7 @@ class _LoginState extends State<Login> {
                     child: ElevatedButton(
                         style: fullButton,
                         onPressed: () {
+                          cityModelController.cityId.value = 0;
                           isLoading = true;
                           // if(phoneController.text.indexOf(RegExp('0'),0) == 0){
 

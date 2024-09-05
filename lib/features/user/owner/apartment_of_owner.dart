@@ -450,6 +450,7 @@ class _ApartmentsOwnerState extends State<ApartmentsOwner>
                       underCenterTextAfterIcon: '  للبدء في إنشاء إعلان جديد',
                     )
                   : ApartmentsList(
+                haveCitiesBar: false,
                       apartmentsRes: apartmentModelController.apartments.value,
                       // scrollController: ScrollController(),
                       isDeleteMode: isDeleteMode,

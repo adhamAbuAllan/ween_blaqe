@@ -11,6 +11,7 @@ import 'package:ween_blaqe/core/utils/styles/button.dart';
 // import 'package:ween_blaqe/core/utils/styles/show_more_widget/about_apartment_style.dart';
 import 'package:ween_blaqe/core/utils/styles/text_style/aline_style.dart';
 import '../../../constants/injection.dart';
+import '../../../controller/get_controllers.dart';
 import '../../../core/utils/funcations/get_app_version.dart';
 import '../../../core/utils/funcations/snakbar.dart';
 import '../../../core/widgets/buttons/lines_buttons/line_buttons.dart';
@@ -236,6 +237,7 @@ class _AccountOfOwnerState extends State<AccountOfOwner> {
                         ),
                         value: themeMode.isDark,
                         onChanged: (bool value) async {
+                          cityModelController.cityId.value = 0;
                           setState(() {
                             themeMode.onChanged(value);
                             // sp.get('isDark');
@@ -380,6 +382,7 @@ class _AccountOfOwnerState extends State<AccountOfOwner> {
                         : 55,
                     child: OutlinedButton(
                         onPressed: () {
+                          cityModelController.cityId.value = 0;
                           removeUserInfo();
                           // checkCurrentAuthState(context);
                           myPushAndRemoveUntilName(context, const Main(), "");

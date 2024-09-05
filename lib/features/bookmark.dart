@@ -69,7 +69,8 @@ class _BookmarkApartmentState extends State<BookmarkApartment> {
           centerText: "تُعرض الشقق المفضلة هُنا",
           underCenterText:"  "
       ): ApartmentsList(
-          apartmentsRes: apartmentsBookmarked,
+        haveCitiesBar: false,
+        apartmentsRes: apartmentsBookmarked,
           // scrollController: scrollController
       ),
     );

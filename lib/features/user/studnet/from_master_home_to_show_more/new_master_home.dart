@@ -189,6 +189,7 @@ class _NewMasterHomeState extends State<NewMasterHome> {
                           child:
                               Stack(alignment: Alignment.topRight, children: [
                              ApartmentsList(
+                               haveCitiesBar: true,
                                 onClick: () async {
                                   if (_isAll) {
                                     callAPIAndAssignData(

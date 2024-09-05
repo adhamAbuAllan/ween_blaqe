@@ -161,6 +161,7 @@ class _FourthStepState extends State<FourthStep> {
                               // ) {
                               // setState(() {
                               try {
+                                cityModelController.cityId.value = 0;
                                 setState(() {
                                   if(isLoading){
                                     return;

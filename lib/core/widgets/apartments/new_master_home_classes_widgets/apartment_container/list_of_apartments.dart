@@ -11,13 +11,14 @@ class ApartmentsList extends StatefulWidget {
       required this.apartmentsRes,
       this.scrollController,
       this.isDeleteMode = false,
-      this.onPressed,  this.onClick});
+      this.onPressed,  this.onClick, required this.haveCitiesBar});
 
   final OneApartment apartmentsRes;
   final ScrollController? scrollController;
   final bool isDeleteMode;
   final Function() ?onClick;
   final void Function()? onPressed;
+  final bool haveCitiesBar;
 
   @override
   State<ApartmentsList> createState() => _ApartmentsListState();
@@ -33,8 +34,9 @@ class _ApartmentsListState extends State<ApartmentsList> {
       controller: widget.scrollController,
       slivers: [
         SliverToBoxAdapter(
-          child: SizedBox(height: 70, child: CitiesBar(onClick: widget
-              .onClick,)),
+          child: SizedBox(height: 70, child:
+          widget.haveCitiesBar ? CitiesBar(onClick: widget
+              .onClick,):const SizedBox()),
         ),
         SliverList(
 
