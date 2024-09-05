@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 
 import 'package:ween_blaqe/constants/nums.dart';
 import 'package:ween_blaqe/constants/strings.dart';
+import 'package:ween_blaqe/controller/get_controllers.dart';
 import 'package:ween_blaqe/core/utils/funcations/route_pages/push_routes.dart';
 
  
@@ -243,6 +244,7 @@ class _TypeNotFoundState extends State<TypeNotFound> {
                           decoration: TextDecoration.underline),
                     ),
                     onPressed: () {
+                      cityModelController.cityId.value = 0;
 
                       myPushReplacementNamed(MyPagesRoutes.main,context: context);
 

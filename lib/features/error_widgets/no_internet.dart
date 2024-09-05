@@ -14,6 +14,7 @@ import 'package:ween_blaqe/core/utils/funcations/route_pages/push_routes.dart';
 import 'package:ween_blaqe/core/utils/styles/text_style/aline_style.dart';
 import 'package:ween_blaqe/constants/nums.dart';
 import '../../constants/injection.dart';
+import '../../controller/get_controllers.dart';
 import '../../core/utils/styles/button.dart';
 import '../../core/widgets/buttons/lines_buttons/line_buttons.dart';
 // import 'package:carousel_slider_plus/carousel_controller.dart';
@@ -344,6 +345,7 @@ class _NoInternetState extends State<NoInternet> with WidgetsBindingObserver {
               floatingActionButton: snapshot.data == ConnectivityResult.wifi
                   ? FloatingActionButton(
                       onPressed: () {
+                        cityModelController.cityId.value = 0;
                         myPushName(context, MyPagesRoutes.main);
                       },
                       shape: ContinuousRectangleBorder(
