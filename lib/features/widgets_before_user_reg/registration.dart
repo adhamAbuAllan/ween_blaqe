@@ -23,7 +23,7 @@ import '../../core/widgets/registration/text_filed_class_widget.dart';
 import '../../sesstion/sesstion_of_user.dart';
 import 'package:http/http.dart' as http;
 import '/api/users.dart';
-import 'login.dart';
+// import 'login.dart';
 
 // bool visable = false;
 DropDownTypeOfUser? testing;
@@ -633,8 +633,23 @@ class _RegisterState extends State<Register> {
                                         : 55,
                                 child: ElevatedButton(
                                     onPressed: () async {
-                                      isLoading = true;
 
+                                      // isLoading = true;
+                                      if (nameController.text.isEmpty ||
+                                          phoneController.text.isEmpty ||
+                                          passwordController.text.isEmpty ||
+                                          surePasswordController.text.isEmpty) {
+                                        setState(() {
+                                          isLoading = false;
+                                          NormalAlert.show(
+                                              context,
+                                              "بيانات خاطئة",
+                                              "برجاء التاكد من تعبئة جميع الحقول",
+                                              "حسنًا");
+                                        });
+                                        return;
+                                      }
+                                      await checkPhoneNumber(phoneController.text);
                                       phoneController.text = removePlusSymbol(
                                           phoneController.text);
                                       // if(){};
@@ -646,6 +661,7 @@ class _RegisterState extends State<Register> {
                                               "كلمة المرور غير متطابقة",
                                               "برجاء إدخال كلمة مرور متطابقة في كلا الحقلين",
                                               "حسنًا");
+                                          return;
                                         }
                                         // if(isLoading){
                                         //   return;
@@ -699,6 +715,51 @@ class _RegisterState extends State<Register> {
     // );
   }
 
+  Future checkPhoneNumber(String phoneNumber) async {
+    // setState(() {
+    //   isLoading = true;
+    // });
+
+    final url = Uri.parse(ServerWeenBalaqee.checkPhone);
+    final response = await http.post(
+      url,
+      headers: {
+        'Content-Type': 'application/json',
+        'Accept': 'application/json',
+      },
+      body: jsonEncode({
+        'phone': phoneNumber,
+      }),
+    );
+
+    if (response.statusCode == 200) {
+      //that if the phone number is exists that will a normal alert show for
+      // user, and told the user to try to chose another number phone.
+      // Phone number exists
+      final data = await jsonDecode(response.body);
+      debugPrint("phnoe number existts");
+      print(data['msg']);
+      setState(() {
+        isLoading = false;
+        NormalAlert.show(
+            context, "بيانات خاطئة", "جرب إستخدام رقم هاتف مختلف", "حسنًا",);
+      });
+
+      return;
+    } else if (response.statusCode == 404) {
+      // Phone number does not exist
+      final data = await jsonDecode(response.body);
+
+
+      print(data['msg']);
+    } else {
+      print('Error: ${response.statusCode}');
+      return;
+    }
+
+
+  }
+
   go(
     String name,
     String phone,
@@ -712,7 +773,7 @@ class _RegisterState extends State<Register> {
     // DropDownTypeOfUser typeId
     // String value
   ) async {
-    // isLoading = true;
+    isLoading = true;
     var url = Uri.parse(ServerWeenBalaqee.register);
     debugPrint(url.path);
     var response = await http.post(url, body: {
@@ -726,66 +787,60 @@ class _RegisterState extends State<Register> {
     });
     debugPrint(response.body);
     // print(response.body);
-    var json = await jsonDecode(response.body);
 
-    debugPrint("this is json : $json");
-    var res = UserRes.fromJson(json);
     // debugPrint("the id of country codes in api is : 1 + "
     //     " phone number is :$phone ");
 
     //
     // print(res.status);
     //return;
-    debugPrint("this is response  : $res");
-    if (res.status == false) {
-      // isLoading = false;
-      setState(() {
-        msg = res.msg;
-        if (msg == "The phone has already been taken.") {
-          NormalAlert.show(
-              context, "بيانات خاطئة", "جرب إستخدام رقم هاتف مختلف", "حسنًا");
-          return;
+
+    if (response.statusCode <= 400) {
+      var res = UserRes.fromJson(await jsonDecode(response.body));
+      msg = res.msg;
+      debugPrint("response code : ${response.statusCode}");
+
+      if (res.status == false) {
+        debugPrint("the res is false");
+        // isLoading = false;
+        setState(() {
+          if (msg == "The phone has already been taken.") {
+            return;
+          }
+        });
+        removeUserInfo();
+        return;
+      } else {
+        debugPrint("the res is true");
+        // print(res.data.type.id);
+        // print(res.data.type.name);
+        // print(res.data?.type.updatedAt);
+        //7print(res.data?.type.createdAt);
+        try {
+          var data = res.data;
+          saveUserInfo(data);
+          setState(() {
+            // isLoading = false;
+            // toast("قم تسجيل الدخول لتتأكد من كتابة بياناتك بشكل صحيح");
+            myPushReplacementNamed(MyPagesRoutes.login,context: context);
+          });
+          // pushToLoginPage();
+
+
+          // isLoading = false;
+        } catch (e) {
+          debugPrint("$e");
+          // isLoading = false;
         }
-        if (msg == "The name field is required.") {
-          NormalAlert.show(
-              context, "حقل مطلوب", "يرجى تعبئة حقل 'الاسم الكامل'", "حسنًا");
-          return;
-        }
-        if (msg == "The phone field is required.") {
-          NormalAlert.show(
-              context, "حقل مطلوب", "يرجى تعبئة حقل 'رقم الهاتف'", "حسنًا");
-          return;
-        }
-        if (msg == "The password field is required.") {
-          NormalAlert.show(
-              context, "حقل مطلوب", "يرجى تعبئة حقل 'كلمة المرور'", "حسنًا");
-          return;
-        }
-      });
-      removeUserInfo();
-      return;
+      }
     } else {
       setState(() {
-        // isLoading = false;
-        // toast("قم تسجيل الدخول لتتأكد من كتابة بياناتك بشكل صحيح");
+        isLoading = false;
       });
-
-      // print(res.data.type.id);
-      // print(res.data.type.name);
-      // print(res.data?.type.updatedAt);
-      //7print(res.data?.type.createdAt);
-
-      try {
-        var data = res.data;
-        saveUserInfo(data);
-
-        pushToLoginPage();
-        // isLoading = false;
-      } catch (e) {
-        debugPrint("$e");
-        // isLoading = false;
-      }
+      debugPrint("response is bad ");
+      return;
     }
+
     // }on SocketException{
     //   print("check your internet connection");
     // }on FormatException{
@@ -793,11 +848,11 @@ class _RegisterState extends State<Register> {
     // print(visable);
   }
 
-  void pushToLoginPage() {
-    Navigator.of(context).push(MaterialPageRoute(builder: (ctx) {
-      return const Login();
-    }));
-  }
+  // void pushToLoginPage() {
+  //   Navigator.of(context).push(MaterialPageRoute(builder: (ctx) {
+  //     return const Login();
+  //   }));
+  // }
 
 // print("happend problem !");
 

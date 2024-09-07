@@ -100,7 +100,7 @@ class _LoginState extends State<Login> {
       child: ColorfulSafeArea(
         bottomColor: Colors.transparent,
         color:
-        themeMode.isDark ? kPrimaryColorLightMode : kPrimaryColorDarkMode,
+            themeMode.isDark ? kPrimaryColorLightMode : kPrimaryColorDarkMode,
         child: Scaffold(
           backgroundColor: themeMode.isDark
               ? kBackgroundAppColorLightMode
@@ -127,8 +127,13 @@ class _LoginState extends State<Login> {
                 Row(
                   children: [
                     Padding(
-                      padding: EdgeInsets.fromLTRB(0, getIt<AppDimension>
-                        ().isSmallScreen(context) ? 20 : 30, 20, 0),
+                      padding: EdgeInsets.fromLTRB(
+                          0,
+                          getIt<AppDimension>().isSmallScreen(context)
+                              ? 20
+                              : 30,
+                          20,
+                          0),
                       child: Text(
                         "تسجيل الدخول",
                         style: TextStyle(
@@ -223,14 +228,17 @@ class _LoginState extends State<Login> {
                 //login button
                 Padding(
                   padding: EdgeInsets.fromLTRB(
-                      20, getIt<AppDimension>().isSmallScreen(context) ?
-                  50/1.5:50,
+                      20,
+                      getIt<AppDimension>().isSmallScreen(context)
+                          ? 50 / 1.5
+                          : 50,
                       20,
                       10),
                   child: SizedBox(
                     width: double.infinity,
-                    height: getIt< AppDimension>().isSmallScreen(context) ?
-                    55/1.2 :55,
+                    height: getIt<AppDimension>().isSmallScreen(context)
+                        ? 55 / 1.2
+                        : 55,
                     child: ElevatedButton(
                         style: fullButton,
                         onPressed: () {
@@ -292,8 +300,8 @@ class _LoginState extends State<Login> {
                         child: isLoading == false
                             ? const Text("تسجيل الدخول")
                             : const CircularProgressIndicator(
-                          color: Colors.white,
-                        )),
+                                color: Colors.white,
+                              )),
                   ),
                 ),
                 //signup button
@@ -301,7 +309,9 @@ class _LoginState extends State<Login> {
                   padding: const EdgeInsets.fromLTRB(20, 10, 20, 10),
                   child: SizedBox(
                     width: double.infinity,
-                    height: getIt< AppDimension>().isSmallScreen(context) ? 55/1.2 : 55,
+                    height: getIt<AppDimension>().isSmallScreen(context)
+                        ? 55 / 1.2
+                        : 55,
                     child: OutlinedButton(
                         onPressed: () {
                           hideKeyboard(context);
@@ -354,64 +364,27 @@ class _LoginState extends State<Login> {
   }
 
   go(String phone, String password) async {
-    isLoading == true;
+    isLoading = true;
     var url = Uri.parse(ServerWeenBalaqee.userLogin);
     var response =
-    await http.post(url, body: {"phone": phone, "password": password});
+        await http.post(url, body: {"phone": phone, "password": password});
     debugPrint("response:$response");
-    var json = jsonDecode(response.body);
-    debugPrint("json --$json");
-    var res = UserRes.fromJson(json);
-    debugPrint("response --$res");
-    if (res.status == false) {
-      setState(() {
-        debugPrint("stateus is false !");
-        msg = res.msg;
-        // toast("your not found");
-        NormalAlert.show(context, titleOfAlirt, messageOfAlirt, textOfOkButton);
-        autoFocus = false;
-        debugPrint("response status is false ");
-      });
-      removeUserInfo();
-      isLoading = false;
+    if (response.statusCode <= 400) {
+      var res = UserRes.fromJson(jsonDecode(response.body));
+      apartmentModelController.ownerToken = res.data.token;
+      autoFocus = false;
+      saveUserInfo(res.data);
+      pushToMainPage();
     } else {
       setState(() {
-        hideKeyboard(context);
-        debugPrint("status is true!:${res.data.name}");
-        debugPrint("status is true!:${res.data.id}");
-        // debugPrint("status is true!:${res.data.token}");
-        // debugPrint("status is true!:${res.data.type}");
-        // debugPrint("status is true!:${res.data.gender}");
-        // debugPrint("status is true!:${res.data.university}");
-        // debugPrint("status is true!:${res.data.phone}");
-        // toast("yout found ");
-        isLoading = false;
-        msg = "";
-      });
-      isLoading = true;
-      var data = res.data;
-      if (data.token != null) {
-        setState(() {
-          apartmentModelController.ownerToken = data.token;
-        });
+        NormalAlert.show(context, titleOfAlirt, messageOfAlirt, textOfOkButton);
         debugPrint(
-            "the token is  Not null ${data.token} || ${apartmentModelController
-                .ownerToken}");
-      } else {
-        debugPrint("the token is null");
-      }
-
-      saveUserInfo(data);
-      pushToMainPage();
-      // FocusScopeNode currentFocus = FocusScope.of(context);
-      // if (!currentFocus.hasPrimaryFocus) {
-      //   currentFocus.unfocus();
-      // }
-      // myPushName(context, MyPagesRoutes.citiesTest);
-      isLoading = false;
-      isLoading = false;
+            "you have an error that the status code is ${response.statusCode}");
+      });
     }
-    isLoading = false;
+    setState(() {
+      isLoading = false;
+    });
   }
 
   void alert() {

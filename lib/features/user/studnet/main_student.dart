@@ -2,6 +2,7 @@ import 'package:colorful_safe_area/colorful_safe_area.dart';
 import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+// import 'package:upgrader/upgrader.dart';
 import 'package:ween_blaqe/constants/strings.dart';
 import 'package:ween_blaqe/controller/get_controllers.dart';
 import 'package:ween_blaqe/core/utils/funcations/route_pages/push_routes.dart';
@@ -12,8 +13,10 @@ import '../../../core/widgets/alirt_class_widget.dart';
 import '../../../core/widgets/bottom_nav_bar/bottom_nav_of_student.dart';
 import 'package:ween_blaqe/constants/nums.dart';
 import '../../../sesstion/new_session.dart';
+// import '../../../testing_code/upgrader_package_test.dart';
 import '../../widgets_before_user_reg/account_before_login.dart';
 import 'from_master_home_to_show_more/new_master_home.dart';
+
 // import 'master_home.dart';
 import 'orders_of_student.dart';
 
@@ -47,6 +50,7 @@ class _MainStudentState extends State<MainStudent> {
 
   StudentController controller = Get.find();
   ScrollController scrollController = ScrollController();
+
   @override
   Widget build(BuildContext context) {
     var studentController = controller;
