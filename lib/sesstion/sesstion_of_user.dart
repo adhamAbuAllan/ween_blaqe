@@ -4,7 +4,7 @@ import 'package:ween_blaqe/api/apartments_api/one_apartment.dart';
 import '../api/users.dart';
 
 import 'new_session.dart';
-saveUserInfo(User data,{DataOfOneApartment ? apartment} ) {
+saveUserInfo(User data,{DataOfOneApartment ? apartment } ) {
   NewSession.save("logged", "OK");
   // if(apartmentModelController.ownerToken!=null){
   //   NewSession.save("token", apartmentModelController.ownerToken);
@@ -29,7 +29,6 @@ saveUserInfo(User data,{DataOfOneApartment ? apartment} ) {
 */
 
   // NewSession.save("type", data.type);
-
   NewSession.save("phone", data.phone);
   NewSession.save("apartmentId",apartment?.id??-1 );
   // NewSession.save("countryPhoneNumberId", data.)

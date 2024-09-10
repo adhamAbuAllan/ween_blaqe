@@ -3,13 +3,14 @@
 name: ween_blaqe
 description: A new Flutter project.
 publish_to: none
-version: 3.0.3
+version: 3.0.4
 environment:
   sdk: '>=3.1.5 <4.0.0'
 dependencies:
 #  flutter_image_compress: ^2.3.0
   animated_text_kit: ^4.2.2
   get_it: ^7.6.7
+  introduction_screen: ^3.1.14
   package_info_plus: ^8.0.2
   image: ^4.2.0
 #  draggable_widget: ^2.0.0
@@ -127,7 +128,11 @@ flutter:
 #    - assets/images/error_images/search_not_found_dark_mode.png
     - assets/images/error_images/not_found_dark_mode.png
     - assets/images/error_images/not_found_light_mode.png
-
+    - assets/images/intro_images/intro_screen2.png
+    - assets/images/intro_images/splash_screen3.png
+    - assets/images/intro_images/splash_screen4.png
+    - assets/images/intro_images/splash_screen5.png
+    - assets/images/intro_images/splash_screen6.png
 
 
 

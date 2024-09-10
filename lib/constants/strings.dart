@@ -214,6 +214,7 @@ class MyPagesRoutes {
   static const newMasterHome = "/new_master_home";
   static const newShowMore = "/new_show_more";
   static const whatTheInfoReqToCreateAd = "/what_the_info_req_to_create_ad";
+  static const introScreen = "/intro_screen";
 }
 
 

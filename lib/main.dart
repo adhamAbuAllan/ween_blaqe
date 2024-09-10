@@ -23,6 +23,7 @@ import 'package:get/get.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:ween_blaqe/controller/function_controller/api_functions_controller/get_advatages_api.dart';
 import 'package:ween_blaqe/controller/function_controller/change_theme_mode.dart';
+import 'package:ween_blaqe/controller/function_controller/intro_controller.dart';
 import 'package:ween_blaqe/controller/get_controllers.dart';
 import 'package:ween_blaqe/controller/main_controller.dart';
 import 'package:flutter/services.dart';
@@ -65,6 +66,7 @@ import 'controller/models_controller/type_of_apartment_models_controller.dart';
 
 // import 'features/bookmark.dart';
 import 'controller/scroll_controller.dart';
+import 'features/intro_screen.dart';
 import 'features/send_notice_for_us.dart';
 import 'features/user/owner/steps_to_create_apartment/first_step.dart';
 import 'features/user/owner/steps_to_create_apartment/fourth_step.dart';
@@ -116,6 +118,7 @@ void main() async {
   //for put
   Get.put(StudentController());
   Get.put(ControllerScroll());
+  Get.put(IntroController());
   Get.put(CityModelController());
   Get.put(ApartmentModelController());
   Get.put(MethodsApiApartmentController());
@@ -277,6 +280,8 @@ class _OwnMaterialAppState extends State<OwnMaterialApp> {
         MyPagesRoutes.newShowMore: (context) => const NewShowMore(),
         MyPagesRoutes.whatTheInfoReqToCreateAd: (context) =>
         const WhatTheInfoReqToCreateAd(),
+        MyPagesRoutes.introScreen: (context) =>
+        const IntroScreen(),
 
         //testing routes..
         // MyPagesRoutes.citiesTest:(context)=> CitiesTest(),
@@ -324,6 +329,7 @@ class _MainState extends State<Main> {
   @override
   void initState() {
     super.initState();
+    // introController.saveIsFirstTime();
     controller.addListener(listener);
     SystemChrome.setPreferredOrientations([
       DeviceOrientation.portraitUp,
