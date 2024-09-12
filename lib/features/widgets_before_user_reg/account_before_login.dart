@@ -5,6 +5,7 @@ import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:get/get.dart';
+import 'package:share_plus/share_plus.dart';
 import 'package:ween_blaqe/core/utils/funcations/route_pages/push_routes.dart';
 
 // import 'package:ween_blaqe/core/utils/funcations/snakbar.dart';
@@ -224,23 +225,27 @@ class _AccountBeforeLoginInStudentState
                         // themeMode.onChanged),
                         SwitchListTile(
                             inactiveThumbColor: kBackgroundAppColorLightMode,
-
-                            activeColor: themeMode.isDark ? kPrimaryColorLightMode : kPrimaryColorDarkMode,
-                            dense:
-                            getIt<AppDimension>().isSmallScreen(context),
+                            activeColor: themeMode.isDark
+                                ? kPrimaryColorLightMode
+                                : kPrimaryColorDarkMode,
+                            dense: getIt<AppDimension>().isSmallScreen(context),
                             title: Row(
                               children: [
                                 Icon(
-                                  themeMode.isDark ? Icons.light_mode_outlined : Icons.dark_mode_outlined,
+                                  themeMode.isDark
+                                      ? Icons.light_mode_outlined
+                                      : Icons.dark_mode_outlined,
                                   color: themeMode.isDark
                                       ? kTextColorLightMode
                                       : kTextColorDarkMode,
-                                  size:
-                                  getIt<AppDimension>().isSmallScreen(context)
+                                  size: getIt<AppDimension>()
+                                          .isSmallScreen(context)
                                       ? 32 - 5
                                       : 32,
                                 ),
-                                const SizedBox(width: 18,),
+                                const SizedBox(
+                                  width: 18,
+                                ),
                                 Text("المظهر",
                                     style: TextStyle(
                                         fontSize: 16,
@@ -265,15 +270,11 @@ class _AccountBeforeLoginInStudentState
                         buttonAccount(() {
                           myPushName(context, MyPagesRoutes.askForHelp);
                         },
-                            icon: Icon(
+                            icon:
                               Icons.info_outline,
-                              size: getIt<AppDimension>().isSmallScreen(context)
-                                  ? 32 - 5
-                                  : 32,
-                              color: themeMode.isDark
-                                  ? kTextColorLightMode
-                                  : kTextColorDarkMode,
-                            ),
+
+
+
                             "اطلب المساعدة",
                             context: context),
 
@@ -282,15 +283,11 @@ class _AccountBeforeLoginInStudentState
                         buttonAccount(() {
                           myPushName(context, MyPagesRoutes.privacyPolicy);
                         },
-                            icon: Icon(
+                            icon:
                               Icons.privacy_tip_outlined,
-                              size: getIt<AppDimension>().isSmallScreen(context)
-                                  ? 32 - 5
-                                  : 32,
-                              color: themeMode.isDark
-                                  ? kTextColorLightMode
-                                  : kTextColorDarkMode,
-                            ),
+
+
+
                             "سياسة الخصوصية",
                             context: context),
                         // aline,
@@ -339,22 +336,14 @@ class _AccountBeforeLoginInStudentState
                         //send feedback for us
                         buttonAccount(() {
                           if (snapshot.data != ConnectivityResult.none) {
-                          }else{
+                          } else {
                             showSnakBar(context, "انت غير متصل بالانترنت");
                           }
                           myPushName(context, MyPagesRoutes.sendNoticeForUs);
-
-
                         },
-                            icon: Icon(
+                            icon:
                               Icons.feedback_outlined,
-                              size: getIt<AppDimension>().isSmallScreen(context)
-                                  ? 32 - 5
-                                  : 32,
-                              color: themeMode.isDark
-                                  ? kTextColorLightMode
-                                  : kTextColorDarkMode,
-                            ),
+
                             "أرسل ملاحظات إلينا",
                             context: context),
                         aline,
@@ -376,13 +365,35 @@ class _AccountBeforeLoginInStudentState
                         buttonAccount(() {
                           myPushName(context, MyPagesRoutes.bookmarkApartment);
                         }, "المفضلة",
-                            icon: Icon(
-                              Icons.bookmark_outlined,
-                              color: themeMode.isDark
-                                  ? kTextColorLightMode
-                                  : kTextColorDarkMode,
-                            ),
-                            context: context)
+                            icon:
+                              Icons.bookmark_border,
+
+
+                            context: context),
+                        aline,
+                        buttonAccount(
+                          () {
+                            String url =
+                                "https://play.google.com/store/apps/details?id=com.weenbalaqee.weenbalaqee";
+
+                            /// use this code if you upload your app to play store
+                            // switch (Platform.operatingSystem) {
+                            //   case 'ios':
+                            //     url = "www.youtube.com";
+                            //     break;
+                            //   default:
+                            //     // Use the original value for other platforms
+                            //     break;
+                            // }
+                            Share.shareUri(
+                              Uri.parse(url),
+                            );
+                          },
+                          "مشاركة التطبيق",
+                          context: context,
+                          icon: Icons.share_outlined,
+
+                        ),
                       ]),
                     ),
                     // aline,
@@ -457,7 +468,7 @@ class _AccountBeforeLoginInStudentState
                           ),
                           onPressed: () {
                             // showSnakBar(context, "هذه الميزة قيد التطوير وسيتم إضافتها قريبًا");
-                            if (snapshot.data != ConnectivityResult.none                                // ||
+                            if (snapshot.data != ConnectivityResult.none // ||
                                 // snapshot.data == null
                                 ) {
                               debugPrint("snapshot.data = ${snapshot.data}");
@@ -478,39 +489,41 @@ class _AccountBeforeLoginInStudentState
                     ),
                     //Beta Version
                     Padding(
-                      padding: const EdgeInsets.symmetric(vertical: 30.0),
-                      child: FutureBuilder<String>(
-                        future: getAppVersion(),
-                        builder: (BuildContext context, AsyncSnapshot<String> snapshot) {
-                          if (snapshot.hasData) {
-                            return Text("الإصدار التجريبي: ${snapshot.data} "
-                              ,style: TextStyle(
+                        padding: const EdgeInsets.symmetric(vertical: 30.0),
+                        child: FutureBuilder<String>(
+                          future: getAppVersion(),
+                          builder: (BuildContext context,
+                              AsyncSnapshot<String> snapshot) {
+                            if (snapshot.hasData) {
+                              return Text(
+                                "الإصدار التجريبي: ${snapshot.data} ",
+                                style: TextStyle(
                                     fontFamily: 'IBM',
-                                       color: themeMode.isDark
-                                           ? kTextColorLightMode.withOpacity(.5)
-                                           : kTextColorDarkMode.withOpacity(
-                                           .5)), textDirection: TextDirection
-                                  .rtl,);
-                          } else if (snapshot.hasError) {
-                            return Text("${snapshot.error}خطأ: ");
-                          } else {
-                            return const CircularProgressIndicator();
-                          }
-                        },
-                      )
+                                    color: themeMode.isDark
+                                        ? kTextColorLightMode.withOpacity(.5)
+                                        : kTextColorDarkMode.withOpacity(.5)),
+                                textDirection: TextDirection.rtl,
+                              );
+                            } else if (snapshot.hasError) {
+                              return Text("${snapshot.error}خطأ: ");
+                            } else {
+                              return const CircularProgressIndicator();
+                            }
+                          },
+                        )
 
-                      // Builder(
-                      //   builder: (context) {
-                      //     return Text(
-                      //       "الإصدار التجريبي: 3.0.1",
-                      //       style: TextStyle(
-                      //           color: themeMode.isDark
-                      //               ? kTextColorLightMode.withOpacity(.5)
-                      //               : kTextColorDarkMode.withOpacity(.5)),
-                      //     );
-                      //   }
-                      // ),
-                    )
+                        // Builder(
+                        //   builder: (context) {
+                        //     return Text(
+                        //       "الإصدار التجريبي: 3.0.1",
+                        //       style: TextStyle(
+                        //           color: themeMode.isDark
+                        //               ? kTextColorLightMode.withOpacity(.5)
+                        //               : kTextColorDarkMode.withOpacity(.5)),
+                        //     );
+                        //   }
+                        // ),
+                        )
 
                     // Padding(
                     //   padding:      EdgeInsets.only(top: 20*9.5,bottom: 30*2),

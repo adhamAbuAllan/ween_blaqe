@@ -5,8 +5,14 @@ import '../../../../constants/coordination.dart';
 import '../../../../constants/injection.dart';
 
 Widget buttonAccount(Function onClick, String title,
-    {Image? image, Icon? icon, Color? color, required BuildContext context}) {
+    {Image? image, IconData? icon, Color? color, required BuildContext
+    context}) {
+
   return ListTile(
+
+    iconColor: themeMode.isDark
+        ? kTextColorLightMode
+        : kTextColorDarkMode,
     onTap: () {
       onClick.call();
     },
@@ -19,7 +25,11 @@ Widget buttonAccount(Function onClick, String title,
 
     contentPadding: const EdgeInsets.fromLTRB(10, 0, 10, 0),
     // leading: icon ,
-    leading: icon ?? image,
+    leading:image ?? Icon(icon
+    ,
+    size: getIt<AppDimension>().isSmallScreen(context) ?  32 - 5
+        : 32,
+    ) ,
     title: Text(
       title,
       style: TextStyle(

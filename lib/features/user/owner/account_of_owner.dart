@@ -1,5 +1,6 @@
 import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:flutter/material.dart';
+import 'package:share_plus/share_plus.dart';
 import 'package:ween_blaqe/constants/coordination.dart';
 import 'package:ween_blaqe/constants/nums.dart';
 import 'package:ween_blaqe/constants/strings.dart';
@@ -16,7 +17,7 @@ import '../../../core/utils/funcations/get_app_version.dart';
 import '../../../core/utils/funcations/snakbar.dart';
 import '../../../core/widgets/buttons/lines_buttons/line_buttons.dart';
 import '../../../main.dart';
-import '../../bookmark.dart';
+// import '../../bookmark.dart';
 import 'apartment_of_owner.dart';
 import '../../../sesstion/new_session.dart';
 import '../../../sesstion/sesstion_of_user.dart';
@@ -255,16 +256,11 @@ class _AccountOfOwnerState extends State<AccountOfOwner> {
                             builder: (context) => const ApartmentsOwner(),
                           ));
                     },
-                        icon: Icon(
+                        icon:
                           Icons.apartment,
-                          color: themeMode.isDark
-                              ? kTextColorLightMode
-                              : kTextColorDarkMode,
-                          size:
-                              getIt<AppDimension>().isSmallScreen(context)
-                                  ? 32 - 5
-                                  : 32,
-                        ),
+
+
+
                         "شققك",
                         context: context),
                     //ask for help
@@ -272,16 +268,9 @@ class _AccountOfOwnerState extends State<AccountOfOwner> {
                     buttonAccount(() {
                       myPushName(context, MyPagesRoutes.askForHelp);
                     },
-                        icon: Icon(
+                        icon:
                           Icons.info_outline,
-                          size:
-                              getIt<AppDimension>().isSmallScreen(context)
-                                  ? 32 - 5
-                                  : 32,
-                          color: themeMode.isDark
-                              ? kTextColorLightMode
-                              : kTextColorDarkMode,
-                        ),
+
                         "اطلب المساعدة",
                         context: context),
 
@@ -290,16 +279,9 @@ class _AccountOfOwnerState extends State<AccountOfOwner> {
                     buttonAccount(() {
                       myPushName(context, MyPagesRoutes.privacyPolicy);
                     },
-                        icon: Icon(
+                        icon:
                           Icons.privacy_tip_outlined,
-                          size:
-                              getIt<AppDimension>().isSmallScreen(context)
-                                  ? 32 - 5
-                                  : 32,
-                          color: themeMode.isDark
-                              ? kTextColorLightMode
-                              : kTextColorDarkMode,
-                        ),
+
                         "سياسة الخصوصية",
                         context: context),
                     // aline,
@@ -324,16 +306,9 @@ class _AccountOfOwnerState extends State<AccountOfOwner> {
 
                       myPushName(context, MyPagesRoutes.sendNoticeForUs);
                     },
-                        icon: Icon(
+                        icon:
                           Icons.feedback_outlined,
-                          size:
-                              getIt<AppDimension>().isSmallScreen(context)
-                                  ? 32 - 5
-                                  : 32,
-                          color: themeMode.isDark
-                              ? kTextColorLightMode
-                              : kTextColorDarkMode,
-                        ),
+
                         "أرسل ملاحظات إلينا",
                         context: context),
                     aline,
@@ -353,18 +328,41 @@ class _AccountOfOwnerState extends State<AccountOfOwner> {
                         context: context),
                     aline,
                     buttonAccount(() {
-                      Navigator.push(context, MaterialPageRoute(builder: (context) {
-                        return const BookmarkApartment();
-                      }));
+                      myPushName(context, MyPagesRoutes.bookmarkApartment);
                     }, "المفضلة",
-                        icon: Icon(
-                          Icons.bookmark_outlined,
-                          color: themeMode.isDark
-                              ? kTextColorLightMode
-                              : kTextColorDarkMode,
-                        ),
-                        context: context)
-                  ]),
+                        icon:
+                          Icons.bookmark_border_outlined,
+
+                        context: context),
+                  aline,
+                    buttonAccount(
+                          () {
+                        String url =
+                            "https://play.google.com/store/apps/details?id=com.weenbalaqee.weenbalaqee";
+
+                        /// use this code if you upload your app to play store
+                        // switch (Platform.operatingSystem) {
+                        //   case 'ios':
+                        //     url = "www.youtube.com";
+                        //     break;
+                        //   default:
+                        //     // Use the original value for other platforms
+                        //     break;
+                        // }
+                        Share.shareUri(
+                          Uri.parse(url),
+                        );
+                      },
+                      "مشاركة التطبيق",
+                      context: context,
+                      icon: Icons.share_outlined,
+
+                    )
+
+
+                  ],
+
+                  ),
                 ),
                 //button sign out
                 Padding(
