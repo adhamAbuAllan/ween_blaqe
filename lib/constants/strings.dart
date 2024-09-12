@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:upgrader/upgrader.dart';
 // import 'package:ween_blaqe/i_well_delete_it/learn_from_udemy/chat_app/widgets/custom_button.dart';
 
 main() {
@@ -217,4 +218,33 @@ class MyPagesRoutes {
   static const introScreen = "/intro_screen";
 }
 
+class ArabicUpgraderMessages extends UpgraderMessages {
+  @override
+  String get languageCode => 'ar'; // Set the language code to Arabic
+
+  @override
+  String get buttonTitleUpdate => 'تحديث'; // "Update"
+
+  String get promptUpdate => 'اصبح الاصدار الجديد متوفر الآن، هل ترغب في '
+      'التحديث؟'; //
+  // "New
+  // version available, would you like to update?"
+
+  String get promptLater => 'لاحقًا'; // "Later"
+
+  @override
+  String get buttonTitleIgnore => 'تجاهل'; // "Ignore"
+
+  @override
+  String get buttonTitleLater => 'لاحقًا'; // "Later"
+
+  @override
+  String get title => 'التحديث متاح'; // "Update Available"
+
+  @override
+  String get releaseNotes => 'قم تحديث التطبيق للحصول على احدث المزايا '
+      'الآن'; // "
+// Rele
+// ase Notes"
+}
 

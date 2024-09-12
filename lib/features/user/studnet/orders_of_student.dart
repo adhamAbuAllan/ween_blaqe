@@ -6,7 +6,8 @@ import 'package:ween_blaqe/constants/nums.dart';
 import 'package:ween_blaqe/core/widgets/subtitle_class_widget.dart';
 import 'package:ween_blaqe/core/widgets/title_class_widget.dart';
 
-import '../../../testing_code/upgrader_package_test.dart';
+import '../../../constants/strings.dart';
+
 
 // import '../../../core/widgets/orders_classs_widget/container_order_student_class_widget.dart';
 
