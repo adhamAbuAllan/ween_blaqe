@@ -270,11 +270,7 @@ class _AccountBeforeLoginInStudentState
                         buttonAccount(() {
                           myPushName(context, MyPagesRoutes.askForHelp);
                         },
-                            icon:
-                              Icons.info_outline,
-
-
-
+                            icon: Icons.info_outline,
                             "اطلب المساعدة",
                             context: context),
 
@@ -283,11 +279,7 @@ class _AccountBeforeLoginInStudentState
                         buttonAccount(() {
                           myPushName(context, MyPagesRoutes.privacyPolicy);
                         },
-                            icon:
-                              Icons.privacy_tip_outlined,
-
-
-
+                            icon: Icons.privacy_tip_outlined,
                             "سياسة الخصوصية",
                             context: context),
                         // aline,
@@ -341,9 +333,7 @@ class _AccountBeforeLoginInStudentState
                           }
                           myPushName(context, MyPagesRoutes.sendNoticeForUs);
                         },
-                            icon:
-                              Icons.feedback_outlined,
-
+                            icon: Icons.feedback_outlined,
                             "أرسل ملاحظات إلينا",
                             context: context),
                         aline,
@@ -363,13 +353,12 @@ class _AccountBeforeLoginInStudentState
                             context: context),
                         aline,
                         buttonAccount(() {
+                          apartmentModelController.fetchApartments(
+                              isOwnerApartments: false);
+
                           myPushName(context, MyPagesRoutes.bookmarkApartment);
                         }, "المفضلة",
-                            icon:
-                              Icons.bookmark_border,
-
-
-                            context: context),
+                            icon: Icons.bookmark_border, context: context),
                         aline,
                         buttonAccount(
                           () {
@@ -392,7 +381,6 @@ class _AccountBeforeLoginInStudentState
                           "مشاركة التطبيق",
                           context: context,
                           icon: Icons.share_outlined,
-
                         ),
                       ]),
                     ),

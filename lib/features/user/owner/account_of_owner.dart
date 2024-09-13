@@ -328,6 +328,7 @@ class _AccountOfOwnerState extends State<AccountOfOwner> {
                         context: context),
                     aline,
                     buttonAccount(() {
+                      apartmentModelController.fetchApartments(isOwnerApartments: false);
                       myPushName(context, MyPagesRoutes.bookmarkApartment);
                     }, "المفضلة",
                         icon:
