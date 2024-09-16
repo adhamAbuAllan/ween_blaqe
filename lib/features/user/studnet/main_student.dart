@@ -65,7 +65,7 @@ class _MainStudentState extends State<MainStudent> {
     return ColorfulSafeArea(
       bottomColor: Colors.transparent,
       color: themeMode.isDark ? kPrimaryColorLightMode : kPrimaryColorDarkMode,
-      child: StreamBuilder<ConnectivityResult>(
+      child: StreamBuilder(
           stream: Connectivity().onConnectivityChanged,
           builder: (context, snapshot) {
             return Scaffold(
@@ -378,6 +378,7 @@ class _MainStudentState extends State<MainStudent> {
                   shape: ContinuousRectangleBorder(
                       borderRadius: BorderRadius.circular(16)),
                   onPressed: () {
+                    debugPrint("check wifi status ${snapshot.data}");
                     if (snapshot.data != ConnectivityResult.none) {
                       NewSession.get("logged", "") == ""
                           ? alert(

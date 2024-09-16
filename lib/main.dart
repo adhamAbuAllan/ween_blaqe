@@ -160,7 +160,11 @@ class OwnMaterialApp extends StatefulWidget {
 
 class _OwnMaterialAppState extends State<OwnMaterialApp> {
   String newestApartmentId = '-1';
+@override
+  void initState() {
+    super.initState();
 
+  }
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(

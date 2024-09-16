@@ -28,6 +28,7 @@ class _SplashScreenState extends State<SplashScreen> {
     super.initState();
     // NewSession.remove('isFirstTime');
     // introController.saveIsFirstTime();
+
     debugPrint("the first time value : --${introController.isFirstTime}");
     themeMode.loadValue();
     navigateToHome();

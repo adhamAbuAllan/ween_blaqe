@@ -1,9 +1,11 @@
 import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:carousel_slider_plus/carousel_slider_plus.dart';
+
 // import 'package:carousel_slider/carousel_slider.dart';
 import 'package:colorful_safe_area/colorful_safe_area.dart';
 import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:flutter/material.dart';
+
 // import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -170,7 +172,7 @@ class _NoInternetState extends State<NoInternet> with WidgetsBindingObserver {
                       ? (getIt<AppDimension>().isSmallScreen(context)
                           ? 500 / 1.15
                           : 500)
-                      : 170,
+                      : (snapshot.data == ConnectivityResult.none ? 120: 170),
                   onEnd: () {
                     setState(() {
                       isContExpanding = false;
@@ -192,14 +194,12 @@ class _NoInternetState extends State<NoInternet> with WidgetsBindingObserver {
                       //     alignment: Alignment.bottomCenter,
                       //     child: yourChildrenWidgets()) : yourPerantWidget(),
                       //
-                      snapshot.data == ConnectivityResult.wifi &&
-                              snapshot.data != null
+                      snapshot.data == ConnectivityResult.none
                           ? const SizedBox(
                               height: 10 * 3,
                             )
                           : buildCounterTextRow(),
-                      snapshot.data == ConnectivityResult.wifi &&
-                              snapshot.data != null
+                      snapshot.data == ConnectivityResult.none
                           ? const SizedBox()
                           : aline,
                       // !isContExpanding?const SizedBox() :  const AnimatedSize(
@@ -225,7 +225,7 @@ class _NoInternetState extends State<NoInternet> with WidgetsBindingObserver {
                               duration: const Duration(milliseconds: 2900),
                               alignment: Alignment.centerRight,
                               child: SizedBox(
-                                height: 30,
+                                height: 25,
                                 child: Row(
                                   mainAxisAlignment: MainAxisAlignment.start,
                                   mainAxisSize: MainAxisSize.max,
@@ -258,8 +258,8 @@ class _NoInternetState extends State<NoInternet> with WidgetsBindingObserver {
                               curve: Curves.linear,
                               child: SizedBox(
                                   height: getIt<AppDimension>()
-                                              .isSmallScreen(context)
-                                      ? 80/1.3
+                                          .isSmallScreen(context)
+                                      ? 80 / 1.3
                                       : 80),
                             )
                           : const SizedBox(),
@@ -271,7 +271,7 @@ class _NoInternetState extends State<NoInternet> with WidgetsBindingObserver {
                                     SizedBox(
                                       width: double.infinity,
                                       height: getIt<AppDimension>()
-                                                  .isSmallScreen(context) 
+                                              .isSmallScreen(context)
                                           ? 55 / 1.2
                                           : 55,
                                       child: buildSebhaElevatedButton(),
@@ -282,7 +282,7 @@ class _NoInternetState extends State<NoInternet> with WidgetsBindingObserver {
                                     SizedBox(
                                       width: double.infinity,
                                       height: getIt<AppDimension>()
-                                                  .isSmallScreen(context) 
+                                              .isSmallScreen(context)
                                           ? 55 / 1.2
                                           : 55,
                                       child: OutlinedButton(
@@ -374,13 +374,9 @@ class _NoInternetState extends State<NoInternet> with WidgetsBindingObserver {
         padding: const EdgeInsets.fromLTRB(0, 10, 5, 10),
         child: Image(
           image: const AssetImage("assets/images/error_images/no network.png"),
-          height: getIt<AppDimension>().isSmallScreen(context)
-              ? 60 / 1.5
-              : 60,
+          height: getIt<AppDimension>().isSmallScreen(context) ? 60 / 1.5 : 60,
           color: themeMode.isDark ? kTextColorLightMode : kTextColorDarkMode,
-          width: getIt<AppDimension>().isSmallScreen(context)
-              ? 60 / 1.5
-              : 60,
+          width: getIt<AppDimension>().isSmallScreen(context) ? 60 / 1.5 : 60,
         ),
       ),
       Column(
