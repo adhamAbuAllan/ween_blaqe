@@ -19,9 +19,10 @@ import 'package:ween_blaqe/core/utils/styles/button.dart';
 import '../../../../constants/coordination.dart';
 import '../../../../constants/injection.dart';
 import '../../../../constants/nums.dart';
+import '../../../../core/widgets/apartments/show_more_classes_widget/advantages_class_widget.dart';
 import '../../../../core/widgets/apartments/show_more_classes_widget/image_slider/pointer.dart';
 import '../../../../core/widgets/apartments/show_more_classes_widget/image_slider/zoom_of_image/home.dart';
-import '../../../../i_well_delete_it/slove_get_advantage_data/advantages_class_widget.dart';
+// import '../../../../i_well_delete_it/slove_get_advantage_data/advantages_class_widget.dart';
 
 // import '../../../toast_widget.dart';
 // main() {

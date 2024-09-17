@@ -1,1 +1,0 @@
->[https://api.flutter.dev/flutter/widgets/InheritedModel-class.html]

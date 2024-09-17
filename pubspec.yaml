@@ -90,46 +90,18 @@ flutter_native_splash:
 flutter:
   uses-material-design: true
   assets:
-    - assets/images/apartment_get_started.png
     - assets/images/apartments_images/
     - assets/images/apartments_images/about_apartment/
-    - assets/images/apartments_images/advantages/
     - assets/images/whatsapp.png
-    - assets/images/bottomNavBarIcon/apartment.png
     - assets/images/apartments_images/images_to_create_apartment/step_one.png
     - assets/images/apartments_images/images_to_create_apartment/step_two.png
     - assets/images/apartments_images/images_to_create_apartment/step_three.png
     - assets/images/apartments_images/images_to_create_apartment/step_four.png
-    - assets/images/apartments_images/advantages/casino-cctv.png
-    - assets/images/apartments_images/advantages/cctv.png
-    - assets/images/apartments_images/advantages/cutlery1.png
-    - assets/images/apartments_images/advantages/desktop.png
-    - assets/images/apartments_images/advantages/dishes-washer.png
-    - assets/images/gmail.png
-    - assets/images/phone-call.png
+
     - assets/images/error_images/no network.png
-    - assets/images/error_images/refresh.png
 #    - assets/images/error_images/search_not_found.png
-    - assets/images/alert.png
-    - assets/images/correct.png
     - assets/images/apartments_images/apartment.jpg
-    - assets/images/apartments_images/image1.png
-    - assets/images/apartments_images/advantages/hot-water.png
-    - assets/images/apartments_images/advantages/gas-stove.png
-    - assets/images/apartments_images/advantages/first-aid-box.png
-    - assets/images/apartments_images/advantages/kitchen-set.png
-    - assets/images/apartments_images/advantages/microwave.png
-    - assets/images/apartments_images/advantages/fire-extinguisher.png
-    - assets/images/apartments_images/advantages/refrigerator-.png
-    - assets/images/apartments_images/advantages/fire-alarm.png
-    - assets/images/apartments_images/advantages/oven.png
-    - assets/images/apartments_images/advantages/wifi.png
-    - assets/images/tasbih.png
     - assets/images/mobile-development.png
-    - assets/images/zzz_notifiction.png
-    - assets/images/screenshot/Screenshot_select_add_home_button.png
-    - assets/images/screenshot/Screenshot_home_screen.png
-    - assets/images/screenshot/Screenshot_select_what_app_button.png
     - assets/images/apartments_images/Simulator Screenshot - iPhone 15 Pro Max - 2023-12-05 at 14.27.36.png
     - assets/images/apartments_images/Simulator Screenshot - iPhone 15 Pro Max - 2023-12-05 at 14.32.35.png
     - assets/images/apartments_images/Simulator Screenshot - iPhone 15 Pro Max - 2023-12-05 at 14.48.13.png

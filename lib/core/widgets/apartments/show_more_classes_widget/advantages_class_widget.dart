@@ -1,92 +1,132 @@
 // import 'dart:html';
 
 import 'package:flutter/material.dart';
+import 'package:skeletons/skeletons.dart';
+import 'package:ween_blaqe/core/widgets/apartments/show_more_classes_widget/show_all_advantages_class_widget.dart';
 
 import '../../../../api/advantages.dart';
+import '../../../../api/apartments_api/one_apartment.dart';
+import '../../../../constants/nums.dart';
+import '../../../utils/styles/button.dart';
+class GetAdvantages extends StatefulWidget {
+  const GetAdvantages({super.key, this.oneApartment});
 
-class AdvantagesClassWidget extends StatefulWidget {
-  const AdvantagesClassWidget({Key? key,required this.features}) : super(key: key);
-  final List<Advantages> features;
+  final DataOfOneApartment? oneApartment;
 
   @override
-  State<AdvantagesClassWidget> createState() => _AdvantagesClassWidgetState();
+  State<GetAdvantages> createState() => _GetAdvantagesState();
 }
 
-// class Feature {
-//   int id;
-//   String name;
-//   String icon;
-//   Feature({required this.id, required this.name, required this.icon});
-// }
+class _GetAdvantagesState extends State<GetAdvantages> {
+  late List<Advantages>? advantages = widget.oneApartment?.advantages;
 
-class _AdvantagesClassWidgetState extends State<AdvantagesClassWidget> {
-  // List<Feature> features = [];
-  // List<int> chosen = [];
   @override
   void initState() {
     super.initState();
-  //   features.add(Feature(
-  //       id: 1,
-  //       name: "كاميرات مرافبة",
-  //       icon: "assets/images/apartments_images/advantages/casino-cctv.png"));
-  //   features.add(Feature(
-  //       id: 2,
-  //       name: "كاميرات مراقبة داخلية",
-  //       icon: "assets/images/apartments_images/advantages/cctv.png"));
-  //   features.add(Feature(
-  //       id: 3,
-  //       name: "ادوات مطبخ",
-  //       icon: "assets/images/apartments_images/advantages/cutlery1.png"));
-  //   features.add(Feature(
-  //       id: 4,
-  //       name: "مكتب",
-  //       icon: "assets/images/apartments_images/advantages/desktop.png"));
-  //   features.add(Feature(
-  //       id: 5,
-  //       name: "غسلة صحون",
-  //       icon: "assets/images/apartments_images/advantages/dishes-washer.png"));
-  //   features.add(Feature(
-  //     id: 7,
-  //     name: "طفاية",
-  //     icon: "assets/images/apartments_images/advantages/fire-extinguisher.png",
-  //   ));
-  //   features.add(Feature(
-  //     id: 8,
-  //     name: "إسعافات أولية",
-  //     icon: "assets/images/apartments_images/advantages/first-aid-box.png",
-  //   ));
-  //   features.add(Feature(
-  //     id: 9,
-  //     name: "غاز",
-  //     icon: "assets/images/apartments_images/advantages/gas-stove.png",
-  //   ));
   }
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: widget.features.map((feature) {
-        return Padding(
-          padding: const EdgeInsets.fromLTRB(12, 8, 12, 8),
-          child: Row(
+    return Container(
+      margin: const EdgeInsets.fromLTRB(10, 23, 10, 0),
+      decoration: BoxDecoration(
+        color: themeMode.isDark
+            ? kContainerColorLightMode
+            : kContainerColorDarkMode,
+        borderRadius: BorderRadius.circular(7),
+      ),
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          Row(
             children: [
-              Text(
-                feature.advName!,
-                style: TextStyle(
-                    fontFamily: 'IBM',
-                    fontSize: 16,
-                    color: Colors.grey.shade800),
+              Padding(
+                padding: const EdgeInsets.fromLTRB(0, 0, 10, 0),
+                child: Text("المزايا",
+                    style: TextStyle(
+                      color: themeMode.isDark
+                          ? kTextColorLightMode
+                          : kTextColorDarkMode,
+                      fontSize: 20,
+                      fontFamily: 'IBM',
+                    )),
               ),
               const Expanded(child: Text("")),
-              Image(
-                image: AssetImage(feature.icon!),
-                width: 30,
-                height: 30,
-              )
             ],
           ),
-        );
-      }).toList(),
+          Column(
+            children: _advantageItemsWidget(advantages: advantages)
+                .toList()
+                .take(10)
+                .toList(),
+          ),
+
+//button to show more advantages
+          (advantages?.length ?? 0) > 10
+              ? Padding(
+            padding: const EdgeInsets.fromLTRB(25, 25, 25, 25),
+            child: SizedBox(
+              width: double.infinity,
+              height: 55,
+              child: ElevatedButton(
+                  onPressed: () {
+                    Navigator.of(context).push(
+                      MaterialPageRoute(builder: (context) {
+                        return ShowAllAdvantages(features: advantages!);
+                      }),
+                    );
+                  },
+                  style: fullButton,
+                  child: Text(
+                      "عرض الميزات ال${(advantages?.length ?? 0) - 10} الآخرى")),
+            ),
+          )
+              : const SizedBox(),
+        ],
+      ),
     );
+  }
+
+
+
+  Iterable<Padding> _advantageItemsWidget({List<Advantages>? advantages}) {
+    return advantages?.map((entry) {
+      return Padding(
+        padding: const EdgeInsets.fromLTRB(12, 0, 12, 0),
+        child: ListTile(
+          title: Text(entry.advName!,
+              style: TextStyle(
+                  fontFamily: 'IBM',
+                  fontSize: 16,
+                  color: themeMode.isDark
+                      ? kTextColorLightMode
+                      : kTextColorDarkMode)),
+          trailing: entry.icon!.isEmpty
+              ? const SizedBox(
+              child: SkeletonAvatar(
+                  style: SkeletonAvatarStyle(width: 28, height: 28)))
+              : Image.network(
+            entry.icon!,
+            height: 30,
+            width: 30,
+            errorBuilder: (context, error, stackTrace) {
+              return const SizedBox(
+                  child: SkeletonAvatar(
+                      style: SkeletonAvatarStyle(
+                        width: 28,
+                        height: 28,
+                      )));
+            },
+            color: themeMode.isDark
+                ? kTextColorLightMode
+                : kTextColorDarkMode,
+          ),
+        ),
+      );
+    }) ??
+        [].map((e) => const Padding(
+          padding: EdgeInsets.all(0),
+          child: SizedBox(),
+        ));
   }
 }

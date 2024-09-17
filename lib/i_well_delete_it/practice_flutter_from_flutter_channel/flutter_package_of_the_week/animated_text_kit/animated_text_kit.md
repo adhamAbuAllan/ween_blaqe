@@ -1,1 +1,0 @@
->A flutter package project which contains a collection of cool and beautiful text animations.
