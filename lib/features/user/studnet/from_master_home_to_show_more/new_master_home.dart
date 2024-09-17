@@ -21,6 +21,7 @@ import 'package:ween_blaqe/features/error_widgets/search_not_found.dart';
 import '../../../../api/apartments_api/one_apartment.dart';
 import '../../../../api/photos.dart';
 import '../../../../api/users.dart';
+// import '../../../../core/utils/funcations/snakbar_for_stream_builder.dart';
 
 // import '../../../../core/widgets/apartments/home_screen/bar_cities.dart';
 // import '../../../../controller/get_controllers.dart';
@@ -35,6 +36,7 @@ class NewMasterHome extends StatefulWidget {
   const NewMasterHome({super.key, this.scrollController});
 
   final ScrollController? scrollController;
+
 
   // Future<OneApartment> getDataFromAPI();
   //  MainController mainController = Get.find();
@@ -56,7 +58,6 @@ class _NewMasterHomeState extends State<NewMasterHome> {
   // error holding
   String errorMessage = ''; // message of error server
 
-  bool isStart = false;
   bool isHaveInternet = false;
 
   // bool clicked = false;//to chnage bookmark icon
@@ -80,8 +81,8 @@ class _NewMasterHomeState extends State<NewMasterHome> {
   @override
   void initState() {
     super.initState();
-
-    isStart = true;
+    connectivityController.isSnackBarShow.value = true;
+    debugPrint("initState in NewMasterHome class ");
     // scrollController = ScrollController();
     widget.scrollController!.addListener(() {
       //[scrollController.addListener] this attribute usages to hide or show the button
@@ -149,33 +150,17 @@ class _NewMasterHomeState extends State<NewMasterHome> {
                   ? TypeNotFound(
                       type: _type,
                     ) // then go to TypeNotFound screen
-                  : StreamBuilder<ConnectivityResult>(
-                      stream: Connectivity().onConnectivityChanged,
+                  : FutureBuilder(
+                      future: Connectivity().checkConnectivity(),
                       builder: (context, snapshot) {
-                        //check wifi
-                        if (snapshot.data == ConnectivityResult.wifi) {
-                          // show snackbar connection if have connection with wifi
-                          //   isStart
-                          //       ?
-                          // const Text("")
-                          //       :
-                          // showSnakBarInStreamBuilder(
-                          //       context, "تمت إعادة الاتصال",
-                          //       isIcon: true,
-                          //       icon: Icons.wifi,
-                          //       isConnect: true,
-                          //       isStart: isStart);
 
-                          // Navigator.pop(context);
-                        } else if (snapshot.data == ConnectivityResult.none) {
-                          // show sanckbar no connectoin if no have connection with wifi and go to no Internet screen
-                          // showSnakBarInStreamBuilder(
-                          //     context, "انقطع الانترنت",
-                          //     isIcon: true,
-                          //     icon: Icons.wifi_off,
-                          //     isConnect: false,
-                          //     isStart: isStart);
-                          isStart = false;
+                        if (connectivityController.isSnackBarShow.value ==
+                            false) {
+                          connectivityController.handleConnectivityChange(
+                              context, snapshot.data);
+                        }
+
+                        if (connectivityController.isConnection() == false) {
                           return const NoInternet();
                         }
 
@@ -188,15 +173,14 @@ class _NewMasterHomeState extends State<NewMasterHome> {
                           },
                           child:
                               Stack(alignment: Alignment.topRight, children: [
-                             ApartmentsList(
-                               haveCitiesBar: true,
+                            ApartmentsList(
+                                haveCitiesBar: true,
                                 onClick: () async {
                                   if (_isAll) {
                                     callAPIAndAssignData(
                                         isAll: true,
                                         cityId:
                                             cityModelController.cityId.value);
-
                                   } else {
                                     setState(() {
                                       _isAll = false;
@@ -266,7 +250,9 @@ class _NewMasterHomeState extends State<NewMasterHome> {
                                                                   type: _type,
                                                                   isAll: false,
                                                                   cityId:
-                                                                  cityModelController.cityId.value);
+                                                                      cityModelController
+                                                                          .cityId
+                                                                          .value);
                                                               _isBoyStudent =
                                                                   true;
                                                               _isGirlStudent =
@@ -314,7 +300,10 @@ class _NewMasterHomeState extends State<NewMasterHome> {
                                                               callAPIAndAssignData(
                                                                 type: _type,
                                                                 isAll: false,
-                                                                cityId: cityModelController.cityId.value,
+                                                                cityId:
+                                                                    cityModelController
+                                                                        .cityId
+                                                                        .value,
                                                               );
                                                               _isBoyStudent =
                                                                   false;
@@ -363,7 +352,10 @@ class _NewMasterHomeState extends State<NewMasterHome> {
                                                               callAPIAndAssignData(
                                                                   type: _type,
                                                                   isAll: false,
-                                                                  cityId: cityModelController.cityId.value);
+                                                                  cityId:
+                                                                      cityModelController
+                                                                          .cityId
+                                                                          .value);
                                                               _isBoyStudent =
                                                                   false;
                                                               _isGirlStudent =
@@ -411,7 +403,10 @@ class _NewMasterHomeState extends State<NewMasterHome> {
 
                                                               callAPIAndAssignData(
                                                                 isAll: true,
-                                                                cityId: cityModelController.cityId.value,
+                                                                cityId:
+                                                                    cityModelController
+                                                                        .cityId
+                                                                        .value,
                                                               );
                                                               _isBoyStudent =
                                                                   false;
@@ -487,10 +482,11 @@ class _NewMasterHomeState extends State<NewMasterHome> {
       {String? type, bool? isAll, int? cityId}) async {
     late Uri uri;
     if (isAll ?? true) {
-      uri = Uri.parse("${ServerWeenBalaqee.apartmentAll}?city_id=${cityId??0}");
+      uri =
+          Uri.parse("${ServerWeenBalaqee.apartmentAll}?city_id=${cityId ?? 0}");
     } else {
-      uri = Uri.parse("${ServerWeenBalaqee
-          .apartmentAll}?type=$type&&city_id=${cityId??0}");
+      uri = Uri.parse(
+          "${ServerWeenBalaqee.apartmentAll}?type=$type&&city_id=${cityId ?? 0}");
     }
 
     debugPrint("uri --$uri");
@@ -505,7 +501,6 @@ class _NewMasterHomeState extends State<NewMasterHome> {
       debugPrint("a json of apartment is: -- $json");
       setState(() {
         isDataLoaded = true;
-
       });
       // debugPrint("the id is : ${apartmentsRes.data?.first.ownerId}");
       debugPrint("data : ${apartmentsRes.data}");
@@ -547,6 +542,7 @@ class _NewMasterHomeState extends State<NewMasterHome> {
       {String? type, int? cityId, required bool isAll}) async {
     apartmentModelController.apartment =
         (await getDataFromAPI(type: type, isAll: isAll, cityId: cityId));
+    connectivityController.isInitState.value = true;
   }
 
   Future<void> showSnackBarAfter3Second() async {

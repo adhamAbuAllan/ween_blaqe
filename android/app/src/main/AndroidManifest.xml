@@ -3,7 +3,7 @@
 <!--    <uses-permission android:name="android.permission.ACCESS_BACKGROUND_LOCATION"/>-->
 <!--    <uses-permission android:name="android.permission.QUERY_ALL_PACKAGES" />-->
     <uses-permission android:name="android.permission.VIBRATE"/>
-
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
    <queries>
        <!-- &lt;!&ndash; If your app checks for SMS support &ndash;&gt; -->

@@ -6,7 +6,7 @@ import '../../../../../controller/get_controllers.dart';
 class BookmarkButton extends StatelessWidget {
   final int apartmentId;
 
-  const BookmarkButton({Key? key, required this.apartmentId}) : super(key: key);
+  const BookmarkButton({super.key, required this.apartmentId});
 
   @override
   Widget build(BuildContext context) {

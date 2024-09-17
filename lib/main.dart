@@ -60,6 +60,7 @@ import 'constants/strings.dart';
 import 'controller/bookmark_controller.dart';
 import 'controller/function_controller/api_functions_controller/get_city_and_insert_it_in_a_list.dart';
 import 'controller/function_controller/api_functions_controller/apartment_api_methods_controller.dart';
+import 'controller/function_controller/connectivity_controller.dart';
 import 'controller/models_controller/apartment_model_controller.dart';
 import 'controller/models_controller/images_model_controller.dart';
 import 'controller/models_controller/type_of_apartment_models_controller.dart';
@@ -123,6 +124,7 @@ void main() async {
   Get.put(ApartmentModelController());
   Get.put(MethodsApiApartmentController());
   Get.put(ChangeThemeMode());
+  Get.put(ConnectivityController());
   // Get.put(OwnerController());
   Get.put(ReadyCityAndApartmentTypeApi());
   Get.put(TypeOfApartmentModelsController());

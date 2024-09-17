@@ -69,7 +69,11 @@ class _NoInternetState extends State<NoInternet> with WidgetsBindingObserver {
 
   @override
   void initState() {
+    debugPrint("is snack bark show in init State in NoInternet class :  "
+        "--${connectivityController.isSnackBarShow.value}");
     super.initState();
+    connectivityController.isSnackBarShow.value = false;
+
     WidgetsBinding.instance.addObserver(this);
     loadTotal();
   }
@@ -133,10 +137,9 @@ class _NoInternetState extends State<NoInternet> with WidgetsBindingObserver {
       child: StreamBuilder<ConnectivityResult>(
           stream: Connectivity().onConnectivityChanged,
           builder: (context, snapshot) {
-            debugPrint("snapshot data : ${snapshot.data}");
+            // debugPrint("snapshot data : ${snapshot.data}");
             return Scaffold(
-              appBar: snapshot.data == ConnectivityResult.wifi ||
-                      snapshot.data == null
+              appBar: connectivityController.isConnection()
                   ? AppBar(
                       backgroundColor: themeMode.isDark
                           ? kPrimaryColorLightMode
@@ -172,7 +175,8 @@ class _NoInternetState extends State<NoInternet> with WidgetsBindingObserver {
                       ? (getIt<AppDimension>().isSmallScreen(context)
                           ? 500 / 1.15
                           : 500)
-                      : (snapshot.data == ConnectivityResult.none ? 120: 170),
+                      : (connectivityController.isConnection() ? 120:
+                  170),
                   onEnd: () {
                     setState(() {
                       isContExpanding = false;
@@ -194,12 +198,12 @@ class _NoInternetState extends State<NoInternet> with WidgetsBindingObserver {
                       //     alignment: Alignment.bottomCenter,
                       //     child: yourChildrenWidgets()) : yourPerantWidget(),
                       //
-                      snapshot.data == ConnectivityResult.none
+                      connectivityController.isConnection()
                           ? const SizedBox(
                               height: 10 * 3,
                             )
                           : buildCounterTextRow(),
-                      snapshot.data == ConnectivityResult.none
+                      connectivityController.isConnection()
                           ? const SizedBox()
                           : aline,
                       // !isContExpanding?const SizedBox() :  const AnimatedSize(
@@ -248,9 +252,7 @@ class _NoInternetState extends State<NoInternet> with WidgetsBindingObserver {
                           ? (!isContExpanding
                               ? buildBorderSebhaContainer()
                               : const SizedBox())
-                          : snapshot.data == ConnectivityResult.wifi &&
-                                  snapshot.data != null
-                              ? aline
+                          : connectivityController.isConnection()                              ? aline
                               : const SizedBox(),
                       isWantToSepha
                           ? AnimatedSize(
@@ -342,7 +344,7 @@ class _NoInternetState extends State<NoInternet> with WidgetsBindingObserver {
                   ),
                 ),
               ),
-              floatingActionButton: snapshot.data == ConnectivityResult.wifi
+              floatingActionButton: connectivityController.isConnection()
                   ? FloatingActionButton(
                       onPressed: () {
                         cityModelController.cityId.value = 0;
@@ -590,21 +592,17 @@ class InternetConnectivityChecker extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return FutureBuilder(
-      future: Connectivity().checkConnectivity(),
-      builder: (context, snapshot) {
-        if (snapshot.hasData) {
-          if (snapshot.data == ConnectivityResult.none) {
-            return const NoInternet(
-              isHaveAppBar: false,
-            );
-          } else {
-            return child;
-          }
+    return Builder(
+      builder: (context) {
+        if (connectivityController.isConnection() == false) {
+          return const NoInternet(
+            isHaveAppBar: false,
+          );
+        } else if (connectivityController.isConnection()) { // Corrected condition
+          return child;
         } else {
           return const Center(child: CircularProgressIndicator());
-        }
-      },
+        }      },
     );
   }
 }

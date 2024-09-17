@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:ween_blaqe/api/apartments_api/one_apartment.dart';
+import 'package:ween_blaqe/controller/get_controllers.dart';
 import 'package:ween_blaqe/core/widgets/apartments/home_screen/bar_cities.dart';
 
 // import 'package:ween_blaqe/controller/get_controllers.dart';
@@ -25,6 +26,16 @@ class ApartmentsList extends StatefulWidget {
 }
 
 class _ApartmentsListState extends State<ApartmentsList> {
+@override
+  void initState() {
+    super.initState();
+    if(apartmentModelController.apartment.data?.isNotEmpty??false){
+    connectivityController.isSnackBarShow.value = false;
+  }
+
+
+
+}
   @override
   Widget build(BuildContext context) {
     return CustomScrollView(
@@ -49,6 +60,7 @@ class _ApartmentsListState extends State<ApartmentsList> {
               if (widget.apartmentsRes.data?[index].photos?.isEmpty ?? true) {
                 return const SizedBox();
               }
+
 
               return WholeWidgetOfApartment(
                 index: index,
