@@ -8,6 +8,7 @@ class ConnectivityController extends GetxController {
   var connectivity = ConnectivityResult.none.obs; // Use an Rx variable
   RxBool isInitState = false.obs;
   RxBool isSnackBarShow = false.obs;
+  RxBool isResponseIsOk = false.obs; // a response of apartment data api
 
   @override
   void onInit() {
@@ -33,11 +34,14 @@ class ConnectivityController extends GetxController {
     if (!isConnection()) {
       showSnakBarInStreamBuilder(context, "انقطع الانترنت",
               icon: Icons.wifi_off, );
+      isResponseIsOk.value = false;
 
     } else {
       // isStart
       //     ? (
-          showSnakBarInStreamBuilder(
+     isResponseIsOk.value ? const
+     SizedBox():
+     showSnakBarInStreamBuilder(
                   context,
                   ""
                   "تمت "
@@ -63,6 +67,6 @@ class ConnectivityController extends GetxController {
 
     }
 
-    isSnackBarShow.value = true;
+    isSnackBarShow.value = true; //that if true, the snack bar will not show again
   }
 }

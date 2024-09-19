@@ -30,7 +30,8 @@ class _ApartmentsListState extends State<ApartmentsList> {
   void initState() {
     super.initState();
     if(apartmentModelController.apartment.data?.isNotEmpty??false){
-    connectivityController.isSnackBarShow.value = false;
+    connectivityController.isSnackBarShow.value = false; // that if false,
+      // the snack bar will show
   }
 
 

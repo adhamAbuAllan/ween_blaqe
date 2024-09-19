@@ -18,20 +18,28 @@ class AlertWithTwoBtn {
         context: context,
         builder: (context) {
           return AlertDialog(
+            backgroundColor: themeMode.isDark
+                ? kContainerColorLightMode
+                : kContainerColorDarkMode,
             shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(7),
-                side:  BorderSide(
-                    color: themeMode.isDark ?kPrimaryColorLightMode :kPrimaryColorDarkMode, strokeAlign: 0, width: 0.5)),
+                side: BorderSide(
+                    color: themeMode.isDark
+                        ? kPrimaryColorLightMode
+                        : kPrimaryColorDarkMode,
+                    strokeAlign: 0,
+                    width: 0.5)),
             actionsPadding: const EdgeInsets.fromLTRB(120, 0, 10, 0),
             title: Text(
               title,
               style: TextStyle(
-                  color: Colors.grey.shade800, fontFamily: 'IBM', fontSize: 18),
+                  color: themeMode.isDark ? kTextColorLightMode : kTextColorDarkMode,
+                  fontFamily: 'IBM', fontSize: 18),
             ),
             content: Text(
               message,
               style: TextStyle(
-                  color: Colors.grey.shade800, fontFamily: 'IBM', fontSize: 18),
+                  color: themeMode.isDark ? kTextColorLightMode : kTextColorDarkMode, fontFamily: 'IBM', fontSize: 18),
             ),
             actions: [
               OutlinedButton(
@@ -44,16 +52,17 @@ class AlertWithTwoBtn {
                     style: const TextStyle(
                       fontSize: 16,
                       fontFamily: 'IBM',
-                      color: Colors.red,//for delete apartment button
+                      color:
+                          kPrimaryColorLightMode, //for delete apartment button
                     ),
                   )),
               // SizedBox(width: 1,),
 
-              OutlinedButton(
+              ElevatedButton(
                   onPressed: () {
                     Get.back();
                   },
-                  style: outlineButton,
+                  style: fullButton,
                   child: Text(textOfCancelButton)),
             ],
           );
@@ -68,20 +77,27 @@ class NormalAlert {
         context: context,
         builder: (context) {
           return AlertDialog(
+              backgroundColor: themeMode.isDark
+                  ? kContainerColorLightMode
+                  : kContainerColorDarkMode,
             shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(7),
-                side:  BorderSide(
-                    color: themeMode.isDark ? kPrimaryColorLightMode:kPrimaryColorDarkMode, strokeAlign: 0, width: 0.5)),
+                side: BorderSide(
+                    color: themeMode.isDark
+                        ? kPrimaryColorLightMode
+                        : kPrimaryColorDarkMode,
+                    strokeAlign: 0,
+                    width: 0.5)),
             actionsPadding: const EdgeInsets.fromLTRB(120, 0, 10, 0),
             title: Text(
               title,
               style: TextStyle(
-                  color: Colors.grey.shade800, fontFamily: 'IBM', fontSize: 18),
+                  color: themeMode.isDark ? kTextColorLightMode : kTextColorDarkMode, fontFamily: 'IBM', fontSize: 18),
             ),
             content: Text(
               message,
               style: TextStyle(
-                  color: Colors.grey.shade800, fontFamily: 'IBM', fontSize: 18),
+                  color: themeMode.isDark ? kTextColorLightMode : kTextColorDarkMode, fontFamily: 'IBM', fontSize: 18),
             ),
             actions: [
               ElevatedButton(

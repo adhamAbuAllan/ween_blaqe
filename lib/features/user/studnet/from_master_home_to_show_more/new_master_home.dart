@@ -494,6 +494,8 @@ class _NewMasterHomeState extends State<NewMasterHome> {
     debugPrint("response --$response");
     // print(response.contentLength);
     if (response.statusCode == 200) {
+      connectivityController.isResponseIsOk.value = true;
+
       // All ok
       var responseBody = response.body;
       var json = jsonDecode(responseBody);

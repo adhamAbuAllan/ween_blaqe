@@ -192,14 +192,14 @@ class MethodsApiApartmentController extends GetxController{
 
       if (response.statusCode == 200) {
         // Update successful, handle success scenario (e.g., show a success message)
-        print('Apartment updated successfully');
+        debugPrint('Apartment updated successfully');
       } else {
         // Update failed, handle error scenario (e.g., show an error message)
-        print('Failed to update apartment: ${response.body}');
+        debugPrint('Failed to update apartment: ${response.body}');
       }
     } catch (e) {
       // Handle network or other exceptions
-      print('Error updating apartment: $e');
+      debugPrint('Error updating apartment: $e');
     }
   }
 
