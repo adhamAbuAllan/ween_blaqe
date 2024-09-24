@@ -73,8 +73,11 @@ myPushAndRemoveUntilName(BuildContext context, Widget page, String routeName) {
   );
 }
 
-Future<void>myPushName(BuildContext context, String routeName) async {
-await  Navigator.of(context).pushNamed(routeName);
+Future<void>myPushName(BuildContext context, String routeName,{Object ?
+arguments})
+async {
+await  Navigator.of(context).pushNamed(routeName,arguments: arguments);
+
 }
 
 /*
@@ -93,7 +96,7 @@ myPushNameAndRemoveUntil(BuildContext context, String routeName,
 }
 
 //push and replacement Named
-myPushReplacementNamed( String routeName,{BuildContext? context}) {
+myPushReplacementNamed( String routeName,{BuildContext ? context}) {
   Navigator.of(context!).pushReplacementNamed(routeName);
 }
 //testing animation screen navigation

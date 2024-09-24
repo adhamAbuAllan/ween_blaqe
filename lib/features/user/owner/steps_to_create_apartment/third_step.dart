@@ -2,6 +2,7 @@ import 'package:colorful_safe_area/colorful_safe_area.dart';
 import 'package:flutter/material.dart';
 import 'package:ween_blaqe/core/utils/styles/button.dart';
 
+import '../../../../api/type_of_apartment.dart';
 import '../../../../controller/get_controllers.dart';
 import '../../../../core/widgets/alirt_class_widget.dart';
 import '../../../../core/widgets/apartments/create_apartment/'
@@ -30,7 +31,7 @@ var squareMeters = AddAdDataContainer.squareMeters;
 //--------------
 
 class ThirdStep extends StatefulWidget {
-  const ThirdStep({Key? key}) : super(key: key);
+  const ThirdStep({super.key});
 
   @override
   State<ThirdStep> createState() => _ThirdStepState();
@@ -44,9 +45,8 @@ class _ThirdStepState extends State<ThirdStep> {
     super.initState();
     // WidgetsBinding.instance.addPostFrameCallback((timeStamp) async {
     //  await
-    wholeListApi = readyCityAndTypeOfApartmentApi.getDataCityApi(
-      typeApartmentItems,
-      "",
+    wholeListApi = readyCityAndTypeOfApartmentApi.getDataTypeApiToEdit(
+      readyCityAndTypeOfApartmentApi.itemsTypeOfApartment,
       ServerWeenBalaqee.typeOfApartment,
     );
     // });
@@ -74,7 +74,7 @@ class _ThirdStepState extends State<ThirdStep> {
 
   //type of apartment box
   var typeApartmentText = "نوع السكن";
-  Future<List<String?>?>? wholeListApi;
+  Future<List<dynamic>?>? wholeListApi;
   var firstValueTypeApartment = "";
   var typeOfApartmentFoucsNode = FocusNode();
   List<String> typeApartmentItems = [];
@@ -143,12 +143,16 @@ class _ThirdStepState extends State<ThirdStep> {
                                       int.parse(squareMetersController.text);
                                 });
                                 setState(() {
-                                  for (var i = 0; i < typeApartmentItems.length; ++i) {
-                                    if (typeApartmentItems[i] == firstValueTypeApartment) {
+                                  for (var i = 0;
+                                      i < typeApartmentItems.length;
+                                      ++i) {
+                                    if (typeApartmentItems[i] ==
+                                        firstValueTypeApartment) {
                                       setState(() {
                                         indexOfTypeOfApartment = i + 1;
                                       });
-                                      readyCityAndTypeOfApartmentApi.saveData(indexOfTypeOfApartment,
+                                      readyCityAndTypeOfApartmentApi.saveData(
+                                          indexOfTypeOfApartment,
                                           isCity: false);
                                     }
                                   }
@@ -240,81 +244,20 @@ class _ThirdStepState extends State<ThirdStep> {
                 //countStudent padding
                 ContainerChooseItemsClassWidget(
                     wholeListApi: wholeListApi,
-                    items: typeApartmentItems,
                     title: "نوع السكن",
                     currentValue: firstValueTypeApartment,
-                    onSelected: (c) {
-                      // aValueInDropDownButton = c;
-                      setState(
-                        () {
-                          firstValueTypeApartment = c;
-                          setState(() {
-                            for (var i = 0;
-                                i < typeApartmentItems.length;
-                                ++i) {
-                              if (firstValueTypeApartment ==
-                                  typeApartmentItems[i]) {
-                                setState(() {
-                                  // readyCityAndTypeOfApartmentApi.indexApartmentType = i + 1;
-                                });
-                                readyCityAndTypeOfApartmentApi.saveData(i + 1,
-                                    isCity: false);
-                              }
-                            }
-                          });
-                        },
-                      );
-                      print("the index of type of city from get "
+                    onSelected: (type) {
+                      if (type is TypeOfApartment) {
+                        setState(() {
+                          indexOfTypeOfApartment = type.id ?? -1;
+                        });
+                        readyCityAndTypeOfApartmentApi
+                            .saveData(indexOfTypeOfApartment, isCity: false);
+                      }
+
+                      debugPrint("the index of type of city from get "
                           "data controller in third step is"
                           " : --${readyCityAndTypeOfApartmentApi.indexApartmentType}");
-                      // Column(
-                      //   children: [
-                      //     Row(
-                      //       children: [
-                      //         Padding(
-                      //           padding: const EdgeInsets.fromLTRB(0, 10, 10, 10),
-                      //           child: Text(
-                      //             "نوع السكن",
-                      //             style: TextStyle(
-                      //               color: Colors.grey.shade800,
-                      //               fontSize: 18,
-                      //               fontFamily: 'IBM',
-                      //             ),
-                      //           ),
-                      //         ),
-                      //       ],
-                      //     ),
-                      //     Padding(
-                      //       padding: const EdgeInsets.fromLTRB(0, 0, 0, 10),
-                      //       child: DropdownButtonClassWidget(
-                      //
-                      //         firstItem: typeOfApartmentModelsController.currentType,
-                      //         items: typeOfApartmentModelsController.apartmentTypes,
-                      //         onSelected: (e) {
-                      //           setState(() {
-                      //             typeOfApartmentModelsController.currentType = e;
-                      //             setState(() {
-                      //               for (var i = 0; i <
-                      //               typeOfApartmentModelsController.
-                      //               apartmentTypes.length; ++i) {
-                      //                 if(typeOfApartmentModelsController.
-                      //                 currentType == typeOfApartmentModelsController.
-                      //                 apartmentTypes[i]){
-                      //                   setState(() {
-                      //                     typeOfApartmentModelsController.
-                      //                     typeIndex = i+1;
-                      //                   });
-                      //                 }
-                      //               }
-                      //             });
-                      //
-                      //           });
-                      //
-                      //         },
-                      //       ),
-                      //     ),
-                      //   ],
-                      // )
                     }),
                 ContainerInputTextClassWidget(
                   title: countStudentText,

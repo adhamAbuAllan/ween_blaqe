@@ -30,15 +30,15 @@ class TypeOfApartmentRes {
 
 class TypeOfApartment {
   TypeOfApartment({
-    required this.name,
+     this.name,
     this.updatedAt,
     this.createdAt,
-    required this.id,
+     this.id,
   });
-  late final String name;
+  late final String ?name;
   late final String ?updatedAt;
   late final String ?createdAt;
-  late final int id;
+  late final int ?id;
 
   TypeOfApartment.fromJson(Map<String, dynamic> json){
     name = json['name'];

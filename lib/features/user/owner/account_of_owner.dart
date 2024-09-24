@@ -19,7 +19,7 @@ import '../../../core/widgets/buttons/lines_buttons/line_buttons.dart';
 import '../../../main.dart';
 
 // import '../../bookmark.dart';
-import 'apartment_of_owner.dart';
+// import 'apartment_of_owner.dart';
 import '../../../sesstion/new_session.dart';
 import '../../../sesstion/sesstion_of_user.dart';
 
@@ -250,11 +250,7 @@ class _AccountOfOwnerState extends State<AccountOfOwner> {
                   aline,
                   //apartments of owner
                   buttonAccount(() {
-                    Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => const ApartmentsOwner(),
-                        ));
+                    myPushName(context, MyPagesRoutes.apartmentsOwner);
                   }, icon: Icons.apartment, "شققك", context: context),
                   //ask for help
                   aline,

@@ -1,13 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:ween_blaqe/core/widgets/registration/dropdown_button.dart';
+// import '../../../../../../api/cities.dart';
 import '../../../../../../constants/nums.dart';
 
 class ContainerChooseItemsClassWidget extends StatefulWidget {
   final Function(dynamic) onSelected;
   final String title;
-  final Future<List<String?>?>? wholeListApi;
+  final Future<List<dynamic>?>? wholeListApi;
   String currentValue;
-  final List<String> items;
+  int ? itemIdNotIndex;
 
   // bool dataStatus;
 
@@ -17,7 +18,7 @@ class ContainerChooseItemsClassWidget extends StatefulWidget {
     required this.title,
     required this.wholeListApi,
     required this.currentValue,
-    required this.items,
+    this.itemIdNotIndex
     // required this.dataStatus
   });
 
@@ -61,9 +62,9 @@ class _ContainerChooseItemsClassWidgetState
             padding: const EdgeInsets.fromLTRB(0, 0, 0, 0),
             child: DropdownButtonClassWidget(
               wholeListApi: widget.wholeListApi,
-              items: widget.items,
               firstItem: widget.currentValue,
               onSelected: widget.onSelected,
+              itemIdNotIndex:widget.itemIdNotIndex??1 ,
               //     (c) {
               //   if (!readyCityAndTypeOfApartmentApi.isApartmentApi) {
               //     setState(() {

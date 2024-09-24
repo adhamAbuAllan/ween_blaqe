@@ -361,7 +361,6 @@ class ApartmentsOwner extends StatefulWidget {
 class _ApartmentsOwnerState extends State<ApartmentsOwner>
     with SingleTickerProviderStateMixin {
   // final ApartmentModelController apartmentController = Get.put(ApartmentModelController());
-  bool isDeleteMode = false;
   bool isApartmentsListEmpty = false;
   late AnimationController _animationController;
   late Animation<Color?> _iconColorAnimation;
@@ -369,6 +368,20 @@ class _ApartmentsOwnerState extends State<ApartmentsOwner>
   @override
   void initState() {
     super.initState();
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      setState(() {});
+    });
+    setState(() {
+      apartmentModelController.fetchApartments(isOwnerApartments: true);
+    });
+    debugPrint("initState apartment_of_owner.dart");
+    apiApartmentController.isEditMode.value = true;
+
+    debugPrint(
+        "apartment.isEditMode.value = ${apiApartmentController.isEditMode.value}");
+    debugPrint(
+        "apartment.delete.value = ${apiApartmentController.isDeleteMode.value}");
+
     _animationController = AnimationController(
       vsync: this,
       duration: const Duration(milliseconds: 300),
@@ -382,9 +395,6 @@ class _ApartmentsOwnerState extends State<ApartmentsOwner>
     });
     _animationController.forward();
 
-    setState(() {
-      apartmentModelController.fetchApartments(isOwnerApartments: true);
-    });
     // apartmentModelController.apartments.value == OneApartment(data: [])
     //     ? setState(() {
     //         isApartmentsListEmpty = true;
@@ -396,16 +406,21 @@ class _ApartmentsOwnerState extends State<ApartmentsOwner>
 
   @override
   void dispose() {
+    apiApartmentController.isDeleteMode.value = false;
+    apiApartmentController.isEditMode.value = false;
     _animationController.dispose();
     super.dispose();
   }
 
   void toggleDeleteMode() {
     setState(() {
-      isDeleteMode = !isDeleteMode;
-      if (isDeleteMode) {
+      apiApartmentController.isDeleteMode.value =
+          !apiApartmentController.isDeleteMode.value;
+      if (apiApartmentController.isDeleteMode.value) {
+        apiApartmentController.isEditMode.value = false;
         _animationController.forward();
       } else {
+        apiApartmentController.isEditMode.value = true;
         _animationController.reverse();
       }
     });
@@ -427,7 +442,9 @@ class _ApartmentsOwnerState extends State<ApartmentsOwner>
                     animation: _animationController,
                     builder: (context, child) => IconButton(
                       icon: Icon(
-                        isDeleteMode ? Icons.delete : Icons.bookmark,
+                        apiApartmentController.isDeleteMode.value
+                            ? Icons.delete
+                            : Icons.edit,
                         color: _iconColorAnimation.value,
                       ),
                       onPressed: toggleDeleteMode,
@@ -450,13 +467,14 @@ class _ApartmentsOwnerState extends State<ApartmentsOwner>
                       underCenterTextAfterIcon: '  للبدء في إنشاء إعلان جديد',
                     )
                   : ApartmentsList(
-                haveCitiesBar: false,
+                      haveCitiesBar: false,
                       apartmentsRes: apartmentModelController.apartments.value,
                       // scrollController: ScrollController(),
-                      isDeleteMode: isDeleteMode,
+                      isDeleteMode: apiApartmentController.isDeleteMode.value,
                       onPressed: () {
                         setState(() {
-                          apartmentModelController.fetchApartments(isOwnerApartments: true);
+                          apartmentModelController.fetchApartments(
+                              isOwnerApartments: true);
                         });
                       },
                     ),

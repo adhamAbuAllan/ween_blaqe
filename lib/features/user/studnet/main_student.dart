@@ -37,7 +37,6 @@ class _MainStudentState extends State<MainStudent> {
   @override
   void initState() {
     super.initState();
-
     NewSession.save('isFirstTime', "OK");
     debugPrint(
         "the first time value in main Student : --${introController.isFirstTime}");

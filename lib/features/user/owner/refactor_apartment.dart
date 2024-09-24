@@ -1,267 +1,555 @@
-// import 'package:colorful_safe_area/colorful_safe_area.dart';
-// import 'package:flutter/material.dart';
-// import 'package:ween_blaqe/core/utils/styles/button.dart';
-// import '../../../core/widgets/apartments/create_apartment/container_classes_widget/check_boxs/advatnages_check_box/add_advantages_container_class_widget.dart';
-// import '../../../core/widgets/apartments/create_apartment/container_classes_widget/check_boxs/connection_check_box/add_a_contact_class_widget.dart';
-// import '../../../core/widgets/apartments/create_apartment/container_classes_widget/containers_choose_items_class_widget/cities_container_choose_item/cities_container_choose_item_class_widget.dart';
-// import '../../../core/widgets/apartments/create_apartment/container_classes_widget/containers_choose_items_class_widget/type_of_apartment_container_choose_item/container_choose_item_class_widget.dart';
-// import '../../../core/widgets/apartments/create_apartment/container_classes_widget/input_text_class_widget/container_input_text_class_widget.dart';
-// import 'package:ween_blaqe/constants/nums.dart';import 'apartment_of_owner.dart';
-//
-//
-// class RefactorApartment extends StatefulWidget {
-//   const RefactorApartment({Key? key}) : super(key: key);
-//
-//   @override
-//   State<RefactorApartment> createState() => _RefactorApartmentState();
-// }
-//
-// class _RefactorApartmentState extends State<RefactorApartment> {
-//   String cityBoxTitle = "المدينة";
-//   int cityId = 0;
-//   @override
-//   Widget build(BuildContext context) {
-//     //Cities box
-//     // String firstCity = 'الخليل';
-//
-//     // List<String> cities = [
-//     //   'الخليل',
-//     //   'نابلس',
-//     //   'بيرزيت',
-//     //   ' القدس',
-//     //   'رام الله',
-//     //   'طولكرم',
-//     //   ' جنين',
-//     //   'أريحا',
-//     //   'بيت لحم',
-//     //   'سلفيت',
-//     // ];
-//
-//     //choose address box
-//     String chooseAddressTitle = "حدد العنوان";
-//     String hintAddress = "مثال:الخليل-وادالهرية-بجانب مسجد ابوعيشة";
-//     TextInputType text = TextInputType.text;
-//
-// //choose rooms box
-//     String chooseCountRoomsText = "حدد عدد الغرف ";
-//     String hintCountRooms = "0";
-//     TextInputType number = TextInputType.number;
-//
-//     //choose bathrooms box
-//     String chooseCountBathroomsText = "حدد عدد الحمامات";
-//     String hintCountBathrooms = "0";
-//     var addressFocusnose = FocusNode();
-//     var countRoomsfocusnode = FocusNode();
-//     var countBathroomsfocusnode = FocusNode();
-//     //price box
-//     var priceText = "حدد السعر";
-//     var priceHint = "يرجى إدخال الإيجار بشكل شهري";
-//     var priceFocusNode = FocusNode();
-//     // var numberInputType
-//
-//     //count of students box
-//     var countStudentText = "حدد عدد الطلاب المسموح به";
-//     var countStudentHint = "0";
-//     var countStudentFocusNode = FocusNode();
-//
-//     //square meters of apartment box
-//     var squareText = "حدد حجم الشقة";
-//     var squareHint = "يرجى إدخال حجم الشقة بالمتر مربع";
-//     var squareFocusNode = FocusNode();
-//     //type of apartment box
-//     var typeApartmentText = "حدد نوع السكن";
-//     // var firstValueTypeApartment = "طلاب";
-//     // var typeOfApartmentFoucsNode = FocusNode();
-//     // List<String> typeApartmentItems= [
-//     //   'طلاب',
-//     //   'طالبات'
-//     // ];
-//     // Ad box
-//     var addSuitableTitleForAdText = "أضف عنوان";
-//     var addSuitableTitleForAdHnit = "سكن طلاب مفروش";
-//     var adFocusNode = FocusNode();
-//     var discrptionFocusedNode = FocusNode();
-//     //discription box
-//     var discrptionApartmentText = "صف الشقة";
-//     var discrptionApartmentHint = " شقة خاصة"
-//         " بالطلاب و في مكان هادئ و بعيد عن الضوضاء ،"
-//         " لدينا تسهيلات للطلاب و بسعر مناسب ، ويتوفر"
-//         " فيها العديد من الخدمات مثل السوبر ماركت "
-//         "و مطعم للوجبات السريعة كذلك يوجد العديد "
-//         "من المكتبات التي تخدم الطلاب بجميع التخصصات.";
-//
-//     return ColorfulSafeArea(
-// bottomColor: Colors.transparent ,
-//       color: kPrimaryColor,
-//       child: SafeArea(
-//         child: Scaffold(
-//           backgroundColor: Colors.grey.shade200,
-//           appBar: AppBar(
-//             actions: [
-//               Padding(
-//                 padding: const EdgeInsets.all(8.0),
-//                 child: OutlinedButton(
-//                   onPressed: () {
-//                     Navigator.pop(context);
-//                   },
-//                   style: outlineButton,
-//                   child: const Text("إلغاء"),
-//                 ),
-//               ),
-//               const Expanded(child: Text("")),
-//               Padding(
-//                 padding: const EdgeInsets.all(8.0),
-//                 child: ElevatedButton(
-//                   onPressed: () {
-//                     Navigator.of(context).push(MaterialPageRoute(
-//                       builder: (context) {
-//                         return const ApartmentOfOwner();
-//                       },
-//                     ));
-//                   },
-//                   style: fullButton,
-//                   child: const Text("حفظ"),
-//                 ),
-//               ),
-//             ],
-//             backgroundColor: Colors.white,
-//           ),
-//           body: SingleChildScrollView(
-//             child: Center(
-//               child: Column(
-//                 children: [
-//                   //city box
-//                   Padding(
-//                     padding: const EdgeInsets.fromLTRB(0, 10, 0, 10),
-//                     child: ContainerChooseCityItemClassWidget(
-//                       title: cityBoxTitle,
-//                       onSelected: (c) {
-//                         cityId = c.id;
-//                       },
-//                     ),
-//                   ),
-//                   //location box
-//                   Padding(
-//                     padding: const EdgeInsets.fromLTRB(0, 0, 0, 10),
-//                     child: ContainerInputTextClassWidget(
-//                         title: chooseAddressTitle,
-//                         hintInput: hintAddress,
-//                         inputType: text,
-//                         focusNode: addressFocusnose,
-//                         onFieldSubmitted: (value) {}),
-//                   ),
-//                   //rooms box
-//                   Padding(
-//                     padding: const EdgeInsets.fromLTRB(0, 0, 0, 10),
-//                     child: ContainerInputTextClassWidget(
-//                         title: chooseCountRoomsText,
-//                         hintInput: hintCountRooms,
-//                         inputType: number,
-//                         focusNode: countRoomsfocusnode,
-//                         onFieldSubmitted: (value) {}),
-//                   ),
-//                   //bathrooms box
-//                   Padding(
-//                     padding: const EdgeInsets.fromLTRB(0, 0, 0, 0),
-//                     child: ContainerInputTextClassWidget(
-//                         title: chooseCountBathroomsText,
-//                         hintInput: hintCountBathrooms,
-//                         inputType: number,
-//                         focusNode: countBathroomsfocusnode,
-//                         onFieldSubmitted: (value) {}),
-//                   ),
-//                   Container(
-//                     margin: const EdgeInsets.fromLTRB(10, 2, 10, 10),
-//                     padding: const EdgeInsets.fromLTRB(10, 2, 10, 10),
-//                     width: 373,
-//                     decoration: BoxDecoration(
-//                       borderRadius: BorderRadius.circular(7),
-//                       color: kContainerColor,
-//                     ),
-//                     child: Column(
-//                       children: [
-//                         //this row for text
-//                         Row(
-//                           children: [
-//                             Padding(
-//                               padding: const EdgeInsets.fromLTRB(0, 0, 10, 10),
-//                               child: Text(
-//                                 "حدد المزايا",
-//                                 style: TextStyle(
-//                                     fontFamily: 'IBM',
-//                                     fontSize: 20,
-//                                     color: Colors.grey.shade800),
-//                               ),
-//                             ),
-//                             const Expanded(child: Text("")),
-//                           ],
-//                         ),
-//                         //here could owner add advantages
-//                         const AddAdvantages(),
-//                       ],
-//                     ),
-//                   ),
-//                   //price padding
-//                   Padding(
-//                     padding: const EdgeInsets.fromLTRB(0, 0, 0, 10),
-//                     child: ContainerInputTextClassWidget(
-//                       title: priceText,
-//                       hintInput: priceHint,
-//                       inputType: TextInputType.number,
-//                       focusNode: priceFocusNode,
-//                       onFieldSubmitted: (value) {},
-//                     ),
-//                   ),
-//                   //countStudent padding
-//                   Padding(
-//                     padding: const EdgeInsets.fromLTRB(0, 0, 0, 10),
-//                     child: ContainerInputTextClassWidget(
-//                         title: countStudentText,
-//                         hintInput: countStudentHint,
-//                         inputType: TextInputType.number,
-//                         focusNode: countStudentFocusNode,
-//                         onFieldSubmitted: (value) {}),
-//                   ),
-//                   //square padding
-//                   Padding(
-//                     padding: const EdgeInsets.fromLTRB(0, 0, 0, 10),
-//                     child: ContainerInputTextClassWidget(
-//                         title: squareText,
-//                         hintInput: squareHint,
-//                         inputType: TextInputType.number,
-//                         focusNode: squareFocusNode,
-//                         onFieldSubmitted: (value) {}),
-//                   ),
-//                   //type of apartment container
-//                   ContainerChooseTypeApartmentItemClassWidget(
-//                     title: typeApartmentText,
-//                   ),
-//                   //add title to Ad
-//                   Padding(
-//                     padding: const EdgeInsets.fromLTRB(0, 0, 0, 10),
-//                     child: ContainerInputTextClassWidget(
-//                         title: addSuitableTitleForAdText,
-//                         hintInput: addSuitableTitleForAdHnit,
-//                         inputType: TextInputType.text,
-//                         focusNode: adFocusNode,
-//                         onFieldSubmitted: (value) {}),
-//                   ),
-//                   // discriptopin the apartment
-//                   ContainerInputTextClassWidget(
-//                       title: discrptionApartmentText,
-//                       maxLines: 7,
-//                       maxLength: 255,
-//                       hintMaxLines: 7,
-//                       hintInput: discrptionApartmentHint,
-//                       inputType: TextInputType.text,
-//                       focusNode: discrptionFocusedNode),
-//                   const AddAcontact()
-//                 ],
-//               ),
-//             ),
-//           ),
-//         ),
-//       ),
-//     );
-//   }
-// }
+import 'package:colorful_safe_area/colorful_safe_area.dart';
+import 'package:flutter/material.dart';
+import 'package:ween_blaqe/api/type_of_apartment.dart';
+import 'package:ween_blaqe/core/utils/funcations/route_pages/pop_routes.dart';
+// import 'package:ween_blaqe/core/utils/funcations/route_pages/push_routes.dart';
+import 'package:ween_blaqe/core/utils/styles/button.dart';
+import 'package:ween_blaqe/constants/nums.dart';
+import '../../../api/advantages.dart';
+import '../../../api/apartments_api/one_apartment.dart';
+import '../../../api/cities.dart';
+import '../../../constants/strings.dart';
+import '../../../controller/get_controllers.dart';
+import '../../../controller/models_controller/advantages_model_controller.dart';
+import '../../../core/widgets/apartments/create_apartment/container_classes_widget/containers_choose_items_class_widget/container_choose_items_class_widget.dart';
+import '../../../core/widgets/apartments/create_apartment/container_classes_widget/image_picker/image_picker_apartment.dart';
+import '../../../core/widgets/apartments/create_apartment/container_classes_widget/input_text_class_widget/container_input_text_class_widget.dart';
+import '../../../core/widgets/skeletons/student_widgets/show_more_skeleton_widget.dart';
+// import 'apartment_of_owner.dart';
+import 'package:http/http.dart' as http;
+
+import 'dart:convert';
+
+class RefactorApartment extends StatefulWidget {
+  const RefactorApartment({super.key, this.oneApartment});
+
+  final DataOfOneApartment? oneApartment;
+
+  @override
+  State<RefactorApartment> createState() => _RefactorApartmentState();
+}
+
+class _RefactorApartmentState extends State<RefactorApartment> {
+  bool isUpdating = false;
+  TextEditingController addressController = TextEditingController();
+  TextEditingController countOfRoomsController = TextEditingController();
+  TextEditingController countOfBathRoomsController = TextEditingController();
+  TextEditingController priceController = TextEditingController();
+  TextEditingController countOfStudentController = TextEditingController();
+  TextEditingController squareMetersController = TextEditingController();
+  TextEditingController titleController = TextEditingController();
+  TextEditingController descriptionController = TextEditingController();
+
+  //cities
+  List<int> cityIds = []; // For storing the IDs
+  List<City> cityNames = [];
+  String selectedCityName = '';
+  int selectedCityId = 0; // For storing the selected city's ID
+
+  Future<List<dynamic>?>? wholeCityListApi;
+
+  var addressFocusnose = FocusNode();
+  var countRoomsfocusnode = FocusNode();
+  var countBathroomsfocusnode = FocusNode();
+
+  List<Advantages> advantages = [];
+  late Future<List<Advantages>> allFeatures;
+  late bool isDataLoading = false;
+  List<int> featuresChosen = [];
+
+  //price box
+  var priceText = "السعر";
+  var priceHint = "يرجى إدخال الإيجار بشكل شهري";
+  var priceFocusNode = FocusNode();
+
+  // var numberInputType
+
+  //count of students box
+  var countStudentText = "عدد الطلاب المسموح به";
+  var countStudentHint = "0";
+  var countStudentFocusNode = FocusNode();
+
+  //square meters of apartment box
+  var squareText = "حجم الشقة";
+  var squareHint = "يرجى إدخال حجم الشقة بالمتر مربع";
+  var squareFocusNode = FocusNode();
+
+  //type of apartment box
+  var typeApartmentText = "نوع السكن";
+  Future<List<dynamic>?>? wholeTypeListApi;
+  String typesName = '';
+  int selectedTypeOfApartmentId = 0;
+  List<int> typeOfApartmentIds = []; // For storing the IDs
+
+  var typeOfApartmentFoucsNode = FocusNode();
+  List<TypeOfApartment> typeApartmentItems = [];
+
+  var addSuitableTitleForAdText = "أضف عنوان";
+  var addSuitableTitleForAdHnit = "سكن طلاب مفروش";
+  var adFocusNode = FocusNode();
+  var discrptionFocusedNode = FocusNode();
+
+  //discription box
+  var discrptionApartmentText = "صف الشقة";
+  var discrptionApartmentHint = " شقة خاصة"
+      " بالطلاب و في مكان هادئ و بعيد عن الضوضاء ،"
+      " لدينا تسهيلات للطلاب و بسعر مناسب ، ويتوفر"
+      " فيها العديد من الخدمات مثل السوبر ماركت "
+      "و مطعم للوجبات السريعة كذلك يوجد العديد "
+      "من المكتبات التي تخدم الطلاب بجميع التخصصات.";
+
+  @override
+  void initState() {
+    super.initState();
+    addressController.text = widget.oneApartment?.location ?? "";
+    countOfRoomsController.text = widget.oneApartment?.rooms.toString() ?? "-1";
+    countOfBathRoomsController.text =
+        widget.oneApartment?.bathrooms.toString() ?? "-1";
+    priceController.text = widget.oneApartment?.price.toString() ?? "-1";
+    countOfStudentController.text =
+        widget.oneApartment?.countOfStudnet.toString() ?? "-1";
+    squareMetersController.text =
+        widget.oneApartment?.squareMeters.toString() ?? "-1";
+    titleController.text = widget.oneApartment?.title ?? "";
+    descriptionController.text = widget.oneApartment?.description ?? "";
+    allFeatures =
+        getAdvantagesMethod(advantages, widget.oneApartment?.advantages ?? []);
+    // allFeatures;
+
+    wholeCityListApi = readyCityAndTypeOfApartmentApi.getDataCityApiToEdit(
+      readyCityAndTypeOfApartmentApi.itemsCity,
+      ServerWeenBalaqee.city,
+    );
+    cityIds = readyCityAndTypeOfApartmentApi.cityIds;
+    wholeTypeListApi = readyCityAndTypeOfApartmentApi.getDataTypeApiToEdit(
+      readyCityAndTypeOfApartmentApi.itemsTypeOfApartment,
+      ServerWeenBalaqee.typeOfApartment,
+    );
+
+    // wholeTypeListApi = readyCityAndTypeOfApartmentApi.getDataCityApi(
+    //   typeApartmentItems,
+    //   "",
+    //   ServerWeenBalaqee.typeOfApartment,
+    // );
+
+    typesName = widget.oneApartment?.type?.name ?? "";
+    // indexOfTypeOfApartment =
+    //     typeApartmentItems.indexOf(firstValueTypeApartment);
+    // indexOfTypeOfApartment = widget.oneApartment?.type?.id;
+
+    for (var index in widget.oneApartment?.advantages ?? []) {
+      debugPrint("index of widget.oneApartment?.advantages is --$index");
+
+      //check if a current [index] have true
+      if (index.checked == true) {
+        debugPrint("if Status");
+        debugPrint("index.checked is ${index.checked}");
+        // if that is true then add it in [featureChosen] list
+
+        // featuresChosen.add(index.id!);
+      } else {
+        debugPrint("else Status");
+        debugPrint("index.checked is ${index.checked}");
+      }
+    }
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return ColorfulSafeArea(
+      color: themeMode.isDark ? kPrimaryColorLightMode : kPrimaryColorDarkMode,
+      child: GestureDetector(
+        onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
+
+        child: Scaffold(
+          backgroundColor: themeMode.isDark
+              ? kBackgroundAppColorLightMode
+              : kBackgroundAppColorDarkMode,
+          appBar: AppBar(
+            automaticallyImplyLeading: true,
+
+            actions: [
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: ElevatedButton(
+                  onPressed: () {
+                    if (isUpdating) {
+                      // apiApartmentController.isEditMode.value = true;
+                      // apiApartmentController.isDeleteMode.value = false;
+                      return;
+                    }
+                    updateApartment();
+                    // WidgetsBinding.instance.addPostFrameCallback((_)  async {
+
+                    // });
+                  },
+                  style: fullButton,
+                  child: isUpdating
+                      ? const CircularProgressIndicator(
+                          color: Colors.white,
+                        )
+                      : const Text("حفظ"),
+                ),
+              ),
+              const SizedBox(
+                width: 10,
+              )
+            ],
+            backgroundColor: themeMode.isDark
+                ? kContainerColorLightMode
+                : kContainerColorDarkMode,
+          ),
+          body: SingleChildScrollView(
+            child: Column(
+              children: [
+                Padding(
+                  padding: const EdgeInsets.fromLTRB(0, 10, 0, 10),
+                  child: Column(children: [
+                    Padding(
+                      padding: const EdgeInsets.only(bottom: 10.0),
+                      child: ContainerChooseItemsClassWidget(
+                          itemIdNotIndex: widget.oneApartment?.city?.id,
+                          wholeListApi: wholeCityListApi,
+                          title: "المدنية",
+                          currentValue: selectedCityName,
+                          onSelected: (c) {
+                            if (c is City) {
+                              setState(() {
+                                selectedCityId = c.id??-1;
+                              });
+                              // ... use other properties of c
+                            } else {
+                              debugPrint("Invalid object type");
+                            }
+                            debugPrint("selectedCityId is $selectedCityId");
+                          }),
+                    ),
+
+                    //location box
+                    Padding(
+                      padding: const EdgeInsets.fromLTRB(0, 0, 0, 10),
+                      child: ContainerInputTextClassWidget(
+                          title: "العنوان",
+                          hintInput: "مثال:الخليل-وادالهرية-بجانب مسجد ابوعيشة",
+                          inputType: TextInputType.text,
+                          controller: addressController,
+                          focusNode: addressFocusnose,
+                          onFieldSubmitted: (value) {}),
+                    ),
+                    //rooms box
+                    Padding(
+                      padding: const EdgeInsets.fromLTRB(0, 0, 0, 10),
+                      child: ContainerInputTextClassWidget(
+                          title: "عدد الغرف",
+                          hintInput: "0",
+                          inputType: TextInputType.number,
+                          controller: countOfRoomsController,
+                          focusNode: countRoomsfocusnode,
+                          onFieldSubmitted: (value) {}),
+                    ),
+                    //bathrooms box
+                    Padding(
+                      padding: const EdgeInsets.fromLTRB(0, 0, 0, 0),
+                      child: ContainerInputTextClassWidget(
+                          title: "عدد الحمامات",
+                          hintInput: "0",
+                          inputType: TextInputType.number,
+                          controller: countOfBathRoomsController,
+                          focusNode: countBathroomsfocusnode,
+                          onFieldSubmitted: (value) {
+                            print("value is $value in bath room text field");
+                          }),
+                    ),
+                  ]),
+                ),
+                isDataLoading
+                    ? const SkeletonAdvantages(isAddAdvantages: true)
+                    : Container(
+                        // height: 100,
+                        margin: const EdgeInsets.fromLTRB(10, 2, 10, 10),
+                        padding: const EdgeInsets.fromLTRB(10, 2, 10, 10),
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(7),
+                          color: themeMode.isDark
+                              ? kContainerColorLightMode
+                              : kContainerColorDarkMode,
+                        ),
+                        child: Column(
+                          children: [
+                            //this row for text
+                            Row(
+                              children: [
+                                Padding(
+                                  padding:
+                                      const EdgeInsets.fromLTRB(0, 0, 10, 10),
+                                  child: Text(
+                                    "حدد المزايا",
+                                    style: TextStyle(
+                                        fontFamily: 'IBM',
+                                        fontSize: 20,
+                                        color: themeMode.isDark
+                                            ? kTextColorLightMode
+                                            : kTextColorDarkMode),
+                                  ),
+                                ),
+                                const Expanded(child: Text("")),
+                              ],
+                            ),
+                            //here could owner add advantages
+                            // const AddAdvantages()
+                            Column(
+                                children:
+                                    // turnOnLocalFeatures == true ?
+                                    advantages.map((feature) {
+                              return ListTile(
+                                  onTap: () {
+                                    setState(() {
+                                      feature.checked = !feature.checked!;
+                                    });
+                                  },
+                                  horizontalTitleGap: 2.5,
+                                  dense: false,
+                                  leading: Checkbox(
+                                      shape: RoundedRectangleBorder(
+                                          borderRadius:
+                                              BorderRadius.circular(2.6)),
+                                      focusColor: themeMode.isDark
+                                          ? kPrimaryColorLightMode
+                                          : kPrimaryColorDarkMode,
+                                      checkColor: Colors.white,
+                                      hoverColor: themeMode.isDark
+                                          ? kPrimaryColorLightMode
+                                          : kPrimaryColorDarkMode,
+                                      activeColor: themeMode.isDark
+                                          ? kPrimaryColorLightMode
+                                          : kPrimaryColorDarkMode,
+                                      side: BorderSide(
+                                          color: themeMode.isDark
+                                              ? kPrimaryColor300LightMode
+                                              : kPrimaryColor300DarkMode),
+                                      splashRadius: 20,
+                                      value: feature.checked,
+                                      onChanged: (a) {
+                                        if (a != null) {
+                                          setState(() {
+                                            feature.checked = a;
+                                          });
+                                        }
+                                      }),
+                                  title: Text(
+                                    feature.advName ?? "",
+                                    // feature.advName,
+                                    style: TextStyle(
+                                        fontFamily: 'IBM',
+                                        fontSize: 16,
+                                        color: themeMode.isDark
+                                            ? kTextColorLightMode
+                                            : kTextColorDarkMode),
+                                  ),
+                                  // const Expanded(child: Text("")),
+                                  trailing: Image(
+                                    color: themeMode.isDark
+                                        ? kTextColorLightMode
+                                        : kTextColorDarkMode,
+                                    image: NetworkImage(
+                                      feature.icon ?? "",
+                                    ),
+                                    loadingBuilder:
+                                        (context, child, loadingProgress) {
+                                      return child;
+                                    },
+                                    width: 30,
+                                    height: 30,
+                                  ));
+                            }).toList())
+                          ],
+                        ),
+                      ),
+                Padding(
+                  padding: const EdgeInsets.fromLTRB(0, 10, 0, 10),
+                  child: ContainerInputTextClassWidget(
+                    title: priceText,
+                    hintInput: priceHint,
+                    controller: priceController,
+                    inputType: TextInputType.number,
+                    focusNode: priceFocusNode,
+                  ),
+                ),
+                //countStudent padding
+
+                Padding(
+                  padding: const EdgeInsets.only(bottom: 10),
+                  child: ContainerChooseItemsClassWidget(
+                      itemIdNotIndex: widget.oneApartment?.type?.id,
+                      wholeListApi: wholeTypeListApi,
+                      title: "نوع السكن",
+                      currentValue: typesName,
+                      onSelected: (type) {
+                        if(type is TypeOfApartment){
+                          setState(() {
+                            selectedTypeOfApartmentId = type.id??-1;
+
+                          });
+                        }
+                        debugPrint("selected type Id is $selectedTypeOfApartmentId");
+
+                      }),
+                ),
+                Padding(
+                  padding: const EdgeInsets.only(bottom: 10),
+                  child: ContainerInputTextClassWidget(
+                    title: countStudentText,
+                    hintInput: countStudentHint,
+                    controller: countOfStudentController,
+                    inputType: TextInputType.number,
+                    focusNode: countStudentFocusNode,
+                  ),
+                ),
+                //square padding
+                Padding(
+                  padding: const EdgeInsets.fromLTRB(0, 0, 0, 10),
+                  child: ContainerInputTextClassWidget(
+                    title: squareText,
+                    hintInput: squareHint,
+                    controller: squareMetersController,
+                    inputType: TextInputType.number,
+                    focusNode: squareFocusNode,
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.fromLTRB(0, 0, 0, 10),
+                  child: ContainerInputTextClassWidget(
+                      title: addSuitableTitleForAdText,
+                      controller: titleController,
+                      hintInput: addSuitableTitleForAdHnit,
+                      inputType: TextInputType.text,
+                      focusNode: adFocusNode,
+                      onFieldSubmitted: (value) {}),
+                ),
+                // discriptopin the apartment
+                ContainerInputTextClassWidget(
+                    title: discrptionApartmentText,
+                    controller: descriptionController,
+                    hintInput: discrptionApartmentHint,
+                    inputType: TextInputType.text,
+                    // maxLines: 1,
+
+                    maxLength: 255,
+                    hintMaxLines: 7,
+                    focusNode: discrptionFocusedNode),
+              ],
+            ),
+          ),
+          floatingActionButton: FloatingActionButton.extended(
+            onPressed: () {
+              // Get.to(ImagePickerTesting);
+              Navigator.of(context).push(MaterialPageRoute(
+                builder: (context) =>
+                    AddImages(oneApartmentId: widget.oneApartment?.id ?? 0),
+              ));
+            },
+            label: const Text('أضف صور'),
+            icon: const Icon(Icons.photo),
+            backgroundColor:
+                themeMode.isDark ? kPrimaryColorLightMode : kPrimaryColorDarkMode,
+          ),
+        ),
+      ),
+    );
+  }
+
+  Future<List<Advantages>> getAdvantagesMethod(
+      List<Advantages> adv, List<Advantages> alreadyAdv) async {
+    setState(() {
+      adv.clear();
+      isDataLoading = true;
+    });
+    var url = Uri.parse(ServerWeenBalaqee.advantagesAll);
+    var res = await http.get(url);
+    var json = jsonDecode(res.body);
+    var data = json["data"];
+    adv.clear();
+    for (var value in data) {
+      bool isChecked = alreadyAdv.any((element) => element.id == value['id']);
+      adv.add(Advantages(
+        id: value['id'],
+        advName: value['adv_name'],
+        icon: value['icon'],
+        checked: isChecked,
+      ));
+    }
+    setState(() {
+      isDataLoading = false;
+    });
+
+    debugPrint(
+        "a advantages value is : --$advantages , after isDataLoading is : --$isDataLoading");
+    return (adv);
+  }
+
+  updateAdvantages() async {
+    // isUpdating = true;
+    featuresChosen.clear();
+   await apiApartmentController
+        .deleteAdvInApartment(widget.oneApartment?.id.toString() ?? "-1");
+
+    // in a list of [advantages]
+    for (var index in advantages) {
+      //check if a current [index] have true
+      if (index.checked == true) {
+        // if that is true then add it in [featureChosen] list
+
+        featuresChosen.add(index.id ?? -1);
+      }
+    }
+    await AdvantagesModelController().insertAdvInApartment3(
+        widget.oneApartment?.id.toString() ?? "-1", featuresChosen);
+    // isUpdating = false;
+  }
+
+  updateApartment() async {
+    setState(() {
+      isUpdating = true;
+
+    });
+    await apiApartmentController.updateApartment(
+        widget.oneApartment?.id.toString() ?? "-1",
+        countOfRoomsController.text,
+        countOfBathRoomsController.text,
+        squareMetersController.text,
+        titleController.text,
+        descriptionController.text,
+        addressController.text,
+        priceController.text,
+        selectedCityId.toInt(),
+        selectedTypeOfApartmentId.toInt());
+    await updateAdvantages();
+    setState(() {
+      isUpdating = false;
+    });
+
+
+    await apartmentModelController.fetchApartments(isOwnerApartments: true);
+    pushAndRemoveUntilToOwnerApartment();
+
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+    priceController.dispose();
+    countOfStudentController.dispose();
+    squareMetersController.dispose();
+    titleController.dispose();
+    descriptionController.dispose();
+    adFocusNode.dispose();
+    discrptionFocusedNode.dispose();
+    priceFocusNode.dispose();
+    countStudentFocusNode.dispose();
+    squareFocusNode.dispose();
+  }
+
+  Future<void> pushAndRemoveUntilToOwnerApartment() async {
+    await mypopAndPushNamed(context, MyPagesRoutes.apartmentsOwner);
+  }
+}

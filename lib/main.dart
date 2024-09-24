@@ -45,6 +45,7 @@ import 'package:ween_blaqe/features/paragraphs_widgets/ask_for_help_widgets/for_
 import 'package:ween_blaqe/features/paragraphs_widgets/ask_for_help_widgets/for_student/system_booking.dart';
 import 'package:ween_blaqe/features/paragraphs_widgets/ask_for_help_widgets/for_student/system_paying.dart';
 import 'package:ween_blaqe/features/paragraphs_widgets/privacy_policy.dart';
+import 'package:ween_blaqe/features/user/owner/apartment_of_owner.dart';
 
 import 'package:ween_blaqe/features/user/studnet/from_master_home_to_show_more/new_master_home.dart';
 import 'package:ween_blaqe/features/user/studnet/from_master_home_to_show_more/new_show_more.dart';
@@ -58,7 +59,7 @@ import 'constants/injection.dart';
 import 'constants/nums.dart';
 import 'constants/strings.dart';
 import 'controller/bookmark_controller.dart';
-import 'controller/function_controller/api_functions_controller/get_city_and_insert_it_in_a_list.dart';
+import 'controller/function_controller/api_functions_controller/cities_and_types_controller.dart';
 import 'controller/function_controller/api_functions_controller/apartment_api_methods_controller.dart';
 import 'controller/function_controller/connectivity_controller.dart';
 import 'controller/models_controller/apartment_model_controller.dart';
@@ -69,6 +70,7 @@ import 'controller/models_controller/type_of_apartment_models_controller.dart';
 import 'controller/scroll_controller.dart';
 import 'features/intro_screen.dart';
 import 'features/send_notice_for_us.dart';
+import 'features/user/owner/refactor_apartment.dart';
 import 'features/user/owner/steps_to_create_apartment/first_step.dart';
 import 'features/user/owner/steps_to_create_apartment/fourth_step.dart';
 import 'features/user/owner/steps_to_create_apartment/second_step.dart';
@@ -249,8 +251,10 @@ class _OwnMaterialAppState extends State<OwnMaterialApp> {
         //     const ApartmentsOfOwnerAfterAdd(),
         // MyPagesRoutes.apartmentOfOwnerBeforeAdd: (context) =>
         //     const ApartmentOfOwnerBeforeAdd(),
+        MyPagesRoutes.apartmentsOwner: (context) => const ApartmentsOwner(),
+
         MyPagesRoutes.splashScreen: (context) => const SplashScreen(),
-        // MyPagesRoutes.refactorApartment: (context) => const RefactorApartment(),
+        MyPagesRoutes.refactorApartment: (context) => const RefactorApartment(),
         MyPagesRoutes.privacyPolicy: (context) => PrivacyPolicy(),
         MyPagesRoutes.askForHelp: (context) => const AskForHelp(),
         MyPagesRoutes.systemPaying: (context) => const SystemPaying(),

@@ -46,8 +46,9 @@ class ServerWeenBalaqee {
   static String advantagesAll = "${server}advantages/all";
   static String advantagesAdd = "${server}advantages/add";
   static String apartmentAdvantagesInsert =
-      '${server}apartment_advantage/insertAdv'
-      'InApartment3';
+      '${server}apartment_advantage/insertAdvInApartment3';
+  static String apartmentAdvantagesDelete =
+      '${server}apartment/advantages/delete';
   static String citizenAdd = "${server}citizen/add";
   static String cityNewAll = "${server}cityTest/all";
   static String apartmentNewAll = "${server}apartmentTest/all";
@@ -59,8 +60,8 @@ class ServerWeenBalaqee {
 }
 
 class ServerLocalhost {
-
   static String server = "http://localhost:8000/api/";
+
   // static String postAll = "${server}post/all";
   static String userLogin = "${server}user/login";
   static String register = "${server}user/register";
@@ -84,8 +85,9 @@ class ServerLocalhost {
   static String bookingAll = "${server}booking/all";
   static String commentAdd = "${server}comment/add";
   static String uploadImages = "${server}photo/add";
-  static String changeTheServerUrl(String sever,urlFromClass){
-    return sever+urlFromClass;
+
+  static String changeTheServerUrl(String sever, urlFromClass) {
+    return sever + urlFromClass;
   }
 }
 
@@ -164,6 +166,7 @@ class MyPagesRoutes {
   static const step3 = "/step3";
   static const step4 = "/step4";
   static const login = "/login";
+  static const apartmentsOwner = "/apartments_owner";
   static const register = "/register";
   static const masterHome = "/master_home";
   static const showMore = "/show_more";
@@ -247,4 +250,3 @@ class ArabicUpgraderMessages extends UpgraderMessages {
 // Rele
 // ase Notes"
 }
-

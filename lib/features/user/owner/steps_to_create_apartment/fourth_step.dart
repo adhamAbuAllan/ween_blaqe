@@ -166,6 +166,16 @@ class _FourthStepState extends State<FourthStep> {
                                   if(isLoading){
                                     return;
                                   }
+                                  if (imagesModelController.imageFiles?.isEmpty ?? true) {
+                                    setState(() {
+                                      NormalAlert.show(
+                                          context, "الرجاء إضافة صور", " يجب أن تضيف صور للشقة ", "حسنًا");
+                                    });
+
+
+                                    return;
+                                  }
+
                                   createApartment();
                                 });
 
@@ -376,8 +386,6 @@ class _FourthStepState extends State<FourthStep> {
     if (token != null) {
       final headers = {
         'Authorization':
-            // 'Bearer ${apartmentModelController.ownerToken}',
-            // 'Bearer 59|kO3wxOnjan40Ps4OO7D14nC0tt4tUAhq5oABl7f23256a9b0',
             'Bearer $token',
         'Content-Type': 'application/json',
       };
@@ -455,6 +463,7 @@ class _FourthStepState extends State<FourthStep> {
         //   apartmentId = '-2';
         //
         // });
+
         await imagesModelController.compressAndUploadImages();
         isLoading = false;
         pushToMainPage();
@@ -495,6 +504,7 @@ class _FourthStepState extends State<FourthStep> {
         //   debugPrint("the id is not ready that is ${res.id}");
         // }
         // var apartmentSpId = (await sp).save('apartmentId');
+        advantagesModelController.chosen.clear();
         return res;
       } else {
         debugPrint("the statee of code is not true : ${response.statusCode}");

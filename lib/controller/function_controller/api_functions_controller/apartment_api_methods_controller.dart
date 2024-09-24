@@ -15,7 +15,7 @@ class MethodsApiApartmentController extends GetxController{
   ApartmentModelController apartmentModelController = Get.find();
   bool isDataLoaded = false;
   final RxBool isDeleteMode = false.obs;
-
+  final RxBool isEditMode = false.obs;
   Future<OneApartment>  getDataFromAPI({String? type, bool? isAll,String? errorMessage}) async {
     Uri uri = Uri.parse("${ServerWeenBalaqee.apartmentAll}?type=$type");
     if (isAll == true) {
@@ -174,33 +174,73 @@ class MethodsApiApartmentController extends GetxController{
         throw Exception('Failed to load photos from API');
     }
   }
+  Future<void> deleteAdvInApartment(String apartmentId) async {
+    var token = (await sp).get("token");
 
-  Future<void> updateApartment(DataOfOneApartment apartment) async {
-    final url = Uri.parse(ServerWeenBalaqee.apartmentUpdate); // Replace with
-    // your API
-    // endpoint
+    final url = Uri.parse(ServerWeenBalaqee.apartmentAdvantagesDelete);
 
-    try {
-      final response = await http.put(
-        url,
-        body: apartment.toJson(), // Send the updated data
-        headers: {
-          'Content-Type': 'application/json',
-          // Add any necessary authorization headers here
-        },
-      );
 
-      if (response.statusCode == 200) {
-        // Update successful, handle success scenario (e.g., show a success message)
-        debugPrint('Apartment updated successfully');
-      } else {
-        // Update failed, handle error scenario (e.g., show an error message)
-        debugPrint('Failed to update apartment: ${response.body}');
-      }
-    } catch (e) {
-      // Handle network or other exceptions
-      debugPrint('Error updating apartment: $e');
+    final response = await http.post(
+      url,
+      headers: {
+    'Authorization':
+    'Bearer $token',
+        'Content-Type': 'application/json'},
+      body: jsonEncode({'apartment_id': apartmentId}),
+    );if (response.statusCode == 200) {
+      // Success
+      debugPrint('Advantages deleted successfully');
+    } else {
+      // Error
+      debugPrint('Failed to delete advantages: ${response.body}');
+      // You might want to throw an exception or handle the error in a more appropriate way
     }
   }
 
+  Future<void> updateApartment(
+      String id,
+      String? rooms,
+      String? bathrooms,
+      String? squareMeters,
+      String? title,
+      String? description,
+      String? location,
+      String? price,
+      int ?cityId,
+      int ?typeId ) async {
+    var token = (await sp).get("token");
+
+    final url = Uri.parse(ServerWeenBalaqee.apartmentUpdate); // Replace with your
+    // base
+    // URL
+
+    final Map<String, dynamic> requestBody = {
+      'id': id,
+      if (rooms != null) 'rooms': rooms,
+      if (bathrooms != null) 'bathrooms': bathrooms,
+      if (squareMeters != null) 'square_meters': squareMeters,
+      if (title != null) 'title': title,
+      if (description != null) 'description': description,
+      if (location != null) 'location': location,
+      if (price != null) 'price': price,
+      if (cityId != null) 'city_id': cityId,
+      if (typeId != null) 'type_id': typeId,
+
+    };
+
+    final response = await http.post(
+      url,headers: { 'Authorization':
+    'Bearer $token','Content-Type': 'application/json'},
+      body: jsonEncode(requestBody),
+    );
+
+    if (response.statusCode == 200) {
+      // Success
+      debugPrint('Apartment updated successfully');
+    } else {
+      // Error
+      debugPrint('Failed to update apartment: ${response.body}');
+      // You might want to throw an exception or handle the error in a more appropriate way
+    }
+  }
 }

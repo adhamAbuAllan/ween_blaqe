@@ -4,7 +4,9 @@ import 'package:ween_blaqe/constants/strings.dart';
 import 'package:ween_blaqe/controller/get_controllers.dart';
 import 'package:ween_blaqe/core/utils/funcations/route_pages/push_routes.dart';
 import 'package:ween_blaqe/core/utils/styles/button.dart';
+
 // import '../../../../api/advantages.dart';
+import '../../../../api/cities.dart';
 import '../../../../constants/nums.dart';
 import '../../../../core/widgets/alirt_class_widget.dart';
 import '../../../../core/widgets/apartments/create_apartment/'
@@ -30,7 +32,10 @@ TextEditingController countOfBathRoomsController = TextEditingController();
 // }/
 
 class FirstStep extends StatefulWidget {
-  const FirstStep({Key? key, }) : super(key: key);
+  const FirstStep({
+    Key? key,
+  }) : super(key: key);
+
   @override
   State<FirstStep> createState() => _FirstStepState();
 }
@@ -41,8 +46,8 @@ class _FirstStepState extends State<FirstStep> {
   @override
   void initState() {
     super.initState();
-    wholeListApi = readyCityAndTypeOfApartmentApi.getDataCityApi(
-        citiesName, "", ServerWeenBalaqee.city);
+    wholeListApi = readyCityAndTypeOfApartmentApi.getDataCityApiToEdit(
+        readyCityAndTypeOfApartmentApi.itemsCity, ServerWeenBalaqee.city);
     print("this in first step values,"
         "oneCityName --${oneCityName}"
         "cities name --${citiesName},"
@@ -60,10 +65,10 @@ class _FirstStepState extends State<FirstStep> {
 
 //is user want to continue to add apartment ?
 //   bool isUserWantToAddApartment = false;
-  List<String> citiesName = [];
+  List<City> citiesName = [];
   int indexOfCity = 1;
   String oneCityName = "";
-  Future<List<String?>?>? wholeListApi;
+  Future<List<dynamic>?>? wholeListApi;
 
 //   double opacity = 1;
   //choose address box
@@ -115,14 +120,11 @@ class _FirstStepState extends State<FirstStep> {
                         style: outlineButton,
                         child: const Text("إلغاء"),
                       ),
-                      const Expanded(
-                          child: SizedBox()),
+                      const Expanded(child: SizedBox()),
                       ElevatedButton(
                         onPressed: () {
                           setState(() {
-
                             try {
-
                               AddAdDataContainer.address =
                                   addressController.text;
                               AddAdDataContainer.rooms =
@@ -153,10 +155,8 @@ class _FirstStepState extends State<FirstStep> {
                                 //     "--${AddAdDataContainer.city}");
 
                                 myPushName(context, MyPagesRoutes.step2);
-
                               }
                             } catch (c) {
-
                               NormalAlert.show(
                                   context,
                                   "بيانات ناقصة",
@@ -234,23 +234,19 @@ class _FirstStepState extends State<FirstStep> {
                       wholeListApi: wholeListApi,
                       title: "المدنية",
                       currentValue: oneCityName,
-                      items: [],
                       // dataStatus: true,
                       onSelected: (c) {
-                        oneCityName = c;
-                        for (var i = 0; i < citiesName.length; ++i) {
-                          if (oneCityName == citiesName[i]) {
-                            setState(() {
-                              indexOfCity = i + 1;
-
-                            });
-                            readyCityAndTypeOfApartmentApi.saveData(indexOfCity);
-                          }
+                        if (c is City) {
+                          setState(() {
+                            indexOfCity = c.id ?? -1;
+                          });
+                          // ... use other properties of c
+                        } else {
+                          debugPrint("Invalid object type");
                         }
-                        print("the index form api controller in first step is : "
-                            "--${readyCityAndTypeOfApartmentApi.indexOfCity}");
+                        readyCityAndTypeOfApartmentApi.saveData(indexOfCity);
+                        debugPrint("the index of city is $indexOfCity");
                       },
-
                     ),
 
                     //location box

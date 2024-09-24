@@ -14,6 +14,7 @@ import 'package:permission_handler/permission_handler.dart';
 import 'package:ween_blaqe/constants/nums.dart';
 import 'package:ween_blaqe/controller/get_controllers.dart';
 import 'package:ween_blaqe/core/utils/styles/button.dart';
+import 'package:ween_blaqe/core/widgets/alirt_class_widget.dart';
 import 'package:ween_blaqe/features/user/owner/steps_to_create_apartment/fourth_step.dart';
 
 // import 'package:video_player/video_player.dart';
@@ -28,6 +29,14 @@ class AddImages extends StatefulWidget {
 }
 
 class _AddImagesState extends State<AddImages> {
+  @override
+  void initState() {
+    super.initState();
+    if (imagesModelController.imageFiles != null) {
+      _imageFileList = imagesModelController.imageFiles;
+    }
+  }
+
   List<XFile>? _imageFileList;
 
   void _setImageFileListFromFile(XFile? value) {
@@ -47,16 +56,15 @@ class _AddImagesState extends State<AddImages> {
   final TextEditingController maxWidthController = TextEditingController();
   final TextEditingController maxHeightController = TextEditingController();
   final TextEditingController qualityController = TextEditingController();
+
   // the user should delete an images that is same ting ,
 //in a another way , you should could make user couldn't add an image 2 times ,
 //that mean if an image is added , that programmatically make image is selected
   Future<void> _onImageButtonPressed(ImageSource source,
       {BuildContext? context, bool isMultiImage = false}) async {
+    requestPhotoPermission();
 
-     requestPhotoPermission();
-
-
-    if ( isMultiImage) {
+    if (isMultiImage) {
       await _displayPickImageDialog(context!,
           (double? maxWidth, double? maxHeight, int? quality) async {
         try {
@@ -69,7 +77,7 @@ class _AddImagesState extends State<AddImages> {
             if (_imageFileList != null) {
               for (var images in pickedFileList) {
                 setState(() {
-                   _imageFileList?.add(images);
+                  _imageFileList?.add(images);
                   debugPrint("the pickedFileList is : $images");
                 });
               }
@@ -188,7 +196,7 @@ class _AddImagesState extends State<AddImages> {
     return _previewImages();
   }
 
-  Widget? checkArray() {
+  checkArray() {
     if (_imageFileList != null) {
       // setState(() {
       //
@@ -204,10 +212,18 @@ class _AddImagesState extends State<AddImages> {
         imagesModelController.imageFiles = _imageFileList;
       });
 
+      if (imagesModelController.imageFiles?.isEmpty ?? true) {
+        setState(() {
+          NormalAlert.show(
+              context, "الرجاء إضافة صور", " يجب أن تضيف صور للشقة ", "حسنًا");
+        });
+
+
+        return;
+      }
+
       Get.to(const FourthStep());
-    } else {
-      // toast("أضف صورة واحدة على الاقل");
-    }
+    } else {}
     return null;
   }
 
@@ -228,6 +244,7 @@ class _AddImagesState extends State<AddImages> {
       _retrieveDataError = response.exception!.code;
     }
   }
+
   Future<void> requestPhotoPermission() async {
     final status = await Permission.photos.request();
 

@@ -12,7 +12,7 @@ import 'button_show_more_class_widget.dart';
 class WholeWidgetOfApartment extends StatefulWidget {
   const WholeWidgetOfApartment(
       {super.key, required this.index, required this.apartmentsRes,required this
-          .isDarkMode, this.onPressed });
+          .isDarkMode, this.onPressed,  });
 
   final OneApartment apartmentsRes;
   final int index;
@@ -30,7 +30,7 @@ class _WholeWidgetOfApartmentState extends State<WholeWidgetOfApartment> {
       child: Column(
         children: [
           ApartmentTypeText(
-              index: widget.index, apartmentsRes: widget.apartmentsRes,
+            index: widget.index, apartmentsRes: widget.apartmentsRes,
             isDeleteMode:widget.isDarkMode ,onPressed: widget.onPressed,),
           ApartmentMainImage(
             index: widget.index,
