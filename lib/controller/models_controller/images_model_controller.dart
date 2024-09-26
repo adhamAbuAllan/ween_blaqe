@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+
 // import 'package:get/get_common/get_reset.dart';
 // import 'package:get/get_state_manager/src/simple/get_controllers.dart';
 import 'package:image_picker/image_picker.dart';
@@ -58,49 +59,16 @@ class ImagesModelController extends GetxController {
     isLoading.value = false;
   }
 
-  Future<void> compressAndUploadImages(
-      {bool? isForUpdate, int apartmentIdToUpdate = -1}) async {
+  Future<void> compressAndUploadImages() async {
     Uri url = Uri.parse(ServerWeenBalaqee.uploadImages);
     var request = http.MultipartRequest('POST', url);
-    request.fields['apartment_id'] = isForUpdate ?? false
-        ? apartmentIdToUpdate.toString()
-        : "${AddAdDataContainer.id}";
-    if (isForUpdate ?? false) {
-      if (images.isNotEmpty) {
-        for (String imagePath in images) {
-          var mimeType = lookupMimeType(imagePath);
-          File imageFile =
-              File(imagePath); // Create a File object from the path
-          int imageSize = await imageFile.length();
-          var imageBytes = await imageFile.readAsBytes();
-          var image = img.decodeImage(imageBytes);
-          int quality = (imageSize > 1000000) ? 50 : 75;
-
-          var compressedImage = img.encodeJpg(image!, quality: quality);
-          Directory tempDir = await getTemporaryDirectory();
-          File tempFile =
-              File('${tempDir.path}/${imageFile.path.split('/').last}');
-          await tempFile.writeAsBytes(compressedImage);
-          request.files.add(
-            await http.MultipartFile.fromPath(
-              'images[]',
-              tempFile.path,
-              contentType: MediaType.parse(mimeType ?? 'image/jpeg'),
-            ),
-          );
-        }
-      }
-      var response = await request.send();
-      if (response.statusCode == 200) {
-        isImagesUploaded = true;
-        debugPrint('Upload successful');
-      } else {
-        debugPrint('Upload failed');
-      }
-    }
+    request.fields['apartment_id'] = "${AddAdDataContainer.id}";
     if (imageFiles == null ||
         imageFiles!.isEmpty && apartmentModelController.apartmentId == null ||
         apartmentModelController.apartmentId!.isEmpty) {
+      debugPrint("No images selected. Or , the apartment id is not selected "
+          "${apartmentModelController.apartmentId}");
+
       return;
     }
     for (XFile imageFile in imageFiles!) {
@@ -122,15 +90,53 @@ class ImagesModelController extends GetxController {
           contentType: MediaType.parse(mimeType ?? 'image/jpeg'),
         ),
       );
-      var response = await request.send();
-      if (response.statusCode == 200) {
-        isImagesUploaded = true;
-        debugPrint('Upload successful');
-      } else {
-        debugPrint('Upload failed');
+    }
+    var response = await request.send();
+    if (response.statusCode == 200) {
+      isImagesUploaded = true;
+      debugPrint('Upload successful');
+    } else {
+      debugPrint('Upload failed');
+    }
+  }
+
+  Future<void> compressAndUploadUpdateImages(
+      {int apartmentIdToUpdate = -1}) async {
+    Uri url = Uri.parse(ServerWeenBalaqee.uploadImages);
+    var request = http.MultipartRequest('POST', url);
+    request.fields['apartment_id'] = "$apartmentIdToUpdate";
+
+    if (images.isNotEmpty) {
+      for (String imagePath in images) {
+        var mimeType = lookupMimeType(imagePath);
+        File imageFile = File(imagePath); // Create a File object from the path
+        int imageSize = await imageFile.length();
+        var imageBytes = await imageFile.readAsBytes();
+        var image = img.decodeImage(imageBytes);
+        int quality = (imageSize > 1000000) ? 50 : 75;
+
+        var compressedImage = img.encodeJpg(image!, quality: quality);
+        Directory tempDir = await getTemporaryDirectory();
+        File tempFile =
+            File('${tempDir.path}/${imageFile.path.split('/').last}');
+        await tempFile.writeAsBytes(compressedImage);
+        request.files.add(
+          await http.MultipartFile.fromPath(
+            'images[]',
+            tempFile.path,
+            contentType: MediaType.parse(mimeType ?? 'image/jpeg'),
+          ),
+        );
       }
     }
 
+    var response = await request.send();
+    if (response.statusCode == 200) {
+      isImagesUploaded = true;
+      debugPrint('Upload successful');
+    } else {
+      debugPrint('Upload failed');
+    }
   }
 
 //////////////////// for testing /////////////////////

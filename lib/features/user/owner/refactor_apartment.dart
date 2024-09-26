@@ -167,325 +167,327 @@ class _RefactorApartmentState extends State<RefactorApartment> {
       color: themeMode.isDark ? kPrimaryColorLightMode : kPrimaryColorDarkMode,
       child: GestureDetector(
         onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
-        child: Scaffold(
-          backgroundColor: themeMode.isDark
-              ? kBackgroundAppColorLightMode
-              : kBackgroundAppColorDarkMode,
-          appBar: AppBar(
-            automaticallyImplyLeading: false,
-            // title: Text("${widget.oneApartment?.id}"),
-
-            actions: [
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: OutlinedButton(
-                  onPressed: () async {
-                    if(apartmentModelController.isUpdating.value){
-                      NormalAlert.show(context, "يرجى الانتظار", "الرجاء "
-                          "الانتظار حتى يتم حفظ التغييرات", "حسنًا");
-                      return ;
-                    }
-                    imagesModelController.images.clear();
-                    imagesModelController.photoWillDeleteIds.clear();
-                    WidgetsBinding.instance.addPostFrameCallback((_) async {
-                      apartmentModelController.fetchApartments(
-                          isOwnerApartments: true);
-                    });
-                    Navigator.pop(context);
-                  },
-                  style: outlineButton,
-                  child: const Text(" رجوع "),
-                ),
-              ),
-              const Expanded(child: Text("")),
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Obx(() {
-                  return ElevatedButton(
-                    onPressed: () {
-                      // setState(() {
-                      if (apartmentModelController.isUpdating.value) {
-                        debugPrint("uploading...");
-                        // apiApartmentController.isEditMode.value = true;
-                        // apiApartmentController.isDeleteMode.value = false;
-                        return;
+        child: SafeArea(
+          child: Scaffold(
+            backgroundColor: themeMode.isDark
+                ? kBackgroundAppColorLightMode
+                : kBackgroundAppColorDarkMode,
+            appBar: AppBar(
+              automaticallyImplyLeading: false,
+              // title: Text("${widget.oneApartment?.id}"),
+          
+              actions: [
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: OutlinedButton(
+                    onPressed: () async {
+                      if(apartmentModelController.isUpdating.value){
+                        NormalAlert.show(context, "يرجى الانتظار", "الرجاء "
+                            "الانتظار حتى يتم حفظ التغييرات", "حسنًا");
+                        return ;
                       }
-                      // });
-                      updateApartment();
-
+                      imagesModelController.images.clear();
+                      imagesModelController.photoWillDeleteIds.clear();
+                      WidgetsBinding.instance.addPostFrameCallback((_) async {
+                        apartmentModelController.fetchApartments(
+                            isOwnerApartments: true);
+                      });
+                      Navigator.pop(context);
                     },
-                    style: fullButton,
-                    child: apartmentModelController.isUpdating.value
-                        ? const CircularProgressIndicator(
-                            color: Colors.white,
-                          )
-                        : const Text("حفظ"),
-                  );
-                }),
-              ),
-              const SizedBox(
-                width: 10,
-              )
-            ],
-            backgroundColor: themeMode.isDark
-                ? kContainerColorLightMode
-                : kContainerColorDarkMode,
-          ),
-          body: SingleChildScrollView(
-            child: Column(
-              children: [
-                Padding(
-                  padding: const EdgeInsets.fromLTRB(0, 10, 0, 10),
-                  child: Column(children: [
-                    Padding(
-                      padding: const EdgeInsets.only(bottom: 10.0),
-                      child: ContainerChooseItemsClassWidget(
-                          itemIdNotIndex: widget.oneApartment?.city?.id,
-                          wholeListApi: wholeCityListApi,
-                          title: "المدنية",
-                          currentValue: selectedCityName,
-                          onSelected: (c) {
-                            if (c is City) {
-                              setState(() {
-                                selectedCityId = c.id ?? -1;
-                              });
-                              // ... use other properties of c
-                            } else {
-                              debugPrint("Invalid object type");
-                            }
-                            debugPrint("selectedCityId is $selectedCityId");
-                          }),
-                    ),
-
-                    //location box
-                    Padding(
-                      padding: const EdgeInsets.fromLTRB(0, 0, 0, 10),
-                      child: ContainerInputTextClassWidget(
-                          title: "العنوان",
-                          hintInput: "مثال:الخليل-وادالهرية-بجانب مسجد ابوعيشة",
-                          inputType: TextInputType.text,
-                          controller: addressController,
-                          focusNode: addressFocusnose,
-                          onFieldSubmitted: (value) {}),
-                    ),
-                    //rooms box
-                    Padding(
-                      padding: const EdgeInsets.fromLTRB(0, 0, 0, 10),
-                      child: ContainerInputTextClassWidget(
-                          title: "عدد الغرف",
-                          hintInput: "0",
-                          inputType: TextInputType.number,
-                          controller: countOfRoomsController,
-                          focusNode: countRoomsfocusnode,
-                          onFieldSubmitted: (value) {}),
-                    ),
-                    //bathrooms box
-                    Padding(
-                      padding: const EdgeInsets.fromLTRB(0, 0, 0, 0),
-                      child: ContainerInputTextClassWidget(
-                          title: "عدد الحمامات",
-                          hintInput: "0",
-                          inputType: TextInputType.number,
-                          controller: countOfBathRoomsController,
-                          focusNode: countBathroomsfocusnode,
-                          onFieldSubmitted: (value) {
-                            print("value is $value in bath room text field");
-                          }),
-                    ),
-                  ]),
-                ),
-                isDataLoading
-                    ? const SkeletonAdvantages(isAddAdvantages: true)
-                    : Container(
-                        // height: 100,
-                        margin: const EdgeInsets.fromLTRB(10, 2, 10, 10),
-                        padding: const EdgeInsets.fromLTRB(10, 2, 10, 10),
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(7),
-                          color: themeMode.isDark
-                              ? kContainerColorLightMode
-                              : kContainerColorDarkMode,
-                        ),
-                        child: Column(
-                          children: [
-                            //this row for text
-                            Row(
-                              children: [
-                                Padding(
-                                  padding:
-                                      const EdgeInsets.fromLTRB(0, 0, 10, 10),
-                                  child: Text(
-                                    "حدد المزايا",
-                                    style: TextStyle(
-                                        fontFamily: 'IBM',
-                                        fontSize: 20,
-                                        color: themeMode.isDark
-                                            ? kTextColorLightMode
-                                            : kTextColorDarkMode),
-                                  ),
-                                ),
-                                const Expanded(child: Text("")),
-                              ],
-                            ),
-                            //here could owner add advantages
-                            // const AddAdvantages()
-                            Column(
-                                children:
-                                    // turnOnLocalFeatures == true ?
-                                    advantages.map((feature) {
-                              return ListTile(
-                                  onTap: () {
-                                    setState(() {
-                                      feature.checked = !feature.checked!;
-                                    });
-                                  },
-                                  horizontalTitleGap: 2.5,
-                                  dense: false,
-                                  leading: Checkbox(
-                                      shape: RoundedRectangleBorder(
-                                          borderRadius:
-                                              BorderRadius.circular(2.6)),
-                                      focusColor: themeMode.isDark
-                                          ? kPrimaryColorLightMode
-                                          : kPrimaryColorDarkMode,
-                                      checkColor: Colors.white,
-                                      hoverColor: themeMode.isDark
-                                          ? kPrimaryColorLightMode
-                                          : kPrimaryColorDarkMode,
-                                      activeColor: themeMode.isDark
-                                          ? kPrimaryColorLightMode
-                                          : kPrimaryColorDarkMode,
-                                      side: BorderSide(
-                                          color: themeMode.isDark
-                                              ? kPrimaryColor300LightMode
-                                              : kPrimaryColor300DarkMode),
-                                      splashRadius: 20,
-                                      value: feature.checked,
-                                      onChanged: (a) {
-                                        if (a != null) {
-                                          setState(() {
-                                            feature.checked = a;
-                                          });
-                                        }
-                                      }),
-                                  title: Text(
-                                    feature.advName ?? "",
-                                    // feature.advName,
-                                    style: TextStyle(
-                                        fontFamily: 'IBM',
-                                        fontSize: 16,
-                                        color: themeMode.isDark
-                                            ? kTextColorLightMode
-                                            : kTextColorDarkMode),
-                                  ),
-                                  // const Expanded(child: Text("")),
-                                  trailing: Image(
-                                    color: themeMode.isDark
-                                        ? kTextColorLightMode
-                                        : kTextColorDarkMode,
-                                    image: NetworkImage(
-                                      feature.icon ?? "",
-                                    ),
-                                    loadingBuilder:
-                                        (context, child, loadingProgress) {
-                                      return child;
-                                    },
-                                    width: 30,
-                                    height: 30,
-                                  ));
-                            }).toList())
-                          ],
-                        ),
-                      ),
-                Padding(
-                  padding: const EdgeInsets.fromLTRB(0, 10, 0, 10),
-                  child: ContainerInputTextClassWidget(
-                    title: priceText,
-                    hintInput: priceHint,
-                    controller: priceController,
-                    inputType: TextInputType.number,
-                    focusNode: priceFocusNode,
+                    style: outlineButton,
+                    child: const Text(" رجوع "),
                   ),
                 ),
-                //countStudent padding
-
+                const Expanded(child: Text("")),
                 Padding(
-                  padding: const EdgeInsets.only(bottom: 10),
-                  child: ContainerChooseItemsClassWidget(
-                      itemIdNotIndex: widget.oneApartment?.type?.id,
-                      wholeListApi: wholeTypeListApi,
-                      title: "نوع السكن",
-                      currentValue: typesName,
-                      onSelected: (type) {
-                        if (type is TypeOfApartment) {
-                          setState(() {
-                            selectedTypeOfApartmentId = type.id ?? -1;
-                          });
+                  padding: const EdgeInsets.all(8.0),
+                  child: Obx(() {
+                    return ElevatedButton(
+                      onPressed: () {
+                        // setState(() {
+                        if (apartmentModelController.isUpdating.value) {
+                          debugPrint("uploading...");
+                          // apiApartmentController.isEditMode.value = true;
+                          // apiApartmentController.isDeleteMode.value = false;
+                          return;
                         }
-                        debugPrint(
-                            "selected type Id is $selectedTypeOfApartmentId");
-                      }),
+                        // });
+                        updateApartment();
+          
+                      },
+                      style: fullButton,
+                      child: apartmentModelController.isUpdating.value
+                          ? const CircularProgressIndicator(
+                              color: Colors.white,
+                            )
+                          : const Text("حفظ"),
+                    );
+                  }),
                 ),
-                Padding(
-                  padding: const EdgeInsets.only(bottom: 10),
-                  child: ContainerInputTextClassWidget(
-                    title: countStudentText,
-                    hintInput: countStudentHint,
-                    controller: countOfStudentController,
-                    inputType: TextInputType.number,
-                    focusNode: countStudentFocusNode,
-                  ),
-                ),
-                //square padding
-                Padding(
-                  padding: const EdgeInsets.fromLTRB(0, 0, 0, 10),
-                  child: ContainerInputTextClassWidget(
-                    title: squareText,
-                    hintInput: squareHint,
-                    controller: squareMetersController,
-                    inputType: TextInputType.number,
-                    focusNode: squareFocusNode,
-                  ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.fromLTRB(0, 0, 0, 10),
-                  child: ContainerInputTextClassWidget(
-                      title: addSuitableTitleForAdText,
-                      controller: titleController,
-                      hintInput: addSuitableTitleForAdHnit,
-                      inputType: TextInputType.text,
-                      focusNode: adFocusNode,
-                      onFieldSubmitted: (value) {}),
-                ),
-                // discriptopin the apartment
-                ContainerInputTextClassWidget(
-                    title: discrptionApartmentText,
-                    controller: descriptionController,
-                    hintInput: discrptionApartmentHint,
-                    inputType: TextInputType.text,
-                    // maxLines: 1,
-
-                    maxLength: 255,
-                    hintMaxLines: 7,
-                    focusNode: discrptionFocusedNode),
+                const SizedBox(
+                  width: 10,
+                )
               ],
+              backgroundColor: themeMode.isDark
+                  ? kContainerColorLightMode
+                  : kContainerColorDarkMode,
             ),
-          ),
-          floatingActionButton: FloatingActionButton.extended(
-            onPressed: () {
-              // Get.to(ImagePickerTesting);
-              Navigator.of(context).push(MaterialPageRoute(
-                builder: (context) => UpdateImages(
-                  oneApartmentId: widget.oneApartment?.id ?? 0,
-                  oneApartment: widget.oneApartment,
-                ),
-              ));
-            },
-            label: const Text('أضف صور'),
-            icon: const Icon(Icons.photo),
-            backgroundColor: themeMode.isDark
-                ? kPrimaryColorLightMode
-                : kPrimaryColorDarkMode,
+            body: SingleChildScrollView(
+              child: Column(
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.fromLTRB(0, 10, 0, 10),
+                    child: Column(children: [
+                      Padding(
+                        padding: const EdgeInsets.only(bottom: 10.0),
+                        child: ContainerChooseItemsClassWidget(
+                            itemIdNotIndex: widget.oneApartment?.city?.id,
+                            wholeListApi: wholeCityListApi,
+                            title: "المدنية",
+                            currentValue: selectedCityName,
+                            onSelected: (c) {
+                              if (c is City) {
+                                setState(() {
+                                  selectedCityId = c.id ?? -1;
+                                });
+                                // ... use other properties of c
+                              } else {
+                                debugPrint("Invalid object type");
+                              }
+                              debugPrint("selectedCityId is $selectedCityId");
+                            }),
+                      ),
+          
+                      //location box
+                      Padding(
+                        padding: const EdgeInsets.fromLTRB(0, 0, 0, 10),
+                        child: ContainerInputTextClassWidget(
+                            title: "العنوان",
+                            hintInput: "مثال:الخليل-وادالهرية-بجانب مسجد ابوعيشة",
+                            inputType: TextInputType.text,
+                            controller: addressController,
+                            focusNode: addressFocusnose,
+                            onFieldSubmitted: (value) {}),
+                      ),
+                      //rooms box
+                      Padding(
+                        padding: const EdgeInsets.fromLTRB(0, 0, 0, 10),
+                        child: ContainerInputTextClassWidget(
+                            title: "عدد الغرف",
+                            hintInput: "0",
+                            inputType: TextInputType.number,
+                            controller: countOfRoomsController,
+                            focusNode: countRoomsfocusnode,
+                            onFieldSubmitted: (value) {}),
+                      ),
+                      //bathrooms box
+                      Padding(
+                        padding: const EdgeInsets.fromLTRB(0, 0, 0, 0),
+                        child: ContainerInputTextClassWidget(
+                            title: "عدد الحمامات",
+                            hintInput: "0",
+                            inputType: TextInputType.number,
+                            controller: countOfBathRoomsController,
+                            focusNode: countBathroomsfocusnode,
+                            onFieldSubmitted: (value) {
+                              print("value is $value in bath room text field");
+                            }),
+                      ),
+                    ]),
+                  ),
+                  isDataLoading
+                      ? const SkeletonAdvantages(isAddAdvantages: true)
+                      : Container(
+                          // height: 100,
+                          margin: const EdgeInsets.fromLTRB(10, 2, 10, 10),
+                          padding: const EdgeInsets.fromLTRB(10, 2, 10, 10),
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(7),
+                            color: themeMode.isDark
+                                ? kContainerColorLightMode
+                                : kContainerColorDarkMode,
+                          ),
+                          child: Column(
+                            children: [
+                              //this row for text
+                              Row(
+                                children: [
+                                  Padding(
+                                    padding:
+                                        const EdgeInsets.fromLTRB(0, 0, 10, 10),
+                                    child: Text(
+                                      "حدد المزايا",
+                                      style: TextStyle(
+                                          fontFamily: 'IBM',
+                                          fontSize: 20,
+                                          color: themeMode.isDark
+                                              ? kTextColorLightMode
+                                              : kTextColorDarkMode),
+                                    ),
+                                  ),
+                                  const Expanded(child: Text("")),
+                                ],
+                              ),
+                              //here could owner add advantages
+                              // const AddAdvantages()
+                              Column(
+                                  children:
+                                      // turnOnLocalFeatures == true ?
+                                      advantages.map((feature) {
+                                return ListTile(
+                                    onTap: () {
+                                      setState(() {
+                                        feature.checked = !feature.checked!;
+                                      });
+                                    },
+                                    horizontalTitleGap: 2.5,
+                                    dense: false,
+                                    leading: Checkbox(
+                                        shape: RoundedRectangleBorder(
+                                            borderRadius:
+                                                BorderRadius.circular(2.6)),
+                                        focusColor: themeMode.isDark
+                                            ? kPrimaryColorLightMode
+                                            : kPrimaryColorDarkMode,
+                                        checkColor: Colors.white,
+                                        hoverColor: themeMode.isDark
+                                            ? kPrimaryColorLightMode
+                                            : kPrimaryColorDarkMode,
+                                        activeColor: themeMode.isDark
+                                            ? kPrimaryColorLightMode
+                                            : kPrimaryColorDarkMode,
+                                        side: BorderSide(
+                                            color: themeMode.isDark
+                                                ? kPrimaryColor300LightMode
+                                                : kPrimaryColor300DarkMode),
+                                        splashRadius: 20,
+                                        value: feature.checked,
+                                        onChanged: (a) {
+                                          if (a != null) {
+                                            setState(() {
+                                              feature.checked = a;
+                                            });
+                                          }
+                                        }),
+                                    title: Text(
+                                      feature.advName ?? "",
+                                      // feature.advName,
+                                      style: TextStyle(
+                                          fontFamily: 'IBM',
+                                          fontSize: 16,
+                                          color: themeMode.isDark
+                                              ? kTextColorLightMode
+                                              : kTextColorDarkMode),
+                                    ),
+                                    // const Expanded(child: Text("")),
+                                    trailing: Image(
+                                      color: themeMode.isDark
+                                          ? kTextColorLightMode
+                                          : kTextColorDarkMode,
+                                      image: NetworkImage(
+                                        feature.icon ?? "",
+                                      ),
+                                      loadingBuilder:
+                                          (context, child, loadingProgress) {
+                                        return child;
+                                      },
+                                      width: 30,
+                                      height: 30,
+                                    ));
+                              }).toList())
+                            ],
+                          ),
+                        ),
+                  Padding(
+                    padding: const EdgeInsets.fromLTRB(0, 10, 0, 10),
+                    child: ContainerInputTextClassWidget(
+                      title: priceText,
+                      hintInput: priceHint,
+                      controller: priceController,
+                      inputType: TextInputType.number,
+                      focusNode: priceFocusNode,
+                    ),
+                  ),
+                  //countStudent padding
+          
+                  Padding(
+                    padding: const EdgeInsets.only(bottom: 10),
+                    child: ContainerChooseItemsClassWidget(
+                        itemIdNotIndex: widget.oneApartment?.type?.id,
+                        wholeListApi: wholeTypeListApi,
+                        title: "نوع السكن",
+                        currentValue: typesName,
+                        onSelected: (type) {
+                          if (type is TypeOfApartment) {
+                            setState(() {
+                              selectedTypeOfApartmentId = type.id ?? -1;
+                            });
+                          }
+                          debugPrint(
+                              "selected type Id is $selectedTypeOfApartmentId");
+                        }),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.only(bottom: 10),
+                    child: ContainerInputTextClassWidget(
+                      title: countStudentText,
+                      hintInput: countStudentHint,
+                      controller: countOfStudentController,
+                      inputType: TextInputType.number,
+                      focusNode: countStudentFocusNode,
+                    ),
+                  ),
+                  //square padding
+                  Padding(
+                    padding: const EdgeInsets.fromLTRB(0, 0, 0, 10),
+                    child: ContainerInputTextClassWidget(
+                      title: squareText,
+                      hintInput: squareHint,
+                      controller: squareMetersController,
+                      inputType: TextInputType.number,
+                      focusNode: squareFocusNode,
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.fromLTRB(0, 0, 0, 10),
+                    child: ContainerInputTextClassWidget(
+                        title: addSuitableTitleForAdText,
+                        controller: titleController,
+                        hintInput: addSuitableTitleForAdHnit,
+                        inputType: TextInputType.text,
+                        focusNode: adFocusNode,
+                        onFieldSubmitted: (value) {}),
+                  ),
+                  // discriptopin the apartment
+                  ContainerInputTextClassWidget(
+                      title: discrptionApartmentText,
+                      controller: descriptionController,
+                      hintInput: discrptionApartmentHint,
+                      inputType: TextInputType.text,
+                      // maxLines: 1,
+          
+                      maxLength: 255,
+                      hintMaxLines: 7,
+                      focusNode: discrptionFocusedNode),
+                ],
+              ),
+            ),
+            floatingActionButton: FloatingActionButton.extended(
+              onPressed: () {
+                // Get.to(ImagePickerTesting);
+                Navigator.of(context).push(MaterialPageRoute(
+                  builder: (context) => UpdateImages(
+                    oneApartmentId: widget.oneApartment?.id ?? 0,
+                    oneApartment: widget.oneApartment,
+                  ),
+                ));
+              },
+              label: const Text('إضافة أو حذف صور'),
+              icon: const Icon(Icons.photo),
+              backgroundColor: themeMode.isDark
+                  ? kPrimaryColorLightMode
+                  : kPrimaryColorDarkMode,
+            ),
           ),
         ),
       ),
@@ -559,10 +561,11 @@ class _RefactorApartmentState extends State<RefactorApartment> {
         imagesModelController.photoWillDeleteIds);
     debugPrint(
         "a list of String in image controller is ${imagesModelController.images}");
-    await imagesModelController.compressAndUploadImages(apartmentIdToUpdate:
-    widget.oneApartment?.id
-    ??-1,isForUpdate: true);
+    await imagesModelController.compressAndUploadUpdateImages(
+      apartmentIdToUpdate: widget.oneApartment?.id ?? -1,
+    );
     apartmentModelController.isUpdating.value = false;
+    imagesModelController.imageFiles = null;
     // await apartmentModelController.fetchApartments(isOwnerApartments: true);
     showSnakBar(context, "تم حفظ التغييرات بنجاح");
 

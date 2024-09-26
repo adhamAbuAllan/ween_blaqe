@@ -16,6 +16,7 @@ import 'package:ween_blaqe/api/apartments_api/one_apartment.dart';
 import 'package:ween_blaqe/constants/nums.dart';
 import 'package:ween_blaqe/controller/get_controllers.dart';
 import 'package:ween_blaqe/core/utils/styles/button.dart';
+
 // import 'package:ween_blaqe/core/widgets/alirt_class_widget.dart';
 // import 'package:ween_blaqe/features/user/owner/steps_to_create_apartment/fourth_step.dart';
 
@@ -198,27 +199,6 @@ class _UpdateImagesState extends State<UpdateImages> {
             padding: const EdgeInsets.only(top: 16.0),
             child: FloatingActionButton(
               onPressed: () {
-                int photoListLength = widget.oneApartment?.photos?.length ?? 0;
-
-                debugPrint("length of photo list is : $photoListLength");
-
-                for (var i = 0; i < photoListLength; i++) {
-                  //
-                  debugPrint(
-                      "image controller is : ${imagesModelController.images}");
-                  // debugPrint("photo list is : ${_imageFileList?[i].path}");
-                }
-              },
-              heroTag: 'image2',
-              backgroundColor: Colors.orange,
-              tooltip: 'print',
-              child: const Icon(Icons.print),
-            ),
-          ),
-          Padding(
-            padding: const EdgeInsets.only(top: 16.0),
-            child: FloatingActionButton(
-              onPressed: () {
                 _onImageButtonPressed(
                   ImageSource.camera,
                   context: context,
@@ -245,6 +225,7 @@ class _UpdateImagesState extends State<UpdateImages> {
       return Semantics(
         // label: 'image_picker_example_picked_images',
         child: GridView.builder(
+          padding: const EdgeInsets.only(right: 10),
           key: UniqueKey(),
           itemBuilder: (BuildContext context, int index) {
             // See https://pub.dev/packages/image_picker#getting-ready-for-the-web-platform
@@ -312,8 +293,6 @@ class _UpdateImagesState extends State<UpdateImages> {
                                 _imageFileList?.removeAt(index);
                               });
 
-                              debugPrint("the list of will delete photo now "
-                                  "is : ${imagesModelController.photoWillDeleteIds}");
                             },
                           )),
                     ]);
@@ -329,12 +308,14 @@ class _UpdateImagesState extends State<UpdateImages> {
           ),
         ),
       );
-    } else if (_pickImageError != null) {
+    }
+    else if (_pickImageError != null) {
       return Text(
         'Pick image error: $_pickImageError',
         textAlign: TextAlign.center,
       );
-    } else if (_imageFileList == null) {
+    }
+    else if (_imageFileList == null) {
       return Text(
         'تُعرض الصور المختارة هنا',
         style: TextStyle(
@@ -416,12 +397,14 @@ class _UpdateImagesState extends State<UpdateImages> {
     if (_imageFileList != null) {
       debugPrint("_image file list not null ${_imageFileList?.length}");
       for (var item in _imageFileList ?? []) {
-        item + 1;
         _imageFileList?.add(value ?? XFile("$value"));
         debugPrint("item path : ${item.path}");
       }
+    }else{
+      _imageFileList = <XFile>[value ?? XFile("$value")];
+      // _imageFileList = value == null ? null : <XFile>[value];
     }
-    // _imageFileList = value == null ? null : <XFile>[value];
+
   }
 
   //floating button: to check if user want to add more images from gallery
@@ -503,8 +486,8 @@ class _UpdateImagesState extends State<UpdateImages> {
       }
       //that to delete images for api after click ok button
       imagesModelController.photoWillDeleteIds = photosWillDeleteIds;
-      debugPrint("the photos id that will deleted is : ${imagesModelController
-          .photoWillDeleteIds}");
+      debugPrint(
+          "the photos id that will deleted is : ${imagesModelController.photoWillDeleteIds}");
       // setState(() {
       //   imagesModelController.imageFiles = _imageFileList;
       // });
@@ -524,9 +507,9 @@ class _UpdateImagesState extends State<UpdateImages> {
 
   Future<void> retrieveLostData() async {
     final LostDataResponse response = await _picker.retrieveLostData();
-    if (response.isEmpty) {
-      return;
-    }
+    // if (response.isEmpty) {
+    //   return;
+    // }
     if (response.file != null) {
       setState(() {
         if (response.files == null) {
