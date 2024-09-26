@@ -1,24 +1,32 @@
 import 'package:colorful_safe_area/colorful_safe_area.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get_state_manager/src/rx_flutter/rx_obx_widget.dart';
 import 'package:ween_blaqe/api/type_of_apartment.dart';
 import 'package:ween_blaqe/core/utils/funcations/route_pages/pop_routes.dart';
+import 'package:ween_blaqe/core/utils/funcations/snakbar.dart';
+
 // import 'package:ween_blaqe/core/utils/funcations/route_pages/push_routes.dart';
 import 'package:ween_blaqe/core/utils/styles/button.dart';
 import 'package:ween_blaqe/constants/nums.dart';
+import 'package:ween_blaqe/core/widgets/alirt_class_widget.dart';
 import '../../../api/advantages.dart';
 import '../../../api/apartments_api/one_apartment.dart';
 import '../../../api/cities.dart';
 import '../../../constants/strings.dart';
 import '../../../controller/get_controllers.dart';
 import '../../../controller/models_controller/advantages_model_controller.dart';
+// import '../../../core/utils/funcations/route_pages/push_routes.dart';
 import '../../../core/widgets/apartments/create_apartment/container_classes_widget/containers_choose_items_class_widget/container_choose_items_class_widget.dart';
-import '../../../core/widgets/apartments/create_apartment/container_classes_widget/image_picker/image_picker_apartment.dart';
+// import '../../../core/widgets/apartments/create_apartment/container_classes_widget/image_picker/image_picker_apartment.dart';
 import '../../../core/widgets/apartments/create_apartment/container_classes_widget/input_text_class_widget/container_input_text_class_widget.dart';
 import '../../../core/widgets/skeletons/student_widgets/show_more_skeleton_widget.dart';
+
 // import 'apartment_of_owner.dart';
 import 'package:http/http.dart' as http;
 
 import 'dart:convert';
+
+import '../../../core/widgets/apartments/update_apartment/update_image_apartment.dart';
 
 class RefactorApartment extends StatefulWidget {
   const RefactorApartment({super.key, this.oneApartment});
@@ -30,7 +38,6 @@ class RefactorApartment extends StatefulWidget {
 }
 
 class _RefactorApartmentState extends State<RefactorApartment> {
-  bool isUpdating = false;
   TextEditingController addressController = TextEditingController();
   TextEditingController countOfRoomsController = TextEditingController();
   TextEditingController countOfBathRoomsController = TextEditingController();
@@ -160,36 +167,61 @@ class _RefactorApartmentState extends State<RefactorApartment> {
       color: themeMode.isDark ? kPrimaryColorLightMode : kPrimaryColorDarkMode,
       child: GestureDetector(
         onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
-
         child: Scaffold(
           backgroundColor: themeMode.isDark
               ? kBackgroundAppColorLightMode
               : kBackgroundAppColorDarkMode,
           appBar: AppBar(
-            automaticallyImplyLeading: true,
+            automaticallyImplyLeading: false,
+            // title: Text("${widget.oneApartment?.id}"),
 
             actions: [
               Padding(
                 padding: const EdgeInsets.all(8.0),
-                child: ElevatedButton(
-                  onPressed: () {
-                    if (isUpdating) {
-                      // apiApartmentController.isEditMode.value = true;
-                      // apiApartmentController.isDeleteMode.value = false;
-                      return;
+                child: OutlinedButton(
+                  onPressed: () async {
+                    if(apartmentModelController.isUpdating.value){
+                      NormalAlert.show(context, "يرجى الانتظار", "الرجاء "
+                          "الانتظار حتى يتم حفظ التغييرات", "حسنًا");
+                      return ;
                     }
-                    updateApartment();
-                    // WidgetsBinding.instance.addPostFrameCallback((_)  async {
-
-                    // });
+                    imagesModelController.images.clear();
+                    imagesModelController.photoWillDeleteIds.clear();
+                    WidgetsBinding.instance.addPostFrameCallback((_) async {
+                      apartmentModelController.fetchApartments(
+                          isOwnerApartments: true);
+                    });
+                    Navigator.pop(context);
                   },
-                  style: fullButton,
-                  child: isUpdating
-                      ? const CircularProgressIndicator(
-                          color: Colors.white,
-                        )
-                      : const Text("حفظ"),
+                  style: outlineButton,
+                  child: const Text(" رجوع "),
                 ),
+              ),
+              const Expanded(child: Text("")),
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Obx(() {
+                  return ElevatedButton(
+                    onPressed: () {
+                      // setState(() {
+                      if (apartmentModelController.isUpdating.value) {
+                        debugPrint("uploading...");
+                        // apiApartmentController.isEditMode.value = true;
+                        // apiApartmentController.isDeleteMode.value = false;
+                        return;
+                      }
+                      // });
+                      updateApartment();
+
+                    },
+                    style: fullButton,
+                    child: apartmentModelController.isUpdating.value
+                        ? const CircularProgressIndicator(
+                            color: Colors.white,
+                          )
+                        : const Text("حفظ"),
+                  );
+                }),
               ),
               const SizedBox(
                 width: 10,
@@ -215,7 +247,7 @@ class _RefactorApartmentState extends State<RefactorApartment> {
                           onSelected: (c) {
                             if (c is City) {
                               setState(() {
-                                selectedCityId = c.id??-1;
+                                selectedCityId = c.id ?? -1;
                               });
                               // ... use other properties of c
                             } else {
@@ -385,14 +417,13 @@ class _RefactorApartmentState extends State<RefactorApartment> {
                       title: "نوع السكن",
                       currentValue: typesName,
                       onSelected: (type) {
-                        if(type is TypeOfApartment){
+                        if (type is TypeOfApartment) {
                           setState(() {
-                            selectedTypeOfApartmentId = type.id??-1;
-
+                            selectedTypeOfApartmentId = type.id ?? -1;
                           });
                         }
-                        debugPrint("selected type Id is $selectedTypeOfApartmentId");
-
+                        debugPrint(
+                            "selected type Id is $selectedTypeOfApartmentId");
                       }),
                 ),
                 Padding(
@@ -444,14 +475,17 @@ class _RefactorApartmentState extends State<RefactorApartment> {
             onPressed: () {
               // Get.to(ImagePickerTesting);
               Navigator.of(context).push(MaterialPageRoute(
-                builder: (context) =>
-                    AddImages(oneApartmentId: widget.oneApartment?.id ?? 0),
+                builder: (context) => UpdateImages(
+                  oneApartmentId: widget.oneApartment?.id ?? 0,
+                  oneApartment: widget.oneApartment,
+                ),
               ));
             },
             label: const Text('أضف صور'),
             icon: const Icon(Icons.photo),
-            backgroundColor:
-                themeMode.isDark ? kPrimaryColorLightMode : kPrimaryColorDarkMode,
+            backgroundColor: themeMode.isDark
+                ? kPrimaryColorLightMode
+                : kPrimaryColorDarkMode,
           ),
         ),
       ),
@@ -490,7 +524,7 @@ class _RefactorApartmentState extends State<RefactorApartment> {
   updateAdvantages() async {
     // isUpdating = true;
     featuresChosen.clear();
-   await apiApartmentController
+    await apiApartmentController
         .deleteAdvInApartment(widget.oneApartment?.id.toString() ?? "-1");
 
     // in a list of [advantages]
@@ -508,10 +542,7 @@ class _RefactorApartmentState extends State<RefactorApartment> {
   }
 
   updateApartment() async {
-    setState(() {
-      isUpdating = true;
-
-    });
+    apartmentModelController.isUpdating.value = true;
     await apiApartmentController.updateApartment(
         widget.oneApartment?.id.toString() ?? "-1",
         countOfRoomsController.text,
@@ -524,15 +555,22 @@ class _RefactorApartmentState extends State<RefactorApartment> {
         selectedCityId.toInt(),
         selectedTypeOfApartmentId.toInt());
     await updateAdvantages();
-    setState(() {
-      isUpdating = false;
-    });
-
-
-    await apartmentModelController.fetchApartments(isOwnerApartments: true);
-    pushAndRemoveUntilToOwnerApartment();
+    await imagesModelController.deleteImages(widget.oneApartment?.id ?? -1,
+        imagesModelController.photoWillDeleteIds);
+    debugPrint(
+        "a list of String in image controller is ${imagesModelController.images}");
+    await imagesModelController.compressAndUploadImages(apartmentIdToUpdate:
+    widget.oneApartment?.id
+    ??-1,isForUpdate: true);
+    apartmentModelController.isUpdating.value = false;
+    // await apartmentModelController.fetchApartments(isOwnerApartments: true);
+    showSnakBar(context, "تم حفظ التغييرات بنجاح");
 
   }
+
+  // Future<void> popAwaitMethod() async {
+  //   await Navigator.pop(context);
+  // }
 
   @override
   void dispose() {

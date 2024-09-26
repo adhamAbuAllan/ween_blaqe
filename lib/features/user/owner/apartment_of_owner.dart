@@ -368,9 +368,9 @@ class _ApartmentsOwnerState extends State<ApartmentsOwner>
   @override
   void initState() {
     super.initState();
-    WidgetsBinding.instance.addPostFrameCallback((_) {
-      setState(() {});
-    });
+    // WidgetsBinding.instance.addPostFrameCallback((_) {
+    //   setState(() {});
+    // });
     setState(() {
       apartmentModelController.fetchApartments(isOwnerApartments: true);
     });

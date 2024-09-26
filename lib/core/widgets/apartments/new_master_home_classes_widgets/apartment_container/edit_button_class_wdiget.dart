@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:ween_blaqe/controller/get_controllers.dart';
 // import 'package:ween_blaqe/constants/strings.dart';
 // import 'package:ween_blaqe/core/utils/funcations/route_pages/push_routes.dart';
 
@@ -27,6 +28,7 @@ class EditButtonClassWdiget extends StatelessWidget {
               ? kTextColorLightMode
               : kTextColorDarkMode), // Adjust colors based on theme
       onPressed: () {
+        imagesModelController.imageFiles?.clear();
         Navigator.of(context).push(MaterialPageRoute(
             builder: (BuildContext context) => RefactorApartment(
               oneApartment: apartmentsRes.data?[apartmentId],

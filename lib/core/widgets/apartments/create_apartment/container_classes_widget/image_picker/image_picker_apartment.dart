@@ -11,6 +11,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:permission_handler/permission_handler.dart';
+import 'package:ween_blaqe/api/apartments_api/one_apartment.dart';
 import 'package:ween_blaqe/constants/nums.dart';
 import 'package:ween_blaqe/controller/get_controllers.dart';
 import 'package:ween_blaqe/core/utils/styles/button.dart';
@@ -19,10 +20,12 @@ import 'package:ween_blaqe/features/user/owner/steps_to_create_apartment/fourth_
 
 // import 'package:video_player/video_player.dart';
 class AddImages extends StatefulWidget {
-  const AddImages({super.key, this.title, required this.oneApartmentId});
+  const AddImages(
+      {super.key, this.title, required this.oneApartmentId, this.oneApartment});
 
   final String? title;
   final int oneApartmentId;
+  final DataOfOneApartment? oneApartment;
 
   @override
   State<AddImages> createState() => _AddImagesState();
@@ -66,55 +69,55 @@ class _AddImagesState extends State<AddImages> {
 
     if (isMultiImage) {
       await _displayPickImageDialog(context!,
-          (double? maxWidth, double? maxHeight, int? quality) async {
-        try {
-          final List<XFile> pickedFileList = await _picker.pickMultiImage(
-            maxWidth: maxWidth,
-            maxHeight: maxHeight,
-            imageQuality: quality,
-          );
-          setState(() {
-            if (_imageFileList != null) {
-              for (var images in pickedFileList) {
-                setState(() {
-                  _imageFileList?.add(images);
-                  debugPrint("the pickedFileList is : $images");
-                });
-              }
-            } else {
+              (double? maxWidth, double? maxHeight, int? quality) async {
+            try {
+              final List<XFile> pickedFileList = await _picker.pickMultiImage(
+                maxWidth: maxWidth,
+                maxHeight: maxHeight,
+                imageQuality: quality,
+              );
               setState(() {
-                _imageFileList = pickedFileList;
+                if (_imageFileList != null) {
+                  for (var images in pickedFileList) {
+                    setState(() {
+                      _imageFileList?.add(images);
+                      debugPrint("the pickedFileList is : $images");
+                    });
+                  }
+                } else {
+                  setState(() {
+                    _imageFileList = pickedFileList;
+                  });
+                }
+              });
+            } catch (e) {
+              setState(() {
+                _pickImageError = e;
               });
             }
           });
-        } catch (e) {
-          setState(() {
-            _pickImageError = e;
-          });
-        }
-      });
     } else {
       await _displayPickImageDialog(context!,
-          (double? maxWidth, double? maxHeight, int? quality) async {
-        try {
-          final XFile? pickedFile = await _picker.pickImage(
-            source: source,
-            maxWidth: maxWidth,
-            maxHeight: maxHeight,
-            imageQuality: quality,
-          );
-          setState(() {
-            _setImageFileListFromFile(pickedFile);
-            if (pickedFile != null) {
-              debugPrint("the pickedFile is : $pickedFile");
+              (double? maxWidth, double? maxHeight, int? quality) async {
+            try {
+              final XFile? pickedFile = await _picker.pickImage(
+                source: source,
+                maxWidth: maxWidth,
+                maxHeight: maxHeight,
+                imageQuality: quality,
+              );
+              setState(() {
+                _setImageFileListFromFile(pickedFile);
+                if (pickedFile != null) {
+                  debugPrint("the pickedFile is : $pickedFile");
+                }
+              });
+            } catch (e) {
+              setState(() {
+                _pickImageError = e;
+              });
             }
           });
-        } catch (e) {
-          setState(() {
-            _pickImageError = e;
-          });
-        }
-      });
     }
   }
 
@@ -218,7 +221,6 @@ class _AddImagesState extends State<AddImages> {
               context, "الرجاء إضافة صور", " يجب أن تضيف صور للشقة ", "حسنًا");
         });
 
-
         return;
       }
 
@@ -296,36 +298,36 @@ class _AddImagesState extends State<AddImages> {
         child: Center(
           child: !kIsWeb && defaultTargetPlatform == TargetPlatform.android
               ? FutureBuilder<void>(
-                  future: retrieveLostData(),
-                  builder:
-                      (BuildContext context, AsyncSnapshot<void> snapshot) {
-                    switch (snapshot.connectionState) {
-                      case ConnectionState.none:
-                      case ConnectionState.waiting:
-                        return const Text(
-                          '',
-                          style: TextStyle(
-                            fontFamily: 'IBM',
-                          ),
-                          textAlign: TextAlign.center,
-                        );
-                      case ConnectionState.done:
-                        return _handlePreview();
-                      case ConnectionState.active:
-                        if (snapshot.hasError) {
-                          return Text(
-                            ': خطأ ${snapshot.error}}',
-                            textAlign: TextAlign.center,
-                          );
-                        } else {
-                          return const Text(
-                            '',
-                            textAlign: TextAlign.center,
-                          );
-                        }
-                    }
-                  },
-                )
+            future: retrieveLostData(),
+            builder:
+                (BuildContext context, AsyncSnapshot<void> snapshot) {
+              switch (snapshot.connectionState) {
+                case ConnectionState.none:
+                case ConnectionState.waiting:
+                  return const Text(
+                    'جاري التحميل...',
+                    style: TextStyle(
+                      fontFamily: 'IBM',
+                    ),
+                    textAlign: TextAlign.center,
+                  );
+                case ConnectionState.done:
+                  return _handlePreview();
+                case ConnectionState.active:
+                  if (snapshot.hasError) {
+                    return Text(
+                      ': خطأ ${snapshot.error}}',
+                      textAlign: TextAlign.center,
+                    );
+                  } else {
+                    return const Text(
+                      '',
+                      textAlign: TextAlign.center,
+                    );
+                  }
+              }
+            },
+          )
               : _handlePreview(),
         ),
       ),
@@ -363,6 +365,29 @@ class _AddImagesState extends State<AddImages> {
             padding: const EdgeInsets.only(top: 16.0),
             child: FloatingActionButton(
               onPressed: () {
+                int photoListLength = widget.oneApartment?.photos?.length ?? 0;
+
+              debugPrint("length of photo list is : $photoListLength");
+
+
+                for (var i = 0; i < photoListLength;
+                i++) {
+
+                  //
+                  debugPrint("photo list is : ${_imageFileList?[i].path}");
+
+                }
+              },
+              heroTag: 'image2',
+              backgroundColor: Colors.orange,
+              tooltip: 'print',
+              child: const Icon(Icons.print),
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.only(top: 16.0),
+            child: FloatingActionButton(
+              onPressed: () {
                 _onImageButtonPressed(
                   ImageSource.camera,
                   context: context,
@@ -388,8 +413,8 @@ class _AddImagesState extends State<AddImages> {
     return null;
   }
 
-  Future<void> _displayPickImageDialog(
-      BuildContext context, OnPickImageCallback onPick) async {
+  Future<void> _displayPickImageDialog(BuildContext context,
+      OnPickImageCallback onPick) async {
     return showDialog(
         context: context,
         builder: (BuildContext context) {

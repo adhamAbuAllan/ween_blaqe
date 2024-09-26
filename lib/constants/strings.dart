@@ -57,6 +57,7 @@ class ServerWeenBalaqee {
   static String bookingAll = "${server}booking/all";
   static String commentAdd = "${server}comment/add";
   static String uploadImages = "${server}photo/add";
+  static String deleteImage = "${server}photo/delete";
 }
 
 class ServerLocalhost {
