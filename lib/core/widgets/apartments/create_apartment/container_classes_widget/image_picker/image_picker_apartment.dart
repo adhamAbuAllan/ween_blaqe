@@ -71,9 +71,8 @@ class _AddImagesState extends State<AddImages> {
     requestPhotoPermission();
 
     if (isMultiImage) {
-      await _displayPickImageDialog(context!,
+      await _displayPickImage(context!,
           (double? maxWidth, double? maxHeight, int? quality) async {
-        try {
           final List<XFile> pickedFileList = await _picker.pickMultiImage(
             maxWidth: maxWidth,
             maxHeight: maxHeight,
@@ -93,14 +92,10 @@ class _AddImagesState extends State<AddImages> {
               });
             }
           });
-        } catch (e) {
-          setState(() {
-            _pickImageError = e;
-          });
-        }
+
       });
     } else {
-      await _displayPickImageDialog(context!,
+      await _displayPickImage(context!,
           (double? maxWidth, double? maxHeight, int? quality) async {
         try {
           final XFile? pickedFile = await _picker.pickImage(
@@ -162,7 +157,10 @@ class _AddImagesState extends State<AddImages> {
                 ),
               ),
               Positioned(
-                  left: 20.0,
+                  left: MediaQuery.of(context).size.width <= 413 &&
+                      MediaQuery.of(context).size.width >= 390
+                      ? 10.0
+                      : 20.0,
                   top: 2,
                   child: GestureDetector(
                     child: const Icon(
@@ -409,74 +407,18 @@ class _AddImagesState extends State<AddImages> {
     return null;
   }
 
-  Future<void> _displayPickImageDialog(
+  Future<void> _displayPickImage(
       BuildContext context, OnPickImageCallback onPick) async {
-    return showDialog(
-        context: context,
-        builder: (BuildContext context) {
-          return AlertDialog(
-            title: const Text(
-              'إضافة صور للشقة',
-              style: TextStyle(
-                fontFamily: 'IBM',
-              ),
-            ),
-            // content: Column(
-            //   children: <Widget>[
-            //     TextField(
-            //       controller: maxWidthController,
-            //       keyboardType:
-            //       const TextInputType.numberWithOptions(decimal: true),
-            //       decoration: const InputDecoration(
-            //           hintText: 'Enter maxWidth if desired'),
-            //     ),
-            //     TextField(
-            //       controller: maxHeightController,
-            //       keyboardType:
-            //       const TextInputType.numberWithOptions(decimal: true),
-            //       decoration: const InputDecoration(
-            //           hintText: 'Enter maxHeight if desired'),
-            //     ),
-            //     TextField(
-            //       controller: qualityController,
-            //       keyboardType: TextInputType.number,
-            //       decoration: const InputDecoration(
-            //           hintText: 'Enter quality if desired'),
-            //     ),
-            //   ],
-            // ),
-            actions: <Widget>[
-              ElevatedButton(
-                  style: fullButton,
-                  child: const Text('إضافة'),
-                  onPressed: () {
-                    final double? width = maxWidthController.text.isNotEmpty
-                        ? double.parse(maxWidthController.text)
-                        : null;
-                    final double? height = maxHeightController.text.isNotEmpty
-                        ? double.parse(maxHeightController.text)
-                        : null;
-                    final int? quality = qualityController.text.isNotEmpty
-                        ? int.parse(qualityController.text)
-                        : null;
-                    onPick(width, height, quality);
-                    Navigator.of(context).pop();
-                  }),
-              Padding(
-                padding: const EdgeInsets.fromLTRB(110, 0, 0, 0),
-                child: OutlinedButton(
-                  onPressed: () {
-                    Navigator.of(context).pop();
-                  },
-                  style: outlineButton,
-                  child: const Text(
-                    'رجوع',
-                  ),
-                ),
-              ),
-            ],
-          );
-        });
+    final double? width = maxWidthController.text.isNotEmpty
+        ? double.parse(maxWidthController.text)
+        : null;
+    final double? height = maxHeightController.text.isNotEmpty
+        ? double.parse(maxHeightController.text)
+        : null;
+    final int? quality = qualityController.text.isNotEmpty
+        ? int.parse(qualityController.text)
+        : null;
+    onPick(width, height, quality);
   }
 //for testing
 //---------------------------------------------------
