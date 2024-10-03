@@ -83,6 +83,7 @@ class _NewMasterHomeState extends State<NewMasterHome> {
     super.initState();
     connectivityController.isSnackBarShow.value = true;
     debugPrint("initState in NewMasterHome class ");
+
     // scrollController = ScrollController();
     widget.scrollController!.addListener(() {
       //[scrollController.addListener] this attribute usages to hide or show the button
@@ -118,7 +119,7 @@ class _NewMasterHomeState extends State<NewMasterHome> {
     // myPushName(context, MyPagesRoutes.skeletonShowMoreWidget);
     // SkeletonShowMoreWidget;
     _isAll = true;
-
+    apartmentModelController.futureOneApartmentList = getDataFromAPI();
     debugPrint("type in initState is :$_type ");
     debugPrint("the api is: $callAPIAndAssignData(isAll: _isAll)");
     debugPrint("a user info is:$User");

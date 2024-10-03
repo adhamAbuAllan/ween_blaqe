@@ -1,5 +1,7 @@
 import 'package:colorful_safe_area/colorful_safe_area.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+// import 'package:get/get_common/get_reset.dart';
 import 'package:get/get_state_manager/src/rx_flutter/rx_obx_widget.dart';
 import 'package:ween_blaqe/api/type_of_apartment.dart';
 import 'package:ween_blaqe/core/utils/funcations/route_pages/pop_routes.dart';
@@ -15,8 +17,10 @@ import '../../../api/cities.dart';
 import '../../../constants/strings.dart';
 import '../../../controller/get_controllers.dart';
 import '../../../controller/models_controller/advantages_model_controller.dart';
+
 // import '../../../core/utils/funcations/route_pages/push_routes.dart';
 import '../../../core/widgets/apartments/create_apartment/container_classes_widget/containers_choose_items_class_widget/container_choose_items_class_widget.dart';
+
 // import '../../../core/widgets/apartments/create_apartment/container_classes_widget/image_picker/image_picker_apartment.dart';
 import '../../../core/widgets/apartments/create_apartment/container_classes_widget/input_text_class_widget/container_input_text_class_widget.dart';
 import '../../../core/widgets/skeletons/student_widgets/show_more_skeleton_widget.dart';
@@ -174,31 +178,51 @@ class _RefactorApartmentState extends State<RefactorApartment> {
                 : kBackgroundAppColorDarkMode,
             appBar: AppBar(
               automaticallyImplyLeading: false,
-              // title: Text("${widget.oneApartment?.id}"),
-          
-              actions: [
-                Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: OutlinedButton(
-                    onPressed: () async {
-                      if(apartmentModelController.isUpdating.value){
-                        NormalAlert.show(context, "يرجى الانتظار", "الرجاء "
-                            "الانتظار حتى يتم حفظ التغييرات", "حسنًا");
-                        return ;
-                      }
-                      imagesModelController.images.clear();
-                      imagesModelController.photoWillDeleteIds.clear();
-                      WidgetsBinding.instance.addPostFrameCallback((_) async {
-                        apartmentModelController.fetchApartments(
-                            isOwnerApartments: true);
-                      });
-                      Navigator.pop(context);
-                    },
-                    style: outlineButton,
-                    child: const Text(" رجوع "),
-                  ),
+              title: const Text("تعديل إعلان الشقة"),
+
+              leading: Padding(
+                padding: const EdgeInsets.symmetric(vertical: 8.0),
+                child: BackButton(
+                  color: themeMode.isDark
+                      ? kTextColorLightMode
+                      : kTextColorDarkMode,
+                    style: const ButtonStyle(
+                      // iconSize : WidgetStateProperty.all(34),
+                      //    maximumSize: WidgetStateProperty.all(Size(32,
+                      //        32)),
+                      tapTargetSize: MaterialTapTargetSize.shrinkWrap,
+                    ),
+                  onPressed: () async {
+                    if (apartmentModelController.isUpdating.value) {
+                      NormalAlert.show(
+                          context,
+                          "يرجى الانتظار",
+                          "الرجاء "
+                              "الانتظار حتى يتم حفظ التغييرات",
+                          "حسنًا");
+                      return;
+                    }
+
+                    imagesModelController.images.clear();
+                    imagesModelController.photoWillDeleteIds.clear();
+                    WidgetsBinding.instance.addPostFrameCallback((_) async {
+                      apartmentModelController.fetchApartments(
+                          isOwnerApartments: true);
+                    });
+                    Navigator.pop(context);
+                  },
+
                 ),
-                const Expanded(child: Text("")),
+              ),
+              actions: [
+                // const Expanded(
+                //     child: Padding(
+                //       padding: EdgeInsets.all(8.0),
+                //       child: Text(
+                //                         "تعديل الشقة",
+                //                         style: TextStyle(fontSize: 22),
+                //                       ),
+                //     )),
                 Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: Obx(() {
@@ -213,7 +237,6 @@ class _RefactorApartmentState extends State<RefactorApartment> {
                         }
                         // });
                         updateApartment();
-          
                       },
                       style: fullButton,
                       child: apartmentModelController.isUpdating.value
@@ -257,13 +280,14 @@ class _RefactorApartmentState extends State<RefactorApartment> {
                               debugPrint("selectedCityId is $selectedCityId");
                             }),
                       ),
-          
+
                       //location box
                       Padding(
                         padding: const EdgeInsets.fromLTRB(0, 0, 0, 10),
                         child: ContainerInputTextClassWidget(
                             title: "العنوان",
-                            hintInput: "مثال:الخليل-وادالهرية-بجانب مسجد ابوعيشة",
+                            hintInput:
+                                "مثال:الخليل-وادالهرية-بجانب مسجد ابوعيشة",
                             inputType: TextInputType.text,
                             controller: addressController,
                             focusNode: addressFocusnose,
@@ -316,7 +340,7 @@ class _RefactorApartmentState extends State<RefactorApartment> {
                                     padding:
                                         const EdgeInsets.fromLTRB(0, 0, 10, 10),
                                     child: Text(
-                                      "حدد المزايا",
+                                  "حدد المزايا",
                                       style: TextStyle(
                                           fontFamily: 'IBM',
                                           fontSize: 20,
@@ -409,7 +433,7 @@ class _RefactorApartmentState extends State<RefactorApartment> {
                     ),
                   ),
                   //countStudent padding
-          
+
                   Padding(
                     padding: const EdgeInsets.only(bottom: 10),
                     child: ContainerChooseItemsClassWidget(
@@ -465,7 +489,7 @@ class _RefactorApartmentState extends State<RefactorApartment> {
                       hintInput: discrptionApartmentHint,
                       inputType: TextInputType.text,
                       // maxLines: 1,
-          
+
                       maxLength: 255,
                       hintMaxLines: 7,
                       focusNode: discrptionFocusedNode),
@@ -568,7 +592,6 @@ class _RefactorApartmentState extends State<RefactorApartment> {
     imagesModelController.imageFiles = null;
     // await apartmentModelController.fetchApartments(isOwnerApartments: true);
     showSnakBar(context, "تم حفظ التغييرات بنجاح");
-
   }
 
   // Future<void> popAwaitMethod() async {

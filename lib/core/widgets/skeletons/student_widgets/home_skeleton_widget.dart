@@ -13,7 +13,7 @@ class CitiesBarSkeleton extends StatelessWidget {
           child: Row(
         children: [
           Padding(
-            padding: EdgeInsets.fromLTRB(10, 5, 0, 5),
+            padding: EdgeInsets.fromLTRB(10, 5, 10, 5),
             child: SkeletonAvatar(
                 style: SkeletonAvatarStyle(width: 90, height: 40,),),
           ),
@@ -93,7 +93,12 @@ class HomeSkeletonWidget extends StatelessWidget {
           scrollDirection: Axis.vertical,
           child: Column(
             children: [
+              const SizedBox(height: 10,),
               //cities skeleton
+              const CitiesBarSkeleton(),
+
+              const SizedBox(height: 10,),
+
               //apartments skeleton
               Padding(
                 padding: const EdgeInsets.all(10),
@@ -125,14 +130,14 @@ class HomeSkeletonWidget extends StatelessWidget {
                           ),
                         ],
                       ),
-                      const SizedBox(height: 12),
+                      const SizedBox(height: 10),
                       SkeletonAvatar(
                         style: SkeletonAvatarStyle(
                             width: double.infinity,
                             height: 240,
                             borderRadius: BorderRadius.circular(7)),
                       ),
-                      const SizedBox(height: 18),
+                      const SizedBox(height: 10),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
@@ -152,7 +157,7 @@ class HomeSkeletonWidget extends StatelessWidget {
                           ),
                         ],
                       ),
-                      const SizedBox(height: 18),
+                      const SizedBox(height: 10),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
@@ -198,14 +203,14 @@ class HomeSkeletonWidget extends StatelessWidget {
                           ),
                         ],
                       ),
-                      const SizedBox(height: 12),
+                      const SizedBox(height: 10),
                       SkeletonAvatar(
                         style: SkeletonAvatarStyle(
                             width: double.infinity,
                             height: 240,
                             borderRadius: BorderRadius.circular(7)),
                       ),
-                      const SizedBox(height: 18),
+                      const SizedBox(height: 10),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
@@ -223,7 +228,7 @@ class HomeSkeletonWidget extends StatelessWidget {
                           ),
                         ],
                       ),
-                      const SizedBox(height: 18),
+                      const SizedBox(height: 10),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
@@ -271,7 +276,7 @@ class HomeSkeletonWidget extends StatelessWidget {
                           ),
                         ],
                       ),
-                      const SizedBox(height: 12),
+                      const SizedBox(height: 10),
                       SkeletonAvatar(
                         style: SkeletonAvatarStyle(
                             width: double.infinity,

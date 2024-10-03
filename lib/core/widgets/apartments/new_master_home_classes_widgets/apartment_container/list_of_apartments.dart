@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+// import 'package:get/get_state_manager/src/rx_flutter/rx_obx_widget.dart';
 import 'package:ween_blaqe/api/apartments_api/one_apartment.dart';
 import 'package:ween_blaqe/controller/get_controllers.dart';
 import 'package:ween_blaqe/core/widgets/apartments/home_screen/bar_cities.dart';
@@ -40,45 +41,62 @@ class _ApartmentsListState extends State<ApartmentsList> {
 
   @override
   Widget build(BuildContext context) {
-    return CustomScrollView(
-      // clipBehavior: Clip.antiAliasWithSaveLayer,
-      physics: const BouncingScrollPhysics(
-          decelerationRate: ScrollDecelerationRate.fast),
+    return FutureBuilder<OneApartment>(
+      future: apartmentModelController.futureOneApartmentList,
 
-      controller: widget.scrollController,
-      slivers: [
-        SliverToBoxAdapter(
-          child: SizedBox(
-              height: 70,
+
+        builder: (context,snap) {
+          snap.connectionState == ConnectionState.waiting ? debugPrint
+            ("loading..."):debugPrint("loaded");
+        return CustomScrollView(
+          // clipBehavior: Clip.antiAliasWithSaveLayer,
+          physics: const BouncingScrollPhysics(
+              decelerationRate: ScrollDecelerationRate.fast),
+
+          controller: widget.scrollController,
+          slivers: [
+            SliverToBoxAdapter(
               child: widget.haveCitiesBar
-                  ? CitiesBar(
-                      onClick: widget.onClick,
-                    )
-                  : const SizedBox()),
-        ),
-        SliverList(
-          delegate: SliverChildBuilderDelegate(
-            (context, index) {
-              if (widget.apartmentsRes.data?[index].type?.name?.isEmpty ??
-                  false) {
-                return const SizedBox();
-              }
-              if (widget.apartmentsRes.data?[index].photos?.isEmpty ?? true) {
-                return const SizedBox();
-              }
+                  ? SizedBox(
+                      height: 70,
+                      child: CitiesBar(
+                        onClick: widget.onClick,
+                      ))
+                  : const SizedBox(
+                      height: 10,
+                    ),
+            ),
+            SliverList(
+              delegate: SliverChildBuilderDelegate(
+                (context, index) {
+                  if (widget.apartmentsRes.data?[index].type?.name?.isEmpty ??
+                      false) {
+                    return const SizedBox();
+                  }
+                  if (widget.apartmentsRes.data?[index].photos?.isEmpty ?? true) {
+                    return const SizedBox();
+                  }
 
-              return WholeWidgetOfApartment(
+                  return WholeWidgetOfApartment(
 
-                index: index,
-                apartmentsRes: widget.apartmentsRes,
-                isDarkMode: widget.isDeleteMode,
-                onPressed: widget.onPressed,
-              );
-            },
-            childCount: widget.apartmentsRes.data?.length,
-          ),
-        ),
-      ],
+                    index: index,
+                    apartmentsRes: widget.apartmentsRes,
+                    isDarkMode: widget.isDeleteMode,
+                    onPressed: widget.onPressed,
+                  );
+                },
+                childCount: widget.apartmentsRes.data?.length,
+              ),
+            ),
+          SliverToBoxAdapter(
+          child: snap.connectionState == ConnectionState.waiting
+          ? const Center(child: CircularProgressIndicator())
+              : const SizedBox.shrink(),
+          )
+          ],
+        );
+
+      }
     );
 //// a list of apartment without cities bar
 //       ListView.builder(

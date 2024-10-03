@@ -11,6 +11,7 @@ import 'package:ween_blaqe/api/apartments_api/one_apartment.dart';
 import 'package:ween_blaqe/constants/strings.dart';
 import 'package:ween_blaqe/controller/get_controllers.dart';
 import 'package:ween_blaqe/core/utils/funcations/route_pages/push_routes.dart';
+import 'package:ween_blaqe/core/utils/funcations/snakbar.dart';
 import 'package:ween_blaqe/core/utils/styles/button.dart';
 import 'package:ween_blaqe/core/widgets/alirt_class_widget.dart';
 import 'package:ween_blaqe/data_containers/add_ad_data_container.dart';
@@ -130,6 +131,11 @@ class _FourthStepState extends State<FourthStep> {
                         padding: const EdgeInsets.all(8.0),
                         child: OutlinedButton(
                           onPressed: () {
+                            if(isLoading){
+                              showSnakBar(context, "يرجى الانتظار...جاري "
+                                  "إنشاء الإعلان");
+                              return;
+                            }
                             // mypopAndPushNamed(context, MyPagesRoutes.step3);
                             Navigator.pop(context);
                           },
