@@ -54,10 +54,10 @@ class _DropdownButtonClassWidget extends State<DropdownButtonClassWidget> {
                   decoration: InputDecoration(
                     enabledBorder: OutlineInputBorder(
                       borderSide: BorderSide(
+                        width: 1,
                         color: themeMode.isDark
-                            ?kPrimaryColor300LightMode
-                            : kPrimaryColor300DarkMode,
-                        width: 0.5,
+                            ? kPrimaryColorLightMode.withOpacity(.3)
+                            : kPrimaryColorDarkMode.withOpacity(.3),
                       ),
                     ),
                     focusedBorder: OutlineInputBorder(
@@ -91,14 +91,16 @@ class _DropdownButtonClassWidget extends State<DropdownButtonClassWidget> {
                     }
                     return DropdownMenuItem<dynamic>(
                       value: item,
-                      child: Text(
-                        itemName,
-                        style: TextStyle(
-                          fontSize: 14,
-                          color: themeMode.isDark
-                              ?kTextColorLightMode
-                              : kTextColorDarkMode,
-                          fontFamily: 'IBM',
+                      child: FittedBox(
+                        child: Text(
+                          itemName,
+                          style: TextStyle(
+                            // fontSize: 14,
+                            color: themeMode.isDark
+                                ?kTextColorLightMode
+                                : kTextColorDarkMode,
+                            fontFamily: 'IBM',
+                          ),
                         ),
                       ),
                     );

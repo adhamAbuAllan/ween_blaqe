@@ -210,7 +210,6 @@ class _SecondStepState extends State<SecondStep> {
                                         advantagesModelController.chosen
                                             .remove(feature.id ?? -1);
                                       }
-
                                     });
                                   },
                                   horizontalTitleGap: 2.5,
@@ -221,9 +220,6 @@ class _SecondStepState extends State<SecondStep> {
                                   // mainAxisSize: MainAxisSize.min,
 
                                   leading: Checkbox(
-                                      shape: RoundedRectangleBorder(
-                                          borderRadius:
-                                              BorderRadius.circular(2.6)),
                                       focusColor: themeMode.isDark
                                           ? kPrimaryColorLightMode
                                           : kPrimaryColorDarkMode,
@@ -235,9 +231,13 @@ class _SecondStepState extends State<SecondStep> {
                                           ? kPrimaryColorLightMode
                                           : kPrimaryColorDarkMode,
                                       side: BorderSide(
+                                          width: 1.5,
+                                          strokeAlign: 1,
                                           color: themeMode.isDark
-                                              ? kPrimaryColor300LightMode
-                                              : kPrimaryColor300DarkMode),
+                                              ? kPrimaryColorLightMode
+                                                  .withOpacity(.3)
+                                              : kPrimaryColorDarkMode
+                                                  .withOpacity(.3)),
                                       splashRadius: 20,
                                       value: feature.checked,
                                       onChanged: (a) {
@@ -255,7 +255,6 @@ class _SecondStepState extends State<SecondStep> {
                                             debugPrint(
                                                 "feature id 1 checked = ${feature.checked}");
                                           }
-
                                         });
                                       }),
                                   title: Text(
@@ -297,5 +296,4 @@ class _SecondStepState extends State<SecondStep> {
       ),
     );
   }
-
 }

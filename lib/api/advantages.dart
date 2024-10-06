@@ -122,7 +122,6 @@ class Advantages{
   late final String? createdAt;
   late final String?updatedAt;
   bool? checked;
-  late final isUIChecked = false;
   Advantages.fromJson(Map<String, dynamic> json){
     id = json['id'];
     // checkedId = json['checked_id'];

@@ -1,6 +1,7 @@
 // import 'dart:ffi';
 import 'package:flutter/material.dart';
 import 'package:animated_text_kit/animated_text_kit.dart';
+
 // import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:skeletons/skeletons.dart';
 import 'package:carousel_slider_plus/carousel_slider_plus.dart';
@@ -10,11 +11,13 @@ import 'package:colorful_safe_area/colorful_safe_area.dart';
 import 'package:get/get.dart';
 import 'package:ween_blaqe/api/apartments_api/one_apartment.dart';
 import 'package:ween_blaqe/api/photos.dart';
+
 // import 'package:ween_blaqe/controller/get_controllers.dart';
 import 'package:ween_blaqe/controller/pointer_of_images_controller.dart';
 import 'package:ween_blaqe/core/utils/funcations/go_url_launcher_methodes/go_to_whatsapp_method.dart';
 import 'package:ween_blaqe/core/utils/funcations/snakbar.dart';
 import 'package:ween_blaqe/core/utils/styles/button.dart';
+
 // import 'package:ween_blaqe/features/error_widgets/no_internet.dart';
 import '../../../../constants/coordination.dart';
 import '../../../../constants/injection.dart';
@@ -119,11 +122,9 @@ class _NewShowMoreState extends State<NewShowMore> {
   @override
   Widget build(BuildContext context) {
     bool isMove = false;
-    return             ColorfulSafeArea(
+    return ColorfulSafeArea(
       bottomColor: Colors.transparent,
-      color: themeMode.isDark
-          ? kPrimaryColorLightMode
-          : kPrimaryColorDarkMode,
+      color: themeMode.isDark ? kPrimaryColorLightMode : kPrimaryColorDarkMode,
       child: Scaffold(
         backgroundColor: themeMode.isDark
             ? kBackgroundAppColorLightMode
@@ -136,23 +137,37 @@ class _NewShowMoreState extends State<NewShowMore> {
               children: [
                 //back arrow button
 //back arrow button
-                Row(
-                  children: [
-                    Padding(
-                      padding: const EdgeInsets.fromLTRB(0, 20, 8, 0),
-                      child: BackButton(
-                        style: const ButtonStyle(
-                          // iconSize : WidgetStateProperty.all(34),
-                          //    maximumSize: WidgetStateProperty.all(Size(32,
-                          //        32)),
-                          tapTargetSize: MaterialTapTargetSize.shrinkWrap,
+                Padding(
+                  padding: const EdgeInsets.fromLTRB(20, 0, 0, 0),
+                  child: Row(
+                    crossAxisAlignment: CrossAxisAlignment.end,
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.fromLTRB(0, 20, 8, 0),
+                        child: BackButton(
+                          style: const ButtonStyle(
+                            // iconSize : WidgetStateProperty.all(34),
+                            //    maximumSize: WidgetStateProperty.all(Size(32,
+                            //        32)),
+                            tapTargetSize: MaterialTapTargetSize.shrinkWrap,
+                          ),
+                          color: themeMode.isDark
+                              ? kTextColorLightMode
+                              : kTextColorDarkMode,
                         ),
-                        color: themeMode.isDark
-                            ? kTextColorLightMode
-                            : kTextColorDarkMode,
                       ),
-                    ),
-                  ],
+                      Text(
+                        "${widget.oneApartment?.timeAgo} ",
+                        style: TextStyle(
+                            color: themeMode.isDark
+                                ? kTextColorLightMode
+                                : kTextColorDarkMode,
+                            fontFamily: "IBM",
+                            fontSize: 14),
+                      )
+                    ],
+                  ),
                 ),
 
                 const SizedBox(
@@ -160,79 +175,78 @@ class _NewShowMoreState extends State<NewShowMore> {
                 ), // image/s of apartment
                 _isDataLoaded
                     ? SkeletonAvatar(
-                  style: SkeletonAvatarStyle(
-                      width: 368,
-                      height: 240,
-                      borderRadius: BorderRadius.circular(7)),
-                )
+                        style: SkeletonAvatarStyle(
+                            width: 368,
+                            height: 240,
+                            borderRadius: BorderRadius.circular(7)),
+                      )
                     : GestureDetector(
-                  onTap: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => DetailScreen(
-                          controller: pageController,
-                          isMove: isMove,
+                        onTap: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => DetailScreen(
+                                controller: pageController,
+                                isMove: isMove,
+                                current: current,
+                                initialIndex: current,
+                                onPageChanged: (index) {
+                                  setState(() {
+                                    debugPrint("current still : $current");
+                                    current = index;
+                                    pointerController.currentValue =
+                                        current.obs;
+
+                                    // pageController = PageController(initialPage: current);
+                                    // pageController.jumpToPage(current);
+                                    controller.jumpToPage(current);
+
+                                    // print(
+                                    //     "the current.reactive.value is:${current.reactive.value}");
+                                  });
+                                },
+                                context: context,
+                                imageList: widget.oneApartment!.photos!,
+                                onVerticalDragEnd: (p0) {
+                                  setState(() {
+                                    debugPrint("onVerticalDragEnd");
+                                    Navigator.pop(context);
+                                    setState(() {
+                                      controller.animateToPage(current);
+                                    });
+                                  });
+                                },
+                                // tag: tag,
+                              ),
+                            ),
+                          );
+                        },
+                        child: ImageSliderWithPointer(
+                          controller: controller,
+                          items: photos!,
+                          duration: const Duration(milliseconds: 300),
+                          // curve: Curves.linear,
                           current: current,
-                          initialIndex: current,
-                          onPageChanged: (index) {
-                            setState(() {
-                              debugPrint(
-                                  "current still : $current");
-                              current = index;
-                              pointerController.currentValue =
-                                  current.obs;
-
-                              // pageController = PageController(initialPage: current);
-                              // pageController.jumpToPage(current);
-                              controller.jumpToPage(current);
-
-                              // print(
-                              //     "the current.reactive.value is:${current.reactive.value}");
-                            });
-                          },
-                          context: context,
-                          imageList: widget.oneApartment!.photos!,
-                          onVerticalDragEnd: (p0) {
-                            setState(() {
-                              debugPrint("onVerticalDragEnd");
-                              Navigator.pop(context);
-                              setState(() {
-                                controller.animateToPage(current);
-                              });
-                            });
-                          },
                           // tag: tag,
+                          onPageChange: (index, p1) {
+                            setState(() {
+                              current = index;
+                              controller.animateToPage(
+                                current,
+                                duration: const Duration(
+                                  milliseconds: 300,
+                                ),
+                              );
+                              // print("the p1 is like this : $p1");
+
+                              // current = lastIndex!;
+
+                              // photos?[index] = photos![lastIndex!];
+                              // index = lastIndex!;
+                            });
+                          },
                         ),
                       ),
-                    );
-                  },
-                  child: ImageSliderWithPointer(
-                    controller: controller,
-                    items: photos!,
-                    duration: const Duration(milliseconds: 300),
-                    // curve: Curves.linear,
-                    current: current,
-                    // tag: tag,
-                    onPageChange: (index, p1) {
-                      setState(() {
-                        current = index;
-                        controller.animateToPage(
-                          current,
-                          duration: const Duration(
-                            milliseconds: 300,
-                          ),
-                        );
-                        // print("the p1 is like this : $p1");
-
-                        // current = lastIndex!;
-
-                        // photos?[index] = photos![lastIndex!];
-                        // index = lastIndex!;
-                      });
-                    },
-                  ),
-                ),
 
                 Container(
                   margin: const EdgeInsets.fromLTRB(10, 23, 10, 0),
@@ -250,8 +264,7 @@ class _NewShowMoreState extends State<NewShowMore> {
                       Row(
                         children: [
                           Padding(
-                            padding:
-                            const EdgeInsets.fromLTRB(0, 0, 10, 0),
+                            padding: const EdgeInsets.fromLTRB(0, 0, 10, 0),
                             child: Text(
                               "معلومات عامة",
                               style: TextStyle(
@@ -260,8 +273,8 @@ class _NewShowMoreState extends State<NewShowMore> {
                                   color: themeMode.isDark
                                       ? kTextColorLightMode
                                       : kTextColorDarkMode
-                                //kTextColor
-                              ),
+                                  //kTextColor
+                                  ),
                             ),
                           ),
                           const Expanded(
@@ -273,13 +286,11 @@ class _NewShowMoreState extends State<NewShowMore> {
                       Row(
                         children: [
                           SizedBox(
-                            width: getIt<AppDimension>()
-                                .isSmallScreen(context)
+                            width: getIt<AppDimension>().isSmallScreen(context)
                                 ? 360 / 1.5
                                 : 360,
                             child: Padding(
-                              padding: const EdgeInsets.fromLTRB(
-                                  10, 0, 10, 10),
+                              padding: const EdgeInsets.fromLTRB(10, 0, 10, 10),
                               child: Text(
                                   widget.oneApartment?.title ?? ""
                                   // data.
@@ -300,13 +311,11 @@ class _NewShowMoreState extends State<NewShowMore> {
                       Row(
                         children: [
                           SizedBox(
-                            width: getIt<AppDimension>()
-                                .isSmallScreen(context)
+                            width: getIt<AppDimension>().isSmallScreen(context)
                                 ? 360 / 1.1
                                 : 360,
                             child: Padding(
-                              padding:
-                              const EdgeInsets.fromLTRB(0, 0, 10, 10),
+                              padding: const EdgeInsets.fromLTRB(0, 0, 10, 10),
                               child: Text(
                                 "المكان:${widget.oneApartment?.city?.name ?? ""
 
@@ -333,16 +342,15 @@ class _NewShowMoreState extends State<NewShowMore> {
                       Row(
                         children: [
                           Padding(
-                            padding:
-                            const EdgeInsets.fromLTRB(0, 0, 5, 10),
+                            padding: const EdgeInsets.fromLTRB(0, 0, 5, 10),
                             child: Text(
                                 (_isBoyStudent
                                     ? "عدد الطلاب المسموح به:${widget.oneApartment?.countOfStudnet ?? 0}"
                                     : (_isGirlStudent
-                                    ? "عدد الطالبات المسموح به:${widget.oneApartment?.countOfStudnet ?? 0}"
-                                    : (_isFamilies
-                                    ? "عدد الافراد المسموح به:${widget.oneApartment?.countOfStudnet ?? 0}"
-                                    : "عدد الافراد المسموح به:${widget.oneApartment?.countOfStudnet ?? 0}"))),
+                                        ? "عدد الطالبات المسموح به:${widget.oneApartment?.countOfStudnet ?? 0}"
+                                        : (_isFamilies
+                                            ? "عدد الافراد المسموح به:${widget.oneApartment?.countOfStudnet ?? 0}"
+                                            : "عدد الافراد المسموح به:${widget.oneApartment?.countOfStudnet ?? 0}"))),
                                 style: TextStyle(
                                   color: themeMode.isDark
                                       ? kTextColorLightMode
@@ -358,8 +366,7 @@ class _NewShowMoreState extends State<NewShowMore> {
                       Row(
                         children: [
                           Padding(
-                            padding:
-                            const EdgeInsets.fromLTRB(0, 0, 5, 10),
+                            padding: const EdgeInsets.fromLTRB(0, 0, 5, 10),
                             child: Text(
                                 "نوع السكن:${widget.oneApartment?.type?.name ?? ""}",
                                 style: TextStyle(
@@ -377,8 +384,7 @@ class _NewShowMoreState extends State<NewShowMore> {
                       Row(
                         children: [
                           Padding(
-                            padding:
-                            const EdgeInsets.fromLTRB(0, 0, 10, 10),
+                            padding: const EdgeInsets.fromLTRB(0, 0, 10, 10),
                             child: Text(
                               "الأجرة:${widget.oneApartment?.price ?? ""
                               // data.
@@ -393,8 +399,7 @@ class _NewShowMoreState extends State<NewShowMore> {
                             ),
                           ),
                           Padding(
-                            padding:
-                            const EdgeInsets.fromLTRB(0, 0, 3, 10),
+                            padding: const EdgeInsets.fromLTRB(0, 0, 3, 10),
                             child: Text("شيكل/شهري",
                                 style: TextStyle(
                                   color: themeMode.isDark
@@ -423,8 +428,7 @@ class _NewShowMoreState extends State<NewShowMore> {
                       Row(
                         children: [
                           Padding(
-                            padding:
-                            const EdgeInsets.fromLTRB(0, 0, 20, 0),
+                            padding: const EdgeInsets.fromLTRB(0, 0, 20, 0),
                             child: Text(
                               "حول الشقة",
                               style: TextStyle(
@@ -440,319 +444,278 @@ class _NewShowMoreState extends State<NewShowMore> {
                       ),
 
                       //about apartment items
-                      Padding(
-                        padding: const EdgeInsets.fromLTRB(0, 0, 0, 5),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Padding(
-                              padding: const EdgeInsets.all(10.0),
-                              child: SizedBox(
-                                width: 80,
-                                height: 80,
-                                child: AnimatedSize(
-                                  duration:
-                                  const Duration(milliseconds: 700),
-                                  curve: Curves.linear,
-                                  reverseDuration:
-                                  const Duration(milliseconds: 700),
-                                  clipBehavior: Clip.antiAlias,
-                                  child: OutlinedButton(
-                                    onPressed: () {
-                                      setState(() {
-                                        isRoomSizeChange =
-                                        !isRoomSizeChange;
-                                      });
-                                    },
-                                    style: outlineButton.copyWith(
-                                        overlayColor:
-                                        const WidgetStatePropertyAll(
-                                            Colors.transparent),
-                                        side: WidgetStatePropertyAll(BorderSide(
-                                            width: !isRoomSizeChange ? 1 : 2,
-                                            color: isRoomSizeChange
-                                                ? themeMode.isDark
-                                                ? kPrimaryColorLightMode
-                                                : kPrimaryColorDarkMode
-                                                : themeMode.isDark
-                                                ? kPrimaryColor300LightMode
-                                                : kPrimaryColor300DarkMode))),
-                                    child: Column(
-                                      children: [
-                                        const Expanded(
-                                          child: Text(""),
-                                        ),
-                                        Text(
-                                          titleAboutApartmentroom,
-                                          style: TextStyle(
-                                              color: themeMode.isDark
-                                                  ? kTextColorLightMode
-                                                  : kTextColorDarkMode),
-                                        ),
-                                        const Expanded(
-                                          child: Text(""),
-                                        ),
-                                        Row(
-                                          children: [
-                                            //Cubic meters
-                                            const Expanded(
-                                              child: Text(""),
-                                            ),
+                      FittedBox(
+                        child: Padding(
+                          padding: const EdgeInsets.fromLTRB(0, 0, 0, 5),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Padding(
+                                padding: const EdgeInsets.all(10.0),
+                                child: FittedBox(
+                                  child: AnimatedSize(
+                                    duration: const Duration(milliseconds: 700),
+                                    curve: Curves.linear,
+                                    reverseDuration:
+                                        const Duration(milliseconds: 700),
+                                    clipBehavior: Clip.antiAlias,
+                                    child: OutlinedButton(
+                                      onPressed: () {
+                                        setState(() {
+                                          isRoomSizeChange = !isRoomSizeChange;
+                                        });
+                                      },
+                                      style: outlineButton.copyWith(
+                                          padding: const WidgetStatePropertyAll(
+                                              EdgeInsets.all(10)),
+                                          overlayColor:
+                                              const WidgetStatePropertyAll(
+                                                  Colors.transparent),
+                                          side: WidgetStatePropertyAll(BorderSide(
+                                              width: !isRoomSizeChange ? 1 : 2,
+                                              color: isRoomSizeChange
+                                                  ? themeMode.isDark
+                                                      ? kPrimaryColorLightMode
+                                                      : kPrimaryColorDarkMode
+                                                  : themeMode.isDark
+                                                      ? kPrimaryColor300LightMode
+                                                      : kPrimaryColor300DarkMode))),
+                                      child: Column(
+                                        children: [
+                                          Text(
+                                            titleAboutApartmentroom,
+                                            style: TextStyle(
+                                                color: themeMode.isDark
+                                                    ? kTextColorLightMode
+                                                    : kTextColorDarkMode),
+                                          ),
+                                          Row(
+                                            children: [
+                                              //Cubic meters
 
-                                            Padding(
-                                              padding: const EdgeInsets
-                                                  .fromLTRB(5, 0, 5, 0),
-                                              child: isRoomSizeChange
-                                                  ? SizedBox(
-                                                  width: 10.5,
-                                                  height: 25,
-                                                  child: buildAnimatedTextKit(
-                                                      "${widget.oneApartment?.rooms ?? 0}"))
-                                                  : Text(
-                                                "${widget.oneApartment?.rooms ?? 0}",
-                                                style: TextStyle(
-                                                    color: themeMode
-                                                        .isDark
-                                                        ? kTextColorLightMode
-                                                        : kTextColorDarkMode),
+                                              Padding(
+                                                padding:
+                                                    const EdgeInsets.fromLTRB(
+                                                        5, 0, 5, 0),
+                                                child: isRoomSizeChange
+                                                    ? FittedBox(
+                                                        child: buildAnimatedTextKit(
+                                                            "${widget.oneApartment?.rooms ?? 0}"),
+                                                      )
+                                                    : Text(
+                                                        "${widget.oneApartment?.rooms ?? 0}",
+                                                        style: TextStyle(
+                                                            color: themeMode
+                                                                    .isDark
+                                                                ? kTextColorLightMode
+                                                                : kTextColorDarkMode),
+                                                      ),
                                               ),
-                                            ),
-                                            Image(
-                                              image: AssetImage(
-                                                  imageAboutApartmentRoom),
-                                              width: 32,
-                                              height: 32,
-                                              color: themeMode.isDark
-                                                  ? kTextColorLightMode
-                                                  : kTextColorDarkMode,
-                                            ),
-                                            const Expanded(
-                                              child: Text(""),
-                                            ),
-                                          ],
-                                        ),
-                                        const Expanded(
-                                          flex: 2,
-                                          child: Text(""),
-                                        ),
-                                      ],
+                                              Image(
+                                                image: AssetImage(
+                                                    imageAboutApartmentRoom),
+                                                width: 32,
+                                                height: 32,
+                                                color: themeMode.isDark
+                                                    ? kTextColorLightMode
+                                                    : kTextColorDarkMode,
+                                              ),
+                                            ],
+                                          ),
+                                        ],
+                                      ),
                                     ),
                                   ),
                                 ),
                               ),
-                            ),
-                            Padding(
-                              padding: const EdgeInsets.all(10.0),
-                              child: SizedBox(
-                                width: 80,
-                                height: 80,
-                                child: AnimatedSize(
-                                  duration:
-                                  const Duration(milliseconds: 700),
-                                  curve: Curves.linear,
-                                  reverseDuration:
-                                  const Duration(milliseconds: 700),
-                                  clipBehavior: Clip.antiAlias,
-                                  child: OutlinedButton(
-                                    onPressed: () {
-                                      setState(() {
-                                        isRoomBathSizeChange =
-                                        !isRoomBathSizeChange;
-                                      });
-                                    },
-                                    style: outlineButton.copyWith(
-                                        overlayColor:
-                                        const WidgetStatePropertyAll(
-                                            Colors.transparent),
-                                        side: WidgetStatePropertyAll(BorderSide(
-                                            width: !isRoomBathSizeChange ? 1 : 2,
-                                            color: isRoomBathSizeChange
-                                                ? themeMode.isDark
-                                                ? kPrimaryColorLightMode
-                                                : kPrimaryColorDarkMode
-                                                : themeMode.isDark
-                                                ? kPrimaryColor300LightMode
-                                                : kPrimaryColor300DarkMode))),
-                                    child: Column(
-                                      children: [
-                                        const Expanded(
-                                          child: Text(""),
-                                        ),
-                                        Text(
-                                          "الحمامات",
-                                          style: TextStyle(
-                                              color: themeMode.isDark
-                                                  ? kTextColorLightMode
-                                                  : kTextColorDarkMode),
-                                        ),
-                                        const Expanded(
-                                          child: Text(""),
-                                        ),
-                                        Row(
-                                          children: [
-                                            //Cubic meters
-                                            const Expanded(
-                                              child: Text(""),
-                                            ),
+                              Padding(
+                                padding: const EdgeInsets.all(10.0),
+                                child: FittedBox(
+                                  // clipBehavior: Clip.antiAlias,
+                                  // alignment: Alignment.topCenter,
+                                  // fit: BoxFit.none,
+                                  child: AnimatedSize(
+                                    duration: const Duration(milliseconds: 700),
+                                    curve: Curves.linear,
+                                    reverseDuration:
+                                        const Duration(milliseconds: 700),
+                                    clipBehavior: Clip.antiAlias,
+                                    child: OutlinedButton(
+                                      onPressed: () {
+                                        setState(() {
+                                          isRoomBathSizeChange =
+                                              !isRoomBathSizeChange;
+                                        });
+                                      },
+                                      style: outlineButton.copyWith(
+                                          padding: const WidgetStatePropertyAll(
+                                              EdgeInsets.all(10)),
+                                          overlayColor:
+                                              const WidgetStatePropertyAll(
+                                                  Colors.transparent),
+                                          side: WidgetStatePropertyAll(BorderSide(
+                                              width: !isRoomBathSizeChange ? 1 : 2,
+                                              color: isRoomBathSizeChange
+                                                  ? themeMode.isDark
+                                                      ? kPrimaryColorLightMode
+                                                      : kPrimaryColorDarkMode
+                                                  : themeMode.isDark
+                                                      ? kPrimaryColor300LightMode
+                                                      : kPrimaryColor300DarkMode))),
+                                      child: Column(
+                                        children: [
+                                          // const Expanded(
+                                          //   child: Text(""),
+                                          // ),
+                                          Text(
+                                            "الحمامات",
+                                            style: TextStyle(
+                                                color: themeMode.isDark
+                                                    ? kTextColorLightMode
+                                                    : kTextColorDarkMode),
+                                          ),
+                                          // const Expanded(
+                                          //   child: Text(""),
+                                          // ),
+                                          Row(
+                                            // mainAxisSize: MainAxisSize.max,
+                                            children: [
+                                              //Cubic meters
+                                              // const Expanded(
+                                              //   child: Text(""),
+                                              // ),
 
-                                            Padding(
-                                              padding: const EdgeInsets
-                                                  .fromLTRB(5, 0, 5, 0),
-                                              child: isRoomBathSizeChange
-                                                  ? SizedBox(
-                                                  width: 10.5,
-                                                  height: 25,
-                                                  child: buildAnimatedTextKit(
-                                                      "${widget.oneApartment?.bathrooms ?? 0}"))
-                                                  : Text(
-                                                "${widget.oneApartment?.bathrooms ?? 0}",
-                                                style: TextStyle(
-                                                    color: themeMode
-                                                        .isDark
-                                                        ? kTextColorLightMode
-                                                        : kTextColorDarkMode),
+                                              Padding(
+                                                padding:
+                                                    const EdgeInsets.fromLTRB(
+                                                        5, 0, 0, 0),
+                                                child: isRoomBathSizeChange
+                                                    ? FittedBox(
+                                                        child: buildAnimatedTextKit(
+                                                            "${widget.oneApartment?.bathrooms ?? 0}"),
+                                                      )
+                                                    : Text(
+                                                        "${widget.oneApartment?.bathrooms ?? 0}",
+                                                        style: TextStyle(
+                                                            color: themeMode
+                                                                    .isDark
+                                                                ? kTextColorLightMode
+                                                                : kTextColorDarkMode),
+                                                      ),
                                               ),
-                                            ),
-                                            Image(
-                                              image: const AssetImage(
-                                                  "assets/images/apartments_images/about_apartment/bathroom.png"),
-                                              width: 32,
-                                              height: 32,
-                                              color: themeMode.isDark
-                                                  ? kTextColorLightMode
-                                                  : kTextColorDarkMode,
-                                            ),
-                                            const Expanded(
-                                                child: Text("")),
-                                          ],
-                                        ),
-                                        const Expanded(
-                                          flex: 2,
-                                          child: Text(""),
-                                        ),
-                                      ],
+                                              Image(
+                                                image: const AssetImage(
+                                                    "assets/images/apartments_images/about_apartment/bathroom.png"),
+                                                width: 32,
+                                                height: 32,
+                                                color: themeMode.isDark
+                                                    ? kTextColorLightMode
+                                                    : kTextColorDarkMode,
+                                              ),
+                                            ],
+                                          ),
+                                        ],
+                                      ),
                                     ),
                                   ),
                                 ),
                               ),
-                            ),
-                            Padding(
-                              padding: const EdgeInsets.all(10.0),
-                              child: SizedBox(
-                                width: 100,
-                                height: 80,
-                                child: AnimatedSize(
-                                  duration:
-                                  const Duration(milliseconds: 700),
-                                  curve: Curves.linear,
-                                  reverseDuration:
-                                  const Duration(milliseconds: 700),
-                                  clipBehavior: Clip.antiAlias,
-                                  child: OutlinedButton(
-                                    onPressed: () {
-                                      setState(() {
-                                        isAreaSizeChange =
-                                        !isAreaSizeChange;
-                                      });
-                                    },
-                                    style: outlineButton.copyWith(
-                                        overlayColor:
-                                        const WidgetStatePropertyAll(
-                                            Colors.transparent),
-                                        side: WidgetStatePropertyAll(BorderSide(
-                                            width: !isAreaSizeChange ? 1 : 2,
-                                            color: isAreaSizeChange
-                                                ? themeMode.isDark
-                                                ? kPrimaryColorLightMode
-                                                : kPrimaryColorDarkMode
-                                                : themeMode.isDark
-                                                ? kPrimaryColor300LightMode
-                                                : kPrimaryColor300DarkMode))),
-                                    child: Column(
-                                      children: [
-                                        const Expanded(
-                                          child: Text(""),
-                                        ),
-                                        Text(
-                                          "المساحة",
-                                          style: TextStyle(
-                                              color: themeMode.isDark
-                                                  ? kTextColorLightMode
-                                                  : kTextColorDarkMode),
-                                        ),
-                                        const Expanded(
-                                          child: Text(""),
-                                        ),
-                                        Row(
-                                          children: [
-                                            //Cubic meters
-                                            const Expanded(
-                                              child: Text(""),
-                                            ),
+                              Padding(
+                                padding: const EdgeInsets.all(10.0),
+                                child: FittedBox(
+                                  child: AnimatedSize(
+                                    duration: const Duration(milliseconds: 700),
+                                    curve: Curves.linear,
+                                    reverseDuration:
+                                        const Duration(milliseconds: 700),
+                                    clipBehavior: Clip.antiAlias,
+                                    child: OutlinedButton(
+                                      onPressed: () {
+                                        setState(() {
+                                          isAreaSizeChange = !isAreaSizeChange;
+                                        });
+                                      },
+                                      style: outlineButton.copyWith(
+                                          padding:
+                                              const WidgetStatePropertyAll(//10
+                                                  EdgeInsets.all(10)), // ),
+                                          overlayColor:
+                                              const WidgetStatePropertyAll(
+                                                  Colors.transparent),
+                                          side: WidgetStatePropertyAll(BorderSide(
+                                              width: !isAreaSizeChange ? 1 : 2,
+                                              color: isAreaSizeChange
+                                                  ? themeMode.isDark
+                                                      ? kPrimaryColorLightMode
+                                                      : kPrimaryColorDarkMode
+                                                  : themeMode.isDark
+                                                      ? kPrimaryColor300LightMode
+                                                      : kPrimaryColor300DarkMode))),
+                                      child: Column(
+                                        children: [
+                                          Text(
+                                            "المساحة",
+                                            style: TextStyle(
+                                                color: themeMode.isDark
+                                                    ? kTextColorLightMode
+                                                    : kTextColorDarkMode),
+                                          ),
+                                          Row(
+                                            children: [
+                                              //Cubic meters
 
-                                            Padding(
-                                              padding: const EdgeInsets
-                                                  .fromLTRB(5, 0, 5, 0),
-                                              child: isAreaSizeChange
-                                                  ? SizedBox(
-                                                // width: 37.6,
-                                                  width: widget
-                                                      .oneApartment!
-                                                      .squareMeters! >=
-                                                      100
-                                                      ? 48.01
-                                                      : 37.6,
-                                                  height: 25,
-                                                  child: buildAnimatedTextKit(
-                                                      "²م${widget.oneApartment?.squareMeters ?? 0}"))
-                                                  : Text(
-                                                "²م${widget.oneApartment?.squareMeters ?? 0}",
-                                                style: TextStyle(
-                                                    color: themeMode
-                                                        .isDark
-                                                        ? kTextColorLightMode
-                                                        : kTextColorDarkMode),
+                                              Padding(
+                                                padding:
+                                                    const EdgeInsets.fromLTRB(
+                                                        5, 0, 5, 0),
+                                                child: isAreaSizeChange
+                                                    ? FittedBox(
+                                                        child: buildAnimatedTextKit(
+                                                            "²م${widget.oneApartment?.squareMeters ?? 0}"),
+                                                      )
+                                                    : Text(
+                                                        "²م${widget.oneApartment?.squareMeters ?? 0}",
+                                                        style: TextStyle(
+                                                            color: themeMode
+                                                                    .isDark
+                                                                ? kTextColorLightMode
+                                                                : kTextColorDarkMode),
+                                                      ),
                                               ),
-                                            ),
-                                            Image(
-                                              image: const AssetImage(
-                                                "assets/images/apartments_images/about_apartment/area.png",
+                                              Image(
+                                                image: const AssetImage(
+                                                  "assets/images/apartments_images/about_apartment/area.png",
+                                                ),
+                                                width: 32,
+                                                height: 32,
+                                                color: themeMode.isDark
+                                                    ? kTextColorLightMode
+                                                    : kTextColorDarkMode,
                                               ),
-                                              width: 32,
-                                              height: 32,
-                                              color: themeMode.isDark
-                                                  ? kTextColorLightMode
-                                                  : kTextColorDarkMode,
-                                            ),
-                                            const Expanded(
-                                                child: Text("")),
-                                          ],
-                                        ),
-                                        const Expanded(
-                                          flex: 2,
-                                          child: Text(""),
-                                        ),
-                                      ],
+                                            ],
+                                          ),
+                                        ],
+                                      ),
                                     ),
                                   ),
                                 ),
-                              ),
-                            )
+                              )
 
-                            // AboutApartmentSquareMeter(
-                            //     title: titleAboutApartmentSM,
-                            //     image: imageAboutApartmentSM,
-                            //     value: valueAboutApartmentSM),
-                            //
-                            // AboutApartment(
-                            //     title: titleAboutApartmentroom,
-                            //     image: imageAboutApartmentRoom,
-                            //     value: valueAboutApartmentRoom),
-                            // AboutApartment(
-                            //     title: titleAboutApartmentBathroom,
-                            //     image: imageAboutApartmentBathroom,
-                            //     value: valueAboutApartmentBathroom),
-                          ],
+                              // AboutApartmentSquareMeter(
+                              //     title: titleAboutApartmentSM,
+                              //     image: imageAboutApartmentSM,
+                              //     value: valueAboutApartmentSM),
+                              //
+                              // AboutApartment(
+                              //     title: titleAboutApartmentroom,
+                              //     image: imageAboutApartmentRoom,
+                              //     value: valueAboutApartmentRoom),
+                              // AboutApartment(
+                              //     title: titleAboutApartmentBathroom,
+                              //     image: imageAboutApartmentBathroom,
+                              //     value: valueAboutApartmentBathroom),
+                            ],
+                          ),
                         ),
                       ),
                     ],
@@ -808,8 +771,7 @@ class _NewShowMoreState extends State<NewShowMore> {
                       Row(
                         children: [
                           Padding(
-                            padding:
-                            const EdgeInsets.fromLTRB(0, 10, 10, 0),
+                            padding: const EdgeInsets.fromLTRB(0, 10, 10, 0),
                             child: Text("وصف الشقة",
                                 style: TextStyle(
                                   color: themeMode.isDark
@@ -825,8 +787,7 @@ class _NewShowMoreState extends State<NewShowMore> {
 //description
                       Padding(
                         padding: const EdgeInsets.fromLTRB(10, 0, 10, 10),
-                        child:
-                        Text(widget.oneApartment?.description ?? "",
+                        child: Text(widget.oneApartment?.description ?? "",
                             style: TextStyle(
                               color: themeMode.isDark
                                   ? kTextColorLightMode
@@ -841,8 +802,9 @@ class _NewShowMoreState extends State<NewShowMore> {
                 ),
                 //number phone
                 Container(
+                  padding: EdgeInsets.only(bottom: 10),
                   margin: const EdgeInsets.fromLTRB(10, 23, 10, 0),
-                  height: 120,
+                  // height: 120,
 // discription.length.toDouble() * 2,
 //decoration of show apartment style
                   decoration: BoxDecoration(
@@ -858,8 +820,7 @@ class _NewShowMoreState extends State<NewShowMore> {
                       Row(
                         children: [
                           Padding(
-                            padding:
-                            const EdgeInsets.fromLTRB(0, 10, 10, 10),
+                            padding: const EdgeInsets.fromLTRB(0, 10, 10, 10),
                             child: Text("للإستفسار",
                                 style: TextStyle(
                                   color: themeMode.isDark
@@ -879,15 +840,14 @@ class _NewShowMoreState extends State<NewShowMore> {
                             child: Text(""),
                           ),
                           SizedBox(
-                            height: 50,
+                            // height: 50,
                             child: OutlinedButton(
                               onPressed: () async {
                                 // sendMessageToMessenger("https://www.facebook.com/adhm.alaan"," السلام عليكم، ممكن أستفسر عن الإعلان الخاص بـ${widget.oneApartment?.title}");
                                 sendMessageToWhatsApp(
                                     widget.oneApartment!.owner!.phone,
                                     "  السلام عليكم، ممكن أستفسر عن الإعلان الخاص بـ${widget.oneApartment?.title} ",
-                                    image: widget
-                                        .oneApartment?.photos?[0].url);
+                                    image: widget.oneApartment?.photos?[0].url);
                                 // openBrowserURL(
                                 //     url: 'https://wa.me/970569118259/',
                                 //     inApp: false);
@@ -914,8 +874,7 @@ class _NewShowMoreState extends State<NewShowMore> {
                                   children: [
 //whtsapp icon
                                     const Padding(
-                                      padding:
-                                      EdgeInsets.fromLTRB(0, 0, 0, 0),
+                                      padding: EdgeInsets.fromLTRB(0, 0, 0, 0),
                                       child: Image(
                                         image: AssetImage(
                                             "assets/images/whatsapp.png"),
@@ -926,8 +885,8 @@ class _NewShowMoreState extends State<NewShowMore> {
 
 //text
                                     Padding(
-                                      padding: const EdgeInsets.fromLTRB(
-                                          0, 0, 0, 0),
+                                      padding:
+                                          const EdgeInsets.fromLTRB(0, 0, 0, 0),
                                       child: Text(" واتس اب",
                                           style: TextStyle(
                                             color: themeMode.isDark
@@ -1035,8 +994,8 @@ class _NewShowMoreState extends State<NewShowMore> {
                               "هذه الميزة قيد التطوير وسيتم إضافتها قريبًا");
                         },
                         style: fullButton.copyWith(
-                            backgroundColor: const WidgetStatePropertyAll(
-                                Colors.grey)),
+                            backgroundColor:
+                                const WidgetStatePropertyAll(Colors.grey)),
                         child: const Text("إحجز الآن")),
                   ),
                 ),

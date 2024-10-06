@@ -50,7 +50,7 @@ class DataOfOneApartment {
       this.type,
       this.updatedAt,
       this.countOfStudnet,
-      });
+      this.timeAgo});
 
   late final int? id;
   late final User? owner;
@@ -67,6 +67,7 @@ class DataOfOneApartment {
   late final TypeOfApartment? type;
   late final String? updatedAt;
   late final int? countOfStudnet;
+  late final String? timeAgo;
 
   DataOfOneApartment.fromJson(Map<String, dynamic> json) {
     id = json['id'];
@@ -86,14 +87,15 @@ class DataOfOneApartment {
     city = City.fromJson(json['city']);
     type = TypeOfApartment.fromJson(json['type']);
     updatedAt = json['updated_at'];
+    timeAgo = json['time_ago'];
   }
 
   Map<String, dynamic> toJson() {
     final _data = <String, dynamic>{};
     _data['id'] = id;
     _data['owner'] = owner?.toJson();
-    _data['photos'] = photos?.map((e) => e.toJson()).toList()??[];
-    _data['advantage'] = advantages?.map((e) => e.toJson()).toList()??[];
+    _data['photos'] = photos?.map((e) => e.toJson()).toList() ?? [];
+    _data['advantage'] = advantages?.map((e) => e.toJson()).toList() ?? [];
     _data['rooms'] = rooms;
     _data['bathrooms'] = bathrooms;
     _data['square_meters'] = squareMeters;
@@ -102,9 +104,10 @@ class DataOfOneApartment {
     _data['location'] = location;
     _data['price'] = price;
     _data['count_of_student'] = countOfStudnet;
-    _data['city'] = city?.toJson()??"";
-    _data['type'] = type?.toJson()??"";
+    _data['city'] = city?.toJson() ?? "";
+    _data['type'] = type?.toJson() ?? "";
     _data['updated_at'] = updatedAt;
+    _data['time_ago'] = timeAgo;
     return _data;
   }
 }

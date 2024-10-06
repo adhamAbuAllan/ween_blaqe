@@ -174,10 +174,10 @@ class _PasswordContainerClassWidgetState
                   ),
                   enabledBorder: OutlineInputBorder(
                       borderSide: BorderSide(
-                        width: 0.5,
+                        width: 1,
                         color: themeMode.isDark
-                            ? kPrimaryColor300LightMode
-                            : kPrimaryColor300DarkMode,
+                            ? kPrimaryColorLightMode.withOpacity(.3)
+                            : kPrimaryColorDarkMode.withOpacity(.3),
                       ),
                       borderRadius: BorderRadius.circular(7))),
               style: TextStyle(

@@ -149,13 +149,18 @@ class _AccountBeforeLoginInStudentState
                           getIt<AppDimension>().isSmallScreen(context)
                               ? 75 / 1.5
                               : 75),
-                      child: Text(
-                        // "قم بتسجيل الدخول لتحجز اول شقة لك ",
-                        "لا يتطلب حجز شقة حساب جديد أو تسجيل الدخول ",
-                        style: TextStyle(
-                            color: Colors.grey.shade600,
-                            fontSize: 14,
-                            fontFamily: 'IBM'),
+                      child: SizedBox(
+                        width:getIt<AppDimension>().isMediumScreen(context)
+                            ?300:400,
+                        child: Text(
+                          // "قم بتسجيل الدخول لتحجز اول شقة لك ",
+                          "لا يتطلب حجز شقة حساب جديد أو تسجيل دخول ",
+                          style: TextStyle(
+                              color: Colors.grey.shade600,
+                              fontSize: 14,
+                              fontFamily: 'IBM'),
+                          softWrap: true,
+                        ),
                       ),
                     ),
                     const Expanded(child: Text("")),

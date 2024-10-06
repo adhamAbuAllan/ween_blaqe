@@ -23,10 +23,12 @@ final ButtonStyle outlineButton = OutlinedButton.styleFrom(
   foregroundColor: themeMode.isDark ? kPrimaryColorLightMode : kPrimaryColorDarkMode,
   elevation: 0,
   textStyle:  TextStyle(
+
     fontSize: 16,
     color: themeMode.isDark ? kPrimaryColorLightMode : kPrimaryColorDarkMode,
     fontFamily: 'IBM',
   ),
+
   side:  BorderSide(width: 1,
       color: themeMode.isDark ? kPrimaryColorLightMode : kPrimaryColorDarkMode
   ),

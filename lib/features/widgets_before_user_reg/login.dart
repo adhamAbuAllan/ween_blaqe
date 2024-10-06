@@ -66,7 +66,7 @@ class _LoginState extends State<Login> {
   bool isObscure = true;
 
   // bool _isvisible = true;
-  bool autoFocus = false;
+  bool autoFocus = true;
   bool autoFocusOfPassword = false;
 
   // String errorText = "";
@@ -196,6 +196,7 @@ class _LoginState extends State<Login> {
                     // value: "123",
                     // autoFocus: autoFocus,
                     inputType: phone,
+
                     // focusNode: userPhoneFocus,
                     // onFieldSubmitted: (m){
                     //   FocusScope.of(context).requestFocus(passwordFocus);

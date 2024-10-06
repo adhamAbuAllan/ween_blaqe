@@ -9,7 +9,6 @@ import '../../../../../../constants/coordination.dart';
 import '../../../../../../constants/injection.dart';
 import '../../../../../../constants/nums.dart';
 
-
 const String errorText = "";
 
 //container input text class widget
@@ -26,7 +25,7 @@ class ContainerInputTextClassWidget extends StatefulWidget {
   final int? maxLength;
   final Function(String value)? onEdit;
   final Widget? valueUnderFormTextField;
-  final bool? expanded ;
+  final bool? expanded;
 
   // TextInputAction? textInputAction;
   final bool? autoFocus;
@@ -75,14 +74,15 @@ class _ContainerInputTextClassWidgetState
     return Container(
       // transformAlignment: Alignment.bottomCenter,
 
-
       margin: const EdgeInsets.fromLTRB(10, 2, 10, 10),
       // height: 140,
       padding: const EdgeInsets.fromLTRB(0, 0, 0, 10),
 
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(7),
-        color: themeMode.isDark ? kContainerColorLightMode : kContainerColorDarkMode,
+        color: themeMode.isDark
+            ? kContainerColorLightMode
+            : kContainerColorDarkMode,
       ),
 
       child: Column(
@@ -93,8 +93,10 @@ class _ContainerInputTextClassWidgetState
                 padding: const EdgeInsets.fromLTRB(0, 10, 10, 10),
                 child: Text(
                   title,
-                  style:  TextStyle(
-                    color: themeMode.isDark ? kTextColorLightMode : kTextColorDarkMode,
+                  style: TextStyle(
+                    color: themeMode.isDark
+                        ? kTextColorLightMode
+                        : kTextColorDarkMode,
                     fontSize: 18,
                     fontFamily: 'IBM',
                   ),
@@ -105,7 +107,10 @@ class _ContainerInputTextClassWidgetState
           Padding(
             padding: const EdgeInsets.fromLTRB(15, 0, 10, 10),
             child: TextFormField(
-              cursorColor:themeMode.isDark ? kPrimaryColorLightMode : kPrimaryColorDarkMode,
+
+              cursorColor: themeMode.isDark
+                  ? kPrimaryColorLightMode
+                  : kPrimaryColorDarkMode,
               //
               // onChanged: (value) {
               //   // autoFocus = false;
@@ -151,25 +156,31 @@ class _ContainerInputTextClassWidgetState
               autofocus: widget.autoFocus ?? false,
               // focusNode: focusNode,
               decoration: buildInputDecoration(hintInput),
-              style:  TextStyle(
+              style: TextStyle(
                 fontFamily: 'IBM',
                 fontSize: 16,
-                color:themeMode.isDark ? kTextColorLightMode : kTextColorDarkMode,
+                color:
+                    themeMode.isDark ? kTextColorLightMode : kTextColorDarkMode,
               ),
             ),
           ),
-         widget.expanded == true ?  Row(
-            children: [
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 10.0),
-                child: widget.valueUnderFormTextField ??
-                    const SizedBox(
-                      width: .1,
-                      height: .1,
+          widget.expanded == true
+              ? Row(
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 10.0),
+                      child: widget.valueUnderFormTextField ??
+                          const SizedBox(
+                            width: .1,
+                            height: .1,
+                          ),
                     ),
-              ),
-            ],
-          ):const SizedBox(height: .1,width: .1,)
+                  ],
+                )
+              : const SizedBox(
+                  height: .1,
+                  width: .1,
+                )
         ],
       ),
     );
@@ -179,32 +190,32 @@ class _ContainerInputTextClassWidgetState
     ChangeThemeMode themeMode = Get.find();
 
     return InputDecoration(
-      contentPadding:  EdgeInsets.symmetric(
-        vertical: getIt<AppDimension>().isSmallScreen(context) ? 20/2 :
-        20,
-        horizontal: 12,
-      ),
-
+        contentPadding: EdgeInsets.symmetric(
+          vertical: getIt<AppDimension>().isSmallScreen(context) ? 20 / 2 : 20,
+          horizontal: 12,
+        ),
         errorText: errorText.isEmpty ? null : errorText,
         hintTextDirection: TextDirection.rtl,
         hintText: hintInput,
         border: InputBorder.none,
-
         hintMaxLines: widget.hintMaxLines,
         hintStyle: const TextStyle(
           color: Colors.grey,
         ),
-        focusedBorder:  OutlineInputBorder(
-
+        focusedBorder: OutlineInputBorder(
           borderSide: BorderSide(
             width: 1.5,
-            color: themeMode.isDark ? kPrimaryColorLightMode : kPrimaryColorDarkMode,
+            color: themeMode.isDark
+                ? kPrimaryColorLightMode
+                : kPrimaryColorDarkMode,
           ),
         ),
         enabledBorder: OutlineInputBorder(
-            borderSide:   BorderSide(
+            borderSide: BorderSide(
               width: 1,
-              color: themeMode.isDark ? kPrimaryColorLightMode.withOpacity(.3) : kPrimaryColorDarkMode.withOpacity(.3),
+              color: themeMode.isDark
+                  ? kPrimaryColorLightMode.withOpacity(.3)
+                  : kPrimaryColorDarkMode.withOpacity(.3),
             ),
             borderRadius: BorderRadius.circular(7)));
   }

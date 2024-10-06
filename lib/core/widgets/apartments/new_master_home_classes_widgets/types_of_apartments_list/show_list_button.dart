@@ -53,7 +53,7 @@ class _BtnShowTypesOfApartmentsState extends State<BtnShowTypesOfApartments> {
             padding:
             const EdgeInsets.only(
                 top: 4),
-            height: 35,
+            // height: 35,
             color:themeMode.isDark ? kContainerColorLightMode : kContainerColorDarkMode,
             child: widget.text?.isNotEmpty??false ? Text(
                 " ${widget.text} ") :   const Text(
