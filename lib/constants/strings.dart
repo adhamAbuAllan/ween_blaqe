@@ -31,6 +31,7 @@ class ServerWeenBalaqee {
 
   // static String postAll = "${server}post/all";
   static String userLogin = "${server}user/login";
+  static String userUpdate = "${server}user/update";
   static String checkPhone = "${server}user/check_phone";
   static String register = "${server}user/register";
   static String apartmentOwner = "${server}apartment/owner";

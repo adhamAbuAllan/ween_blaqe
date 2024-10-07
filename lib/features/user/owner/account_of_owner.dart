@@ -22,6 +22,7 @@ import '../../../main.dart';
 // import 'apartment_of_owner.dart';
 import '../../../sesstion/new_session.dart';
 import '../../../sesstion/sesstion_of_user.dart';
+import '../../../testing_code/update_data_of_user_test.dart';
 
 //account screen
 class AccountOfOwner extends StatefulWidget {
@@ -80,71 +81,78 @@ class _AccountOfOwnerState extends State<AccountOfOwner> {
 
             //use GestureDetector that when user click on container make action
 
-            Container(
-              width: double.infinity,
-              padding: EdgeInsets.fromLTRB(
-                  0, paddingOfOwnerInfoBox, 10, paddingOfOwnerInfoBox),
-              margin: const EdgeInsets.fromLTRB(10, 0, 10, 0),
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(7),
-                color: themeMode.isDark
-                    ? kContainerColorLightMode
-                    : kContainerColorDarkMode,
-              ),
-              child: Row(
-                children: [
-                  // const Padding(
-                  //   padding: EdgeInsets.all(8.0),
-                  //   child: CircleAvatar(
-                  //     backgroundImage: NetworkImage(
-                  //         "https://robohash.org/hicveldicta.png/"),
-                  //     radius: 30,
-                  //   ),
-                  // ),
+            GestureDetector(
+              onLongPress: (){
+                Navigator.push(context, MaterialPageRoute(builder: (context)
+                =>
+                const UpdateUserWidgetTest()));
+              },
+              child: Container(
+                width: double.infinity,
+                padding: EdgeInsets.fromLTRB(
+                    0, paddingOfOwnerInfoBox, 10, paddingOfOwnerInfoBox),
+                margin: const EdgeInsets.fromLTRB(10, 0, 10, 0),
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(7),
+                  color: themeMode.isDark
+                      ? kContainerColorLightMode
+                      : kContainerColorDarkMode,
+                ),
+                child: Row(
+                  children: [
+                    // const Padding(
+                    //   padding: EdgeInsets.all(8.0),
+                    //   child: CircleAvatar(
+                    //     backgroundImage: NetworkImage(
+                    //         "https://robohash.org/hicveldicta.png/"),
+                    //     radius: 30,
+                    //   ),
+                    // ),
 
-                  Padding(
-                    padding: const EdgeInsets.only(right: 15),
-                    child: Text(
-                      NewSession.get("name", ""),
-                      style: TextStyle(
-                        fontSize: getIt<AppDimension>().isSmallScreen(context)
-                            ? 16
-                            : 18,
-                        fontFamily: 'IBM',
-                        color: themeMode.isDark
-                            ? kTextColorLightMode
-                            : kTextColorDarkMode,
-                      ),
-                    ),
-                  ),
-                  const Expanded(
-                      child: SizedBox(
-                    child: Text(""),
-                  )),
-                  Padding(
-                    padding: const EdgeInsets.only(left: 25),
-                    child: Text(
-                      // "عرض الملف الشخصي",
-                      NewSession.get("phone", ""),
-                      // "972569339613",
-                      style: TextStyle(
-                          fontSize: 16,
+                    Padding(
+                      padding: const EdgeInsets.only(right: 15),
+                      child: Text(
+                        NewSession.get("name", ""),
+                        style: TextStyle(
+                          fontSize: getIt<AppDimension>().isSmallScreen(context)
+                              ? 16
+                              : 18,
                           fontFamily: 'IBM',
                           color: themeMode.isDark
                               ? kTextColorLightMode
-                              : kTextColorDarkMode),
+                              : kTextColorDarkMode,
+                        ),
+                      ),
                     ),
-                  )
-                  // Padding(
-                  //   padding: const EdgeInsets.fromLTRB(0, 0, 0, 0),
-                  //   child: Icon(
-                  //     Icons.arrow_forward_ios_rounded,
-                  //     color: themeMode.isDark
-                  //         ? kTextColorLightMode
-                  //         : kTextColorDarkMode,
-                  //   ),
-                  // ),
-                ],
+                    const Expanded(
+                        child: SizedBox(
+                      child: Text(""),
+                    )),
+                    Padding(
+                      padding: const EdgeInsets.only(left: 25),
+                      child: Text(
+                        // "عرض الملف الشخصي",
+                        NewSession.get("phone", ""),
+                        // "972569339613",
+                        style: TextStyle(
+                            fontSize: 16,
+                            fontFamily: 'IBM',
+                            color: themeMode.isDark
+                                ? kTextColorLightMode
+                                : kTextColorDarkMode),
+                      ),
+                    )
+                    // Padding(
+                    //   padding: const EdgeInsets.fromLTRB(0, 0, 0, 0),
+                    //   child: Icon(
+                    //     Icons.arrow_forward_ios_rounded,
+                    //     color: themeMode.isDark
+                    //         ? kTextColorLightMode
+                    //         : kTextColorDarkMode,
+                    //   ),
+                    // ),
+                  ],
+                ),
               ),
             ),
 
