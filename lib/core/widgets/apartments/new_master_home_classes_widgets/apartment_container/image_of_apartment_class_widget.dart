@@ -33,7 +33,10 @@ class ApartmentMainImage extends StatelessWidget {
                   // 'https://via.placeholder.com/150'
                   ),
               height: 220,
-              width: MediaQuery.of(context).size.width - 32,
+              width: MediaQuery
+                  .of(context)
+                  .size
+                  .width - 32,
               fit: BoxFit.cover,
             )),
         TimeAgoWidget(apartmentsRes: apartmentsRes, index: index),
@@ -41,10 +44,14 @@ class ApartmentMainImage extends StatelessWidget {
     );
   }
 }
+
 class TimeAgoWidget extends StatefulWidget {
-  const TimeAgoWidget({super.key, required this.apartmentsRes, required this.index});
+  const TimeAgoWidget(
+      {super.key, required this.apartmentsRes, required this.index});
+
   final OneApartment apartmentsRes;
   final int index;
+
   @override
   State<TimeAgoWidget> createState() => _TimeAgoWidgetState();
 }
@@ -52,13 +59,14 @@ class TimeAgoWidget extends StatefulWidget {
 class _TimeAgoWidgetState extends State<TimeAgoWidget> {
   @override
   Widget build(BuildContext context) {
-    return         Positioned(
+    return Positioned(
       bottom: 5,
       left: 5,
       child: ClipRRect( // Add ClipRRect
         borderRadius: BorderRadius.circular(1.7),
         child: BackdropFilter( // Add BackdropFilter
-          filter:ImageFilter.blur(sigmaX: 5, sigmaY: 5), // Adjust blur intensity
+          filter: ImageFilter.blur(sigmaX: 5, sigmaY: 5),
+          // Adjust blur intensity
           child: Container(
             padding: const EdgeInsets.all(4),
             decoration: BoxDecoration(
@@ -70,7 +78,7 @@ class _TimeAgoWidgetState extends State<TimeAgoWidget> {
               style: TextStyle(
                 color: Colors.grey.shade300,
                 fontFamily: "IBM",
-                fontSize: 14,shadows: [
+                fontSize: 14, shadows: [
                 Shadow(
                   color: Colors.black.withOpacity(0.5),
                   blurRadius: 2,
