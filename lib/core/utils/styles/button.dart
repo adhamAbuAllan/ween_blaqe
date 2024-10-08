@@ -5,33 +5,47 @@ import 'package:ween_blaqe/constants/nums.dart';
 // import 'package:ween_blaqe/styles/colors.dart';
 // button style widget
 //fullbutton
-final ButtonStyle fullButton = ElevatedButton.styleFrom(
-    // foregroundColor: !themeMode.isDark ? kPrimaryColorLightMode : kPrimaryColorDarkMode,
 
-    backgroundColor: !themeMode.isDark ? kPrimaryColorLightMode : kPrimaryColorDarkMode,
+
+//outlineButton
+
+// In your styles.dart file:
+
+// import 'package:flutter/material.dart';
+// import 'package:ween_blaqe/constants/nums.dart';
+
+import '../../../controller/function_controller/change_theme_mode.dart';
+
+ButtonStyle fullButton({ChangeThemeMode? themeMode}) {
+  return ElevatedButton.styleFrom(
+    backgroundColor:
+    (themeMode?.isDark??false ? kPrimaryColorLightMode : kPrimaryColorDarkMode),
     elevation: 0,
     textStyle: const TextStyle(
       fontSize: 16,
       fontFamily: 'IBM',
-
     ),
     shape: const RoundedRectangleBorder(
-        borderRadius: BorderRadius.all(Radius.circular(7))));
-//outlineButton
+        borderRadius: BorderRadius.all(Radius.circular(7))),
+  );
+}
 
-final ButtonStyle outlineButton = OutlinedButton.styleFrom(
-  foregroundColor: themeMode.isDark ? kPrimaryColorLightMode : kPrimaryColorDarkMode,
-  elevation: 0,
-  textStyle:  TextStyle(
-
-    fontSize: 16,
-    color: themeMode.isDark ? kPrimaryColorLightMode : kPrimaryColorDarkMode,
-    fontFamily: 'IBM',
-  ),
-
-  side:  BorderSide(width: 1,
-      color: themeMode.isDark ? kPrimaryColorLightMode : kPrimaryColorDarkMode
-  ),
-  padding: const EdgeInsets.all(1),
-  alignment: Alignment.center,
-);
+ButtonStyle outlinedButton({ChangeThemeMode? themeMode}) {
+  return OutlinedButton.styleFrom(
+    foregroundColor:
+    themeMode?.isDark??false ? kPrimaryColorLightMode : kPrimaryColorDarkMode,
+    elevation: 0,
+    textStyle: TextStyle(
+      fontSize: 16,
+      color: themeMode?.isDark??false ? kPrimaryColorLightMode :
+      kPrimaryColorDarkMode,
+      fontFamily: 'IBM',
+    ),
+    side: BorderSide(
+        width: 1,
+        color: themeMode?.isDark??false ? kPrimaryColorLightMode :
+        kPrimaryColorDarkMode),
+    padding: const EdgeInsets.all(1),
+    alignment: Alignment.center,
+  );
+}

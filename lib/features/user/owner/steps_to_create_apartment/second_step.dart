@@ -72,7 +72,7 @@ class _SecondStepState extends State<SecondStep> {
                         onPressed: () {
                           Navigator.pop(context);
                         },
-                        style: outlineButton,
+                        style: outlinedButton(themeMode:themeMode),
                         child: const Text("رجوع"),
                       ),
                       const Expanded(child: Text("")),
@@ -121,7 +121,7 @@ class _SecondStepState extends State<SecondStep> {
 
                           myPushName(context, MyPagesRoutes.step3);
                         },
-                        style: fullButton,
+                        style: fullButton(themeMode: themeMode),
                         child: const Text("التالي"),
                       ),
                     ],

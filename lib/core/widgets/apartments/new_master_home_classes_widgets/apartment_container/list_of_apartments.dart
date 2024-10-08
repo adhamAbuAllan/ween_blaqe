@@ -46,8 +46,8 @@ class _ApartmentsListState extends State<ApartmentsList> {
 
 
         builder: (context,snap) {
-          snap.connectionState == ConnectionState.waiting ? debugPrint
-            ("loading..."):debugPrint("loaded");
+          // snap.connectionState == ConnectionState.waiting ? debugPrint
+            // ("loading..."):debugPrint("loaded");
         return CustomScrollView(
           // clipBehavior: Clip.antiAliasWithSaveLayer,
           physics: const BouncingScrollPhysics(

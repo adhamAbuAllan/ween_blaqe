@@ -241,7 +241,7 @@ class _LoginState extends State<Login> {
                         ? 55 / 1.2
                         : 55,
                     child: ElevatedButton(
-                        style: fullButton,
+                        style: fullButton(themeMode: themeMode),
                         onPressed: () {
                           cityModelController.cityId.value = 0;
                           isLoading = true;
@@ -323,7 +323,7 @@ class _LoginState extends State<Login> {
                             }),
                           );
                         },
-                        style: outlineButton,
+                        style: outlinedButton(themeMode:themeMode),
                         child: const Text("تسجيل حساب جديد")),
                   ),
                 ),

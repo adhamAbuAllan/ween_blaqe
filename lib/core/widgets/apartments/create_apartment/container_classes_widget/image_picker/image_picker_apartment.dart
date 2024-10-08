@@ -3,7 +3,6 @@
 // found in the LICENSE file.
 
 // ignore_for_file: public_member_api_docs
-
 import 'dart:async';
 import 'dart:io';
 import 'package:flutter/foundation.dart';
@@ -18,7 +17,6 @@ import 'package:ween_blaqe/controller/get_controllers.dart';
 import 'package:ween_blaqe/core/utils/styles/button.dart';
 import 'package:ween_blaqe/core/widgets/alirt_class_widget.dart';
 import 'package:ween_blaqe/features/user/owner/steps_to_create_apartment/fourth_step.dart';
-
 // import 'package:video_player/video_player.dart';
 class AddImages extends StatefulWidget {
   const AddImages(
@@ -294,7 +292,7 @@ class _AddImagesState extends State<AddImages> {
               onPressed: () {
                 Navigator.pop(context);
               },
-              style: outlineButton,
+              style: outlinedButton(themeMode:themeMode),
               child: const Text(" رجوع "),
             ),
           ),
@@ -303,7 +301,7 @@ class _AddImagesState extends State<AddImages> {
             padding: const EdgeInsets.all(8.0),
             child: ElevatedButton(
               onPressed: checkArray,
-              style: fullButton,
+              style: fullButton(themeMode: themeMode),
               child: const Text("تم"),
             ),
           ),
@@ -373,7 +371,7 @@ class _AddImagesState extends State<AddImages> {
                 );
               },
               heroTag: 'image0',
-              backgroundColor: Colors.orange,
+              backgroundColor: themeMode.isDark ? kPrimaryColorLightMode : kPrimaryColorDarkMode,
               tooltip: 'أضف صور من المعرض',
               child: const Icon(Icons.photo_library),
             ),
@@ -389,7 +387,7 @@ class _AddImagesState extends State<AddImages> {
               },
               heroTag: 'image1',
               tooltip: 'إلتقط صورة',
-              backgroundColor: Colors.orange,
+              backgroundColor: themeMode.isDark ? kPrimaryColorLightMode : kPrimaryColorDarkMode,
               child: const Icon(Icons.camera_alt),
             ),
           ),

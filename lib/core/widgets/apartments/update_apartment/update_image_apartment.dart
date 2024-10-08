@@ -110,7 +110,7 @@ class _UpdateImagesState extends State<UpdateImages> {
                 // imagesModelController.photoWillDeleteIds.clear();
                 Navigator.pop(context);
               },
-              style: outlineButton,
+              style: outlinedButton(themeMode:themeMode),
               child: const Text(" إلغاء "),
             ),
           ),
@@ -119,7 +119,7 @@ class _UpdateImagesState extends State<UpdateImages> {
             padding: const EdgeInsets.all(8.0),
             child: ElevatedButton(
               onPressed: checkArray,
-              style: fullButton,
+              style: fullButton(themeMode: themeMode),
               child: const Text("تم"),
             ),
           ),
@@ -193,7 +193,7 @@ class _UpdateImagesState extends State<UpdateImages> {
                 );
               },
               heroTag: 'image0',
-              backgroundColor: Colors.orange,
+              backgroundColor: themeMode.isDark ? kPrimaryColorLightMode : kPrimaryColorDarkMode,
               tooltip: 'أضف صور من المعرض',
               child: const Icon(Icons.photo_library),
             ),
@@ -209,7 +209,7 @@ class _UpdateImagesState extends State<UpdateImages> {
               },
               heroTag: 'image1',
               tooltip: 'إلتقط صورة',
-              backgroundColor: Colors.orange,
+              backgroundColor: themeMode.isDark ? kPrimaryColorLightMode : kPrimaryColorDarkMode,
               child: const Icon(Icons.camera_alt),
             ),
           ),

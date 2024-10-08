@@ -46,7 +46,7 @@ class _BtnShowTypesOfApartmentsState extends State<BtnShowTypesOfApartments> {
   @override
   Widget build(BuildContext context) {
     return OutlinedButton(
-        style: outlineButton,
+        style: outlinedButton(themeMode:themeMode),
         onPressed: widget.onPressed,
         //                              Container(height: 50,width: 100,color: Colors.white,),
         child: Container(

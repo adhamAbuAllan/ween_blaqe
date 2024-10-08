@@ -465,7 +465,7 @@ class _NewShowMoreState extends State<NewShowMore> {
                                           isRoomSizeChange = !isRoomSizeChange;
                                         });
                                       },
-                                      style: outlineButton.copyWith(
+                                      style: outlinedButton(themeMode:themeMode).copyWith(
                                           padding: const WidgetStatePropertyAll(
                                               EdgeInsets.all(10)),
                                           overlayColor:
@@ -547,7 +547,7 @@ class _NewShowMoreState extends State<NewShowMore> {
                                               !isRoomBathSizeChange;
                                         });
                                       },
-                                      style: outlineButton.copyWith(
+                                      style: outlinedButton(themeMode:themeMode).copyWith(
                                           padding: const WidgetStatePropertyAll(
                                               EdgeInsets.all(10)),
                                           overlayColor:
@@ -635,7 +635,7 @@ class _NewShowMoreState extends State<NewShowMore> {
                                           isAreaSizeChange = !isAreaSizeChange;
                                         });
                                       },
-                                      style: outlineButton.copyWith(
+                                      style: outlinedButton(themeMode:themeMode).copyWith(
                                           padding:
                                               const WidgetStatePropertyAll(//10
                                                   EdgeInsets.all(10)), // ),
@@ -867,7 +867,7 @@ class _NewShowMoreState extends State<NewShowMore> {
 //     fontSize: 16.0
 // );
                               },
-                              style: outlineButton,
+                              style: outlinedButton(themeMode:themeMode),
                               child: Padding(
                                 padding: const EdgeInsets.all(8.0),
                                 child: Row(
@@ -993,7 +993,7 @@ class _NewShowMoreState extends State<NewShowMore> {
                           showSnakBar(context,
                               "هذه الميزة قيد التطوير وسيتم إضافتها قريبًا");
                         },
-                        style: fullButton.copyWith(
+                        style: fullButton(themeMode: themeMode).copyWith(
                             backgroundColor:
                                 const WidgetStatePropertyAll(Colors.grey)),
                         child: const Text("إحجز الآن")),
@@ -1039,7 +1039,7 @@ class _NewShowMoreState extends State<NewShowMore> {
       animatedTexts: [
         FadeAnimatedText(
           text,
-          textStyle: const TextStyle(fontFamily: "IBM", color: Colors.orange),
+          textStyle:  TextStyle(fontFamily: "IBM", color: themeMode.isDark ? kPrimaryColorLightMode : kPrimaryColorDarkMode),
           duration: const Duration(
             milliseconds: 100,
           ),

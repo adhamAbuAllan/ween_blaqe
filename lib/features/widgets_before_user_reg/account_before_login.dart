@@ -419,12 +419,7 @@ class _AccountBeforeLoginInStudentState
                           // showSnakBar(context,
                           //     "هذه الميزة قيد التطوير وسيتم إضافتها قريبًا");
                         },
-                        style: fullButton.copyWith(
-                            backgroundColor: WidgetStatePropertyAll(
-                          themeMode.isDark
-                              ? kPrimaryColorLightMode
-                              : kPrimaryColorDarkMode,
-                        )),
+                        style: fullButton(themeMode: themeMode),
                         child: const Text(
                           "تسجيل الدخول",
                         )),

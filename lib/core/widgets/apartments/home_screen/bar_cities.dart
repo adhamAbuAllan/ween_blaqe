@@ -5,6 +5,7 @@ import 'package:ween_blaqe/core/utils/styles/button.dart';
 import 'package:ween_blaqe/core/widgets/skeletons/student_widgets/home_skeleton_widget.dart';
 
 // import '../../../../constants/nums.dart';
+import '../../../../constants/nums.dart';
 import '../../cities/cities_class_widget.dart';
 
 class CitiesBar extends StatefulWidget {
@@ -59,10 +60,10 @@ class _CitiesBarState extends State<CitiesBar> {
                           },
                               style: c.id == cityModelController.cityId.value &&
                                       cityModelController.cityId.value != 0
-                                  ? fullButton.copyWith(
+                                  ? fullButton(themeMode: themeMode).copyWith(
                                 foregroundColor: WidgetStateProperty.all<Color>(Colors.white),
                               )
-                      : outlineButton))
+                      : outlinedButton(themeMode:themeMode)))
                       .toList()),
         );
       }),

@@ -139,7 +139,7 @@ class _FourthStepState extends State<FourthStep> {
                             // mypopAndPushNamed(context, MyPagesRoutes.step3);
                             Navigator.pop(context);
                           },
-                          style: outlineButton,
+                          style: outlinedButton(themeMode:themeMode),
                           child: const Text("رجوع"),
                         ),
                       ),
@@ -264,7 +264,7 @@ class _FourthStepState extends State<FourthStep> {
                             // Get.to(ApartmentsOfOwnerAfterAdd());
                           },
 
-                          style: fullButton,
+                          style: fullButton(themeMode: themeMode),
                           child: isLoading
                               ? const CircularProgressIndicator(
                                   color: Colors.white,

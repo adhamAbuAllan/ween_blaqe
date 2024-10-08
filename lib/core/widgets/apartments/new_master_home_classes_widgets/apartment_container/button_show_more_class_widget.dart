@@ -3,6 +3,8 @@ import 'package:ween_blaqe/api/apartments_api/one_apartment.dart';
 import 'package:ween_blaqe/core/utils/styles/button.dart';
 import 'package:ween_blaqe/features/user/studnet/from_master_home_to_show_more/new_show_more.dart';
 
+import '../../../../../constants/nums.dart';
+
 class ApartmentShowMoreButton extends StatelessWidget {
  final OneApartment apartmentsRes;
  final int index;
@@ -16,6 +18,7 @@ class ApartmentShowMoreButton extends StatelessWidget {
     return               Padding(
       padding: const EdgeInsets.fromLTRB(0, 0, 10, 0),
       child: OutlinedButton(
+
         onPressed: () {
           Navigator.of(context).push(MaterialPageRoute(
               builder: (BuildContext context) => NewShowMore(
@@ -23,11 +26,11 @@ class ApartmentShowMoreButton extends StatelessWidget {
               )));
           // myPushName(context, MyPagesRoutes.showMore);
         },
-        style: outlineButton,
+        style: outlinedButton(themeMode:themeMode),
         child: const Text(
           " عرض المزيد ",
           style: TextStyle(
-            fontSize: 13,
+            fontSize: 14,
             fontFamily: 'IBM',
           ),
         ),

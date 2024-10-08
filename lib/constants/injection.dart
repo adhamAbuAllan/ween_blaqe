@@ -11,3 +11,4 @@ Future<void> configureInjection() async {
     () => AppDimension(),
   );
 }
+

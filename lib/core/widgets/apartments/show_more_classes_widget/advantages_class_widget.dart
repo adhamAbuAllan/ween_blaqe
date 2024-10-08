@@ -76,7 +76,7 @@ class _GetAdvantagesState extends State<GetAdvantages> {
                       }),
                     );
                   },
-                  style: fullButton,
+                  style: fullButton(themeMode: themeMode),
                   child: Text(
                       "عرض الميزات ال${(advantages?.length ?? 0) - 10} الآخرى")),
             ),

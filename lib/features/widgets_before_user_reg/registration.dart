@@ -89,6 +89,7 @@ class _RegisterState extends State<Register> {
   var surePasswordLabelName = "تأكيد كلمة المرور";
   bool isObscure = true;
   bool isSureObscure = true;
+  bool isPhoneNumberIsAlreadyTaken = false;
 
   // var dropdownButtonOfViability = false;
   // var focusNodeOfSurePassword = FocusNode();
@@ -633,7 +634,6 @@ class _RegisterState extends State<Register> {
                                         : 55,
                                 child: ElevatedButton(
                                     onPressed: () async {
-
                                       // isLoading = true;
                                       if (nameController.text.isEmpty ||
                                           phoneController.text.isEmpty ||
@@ -649,11 +649,15 @@ class _RegisterState extends State<Register> {
                                         });
                                         return;
                                       }
-                                      await checkPhoneNumber(phoneController.text);
-                                      phoneController.text = removePlusSymbol(
+                                      await checkPhoneNumber(
+                                          phoneController.text);
+                                      if(isPhoneNumberIsAlreadyTaken){
+                                        return;
+                                      }
+                                      phoneController.text =
+                                      removePlusSymbol(
                                           phoneController.text);
                                       // if(){};
-                                      setState(() {
                                         if (passwordController.text !=
                                             surePasswordController.text) {
                                           NormalAlert.show(
@@ -666,7 +670,7 @@ class _RegisterState extends State<Register> {
                                         // if(isLoading){
                                         //   return;
                                         // }
-                                        go(
+                                       await go(
                                           nameController.text,
                                           selectedCountryCode +
                                               phoneController.text,
@@ -691,10 +695,9 @@ class _RegisterState extends State<Register> {
                                         // if(typeOfUserItems!=null){
                                         //   print(typeOfUserItems);
                                         // }
-                                      });
                                       debugPrint("type_id --$typeId");
                                     },
-                                    style: fullButton,
+                                    style: fullButton(themeMode: themeMode),
                                     child: isLoading
                                         ? const CircularProgressIndicator(
                                             color: Colors.white,
@@ -742,22 +745,27 @@ class _RegisterState extends State<Register> {
       setState(() {
         isLoading = false;
         NormalAlert.show(
-            context, "بيانات خاطئة", "جرب إستخدام رقم هاتف مختلف", "حسنًا",);
+          context,
+          "بيانات خاطئة",
+          "جرب إستخدام رقم هاتف مختلف",
+          "حسنًا",
+        );
+        isPhoneNumberIsAlreadyTaken = true;
+        return;
       });
 
-      return;
     } else if (response.statusCode == 404) {
       // Phone number does not exist
       final data = await jsonDecode(response.body);
 
-
       print(data['msg']);
+      setState(() {
+        isPhoneNumberIsAlreadyTaken = false;
+      });
     } else {
       print('Error: ${response.statusCode}');
       return;
     }
-
-
   }
 
   go(
@@ -822,10 +830,9 @@ class _RegisterState extends State<Register> {
           setState(() {
             // isLoading = false;
             // toast("قم تسجيل الدخول لتتأكد من كتابة بياناتك بشكل صحيح");
-            myPushReplacementNamed(MyPagesRoutes.login,context: context);
+            myPushReplacementNamed(MyPagesRoutes.login, context: context);
           });
           // pushToLoginPage();
-
 
           // isLoading = false;
         } catch (e) {
@@ -848,11 +855,11 @@ class _RegisterState extends State<Register> {
     // print(visable);
   }
 
-  // void pushToLoginPage() {
-  //   Navigator.of(context).push(MaterialPageRoute(builder: (ctx) {
-  //     return const Login();
-  //   }));
-  // }
+// void pushToLoginPage() {
+//   Navigator.of(context).push(MaterialPageRoute(builder: (ctx) {
+//     return const Login();
+//   }));
+// }
 
 // print("happend problem !");
 

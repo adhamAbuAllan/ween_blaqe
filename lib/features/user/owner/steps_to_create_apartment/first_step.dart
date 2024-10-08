@@ -117,7 +117,7 @@ class _FirstStepState extends State<FirstStep> {
                         onPressed: () {
                           Navigator.pop(context);
                         },
-                        style: outlineButton,
+                        style: outlinedButton(themeMode:themeMode),
                         child: const Text("إلغاء"),
                       ),
                       const Expanded(child: SizedBox()),
@@ -192,7 +192,7 @@ class _FirstStepState extends State<FirstStep> {
                             debugPrint("${AddAdDataContainer.rooms}");
                           });
                         },
-                        style: fullButton,
+                        style: fullButton(themeMode: themeMode),
                         child: const Text("التالي"),
                       ),
                     ],

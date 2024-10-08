@@ -181,11 +181,11 @@ class HowCouldBookingApartment extends StatelessWidget {
 
                       children: <TextSpan>[
 
-                    const TextSpan(
+                     TextSpan(
                         text: "نصيحة:",
                         style: TextStyle(
                           fontSize: 18.0,
-                          color: Colors.orange,
+                          color: themeMode.isDark ? kPrimaryColorLightMode : kPrimaryColorDarkMode,
                           fontFamily: 'IBM',
                           inherit: true,
                         )),

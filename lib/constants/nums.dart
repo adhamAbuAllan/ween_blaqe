@@ -8,8 +8,8 @@ import '../controller/function_controller/change_theme_mode.dart';
 ChangeThemeMode themeMode = Get.find();
 //dark theme
 const  kContainerColorDarkMode = Color(0xf3333333);
-const kPrimaryColorDarkMode = Color(0xeeff9800);
-const  kPrimaryColor300DarkMode = Color(0xeeFFB74D);
+const kPrimaryColorDarkMode = Color(0xffca7733);
+const  kPrimaryColor300DarkMode = Color(0x99FFB74D);
 // const kPrimaryColor400 = Color(0xF0e5b000);
 const Color  kTextColorDarkMode =  Color(0xfdfCfCfC);
 // var   kTextColor2 =

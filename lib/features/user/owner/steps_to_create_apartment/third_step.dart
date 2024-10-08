@@ -125,7 +125,7 @@ class _ThirdStepState extends State<ThirdStep> {
                         onPressed: () {
                           Navigator.pop(context);
                         },
-                        style: outlineButton,
+                        style: outlinedButton(themeMode:themeMode),
                         child: const Text("رجوع"),
                       ),
                       const Expanded(child: SizedBox()),
@@ -196,7 +196,7 @@ class _ThirdStepState extends State<ThirdStep> {
                             }
                           });
                         },
-                        style: fullButton,
+                        style: fullButton(themeMode: themeMode),
                         child: const Text("التالي"),
                       ),
                     ],

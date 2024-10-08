@@ -240,9 +240,9 @@ class _NoInternetState extends State<NoInternet> with WidgetsBindingObserver {
                                             child: buildAnimatedTextKit(),
                                           )
                                         : Text("$total+",
-                                            style: const TextStyle(
+                                            style:  TextStyle(
                                                 fontFamily: "IBM",
-                                                color: Colors.orange)),
+                                                color: themeMode.isDark ? kPrimaryColorLightMode : kPrimaryColorDarkMode)),
                                   ],
                                 ),
                               ),
@@ -288,7 +288,7 @@ class _NoInternetState extends State<NoInternet> with WidgetsBindingObserver {
                                           ? 55 / 1.2
                                           : 55,
                                       child: OutlinedButton(
-                                          style: outlineButton,
+                                          style: outlinedButton(themeMode:themeMode),
                                           onPressed: () {
                                             setState(() {
                                               total = 0;
@@ -436,7 +436,7 @@ class _NoInternetState extends State<NoInternet> with WidgetsBindingObserver {
       animatedTexts: [
         FadeAnimatedText(
           "$total+",
-          textStyle: const TextStyle(fontFamily: "IBM", color: Colors.orange),
+          textStyle:  TextStyle(fontFamily: "IBM", color: themeMode.isDark ? kPrimaryColorLightMode : kPrimaryColorDarkMode),
           duration: const Duration(
             milliseconds: 100,
           ),
@@ -499,7 +499,7 @@ class _NoInternetState extends State<NoInternet> with WidgetsBindingObserver {
 //SebhaButton
   ElevatedButton buildSebhaElevatedButton() {
     return ElevatedButton(
-        style: fullButton,
+        style: fullButton(themeMode: themeMode),
         onLongPress: () {
           setState(() {
             isLongPress = true;

@@ -1,6 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/material.dart' hide CarouselController;
+// import 'package:flutter/material.dart';
 import 'package:skeletons/skeletons.dart';
 import '../../../../../api/photos.dart';
 import 'package:carousel_slider_plus/carousel_slider_plus.dart' ;

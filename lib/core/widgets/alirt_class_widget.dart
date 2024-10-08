@@ -46,7 +46,7 @@ class AlertWithTwoBtn {
                   onPressed: () {
                     onClicked();
                   },
-                  style: outlineButton,
+                  style: outlinedButton(themeMode:themeMode),
                   child: Text(
                     textOfOkButton,
                     style: const TextStyle(
@@ -62,7 +62,9 @@ class AlertWithTwoBtn {
                   onPressed: () {
                     Get.back();
                   },
-                  style: fullButton,
+                  style: fullButton(themeMode: themeMode),
+
+
                   child: Text(textOfCancelButton)),
             ],
           );
@@ -104,7 +106,7 @@ class NormalAlert {
                   onPressed: () {
                     Get.back();
                   },
-                  style: fullButton,
+                  style: fullButton(themeMode: themeMode),
                   child: Text(
                     textOfButton,
                   )),

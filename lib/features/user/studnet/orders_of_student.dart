@@ -6,7 +6,7 @@ import 'package:ween_blaqe/constants/nums.dart';
 import 'package:ween_blaqe/core/widgets/subtitle_class_widget.dart';
 import 'package:ween_blaqe/core/widgets/title_class_widget.dart';
 
-import '../../../constants/strings.dart';
+// import '../../../constants/strings.dart';
 
 
 // import '../../../core/widgets/orders_classs_widget/container_order_student_class_widget.dart';
@@ -39,7 +39,6 @@ class _OrdersOfStudentState extends State<OrdersOfStudent> {
         showReleaseNotes: false,
         upgrader: Upgrader(
           debugDisplayAlways: false,
-          messages: ArabicUpgraderMessages(),
           languageCode: 'ar',
           // minAppVersion: '3.0.4',
           countryCode: 'ps',
