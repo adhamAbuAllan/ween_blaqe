@@ -1,4 +1,4 @@
-import 'dart:math';
+// import 'dart:math';
 
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
@@ -90,68 +90,4 @@ StatefulBuilder buildCarouselSlider({
       );
     },
   );
-}
-
-class AnimatedShadowImage extends StatefulWidget {
-  final String imageUrl;
-
-  const AnimatedShadowImage({super.key, required this.imageUrl});
-
-  @override
-  State<AnimatedShadowImage> createState() => _AnimatedShadowImageState();
-}
-
-class _AnimatedShadowImageState extends State<AnimatedShadowImage>
-    with SingleTickerProviderStateMixin {
-  late AnimationController _controller;
-  late Animation<double> _animation;
-
-  @override
-  void initState() {
-    super.initState();
-    _controller = AnimationController(
-      vsync: this,
-      duration: const Duration(seconds: 2), // Adjust animation duration
-    )..repeat();
-    _animation = Tween<double>(begin: 0, end: 360).animate(_controller);
-  }
-
-  @override
-  void dispose() {
-    _controller.dispose();
-    super.dispose();
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return AnimatedBuilder(
-      animation: _animation,
-      builder: (context, child) {
-        return ShaderMask(
-          shaderCallback: (Rect bounds) {
-            return SweepGradient(
-              center: Alignment.center,
-              startAngle: 0,
-              endAngle: _animation.value * pi / 180, // Animate the end angle
-              colors: const [
-                Colors.red,
-                Colors.orange,
-                Colors.yellow,
-                Colors.green,
-                Colors.blue,
-                Colors.indigo,
-                Colors.deepPurple // Use deepPurple as a substitute for violet,
-              ],
-            ).createShader(bounds);
-          },
-          child: CachedNetworkImage(
-            imageUrl: widget.imageUrl,
-            fit: BoxFit.cover,
-            width: 1000.0,
-            // ... your existing CachedNetworkImage properties ...
-          ),
-        );
-      },
-    );
-  }
 }
