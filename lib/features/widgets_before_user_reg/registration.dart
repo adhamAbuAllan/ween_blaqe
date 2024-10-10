@@ -174,7 +174,7 @@ class _RegisterState extends State<Register> {
   String selectedCountryCode = '970'; // Default country code
   final List<String> countryCodes = ['970', '972'];
   bool isLoading = false;
-
+bool hasCheckedNumberPhone = false;
   // int idOfCountryCodesList = 1;
 
   @override
@@ -409,6 +409,7 @@ class _RegisterState extends State<Register> {
                                 // const Expanded(child: Text("")),
                                 TextButton(
                                     onPressed: () {
+                                      hasCheckedNumberPhone = true;
                                       sendMessageToWhatsApp(
                                           selectedCountryCode +
                                               phoneController.text,
@@ -465,80 +466,71 @@ class _RegisterState extends State<Register> {
                               // },
                               // focusNode: focusNodeOfSurePassword,
                             ),
-                            SizedBox(
-                              height:
-                                  getIt<AppDimension>().isSmallScreen(context)
-                                      ? 20 / 1.6
-                                      : 20,
-                            ),
-                            // type_text
-                            Row(
-                              children: [
-                                Padding(
-                                  padding:
-                                      const EdgeInsets.fromLTRB(0, 0, 0, 5),
-                                  child: Text(
-                                    "اختر النوع",
-                                    style: TextStyle(
-                                      color: themeMode.isDark
-                                          ? kTextColorLightMode
-                                          : kTextColorDarkMode,
-                                      fontSize: 16,
-                                      fontFamily: "IBM",
-                                    ),
-                                  ),
-                                ),
-                                const Expanded(child: Text("")),
-                              ],
-                            ),
-                            // type of user
-                            // DropdownButtonClassWidget(
-                            //   firstItem: firstItemOfType,
-                            //   items: itemsType,
-                            //   // controller: textTypeController,
-                            //   // myKey: ,
-                            //   // response: typeOfUserKey,
-                            //   // controller: ,
-                            //   fontSize: 14,
-                            //   visible: dropdownButtonOfViability,
+                            // SizedBox(
+                            //   height:
+                            //       getIt<AppDimension>().isSmallScreen(context)
+                            //           ? 20 / 1.6
+                            //           : 20,
                             // ),
+                            // type_text
+                            // Row(
+                            //   children: [
+                            //     Padding(
+                            //       padding:
+                            //           const EdgeInsets.fromLTRB(0, 0, 0, 5),
+                            //       child: Text(
+                            //         "اختر النوع",
+                            //         style: TextStyle(
+                            //           color: themeMode.isDark
+                            //               ? kTextColorLightMode
+                            //               : kTextColorDarkMode,
+                            //           fontSize: 16,
+                            //           fontFamily: "IBM",
+                            //         ),
+                            //       ),
+                            //     ),
+                            //     const Expanded(child: Text("")),
+                            //   ],
+                            // ),
+
+                            // type of user
                             // DropdownButtonClassWidget(items: areas, firstItem: currentArea, fontSize: 16, name: currentArea!.name),
-                            DropDownTypeOfUser(
-                              currentType: typeOfUser,
-                              typeOfUserItems: itemsType,
-                              visible: isVisible,
-
-                              onSelected: (c) {
-                                setState(() {
-                                  typeOfUser = c;
-                                  // isVisible = true;
-                                });
-                                setState(() {
-                                  c == "طالب"
-                                      ? isVisible = true
-                                      : isVisible = false;
-                                  // if(c=="طالب"){
-                                  //   setState(() {
-                                  //     isVisible = true;
-                                  //   }
-                                  //   );
-                                  // }else{
-                                  //   setState(() {
-                                  //     isVisible = false;
-                                  //
-                                  //   });
-                                  //
-                                  // }
-                                });
-                              },
-
-                              // onSelected: (c){
-                              // typeId = c.id;
-                              // print("type TypeOfUser id --${c.id}");
-
-                              // },
-                              // test: test,
-                            ),
+                            // DropDownTypeOfUser(
+                            //   currentType: typeOfUser,
+                            //   typeOfUserItems: itemsType,
+                            //   visible: isVisible,
+                            //
+                            //   onSelected: (c) {
+                            //     setState(() {
+                            //       typeOfUser = c;
+                            //       // isVisible = true;
+                            //     });
+                            //     setState(() {
+                            //       c == "طالب"
+                            //           ? isVisible = true
+                            //           : isVisible = false;
+                            //       // if(c=="طالب"){
+                            //       //   setState(() {
+                            //       //     isVisible = true;
+                            //       //   }
+                            //       //   );
+                            //       // }else{
+                            //       //   setState(() {
+                            //       //     isVisible = false;
+                            //       //
+                            //       //   });
+                            //       //
+                            //       // }
+                            //     });
+                            //   },
+                            //
+                            //   // onSelected: (c){
+                            //   // typeId = c.id;
+                            //   // print("type TypeOfUser id --${c.id}");
+                            //
+                            //   // },
+                            //   // test: test,
+                            // ),
                             // DropdownButtonClassWidget(items: itemsType, firstItem: firstItemOfType,, fontSize: 14, name: name)
                             // Visibility(
                             //   visible: _selectedItem == null,
@@ -667,6 +659,14 @@ class _RegisterState extends State<Register> {
                                               "حسنًا");
                                           return;
                                         }
+                                        if(!hasCheckedNumberPhone){
+                                          NormalAlert.show(
+                                              context,
+                                              "يرجى التحقق من رقم الهاتف",
+                                              "لم تقم بالتحقق من رقم هاتفك ",
+                                              "حسنًا");
+                                          return;
+                                        }
                                         // if(isLoading){
                                         //   return;
                                         // }
@@ -746,7 +746,7 @@ class _RegisterState extends State<Register> {
         isLoading = false;
         NormalAlert.show(
           context,
-          "بيانات خاطئة",
+          "بيانات مشابهة",
           "جرب إستخدام رقم هاتف مختلف",
           "حسنًا",
         );

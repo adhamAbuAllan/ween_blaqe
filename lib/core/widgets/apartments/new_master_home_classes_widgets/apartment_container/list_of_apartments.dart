@@ -64,12 +64,14 @@ class _ApartmentsListState extends State<ApartmentsList> {
           delegate: SliverChildBuilderDelegate(
             (context, index) {
               return
-                WholeWidgetOfApartment(
-                index: index,
-                apartmentsRes: widget.apartmentsRes,
-                isDarkMode: widget.isDeleteMode,
-                onPressed: widget.onPressed,
-              );
+                RepaintBoundary(
+                  child: WholeWidgetOfApartment(
+                  index: index,
+                  apartmentsRes: widget.apartmentsRes,
+                  isDarkMode: widget.isDeleteMode,
+                  onPressed: widget.onPressed,
+                                ),
+                );
             },
             childCount: widget.apartmentsRes.data?.length,
           ),

@@ -18,7 +18,7 @@ import '../../constants/nums.dart';
 import '../../constants/strings.dart';
 import '../../controller/get_controllers.dart';
 import '../../core/utils/funcations/get_app_version.dart';
-import '../../core/utils/funcations/snakbar.dart';
+// import '../../core/utils/funcations/snakbar.dart';
 import '../../core/widgets/buttons/lines_buttons/line_buttons.dart';
 
 import '../../controller/main_controller.dart';
@@ -329,10 +329,10 @@ class _AccountBeforeLoginInStudentState
                          */
                     //send feedback for us
                     buttonAccount(() {
-                      if (connectivityController.isConnection()) {
-                      } else {
-                        showSnakBar(context, "انت غير متصل بالانترنت");
-                      }
+                      // if (connectivityController.isConnection()) {
+                      // } else {
+                      //   showSnakBar(context, "انت غير متصل بالانترنت");
+                      // }
                       myPushName(context, MyPagesRoutes.sendNoticeForUs);
                     },
                         icon: Icons.feedback_outlined,

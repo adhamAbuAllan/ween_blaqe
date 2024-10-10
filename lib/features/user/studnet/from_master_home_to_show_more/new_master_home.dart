@@ -136,7 +136,10 @@ class _NewMasterHomeState extends State<NewMasterHome> {
 
       RefreshIndicator(
       displacement: 100 * 3,
-
+notificationPredicate: (notification)  {
+notification.metrics;
+        return true;
+},
        // edgeOffset: -10*10,
        semanticsValue: const Text("refresh").toString(),
        color: kPrimaryColorDarkMode,

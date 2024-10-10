@@ -19,12 +19,14 @@ class ApartmentModelController extends GetxController {
   var isLoading = false.obs;
   var apartments = OneApartment(data: []).obs;
   RxBool isUpdating = false.obs;
+RxInt apartmentLengthOfOwner = 0.obs;
 late Future<OneApartment> futureOneApartmentList;
-  Future<OneApartment> fetchApartments({required bool isOwnerApartments })
+  Future<OneApartment> fetchApartments({required bool isOwnerApartments ,})
   async {
     isLoading.value = true;
     if (isOwnerApartments) {
-      getApartmentsByOwner().then((value) {
+      getApartmentsByOwner().then((value) async {
+
         if (value.data?.isEmpty ?? false) {
           isApartmentNull = true;
           update();

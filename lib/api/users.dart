@@ -32,7 +32,7 @@ class User {
     required this.phone,
     // required this.typeId,
    // required this.countryPhoneNumberId,
-    required this.createdAt,
+    required this.timeAgoCreated,
      this.token,
   });
   late final int id;
@@ -41,7 +41,7 @@ class User {
   // late final TypeOfUser typeId;
  // late final CountryPhoneNumberId countryPhoneNumberId;
  //  late final String countryPhoneNumberId;
-  late final String createdAt;
+  late final String timeAgoCreated;
   late final String ? token;
 
 
@@ -51,7 +51,7 @@ class User {
     phone = json['phone'];
     // typeId = TypeOfUser.fromJson(json['type_id']);
     //countryPhoneNumberId = CountryPhoneNumberId.fromJson(json['country_phone_number_id']);
-    createdAt = json['created_at'];
+    timeAgoCreated = json['time_ago'];
     token = json['token'];
   }
 
@@ -62,7 +62,7 @@ class User {
     _data['phone'] = phone;
     // _data['type_id'] = typeId.toJson();
   //  _data['country_phone_number_id'] = countryPhoneNumberId.toJson();
-    _data['created_at'] = createdAt;
+    _data["time_ago"] = timeAgoCreated;
     _data['token'] = token;
     return _data;
   }

@@ -378,17 +378,19 @@ class _ApartmentsOwnerState extends State<ApartmentsOwner>
     apiApartmentController.isEditMode.value = true;
 
     debugPrint(
-        "apartment.isEditMode.value = ${apiApartmentController.isEditMode.value}");
+        "apartment.isEditMode.value = ${apiApartmentController.isEditMode
+            .value}");
     debugPrint(
-        "apartment.delete.value = ${apiApartmentController.isDeleteMode.value}");
+        "apartment.delete.value = ${apiApartmentController.isDeleteMode
+            .value}");
 
     _animationController = AnimationController(
       vsync: this,
       duration: const Duration(milliseconds: 300),
     );
     _iconColorAnimation = ColorTween(
-            begin: themeMode.isDark ? kTextColorLightMode : kTextColorDarkMode,
-            end: themeMode.isDark ? kTextColorLightMode : kTextColorDarkMode)
+        begin: themeMode.isDark ? kTextColorLightMode : kTextColorDarkMode,
+        end: themeMode.isDark ? kTextColorLightMode : kTextColorDarkMode)
         .animate(_animationController);
     _animationController.addListener(() {
       setState(() {});
@@ -434,24 +436,28 @@ class _ApartmentsOwnerState extends State<ApartmentsOwner>
             : kBackgroundAppColorDarkMode,
         appBar: AppBar(
           backgroundColor:
-              themeMode.isDark ? kPrimaryColorLightMode : kPrimaryColorDarkMode,
+          themeMode.isDark ? kPrimaryColorLightMode : kPrimaryColorDarkMode,
           title: const Text('شققك'),
           actions: apartmentModelController.isApartmentNull == false
               ? [
-                  AnimatedBuilder(
-                    animation: _animationController,
-                    builder: (context, child) => IconButton(
-                      icon: Icon(
-                        apiApartmentController.isDeleteMode.value
-                            ? Icons.delete
-                            : Icons.edit,
-                        color: _iconColorAnimation.value,
-                      ),
-                      onPressed: toggleDeleteMode,
+            AnimatedBuilder(
+              animation: _animationController,
+              builder: (context, child) =>
+                  IconButton(
+                    icon: Icon(
+                      apiApartmentController.isDeleteMode.value
+                          ? Icons.delete
+                          : Icons.edit,
+                      color: apartmentModelController.isApartmentNull ?
+                      Colors.transparent:
+                      _iconColorAnimation
+                          .value,
                     ),
+                    onPressed: toggleDeleteMode,
                   ),
-                ]
-              : null,
+            ),
+          ]
+              : [],
         ),
         body: Obx(() {
           if (apartmentModelController.isLoading.value) {
@@ -460,30 +466,30 @@ class _ApartmentsOwnerState extends State<ApartmentsOwner>
             return InternetConnectivityChecker(
               child: apartmentModelController.isApartmentNull
                   ? const EmptyScreenClassWidget(
-                      centerIcon: Icons.apartment,
-                      centerText: "تُعرض إعلاناتك هنا",
-                      centerIconInUnderCenterText: Icons.add_home_outlined,
-                      underCenterTextBeforeIcon: 'انقر على الزر ',
-                      underCenterTextAfterIcon: '  للبدء في إنشاء إعلان جديد',
-                    )
+                centerIcon: Icons.apartment,
+                centerText: "تُعرض إعلاناتك هنا",
+                centerIconInUnderCenterText: Icons.add_home_outlined,
+                underCenterTextBeforeIcon: 'انقر على الزر ',
+                underCenterTextAfterIcon: '  للبدء في إنشاء إعلان جديد',
+              )
                   : ApartmentsList(
-                      haveCitiesBar: false,
-                      apartmentsRes: apartmentModelController.apartments.value,
-                      // scrollController: ScrollController(),
-                      isDeleteMode: apiApartmentController.isDeleteMode.value,
-                      onPressed: () {
-                        setState(() {
-                          apartmentModelController.fetchApartments(
-                              isOwnerApartments: true);
-                        });
-                      },
-                    ),
+                haveCitiesBar: false,
+                apartmentsRes: apartmentModelController.apartments.value,
+                // scrollController: ScrollController(),
+                isDeleteMode: apiApartmentController.isDeleteMode.value,
+                onPressed: () {
+                  setState(() {
+                    apartmentModelController.fetchApartments(
+                        isOwnerApartments: true);
+                  });
+                },
+              ),
             );
           }
         }),
         floatingActionButton: FloatingActionButton(
           backgroundColor:
-              themeMode.isDark ? kPrimaryColorLightMode : kPrimaryColorDarkMode,
+          themeMode.isDark ? kPrimaryColorLightMode : kPrimaryColorDarkMode,
           onPressed: () {
             myPushName(context, MyPagesRoutes.step1);
           },

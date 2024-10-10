@@ -221,6 +221,7 @@ class MyPagesRoutes {
   static const newShowMore = "/new_show_more";
   static const whatTheInfoReqToCreateAd = "/what_the_info_req_to_create_ad";
   static const introScreen = "/intro_screen";
+  static const updateUserInfo = "/update_user_info";
 }
 
 class ArabicUpgraderMessages extends UpgraderMessages {

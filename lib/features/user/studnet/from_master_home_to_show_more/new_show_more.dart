@@ -1,11 +1,13 @@
 // import 'dart:ffi';
+// import 'dart:ui';
+
 import 'package:flutter/material.dart';
 import 'package:animated_text_kit/animated_text_kit.dart';
 
 // import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:skeletons/skeletons.dart';
 import 'package:carousel_slider_plus/carousel_slider_plus.dart';
-import 'package:colorful_safe_area/colorful_safe_area.dart';
+// import 'package:colorful_safe_area/colorful_safe_area.dart';
 
 // import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -34,9 +36,9 @@ import '../../../../core/widgets/apartments/show_more_classes_widget/image_slide
 
 class NewShowMore extends StatefulWidget {
   const NewShowMore({
-    Key? key,
+    super.key,
     this.oneApartment,
-  }) : super(key: key);
+  });
   final DataOfOneApartment? oneApartment;
 
   // late List<Photos>? photosOfApartment;
@@ -122,886 +124,892 @@ class _NewShowMoreState extends State<NewShowMore> {
   @override
   Widget build(BuildContext context) {
     bool isMove = false;
-    return ColorfulSafeArea(
-      bottomColor: Colors.transparent,
-      color: themeMode.isDark ? kPrimaryColorLightMode : kPrimaryColorDarkMode,
-      child: Scaffold(
-        backgroundColor: themeMode.isDark
-            ? kBackgroundAppColorLightMode
-            : kBackgroundAppColorDarkMode,
-        body: SingleChildScrollView(
-            physics: const BouncingScrollPhysics(
-                decelerationRate: ScrollDecelerationRate.fast),
-            child: Column(
-              // mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                //back arrow button
-//back arrow button
-                Padding(
-                  padding: const EdgeInsets.fromLTRB(20, 0, 0, 0),
-                  child: Row(
-                    crossAxisAlignment: CrossAxisAlignment.end,
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Padding(
-                        padding: const EdgeInsets.fromLTRB(0, 20, 8, 0),
-                        child: BackButton(
-                          style: const ButtonStyle(
-                            // iconSize : WidgetStateProperty.all(34),
-                            //    maximumSize: WidgetStateProperty.all(Size(32,
-                            //        32)),
-                            tapTargetSize: MaterialTapTargetSize.shrinkWrap,
-                          ),
+    return Scaffold(
+
+      backgroundColor: themeMode.isDark
+          ? kBackgroundAppColorLightMode
+          : kBackgroundAppColorDarkMode,
+      body: SingleChildScrollView(
+          physics: const BouncingScrollPhysics(
+              decelerationRate: ScrollDecelerationRate.fast),
+          child: Column(
+            // mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              //back arrow button
+    //back arrow button
+              Padding(
+                padding: const EdgeInsets.fromLTRB(20, 20, 0, 0),
+                child: Row(
+                  crossAxisAlignment: CrossAxisAlignment.end,
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.fromLTRB(0, 20, 8, 0),
+                      child: BackButton(
+                        style: const ButtonStyle(
+                          // iconSize : WidgetStateProperty.all(34),
+                          //    maximumSize: WidgetStateProperty.all(Size(32,
+                          //        32)),
+                          tapTargetSize: MaterialTapTargetSize.shrinkWrap,
+                        ),
+                        color: themeMode.isDark
+                            ? kTextColorLightMode
+                            : kTextColorDarkMode,
+                      ),
+                    ),
+                    Text(
+                      "${widget.oneApartment?.timeAgo} ",
+                      style: TextStyle(
                           color: themeMode.isDark
                               ? kTextColorLightMode
                               : kTextColorDarkMode,
-                        ),
-                      ),
-                      Text(
-                        "${widget.oneApartment?.timeAgo} ",
-                        style: TextStyle(
-                            color: themeMode.isDark
-                                ? kTextColorLightMode
-                                : kTextColorDarkMode,
-                            fontFamily: "IBM",
-                            fontSize: 14),
-                      )
-                    ],
-                  ),
+                          fontFamily: "IBM",
+                          fontSize: 14),
+                    )
+                  ],
                 ),
+              ),
 
-                const SizedBox(
-                  height: 20,
-                ), // image/s of apartment
-                _isDataLoaded
-                    ? SkeletonAvatar(
-                        style: SkeletonAvatarStyle(
-                            width: 368,
-                            height: 240,
-                            borderRadius: BorderRadius.circular(7)),
-                      )
-                    : GestureDetector(
-                        onTap: () {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) => DetailScreen(
-                                controller: pageController,
-                                isMove: isMove,
-                                current: current,
-                                initialIndex: current,
-                                onPageChanged: (index) {
+              const SizedBox(
+                height: 20,
+              ), // image/s of apartment
+              _isDataLoaded
+                  ? SkeletonAvatar(
+                      style: SkeletonAvatarStyle(
+                          width: 368,
+                          height: 240,
+                          borderRadius: BorderRadius.circular(7)),
+                    )
+                  : GestureDetector(
+                      onTap: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => DetailScreen(
+                              controller: pageController,
+                              isMove: isMove,
+                              current: current,
+                              initialIndex: current,
+                              onPageChanged: (index) {
+                                setState(() {
+                                  debugPrint("current still : $current");
+                                  current = index;
+                                  pointerController.currentValue =
+                                      current.obs;
+
+                                  // pageController = PageController(initialPage: current);
+                                  // pageController.jumpToPage(current);
+                                  controller.jumpToPage(current);
+
+                                  // print(
+                                  //     "the current.reactive.value is:${current.reactive.value}");
+                                });
+                              },
+                              context: context,
+                              imageList: widget.oneApartment!.photos!,
+                              onVerticalDragEnd: (p0) {
+                                setState(() {
+                                  debugPrint("onVerticalDragEnd");
+                                  Navigator.pop(context);
                                   setState(() {
-                                    debugPrint("current still : $current");
-                                    current = index;
-                                    pointerController.currentValue =
-                                        current.obs;
-
-                                    // pageController = PageController(initialPage: current);
-                                    // pageController.jumpToPage(current);
-                                    controller.jumpToPage(current);
-
-                                    // print(
-                                    //     "the current.reactive.value is:${current.reactive.value}");
+                                    controller.animateToPage(current);
                                   });
-                                },
-                                context: context,
-                                imageList: widget.oneApartment!.photos!,
-                                onVerticalDragEnd: (p0) {
-                                  setState(() {
-                                    debugPrint("onVerticalDragEnd");
-                                    Navigator.pop(context);
-                                    setState(() {
-                                      controller.animateToPage(current);
-                                    });
-                                  });
-                                },
-                                // tag: tag,
-                              ),
+                                });
+                              },
+                              // tag: tag,
                             ),
-                          );
+                          ),
+                        );
+                      },
+                      child: ImageSliderWithPointer(
+                        controller: controller,
+                        items: photos!,
+                        duration: const Duration(milliseconds: 300),
+                        // curve: Curves.linear,
+                        current: current,
+                        // tag: tag,
+                        onPageChange: (index, p1) {
+                          setState(() {
+                            current = index;
+                            controller.animateToPage(
+                              current,
+                              duration: const Duration(
+                                milliseconds: 300,
+                              ),
+                            );
+                            // print("the p1 is like this : $p1");
+
+                            // current = lastIndex!;
+
+                            // photos?[index] = photos![lastIndex!];
+                            // index = lastIndex!;
+                          });
                         },
-                        child: ImageSliderWithPointer(
-                          controller: controller,
-                          items: photos!,
-                          duration: const Duration(milliseconds: 300),
-                          // curve: Curves.linear,
-                          current: current,
-                          // tag: tag,
-                          onPageChange: (index, p1) {
-                            setState(() {
-                              current = index;
-                              controller.animateToPage(
-                                current,
-                                duration: const Duration(
-                                  milliseconds: 300,
+                      ),
+                    ),
+
+              Container(
+                margin: const EdgeInsets.fromLTRB(10, 23, 10, 0),
+                padding: const EdgeInsets.all(5),
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(7),
+                  color: themeMode.isDark
+                      ? kContainerColorLightMode
+                      : kContainerColorDarkMode,
+                ),
+                child: Column(
+                  // this children have ( general info that : title, price , and location
+                  // .
+                  children: [
+                    Row(
+                      children: [
+                        Padding(
+                          padding: const EdgeInsets.fromLTRB(0, 0, 10, 0),
+                          child: Text(
+                            "معلومات عامة",
+                            style: TextStyle(
+                                fontSize: 20,
+                                fontFamily: 'IBM',
+                                color: themeMode.isDark
+                                    ? kTextColorLightMode
+                                    : kTextColorDarkMode
+                                //kTextColor
                                 ),
-                              );
-                              // print("the p1 is like this : $p1");
-
-                              // current = lastIndex!;
-
-                              // photos?[index] = photos![lastIndex!];
-                              // index = lastIndex!;
-                            });
-                          },
+                          ),
                         ),
-                      ),
-
-                Container(
-                  margin: const EdgeInsets.fromLTRB(10, 23, 10, 0),
-                  padding: const EdgeInsets.all(5),
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(7),
-                    color: themeMode.isDark
-                        ? kContainerColorLightMode
-                        : kContainerColorDarkMode,
-                  ),
-                  child: Column(
-                    // this children have ( general info that : title, price , and location
-                    // .
-                    children: [
-                      Row(
-                        children: [
-                          Padding(
-                            padding: const EdgeInsets.fromLTRB(0, 0, 10, 0),
+                        const Expanded(
+                          child: Text(""),
+                        ),
+                      ],
+                    ),
+                    //title
+                    Row(
+                      children: [
+                        SizedBox(
+                          width: getIt<AppDimension>().isSmallScreen(context)
+                              ? 360 / 1.5
+                              : 360,
+                          child: Padding(
+                            padding: const EdgeInsets.fromLTRB(10, 0, 10, 10),
                             child: Text(
-                              "معلومات عامة",
-                              style: TextStyle(
-                                  fontSize: 20,
-                                  fontFamily: 'IBM',
-                                  color: themeMode.isDark
-                                      ? kTextColorLightMode
-                                      : kTextColorDarkMode
-                                  //kTextColor
-                                  ),
-                            ),
-                          ),
-                          const Expanded(
-                            child: Text(""),
-                          ),
-                        ],
-                      ),
-                      //title
-                      Row(
-                        children: [
-                          SizedBox(
-                            width: getIt<AppDimension>().isSmallScreen(context)
-                                ? 360 / 1.5
-                                : 360,
-                            child: Padding(
-                              padding: const EdgeInsets.fromLTRB(10, 0, 10, 10),
-                              child: Text(
-                                  widget.oneApartment?.title ?? ""
-                                  // data.
-                                  ,
-                                  softWrap: true,
-                                  style: TextStyle(
-                                    color: themeMode.isDark
-                                        ? kTextColorLightMode
-                                        : kTextColorDarkMode,
-                                    fontSize: 18,
-                                    fontFamily: 'IBM',
-                                  )),
-                            ),
-                          ),
-                        ],
-                      ),
-                      // location
-                      Row(
-                        children: [
-                          SizedBox(
-                            width: getIt<AppDimension>().isSmallScreen(context)
-                                ? 360 / 1.1
-                                : 360,
-                            child: Padding(
-                              padding: const EdgeInsets.fromLTRB(0, 0, 10, 10),
-                              child: Text(
-                                "المكان:${widget.oneApartment?.city?.name ?? ""
-
+                                widget.oneApartment?.title ?? ""
                                 // data.
-                                }-${widget.oneApartment?.location ?? ""
-                                // .data
-
-                                }",
+                                ,
                                 softWrap: true,
-                                textDirection: TextDirection.rtl,
                                 style: TextStyle(
                                   color: themeMode.isDark
                                       ? kTextColorLightMode
                                       : kTextColorDarkMode,
-                                  fontFamily: 'IBM',
-                                ),
-                              ),
-                            ),
-                          ),
-                          const Expanded(child: Text("")),
-                        ],
-                      ),
-                      // count of student
-                      Row(
-                        children: [
-                          Padding(
-                            padding: const EdgeInsets.fromLTRB(0, 0, 5, 10),
-                            child: Text(
-                                (_isBoyStudent
-                                    ? "عدد الطلاب المسموح به:${widget.oneApartment?.countOfStudnet ?? 0}"
-                                    : (_isGirlStudent
-                                        ? "عدد الطالبات المسموح به:${widget.oneApartment?.countOfStudnet ?? 0}"
-                                        : (_isFamilies
-                                            ? "عدد الافراد المسموح به:${widget.oneApartment?.countOfStudnet ?? 0}"
-                                            : "عدد الافراد المسموح به:${widget.oneApartment?.countOfStudnet ?? 0}"))),
-                                style: TextStyle(
-                                  color: themeMode.isDark
-                                      ? kTextColorLightMode
-                                      : kTextColorDarkMode,
-                                  fontSize: 16,
+                                  fontSize: 18,
                                   fontFamily: 'IBM',
                                 )),
                           ),
-                          const Expanded(child: Text("")),
-                        ],
-                      ),
-
-                      Row(
-                        children: [
-                          Padding(
-                            padding: const EdgeInsets.fromLTRB(0, 0, 5, 10),
-                            child: Text(
-                                "نوع السكن:${widget.oneApartment?.type?.name ?? ""}",
-                                style: TextStyle(
-                                  color: themeMode.isDark
-                                      ? kTextColorLightMode
-                                      : kTextColorDarkMode,
-                                  fontSize: 16,
-                                  fontFamily: 'IBM',
-                                )),
-                          ),
-                          const Expanded(child: Text("")),
-                        ],
-                      ),
-                      //price
-                      Row(
-                        children: [
-                          Padding(
+                        ),
+                      ],
+                    ),
+                    // location
+                    Row(
+                      children: [
+                        SizedBox(
+                          width: getIt<AppDimension>().isSmallScreen(context)
+                              ? 360 / 1.1
+                              : 360,
+                          child: Padding(
                             padding: const EdgeInsets.fromLTRB(0, 0, 10, 10),
                             child: Text(
-                              "الأجرة:${widget.oneApartment?.price ?? ""
+                              "المكان:${widget.oneApartment?.city?.name ?? ""
+
                               // data.
+                              }-${widget.oneApartment?.location ?? ""
+                              // .data
 
                               }",
+                              softWrap: true,
+                              textDirection: TextDirection.rtl,
                               style: TextStyle(
                                 color: themeMode.isDark
-                                    ? kPrimaryColorLightMode
-                                    : kPrimaryColorDarkMode,
+                                    ? kTextColorLightMode
+                                    : kTextColorDarkMode,
                                 fontFamily: 'IBM',
                               ),
                             ),
                           ),
-                          Padding(
-                            padding: const EdgeInsets.fromLTRB(0, 0, 3, 10),
-                            child: Text("شيكل/شهري",
-                                style: TextStyle(
-                                  color: themeMode.isDark
-                                      ? kPrimaryColorLightMode
-                                      : kPrimaryColorDarkMode,
-                                  fontSize: 16,
-                                  fontFamily: 'IBM',
-                                )),
-                          ),
-                        ],
-                      ),
-                    ],
-                  ),
-                ),
-                Container(
-                  margin: const EdgeInsets.fromLTRB(10, 23, 10, 0),
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(7),
-                    color: themeMode.isDark
-                        ? kContainerColorLightMode
-                        : kContainerColorDarkMode,
-                  ),
-                  child: Column(
-                    children: [
-                      //about apartment  text
-                      Row(
-                        children: [
-                          Padding(
-                            padding: const EdgeInsets.fromLTRB(0, 0, 20, 0),
-                            child: Text(
-                              "حول الشقة",
-                              style: TextStyle(
-                                  fontSize: 20,
-                                  fontFamily: 'IBM',
-                                  color: themeMode.isDark
-                                      ? kTextColorLightMode
-                                      : kTextColorDarkMode),
-                            ),
-                          ),
-                          const Expanded(child: Text("")),
-                        ],
-                      ),
-
-                      //about apartment items
-                      FittedBox(
-                        child: Padding(
-                          padding: const EdgeInsets.fromLTRB(0, 0, 0, 5),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              Padding(
-                                padding: const EdgeInsets.all(10.0),
-                                child: FittedBox(
-                                  child: AnimatedSize(
-                                    duration: const Duration(milliseconds: 700),
-                                    curve: Curves.linear,
-                                    reverseDuration:
-                                        const Duration(milliseconds: 700),
-                                    clipBehavior: Clip.antiAlias,
-                                    child: OutlinedButton(
-                                      onPressed: () {
-                                        setState(() {
-                                          isRoomSizeChange = !isRoomSizeChange;
-                                        });
-                                      },
-                                      style: outlinedButton(themeMode:themeMode).copyWith(
-                                          padding: const WidgetStatePropertyAll(
-                                              EdgeInsets.all(10)),
-                                          overlayColor:
-                                              const WidgetStatePropertyAll(
-                                                  Colors.transparent),
-                                          side: WidgetStatePropertyAll(BorderSide(
-                                              width: !isRoomSizeChange ? 1 : 2,
-                                              color: isRoomSizeChange
-                                                  ? themeMode.isDark
-                                                      ? kPrimaryColorLightMode
-                                                      : kPrimaryColorDarkMode
-                                                  : themeMode.isDark
-                                                      ? kPrimaryColor300LightMode
-                                                      : kPrimaryColor300DarkMode))),
-                                      child: Column(
-                                        children: [
-                                          Text(
-                                            titleAboutApartmentroom,
-                                            style: TextStyle(
-                                                color: themeMode.isDark
-                                                    ? kTextColorLightMode
-                                                    : kTextColorDarkMode),
-                                          ),
-                                          Row(
-                                            children: [
-                                              //Cubic meters
-
-                                              Padding(
-                                                padding:
-                                                    const EdgeInsets.fromLTRB(
-                                                        5, 0, 5, 0),
-                                                child: isRoomSizeChange
-                                                    ? FittedBox(
-                                                        child: buildAnimatedTextKit(
-                                                            "${widget.oneApartment?.rooms ?? 0}"),
-                                                      )
-                                                    : Text(
-                                                        "${widget.oneApartment?.rooms ?? 0}",
-                                                        style: TextStyle(
-                                                            color: themeMode
-                                                                    .isDark
-                                                                ? kTextColorLightMode
-                                                                : kTextColorDarkMode),
-                                                      ),
-                                              ),
-                                              Image(
-                                                image: AssetImage(
-                                                    imageAboutApartmentRoom),
-                                                width: 32,
-                                                height: 32,
-                                                color: themeMode.isDark
-                                                    ? kTextColorLightMode
-                                                    : kTextColorDarkMode,
-                                              ),
-                                            ],
-                                          ),
-                                        ],
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                              ),
-                              Padding(
-                                padding: const EdgeInsets.all(10.0),
-                                child: FittedBox(
-                                  // clipBehavior: Clip.antiAlias,
-                                  // alignment: Alignment.topCenter,
-                                  // fit: BoxFit.none,
-                                  child: AnimatedSize(
-                                    duration: const Duration(milliseconds: 700),
-                                    curve: Curves.linear,
-                                    reverseDuration:
-                                        const Duration(milliseconds: 700),
-                                    clipBehavior: Clip.antiAlias,
-                                    child: OutlinedButton(
-                                      onPressed: () {
-                                        setState(() {
-                                          isRoomBathSizeChange =
-                                              !isRoomBathSizeChange;
-                                        });
-                                      },
-                                      style: outlinedButton(themeMode:themeMode).copyWith(
-                                          padding: const WidgetStatePropertyAll(
-                                              EdgeInsets.all(10)),
-                                          overlayColor:
-                                              const WidgetStatePropertyAll(
-                                                  Colors.transparent),
-                                          side: WidgetStatePropertyAll(BorderSide(
-                                              width: !isRoomBathSizeChange ? 1 : 2,
-                                              color: isRoomBathSizeChange
-                                                  ? themeMode.isDark
-                                                      ? kPrimaryColorLightMode
-                                                      : kPrimaryColorDarkMode
-                                                  : themeMode.isDark
-                                                      ? kPrimaryColor300LightMode
-                                                      : kPrimaryColor300DarkMode))),
-                                      child: Column(
-                                        children: [
-                                          // const Expanded(
-                                          //   child: Text(""),
-                                          // ),
-                                          Text(
-                                            "الحمامات",
-                                            style: TextStyle(
-                                                color: themeMode.isDark
-                                                    ? kTextColorLightMode
-                                                    : kTextColorDarkMode),
-                                          ),
-                                          // const Expanded(
-                                          //   child: Text(""),
-                                          // ),
-                                          Row(
-                                            // mainAxisSize: MainAxisSize.max,
-                                            children: [
-                                              //Cubic meters
-                                              // const Expanded(
-                                              //   child: Text(""),
-                                              // ),
-
-                                              Padding(
-                                                padding:
-                                                    const EdgeInsets.fromLTRB(
-                                                        5, 0, 0, 0),
-                                                child: isRoomBathSizeChange
-                                                    ? FittedBox(
-                                                        child: buildAnimatedTextKit(
-                                                            "${widget.oneApartment?.bathrooms ?? 0}"),
-                                                      )
-                                                    : Text(
-                                                        "${widget.oneApartment?.bathrooms ?? 0}",
-                                                        style: TextStyle(
-                                                            color: themeMode
-                                                                    .isDark
-                                                                ? kTextColorLightMode
-                                                                : kTextColorDarkMode),
-                                                      ),
-                                              ),
-                                              Image(
-                                                image: const AssetImage(
-                                                    "assets/images/apartments_images/about_apartment/bathroom.png"),
-                                                width: 32,
-                                                height: 32,
-                                                color: themeMode.isDark
-                                                    ? kTextColorLightMode
-                                                    : kTextColorDarkMode,
-                                              ),
-                                            ],
-                                          ),
-                                        ],
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                              ),
-                              Padding(
-                                padding: const EdgeInsets.all(10.0),
-                                child: FittedBox(
-                                  child: AnimatedSize(
-                                    duration: const Duration(milliseconds: 700),
-                                    curve: Curves.linear,
-                                    reverseDuration:
-                                        const Duration(milliseconds: 700),
-                                    clipBehavior: Clip.antiAlias,
-                                    child: OutlinedButton(
-                                      onPressed: () {
-                                        setState(() {
-                                          isAreaSizeChange = !isAreaSizeChange;
-                                        });
-                                      },
-                                      style: outlinedButton(themeMode:themeMode).copyWith(
-                                          padding:
-                                              const WidgetStatePropertyAll(//10
-                                                  EdgeInsets.all(10)), // ),
-                                          overlayColor:
-                                              const WidgetStatePropertyAll(
-                                                  Colors.transparent),
-                                          side: WidgetStatePropertyAll(BorderSide(
-                                              width: !isAreaSizeChange ? 1 : 2,
-                                              color: isAreaSizeChange
-                                                  ? themeMode.isDark
-                                                      ? kPrimaryColorLightMode
-                                                      : kPrimaryColorDarkMode
-                                                  : themeMode.isDark
-                                                      ? kPrimaryColor300LightMode
-                                                      : kPrimaryColor300DarkMode))),
-                                      child: Column(
-                                        children: [
-                                          Text(
-                                            "المساحة",
-                                            style: TextStyle(
-                                                color: themeMode.isDark
-                                                    ? kTextColorLightMode
-                                                    : kTextColorDarkMode),
-                                          ),
-                                          Row(
-                                            children: [
-                                              //Cubic meters
-
-                                              Padding(
-                                                padding:
-                                                    const EdgeInsets.fromLTRB(
-                                                        5, 0, 5, 0),
-                                                child: isAreaSizeChange
-                                                    ? FittedBox(
-                                                        child: buildAnimatedTextKit(
-                                                            "²م${widget.oneApartment?.squareMeters ?? 0}"),
-                                                      )
-                                                    : Text(
-                                                        "²م${widget.oneApartment?.squareMeters ?? 0}",
-                                                        style: TextStyle(
-                                                            color: themeMode
-                                                                    .isDark
-                                                                ? kTextColorLightMode
-                                                                : kTextColorDarkMode),
-                                                      ),
-                                              ),
-                                              Image(
-                                                image: const AssetImage(
-                                                  "assets/images/apartments_images/about_apartment/area.png",
-                                                ),
-                                                width: 32,
-                                                height: 32,
-                                                color: themeMode.isDark
-                                                    ? kTextColorLightMode
-                                                    : kTextColorDarkMode,
-                                              ),
-                                            ],
-                                          ),
-                                        ],
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                              )
-
-                              // AboutApartmentSquareMeter(
-                              //     title: titleAboutApartmentSM,
-                              //     image: imageAboutApartmentSM,
-                              //     value: valueAboutApartmentSM),
-                              //
-                              // AboutApartment(
-                              //     title: titleAboutApartmentroom,
-                              //     image: imageAboutApartmentRoom,
-                              //     value: valueAboutApartmentRoom),
-                              // AboutApartment(
-                              //     title: titleAboutApartmentBathroom,
-                              //     image: imageAboutApartmentBathroom,
-                              //     value: valueAboutApartmentBathroom),
-                            ],
-                          ),
                         ),
-                      ),
-                    ],
-                  ),
-                ),
-                //advantages
+                        const Expanded(child: Text("")),
+                      ],
+                    ),
+                    // count of student
+                    Row(
+                      children: [
+                        Padding(
+                          padding: const EdgeInsets.fromLTRB(0, 0, 5, 10),
+                          child: Text(
+                              (_isBoyStudent
+                                  ? "عدد الطلاب المسموح به:${widget.oneApartment?.countOfStudnet ?? 0}"
+                                  : (_isGirlStudent
+                                      ? "عدد الطالبات المسموح به:${widget.oneApartment?.countOfStudnet ?? 0}"
+                                      : (_isFamilies
+                                          ? "عدد الافراد المسموح به:${widget.oneApartment?.countOfStudnet ?? 0}"
+                                          : "عدد الافراد المسموح به:${widget.oneApartment?.countOfStudnet ?? 0}"))),
+                              style: TextStyle(
+                                color: themeMode.isDark
+                                    ? kTextColorLightMode
+                                    : kTextColorDarkMode,
+                                fontSize: 16,
+                                fontFamily: 'IBM',
+                              )),
+                        ),
+                        const Expanded(child: Text("")),
+                      ],
+                    ),
 
-                GetAdvantages(oneApartment: widget.oneApartment),
+                    Row(
+                      children: [
+                        Padding(
+                          padding: const EdgeInsets.fromLTRB(0, 0, 5, 10),
+                          child: Text(
+                              "نوع السكن:${widget.oneApartment?.type?.name ?? ""}",
+                              style: TextStyle(
+                                color: themeMode.isDark
+                                    ? kTextColorLightMode
+                                    : kTextColorDarkMode,
+                                fontSize: 16,
+                                fontFamily: 'IBM',
+                              )),
+                        ),
+                        const Expanded(child: Text("")),
+                      ],
+                    ),
+                    //price
+                    Row(
+                      children: [
+                        Padding(
+                          padding: const EdgeInsets.fromLTRB(0, 0, 10, 10),
+                          child: Text(
+                            "الأجرة:${widget.oneApartment?.price ?? ""
+                            // data.
 
-                // Container(
-                //   margin:     EdgeInsets.fromLTRB(10, 23, 10, 0),
-                //   decoration: BoxDecoration(
-                //     borderRadius: BorderRadius.circular(7),
-                //     color: kContainerColor,
-                //   ),
-                //   child:     Column(
-                //     mainAxisSize: MainAxisSize.min,
-                //     children: [
-                //       Row(
-                //         children: [
-                //           Padding(
-                //             padding: EdgeInsets.fromLTRB(0, 0, 10, 0),
-                //             child: Text("المزايا",
-                //                 style: TextStyle(
-                //                   color:kTextColor,
-                //                   fontSize: 20,
-                //                   fontFamily: 'IBM',
-                //                 )),
-                //           ),
-                //           Expanded(child: Text("")),
-                //         ],
-                //       ),
-                //       AdvantagesClassWidget(),
-                //
-                //     ],
-                //   ),
-                // ),
-                //notes of owner
-                Container(
-                  margin: const EdgeInsets.fromLTRB(10, 23, 10, 0),
-// discription.length.toDouble() * 2,
-//decoration of show apartment style
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(7),
-                    color: themeMode.isDark
-                        ? kContainerColorLightMode
-                        : kContainerColorDarkMode,
-                  ),
-                  child: Column(
-// this children have ( general info that : title, price , and location.
-                    children: [
-//title
-                      Row(
-                        children: [
-                          Padding(
-                            padding: const EdgeInsets.fromLTRB(0, 10, 10, 0),
-                            child: Text("وصف الشقة",
-                                style: TextStyle(
-                                  color: themeMode.isDark
-                                      ? kTextColorLightMode
-                                      : kTextColorDarkMode,
-                                  fontSize: 20,
-                                  fontFamily: 'IBM',
-                                )),
-                          ),
-                          const Expanded(child: Text(""))
-                        ],
-                      ),
-//description
-                      Padding(
-                        padding: const EdgeInsets.fromLTRB(10, 0, 10, 10),
-                        child: Text(widget.oneApartment?.description ?? "",
+                            }",
                             style: TextStyle(
                               color: themeMode.isDark
-                                  ? kTextColorLightMode
-                                  : kTextColorDarkMode,
-                              fontSize: 16,
+                                  ? kPrimaryColorLightMode
+                                  : kPrimaryColorDarkMode,
                               fontFamily: 'IBM',
-// fontWeight: FontWeight.bold
-                            )),
-                      ),
-                    ],
-                  ),
+                            ),
+                          ),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.fromLTRB(0, 0, 3, 10),
+                          child: Text("شيكل/شهري",
+                              style: TextStyle(
+                                color: themeMode.isDark
+                                    ? kPrimaryColorLightMode
+                                    : kPrimaryColorDarkMode,
+                                fontSize: 16,
+                                fontFamily: 'IBM',
+                              )),
+                        ),
+                      ],
+                    ),
+                  ],
                 ),
-                //number phone
-                Container(
-                  padding: EdgeInsets.only(bottom: 10),
-                  margin: const EdgeInsets.fromLTRB(10, 23, 10, 0),
-                  // height: 120,
-// discription.length.toDouble() * 2,
-//decoration of show apartment style
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(7),
-                    color: themeMode.isDark
-                        ? kContainerColorLightMode
-                        : kContainerColorDarkMode,
-                  ),
-                  child: Column(
-// this widget For inquiries that have title and social media
-                    children: [
-//title
-                      Row(
-                        children: [
-                          Padding(
-                            padding: const EdgeInsets.fromLTRB(0, 10, 10, 10),
-                            child: Text("للإستفسار",
-                                style: TextStyle(
-                                  color: themeMode.isDark
-                                      ? kTextColorLightMode
-                                      : kTextColorDarkMode,
-                                  fontSize: 20,
-                                  fontFamily: 'IBM',
-                                )),
+              ),
+              Container(
+                margin: const EdgeInsets.fromLTRB(10, 23, 10, 0),
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(7),
+                  color: themeMode.isDark
+                      ? kContainerColorLightMode
+                      : kContainerColorDarkMode,
+                ),
+                child: Column(
+                  children: [
+                    //about apartment  text
+                    Row(
+                      children: [
+                        Padding(
+                          padding: const EdgeInsets.fromLTRB(0, 0, 20, 0),
+                          child: Text(
+                            "حول الشقة",
+                            style: TextStyle(
+                                fontSize: 20,
+                                fontFamily: 'IBM',
+                                color: themeMode.isDark
+                                    ? kTextColorLightMode
+                                    : kTextColorDarkMode),
                           ),
-                          const Expanded(child: Text(""))
-                        ],
-                      ),
-//phone number
-                      Row(
-                        children: [
-                          const Expanded(
-                            child: Text(""),
-                          ),
-                          SizedBox(
-                            // height: 50,
-                            child: OutlinedButton(
-                              onPressed: () async {
-                                // sendMessageToMessenger("https://www.facebook.com/adhm.alaan"," السلام عليكم، ممكن أستفسر عن الإعلان الخاص بـ${widget.oneApartment?.title}");
-                                sendMessageToWhatsApp(
-                                    widget.oneApartment!.owner!.phone,
-                                    "  السلام عليكم، ممكن أستفسر عن الإعلان الخاص بـ${widget.oneApartment?.title} ",
-                                    image: widget.oneApartment?.photos?[0].url);
-                                // openBrowserURL(
-                                //     url: 'https://wa.me/970569118259/',
-                                //     inApp: false);
+                        ),
+                        const Expanded(child: Text("")),
+                      ],
+                    ),
 
-// _launchUrl;
-// final value = ClipboardData(text: number_phone);
-// Clipboard.setData(value);
-//                                 number_phone2;
-
-// Fluttertoast.showToast(
-//     msg: "الرقم غير صحيح",
-//     toastLength: Toast.LENGTH_SHORT,
-//     gravity: ToastGravity.BOTTOM_RIGHT,
-//     timeInSecForIosWeb: 10,
-//     backgroundColor: Colors.blue,
-//     textColor: Colors.white,
-//     fontSize: 16.0
-// );
-                              },
-                              style: outlinedButton(themeMode:themeMode),
-                              child: Padding(
-                                padding: const EdgeInsets.all(8.0),
-                                child: Row(
-                                  children: [
-//whtsapp icon
-                                    const Padding(
-                                      padding: EdgeInsets.fromLTRB(0, 0, 0, 0),
-                                      child: Image(
-                                        image: AssetImage(
-                                            "assets/images/whatsapp.png"),
-                                        width: 28,
-                                        height: 28,
-                                      ),
-                                    ),
-
-//text
-                                    Padding(
-                                      padding:
-                                          const EdgeInsets.fromLTRB(0, 0, 0, 0),
-                                      child: Text(" واتس اب",
+                    //about apartment items
+                    FittedBox(
+                      child: Padding(
+                        padding: const EdgeInsets.fromLTRB(0, 0, 0, 5),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Padding(
+                              padding: const EdgeInsets.all(10.0),
+                              child: FittedBox(
+                                child: AnimatedSize(
+                                  duration: const Duration(milliseconds: 700),
+                                  curve: Curves.linear,
+                                  reverseDuration:
+                                      const Duration(milliseconds: 700),
+                                  clipBehavior: Clip.antiAlias,
+                                  child: OutlinedButton(
+                                    onPressed: () {
+                                      setState(() {
+                                        isRoomSizeChange = !isRoomSizeChange;
+                                      });
+                                    },
+                                    style: outlinedButton(
+                                            themeMode: themeMode)
+                                        .copyWith(
+                                            padding:
+                                                const WidgetStatePropertyAll(
+                                                    EdgeInsets.all(10)),
+                                            overlayColor:
+                                                const WidgetStatePropertyAll(
+                                                    Colors.transparent),
+                                            side: WidgetStatePropertyAll(BorderSide(
+                                                width: !isRoomSizeChange ? 1 : 2,
+                                                color: isRoomSizeChange
+                                                    ? themeMode.isDark
+                                                        ? kPrimaryColorLightMode
+                                                        : kPrimaryColorDarkMode
+                                                    : themeMode.isDark
+                                                        ? kPrimaryColor300LightMode
+                                                        : kPrimaryColor300DarkMode))),
+                                    child: Column(
+                                      children: [
+                                        Text(
+                                          titleAboutApartmentroom,
                                           style: TextStyle(
-                                            color: themeMode.isDark
-                                                ? kTextColorLightMode
-                                                : kTextColorDarkMode,
-                                            fontSize: 16,
-                                            fontFamily: 'IBM',
-                                          )),
+                                              color: themeMode.isDark
+                                                  ? kTextColorLightMode
+                                                  : kTextColorDarkMode),
+                                        ),
+                                        Row(
+                                          children: [
+                                            //Cubic meters
+
+                                            Padding(
+                                              padding:
+                                                  const EdgeInsets.fromLTRB(
+                                                      5, 0, 5, 0),
+                                              child: isRoomSizeChange
+                                                  ? FittedBox(
+                                                      child: buildAnimatedTextKit(
+                                                          "${widget.oneApartment?.rooms ?? 0}"),
+                                                    )
+                                                  : Text(
+                                                      "${widget.oneApartment?.rooms ?? 0}",
+                                                      style: TextStyle(
+                                                          color: themeMode
+                                                                  .isDark
+                                                              ? kTextColorLightMode
+                                                              : kTextColorDarkMode),
+                                                    ),
+                                            ),
+                                            Image(
+                                              image: AssetImage(
+                                                  imageAboutApartmentRoom),
+                                              width: 32,
+                                              height: 32,
+                                              color: themeMode.isDark
+                                                  ? kTextColorLightMode
+                                                  : kTextColorDarkMode,
+                                            ),
+                                          ],
+                                        ),
+                                      ],
                                     ),
-                                  ],
+                                  ),
                                 ),
                               ),
                             ),
-                          ),
-                          //     SizedBox(width: 20,),
-//                           widget.oneApartment!.owner!.email.isEmpty?     SizedBox(): SizedBox(
-//                               height: 50,
-//                               child: OutlinedButton(
-//                                 onPressed: () async {
-//                                   sendEmailToGmail(
-//
-//
-//                                       widget.oneApartment!.owner!.email,"إستفسار عن إعلان ${widget.oneApartment!.title },","  السلام عليكم، ممكن أستفسر عن الإعلان الخاص بـ${widget.oneApartment?.title} ",);
-//
-//                                   // openBrowserURL(
-//                                   //     url: 'https://wa.me/970569118259/',
-//                                   //     inApp: false);
-//
-// // _launchUrl;
-// // final value = ClipboardData(text: number_phone);
-// // Clipboard.setData(value);
-// //                                 number_phone2;
-//
-// // Fluttertoast.showToast(
-// //     msg: "الرقم غير صحيح",
-// //     toastLength: Toast.LENGTH_SHORT,
-// //     gravity: ToastGravity.BOTTOM_RIGHT,
-// //     timeInSecForIosWeb: 10,
-// //     backgroundColor: Colors.blue,
-// //     textColor: Colors.white,
-// //     fontSize: 16.0
-// // );
-//                                     },
-//                                     style: outlineButton,
-//                                     child: Padding(
-//                                       padding: const EdgeInsets.all(8.0),
-//                                       child: Row(
-//                                         children: [
-// //whtsapp icon
-//                                           Padding(
-//                                         padding:
-//                                             EdgeInsets.fromLTRB(0, 0, 0, 0),
-//                                         child: Image(
-//                                           image: AssetImage(
-//                                               "assets/images/gmail.png"),
-//                                           width: 28,
-//                                           height: 28,
-//                                         ),
-//                                       ),
-//
-// //text
-//                                       Padding(
-//                                         padding:     EdgeInsets.fromLTRB(
-//                                             0, 0, 0, 0),
-//                                         child: Text(" جيميل",
-//                                             style: TextStyle(
-//                                               color:
-//                                                  kTextColor,
-//                                               fontSize: 16,
-//                                               fontFamily: 'IBM',
-//                                             )),
-//                                       ),
-//                                     ],
-//                                   ),
-//                                 ),
-//                               ),
-//                             ),
-                          const Expanded(
-                            flex: 20,
-                            child: Text(""),
-                          ),
-                        ],
-                      ),
-                      // ForInquiries(, onClick, user)
-                    ],
-                  ),
-                ),
+                            Padding(
+                              padding: const EdgeInsets.all(10.0),
+                              child: FittedBox(
+                                // clipBehavior: Clip.antiAlias,
+                                // alignment: Alignment.topCenter,
+                                // fit: BoxFit.none,
+                                child: AnimatedSize(
+                                  duration: const Duration(milliseconds: 700),
+                                  curve: Curves.linear,
+                                  reverseDuration:
+                                      const Duration(milliseconds: 700),
+                                  clipBehavior: Clip.antiAlias,
+                                  child: OutlinedButton(
+                                    onPressed: () {
+                                      setState(() {
+                                        isRoomBathSizeChange =
+                                            !isRoomBathSizeChange;
+                                      });
+                                    },
+                                    style: outlinedButton(
+                                            themeMode: themeMode)
+                                        .copyWith(
+                                            padding:
+                                                const WidgetStatePropertyAll(
+                                                    EdgeInsets.all(10)),
+                                            overlayColor:
+                                                const WidgetStatePropertyAll(
+                                                    Colors.transparent),
+                                            side: WidgetStatePropertyAll(BorderSide(
+                                                width: !isRoomBathSizeChange ? 1 : 2,
+                                                color: isRoomBathSizeChange
+                                                    ? themeMode.isDark
+                                                        ? kPrimaryColorLightMode
+                                                        : kPrimaryColorDarkMode
+                                                    : themeMode.isDark
+                                                        ? kPrimaryColor300LightMode
+                                                        : kPrimaryColor300DarkMode))),
+                                    child: Column(
+                                      children: [
+                                        // const Expanded(
+                                        //   child: Text(""),
+                                        // ),
+                                        Text(
+                                          "الحمامات",
+                                          style: TextStyle(
+                                              color: themeMode.isDark
+                                                  ? kTextColorLightMode
+                                                  : kTextColorDarkMode),
+                                        ),
+                                        // const Expanded(
+                                        //   child: Text(""),
+                                        // ),
+                                        Row(
+                                          // mainAxisSize: MainAxisSize.max,
+                                          children: [
+                                            //Cubic meters
+                                            // const Expanded(
+                                            //   child: Text(""),
+                                            // ),
 
-                Padding(
-                  padding: const EdgeInsets.fromLTRB(25, 25, 25, 25),
-                  child: SizedBox(
-                    width: double.infinity,
-                    height: 55,
-                    child: ElevatedButton(
-                        onPressed: () {
-                          // NewSession.get("logged", "") == ""
-                          //     ?showSnakBar(context, "يرجى تسجيل الدخول لإتمام عملية الحجز")
-                          //
-                          // // toast("يرجى تسجيل الدخول لإتمام عملية الحجز")
-                          //     :
-                          //     Navigator.of(context).push(MaterialPageRoute(
-                          //     builder: (BuildContext context) =>
-                          //         BookingNow(oneApartment: widget.oneApartment)));
-                          showSnakBar(context,
-                              "هذه الميزة قيد التطوير وسيتم إضافتها قريبًا");
-                        },
-                        style: fullButton(themeMode: themeMode).copyWith(
-                            backgroundColor:
-                                const WidgetStatePropertyAll(Colors.grey)),
-                        child: const Text("إحجز الآن")),
-                  ),
+                                            Padding(
+                                              padding:
+                                                  const EdgeInsets.fromLTRB(
+                                                      5, 0, 0, 0),
+                                              child: isRoomBathSizeChange
+                                                  ? FittedBox(
+                                                      child: buildAnimatedTextKit(
+                                                          "${widget.oneApartment?.bathrooms ?? 0}"),
+                                                    )
+                                                  : Text(
+                                                      "${widget.oneApartment?.bathrooms ?? 0}",
+                                                      style: TextStyle(
+                                                          color: themeMode
+                                                                  .isDark
+                                                              ? kTextColorLightMode
+                                                              : kTextColorDarkMode),
+                                                    ),
+                                            ),
+                                            Image(
+                                              image: const AssetImage(
+                                                  "assets/images/apartments_images/about_apartment/bathroom.png"),
+                                              width: 32,
+                                              height: 32,
+                                              color: themeMode.isDark
+                                                  ? kTextColorLightMode
+                                                  : kTextColorDarkMode,
+                                            ),
+                                          ],
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.all(10.0),
+                              child: FittedBox(
+                                child: AnimatedSize(
+                                  duration: const Duration(milliseconds: 700),
+                                  curve: Curves.linear,
+                                  reverseDuration:
+                                      const Duration(milliseconds: 700),
+                                  clipBehavior: Clip.antiAlias,
+                                  child: OutlinedButton(
+                                    onPressed: () {
+                                      setState(() {
+                                        isAreaSizeChange = !isAreaSizeChange;
+                                      });
+                                    },
+                                    style: outlinedButton(
+                                            themeMode: themeMode)
+                                        .copyWith(
+                                            padding:
+                                                const WidgetStatePropertyAll(
+                                                    //10
+                                                    EdgeInsets.all(10)), // ),
+                                            overlayColor:
+                                                const WidgetStatePropertyAll(
+                                                    Colors.transparent),
+                                            side: WidgetStatePropertyAll(BorderSide(
+                                                width: !isAreaSizeChange ? 1 : 2,
+                                                color: isAreaSizeChange
+                                                    ? themeMode.isDark
+                                                        ? kPrimaryColorLightMode
+                                                        : kPrimaryColorDarkMode
+                                                    : themeMode.isDark
+                                                        ? kPrimaryColor300LightMode
+                                                        : kPrimaryColor300DarkMode))),
+                                    child: Column(
+                                      children: [
+                                        Text(
+                                          "المساحة",
+                                          style: TextStyle(
+                                              color: themeMode.isDark
+                                                  ? kTextColorLightMode
+                                                  : kTextColorDarkMode),
+                                        ),
+                                        Row(
+                                          children: [
+                                            //Cubic meters
+
+                                            Padding(
+                                              padding:
+                                                  const EdgeInsets.fromLTRB(
+                                                      5, 0, 5, 0),
+                                              child: isAreaSizeChange
+                                                  ? FittedBox(
+                                                      child: buildAnimatedTextKit(
+                                                          "²م${widget.oneApartment?.squareMeters ?? 0}"),
+                                                    )
+                                                  : Text(
+                                                      "²م${widget.oneApartment?.squareMeters ?? 0}",
+                                                      style: TextStyle(
+                                                          color: themeMode
+                                                                  .isDark
+                                                              ? kTextColorLightMode
+                                                              : kTextColorDarkMode),
+                                                    ),
+                                            ),
+                                            Image(
+                                              image: const AssetImage(
+                                                "assets/images/apartments_images/about_apartment/area.png",
+                                              ),
+                                              width: 32,
+                                              height: 32,
+                                              color: themeMode.isDark
+                                                  ? kTextColorLightMode
+                                                  : kTextColorDarkMode,
+                                            ),
+                                          ],
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            )
+
+                            // AboutApartmentSquareMeter(
+                            //     title: titleAboutApartmentSM,
+                            //     image: imageAboutApartmentSM,
+                            //     value: valueAboutApartmentSM),
+                            //
+                            // AboutApartment(
+                            //     title: titleAboutApartmentroom,
+                            //     image: imageAboutApartmentRoom,
+                            //     value: valueAboutApartmentRoom),
+                            // AboutApartment(
+                            //     title: titleAboutApartmentBathroom,
+                            //     image: imageAboutApartmentBathroom,
+                            //     value: valueAboutApartmentBathroom),
+                          ],
+                        ),
+                      ),
+                    ),
+                  ],
                 ),
-              ],
-            )),
-      ),
+              ),
+              //advantages
+
+              GetAdvantages(oneApartment: widget.oneApartment),
+
+              // Container(
+              //   margin:     EdgeInsets.fromLTRB(10, 23, 10, 0),
+              //   decoration: BoxDecoration(
+              //     borderRadius: BorderRadius.circular(7),
+              //     color: kContainerColor,
+              //   ),
+              //   child:     Column(
+              //     mainAxisSize: MainAxisSize.min,
+              //     children: [
+              //       Row(
+              //         children: [
+              //           Padding(
+              //             padding: EdgeInsets.fromLTRB(0, 0, 10, 0),
+              //             child: Text("المزايا",
+              //                 style: TextStyle(
+              //                   color:kTextColor,
+              //                   fontSize: 20,
+              //                   fontFamily: 'IBM',
+              //                 )),
+              //           ),
+              //           Expanded(child: Text("")),
+              //         ],
+              //       ),
+              //       AdvantagesClassWidget(),
+              //
+              //     ],
+              //   ),
+              // ),
+              //notes of owner
+              Container(
+                margin: const EdgeInsets.fromLTRB(10, 23, 10, 0),
+    // discription.length.toDouble() * 2,
+    //decoration of show apartment style
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(7),
+                  color: themeMode.isDark
+                      ? kContainerColorLightMode
+                      : kContainerColorDarkMode,
+                ),
+                child: Column(
+    // this children have ( general info that : title, price , and location.
+                  children: [
+    //title
+                    Row(
+                      children: [
+                        Padding(
+                          padding: const EdgeInsets.fromLTRB(0, 10, 10, 0),
+                          child: Text("وصف الشقة",
+                              style: TextStyle(
+                                color: themeMode.isDark
+                                    ? kTextColorLightMode
+                                    : kTextColorDarkMode,
+                                fontSize: 20,
+                                fontFamily: 'IBM',
+                              )),
+                        ),
+                        const Expanded(child: Text(""))
+                      ],
+                    ),
+    //description
+                    Padding(
+                      padding: const EdgeInsets.fromLTRB(10, 0, 10, 10),
+                      child: Text(widget.oneApartment?.description ?? "",
+                          style: TextStyle(
+                            color: themeMode.isDark
+                                ? kTextColorLightMode
+                                : kTextColorDarkMode,
+                            fontSize: 16,
+                            fontFamily: 'IBM',
+    // fontWeight: FontWeight.bold
+                          )),
+                    ),
+                  ],
+                ),
+              ),
+              //number phone
+              Container(
+                padding: EdgeInsets.only(bottom: 10),
+                margin: const EdgeInsets.fromLTRB(10, 23, 10, 0),
+                // height: 120,
+    // discription.length.toDouble() * 2,
+    //decoration of show apartment style
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(7),
+                  color: themeMode.isDark
+                      ? kContainerColorLightMode
+                      : kContainerColorDarkMode,
+                ),
+                child: Column(
+    // this widget For inquiries that have title and social media
+                  children: [
+    //title
+                    Row(
+                      children: [
+                        Padding(
+                          padding: const EdgeInsets.fromLTRB(0, 10, 10, 10),
+                          child: Text("للإستفسار",
+                              style: TextStyle(
+                                color: themeMode.isDark
+                                    ? kTextColorLightMode
+                                    : kTextColorDarkMode,
+                                fontSize: 20,
+                                fontFamily: 'IBM',
+                              )),
+                        ),
+                        const Expanded(child: Text(""))
+                      ],
+                    ),
+    //phone number
+                    Row(
+                      children: [
+                        const Expanded(
+                          child: Text(""),
+                        ),
+                        SizedBox(
+                          // height: 50,
+                          child: OutlinedButton(
+                            onPressed: () async {
+                              // sendMessageToMessenger("https://www.facebook.com/adhm.alaan"," السلام عليكم، ممكن أستفسر عن الإعلان الخاص بـ${widget.oneApartment?.title}");
+                              sendMessageToWhatsApp(
+                                  widget.oneApartment!.owner!.phone,
+                                  "  السلام عليكم، ممكن أستفسر عن الإعلان الخاص بـ${widget.oneApartment?.title} ",
+                                  image: widget.oneApartment?.photos?[0].url);
+                              // openBrowserURL(
+                              //     url: 'https://wa.me/970569118259/',
+                              //     inApp: false);
+
+    // _launchUrl;
+    // final value = ClipboardData(text: number_phone);
+    // Clipboard.setData(value);
+    //                                 number_phone2;
+
+    // Fluttertoast.showToast(
+    //     msg: "الرقم غير صحيح",
+    //     toastLength: Toast.LENGTH_SHORT,
+    //     gravity: ToastGravity.BOTTOM_RIGHT,
+    //     timeInSecForIosWeb: 10,
+    //     backgroundColor: Colors.blue,
+    //     textColor: Colors.white,
+    //     fontSize: 16.0
+    // );
+                            },
+                            style: outlinedButton(themeMode: themeMode),
+                            child: Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: Row(
+                                children: [
+    //whtsapp icon
+                                  const Padding(
+                                    padding: EdgeInsets.fromLTRB(0, 0, 0, 0),
+                                    child: Image(
+                                      image: AssetImage(
+                                          "assets/images/whatsapp.png"),
+                                      width: 28,
+                                      height: 28,
+                                    ),
+                                  ),
+
+    //text
+                                  Padding(
+                                    padding:
+                                        const EdgeInsets.fromLTRB(0, 0, 0, 0),
+                                    child: Text(" واتس اب",
+                                        style: TextStyle(
+                                          color: themeMode.isDark
+                                              ? kTextColorLightMode
+                                              : kTextColorDarkMode,
+                                          fontSize: 16,
+                                          fontFamily: 'IBM',
+                                        )),
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ),
+                        ),
+                        //     SizedBox(width: 20,),
+    //                           widget.oneApartment!.owner!.email.isEmpty?     SizedBox(): SizedBox(
+    //                               height: 50,
+    //                               child: OutlinedButton(
+    //                                 onPressed: () async {
+    //                                   sendEmailToGmail(
+    //
+    //
+    //                                       widget.oneApartment!.owner!.email,"إستفسار عن إعلان ${widget.oneApartment!.title },","  السلام عليكم، ممكن أستفسر عن الإعلان الخاص بـ${widget.oneApartment?.title} ",);
+    //
+    //                                   // openBrowserURL(
+    //                                   //     url: 'https://wa.me/970569118259/',
+    //                                   //     inApp: false);
+    //
+    // // _launchUrl;
+    // // final value = ClipboardData(text: number_phone);
+    // // Clipboard.setData(value);
+    // //                                 number_phone2;
+    //
+    // // Fluttertoast.showToast(
+    // //     msg: "الرقم غير صحيح",
+    // //     toastLength: Toast.LENGTH_SHORT,
+    // //     gravity: ToastGravity.BOTTOM_RIGHT,
+    // //     timeInSecForIosWeb: 10,
+    // //     backgroundColor: Colors.blue,
+    // //     textColor: Colors.white,
+    // //     fontSize: 16.0
+    // // );
+    //                                     },
+    //                                     style: outlineButton,
+    //                                     child: Padding(
+    //                                       padding: const EdgeInsets.all(8.0),
+    //                                       child: Row(
+    //                                         children: [
+    // //whtsapp icon
+    //                                           Padding(
+    //                                         padding:
+    //                                             EdgeInsets.fromLTRB(0, 0, 0, 0),
+    //                                         child: Image(
+    //                                           image: AssetImage(
+    //                                               "assets/images/gmail.png"),
+    //                                           width: 28,
+    //                                           height: 28,
+    //                                         ),
+    //                                       ),
+    //
+    // //text
+    //                                       Padding(
+    //                                         padding:     EdgeInsets.fromLTRB(
+    //                                             0, 0, 0, 0),
+    //                                         child: Text(" جيميل",
+    //                                             style: TextStyle(
+    //                                               color:
+    //                                                  kTextColor,
+    //                                               fontSize: 16,
+    //                                               fontFamily: 'IBM',
+    //                                             )),
+    //                                       ),
+    //                                     ],
+    //                                   ),
+    //                                 ),
+    //                               ),
+    //                             ),
+                        const Expanded(
+                          flex: 20,
+                          child: Text(""),
+                        ),
+                      ],
+                    ),
+                    // ForInquiries(, onClick, user)
+                  ],
+                ),
+              ),
+
+              Padding(
+                padding: const EdgeInsets.fromLTRB(25, 25, 25, 25),
+                child: SizedBox(
+                  width: double.infinity,
+                  height: 55,
+                  child: ElevatedButton(
+                      onPressed: () {
+                        // NewSession.get("logged", "") == ""
+                        //     ?showSnakBar(context, "يرجى تسجيل الدخول لإتمام عملية الحجز")
+                        //
+                        // // toast("يرجى تسجيل الدخول لإتمام عملية الحجز")
+                        //     :
+                        //     Navigator.of(context).push(MaterialPageRoute(
+                        //     builder: (BuildContext context) =>
+                        //         BookingNow(oneApartment: widget.oneApartment)));
+                        showSnakBar(context,
+                            "هذه الميزة قيد التطوير وسيتم إضافتها قريبًا");
+                      },
+                      style: fullButton(themeMode: themeMode).copyWith(
+                          backgroundColor:
+                              const WidgetStatePropertyAll(Colors.grey)),
+                      child: const Text("إحجز الآن")),
+                ),
+              ),
+            ],
+          )),
     );
   }
 
@@ -1039,7 +1047,11 @@ class _NewShowMoreState extends State<NewShowMore> {
       animatedTexts: [
         FadeAnimatedText(
           text,
-          textStyle:  TextStyle(fontFamily: "IBM", color: themeMode.isDark ? kPrimaryColorLightMode : kPrimaryColorDarkMode),
+          textStyle: TextStyle(
+              fontFamily: "IBM",
+              color: themeMode.isDark
+                  ? kPrimaryColorLightMode
+                  : kPrimaryColorDarkMode),
           duration: const Duration(
             milliseconds: 100,
           ),

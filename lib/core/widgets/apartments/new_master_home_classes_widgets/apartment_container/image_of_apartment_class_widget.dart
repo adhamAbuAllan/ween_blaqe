@@ -29,8 +29,8 @@ class ApartmentMainImage extends StatelessWidget {
               },
               image: CachedNetworkImageProvider(
                   apartmentsRes.data?[index].photos?[0].url ??
-                      apartmentsRes.data![0].photos![0].url!
-                  // 'https://via.placeholder.com/150'
+
+                  'https://via.placeholder.com/150'
                   ),
               height: 220,
               width: MediaQuery

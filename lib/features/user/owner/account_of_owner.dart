@@ -11,12 +11,12 @@ import 'package:ween_blaqe/core/utils/styles/button.dart';
 
 // import 'package:ween_blaqe/core/utils/styles/show_more_widget/about_apartment_style.dart';
 import 'package:ween_blaqe/core/utils/styles/text_style/aline_style.dart';
-import 'package:ween_blaqe/core/widgets/profile_classs_widget/profile_image.dart';
-import 'package:ween_blaqe/features/user/owner/profile_of_owner.dart';
+// import 'package:ween_blaqe/core/widgets/profile_classs_widget/profile_image.dart';
+// import 'package:ween_blaqe/features/user/owner/profile_of_owner.dart';
 import '../../../constants/injection.dart';
 import '../../../controller/get_controllers.dart';
 import '../../../core/utils/funcations/get_app_version.dart';
-import '../../../core/utils/funcations/snakbar.dart';
+// import '../../../core/utils/funcations/snakbar.dart';
 import '../../../core/widgets/buttons/lines_buttons/line_buttons.dart';
 import '../../../main.dart';
 
@@ -81,85 +81,77 @@ class _AccountOfOwnerState extends State<AccountOfOwner> {
 
             //use GestureDetector that when user click on container make action
 
-            GestureDetector(
-              onTap: () {
-                Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) => const ProfileOfOwner()));
-              },
-              child:  ProfileImage(
-                image: "https://robohash.org/hicveldicta.png",
-                name: NewSession.get("name", ""),phoneNumber:  NewSession.get("phone", ""),
-                // dateOfJoin: NewSession.get("createdAt", ""),
-              ),
-              // Container(
-              //   width: double.infinity,
-              //   padding: EdgeInsets.fromLTRB(
-              //       0, paddingOfOwnerInfoBox, 10, paddingOfOwnerInfoBox),
-              //   margin: const EdgeInsets.fromLTRB(10, 0, 10, 0),
-              //   decoration: BoxDecoration(
-              //     borderRadius: BorderRadius.circular(7),
-              //     color: themeMode.isDark
-              //         ? kContainerColorLightMode
-              //         : kContainerColorDarkMode,
-              //   ),
-              //   child: Row(
-              //     children: [
-              //       // const Padding(
-              //       //   padding: EdgeInsets.all(8.0),
-              //       //   child: CircleAvatar(
-              //       //     backgroundImage: NetworkImage(
-              //       //         "https://robohash.org/hicveldicta.png/"),
-              //       //     radius: 30,
-              //       //   ),
-              //       // ),
-              //       Padding(
-              //         padding: const EdgeInsets.only(right: 15),
-              //         child: Text(
-              //           NewSession.get("name", ""),
-              //           style: TextStyle(
-              //             fontSize: getIt<AppDimension>().isSmallScreen(context)
-              //                 ? 16
-              //                 : 18,
-              //             fontFamily: 'IBM',
-              //             color: themeMode.isDark
-              //                 ? kTextColorLightMode
-              //                 : kTextColorDarkMode,
-              //           ),
-              //         ),
-              //       ),
-              //       const Expanded(
-              //           child: SizedBox(
-              //         child: Text(""),
-              //       )),
-              //       Padding(
-              //         padding: const EdgeInsets.only(left: 25),
-              //         child: Text(
-              //           // "عرض الملف الشخصي",
-              //           NewSession.get("phone", ""),
-              //           // "972569339613",
-              //           style: TextStyle(
-              //               fontSize: 16,
-              //               fontFamily: 'IBM',
-              //               color: themeMode.isDark
-              //                   ? kTextColorLightMode
-              //                   : kTextColorDarkMode),
-              //         ),
-              //       )
-                    // Padding(
-                    //   padding: const EdgeInsets.fromLTRB(0, 0, 0, 0),
-                    //   child: Icon(
-                    //     Icons.arrow_forward_ios_rounded,
-                    //     color: themeMode.isDark
-                    //         ? kTextColorLightMode
-                    //         : kTextColorDarkMode,
+            // GestureDetector(
+            //   onTap: () {
+            //     Navigator.push(
+            //         context,
+            //         MaterialPageRoute(
+            //             builder: (context) => const ProfileOfOwner()));
+            //   },
+            //   child:  ProfileImage(
+            //     image: "https://robohash.org/hicveldicta.png",
+            //     name: NewSession.get("name", ""),phoneNumber:  NewSession.get("phone", ""),
+            //     // dateOfJoin: NewSession.get("createdAt", ""),
+            //   ),
+              Container(
+                width: double.infinity,
+                padding: const EdgeInsets.fromLTRB(
+                    0, 10, 10, 10),
+                margin: const EdgeInsets.fromLTRB(10, 0, 10, 0),
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(7),
+                  color: themeMode.isDark
+                      ? kContainerColorLightMode
+                      : kContainerColorDarkMode,
+                ),
+                child: Row(
+                  children: [
+                    // const Padding(
+                    //   padding: EdgeInsets.all(8.0),
+                    //   child: CircleAvatar(
+                    //     backgroundImage: NetworkImage(
+                    //         "https://robohash.org/hicveldicta.png/"),
+                    //     radius: 30,
                     //   ),
                     // ),
-              //     ],
-              //   ),
-              // ),
-            ),
+                    Padding(
+                      padding: const EdgeInsets.only(right: 15),
+                      child: Text(
+                        NewSession.get("name", ""),
+                        style: TextStyle(
+                          fontSize: getIt<AppDimension>().isSmallScreen(context)
+                              ? 16
+                              : 18,
+                          fontFamily: 'IBM',
+                          color: themeMode.isDark
+                              ? kTextColorLightMode
+                              : kTextColorDarkMode,
+                        ),
+                      ),
+                    ),
+                    const Expanded(
+                        child: SizedBox(
+                      child: Text(""),
+                    )),
+                    Padding(
+                      padding: const EdgeInsets.only(left: 25),
+                      child: Text(
+                        // "عرض الملف الشخصي",
+                        NewSession.get("phone", ""),
+                        // "972569339613",
+                        style: TextStyle(
+                            fontSize: 16,
+                            fontFamily: 'IBM',
+                            color: themeMode.isDark
+                                ? kTextColorLightMode
+                                : kTextColorDarkMode),
+                      ),
+                    ),
+
+                  ],
+                ),
+              ),
+
 
             //notification icon and text and switch
             //   Row(
@@ -297,10 +289,10 @@ class _AccountOfOwnerState extends State<AccountOfOwner> {
                   aline,
                   //send feedback for us
                   buttonAccount(() {
-                    if (connectivityController.isConnection() == false) {
-                    } else {
-                      showSnakBar(context, "انت غير متصل بالانترنت");
-                    }
+                    // if (connectivityController.isConnection() == false) {
+                    // } else {
+                    //   showSnakBar(context, "انت غير متصل بالانترنت");
+                    // }
 
                     myPushName(context, MyPagesRoutes.sendNoticeForUs);
                   },
