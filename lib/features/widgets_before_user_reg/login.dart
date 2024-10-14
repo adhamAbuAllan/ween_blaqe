@@ -70,10 +70,12 @@ class _LoginState extends State<Login> {
   bool autoFocusOfPassword = false;
 
   // String errorText = "";
+
   //alert box
   var titleOfAlirt = "بيانات خاطئة";
   var messageOfAlirt = "رقم الهاتف أو كلمة المرور خاطئة";
   var textOfOkButton = "موافق";
+  final _formKey = GlobalKey<FormState>(); // Create a GlobalKey for the Form
 
   // late final String numberPhone;
   // @override
@@ -106,257 +108,279 @@ class _LoginState extends State<Login> {
               ? kBackgroundAppColorLightMode
               : kBackgroundAppColorDarkMode,
           body: SingleChildScrollView(
-            child: Column(
-              children: [
-                //back arrow button
-                Row(
-                  children: [
-                    Padding(
-                      padding: const EdgeInsets.fromLTRB(0, 25, 0, 0),
-                      child: BackButton(
-                        color: themeMode.isDark
-                            ? kTextColorLightMode
-                            : kTextColorDarkMode,
+            child: Form(
+              key: _formKey,
+              child: Column(
+                children: [
+                  //back arrow button
+                  Row(
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.fromLTRB(0, 25, 0, 0),
+                        child: BackButton(
+                          color: themeMode.isDark
+                              ? kTextColorLightMode
+                              : kTextColorDarkMode,
+                        ),
                       ),
-                    ),
-                    const Expanded(child: Text("")),
-                  ],
-                ),
+                      const Expanded(child: Text("")),
+                    ],
+                  ),
 
-                //title-nameApp
-                Row(
-                  children: [
-                    Padding(
-                      padding: EdgeInsets.fromLTRB(
-                          0,
-                          getIt<AppDimension>().isSmallScreen(context)
-                              ? 20
-                              : 30,
-                          20,
-                          0),
-                      child: Text(
-                        "تسجيل الدخول",
-                        style: TextStyle(
-                            fontSize: 28.0,
-                            fontFamily: 'IBM',
-                            inherit: true,
-                            color: themeMode.isDark
-                                ? kTextColorLightMode
-                                : kTextColorDarkMode),
+                  //title-nameApp
+                  Row(
+                    children: [
+                      Padding(
+                        padding: EdgeInsets.fromLTRB(
+                            0,
+                            getIt<AppDimension>().isSmallScreen(context)
+                                ? 20
+                                : 30,
+                            20,
+                            0),
+                        child: Text(
+                          "تسجيل الدخول",
+                          style: TextStyle(
+                              fontSize: 28.0,
+                              fontFamily: 'IBM',
+                              inherit: true,
+                              color: themeMode.isDark
+                                  ? kTextColorLightMode
+                                  : kTextColorDarkMode),
+                        ),
                       ),
-                    ),
-                    const Expanded(child: Text("")),
-                  ],
-                ),
-                //nameApp
-                Row(
-                  children: [
-                    Padding(
-                      padding: const EdgeInsets.fromLTRB(0, 0, 20, 30),
-                      child: Row(
-                        children: [
-                          Text(
-                            "في ",
-                            style: TextStyle(
-                                fontSize: 28,
-                                fontFamily: 'IBM',
-                                inherit: true,
-                                fontWeight: FontWeight.bold,
-                                color: themeMode.isDark
-                                    ? kTextColorLightMode
-                                    : kTextColorDarkMode),
-                          ),
-                          Text(
-                            "وين بلاقي",
-                            style: TextStyle(
-                                fontSize: 28,
-                                fontFamily: 'IBM',
-                                inherit: true,
-                                color: themeMode.isDark
-                                    ? kPrimaryColorLightMode
-                                    : kPrimaryColorDarkMode,
-                                fontWeight: FontWeight.bold),
-                          ),
-                        ],
+                      const Expanded(child: Text("")),
+                    ],
+                  ),
+                  //nameApp
+                  Row(
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.fromLTRB(0, 0, 20, 30),
+                        child: Row(
+                          children: [
+                            Text(
+                              "في ",
+                              style: TextStyle(
+                                  fontSize: 28,
+                                  fontFamily: 'IBM',
+                                  inherit: true,
+                                  fontWeight: FontWeight.bold,
+                                  color: themeMode.isDark
+                                      ? kTextColorLightMode
+                                      : kTextColorDarkMode),
+                            ),
+                            Text(
+                              "وين بلاقي",
+                              style: TextStyle(
+                                  fontSize: 28,
+                                  fontFamily: 'IBM',
+                                  inherit: true,
+                                  color: themeMode.isDark
+                                      ? kPrimaryColorLightMode
+                                      : kPrimaryColorDarkMode,
+                                  fontWeight: FontWeight.bold),
+                            ),
+                          ],
+                        ),
                       ),
-                    ),
-                    const Expanded(child: Text("")),
-                  ],
-                ),
-                //phone container
-                Padding(
-                  padding: const EdgeInsets.fromLTRB(0, 0, 0, 10),
-                  child: ContainerInputTextClassWidget(
-                    title: phoneText,
-                    controller: phoneController,
-                    // errorText:"asdf" ,
-                    hintInput: hintPhone,
-                    // textInputAction: TextInputAction.next,
-                    autoFocus: autoFocus,
-                    // value: "123",
-                    // autoFocus: autoFocus,
-                    inputType: phone,
+                      const Expanded(child: Text("")),
+                    ],
+                  ),
+                  //phone container
+                  Padding(
+                    padding: const EdgeInsets.fromLTRB(0, 0, 0, 10),
+                    child: ContainerInputTextClassWidget(
 
-                    // focusNode: userPhoneFocus,
-                    // onFieldSubmitted: (m){
-                    //   FocusScope.of(context).requestFocus(passwordFocus);
+                      // errorText: errorText,
+                      validator: (value) {
+                        if (value != null && !value.startsWith('97')) {
+                          return  'رقم الهاتف يجب ان يبدا برمز الدولة ';
+
+                        }
+                        return null;
+                      },
+                      title: phoneText,
+                      controller: phoneController,
+                      // errorText:"asdf" ,
+                      hintInput: hintPhone,
+                      // textInputAction: TextInputAction.next,
+                      autoFocus: autoFocus,
+                      // value: "123",
+                      // autoFocus: autoFocus,
+                      inputType: phone,
+
+                      // focusNode: userPhoneFocus,
+                      // onFieldSubmitted: (m){
+                      //   FocusScope.of(context).requestFocus(passwordFocus);
+                      // }
+                    ),
+                  ),
+                  //password container
+                  PasswordContainerClassWidget(
+                    autoFocus: autoFocusOfPassword,
+                    inputType: password,
+
+                    // isVisible: true,
+                    onObscureChanged: (newValue) {
+                      setState(() {
+                        isObscure = newValue;
+                      });
+                    },
+                    isObscure: isObscure,
+
+                    hintInput: hintPassword,
+                    title: passwordtext,
+
+                    controller: passwordController,
+                    // focusNode: passwordFocus,
+                    //   onFieldSubmitted: (value){
+                    //   FocusScope.of(context).unfocus();
                     // }
                   ),
-                ),
-                //password container
-                PasswordContainerClassWidget(
-                  autoFocus: autoFocusOfPassword,
-                  inputType: password,
-
-                  // isVisible: true,
-                  onObscureChanged: (newValue) {
-                    setState(() {
-                      isObscure = newValue;
-                    });
-                  },
-                  isObscure: isObscure,
-
-                  hintInput: hintPassword,
-                  title: passwordtext,
-
-                  controller: passwordController,
-                  // focusNode: passwordFocus,
-                  //   onFieldSubmitted: (value){
-                  //   FocusScope.of(context).unfocus();
-                  // }
-                ),
-                //buttons
-                //login button
-                Padding(
-                  padding: EdgeInsets.fromLTRB(
-                      20,
-                      getIt<AppDimension>().isSmallScreen(context)
-                          ? 50 / 1.5
-                          : 50,
-                      20,
-                      10),
-                  child: SizedBox(
-                    width: double.infinity,
-                    height: getIt<AppDimension>().isSmallScreen(context)
-                        ? 55 / 1.2
-                        : 55,
-                    child: ElevatedButton(
-                        style: fullButton(themeMode: themeMode),
-                        onPressed: () {
-                          cityModelController.cityId.value = 0;
-                          isLoading = true;
-                          // if(phoneController.text.indexOf(RegExp('0'),0) == 0){
-
-                          phoneController.text =
-                              removePlusSymbol(phoneController.text);
-                          // }
-                          setState(() {
-                            hideKeyboard(context);
-                          });
-                          if (phoneController.text.isEmpty) {
-                            // autoFocus = true;
-                            // errorText = "يرجى ادخال رقم الهاتف";
-                            NormalAlert.show(context, "حقل فارغ",
-                                "يرجى تعبئة حقل رقم الهاتف", "حسنًا");
-                            return;
-                          }
-                          debugPrint(phoneController.text);
-                          if (passwordController.text.isEmpty) {
-                            NormalAlert.show(context, "حقل فارغ",
-                                "يرجى تعبئة حقل كلمة المرور", "حسنًا");
-
-                            // autoFocusOfPassword = true;
-                            return;
-                          }
-
-                          setState(() {
-                            msg = "Loading..";
+                  //buttons
+                  //login button
+                  Padding(
+                    padding: EdgeInsets.fromLTRB(
+                        20,
+                        getIt<AppDimension>().isSmallScreen(context)
+                            ? 50 / 1.5
+                            : 50,
+                        20,
+                        10),
+                    child: SizedBox(
+                      width: double.infinity,
+                      height: getIt<AppDimension>().isSmallScreen(context)
+                          ? 55 / 1.2
+                          : 55,
+                      child: ElevatedButton(
+                          style: fullButton(themeMode: themeMode),
+                          onPressed: () {
                             setState(() {
-                              // checkCurrentAuthState(context);
-                              // if (isLoading) {
-                              //   return;
-                              // }
-                              go(phoneController.text, passwordController.text);
-                              // isLoading = false;
                             });
+                            _formKey.currentState!.validate();
+                            cityModelController.cityId.value = 0;
+                            isLoading = true;
+                            // if(phoneController.text.indexOf(RegExp('0'),0) == 0){
 
-                            // passwordController.text = "";
-                            // phoneController.text = "";
-                          });
-                          // go(NewSession.get(phoneController.text, ""),
-                          //    NewSession.get( passwordController.text, ""));
-                          // Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (ctx) {
-                          //   return Main();
-                          // }));
-                          // Navigator.of(context).push(
-                          //   MaterialPageRoute(builder: (ctx){
-                          //     return Main();
-                          //   },settings: RouteSettings(
-                          //     name:MyPagesRoutes.main
-                          //   )
-                          //   )
-                          // );
-                          // isLoading = false;
-                        },
-                        child: isLoading == false
-                            ? const Text("تسجيل الدخول")
-                            : const CircularProgressIndicator(
-                                color: Colors.white,
-                              )),
-                  ),
-                ),
-                //signup button
-                Padding(
-                  padding: const EdgeInsets.fromLTRB(20, 10, 20, 10),
-                  child: SizedBox(
-                    width: double.infinity,
-                    height: getIt<AppDimension>().isSmallScreen(context)
-                        ? 55 / 1.2
-                        : 55,
-                    child: OutlinedButton(
-                        onPressed: () {
-                          hideKeyboard(context);
+                            phoneController.text =
+                                removePlusSymbol(phoneController.text);
+                            // }
+                            setState(() {
+                              hideKeyboard(context);
+                            });
+                            if (phoneController.text.isEmpty) {
+                              setState(() {
+                                isLoading = false;
+                              });
+                              // autoFocus = true;
+                              // errorText = "يرجى ادخال رقم الهاتف";
+                              NormalAlert.show(context, "حقل فارغ",
+                                  "يرجى تعبئة حقل رقم الهاتف", "حسنًا");
+                              return;
+                            }
+                            debugPrint(phoneController.text);
+                            if (passwordController.text.isEmpty) {
+                              setState(() {
+                                isLoading = false;
+                              });
+                              NormalAlert.show(context, "حقل فارغ",
+                                  "يرجى تعبئة حقل كلمة المرور", "حسنًا");
 
-                          Navigator.of(context).push(
-                            MaterialPageRoute(builder: (context) {
-                              return const Register();
-                            }),
-                          );
-                        },
-                        style: outlinedButton(themeMode:themeMode),
-                        child: const Text("تسجيل حساب جديد")),
+                              // autoFocusOfPassword = true;
+                              return;
+                            }
+
+                            setState(() {
+                              msg = "Loading..";
+                              setState(() {
+                                // checkCurrentAuthState(context);
+                                // if (isLoading) {
+                                //   return;
+                                // }
+                                go(phoneController.text,
+                                    passwordController.text);
+                                // isLoading = false;
+                              });
+
+                              // passwordController.text = "";
+                              // phoneController.text = "";
+                            });
+                            // go(NewSession.get(phoneController.text, ""),
+                            //    NewSession.get( passwordController.text, ""));
+                            // Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (ctx) {
+                            //   return Main();
+                            // }));
+                            // Navigator.of(context).push(
+                            //   MaterialPageRoute(builder: (ctx){
+                            //     return Main();
+                            //   },settings: RouteSettings(
+                            //     name:MyPagesRoutes.main
+                            //   )
+                            //   )
+                            // );
+                            // isLoading = false;
+                          },
+                          child: isLoading == false
+                              ? const Text("تسجيل الدخول")
+                              : const CircularProgressIndicator(
+                                  color: Colors.white,
+                                )),
+                    ),
                   ),
-                ),
-                //forget password?
-                // Padding(
-                //   padding: const EdgeInsets.fromLTRB(0, 30, 0, 0),
-                //   child: TextButton(
-                //     child: const Text(
-                //       "نسيت كلمة المرور؟",
-                //       style: TextStyle(
-                //           color: Colors.blue,
-                //           fontWeight: FontWeight.bold,
-                //           fontFamily: 'IBM'),
-                //     ),
-                //     onPressed: () {},
-                //   ),
-                // ),
-                // const SizedBox(
-                //   height: 50,
-                // ),
-                // TextButton(
-                //     onPressed: () {
-                //       myPushName(context, MyPagesRoutes.screensWillAddFuture);
-                //     },
-                //     child: Text(
-                //       "شاشات سيتم إضافتها مستقبلاً",
-                //       style: TextStyle(
-                //         fontFamily: "IBM",
-                //         fontSize: 14,
-                //         color: Colors.grey.shade400,
-                //       ),
-                //     )),
-              ],
+                  //signup button
+                  Padding(
+                    padding: const EdgeInsets.fromLTRB(20, 10, 20, 10),
+                    child: SizedBox(
+                      width: double.infinity,
+                      height: getIt<AppDimension>().isSmallScreen(context)
+                          ? 55 / 1.2
+                          : 55,
+                      child: OutlinedButton(
+                          onPressed: () {
+                            hideKeyboard(context);
+
+                            Navigator.of(context).push(
+                              MaterialPageRoute(builder: (context) {
+                                return const Register();
+                              }),
+                            );
+                          },
+                          style: outlinedButton(themeMode: themeMode),
+                          child: const Text("تسجيل حساب جديد")),
+                    ),
+                  ),
+                  //forget password?
+                  // Padding(
+                  //   padding: const EdgeInsets.fromLTRB(0, 30, 0, 0),
+                  //   child: TextButton(
+                  //     child: const Text(
+                  //       "نسيت كلمة المرور؟",
+                  //       style: TextStyle(
+                  //           color: Colors.blue,
+                  //           fontWeight: FontWeight.bold,
+                  //           fontFamily: 'IBM'),
+                  //     ),
+                  //     onPressed: () {},
+                  //   ),
+                  // ),
+                  // const SizedBox(
+                  //   height: 50,
+                  // ),
+                  // TextButton(
+                  //     onPressed: () {
+                  //       myPushName(context, MyPagesRoutes.screensWillAddFuture);
+                  //     },
+                  //     child: Text(
+                  //       "شاشات سيتم إضافتها مستقبلاً",
+                  //       style: TextStyle(
+                  //         fontFamily: "IBM",
+                  //         fontSize: 14,
+                  //         color: Colors.grey.shade400,
+                  //       ),
+                  //     )),
+                ],
+              ),
             ),
           ),
         ),
@@ -378,6 +402,8 @@ class _LoginState extends State<Login> {
       pushToMainPage();
     } else {
       setState(() {
+        isLoading = false;
+
         NormalAlert.show(context, titleOfAlirt, messageOfAlirt, textOfOkButton);
         debugPrint(
             "you have an error that the status code is ${response.statusCode}");

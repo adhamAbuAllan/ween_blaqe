@@ -102,12 +102,24 @@ class _NewMasterHomeState extends State<NewMasterHome> {
         //when user make scrolling , the udenr code execute after 350 milisec. ///don't remove it///
         if (widget.scrollController?.position.userScrollDirection.name ==
             "forward") {
+          if(!isDataLoaded){
+            setState(() {
+              _isSebhaVisible = true;
+            });
+
+          }
           //if user scroll to up , the button will visible after 350 milisec
           setState(() {
             _isVisible = true;
           });
         } else if (widget.scrollController?.position.userScrollDirection.name ==
             "reverse") {
+          if(!isDataLoaded){
+            setState(() {
+              _isSebhaVisible = false;
+            });
+
+          }
           //when user scroll to down , the button will invisible after 350 milisec
           setState(() {
             _isVisible = false;
@@ -240,7 +252,9 @@ notification.metrics;
                        const Duration(milliseconds: 350),
                        child: !_isVisible
                            ? const SizedBox()
-                           : ApartmentShowTypesContainer(
+                           :
+
+                       ApartmentShowTypesContainer(
                          child: Column(
                            crossAxisAlignment:
                            CrossAxisAlignment.start,
@@ -461,7 +475,8 @@ notification.metrics;
 
           : Stack(children: [
               GestureDetector(
-                child: const HomeSkeletonWidget(),
+                child:  HomeSkeletonWidget(hasCitiesBar: true,
+                  scrollController: widget.scrollController??ScrollController(),),
                 onDoubleTap: () {
                   setState(() {
                     _isSebhaVisible = !_isSebhaVisible;

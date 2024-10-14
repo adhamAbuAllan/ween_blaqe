@@ -64,6 +64,7 @@ class _ThirdStepState extends State<ThirdStep> {
 
   //count of students box
   var countStudentText = "عدد الطلاب المسموح به";
+  var countPersonText = "عدد الأفراد المسموح به";
   var countStudentHint = "0";
   var countStudentFocusNode = FocusNode();
 
@@ -260,7 +261,8 @@ class _ThirdStepState extends State<ThirdStep> {
                           " : --${readyCityAndTypeOfApartmentApi.indexApartmentType}");
                     }),
                 ContainerInputTextClassWidget(
-                  title: countStudentText,
+                  title: indexOfTypeOfApartment == 1 ?
+                  countPersonText:countStudentText,
                   hintInput: countStudentHint,
                   controller: countOfStudentController,
                   inputType: TextInputType.number,

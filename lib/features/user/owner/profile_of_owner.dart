@@ -244,7 +244,10 @@ class _ProfileOfOwnerState extends State<ProfileOfOwner> {
                                     width: 200,
                                     child: Center(
                                       child: Text(
-                                          "sience owner text ${apartmentModelController.apartments.value.data?.first.owner?.timeAgoCreated}"
+                                          "sience owner text "
+                                              "${apartmentModelController
+                                              .apartments.value.data?.first
+                                              .owner?.timeAgoCreated??"0"}"
                                           "",
                                           style: const TextStyle(
                                               color: Colors.white)),

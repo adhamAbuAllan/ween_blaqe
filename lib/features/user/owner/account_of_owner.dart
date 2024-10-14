@@ -11,11 +11,14 @@ import 'package:ween_blaqe/core/utils/styles/button.dart';
 
 // import 'package:ween_blaqe/core/utils/styles/show_more_widget/about_apartment_style.dart';
 import 'package:ween_blaqe/core/utils/styles/text_style/aline_style.dart';
+import 'package:ween_blaqe/features/user/owner/profile_of_owner.dart';
+
 // import 'package:ween_blaqe/core/widgets/profile_classs_widget/profile_image.dart';
 // import 'package:ween_blaqe/features/user/owner/profile_of_owner.dart';
 import '../../../constants/injection.dart';
 import '../../../controller/get_controllers.dart';
 import '../../../core/utils/funcations/get_app_version.dart';
+
 // import '../../../core/utils/funcations/snakbar.dart';
 import '../../../core/widgets/buttons/lines_buttons/line_buttons.dart';
 import '../../../main.dart';
@@ -93,10 +96,16 @@ class _AccountOfOwnerState extends State<AccountOfOwner> {
             //     name: NewSession.get("name", ""),phoneNumber:  NewSession.get("phone", ""),
             //     // dateOfJoin: NewSession.get("createdAt", ""),
             //   ),
-              Container(
+            GestureDetector(
+              onTap: () {
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => const ProfileOfOwner()));
+              },
+              child: Container(
                 width: double.infinity,
-                padding: const EdgeInsets.fromLTRB(
-                    0, 10, 10, 10),
+                padding: const EdgeInsets.fromLTRB(0, 10, 10, 10),
                 margin: const EdgeInsets.fromLTRB(10, 0, 10, 0),
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(7),
@@ -147,11 +156,10 @@ class _AccountOfOwnerState extends State<AccountOfOwner> {
                                 : kTextColorDarkMode),
                       ),
                     ),
-
                   ],
                 ),
               ),
-
+            ),
 
             //notification icon and text and switch
             //   Row(

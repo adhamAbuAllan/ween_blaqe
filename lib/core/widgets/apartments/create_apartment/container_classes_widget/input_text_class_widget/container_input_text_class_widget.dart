@@ -26,32 +26,33 @@ class ContainerInputTextClassWidget extends StatefulWidget {
   final Function(String value)? onEdit;
   final Widget? valueUnderFormTextField;
   final bool? expanded;
+  final String? Function(String?)? validator;
 
   // TextInputAction? textInputAction;
   final bool? autoFocus;
   final TextEditingController? controller;
 
-  const ContainerInputTextClassWidget(
-      {Key? key,
-      required this.title,
-      required this.hintInput,
-      required this.inputType,
-      this.focusNode,
-      this.maxLines,
-      this.hintMaxLines,
-      this.maxLength,
-      this.onFieldSubmitted,
-      this.value,
-      this.autoFocus,
-      // this.textInputAction,
-      this.controller,
-      this.errorText,
-      this.onEdit,
-      this.expanded,
-      this.valueUnderFormTextField
-      // this.errorText
-      })
-      : super(key: key);
+  const ContainerInputTextClassWidget({
+    super.key,
+    required this.title,
+    required this.hintInput,
+    required this.inputType,
+    this.focusNode,
+    this.maxLines,
+    this.hintMaxLines,
+    this.maxLength,
+    this.onFieldSubmitted,
+    this.value,
+    this.autoFocus,
+    // this.textInputAction,
+    this.controller,
+    this.errorText,
+    this.onEdit,
+    this.expanded,
+    this.valueUnderFormTextField,
+    this.validator,
+    // this.errorText
+  });
 
   @override
   State<ContainerInputTextClassWidget> createState() =>
@@ -107,7 +108,7 @@ class _ContainerInputTextClassWidgetState
           Padding(
             padding: const EdgeInsets.fromLTRB(15, 0, 10, 10),
             child: TextFormField(
-
+              validator: widget.validator,
               cursorColor: themeMode.isDark
                   ? kPrimaryColorLightMode
                   : kPrimaryColorDarkMode,
@@ -190,33 +191,44 @@ class _ContainerInputTextClassWidgetState
     ChangeThemeMode themeMode = Get.find();
 
     return InputDecoration(
-        contentPadding: EdgeInsets.symmetric(
-          vertical: getIt<AppDimension>().isSmallScreen(context) ? 20 / 2 : 20,
-          horizontal: 12,
+      contentPadding: EdgeInsets.symmetric(
+        vertical: getIt<AppDimension>().isSmallScreen(context) ? 20 / 2 : 20,
+        horizontal: 12,
+      ),
+      errorText: errorText.isEmpty ? null : errorText,
+      hintTextDirection: TextDirection.rtl,
+      hintText: hintInput,
+      border: InputBorder.none,
+      hintMaxLines: widget.hintMaxLines,
+      hintStyle: const TextStyle(
+        color: Colors.grey,
+      ),
+      focusedBorder: OutlineInputBorder(
+        borderSide: BorderSide(
+          width: 1.5,
+          color:
+              themeMode.isDark ? kPrimaryColorLightMode : kPrimaryColorDarkMode,
         ),
-        errorText: errorText.isEmpty ? null : errorText,
-        hintTextDirection: TextDirection.rtl,
-        hintText: hintInput,
-        border: InputBorder.none,
-        hintMaxLines: widget.hintMaxLines,
-        hintStyle: const TextStyle(
-          color: Colors.grey,
-        ),
-        focusedBorder: OutlineInputBorder(
+      ),
+      enabledBorder: OutlineInputBorder(
           borderSide: BorderSide(
-            width: 1.5,
+            width: 1,
             color: themeMode.isDark
-                ? kPrimaryColorLightMode
-                : kPrimaryColorDarkMode,
+                ? kPrimaryColorLightMode.withOpacity(.3)
+                : kPrimaryColorDarkMode.withOpacity(.3),
           ),
-        ),
-        enabledBorder: OutlineInputBorder(
-            borderSide: BorderSide(
-              width: 1,
-              color: themeMode.isDark
-                  ? kPrimaryColorLightMode.withOpacity(.3)
-                  : kPrimaryColorDarkMode.withOpacity(.3),
-            ),
-            borderRadius: BorderRadius.circular(7)));
+          borderRadius: BorderRadius.circular(7)),
+
+      // ... your existing decoration properties ...
+      errorBorder: const OutlineInputBorder(
+        borderSide: BorderSide(color: Colors.red), // Set error border color
+      ),
+      focusedErrorBorder: const OutlineInputBorder(
+        borderSide: BorderSide(
+            color: Colors.red, width: 2.0), // Set focused error border
+      ),
+      errorStyle:
+          const TextStyle(color: Colors.red), // Customize error text style
+    );
   }
 }

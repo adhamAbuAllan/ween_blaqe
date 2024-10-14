@@ -18,27 +18,29 @@ class ApartmentMainImage extends StatelessWidget {
       children: [
         ClipRRect(
             borderRadius: BorderRadius.circular(7 / 2),
-            child: Image(
-              errorBuilder: (context, error, stackTrace) {
-                return SkeletonAvatar(
-                  style: SkeletonAvatarStyle(
-                      width: 367,
-                      height: 220,
-                      borderRadius: BorderRadius.circular(7 / 2)),
-                );
-              },
-              image: CachedNetworkImageProvider(
-                  apartmentsRes.data?[index].photos?[0].url ??
-
-                  'https://via.placeholder.com/150'
-                  ),
-              height: 220,
-              width: MediaQuery
-                  .of(context)
-                  .size
-                  .width - 32,
-              fit: BoxFit.cover,
-            )),
+            child: apartmentsRes.data?[index].photos?[0].url == null
+                ? SkeletonAvatar(
+                    style: SkeletonAvatarStyle(
+                        width: 367,
+                        height: 220,
+                        borderRadius: BorderRadius.circular(7 / 2)),
+                  )
+                : Image(
+                    errorBuilder: (context, error, stackTrace) {
+                      return SkeletonAvatar(
+                        style: SkeletonAvatarStyle(
+                            width: 367,
+                            height: 220,
+                            borderRadius: BorderRadius.circular(7 / 2)),
+                      );
+                    },
+                    image: CachedNetworkImageProvider(
+                        apartmentsRes.data?[index].photos?[0].url ??
+                            'https://via.placeholder.com/150'),
+                    height: 220,
+                    width: MediaQuery.of(context).size.width - 32,
+                    fit: BoxFit.cover,
+                  )),
         TimeAgoWidget(apartmentsRes: apartmentsRes, index: index),
       ],
     );
@@ -62,9 +64,11 @@ class _TimeAgoWidgetState extends State<TimeAgoWidget> {
     return Positioned(
       bottom: 5,
       left: 5,
-      child: ClipRRect( // Add ClipRRect
+      child: ClipRRect(
+        // Add ClipRRect
         borderRadius: BorderRadius.circular(1.7),
-        child: BackdropFilter( // Add BackdropFilter
+        child: BackdropFilter(
+          // Add BackdropFilter
           filter: ImageFilter.blur(sigmaX: 5, sigmaY: 5),
           // Adjust blur intensity
           child: Container(
@@ -74,17 +78,19 @@ class _TimeAgoWidgetState extends State<TimeAgoWidget> {
               borderRadius: BorderRadius.circular(1.7),
             ),
             child: Text(
-              "${widget.apartmentsRes.data?[widget.index].timeAgo} ",
+              "${widget.apartmentsRes.data?[widget.index].timeAgo ?? "التاريخ"
+              } ",
               style: TextStyle(
                 color: Colors.grey.shade300,
                 fontFamily: "IBM",
-                fontSize: 14, shadows: [
-                Shadow(
-                  color: Colors.black.withOpacity(0.5),
-                  blurRadius: 2,
-                  offset: const Offset(1, 1),
-                ),
-              ],
+                fontSize: 14,
+                shadows: [
+                  Shadow(
+                    color: Colors.black.withOpacity(0.5),
+                    blurRadius: 2,
+                    offset: const Offset(1, 1),
+                  ),
+                ],
               ),
             ),
           ),
@@ -93,4 +99,3 @@ class _TimeAgoWidgetState extends State<TimeAgoWidget> {
     );
   }
 }
-

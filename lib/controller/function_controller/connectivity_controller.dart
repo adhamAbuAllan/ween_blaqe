@@ -18,13 +18,11 @@ class ConnectivityController extends GetxController {
 //AsyncWidgetBuilder<ConnectivityResult>
       connectivity.value = result;
 
-      debugPrint("connectivity result in controller: --${connectivity.value}");
     });
   }
 
   // No need forparameter
   bool isConnection() {
-    debugPrint("connectivity result in controller: --${connectivity.value}");
     return connectivity.value != ConnectivityResult.none;
   }
 
