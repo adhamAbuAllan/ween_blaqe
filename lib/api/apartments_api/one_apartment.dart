@@ -1,3 +1,4 @@
+import 'package:get/get_rx/src/rx_types/rx_types.dart';
 import 'package:ween_blaqe/api/advantages.dart';
 import 'package:ween_blaqe/api/type_of_apartment.dart';
 
@@ -50,7 +51,10 @@ class DataOfOneApartment {
       this.type,
       this.updatedAt,
       this.countOfStudnet,
-      this.timeAgo});
+      this.timeAgo}){
+
+currentPhotoIndex = 0.obs;
+  }
 
   late final int? id;
   late final User? owner;
@@ -68,6 +72,7 @@ class DataOfOneApartment {
   late final String? updatedAt;
   late final int? countOfStudnet;
   late final String? timeAgo;
+  RxInt currentPhotoIndex = 0.obs;
 
   DataOfOneApartment.fromJson(Map<String, dynamic> json) {
     id = json['id'];

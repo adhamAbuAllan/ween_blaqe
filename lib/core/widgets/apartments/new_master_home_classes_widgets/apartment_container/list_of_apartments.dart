@@ -9,15 +9,15 @@ import 'package:ween_blaqe/core/widgets/apartments/home_screen/bar_cities.dart';
 import 'package:ween_blaqe/core/widgets/apartments/new_master_home_classes_widgets/apartment_container/whole_widgets_class_widget.dart';
 
 class ApartmentsList extends StatefulWidget {
-  const ApartmentsList({
-    super.key,
-    required this.apartmentsRes,
-    this.scrollController,
-    this.isDeleteMode = false,
-    this.onPressed,
-    this.onClick,
-    required this.haveCitiesBar,
-  });
+  const ApartmentsList(
+      {super.key,
+      required this.apartmentsRes,
+      this.scrollController,
+      this.isDeleteMode = false,
+      this.onPressed,
+      this.onClick,
+      required this.haveCitiesBar,
+      });
 
   final OneApartment apartmentsRes;
   final ScrollController? scrollController;
@@ -40,13 +40,13 @@ class _ApartmentsListState extends State<ApartmentsList> {
     }
   }
 
+
   @override
-  Widget build(BuildContext context)  {
+  Widget build(BuildContext context) {
     return CustomScrollView(
       clipBehavior: Clip.antiAliasWithSaveLayer,
       physics: const BouncingScrollPhysics(
           decelerationRate: ScrollDecelerationRate.fast),
-
       controller: widget.scrollController,
       slivers: [
         SliverToBoxAdapter(
@@ -63,15 +63,14 @@ class _ApartmentsListState extends State<ApartmentsList> {
         SliverList(
           delegate: SliverChildBuilderDelegate(
             (context, index) {
-              return
-                RepaintBoundary(
-                  child: WholeWidgetOfApartment(
+              return RepaintBoundary(
+                child: WholeWidgetOfApartment(
                   index: index,
                   apartmentsRes: widget.apartmentsRes,
                   isDarkMode: widget.isDeleteMode,
                   onPressed: widget.onPressed,
-                                ),
-                );
+                ),
+              );
             },
             childCount: widget.apartmentsRes.data?.length,
           ),

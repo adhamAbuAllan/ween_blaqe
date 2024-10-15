@@ -10,9 +10,11 @@ import 'package:carousel_slider_plus/carousel_slider_plus.dart';
 // import 'package:colorful_safe_area/colorful_safe_area.dart';
 
 // import 'package:flutter/material.dart';
-import 'package:get/get.dart';
+// import 'package:get/get.dart';
 import 'package:ween_blaqe/api/apartments_api/one_apartment.dart';
-import 'package:ween_blaqe/api/photos.dart';
+// import 'package:ween_blaqe/api/photos.dart';
+// import 'package:ween_blaqe/controller/get_controllers.dart';
+// import 'package:ween_blaqe/controller/get_controllers.dart';
 
 // import 'package:ween_blaqe/controller/get_controllers.dart';
 import 'package:ween_blaqe/controller/pointer_of_images_controller.dart';
@@ -25,8 +27,9 @@ import '../../../../constants/coordination.dart';
 import '../../../../constants/injection.dart';
 import '../../../../constants/nums.dart';
 import '../../../../core/widgets/apartments/show_more_classes_widget/advantages_class_widget.dart';
+import '../../../../core/widgets/apartments/show_more_classes_widget/image_slider/custom_slider.dart';
 import '../../../../core/widgets/apartments/show_more_classes_widget/image_slider/pointer.dart';
-import '../../../../core/widgets/apartments/show_more_classes_widget/image_slider/zoom_of_image/home.dart';
+import '../../../../core/widgets/apartments/show_more_classes_widget/image_slider/zoom_of_image/image_details_scree.dart';
 // import '../../../../i_well_delete_it/slove_get_advantage_data/advantages_class_widget.dart';
 
 // import '../../../toast_widget.dart';
@@ -38,8 +41,11 @@ class NewShowMore extends StatefulWidget {
   const NewShowMore({
     super.key,
     this.oneApartment,
+    this.onPageChanged,
   });
+
   final DataOfOneApartment? oneApartment;
+  final Function(int index, CarouselPageChangedReason reason)? onPageChanged;
 
   // late List<Photos>? photosOfApartment;
   @override
@@ -49,7 +55,6 @@ class NewShowMore extends StatefulWidget {
 class _NewShowMoreState extends State<NewShowMore> {
   bool _isDataLoaded = false;
 
-  late final List<Photos>? photos = widget.oneApartment?.photos;
   bool _isGirlStudent = false;
   bool _isBoyStudent = false;
   bool _isFamilies = false;
@@ -60,6 +65,9 @@ class _NewShowMoreState extends State<NewShowMore> {
   @override
   void initState() {
     super.initState();
+
+    // debugPrint(
+    //     "initPage Index = ${widget.currentIndex}");
     isStart = true;
     if (widget.oneApartment?.type?.name == "طلاب") {
       _isBoyStudent = true;
@@ -110,7 +118,7 @@ class _NewShowMoreState extends State<NewShowMore> {
 
   // var ownIndex = 0;
 // var arrayOfApartments = widget.arrayOfApartments;
-  int current = 0;
+//   int current = 0;
 
   PointerController pointerController = PointerController();
 
@@ -123,9 +131,8 @@ class _NewShowMoreState extends State<NewShowMore> {
 
   @override
   Widget build(BuildContext context) {
-    bool isMove = false;
+    // bool isMove = false;
     return Scaffold(
-
       backgroundColor: themeMode.isDark
           ? kBackgroundAppColorLightMode
           : kBackgroundAppColorDarkMode,
@@ -136,7 +143,7 @@ class _NewShowMoreState extends State<NewShowMore> {
             // mainAxisAlignment: MainAxisAlignment.center,
             children: [
               //back arrow button
-    //back arrow button
+              //back arrow button
               Padding(
                 padding: const EdgeInsets.fromLTRB(20, 20, 0, 0),
                 child: Row(
@@ -180,73 +187,37 @@ class _NewShowMoreState extends State<NewShowMore> {
                           height: 240,
                           borderRadius: BorderRadius.circular(7)),
                     )
-                  : GestureDetector(
-                      onTap: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => DetailScreen(
-                              controller: pageController,
-                              isMove: isMove,
-                              current: current,
-                              initialIndex: current,
-                              onPageChanged: (index) {
-                                setState(() {
-                                  debugPrint("current still : $current");
-                                  current = index;
-                                  pointerController.currentValue =
-                                      current.obs;
-
-                                  // pageController = PageController(initialPage: current);
-                                  // pageController.jumpToPage(current);
-                                  controller.jumpToPage(current);
-
-                                  // print(
-                                  //     "the current.reactive.value is:${current.reactive.value}");
-                                });
-                              },
-                              context: context,
-                              imageList: widget.oneApartment!.photos!,
-                              onVerticalDragEnd: (p0) {
-                                setState(() {
-                                  debugPrint("onVerticalDragEnd");
-                                  Navigator.pop(context);
-                                  setState(() {
-                                    controller.animateToPage(current);
-                                  });
-                                });
-                              },
-                              // tag: tag,
-                            ),
-                          ),
-                        );
-                      },
-                      child: ImageSliderWithPointer(
-                        controller: controller,
-                        items: photos!,
-                        duration: const Duration(milliseconds: 300),
-                        // curve: Curves.linear,
-                        current: current,
-                        // tag: tag,
-                        onPageChange: (index, p1) {
-                          setState(() {
-                            current = index;
-                            controller.animateToPage(
-                              current,
-                              duration: const Duration(
-                                milliseconds: 300,
-                              ),
-                            );
-                            // print("the p1 is like this : $p1");
-
-                            // current = lastIndex!;
-
-                            // photos?[index] = photos![lastIndex!];
-                            // index = lastIndex!;
-                          });
-                        },
+                  : const SizedBox(),
+              GestureDetector(
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => DetailImageScreen(
+                          context: context,
+                          imageList: widget.oneApartment!.photos!,
+                          initialIndex: widget.oneApartment?.currentPhotoIndex.value ?? 0,
+                          oneApartment: widget.oneApartment!,
+                        ),
                       ),
-                    ),
+                    );
+                  },
+                  child: Column(
+                    children: [
+                      CarouselSliderWidget(
+                        imageList: widget.oneApartment!.photos!,
+                        apartmentId: widget.oneApartment!.id ?? 1,
+                        oneApartment: widget.oneApartment!,
+                      ),
+                      const SizedBox(
+                        height: 10,
+                      ),
+                      PointerOfImage(
+                        oneApartment: widget.oneApartment!,
+                        imageList: widget.oneApartment!.photos!,
+                      ),
+                    ],
+                  )),
 
               Container(
                 margin: const EdgeInsets.fromLTRB(10, 23, 10, 0),
@@ -465,8 +436,7 @@ class _NewShowMoreState extends State<NewShowMore> {
                                         isRoomSizeChange = !isRoomSizeChange;
                                       });
                                     },
-                                    style: outlinedButton(
-                                            themeMode: themeMode)
+                                    style: outlinedButton(themeMode: themeMode)
                                         .copyWith(
                                             padding:
                                                 const WidgetStatePropertyAll(
@@ -550,8 +520,7 @@ class _NewShowMoreState extends State<NewShowMore> {
                                             !isRoomBathSizeChange;
                                       });
                                     },
-                                    style: outlinedButton(
-                                            themeMode: themeMode)
+                                    style: outlinedButton(themeMode: themeMode)
                                         .copyWith(
                                             padding:
                                                 const WidgetStatePropertyAll(
@@ -641,8 +610,7 @@ class _NewShowMoreState extends State<NewShowMore> {
                                         isAreaSizeChange = !isAreaSizeChange;
                                       });
                                     },
-                                    style: outlinedButton(
-                                            themeMode: themeMode)
+                                    style: outlinedButton(themeMode: themeMode)
                                         .copyWith(
                                             padding:
                                                 const WidgetStatePropertyAll(
@@ -765,8 +733,8 @@ class _NewShowMoreState extends State<NewShowMore> {
               //notes of owner
               Container(
                 margin: const EdgeInsets.fromLTRB(10, 23, 10, 0),
-    // discription.length.toDouble() * 2,
-    //decoration of show apartment style
+                // discription.length.toDouble() * 2,
+                //decoration of show apartment style
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(7),
                   color: themeMode.isDark
@@ -774,9 +742,9 @@ class _NewShowMoreState extends State<NewShowMore> {
                       : kContainerColorDarkMode,
                 ),
                 child: Column(
-    // this children have ( general info that : title, price , and location.
+                  // this children have ( general info that : title, price , and location.
                   children: [
-    //title
+                    //title
                     Row(
                       children: [
                         Padding(
@@ -793,7 +761,7 @@ class _NewShowMoreState extends State<NewShowMore> {
                         const Expanded(child: Text(""))
                       ],
                     ),
-    //description
+                    //description
                     Padding(
                       padding: const EdgeInsets.fromLTRB(10, 0, 10, 10),
                       child: Text(widget.oneApartment?.description ?? "",
@@ -803,7 +771,7 @@ class _NewShowMoreState extends State<NewShowMore> {
                                 : kTextColorDarkMode,
                             fontSize: 16,
                             fontFamily: 'IBM',
-    // fontWeight: FontWeight.bold
+                            // fontWeight: FontWeight.bold
                           )),
                     ),
                   ],
@@ -814,8 +782,8 @@ class _NewShowMoreState extends State<NewShowMore> {
                 padding: EdgeInsets.only(bottom: 10),
                 margin: const EdgeInsets.fromLTRB(10, 23, 10, 0),
                 // height: 120,
-    // discription.length.toDouble() * 2,
-    //decoration of show apartment style
+                // discription.length.toDouble() * 2,
+                //decoration of show apartment style
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(7),
                   color: themeMode.isDark
@@ -823,9 +791,9 @@ class _NewShowMoreState extends State<NewShowMore> {
                       : kContainerColorDarkMode,
                 ),
                 child: Column(
-    // this widget For inquiries that have title and social media
+                  // this widget For inquiries that have title and social media
                   children: [
-    //title
+                    //title
                     Row(
                       children: [
                         Padding(
@@ -842,7 +810,7 @@ class _NewShowMoreState extends State<NewShowMore> {
                         const Expanded(child: Text(""))
                       ],
                     ),
-    //phone number
+                    //phone number
                     Row(
                       children: [
                         const Expanded(
@@ -861,27 +829,27 @@ class _NewShowMoreState extends State<NewShowMore> {
                               //     url: 'https://wa.me/970569118259/',
                               //     inApp: false);
 
-    // _launchUrl;
-    // final value = ClipboardData(text: number_phone);
-    // Clipboard.setData(value);
-    //                                 number_phone2;
+                              // _launchUrl;
+                              // final value = ClipboardData(text: number_phone);
+                              // Clipboard.setData(value);
+                              //                                 number_phone2;
 
-    // Fluttertoast.showToast(
-    //     msg: "الرقم غير صحيح",
-    //     toastLength: Toast.LENGTH_SHORT,
-    //     gravity: ToastGravity.BOTTOM_RIGHT,
-    //     timeInSecForIosWeb: 10,
-    //     backgroundColor: Colors.blue,
-    //     textColor: Colors.white,
-    //     fontSize: 16.0
-    // );
+                              // Fluttertoast.showToast(
+                              //     msg: "الرقم غير صحيح",
+                              //     toastLength: Toast.LENGTH_SHORT,
+                              //     gravity: ToastGravity.BOTTOM_RIGHT,
+                              //     timeInSecForIosWeb: 10,
+                              //     backgroundColor: Colors.blue,
+                              //     textColor: Colors.white,
+                              //     fontSize: 16.0
+                              // );
                             },
                             style: outlinedButton(themeMode: themeMode),
                             child: Padding(
                               padding: const EdgeInsets.all(8.0),
                               child: Row(
                                 children: [
-    //whtsapp icon
+                                  //whtsapp icon
                                   const Padding(
                                     padding: EdgeInsets.fromLTRB(0, 0, 0, 0),
                                     child: Image(
@@ -892,7 +860,7 @@ class _NewShowMoreState extends State<NewShowMore> {
                                     ),
                                   ),
 
-    //text
+                                  //text
                                   Padding(
                                     padding:
                                         const EdgeInsets.fromLTRB(0, 0, 0, 0),
@@ -911,68 +879,68 @@ class _NewShowMoreState extends State<NewShowMore> {
                           ),
                         ),
                         //     SizedBox(width: 20,),
-    //                           widget.oneApartment!.owner!.email.isEmpty?     SizedBox(): SizedBox(
-    //                               height: 50,
-    //                               child: OutlinedButton(
-    //                                 onPressed: () async {
-    //                                   sendEmailToGmail(
-    //
-    //
-    //                                       widget.oneApartment!.owner!.email,"إستفسار عن إعلان ${widget.oneApartment!.title },","  السلام عليكم، ممكن أستفسر عن الإعلان الخاص بـ${widget.oneApartment?.title} ",);
-    //
-    //                                   // openBrowserURL(
-    //                                   //     url: 'https://wa.me/970569118259/',
-    //                                   //     inApp: false);
-    //
-    // // _launchUrl;
-    // // final value = ClipboardData(text: number_phone);
-    // // Clipboard.setData(value);
-    // //                                 number_phone2;
-    //
-    // // Fluttertoast.showToast(
-    // //     msg: "الرقم غير صحيح",
-    // //     toastLength: Toast.LENGTH_SHORT,
-    // //     gravity: ToastGravity.BOTTOM_RIGHT,
-    // //     timeInSecForIosWeb: 10,
-    // //     backgroundColor: Colors.blue,
-    // //     textColor: Colors.white,
-    // //     fontSize: 16.0
-    // // );
-    //                                     },
-    //                                     style: outlineButton,
-    //                                     child: Padding(
-    //                                       padding: const EdgeInsets.all(8.0),
-    //                                       child: Row(
-    //                                         children: [
-    // //whtsapp icon
-    //                                           Padding(
-    //                                         padding:
-    //                                             EdgeInsets.fromLTRB(0, 0, 0, 0),
-    //                                         child: Image(
-    //                                           image: AssetImage(
-    //                                               "assets/images/gmail.png"),
-    //                                           width: 28,
-    //                                           height: 28,
-    //                                         ),
-    //                                       ),
-    //
-    // //text
-    //                                       Padding(
-    //                                         padding:     EdgeInsets.fromLTRB(
-    //                                             0, 0, 0, 0),
-    //                                         child: Text(" جيميل",
-    //                                             style: TextStyle(
-    //                                               color:
-    //                                                  kTextColor,
-    //                                               fontSize: 16,
-    //                                               fontFamily: 'IBM',
-    //                                             )),
-    //                                       ),
-    //                                     ],
-    //                                   ),
-    //                                 ),
-    //                               ),
-    //                             ),
+                        //                           widget.oneApartment!.owner!.email.isEmpty?     SizedBox(): SizedBox(
+                        //                               height: 50,
+                        //                               child: OutlinedButton(
+                        //                                 onPressed: () async {
+                        //                                   sendEmailToGmail(
+                        //
+                        //
+                        //                                       widget.oneApartment!.owner!.email,"إستفسار عن إعلان ${widget.oneApartment!.title },","  السلام عليكم، ممكن أستفسر عن الإعلان الخاص بـ${widget.oneApartment?.title} ",);
+                        //
+                        //                                   // openBrowserURL(
+                        //                                   //     url: 'https://wa.me/970569118259/',
+                        //                                   //     inApp: false);
+                        //
+                        // // _launchUrl;
+                        // // final value = ClipboardData(text: number_phone);
+                        // // Clipboard.setData(value);
+                        // //                                 number_phone2;
+                        //
+                        // // Fluttertoast.showToast(
+                        // //     msg: "الرقم غير صحيح",
+                        // //     toastLength: Toast.LENGTH_SHORT,
+                        // //     gravity: ToastGravity.BOTTOM_RIGHT,
+                        // //     timeInSecForIosWeb: 10,
+                        // //     backgroundColor: Colors.blue,
+                        // //     textColor: Colors.white,
+                        // //     fontSize: 16.0
+                        // // );
+                        //                                     },
+                        //                                     style: outlineButton,
+                        //                                     child: Padding(
+                        //                                       padding: const EdgeInsets.all(8.0),
+                        //                                       child: Row(
+                        //                                         children: [
+                        // //whtsapp icon
+                        //                                           Padding(
+                        //                                         padding:
+                        //                                             EdgeInsets.fromLTRB(0, 0, 0, 0),
+                        //                                         child: Image(
+                        //                                           image: AssetImage(
+                        //                                               "assets/images/gmail.png"),
+                        //                                           width: 28,
+                        //                                           height: 28,
+                        //                                         ),
+                        //                                       ),
+                        //
+                        // //text
+                        //                                       Padding(
+                        //                                         padding:     EdgeInsets.fromLTRB(
+                        //                                             0, 0, 0, 0),
+                        //                                         child: Text(" جيميل",
+                        //                                             style: TextStyle(
+                        //                                               color:
+                        //                                                  kTextColor,
+                        //                                               fontSize: 16,
+                        //                                               fontFamily: 'IBM',
+                        //                                             )),
+                        //                                       ),
+                        //                                     ],
+                        //                                   ),
+                        //                                 ),
+                        //                               ),
+                        //                             ),
                         const Expanded(
                           flex: 20,
                           child: Text(""),

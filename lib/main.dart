@@ -63,6 +63,7 @@ import 'controller/bookmark_controller.dart';
 import 'controller/function_controller/api_functions_controller/cities_and_types_controller.dart';
 import 'controller/function_controller/api_functions_controller/apartment_api_methods_controller.dart';
 import 'controller/function_controller/connectivity_controller.dart';
+import 'controller/image_of_apartment_controller.dart';
 import 'controller/models_controller/apartment_model_controller.dart';
 import 'controller/models_controller/images_model_controller.dart';
 import 'controller/models_controller/type_of_apartment_models_controller.dart';
@@ -135,6 +136,8 @@ void main() async {
   Get.put(GetAdvantages());
   Get.put(AdvantagesModelController());
   Get.put(ImagesModelController());
+  Get.put(ImageOfApartmentController());
+  Get.put(ShowDetailOfImageOfApartmentController());
   Get.put(BookmarkController()); //for testing
   // Get.put(BookmarkApartment());//for testing
   //for get
@@ -178,7 +181,6 @@ class _OwnMaterialAppState extends State<OwnMaterialApp> {
 
       darkTheme: ThemeData(
         useMaterial3: false,
-
 
         colorScheme: ColorScheme.fromSwatch().copyWith(secondary: Colors.grey),
 
@@ -288,7 +290,7 @@ class _OwnMaterialAppState extends State<OwnMaterialApp> {
         MyPagesRoutes.skeletonParagraph: (context) =>
             const LongParagraphReadySkeleton(),
         MyPagesRoutes.newMasterHome: (context) => const NewMasterHome(),
-        MyPagesRoutes.newShowMore: (context) => const NewShowMore(),
+        MyPagesRoutes.newShowMore: (context) => NewShowMore(),
         MyPagesRoutes.whatTheInfoReqToCreateAd: (context) =>
             const WhatTheInfoReqToCreateAd(),
         MyPagesRoutes.introScreen: (context) => const IntroScreen(),

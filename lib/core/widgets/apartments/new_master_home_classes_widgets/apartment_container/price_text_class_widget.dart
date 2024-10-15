@@ -5,9 +5,11 @@ import 'package:ween_blaqe/constants/nums.dart';
 import 'package:ween_blaqe/controller/function_controller/change_theme_mode.dart';
 
 class ApartmentPriceText extends StatefulWidget {
-  const ApartmentPriceText({super.key, required this.index, required this.apartmentsRes});
- final OneApartment apartmentsRes;
-   final int index;
+  const ApartmentPriceText(
+      {super.key, required this.index, required this.apartmentsRes});
+
+  final OneApartment apartmentsRes;
+  final int index;
 
   @override
   State<ApartmentPriceText> createState() => _ApartmentPriceTextState();
@@ -18,29 +20,35 @@ class _ApartmentPriceTextState extends State<ApartmentPriceText> {
 
   @override
   Widget build(BuildContext context) {
-    return               Row(
+    return Row(
       children: [
         Padding(
-          padding: const EdgeInsets.fromLTRB(0, 0, 3, 0),
-          child:
-          Text((widget.apartmentsRes.data?[widget.index].price.toString()) ?? "0",
-              style:  TextStyle(
-                color: themeMode.isDark ? kPrimaryColorLightMode : kPrimaryColorDarkMode,
-                fontSize: 16,
-                fontFamily: 'IBM',
-              )),
+          padding: const EdgeInsets.fromLTRB(0, 0, 10, 10),
+          child: Text(
+            "الأجرة:${widget.apartmentsRes.data?[widget.index].price ?? ""
+            // data.
+
+            }",
+            style: TextStyle(
+              color: themeMode.isDark
+                  ? kPrimaryColorLightMode
+                  : kPrimaryColorDarkMode,
+              fontFamily: 'IBM',
+            ),
+          ),
         ),
-         Padding(
-          padding: const EdgeInsets.fromLTRB(10, 0, 3, 0),
-          child: Text("ش/ش",
+        Padding(
+          padding: const EdgeInsets.fromLTRB(0, 0, 3, 10),
+          child: Text("شيكل/شهري",
               style: TextStyle(
-                color: themeMode.isDark ? kTextColorLightMode : kTextColorDarkMode,
+                color: themeMode.isDark
+                    ? kPrimaryColorLightMode
+                    : kPrimaryColorDarkMode,
                 fontSize: 12,
                 fontFamily: 'IBM',
               )),
         ),
       ],
     );
-
   }
 }

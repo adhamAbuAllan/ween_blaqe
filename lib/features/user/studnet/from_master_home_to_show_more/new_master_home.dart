@@ -78,6 +78,7 @@ class _NewMasterHomeState extends State<NewMasterHome> {
   //[_type] value that mean the type of apartment
   String _type = 'طلاب'; //first type
   // late ScrollController scrollController;
+
   @override
   void initState() {
     super.initState();
@@ -141,7 +142,7 @@ class _NewMasterHomeState extends State<NewMasterHome> {
     debugPrint("the api is: $callAPIAndAssignData(isAll: _isAll)");
     debugPrint("a user info is:$User");
   }
-
+int photoIndex = 0;
   @override
   Widget build(BuildContext context) {
     return

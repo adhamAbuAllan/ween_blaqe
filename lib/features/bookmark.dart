@@ -52,6 +52,7 @@ class _BookmarkApartmentState extends State<BookmarkApartment> {
     super.initState();
     getSpcficApartments();
   }
+  int photoIndex = 0;
 
   @override
   Widget build(BuildContext context) {

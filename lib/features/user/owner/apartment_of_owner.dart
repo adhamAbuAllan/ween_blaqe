@@ -427,7 +427,7 @@ class _ApartmentsOwnerState extends State<ApartmentsOwner>
       }
     });
   }
-
+int photoIndex = 0;
   @override
   Widget build(BuildContext context) {
     return Scaffold(

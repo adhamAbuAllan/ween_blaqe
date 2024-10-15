@@ -1,9 +1,13 @@
 import 'dart:ui';
 
-import 'package:cached_network_image/cached_network_image.dart';
+// import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:skeletons/skeletons.dart';
 import 'package:ween_blaqe/api/apartments_api/one_apartment.dart';
+
+import '../../show_more_classes_widget/image_slider/custom_slider.dart';
+import '../../show_more_classes_widget/image_slider/pointer.dart';
+// import '../../show_more_classes_widget/image_slider/zoom_of_image/image_details_scree.dart';
 
 class ApartmentMainImage extends StatelessWidget {
   final OneApartment apartmentsRes;
@@ -14,7 +18,7 @@ class ApartmentMainImage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Stack(
+    return Column(
       children: [
         ClipRRect(
             borderRadius: BorderRadius.circular(7 / 2),
@@ -25,23 +29,36 @@ class ApartmentMainImage extends StatelessWidget {
                         height: 220,
                         borderRadius: BorderRadius.circular(7 / 2)),
                   )
-                : Image(
-                    errorBuilder: (context, error, stackTrace) {
-                      return SkeletonAvatar(
-                        style: SkeletonAvatarStyle(
-                            width: 367,
-                            height: 220,
-                            borderRadius: BorderRadius.circular(7 / 2)),
-                      );
-                    },
-                    image: CachedNetworkImageProvider(
-                        apartmentsRes.data?[index].photos?[0].url ??
-                            'https://via.placeholder.com/150'),
-                    height: 220,
-                    width: MediaQuery.of(context).size.width - 32,
-                    fit: BoxFit.cover,
+                : CarouselSliderWidget(
+                    imageList: apartmentsRes.data![index].photos!,
+                    apartmentId: apartmentsRes.data![index].id!,
+                    oneApartment: apartmentsRes.data![index],
                   )),
-        TimeAgoWidget(apartmentsRes: apartmentsRes, index: index),
+        // Image(
+        //         errorBuilder: (context, error, stackTrace) {
+        //           return SkeletonAvatar(
+        //             style: SkeletonAvatarStyle(
+        //                 width: 367,
+        //                 height: 220,
+        //                 borderRadius: BorderRadius.circular(7 / 2)),
+        //           );
+        //         },
+        //         image: CachedNetworkImageProvider(
+        //             apartmentsRes.data?[index].photos?[0].url ??
+        //                 'https://via.placeholder.com/150'),
+        //         height: 220,
+        //         width: MediaQuery.of(context).size.width - 32,
+        //         fit: BoxFit.cover,
+        //       )),
+
+        Padding(
+          padding: const EdgeInsets.only(bottom: 8.0),
+          child: PointerOfImage(
+            imageList: apartmentsRes.data?[index].photos??[],
+            oneApartment: apartmentsRes.data?[index]??DataOfOneApartment(),
+          ),
+        ),
+        // TimeAgoWidget(apartmentsRes: apartmentsRes, index: index),
       ],
     );
   }
@@ -62,8 +79,8 @@ class _TimeAgoWidgetState extends State<TimeAgoWidget> {
   @override
   Widget build(BuildContext context) {
     return Positioned(
-      bottom: 5,
-      left: 5,
+      bottom:10,
+      left: 15,
       child: ClipRRect(
         // Add ClipRRect
         borderRadius: BorderRadius.circular(1.7),
@@ -78,8 +95,7 @@ class _TimeAgoWidgetState extends State<TimeAgoWidget> {
               borderRadius: BorderRadius.circular(1.7),
             ),
             child: Text(
-              "${widget.apartmentsRes.data?[widget.index].timeAgo ?? "التاريخ"
-              } ",
+              "${widget.apartmentsRes.data?[widget.index].timeAgo ?? "التاريخ"} ",
               style: TextStyle(
                 color: Colors.grey.shade300,
                 fontFamily: "IBM",

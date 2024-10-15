@@ -2,36 +2,37 @@ import 'package:flutter/material.dart';
 
 import '../../../../../api/apartments_api/one_apartment.dart';
 import '../../../../../constants/nums.dart';
+
 class ApartmentLocatoinText extends StatelessWidget {
-  const ApartmentLocatoinText({super.key, required this.index, required this.apartmentsRes});
- final OneApartment apartmentsRes;
+  const ApartmentLocatoinText(
+      {super.key, required this.index, required this.apartmentsRes});
+
+  final OneApartment apartmentsRes;
   final int index;
 
   @override
   Widget build(BuildContext context) {
-    return               SizedBox(
-      child: Row(
-        children: [
-           Padding(
-            padding: const EdgeInsets.fromLTRB(0, 0, 0, 0),
-            child: Text("الموقع:",
-                style: TextStyle(
-                  color: themeMode.isDark ? kTextColorLightMode : kTextColorDarkMode,
-                  fontSize: 16,
-                  fontFamily: 'IBM',
-                )),
+    return SizedBox(
+      width: 250,
+      child: Padding(
+        padding: const EdgeInsets.fromLTRB(0, 0, 10, 10),
+        child: Text(
+          "المكان:${apartmentsRes.data?[index].city?.name ?? ""
+
+          // data.
+          }-${apartmentsRes.data?[index].location ?? ""
+          // .data
+
+          }",
+          softWrap: true,
+          textDirection: TextDirection.rtl,
+          style: TextStyle(
+            fontSize: 16,
+            color:
+                themeMode.isDark ? kTextColorLightMode : kTextColorDarkMode,
+            fontFamily: 'IBM',
           ),
-          Padding(
-            padding: const EdgeInsets.fromLTRB(10, 0, 0, 0),
-            child: Text(apartmentsRes.data?[index].city?.name ?? "",
-                softWrap: true,
-                style:  TextStyle(
-                  color: themeMode.isDark ? kTextColorLightMode : kTextColorDarkMode,
-                  fontSize: 16,
-                  fontFamily: 'IBM',
-                )),
-          )
-        ],
+        ),
       ),
     );
   }

@@ -12,15 +12,18 @@ class ApartmentTitleText extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.all(8.0),
-      child: Text(apartmentsRes.data?[index].title ?? "",
-          softWrap: true,
-          style:  TextStyle(
-            color: themeMode.isDark ? kTextColorLightMode : kTextColorDarkMode,
-            fontFamily: 'IBM',
-            fontSize: 15,
-          )),
+    return SizedBox(
+      width: 250,
+      child: Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: Text(apartmentsRes.data?[index].title ?? "",
+            softWrap: true,
+            style:  TextStyle(
+              color: themeMode.isDark ? kTextColorLightMode : kTextColorDarkMode,
+              fontFamily: 'IBM',
+              fontSize: 16,
+            )),
+      ),
     );
   }
 }
