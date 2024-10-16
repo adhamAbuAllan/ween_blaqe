@@ -149,9 +149,9 @@ class _TypeNotFoundState extends State<TypeNotFound> {
   Widget build(BuildContext context) {
     return ColorfulSafeArea(
       bottomColor: Colors.transparent ,
-      color: themeMode.isDark ? kPrimaryColorLightMode : kPrimaryColorDarkMode,
+      color: themeMode.isLight ? kPrimaryColorLightMode : kPrimaryColorDarkMode,
       child: Scaffold(
-        backgroundColor: themeMode.isDark ? kBackgroundAppColorLightMode : kBackgroundAppColorDarkMode,
+        backgroundColor: themeMode.isLight ? kBackgroundAppColorLightMode : kBackgroundAppColorDarkMode,
         body: SingleChildScrollView(
           child: Center(
             child: Column(
@@ -170,7 +170,7 @@ class _TypeNotFoundState extends State<TypeNotFound> {
                               fontSize: 18.0,
                               fontFamily: 'IBM',
                               inherit: true,
-                              color: themeMode.isDark ? kTextColorLightMode : kTextColorDarkMode.withOpacity(.6),
+                              color: themeMode.isLight ? kTextColorLightMode : kTextColorDarkMode.withOpacity(.6),
                             )),
                       ),
 
@@ -181,7 +181,7 @@ class _TypeNotFoundState extends State<TypeNotFound> {
                               fontSize: 16.0,
                               fontFamily: 'IBM',
                               inherit: true,
-                              color: themeMode.isDark ? kTextColorLightMode : kTextColorDarkMode.withOpacity(.8),
+                              color: themeMode.isLight ? kTextColorLightMode : kTextColorDarkMode.withOpacity(.8),
                             )),
                       ),
                       // Padding(
@@ -224,7 +224,7 @@ class _TypeNotFoundState extends State<TypeNotFound> {
                     Padding(
                   padding:  EdgeInsets.fromLTRB(0, MediaQuery.of(context).size.height/8, 0, 0),
                   child: Image(
-                    image:themeMode.isDark ? const AssetImage(
+                    image:themeMode.isLight ? const AssetImage(
                       "assets/images/error_images/not_found_light_mode.png",):  const AssetImage(
                         "assets/images/error_images/not_found_dark_mode.png",),
                     height: 130*2.5,
@@ -238,14 +238,13 @@ class _TypeNotFoundState extends State<TypeNotFound> {
                     child:  Text(
                       "إعادة الطلب",
                       style: TextStyle(
-                          color: themeMode.isDark ? kPrimaryColorLightMode : kPrimaryColorDarkMode,
+                          color: themeMode.isLight ? kPrimaryColorLightMode : kPrimaryColorDarkMode,
                           fontWeight: FontWeight.bold,
                           fontFamily: 'IBM',
                           decoration: TextDecoration.underline),
                     ),
                     onPressed: () {
                       cityModelController.cityId.value = 0;
-
                       myPushReplacementNamed(MyPagesRoutes.main,context: context);
 
                     },

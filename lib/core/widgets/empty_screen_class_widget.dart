@@ -44,7 +44,7 @@ class _EmptyScreenClassWidgetState extends State<EmptyScreenClassWidget> {
           Icon(
             size: 100 * 2,
             widget.centerIcon,
-            color: themeMode.isDark ? kTextColorLightMode : kTextColorDarkMode,
+            color: themeMode.isLight ? kTextColorLightMode : kTextColorDarkMode,
           ),
           Text(
             widget.centerText,
@@ -52,7 +52,7 @@ class _EmptyScreenClassWidgetState extends State<EmptyScreenClassWidget> {
               fontSize: 18,
               fontFamily: 'IBM',
               color:
-                  themeMode.isDark ? kTextColorLightMode : kTextColorDarkMode,
+                  themeMode.isLight ? kTextColorLightMode : kTextColorDarkMode,
             ),
           ),
           widget.centerIconInUnderCenterText != null
@@ -66,7 +66,7 @@ class _EmptyScreenClassWidgetState extends State<EmptyScreenClassWidget> {
                   style: TextStyle(
                     fontSize: 16,
                     fontFamily: 'IBM',
-                    color: themeMode.isDark
+                    color: themeMode.isLight
                         ? kTextColorLightMode
                         : kTextColorDarkMode,
                   ),
@@ -103,7 +103,7 @@ class _CustomUnderCenterTextState extends State<CustomUnderCenterText> {
           TextStyle(
             fontSize: 16,
             fontFamily: 'IBM',
-            color: themeMode.isDark
+            color: themeMode.isLight
                 ? kTextColorLightMode
                 : kTextColorDarkMode,
           )),
@@ -111,7 +111,7 @@ class _CustomUnderCenterTextState extends State<CustomUnderCenterText> {
             children: [
               WidgetSpan(
                 child: Icon(widget.centerIconInUnderCenterText, size: 20,
-                  color: themeMode.isDark ? kTextColorLightMode : kTextColorDarkMode,),
+                  color: themeMode.isLight ? kTextColorLightMode : kTextColorDarkMode,),
               ),
             ],
           ),
@@ -119,7 +119,7 @@ class _CustomUnderCenterTextState extends State<CustomUnderCenterText> {
           TextStyle(
             fontSize: 16,
             fontFamily: 'IBM',
-            color: themeMode.isDark
+            color: themeMode.isLight
                 ? kTextColorLightMode
                 : kTextColorDarkMode,
           )),

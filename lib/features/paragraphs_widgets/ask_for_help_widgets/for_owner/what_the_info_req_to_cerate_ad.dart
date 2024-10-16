@@ -12,7 +12,7 @@ import 'package:ween_blaqe/constants/coordination.dart';
 import 'package:ween_blaqe/core/widgets/skeletons/general_skeleton_ready_widgets/paragraph_ready_skeleton.dart';
 
 import '../../../../api/apartments_api/one_apartment.dart';
-import '../../../../constants/injection.dart';
+import '../../../../constants/get_it_controller.dart';
 import '../../../../constants/nums.dart';
 import '../../../../constants/strings.dart';
 import '../../../../controller/function_controller/change_theme_mode.dart';
@@ -87,14 +87,14 @@ class _WhatTheInfoReqToCreateAdState extends State<WhatTheInfoReqToCreateAd> {
   Widget build(BuildContext context) {
     return ColorfulSafeArea(
       bottomColor: Colors.transparent,
-      color: themeMode.isDark ? kPrimaryColorLightMode : kPrimaryColorDarkMode,
+      color: themeMode.isLight ? kPrimaryColorLightMode : kPrimaryColorDarkMode,
       child: Scaffold(
-        backgroundColor: themeMode.isDark
+        backgroundColor: themeMode.isLight
             ? kBackgroundAppColorLightMode
             : kBackgroundAppColorDarkMode,
         appBar: AppBar(
           backgroundColor:
-              themeMode.isDark ? kPrimaryColorLightMode : kPrimaryColorDarkMode,
+              themeMode.isLight ? kPrimaryColorLightMode : kPrimaryColorDarkMode,
         ),
         body: !isDataLoaded
             ? const LongParagraphReadySkeleton()
@@ -116,7 +116,7 @@ class _WhatTheInfoReqToCreateAdState extends State<WhatTheInfoReqToCreateAd> {
                                 fontSize: 28.0,
                                 fontFamily: 'IBM',
                                 inherit: true,
-                                color: themeMode.isDark
+                                color: themeMode.isLight
                                     ? kTextColorLightMode
                                     : kTextColorDarkMode,
                               ),
@@ -135,7 +135,7 @@ class _WhatTheInfoReqToCreateAdState extends State<WhatTheInfoReqToCreateAd> {
                           fontSize: 26.0,
                           fontFamily: 'IBM',
                           inherit: true,
-                          color: themeMode.isDark
+                          color: themeMode.isLight
                               ? kTextColorLightMode
                               : kTextColorDarkMode,
                         ),
@@ -152,7 +152,7 @@ class _WhatTheInfoReqToCreateAdState extends State<WhatTheInfoReqToCreateAd> {
                               fontSize: 22.0,
                               fontFamily: 'IBM',
                               inherit: true,
-                              color: themeMode.isDark
+                              color: themeMode.isLight
                                   ? kTextColorLightMode
                                   : kTextColorDarkMode,
                             ),
@@ -170,7 +170,7 @@ class _WhatTheInfoReqToCreateAdState extends State<WhatTheInfoReqToCreateAd> {
                           fontSize: 16.0,
                           fontFamily: 'IBM',
                           inherit: true,
-                          color: themeMode.isDark
+                          color: themeMode.isLight
                               ? kTextColorLightMode
                               : kTextColorDarkMode,
                         ),
@@ -186,16 +186,16 @@ class _WhatTheInfoReqToCreateAdState extends State<WhatTheInfoReqToCreateAd> {
                         border: TableBorder(
                           horizontalInside: BorderSide(
                               width: .5,
-                              color: themeMode.isDark
+                              color: themeMode.isLight
                                   ? kTextColorLightMode
                                   : kTextColorDarkMode
                               // Change this to your desired color
                               ),
                         ),
-                        dataRowColor: WidgetStatePropertyAll(themeMode.isDark
+                        dataRowColor: WidgetStatePropertyAll(themeMode.isLight
                             ? kContainerColorLightMode
                             : kContainerColorDarkMode),
-                        headingRowColor: WidgetStatePropertyAll(themeMode.isDark
+                        headingRowColor: WidgetStatePropertyAll(themeMode.isLight
                             ? kContainerColorLightMode
                             : kContainerColorDarkMode),
                         horizontalMargin: 35,
@@ -208,7 +208,7 @@ class _WhatTheInfoReqToCreateAdState extends State<WhatTheInfoReqToCreateAd> {
                                 style: TextStyle(
                                     fontSize: 16,
                                     fontFamily: "IBM",
-                                    color: themeMode.isDark
+                                    color: themeMode.isLight
                                         ? kTextColorLightMode
                                         : kTextColorDarkMode)),
                             tooltip: "إسم المعلومة المطلوبة",
@@ -218,7 +218,7 @@ class _WhatTheInfoReqToCreateAdState extends State<WhatTheInfoReqToCreateAd> {
                                 style: TextStyle(
                                     fontSize: 16,
                                     fontFamily: "IBM",
-                                    color: themeMode.isDark
+                                    color: themeMode.isLight
                                         ? kTextColorLightMode
                                         : kTextColorDarkMode)),
                             tooltip: "مثال على العلومة المطلوبة",
@@ -230,7 +230,7 @@ class _WhatTheInfoReqToCreateAdState extends State<WhatTheInfoReqToCreateAd> {
                                 style: TextStyle(
                                     fontSize: 14,
                                     fontFamily: "IBM",
-                                    color: themeMode.isDark
+                                    color: themeMode.isLight
                                         ? kTextColorLightMode
                                         : kTextColorDarkMode))),
                             DataCell(Text(
@@ -238,7 +238,7 @@ class _WhatTheInfoReqToCreateAdState extends State<WhatTheInfoReqToCreateAd> {
                               style: TextStyle(
                                   fontSize: 14,
                                   fontFamily: "IBM",
-                                  color: themeMode.isDark
+                                  color: themeMode.isLight
                                       ? kTextColorLightMode
                                       : kTextColorDarkMode),
                             )),
@@ -251,7 +251,7 @@ class _WhatTheInfoReqToCreateAdState extends State<WhatTheInfoReqToCreateAd> {
                                     style: TextStyle(
                                       fontSize: 14,
                                       fontFamily: "IBM",
-                                      color: themeMode.isDark
+                                      color: themeMode.isLight
                                           ? kTextColorLightMode
                                           : kTextColorDarkMode,
                                     ),
@@ -261,7 +261,7 @@ class _WhatTheInfoReqToCreateAdState extends State<WhatTheInfoReqToCreateAd> {
                                 style: TextStyle(
                                     fontSize: 14,
                                     fontFamily: "IBM",
-                                    color: themeMode.isDark
+                                    color: themeMode.isLight
                                         ? kTextColorLightMode
                                         : kTextColorDarkMode),
                                 "الخليل-واد الهرية-بالقرب من جامعة بولتكنك")),
@@ -273,7 +273,7 @@ class _WhatTheInfoReqToCreateAdState extends State<WhatTheInfoReqToCreateAd> {
                                   style: TextStyle(
                                       fontSize: 12,
                                       fontFamily: "IBM",
-                                      color: themeMode.isDark
+                                      color: themeMode.isLight
                                           ? kTextColorLightMode
                                           : kTextColorDarkMode),
                                   "عدد الطلاب المسموح به",
@@ -283,7 +283,7 @@ class _WhatTheInfoReqToCreateAdState extends State<WhatTheInfoReqToCreateAd> {
                                 style: TextStyle(
                                     fontSize: 14,
                                     fontFamily: "IBM",
-                                    color: themeMode.isDark
+                                    color: themeMode.isLight
                                         ? kTextColorLightMode
                                         : kTextColorDarkMode))),
                           ]),
@@ -294,7 +294,7 @@ class _WhatTheInfoReqToCreateAdState extends State<WhatTheInfoReqToCreateAd> {
                                     style: TextStyle(
                                       fontSize: 14,
                                       fontFamily: "IBM",
-                                      color: themeMode.isDark
+                                      color: themeMode.isLight
                                           ? kTextColorLightMode
                                           : kTextColorDarkMode,
                                     )),
@@ -303,7 +303,7 @@ class _WhatTheInfoReqToCreateAdState extends State<WhatTheInfoReqToCreateAd> {
                                 style: TextStyle(
                                     fontSize: 14,
                                     fontFamily: "IBM",
-                                    color: themeMode.isDark
+                                    color: themeMode.isLight
                                         ? kTextColorLightMode
                                         : kTextColorDarkMode))),
                           ]),
@@ -314,7 +314,7 @@ class _WhatTheInfoReqToCreateAdState extends State<WhatTheInfoReqToCreateAd> {
                                     style: TextStyle(
                                       fontSize: 14,
                                       fontFamily: "IBM",
-                                      color: themeMode.isDark
+                                      color: themeMode.isLight
                                           ? kTextColorLightMode
                                           : kTextColorDarkMode,
                                     )),
@@ -323,7 +323,7 @@ class _WhatTheInfoReqToCreateAdState extends State<WhatTheInfoReqToCreateAd> {
                                 style: TextStyle(
                                     fontSize: 14,
                                     fontFamily: "IBM",
-                                    color: themeMode.isDark
+                                    color: themeMode.isLight
                                         ? kTextColorLightMode
                                         : kTextColorDarkMode))),
                           ]),
@@ -341,7 +341,7 @@ class _WhatTheInfoReqToCreateAdState extends State<WhatTheInfoReqToCreateAd> {
                           fontSize: 22.0,
                           fontFamily: 'IBM',
                           inherit: true,
-                          color: themeMode.isDark
+                          color: themeMode.isLight
                               ? kTextColorLightMode
                               : kTextColorDarkMode,
                         ),
@@ -356,7 +356,7 @@ class _WhatTheInfoReqToCreateAdState extends State<WhatTheInfoReqToCreateAd> {
                           fontSize: 16.0,
                           fontFamily: 'IBM',
                           inherit: true,
-                          color: themeMode.isDark
+                          color: themeMode.isLight
                               ? kTextColorLightMode
                               : kTextColorDarkMode,
                         ),
@@ -366,16 +366,16 @@ class _WhatTheInfoReqToCreateAdState extends State<WhatTheInfoReqToCreateAd> {
                       border: TableBorder(
                         horizontalInside: BorderSide(
                             width: .5,
-                            color: themeMode.isDark
+                            color: themeMode.isLight
                                 ? kTextColorLightMode
                                 : kTextColorDarkMode
                             // Change this to your desired color
                             ),
                       ),
-                      dataRowColor: WidgetStatePropertyAll(themeMode.isDark
+                      dataRowColor: WidgetStatePropertyAll(themeMode.isLight
                           ? kContainerColorLightMode
                           : kContainerColorDarkMode),
-                      headingRowColor: WidgetStatePropertyAll(themeMode.isDark
+                      headingRowColor: WidgetStatePropertyAll(themeMode.isLight
                           ? kContainerColorLightMode
                           : kContainerColorDarkMode),
                       horizontalMargin: 35,
@@ -388,7 +388,7 @@ class _WhatTheInfoReqToCreateAdState extends State<WhatTheInfoReqToCreateAd> {
                                 style: TextStyle(
                                     fontSize: 16,
                                     fontFamily: "IBM",
-                                    color: themeMode.isDark
+                                    color: themeMode.isLight
                                         ? kTextColorLightMode
                                         : kTextColorDarkMode)),
                             tooltip: "إسم المعلومة المطلوبة"),
@@ -397,7 +397,7 @@ class _WhatTheInfoReqToCreateAdState extends State<WhatTheInfoReqToCreateAd> {
                                 style: TextStyle(
                                     fontSize: 16,
                                     fontFamily: "IBM",
-                                    color: themeMode.isDark
+                                    color: themeMode.isLight
                                         ? kTextColorLightMode
                                         : kTextColorDarkMode)),
                             tooltip: "مثال على العلومة المطلوبة")
@@ -408,14 +408,14 @@ class _WhatTheInfoReqToCreateAdState extends State<WhatTheInfoReqToCreateAd> {
                               style: TextStyle(
                                   fontSize: 14,
                                   fontFamily: "IBM",
-                                  color: themeMode.isDark
+                                  color: themeMode.isLight
                                       ? kTextColorLightMode
                                       : kTextColorDarkMode))),
                           DataCell(Text("70م",
                               style: TextStyle(
                                   fontSize: 14,
                                   fontFamily: "IBM",
-                                  color: themeMode.isDark
+                                  color: themeMode.isLight
                                       ? kTextColorLightMode
                                       : kTextColorDarkMode))),
                           // DataCell(Text("عنوان الإعلان الخاص بالشقة")),
@@ -427,7 +427,7 @@ class _WhatTheInfoReqToCreateAdState extends State<WhatTheInfoReqToCreateAd> {
                                   style: TextStyle(
                                     fontSize: 14,
                                     fontFamily: "IBM",
-                                    color: themeMode.isDark
+                                    color: themeMode.isLight
                                         ? kTextColorLightMode
                                         : kTextColorDarkMode,
                                   )),
@@ -436,7 +436,7 @@ class _WhatTheInfoReqToCreateAdState extends State<WhatTheInfoReqToCreateAd> {
                               style: TextStyle(
                                   fontSize: 14,
                                   fontFamily: "IBM",
-                                  color: themeMode.isDark
+                                  color: themeMode.isLight
                                       ? kTextColorLightMode
                                       : kTextColorDarkMode))),
                         ]),
@@ -448,7 +448,7 @@ class _WhatTheInfoReqToCreateAdState extends State<WhatTheInfoReqToCreateAd> {
                                 style: TextStyle(
                                     fontSize: 14,
                                     fontFamily: "IBM",
-                                    color: themeMode.isDark
+                                    color: themeMode.isLight
                                         ? kTextColorLightMode
                                         : kTextColorDarkMode),
                               ),
@@ -457,7 +457,7 @@ class _WhatTheInfoReqToCreateAdState extends State<WhatTheInfoReqToCreateAd> {
                               style: TextStyle(
                                   fontSize: 14,
                                   fontFamily: "IBM",
-                                  color: themeMode.isDark
+                                  color: themeMode.isLight
                                       ? kTextColorLightMode
                                       : kTextColorDarkMode))),
                         ]),
@@ -473,7 +473,7 @@ class _WhatTheInfoReqToCreateAdState extends State<WhatTheInfoReqToCreateAd> {
                           fontSize: 22.0,
                           fontFamily: 'IBM',
                           inherit: true,
-                          color: themeMode.isDark
+                          color: themeMode.isLight
                               ? kTextColorLightMode
                               : kTextColorDarkMode,
                         ),
@@ -488,7 +488,7 @@ class _WhatTheInfoReqToCreateAdState extends State<WhatTheInfoReqToCreateAd> {
                           fontSize: 16.0,
                           fontFamily: 'IBM',
                           inherit: true,
-                          color: themeMode.isDark
+                          color: themeMode.isLight
                               ? kTextColorLightMode
                               : kTextColorDarkMode,
                         ),
@@ -498,16 +498,16 @@ class _WhatTheInfoReqToCreateAdState extends State<WhatTheInfoReqToCreateAd> {
                       border: TableBorder(
                         horizontalInside: BorderSide(
                             width: .5,
-                            color: themeMode.isDark
+                            color: themeMode.isLight
                                 ? kTextColorLightMode
                                 : kTextColorDarkMode
                             // Change this to your desired color
                             ),
                       ),
-                      dataRowColor: WidgetStatePropertyAll(themeMode.isDark
+                      dataRowColor: WidgetStatePropertyAll(themeMode.isLight
                           ? kContainerColorLightMode
                           : kContainerColorDarkMode),
-                      headingRowColor: WidgetStatePropertyAll(themeMode.isDark
+                      headingRowColor: WidgetStatePropertyAll(themeMode.isLight
                           ? kContainerColorLightMode
                           : kContainerColorDarkMode),
                       horizontalMargin: 35,
@@ -520,7 +520,7 @@ class _WhatTheInfoReqToCreateAdState extends State<WhatTheInfoReqToCreateAd> {
                               style: TextStyle(
                                   fontFamily: "IBM",
                                   fontSize: 16,
-                                  color: themeMode.isDark
+                                  color: themeMode.isLight
                                       ? kTextColorLightMode
                                       : kTextColorDarkMode),
                             ),
@@ -530,7 +530,7 @@ class _WhatTheInfoReqToCreateAdState extends State<WhatTheInfoReqToCreateAd> {
                               "ايقونة الميزة",
                               style: TextStyle(
                                   fontFamily: "IBM",
-                                  color: themeMode.isDark
+                                  color: themeMode.isLight
                                       ? kTextColorLightMode
                                       : kTextColorDarkMode),
                             ),
@@ -544,7 +544,7 @@ class _WhatTheInfoReqToCreateAdState extends State<WhatTheInfoReqToCreateAd> {
                                     style: TextStyle(
                                         fontSize: 14,
                                         fontFamily: "IBM",
-                                        color: themeMode.isDark
+                                        color: themeMode.isLight
                                             ? kTextColorLightMode
                                             : kTextColorDarkMode))),
                                 DataCell(Align(
@@ -553,7 +553,7 @@ class _WhatTheInfoReqToCreateAdState extends State<WhatTheInfoReqToCreateAd> {
                                       "${apartmentRes?.data?.last.advantages![index].icon ?? 1}",
                                       width: 24,
                                       height: 24,
-                                      color: themeMode.isDark
+                                      color: themeMode.isLight
                                           ? kTextColorLightMode
                                           : kTextColorDarkMode,
                                     )))
@@ -569,7 +569,7 @@ class _WhatTheInfoReqToCreateAdState extends State<WhatTheInfoReqToCreateAd> {
                           fontSize: 22.0,
                           fontFamily: 'IBM',
                           inherit: true,
-                          color: themeMode.isDark
+                          color: themeMode.isLight
                               ? kTextColorLightMode
                               : kTextColorDarkMode,
                         ),
@@ -584,7 +584,7 @@ class _WhatTheInfoReqToCreateAdState extends State<WhatTheInfoReqToCreateAd> {
                           fontSize: 16.0,
                           fontFamily: 'IBM',
                           inherit: true,
-                          color: themeMode.isDark
+                          color: themeMode.isLight
                               ? kTextColorLightMode
                               : kTextColorDarkMode,
                         ),
@@ -599,7 +599,7 @@ class _WhatTheInfoReqToCreateAdState extends State<WhatTheInfoReqToCreateAd> {
                           fontSize: 26.0,
                           fontFamily: 'IBM',
                           inherit: true,
-                          color: themeMode.isDark
+                          color: themeMode.isLight
                               ? kTextColorLightMode
                               : kTextColorDarkMode,
                         ),
@@ -614,7 +614,7 @@ class _WhatTheInfoReqToCreateAdState extends State<WhatTheInfoReqToCreateAd> {
                           fontSize: 16.0,
                           fontFamily: 'IBM',
                           inherit: true,
-                          color: themeMode.isDark
+                          color: themeMode.isLight
                               ? kTextColorLightMode
                               : kTextColorDarkMode,
                         ),
@@ -625,16 +625,16 @@ class _WhatTheInfoReqToCreateAdState extends State<WhatTheInfoReqToCreateAd> {
                       border: TableBorder(
                         horizontalInside: BorderSide(
                             width: .5,
-                            color: themeMode.isDark
+                            color: themeMode.isLight
                                 ? kTextColorLightMode
                                 : kTextColorDarkMode
                             // Change this to your desired color
                             ),
                       ),
-                      dataRowColor: WidgetStatePropertyAll(themeMode.isDark
+                      dataRowColor: WidgetStatePropertyAll(themeMode.isLight
                           ? kContainerColorLightMode
                           : kContainerColorDarkMode),
-                      headingRowColor: WidgetStatePropertyAll(themeMode.isDark
+                      headingRowColor: WidgetStatePropertyAll(themeMode.isLight
                           ? kContainerColorLightMode
                           : kContainerColorDarkMode),
                       horizontalMargin: 35,
@@ -647,7 +647,7 @@ class _WhatTheInfoReqToCreateAdState extends State<WhatTheInfoReqToCreateAd> {
                                 style: TextStyle(
                                     fontSize: 16,
                                     fontFamily: "IBM",
-                                    color: themeMode.isDark
+                                    color: themeMode.isLight
                                         ? kTextColorLightMode
                                         : kTextColorDarkMode)),
                             tooltip: "إسم المعلومة المطلوبة"),
@@ -656,7 +656,7 @@ class _WhatTheInfoReqToCreateAdState extends State<WhatTheInfoReqToCreateAd> {
                                 style: TextStyle(
                                     fontSize: 16,
                                     fontFamily: "IBM",
-                                    color: themeMode.isDark
+                                    color: themeMode.isLight
                                         ? kTextColorLightMode
                                         : kTextColorDarkMode)),
                             tooltip: "مثال على العلومة المطلوبة")
@@ -667,14 +667,14 @@ class _WhatTheInfoReqToCreateAdState extends State<WhatTheInfoReqToCreateAd> {
                               style: TextStyle(
                                   fontSize: 14,
                                   fontFamily: "IBM",
-                                  color: themeMode.isDark
+                                  color: themeMode.isLight
                                       ? kTextColorLightMode
                                       : kTextColorDarkMode))),
                           DataCell(Text("أدهم أنور أبوعلان",
                               style: TextStyle(
                                   fontSize: 14,
                                   fontFamily: "IBM",
-                                  color: themeMode.isDark
+                                  color: themeMode.isLight
                                       ? kTextColorLightMode
                                       : kTextColorDarkMode))),
                           // DataCell(Text("عنوان الإعلان الخاص بالشقة")),
@@ -686,7 +686,7 @@ class _WhatTheInfoReqToCreateAdState extends State<WhatTheInfoReqToCreateAd> {
                                   style: TextStyle(
                                     fontSize: 14,
                                     fontFamily: "IBM",
-                                    color: themeMode.isDark
+                                    color: themeMode.isLight
                                         ? kTextColorLightMode
                                         : kTextColorDarkMode,
                                   )),
@@ -696,7 +696,7 @@ class _WhatTheInfoReqToCreateAdState extends State<WhatTheInfoReqToCreateAd> {
                             style: TextStyle(
                                 fontSize: 14,
                                 fontFamily: "IBM",
-                                color: themeMode.isDark
+                                color: themeMode.isLight
                                     ? kTextColorLightMode
                                     : kTextColorDarkMode),
                             textDirection: TextDirection.ltr,

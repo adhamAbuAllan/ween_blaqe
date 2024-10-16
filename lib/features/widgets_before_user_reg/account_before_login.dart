@@ -13,7 +13,7 @@ import 'package:ween_blaqe/core/utils/styles/button.dart';
 import 'package:ween_blaqe/core/utils/styles/text_style/aline_style.dart';
 
 import '../../constants/coordination.dart';
-import '../../constants/injection.dart';
+import '../../constants/get_it_controller.dart';
 import '../../constants/nums.dart';
 import '../../constants/strings.dart';
 import '../../controller/get_controllers.dart';
@@ -103,9 +103,9 @@ class _AccountBeforeLoginInStudentState
     return ColorfulSafeArea(
         bottomColor: Colors.transparent,
         color:
-            themeMode.isDark ? kPrimaryColorLightMode : kPrimaryColorDarkMode,
+            themeMode.isLight ? kPrimaryColorLightMode : kPrimaryColorDarkMode,
         child: Scaffold(
-          backgroundColor: themeMode.isDark
+          backgroundColor: themeMode.isLight
               ? kBackgroundAppColorLightMode
               : kBackgroundAppColorDarkMode,
           body: SingleChildScrollView(
@@ -125,7 +125,7 @@ class _AccountBeforeLoginInStudentState
                       child: Text(
                         "حسابي",
                         style: TextStyle(
-                          color: themeMode.isDark
+                          color: themeMode.isLight
                               ? kTextColorLightMode
                               : kTextColorDarkMode,
                           fontSize: 28.0,
@@ -219,7 +219,7 @@ class _AccountBeforeLoginInStudentState
                   margin: const EdgeInsets.fromLTRB(10, 0, 10, 0),
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(7),
-                    color: themeMode.isDark
+                    color: themeMode.isLight
                         ? kContainerColorLightMode
                         : kContainerColorDarkMode,
                   ),
@@ -228,17 +228,17 @@ class _AccountBeforeLoginInStudentState
                     // themeMode.onChanged),
                     SwitchListTile(
                         inactiveThumbColor: kBackgroundAppColorLightMode,
-                        activeColor: themeMode.isDark
+                        activeColor: themeMode.isLight
                             ? kPrimaryColorLightMode
                             : kPrimaryColorDarkMode,
                         dense: getIt<AppDimension>().isSmallScreen(context),
                         title: Row(
                           children: [
                             Icon(
-                              themeMode.isDark
+                              themeMode.isLight
                                   ? Icons.light_mode_outlined
                                   : Icons.dark_mode_outlined,
-                              color: themeMode.isDark
+                              color: themeMode.isLight
                                   ? kTextColorLightMode
                                   : kTextColorDarkMode,
                               size: getIt<AppDimension>().isSmallScreen(context)
@@ -252,12 +252,12 @@ class _AccountBeforeLoginInStudentState
                                 style: TextStyle(
                                     fontSize: 16,
                                     fontFamily: 'IBM',
-                                    color: themeMode.isDark
+                                    color: themeMode.isLight
                                         ? kTextColorLightMode
                                         : kTextColorDarkMode)),
                           ],
                         ),
-                        value: themeMode.isDark,
+                        value: themeMode.isLight,
                         onChanged: (bool value) async {
                           cityModelController.cityId.value = 0;
                           setState(() {
@@ -343,7 +343,7 @@ class _AccountBeforeLoginInStudentState
                       myPushName(context, MyPagesRoutes.noInternet);
                     },
                         image: Image.asset("assets/images/tasbih.png",
-                            color: themeMode.isDark
+                            color: themeMode.isLight
                                 ? kTextColorLightMode
                                 : kTextColorDarkMode,
                             width: 35,
@@ -434,7 +434,7 @@ class _AccountBeforeLoginInStudentState
                       child: Text(
                         "ألا تمتلك حساب؟",
                         style: TextStyle(
-                            color: themeMode.isDark
+                            color: themeMode.isLight
                                 ? kTextColorLightMode
                                 : kTextColorDarkMode,
                             fontFamily: "IBM"),
@@ -483,7 +483,7 @@ class _AccountBeforeLoginInStudentState
                             "الإصدار التجريبي: ${snapshot.data} ",
                             style: TextStyle(
                                 fontFamily: 'IBM',
-                                color: themeMode.isDark
+                                color: themeMode.isLight
                                     ? kTextColorLightMode.withOpacity(.5)
                                     : kTextColorDarkMode.withOpacity(.5)),
                             textDirection: TextDirection.rtl,

@@ -25,11 +25,11 @@ class _ApartmentShowTypesTextButtonState
       flex: 7,
       child: TextButton(
           style:  ButtonStyle(
-              overlayColor: MaterialStatePropertyAll(themeMode.isDark ? kPrimaryColor300LightMode : kPrimaryColor300DarkMode)),
+              overlayColor: WidgetStatePropertyAll(themeMode.isLight ? kPrimaryColor300LightMode : kPrimaryColor300DarkMode)),
           onPressed: widget.onPressed,
           child: Text("${widget.textType}           ",
               style:  TextStyle(
-                  color:themeMode.isDark ? kTextColorLightMode : kTextColorDarkMode, fontFamily: 'IBM'))),
+                  color:themeMode.isLight ? kTextColorLightMode : kTextColorDarkMode, fontFamily: 'IBM'))),
     );
   }
 }

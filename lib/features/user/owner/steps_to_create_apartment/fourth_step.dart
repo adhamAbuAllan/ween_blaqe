@@ -111,11 +111,11 @@ class _FourthStepState extends State<FourthStep> {
     return ColorfulSafeArea(
         bottomColor: Colors.transparent,
         color:
-            themeMode.isDark ? kPrimaryColorLightMode : kPrimaryColorDarkMode,
+            themeMode.isLight ? kPrimaryColorLightMode : kPrimaryColorDarkMode,
         child: GestureDetector(
           onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
           child: Scaffold(
-            backgroundColor: themeMode.isDark
+            backgroundColor: themeMode.isLight
                 ? kBackgroundAppColorLightMode
                 : kBackgroundAppColorDarkMode,
             // appBar: AppBar(
@@ -282,7 +282,7 @@ class _FourthStepState extends State<FourthStep> {
                     child: Text(
                       "الخطوة الأخيرة",
                       style: TextStyle(
-                        color: themeMode.isDark
+                        color: themeMode.isLight
                             ? kTextColorLightMode
                             : kTextColorDarkMode,
                         fontSize: 20,
@@ -348,7 +348,7 @@ class _FourthStepState extends State<FourthStep> {
               },
               label: const Text('أضف صور'),
               icon: const Icon(Icons.photo),
-              backgroundColor: themeMode.isDark
+              backgroundColor: themeMode.isLight
                   ? kPrimaryColorLightMode
                   : kPrimaryColorDarkMode,
             ),

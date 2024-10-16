@@ -43,22 +43,22 @@ class _SendNoticeForUsState extends State<SendNoticeForUs> {
     return ColorfulSafeArea(
         bottomColor: Colors.transparent,
         color:
-            themeMode.isDark ? kPrimaryColorLightMode : kPrimaryColorDarkMode,
+            themeMode.isLight ? kPrimaryColorLightMode : kPrimaryColorDarkMode,
         child: GestureDetector(
           onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
           child: Scaffold(
-            backgroundColor: themeMode.isDark
+            backgroundColor: themeMode.isLight
                 ? kBackgroundAppColorLightMode
                 : kBackgroundAppColorDarkMode,
 
             // Colors.grey.shade200,
             appBar: AppBar(
-              backgroundColor: themeMode.isDark
+              backgroundColor: themeMode.isLight
                   ? kContainerColorLightMode
                   : kContainerColorDarkMode,
               actions: [
                 Opacity(
-                  opacity: !themeMode.isDark ? 0 : 1,
+                  opacity: !themeMode.isLight ? 0 : 1,
                   child: Padding(
                       padding: const EdgeInsets.only(
                         right: 6,

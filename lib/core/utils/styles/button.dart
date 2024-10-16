@@ -19,7 +19,7 @@ import '../../../controller/function_controller/change_theme_mode.dart';
 ButtonStyle fullButton({ChangeThemeMode? themeMode}) {
   return ElevatedButton.styleFrom(
     backgroundColor:
-    (themeMode?.isDark??false ? kPrimaryColorLightMode : kPrimaryColorDarkMode),
+    (themeMode?.isLight??false ? kPrimaryColorLightMode : kPrimaryColorDarkMode),
     elevation: 0,
     textStyle: const TextStyle(
       fontSize: 16,
@@ -33,17 +33,17 @@ ButtonStyle fullButton({ChangeThemeMode? themeMode}) {
 ButtonStyle outlinedButton({ChangeThemeMode? themeMode}) {
   return OutlinedButton.styleFrom(
     foregroundColor:
-    themeMode?.isDark??false ? kPrimaryColorLightMode : kPrimaryColorDarkMode,
+    themeMode?.isLight??false ? kPrimaryColorLightMode : kPrimaryColorDarkMode,
     elevation: 0,
     textStyle: TextStyle(
       fontSize: 16,
-      color: themeMode?.isDark??false ? kPrimaryColorLightMode :
+      color: themeMode?.isLight??false ? kPrimaryColorLightMode :
       kPrimaryColorDarkMode,
       fontFamily: 'IBM',
     ),
     side: BorderSide(
         width: 1,
-        color: themeMode?.isDark??false ? kPrimaryColorLightMode :
+        color: themeMode?.isLight??false ? kPrimaryColorLightMode :
         kPrimaryColorDarkMode),
     padding: const EdgeInsets.all(1),
     alignment: Alignment.center,

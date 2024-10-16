@@ -18,13 +18,13 @@ class AlertWithTwoBtn {
         context: context,
         builder: (context) {
           return AlertDialog(
-            backgroundColor: themeMode.isDark
+            backgroundColor: themeMode.isLight
                 ? kContainerColorLightMode
                 : kContainerColorDarkMode,
             shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(7),
                 side: BorderSide(
-                    color: themeMode.isDark
+                    color: themeMode.isLight
                         ? kPrimaryColorLightMode
                         : kPrimaryColorDarkMode,
                     strokeAlign: 0,
@@ -33,13 +33,13 @@ class AlertWithTwoBtn {
             title: Text(
               title,
               style: TextStyle(
-                  color: themeMode.isDark ? kTextColorLightMode : kTextColorDarkMode,
+                  color: themeMode.isLight ? kTextColorLightMode : kTextColorDarkMode,
                   fontFamily: 'IBM', fontSize: 18),
             ),
             content: Text(
               message,
               style: TextStyle(
-                  color: themeMode.isDark ? kTextColorLightMode : kTextColorDarkMode, fontFamily: 'IBM', fontSize: 18),
+                  color: themeMode.isLight ? kTextColorLightMode : kTextColorDarkMode, fontFamily: 'IBM', fontSize: 18),
             ),
             actions: [
               OutlinedButton(
@@ -79,13 +79,13 @@ class NormalAlert {
         context: context,
         builder: (context) {
           return AlertDialog(
-              backgroundColor: themeMode.isDark
+              backgroundColor: themeMode.isLight
                   ? kContainerColorLightMode
                   : kContainerColorDarkMode,
             shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(7),
                 side: BorderSide(
-                    color: themeMode.isDark
+                    color: themeMode.isLight
                         ? kPrimaryColorLightMode
                         : kPrimaryColorDarkMode,
                     strokeAlign: 0,
@@ -94,12 +94,12 @@ class NormalAlert {
             title: Text(
               title,
               style: TextStyle(
-                  color: themeMode.isDark ? kTextColorLightMode : kTextColorDarkMode, fontFamily: 'IBM', fontSize: 18),
+                  color: themeMode.isLight ? kTextColorLightMode : kTextColorDarkMode, fontFamily: 'IBM', fontSize: 18),
             ),
             content: Text(
               message,
               style: TextStyle(
-                  color: themeMode.isDark ? kTextColorLightMode : kTextColorDarkMode, fontFamily: 'IBM', fontSize: 18),
+                  color: themeMode.isLight ? kTextColorLightMode : kTextColorDarkMode, fontFamily: 'IBM', fontSize: 18),
             ),
             actions: [
               ElevatedButton(

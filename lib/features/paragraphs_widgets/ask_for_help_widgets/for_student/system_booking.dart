@@ -13,15 +13,15 @@ class SystemBooking extends StatelessWidget {
   Widget build(BuildContext context) {
     return ColorfulSafeArea(
       bottomColor: Colors.transparent,
-      color: themeMode.isDark ? kPrimaryColorLightMode : kPrimaryColorDarkMode,
+      color: themeMode.isLight ? kPrimaryColorLightMode : kPrimaryColorDarkMode,
       child: Scaffold(
-        backgroundColor: themeMode.isDark ? kBackgroundAppColorLightMode : kBackgroundAppColorDarkMode,
+        backgroundColor: themeMode.isLight ? kBackgroundAppColorLightMode : kBackgroundAppColorDarkMode,
         appBar: AppBar(
           title: const Text(
             'الحجز',
             style: TextStyle(fontFamily: 'IBM'),
           ),
-          backgroundColor: themeMode.isDark ? kPrimaryColorLightMode : kPrimaryColorDarkMode,
+          backgroundColor: themeMode.isLight ? kPrimaryColorLightMode : kPrimaryColorDarkMode,
         ),
         body: Column(
           children: [
@@ -32,7 +32,7 @@ class SystemBooking extends StatelessWidget {
                   margin: const EdgeInsets.fromLTRB(10, 0, 10, 0),
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(7),
-                    color: themeMode.isDark ? kContainerColorLightMode : kContainerColorDarkMode,
+                    color: themeMode.isLight ? kContainerColorLightMode : kContainerColorDarkMode,
                   ),
                   child: Column(
                     children: [
@@ -66,11 +66,11 @@ class HowCouldBookingApartment extends StatelessWidget {
   Widget build(BuildContext context) {
     return ColorfulSafeArea(
       bottomColor: Colors.transparent,
-      color: themeMode.isDark ? kPrimaryColorLightMode : kPrimaryColorDarkMode,
+      color: themeMode.isLight ? kPrimaryColorLightMode : kPrimaryColorDarkMode,
       child: Scaffold(
-        backgroundColor: themeMode.isDark ? kBackgroundAppColorLightMode : kBackgroundAppColorDarkMode,
+        backgroundColor: themeMode.isLight ? kBackgroundAppColorLightMode : kBackgroundAppColorDarkMode,
         appBar: AppBar(
-          backgroundColor: themeMode.isDark ? kPrimaryColorLightMode : kPrimaryColorDarkMode,
+          backgroundColor: themeMode.isLight ? kPrimaryColorLightMode : kPrimaryColorDarkMode,
         ),
         body: SingleChildScrollView(
           child: Column(
@@ -84,7 +84,7 @@ class HowCouldBookingApartment extends StatelessWidget {
                       "كيف يمكنني حجز شقة",
                       style: TextStyle(
                         fontSize: 20.0,
-                        color: themeMode.isDark ? kTextColorLightMode : kTextColorDarkMode,
+                        color: themeMode.isLight ? kTextColorLightMode : kTextColorDarkMode,
                         fontFamily: 'IBM',
                         inherit: true,
                         
@@ -103,7 +103,7 @@ class HowCouldBookingApartment extends StatelessWidget {
                   "لحجز شقة إتبع الخطوات التالية:",
                   style: TextStyle(
                     fontSize: 16.0,
-                    color:themeMode.isDark ? kTextColorLightMode : kTextColorDarkMode.withOpacity(.8),
+                    color:themeMode.isLight ? kTextColorLightMode : kTextColorDarkMode.withOpacity(.8),
                     fontFamily: 'IBM',
                     inherit: true,
                   ),
@@ -119,7 +119,7 @@ class HowCouldBookingApartment extends StatelessWidget {
                     fontSize: 18.0,
                     fontFamily: 'IBM',
                     inherit: true,
-                    color: themeMode.isDark ? kTextColorLightMode : kTextColorDarkMode
+                    color: themeMode.isLight ? kTextColorLightMode : kTextColorDarkMode
                   ),
                 ),
               ),
@@ -132,7 +132,7 @@ class HowCouldBookingApartment extends StatelessWidget {
                   "إذهب إلى القائمة الرئيسية من خلال الضغط على زر أيقونة المنزل المتواجدة في الجزء السفلي على يمين الواجهة. ",
                   style: TextStyle(
                     fontSize: 16.0,
-                    color: themeMode.isDark ? kTextColorLightMode : kTextColorDarkMode.withOpacity(.8),
+                    color: themeMode.isLight ? kTextColorLightMode : kTextColorDarkMode.withOpacity(.8),
                     fontFamily: 'IBM',
                     inherit: true,
                   ),
@@ -149,7 +149,7 @@ class HowCouldBookingApartment extends StatelessWidget {
                     fontSize: 18.0,
                     fontFamily: 'IBM',
                     inherit: true,
-                      color: themeMode.isDark ? kTextColorLightMode : kTextColorDarkMode
+                      color: themeMode.isLight ? kTextColorLightMode : kTextColorDarkMode
 
                   ),
                 ),
@@ -163,7 +163,7 @@ class HowCouldBookingApartment extends StatelessWidget {
                   "إبحث عن الشقة المناسبة لك, يمكنك إختيار الصنف الذي تريده من خلال زر 'صنف السكن' المتواجد على يمين الواجهة في الجزء العلوي منها، ويظهر هذا الزر من خلال التمرير إلى الأسفل و من ثم إلى الأعلى أو من خلال الضغط على أي عنصر في الواجهة الرئيسية.",
                   style: TextStyle(
                     fontSize: 16.0,
-                    color: themeMode.isDark ? kTextColorLightMode : kTextColorDarkMode.withOpacity(.8),
+                    color: themeMode.isLight ? kTextColorLightMode : kTextColorDarkMode.withOpacity(.8),
                     fontFamily: 'IBM',
                     inherit: true,
                   ),
@@ -185,7 +185,7 @@ class HowCouldBookingApartment extends StatelessWidget {
                         text: "نصيحة:",
                         style: TextStyle(
                           fontSize: 18.0,
-                          color: themeMode.isDark ? kPrimaryColorLightMode : kPrimaryColorDarkMode,
+                          color: themeMode.isLight ? kPrimaryColorLightMode : kPrimaryColorDarkMode,
                           fontFamily: 'IBM',
                           inherit: true,
                         )),
@@ -195,7 +195,7 @@ class HowCouldBookingApartment extends StatelessWidget {
                             "في حال لم تجد الشقة المناسبة تواصل مع أي مالك يمتلك شقة في المدينة التي لم تجد فيها الشقة المطلوبة ، فقد يتمكن من مساعدتك للتواصل مع شخص آخر يمتلك الشقة التي تبحث عنها.",
                         style: TextStyle(
                           fontSize: 16.0,
-                          color:themeMode.isDark ? kTextColorLightMode : kTextColorDarkMode
+                          color:themeMode.isLight ? kTextColorLightMode : kTextColorDarkMode
                             .withOpacity(.7),
                           fontFamily: 'IBM',
                           inherit: true,
@@ -215,7 +215,7 @@ class HowCouldBookingApartment extends StatelessWidget {
                     fontSize: 18.0,
                     fontFamily: 'IBM',
                     inherit: true,
-                      color: themeMode.isDark ? kTextColorLightMode : kTextColorDarkMode
+                      color: themeMode.isLight ? kTextColorLightMode : kTextColorDarkMode
 
                   ),
                 ),
@@ -229,7 +229,7 @@ class HowCouldBookingApartment extends StatelessWidget {
                   "قم بضغط على زر عرض المزيد، لعرض المزيد من التفاصيل حول الشقة المطلوبة.",
                   style: TextStyle(
                     fontSize: 16.0,
-                    color: themeMode.isDark ? kTextColorLightMode : kTextColorDarkMode.withOpacity(.8),
+                    color: themeMode.isLight ? kTextColorLightMode : kTextColorDarkMode.withOpacity(.8),
                     fontFamily: 'IBM',
                     inherit: true,
                   ),
@@ -245,7 +245,7 @@ class HowCouldBookingApartment extends StatelessWidget {
                     fontSize: 18.0,
                     fontFamily: 'IBM',
                     inherit: true,
-                      color: themeMode.isDark ? kTextColorLightMode : kTextColorDarkMode
+                      color: themeMode.isLight ? kTextColorLightMode : kTextColorDarkMode
 
                   ),
                 ),
@@ -259,7 +259,7 @@ class HowCouldBookingApartment extends StatelessWidget {
                   "في مربع الأستفسار ، إختر وسيلة التواصل المناسبة لك، لتتمكن من التواصل مع مالك الشقة.",
                   style: TextStyle(
                     fontSize: 16.0,
-                    color: themeMode.isDark ? kTextColorLightMode : kTextColorDarkMode.withOpacity(.8),
+                    color: themeMode.isLight ? kTextColorLightMode : kTextColorDarkMode.withOpacity(.8),
                     fontFamily: 'IBM',
                     inherit: true,
                   ),
@@ -275,7 +275,7 @@ class HowCouldBookingApartment extends StatelessWidget {
                     fontSize: 18.0,
                     fontFamily: 'IBM',
                     inherit: true,
-                      color: themeMode.isDark ? kTextColorLightMode : kTextColorDarkMode
+                      color: themeMode.isLight ? kTextColorLightMode : kTextColorDarkMode
 
                   ),
                 ),
@@ -289,7 +289,7 @@ class HowCouldBookingApartment extends StatelessWidget {
                   "قم بتواصل مع مالك الشقة لتحصل على المزيد من التفاصيل حول الشقة و آلية حجزها.",
                   style: TextStyle(
                     fontSize: 16.0,
-                    color: themeMode.isDark ? kTextColorLightMode : kTextColorDarkMode.withOpacity(.8),
+                    color: themeMode.isLight ? kTextColorLightMode : kTextColorDarkMode.withOpacity(.8),
                     fontFamily: 'IBM',
                     inherit: true,
                   ),
@@ -311,11 +311,11 @@ class CouldICancelABooking extends StatelessWidget {
   Widget build(BuildContext context) {
     return ColorfulSafeArea(
       bottomColor: Colors.transparent,
-      color: themeMode.isDark ? kPrimaryColorLightMode : kPrimaryColorDarkMode,
+      color: themeMode.isLight ? kPrimaryColorLightMode : kPrimaryColorDarkMode,
       child: Scaffold(
-        backgroundColor: themeMode.isDark ? kBackgroundAppColorLightMode : kBackgroundAppColorDarkMode,
+        backgroundColor: themeMode.isLight ? kBackgroundAppColorLightMode : kBackgroundAppColorDarkMode,
         appBar: AppBar(
-          backgroundColor: themeMode.isDark ? kPrimaryColorLightMode : kPrimaryColorDarkMode,
+          backgroundColor: themeMode.isLight ? kPrimaryColorLightMode : kPrimaryColorDarkMode,
         ),
         body: Column(
           children: [
@@ -328,7 +328,7 @@ class CouldICancelABooking extends StatelessWidget {
                     " هل يمكنني إلغاء حجز شقة؟",
                     style: TextStyle(
                       fontSize: 20.0,
-                      color: themeMode.isDark ? kTextColorLightMode : kTextColorDarkMode,
+                      color: themeMode.isLight ? kTextColorLightMode : kTextColorDarkMode,
                       fontFamily: 'IBM',
                       inherit: true,
 
@@ -346,7 +346,7 @@ class CouldICancelABooking extends StatelessWidget {
                 "",
                 style: TextStyle(
                   fontSize: 16.0,
-                  color: themeMode.isDark ? kTextColorLightMode : kTextColorDarkMode.withOpacity(.8),
+                  color: themeMode.isLight ? kTextColorLightMode : kTextColorDarkMode.withOpacity(.8),
                   fontFamily: 'IBM',
                   inherit: true,
                 ),
@@ -368,11 +368,11 @@ class HowLongIsTheReservationAvailable extends StatelessWidget {
   Widget build(BuildContext context) {
     return ColorfulSafeArea(
       bottomColor: Colors.transparent,
-      color: themeMode.isDark ? kPrimaryColorLightMode : kPrimaryColorDarkMode,
+      color: themeMode.isLight ? kPrimaryColorLightMode : kPrimaryColorDarkMode,
       child: Scaffold(
-        backgroundColor: themeMode.isDark ? kBackgroundAppColorLightMode : kBackgroundAppColorDarkMode,
+        backgroundColor: themeMode.isLight ? kBackgroundAppColorLightMode : kBackgroundAppColorDarkMode,
         appBar: AppBar(
-          backgroundColor: themeMode.isDark ? kPrimaryColorLightMode : kPrimaryColorDarkMode,
+          backgroundColor: themeMode.isLight ? kPrimaryColorLightMode : kPrimaryColorDarkMode,
         ),
         body: Column(
           children: [
@@ -385,7 +385,7 @@ class HowLongIsTheReservationAvailable extends StatelessWidget {
                     "ما هي مدة الحجز المتاحة؟",
                     style: TextStyle(
                       fontSize: 20.0,
-                      color: themeMode.isDark ? kTextColorLightMode : kTextColorDarkMode,
+                      color: themeMode.isLight ? kTextColorLightMode : kTextColorDarkMode,
                       fontFamily: 'IBM',
                       inherit: true,
                     ),
@@ -404,7 +404,7 @@ class HowLongIsTheReservationAvailable extends StatelessWidget {
                 " يتم الاتفاق بينك و بين المؤجر على مدة الحجز مسبقًا.",
                 style: TextStyle(
                   fontSize: 16.0,
-                  color: themeMode.isDark ? kTextColorLightMode : kTextColorDarkMode.withOpacity(.8),
+                  color: themeMode.isLight ? kTextColorLightMode : kTextColorDarkMode.withOpacity(.8),
                   fontFamily: 'IBM',
                   inherit: true,
                 ),

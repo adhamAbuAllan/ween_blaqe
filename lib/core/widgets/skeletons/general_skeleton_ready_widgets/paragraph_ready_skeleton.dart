@@ -69,7 +69,7 @@ class LongParagraphReadySkeleton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: themeMode.isDark ? kBackgroundAppColorLightMode : kBackgroundAppColorDarkMode,
+      backgroundColor: themeMode.isLight ? kBackgroundAppColorLightMode : kBackgroundAppColorDarkMode,
       body: SafeArea(
         child: SingleChildScrollView(
 

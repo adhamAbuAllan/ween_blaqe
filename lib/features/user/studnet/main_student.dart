@@ -63,7 +63,7 @@ class _MainStudentState extends State<MainStudent> {
 
     return ColorfulSafeArea(
       bottomColor: Colors.transparent,
-      color: themeMode.isDark ? kPrimaryColorLightMode : kPrimaryColorDarkMode,
+      color: themeMode.isLight ? kPrimaryColorLightMode : kPrimaryColorDarkMode,
       child: Obx(() {
 
 
@@ -72,7 +72,7 @@ class _MainStudentState extends State<MainStudent> {
 
 
           // appBar: AppBar(bottomOpacity: 0,leadingWidth: 20,toolbarOpacity: 0,backgroundColor: Colors.transparent,elevation: 0,shadowColor: Colors.transparent,title: Text("Your wlecome "),),
-            backgroundColor: themeMode.isDark
+            backgroundColor: themeMode.isLight
                 ? kBackgroundAppColorLightMode
                 : kBackgroundAppColorDarkMode,
             body: GetBuilder<StudentController>(
@@ -80,7 +80,7 @@ class _MainStudentState extends State<MainStudent> {
 
                 return ColorfulSafeArea(
                   bottomColor: Colors.transparent,
-                  color: themeMode.isDark
+                  color: themeMode.isLight
                       ? kPrimaryColorLightMode
                       : kPrimaryColorDarkMode,
                   child: IndexedStack(
@@ -378,7 +378,7 @@ class _MainStudentState extends State<MainStudent> {
             // buildSpeedDial()
             FloatingActionButton(
               tooltip: "اضافة أعلان",
-              backgroundColor: themeMode.isDark
+              backgroundColor: themeMode.isLight
                   ? kPrimaryColorLightMode
                   : kPrimaryColorDarkMode,
               shape: ContinuousRectangleBorder(

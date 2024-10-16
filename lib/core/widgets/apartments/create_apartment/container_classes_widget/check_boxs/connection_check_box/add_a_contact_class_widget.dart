@@ -113,7 +113,7 @@ class _AddAcontactState extends State<AddAcontact> {
       padding: const EdgeInsets.fromLTRB(0, 0, 0, 10),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(7),
-        color: themeMode.isDark ? kContainerColorLightMode : kContainerColorDarkMode,
+        color: themeMode.isLight ? kContainerColorLightMode : kContainerColorDarkMode,
       ),
       child: Column(
         children: features.map((feature) {
@@ -122,15 +122,15 @@ class _AddAcontactState extends State<AddAcontact> {
               Checkbox(
                   shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(2.6)),
-                  focusColor: themeMode.isDark ? kPrimaryColorLightMode : kPrimaryColorDarkMode,
+                  focusColor: themeMode.isLight ? kPrimaryColorLightMode : kPrimaryColorDarkMode,
                   checkColor: Colors.white,
                   // hoverColor: kPrimaryColor,
-                  activeColor: themeMode.isDark ? kPrimaryColorLightMode : kPrimaryColorDarkMode,
-                  side:  BorderSide(color: themeMode.isDark ? kPrimaryColor300LightMode : kPrimaryColor300DarkMode),
+                  activeColor: themeMode.isLight ? kPrimaryColorLightMode : kPrimaryColorDarkMode,
+                  side:  BorderSide(color: themeMode.isLight ? kPrimaryColor300LightMode : kPrimaryColor300DarkMode),
                   splashRadius: 20,
                   // autofocus: false,
                   // tristate: true,
-                  overlayColor: MaterialStateProperty.all(themeMode.isDark ? kPrimaryColorLightMode : kPrimaryColorDarkMode),
+                  overlayColor: WidgetStateProperty.all(themeMode.isLight ? kPrimaryColorLightMode : kPrimaryColorDarkMode),
                   value: feature.checked,
                   onChanged: (a) {
                     if (a != null) {

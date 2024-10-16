@@ -55,21 +55,21 @@ class _DropdownButtonClassWidget extends State<DropdownButtonClassWidget> {
                     enabledBorder: OutlineInputBorder(
                       borderSide: BorderSide(
                         width: 1,
-                        color: themeMode.isDark
+                        color: themeMode.isLight
                             ? kPrimaryColorLightMode.withOpacity(.3)
                             : kPrimaryColorDarkMode.withOpacity(.3),
                       ),
                     ),
                     focusedBorder: OutlineInputBorder(
                       borderSide: BorderSide(
-                        color: themeMode.isDark
+                        color: themeMode.isLight
                             ? kPrimaryColorLightMode
                             : kPrimaryColorDarkMode,
                         width: 1,
                       ),
                     ),
                   ),
-                  dropdownColor: themeMode.isDark
+                  dropdownColor: themeMode.isLight
                       ? kContainerColorLightMode
                       : kContainerColorDarkMode,
                   value: items.isEmpty
@@ -96,7 +96,7 @@ class _DropdownButtonClassWidget extends State<DropdownButtonClassWidget> {
                           itemName,
                           style: TextStyle(
                             // fontSize: 14,
-                            color: themeMode.isDark
+                            color: themeMode.isLight
                                 ?kTextColorLightMode
                                 : kTextColorDarkMode,
                             fontFamily: 'IBM',

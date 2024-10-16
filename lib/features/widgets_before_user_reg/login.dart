@@ -28,7 +28,7 @@ import '../../api/users.dart';
 // ////////////////////////////////////////////////////////////////
 import 'package:ween_blaqe/constants/nums.dart';
 import '../../constants/coordination.dart';
-import '../../constants/injection.dart';
+import '../../constants/get_it_controller.dart';
 import '../../core/widgets/alirt_class_widget.dart';
 import '../../core/widgets/apartments/create_apartment/container_classes_widget/input_text_class_widget/container_input_text_class_widget.dart';
 import '../../core/widgets/login/password_container_class_widget.dart';
@@ -102,9 +102,9 @@ class _LoginState extends State<Login> {
       child: ColorfulSafeArea(
         bottomColor: Colors.transparent,
         color:
-            themeMode.isDark ? kPrimaryColorLightMode : kPrimaryColorDarkMode,
+            themeMode.isLight ? kPrimaryColorLightMode : kPrimaryColorDarkMode,
         child: Scaffold(
-          backgroundColor: themeMode.isDark
+          backgroundColor: themeMode.isLight
               ? kBackgroundAppColorLightMode
               : kBackgroundAppColorDarkMode,
           body: SingleChildScrollView(
@@ -118,7 +118,7 @@ class _LoginState extends State<Login> {
                       Padding(
                         padding: const EdgeInsets.fromLTRB(0, 25, 0, 0),
                         child: BackButton(
-                          color: themeMode.isDark
+                          color: themeMode.isLight
                               ? kTextColorLightMode
                               : kTextColorDarkMode,
                         ),
@@ -144,7 +144,7 @@ class _LoginState extends State<Login> {
                               fontSize: 28.0,
                               fontFamily: 'IBM',
                               inherit: true,
-                              color: themeMode.isDark
+                              color: themeMode.isLight
                                   ? kTextColorLightMode
                                   : kTextColorDarkMode),
                         ),
@@ -166,7 +166,7 @@ class _LoginState extends State<Login> {
                                   fontFamily: 'IBM',
                                   inherit: true,
                                   fontWeight: FontWeight.bold,
-                                  color: themeMode.isDark
+                                  color: themeMode.isLight
                                       ? kTextColorLightMode
                                       : kTextColorDarkMode),
                             ),
@@ -176,7 +176,7 @@ class _LoginState extends State<Login> {
                                   fontSize: 28,
                                   fontFamily: 'IBM',
                                   inherit: true,
-                                  color: themeMode.isDark
+                                  color: themeMode.isLight
                                       ? kPrimaryColorLightMode
                                       : kPrimaryColorDarkMode,
                                   fontWeight: FontWeight.bold),

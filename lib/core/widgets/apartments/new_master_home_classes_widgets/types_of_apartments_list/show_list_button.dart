@@ -54,7 +54,7 @@ class _BtnShowTypesOfApartmentsState extends State<BtnShowTypesOfApartments> {
             const EdgeInsets.only(
                 top: 4),
             // height: 35,
-            color:themeMode.isDark ? kContainerColorLightMode : kContainerColorDarkMode,
+            color:themeMode.isLight ? kContainerColorLightMode : kContainerColorDarkMode,
             child: widget.text?.isNotEmpty??false ? Text(
                 " ${widget.text} ") :   const Text(
                 " صنف السكن ")));

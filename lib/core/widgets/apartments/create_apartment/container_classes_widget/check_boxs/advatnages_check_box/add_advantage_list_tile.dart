@@ -36,7 +36,7 @@ class _AddAdvantageListTileState extends State<AddAdvantageListTile> {
               style: TextStyle(
                   fontFamily: 'IBM',
                   fontSize: 16,
-                  color: themeMode.isDark
+                  color: themeMode.isLight
                       ? kTextColorLightMode
                       : kTextColorDarkMode)),
           // trailing: entry.icon!.isEmpty

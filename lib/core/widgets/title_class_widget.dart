@@ -17,7 +17,7 @@ class TitleClassWidget extends StatelessWidget {
               fontSize: 26.0,
               fontFamily: 'IBM',
               inherit: true,
-              color: themeMode.isDark ? kTextColorLightMode : kTextColorDarkMode
+              color: themeMode.isLight ? kTextColorLightMode : kTextColorDarkMode
             ),
           ),
         ),

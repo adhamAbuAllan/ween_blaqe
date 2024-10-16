@@ -29,7 +29,7 @@ class ApartmentLocatoinText extends StatelessWidget {
           style: TextStyle(
             fontSize: 16,
             color:
-                themeMode.isDark ? kTextColorLightMode : kTextColorDarkMode,
+                themeMode.isLight ? kTextColorLightMode : kTextColorDarkMode,
             fontFamily: 'IBM',
           ),
         ),

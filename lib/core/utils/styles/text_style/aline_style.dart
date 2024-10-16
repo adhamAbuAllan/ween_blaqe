@@ -9,7 +9,7 @@ class Aline extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Divider(
-     color: themeMode.isDark ? kTextColorLightMode : kTextColorDarkMode,
+     color: themeMode.isLight ? kTextColorLightMode : kTextColorDarkMode,
      height: 1,
      thickness: .5,
     );

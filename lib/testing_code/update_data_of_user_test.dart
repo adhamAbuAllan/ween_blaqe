@@ -7,7 +7,7 @@ import 'package:ween_blaqe/core/utils/styles/button.dart';
 // import 'package:ween_blaqe/core/utils/styles/text_style/aline_style.dart';
 
 import '../constants/coordination.dart';
-import '../constants/injection.dart';
+import '../constants/get_it_controller.dart';
 import '../constants/nums.dart';
 import '../core/utils/funcations/go_url_launcher_methodes/go_to_whatsapp_method.dart';
 import '../core/widgets/registration/text_filed_class_widget.dart';
@@ -59,7 +59,7 @@ class _UpdateUserWidgetTestState extends State<UpdateUserWidgetTest> {
     return GestureDetector(
       onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
       child: Scaffold(
-        backgroundColor: themeMode.isDark
+        backgroundColor: themeMode.isLight
             ? kBackgroundAppColorLightMode
             : kBackgroundAppColorDarkMode,
         body: Padding(
@@ -103,7 +103,7 @@ class _UpdateUserWidgetTestState extends State<UpdateUserWidgetTest> {
                           enabledBorder: OutlineInputBorder(
                             //<-- SEE HERE
                             borderSide: BorderSide(
-                                color: themeMode.isDark
+                                color: themeMode.isLight
                                     ? kPrimaryColor300LightMode
                                     : kPrimaryColor300DarkMode,
                                 width: 0.5),
@@ -111,7 +111,7 @@ class _UpdateUserWidgetTestState extends State<UpdateUserWidgetTest> {
                           focusedBorder: OutlineInputBorder(
                             //<-- SEE HERE
                             borderSide: BorderSide(
-                                color: themeMode.isDark
+                                color: themeMode.isLight
                                     ? kPrimaryColorLightMode
                                     : kPrimaryColorDarkMode,
                                 width: 1),
@@ -123,7 +123,7 @@ class _UpdateUserWidgetTestState extends State<UpdateUserWidgetTest> {
                             selectedCountryCode = newValue!;
                           });
                         },
-                        dropdownColor: themeMode.isDark
+                        dropdownColor: themeMode.isLight
                             ? kContainerColorLightMode
                             : kContainerColorDarkMode,
                         items: countryCodes
@@ -133,7 +133,7 @@ class _UpdateUserWidgetTestState extends State<UpdateUserWidgetTest> {
                             child: Text(
                               "+$value",
                               style: TextStyle(
-                                color: themeMode.isDark
+                                color: themeMode.isLight
                                     ? kTextColorLightMode
                                     : kTextColorDarkMode,
                               ),
@@ -163,7 +163,7 @@ class _UpdateUserWidgetTestState extends State<UpdateUserWidgetTest> {
                         "التحقق عن طريق الواتساب",
                         // "ستصلك رسالة لتأكيد رقمك ",
                         style: TextStyle(
-                          color: themeMode.isDark
+                          color: themeMode.isLight
                               ? kTextColorLightMode
                               : kTextColorDarkMode,
                           fontSize: 16,

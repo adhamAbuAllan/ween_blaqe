@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:ween_blaqe/constants/nums.dart';
 
 import '../../../../constants/coordination.dart';
-import '../../../../constants/injection.dart';
+import '../../../../constants/get_it_controller.dart';
 
 Widget buttonAccount(Function onClick, String title,
     {Image? image, IconData? icon, Color? color, required BuildContext
@@ -10,7 +10,7 @@ Widget buttonAccount(Function onClick, String title,
 
   return ListTile(
 
-    iconColor: themeMode.isDark
+    iconColor: themeMode.isLight
         ? kTextColorLightMode
         : kTextColorDarkMode,
     onTap: () {
@@ -18,7 +18,7 @@ Widget buttonAccount(Function onClick, String title,
     },
     dense:
         getIt<AppDimension>().isSmallScreen(context),
-    splashColor: themeMode.isDark
+    splashColor: themeMode.isLight
         ? kBackgroundAppColorLightMode
         : kBackgroundAppColorDarkMode,
     // minVerticalPadding: ,
@@ -35,11 +35,11 @@ Widget buttonAccount(Function onClick, String title,
       style: TextStyle(
           fontSize: 16,
           fontFamily: 'IBM',
-          color: themeMode.isDark ? kTextColorLightMode : kTextColorDarkMode),
+          color: themeMode.isLight ? kTextColorLightMode : kTextColorDarkMode),
     ),
     trailing: Icon(
       Icons.arrow_forward_ios_rounded,
-      color: themeMode.isDark ? kTextColorLightMode : kTextColorDarkMode,
+      color: themeMode.isLight ? kTextColorLightMode : kTextColorDarkMode,
     ),
   );
   // return Padding(
@@ -87,11 +87,11 @@ Widget askForHelpButton(Function onClick, String title) {
       style: TextStyle(
           fontSize: 18,
           fontFamily: 'IBM',
-          color: themeMode.isDark ? kTextColorLightMode : kTextColorDarkMode),
+          color: themeMode.isLight ? kTextColorLightMode : kTextColorDarkMode),
     ),
     trailing: Icon(
       Icons.arrow_forward_ios_rounded,
-      color: themeMode.isDark ? kTextColorLightMode : kTextColorDarkMode,
+      color: themeMode.isLight ? kTextColorLightMode : kTextColorDarkMode,
     ),
   );
   // return Padding(
@@ -153,7 +153,7 @@ Widget buttonHaveTitleAndIcon(Function onClick, String title,
       style: TextStyle(
           fontSize: 16,
           fontFamily: 'IBM',
-          color: themeMode.isDark ? kTextColorLightMode : kTextColorDarkMode),
+          color: themeMode.isLight ? kTextColorLightMode : kTextColorDarkMode),
     ),
     trailing: isIcon ?? false ? icon : image,
   );

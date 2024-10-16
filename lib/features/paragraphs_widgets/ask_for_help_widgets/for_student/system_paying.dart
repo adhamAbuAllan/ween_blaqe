@@ -15,16 +15,16 @@ class SystemPaying extends StatelessWidget {
   Widget build(BuildContext context) {
     return ColorfulSafeArea(
       bottomColor: Colors.transparent ,
-      color: themeMode.isDark ? kPrimaryColorLightMode : kPrimaryColorDarkMode,
+      color: themeMode.isLight ? kPrimaryColorLightMode : kPrimaryColorDarkMode,
       child: Scaffold(
-        backgroundColor: themeMode.isDark ? kBackgroundAppColorLightMode : kBackgroundAppColorDarkMode,
+        backgroundColor: themeMode.isLight ? kBackgroundAppColorLightMode : kBackgroundAppColorDarkMode,
 
         appBar: AppBar(
           title: const Text(
             'الدفع',
             style: TextStyle(fontFamily: 'IBM'),
           ),
-          backgroundColor: themeMode.isDark ? kPrimaryColorLightMode : kPrimaryColorDarkMode,
+          backgroundColor: themeMode.isLight ? kPrimaryColorLightMode : kPrimaryColorDarkMode,
         ),
         body: Column(
           children: [
@@ -35,7 +35,7 @@ class SystemPaying extends StatelessWidget {
                   margin: const EdgeInsets.fromLTRB(10, 0, 10, 0),
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(7),
-                    color: themeMode.isDark ? kContainerColorLightMode : kContainerColorDarkMode,
+                    color: themeMode.isLight ? kContainerColorLightMode : kContainerColorDarkMode,
                   ),
                   child: Column(
                     //cancel
@@ -66,12 +66,12 @@ class WhatIsSystemPayingAllow extends StatelessWidget {
   Widget build(BuildContext context) {
     return ColorfulSafeArea(
       bottomColor: Colors.transparent ,
-      color: themeMode.isDark ? kPrimaryColorLightMode : kPrimaryColorDarkMode,
+      color: themeMode.isLight ? kPrimaryColorLightMode : kPrimaryColorDarkMode,
       child: Scaffold(
-        backgroundColor: themeMode.isDark ? kBackgroundAppColorLightMode : kBackgroundAppColorDarkMode,
+        backgroundColor: themeMode.isLight ? kBackgroundAppColorLightMode : kBackgroundAppColorDarkMode,
 
         appBar: AppBar(
-          backgroundColor: themeMode.isDark ? kPrimaryColorLightMode : kPrimaryColorDarkMode,
+          backgroundColor: themeMode.isLight ? kPrimaryColorLightMode : kPrimaryColorDarkMode,
         ),
         body: Column(
           children: [
@@ -84,7 +84,7 @@ class WhatIsSystemPayingAllow extends StatelessWidget {
                     "ما هي طرق الدفع المقبولة؟",
                     style: TextStyle(
                       fontSize: 20.0,
-                      color:themeMode.isDark ? kTextColorLightMode : kTextColorDarkMode,
+                      color:themeMode.isLight ? kTextColorLightMode : kTextColorDarkMode,
                       fontFamily: 'IBM',
                       inherit: true,
                     ),
@@ -101,7 +101,7 @@ class WhatIsSystemPayingAllow extends StatelessWidget {
                 "يتم الدفع عن طريق الاتفاق بينك و بين المالك ، وغالبًا ما تكون الصفقات بين المؤجر و المستأجر في الضفة الغربية بالدفع نقداً. ",
                 style: TextStyle(
                   fontSize: 16.0,
-                  color: themeMode.isDark ? kTextColorLightMode : kTextColorDarkMode.withOpacity(.8),
+                  color: themeMode.isLight ? kTextColorLightMode : kTextColorDarkMode.withOpacity(.8),
                 fontFamily: 'IBM',
                   inherit: true,
                 ),
@@ -117,7 +117,7 @@ class WhatIsSystemPayingAllow extends StatelessWidget {
                   fontSize: 16.0,
                   fontFamily: 'IBM',
                   inherit: true,
-                  color: themeMode.isDark ? kTextColorLightMode : kTextColorDarkMode.withOpacity(.7)
+                  color: themeMode.isLight ? kTextColorLightMode : kTextColorDarkMode.withOpacity(.7)
                 ),
               ),
             ),
@@ -135,11 +135,11 @@ class CouldIPayByDeposit extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ColorfulSafeArea(
-      color: themeMode.isDark ? kPrimaryColorLightMode : kPrimaryColorDarkMode,
+      color: themeMode.isLight ? kPrimaryColorLightMode : kPrimaryColorDarkMode,
       child: Scaffold(
-        backgroundColor: themeMode.isDark ? kBackgroundAppColorLightMode : kBackgroundAppColorDarkMode,
+        backgroundColor: themeMode.isLight ? kBackgroundAppColorLightMode : kBackgroundAppColorDarkMode,
         appBar: AppBar(
-          backgroundColor: themeMode.isDark ? kPrimaryColorLightMode : kPrimaryColorDarkMode,
+          backgroundColor: themeMode.isLight ? kPrimaryColorLightMode : kPrimaryColorDarkMode,
         ),
         body: Column(
           children: [
@@ -152,7 +152,7 @@ class CouldIPayByDeposit extends StatelessWidget {
                     "هل يمكنني دفع عربون؟",
                     style: TextStyle(
                       fontSize: 20.0,
-                      color:themeMode.isDark ? kTextColorLightMode : kTextColorDarkMode,
+                      color:themeMode.isLight ? kTextColorLightMode : kTextColorDarkMode,
                       fontFamily: 'IBM',
                       inherit: true,
 
@@ -170,7 +170,7 @@ class CouldIPayByDeposit extends StatelessWidget {
                 "حسب الاتفاق بينك و بين المؤجر، ولكن غالبًا ما يوافق المؤجرون على دفع عربون حتى يظمن المؤجر حقه.",
                 style: TextStyle(
                   fontSize: 16.0,
-                  color: themeMode.isDark ? kTextColorLightMode : kTextColorDarkMode.withOpacity(.8),
+                  color: themeMode.isLight ? kTextColorLightMode : kTextColorDarkMode.withOpacity(.8),
                   fontFamily: 'IBM',
                   inherit: true,
                 ),

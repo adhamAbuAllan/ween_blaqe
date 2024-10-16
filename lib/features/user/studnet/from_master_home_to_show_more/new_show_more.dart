@@ -24,7 +24,7 @@ import 'package:ween_blaqe/core/utils/styles/button.dart';
 
 // import 'package:ween_blaqe/features/error_widgets/no_internet.dart';
 import '../../../../constants/coordination.dart';
-import '../../../../constants/injection.dart';
+import '../../../../constants/get_it_controller.dart';
 import '../../../../constants/nums.dart';
 import '../../../../core/widgets/apartments/show_more_classes_widget/advantages_class_widget.dart';
 import '../../../../core/widgets/apartments/show_more_classes_widget/image_slider/custom_slider.dart';
@@ -133,7 +133,7 @@ class _NewShowMoreState extends State<NewShowMore> {
   Widget build(BuildContext context) {
     // bool isMove = false;
     return Scaffold(
-      backgroundColor: themeMode.isDark
+      backgroundColor: themeMode.isLight
           ? kBackgroundAppColorLightMode
           : kBackgroundAppColorDarkMode,
       body: SingleChildScrollView(
@@ -159,7 +159,7 @@ class _NewShowMoreState extends State<NewShowMore> {
                           //        32)),
                           tapTargetSize: MaterialTapTargetSize.shrinkWrap,
                         ),
-                        color: themeMode.isDark
+                        color: themeMode.isLight
                             ? kTextColorLightMode
                             : kTextColorDarkMode,
                       ),
@@ -167,7 +167,7 @@ class _NewShowMoreState extends State<NewShowMore> {
                     Text(
                       "${widget.oneApartment?.timeAgo} ",
                       style: TextStyle(
-                          color: themeMode.isDark
+                          color: themeMode.isLight
                               ? kTextColorLightMode
                               : kTextColorDarkMode,
                           fontFamily: "IBM",
@@ -224,7 +224,7 @@ class _NewShowMoreState extends State<NewShowMore> {
                 padding: const EdgeInsets.all(5),
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(7),
-                  color: themeMode.isDark
+                  color: themeMode.isLight
                       ? kContainerColorLightMode
                       : kContainerColorDarkMode,
                 ),
@@ -241,7 +241,7 @@ class _NewShowMoreState extends State<NewShowMore> {
                             style: TextStyle(
                                 fontSize: 20,
                                 fontFamily: 'IBM',
-                                color: themeMode.isDark
+                                color: themeMode.isLight
                                     ? kTextColorLightMode
                                     : kTextColorDarkMode
                                 //kTextColor
@@ -268,7 +268,7 @@ class _NewShowMoreState extends State<NewShowMore> {
                                 ,
                                 softWrap: true,
                                 style: TextStyle(
-                                  color: themeMode.isDark
+                                  color: themeMode.isLight
                                       ? kTextColorLightMode
                                       : kTextColorDarkMode,
                                   fontSize: 18,
@@ -298,7 +298,7 @@ class _NewShowMoreState extends State<NewShowMore> {
                               softWrap: true,
                               textDirection: TextDirection.rtl,
                               style: TextStyle(
-                                color: themeMode.isDark
+                                color: themeMode.isLight
                                     ? kTextColorLightMode
                                     : kTextColorDarkMode,
                                 fontFamily: 'IBM',
@@ -323,7 +323,7 @@ class _NewShowMoreState extends State<NewShowMore> {
                                           ? "عدد الافراد المسموح به:${widget.oneApartment?.countOfStudnet ?? 0}"
                                           : "عدد الافراد المسموح به:${widget.oneApartment?.countOfStudnet ?? 0}"))),
                               style: TextStyle(
-                                color: themeMode.isDark
+                                color: themeMode.isLight
                                     ? kTextColorLightMode
                                     : kTextColorDarkMode,
                                 fontSize: 16,
@@ -341,7 +341,7 @@ class _NewShowMoreState extends State<NewShowMore> {
                           child: Text(
                               "نوع السكن:${widget.oneApartment?.type?.name ?? ""}",
                               style: TextStyle(
-                                color: themeMode.isDark
+                                color: themeMode.isLight
                                     ? kTextColorLightMode
                                     : kTextColorDarkMode,
                                 fontSize: 16,
@@ -362,7 +362,7 @@ class _NewShowMoreState extends State<NewShowMore> {
 
                             }",
                             style: TextStyle(
-                              color: themeMode.isDark
+                              color: themeMode.isLight
                                   ? kPrimaryColorLightMode
                                   : kPrimaryColorDarkMode,
                               fontFamily: 'IBM',
@@ -373,7 +373,7 @@ class _NewShowMoreState extends State<NewShowMore> {
                           padding: const EdgeInsets.fromLTRB(0, 0, 3, 10),
                           child: Text("شيكل/شهري",
                               style: TextStyle(
-                                color: themeMode.isDark
+                                color: themeMode.isLight
                                     ? kPrimaryColorLightMode
                                     : kPrimaryColorDarkMode,
                                 fontSize: 16,
@@ -389,7 +389,7 @@ class _NewShowMoreState extends State<NewShowMore> {
                 margin: const EdgeInsets.fromLTRB(10, 23, 10, 0),
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(7),
-                  color: themeMode.isDark
+                  color: themeMode.isLight
                       ? kContainerColorLightMode
                       : kContainerColorDarkMode,
                 ),
@@ -405,7 +405,7 @@ class _NewShowMoreState extends State<NewShowMore> {
                             style: TextStyle(
                                 fontSize: 20,
                                 fontFamily: 'IBM',
-                                color: themeMode.isDark
+                                color: themeMode.isLight
                                     ? kTextColorLightMode
                                     : kTextColorDarkMode),
                           ),
@@ -447,10 +447,10 @@ class _NewShowMoreState extends State<NewShowMore> {
                                             side: WidgetStatePropertyAll(BorderSide(
                                                 width: !isRoomSizeChange ? 1 : 2,
                                                 color: isRoomSizeChange
-                                                    ? themeMode.isDark
+                                                    ? themeMode.isLight
                                                         ? kPrimaryColorLightMode
                                                         : kPrimaryColorDarkMode
-                                                    : themeMode.isDark
+                                                    : themeMode.isLight
                                                         ? kPrimaryColor300LightMode
                                                         : kPrimaryColor300DarkMode))),
                                     child: Column(
@@ -458,7 +458,7 @@ class _NewShowMoreState extends State<NewShowMore> {
                                         Text(
                                           titleAboutApartmentroom,
                                           style: TextStyle(
-                                              color: themeMode.isDark
+                                              color: themeMode.isLight
                                                   ? kTextColorLightMode
                                                   : kTextColorDarkMode),
                                         ),
@@ -479,7 +479,7 @@ class _NewShowMoreState extends State<NewShowMore> {
                                                       "${widget.oneApartment?.rooms ?? 0}",
                                                       style: TextStyle(
                                                           color: themeMode
-                                                                  .isDark
+                                                                  .isLight
                                                               ? kTextColorLightMode
                                                               : kTextColorDarkMode),
                                                     ),
@@ -489,7 +489,7 @@ class _NewShowMoreState extends State<NewShowMore> {
                                                   imageAboutApartmentRoom),
                                               width: 32,
                                               height: 32,
-                                              color: themeMode.isDark
+                                              color: themeMode.isLight
                                                   ? kTextColorLightMode
                                                   : kTextColorDarkMode,
                                             ),
@@ -531,10 +531,10 @@ class _NewShowMoreState extends State<NewShowMore> {
                                             side: WidgetStatePropertyAll(BorderSide(
                                                 width: !isRoomBathSizeChange ? 1 : 2,
                                                 color: isRoomBathSizeChange
-                                                    ? themeMode.isDark
+                                                    ? themeMode.isLight
                                                         ? kPrimaryColorLightMode
                                                         : kPrimaryColorDarkMode
-                                                    : themeMode.isDark
+                                                    : themeMode.isLight
                                                         ? kPrimaryColor300LightMode
                                                         : kPrimaryColor300DarkMode))),
                                     child: Column(
@@ -545,7 +545,7 @@ class _NewShowMoreState extends State<NewShowMore> {
                                         Text(
                                           "الحمامات",
                                           style: TextStyle(
-                                              color: themeMode.isDark
+                                              color: themeMode.isLight
                                                   ? kTextColorLightMode
                                                   : kTextColorDarkMode),
                                         ),
@@ -573,7 +573,7 @@ class _NewShowMoreState extends State<NewShowMore> {
                                                       "${widget.oneApartment?.bathrooms ?? 0}",
                                                       style: TextStyle(
                                                           color: themeMode
-                                                                  .isDark
+                                                                  .isLight
                                                               ? kTextColorLightMode
                                                               : kTextColorDarkMode),
                                                     ),
@@ -583,7 +583,7 @@ class _NewShowMoreState extends State<NewShowMore> {
                                                   "assets/images/apartments_images/about_apartment/bathroom.png"),
                                               width: 32,
                                               height: 32,
-                                              color: themeMode.isDark
+                                              color: themeMode.isLight
                                                   ? kTextColorLightMode
                                                   : kTextColorDarkMode,
                                             ),
@@ -622,10 +622,10 @@ class _NewShowMoreState extends State<NewShowMore> {
                                             side: WidgetStatePropertyAll(BorderSide(
                                                 width: !isAreaSizeChange ? 1 : 2,
                                                 color: isAreaSizeChange
-                                                    ? themeMode.isDark
+                                                    ? themeMode.isLight
                                                         ? kPrimaryColorLightMode
                                                         : kPrimaryColorDarkMode
-                                                    : themeMode.isDark
+                                                    : themeMode.isLight
                                                         ? kPrimaryColor300LightMode
                                                         : kPrimaryColor300DarkMode))),
                                     child: Column(
@@ -633,7 +633,7 @@ class _NewShowMoreState extends State<NewShowMore> {
                                         Text(
                                           "المساحة",
                                           style: TextStyle(
-                                              color: themeMode.isDark
+                                              color: themeMode.isLight
                                                   ? kTextColorLightMode
                                                   : kTextColorDarkMode),
                                         ),
@@ -654,7 +654,7 @@ class _NewShowMoreState extends State<NewShowMore> {
                                                       "²م${widget.oneApartment?.squareMeters ?? 0}",
                                                       style: TextStyle(
                                                           color: themeMode
-                                                                  .isDark
+                                                                  .isLight
                                                               ? kTextColorLightMode
                                                               : kTextColorDarkMode),
                                                     ),
@@ -665,7 +665,7 @@ class _NewShowMoreState extends State<NewShowMore> {
                                               ),
                                               width: 32,
                                               height: 32,
-                                              color: themeMode.isDark
+                                              color: themeMode.isLight
                                                   ? kTextColorLightMode
                                                   : kTextColorDarkMode,
                                             ),
@@ -737,7 +737,7 @@ class _NewShowMoreState extends State<NewShowMore> {
                 //decoration of show apartment style
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(7),
-                  color: themeMode.isDark
+                  color: themeMode.isLight
                       ? kContainerColorLightMode
                       : kContainerColorDarkMode,
                 ),
@@ -751,7 +751,7 @@ class _NewShowMoreState extends State<NewShowMore> {
                           padding: const EdgeInsets.fromLTRB(0, 10, 10, 0),
                           child: Text("وصف الشقة",
                               style: TextStyle(
-                                color: themeMode.isDark
+                                color: themeMode.isLight
                                     ? kTextColorLightMode
                                     : kTextColorDarkMode,
                                 fontSize: 20,
@@ -766,7 +766,7 @@ class _NewShowMoreState extends State<NewShowMore> {
                       padding: const EdgeInsets.fromLTRB(10, 0, 10, 10),
                       child: Text(widget.oneApartment?.description ?? "",
                           style: TextStyle(
-                            color: themeMode.isDark
+                            color: themeMode.isLight
                                 ? kTextColorLightMode
                                 : kTextColorDarkMode,
                             fontSize: 16,
@@ -786,7 +786,7 @@ class _NewShowMoreState extends State<NewShowMore> {
                 //decoration of show apartment style
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(7),
-                  color: themeMode.isDark
+                  color: themeMode.isLight
                       ? kContainerColorLightMode
                       : kContainerColorDarkMode,
                 ),
@@ -800,7 +800,7 @@ class _NewShowMoreState extends State<NewShowMore> {
                           padding: const EdgeInsets.fromLTRB(0, 10, 10, 10),
                           child: Text("للإستفسار",
                               style: TextStyle(
-                                color: themeMode.isDark
+                                color: themeMode.isLight
                                     ? kTextColorLightMode
                                     : kTextColorDarkMode,
                                 fontSize: 20,
@@ -866,7 +866,7 @@ class _NewShowMoreState extends State<NewShowMore> {
                                         const EdgeInsets.fromLTRB(0, 0, 0, 0),
                                     child: Text(" واتس اب",
                                         style: TextStyle(
-                                          color: themeMode.isDark
+                                          color: themeMode.isLight
                                               ? kTextColorLightMode
                                               : kTextColorDarkMode,
                                           fontSize: 16,
@@ -1017,7 +1017,7 @@ class _NewShowMoreState extends State<NewShowMore> {
           text,
           textStyle: TextStyle(
               fontFamily: "IBM",
-              color: themeMode.isDark
+              color: themeMode.isLight
                   ? kPrimaryColorLightMode
                   : kPrimaryColorDarkMode),
           duration: const Duration(

@@ -30,7 +30,7 @@ class _ApartmentPriceTextState extends State<ApartmentPriceText> {
 
             }",
             style: TextStyle(
-              color: themeMode.isDark
+              color: themeMode.isLight
                   ? kPrimaryColorLightMode
                   : kPrimaryColorDarkMode,
               fontFamily: 'IBM',
@@ -41,7 +41,7 @@ class _ApartmentPriceTextState extends State<ApartmentPriceText> {
           padding: const EdgeInsets.fromLTRB(0, 0, 3, 10),
           child: Text("شيكل/شهري",
               style: TextStyle(
-                color: themeMode.isDark
+                color: themeMode.isLight
                     ? kPrimaryColorLightMode
                     : kPrimaryColorDarkMode,
                 fontSize: 12,

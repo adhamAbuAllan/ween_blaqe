@@ -193,7 +193,7 @@ class _AddImagesState extends State<AddImages> {
         'تُعرض الصور المختارة هنا',
         style: TextStyle(
           fontFamily: 'IBM',
-          color: themeMode.isDark ? kTextColorLightMode : kTextColorDarkMode,
+          color: themeMode.isLight ? kTextColorLightMode : kTextColorDarkMode,
         ),
         textAlign: TextAlign.center,
       );
@@ -277,12 +277,12 @@ class _AddImagesState extends State<AddImages> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: themeMode.isDark
+      backgroundColor: themeMode.isLight
           ? kBackgroundAppColorLightMode
           : kBackgroundAppColorDarkMode,
       appBar: AppBar(
         automaticallyImplyLeading: false,
-        backgroundColor: themeMode.isDark
+        backgroundColor: themeMode.isLight
             ? kContainerColorLightMode
             : kContainerColorDarkMode,
         actions: [
@@ -371,7 +371,7 @@ class _AddImagesState extends State<AddImages> {
                 );
               },
               heroTag: 'image0',
-              backgroundColor: themeMode.isDark ? kPrimaryColorLightMode : kPrimaryColorDarkMode,
+              backgroundColor: themeMode.isLight ? kPrimaryColorLightMode : kPrimaryColorDarkMode,
               tooltip: 'أضف صور من المعرض',
               child: const Icon(Icons.photo_library),
             ),
@@ -387,7 +387,7 @@ class _AddImagesState extends State<AddImages> {
               },
               heroTag: 'image1',
               tooltip: 'إلتقط صورة',
-              backgroundColor: themeMode.isDark ? kPrimaryColorLightMode : kPrimaryColorDarkMode,
+              backgroundColor: themeMode.isLight ? kPrimaryColorLightMode : kPrimaryColorDarkMode,
               child: const Icon(Icons.camera_alt),
             ),
           ),

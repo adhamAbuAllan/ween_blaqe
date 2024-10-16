@@ -45,8 +45,8 @@ Positioned buildPointerOfImageZoom(
                 borderRadius: BorderRadius.circular(7.0 / 3.5),
                 shape: BoxShape.rectangle,
                 color: (Theme.of(context).brightness == Brightness.dark
-                        ? themeMode.isDark ? kPrimaryColor300LightMode : kPrimaryColor300DarkMode
-                        : themeMode.isDark ? kPrimaryColorLightMode : kPrimaryColorDarkMode)
+                        ? themeMode.isLight ? kPrimaryColor300LightMode : kPrimaryColor300DarkMode
+                        : themeMode.isLight ? kPrimaryColorLightMode : kPrimaryColorDarkMode)
                     .withOpacity(
 
 

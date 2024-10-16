@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:ween_blaqe/constants/nums.dart';
 
 import '../../../constants/coordination.dart';
-import '../../../constants/injection.dart';
+import '../../../constants/get_it_controller.dart';
 
 //text filed password for registration
 class TextFieldOfPasswordClassWidget extends StatefulWidget {
@@ -113,7 +113,7 @@ class _TextFieldOfPasswordClassWidgetState
 
           // textInputAction: TextInputAction.next,
           obscureText: widget.isObscure,
-          style:  TextStyle(fontFamily: 'IBM',color: themeMode.isDark ? kTextColorLightMode : kTextColorDarkMode),
+          style:  TextStyle(fontFamily: 'IBM',color: themeMode.isLight ? kTextColorLightMode : kTextColorDarkMode),
           // focusNode: focusNode,
           keyboardType: inputType,
           decoration: InputDecoration(
@@ -127,7 +127,7 @@ class _TextFieldOfPasswordClassWidgetState
                 icon: widget.isObscure
                     ? const Icon(Icons.visibility)
                     : const Icon(Icons.visibility_off),
-                color: themeMode.isDark ? kTextColorLightMode : kTextColorDarkMode,
+                color: themeMode.isLight ? kTextColorLightMode : kTextColorDarkMode,
                 onPressed: () {
                   setState(() {
                     widget.onObscureChanged(!widget.isObscure);
@@ -139,7 +139,7 @@ class _TextFieldOfPasswordClassWidgetState
               focusedBorder: OutlineInputBorder(
                 borderSide: BorderSide(
                   width: 1,
-                  color: themeMode.isDark
+                  color: themeMode.isLight
                       ? kPrimaryColorLightMode
                       : kPrimaryColorDarkMode,
                 ),
@@ -147,7 +147,7 @@ class _TextFieldOfPasswordClassWidgetState
               enabledBorder: OutlineInputBorder(
                   borderSide: BorderSide(
                     width: 0.5,
-                    color: themeMode.isDark
+                    color: themeMode.isLight
                         ? kPrimaryColor300LightMode
                         : kPrimaryColor300DarkMode,
                   ),

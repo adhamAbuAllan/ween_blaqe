@@ -52,7 +52,7 @@ class ApartmentMainImage extends StatelessWidget {
         //       )),
 
         Padding(
-          padding: const EdgeInsets.only(bottom: 8.0),
+          padding: const EdgeInsets.only(bottom: 8.0, top: 10),
           child: PointerOfImage(
             imageList: apartmentsRes.data?[index].photos??[],
             oneApartment: apartmentsRes.data?[index]??DataOfOneApartment(),

@@ -39,12 +39,12 @@ class _CarouselSliderWidgetState extends State<CarouselSliderWidget> {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: 220,
+      height: 280,
       child: Obx(() => CarouselSlider(
             controller: imageOfApartmentController.carouselSliderController,
             options: CarouselOptions(
               enlargeCenterPage: false,
-              aspectRatio: 2.0,
+              aspectRatio: 1.5,
               pauseAutoPlayInFiniteScroll: true,
               enableInfiniteScroll: false,
               disableCenter: false,

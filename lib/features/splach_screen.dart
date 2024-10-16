@@ -70,7 +70,7 @@ class _SplashScreenState extends State<SplashScreen> {
             ColorfulSafeArea(
           bottomColor: Colors.transparent,
           color:
-              themeMode.isDark ? kPrimaryColorLightMode : kPrimaryColorDarkMode,
+              themeMode.isLight ? kPrimaryColorLightMode : kPrimaryColorDarkMode,
           child: const SingleChildScrollView(
               child: Center(
                   //

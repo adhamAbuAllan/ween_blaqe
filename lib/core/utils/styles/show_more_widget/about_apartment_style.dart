@@ -12,11 +12,11 @@ ChangeThemeMode themeMode = Get.find();
 
 final ButtonStyle outlineBox = OutlinedButton.styleFrom(
 
-  foregroundColor: themeMode.isDark ? kPrimaryColorLightMode : kPrimaryColorDarkMode,
+  foregroundColor: themeMode.isLight ? kPrimaryColorLightMode : kPrimaryColorDarkMode,
   textStyle: const TextStyle(
     fontFamily: 'IBM',
   ),
-  side:  BorderSide(width: 0.7, color: themeMode.isDark ? kPrimaryColorLightMode : kPrimaryColorDarkMode),
+  side:  BorderSide(width: 0.7, color: themeMode.isLight ? kPrimaryColorLightMode : kPrimaryColorDarkMode),
   padding: const EdgeInsets.all(0),
   alignment: Alignment.center,
   elevation: 0,

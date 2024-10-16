@@ -19,13 +19,13 @@ class AskForHelp extends StatelessWidget {
       child: ColorfulSafeArea(
         // bottomColor: Colors.transparent ,
         color:
-            themeMode.isDark ? kPrimaryColorLightMode : kPrimaryColorDarkMode,
+            themeMode.isLight ? kPrimaryColorLightMode : kPrimaryColorDarkMode,
         child: Scaffold(
-          backgroundColor: themeMode.isDark
+          backgroundColor: themeMode.isLight
               ? kBackgroundAppColorLightMode
               : kBackgroundAppColorDarkMode,
           appBar: AppBar(
-            backgroundColor: themeMode.isDark
+            backgroundColor: themeMode.isLight
                 ? kPrimaryColorLightMode
                 : kPrimaryColorDarkMode,
             title: const Text(
@@ -36,7 +36,7 @@ class AskForHelp extends StatelessWidget {
               ),
             ),
             bottom: TabBar(
-              dividerColor: themeMode.isDark
+              dividerColor: themeMode.isLight
                   ? kContainerColorLightMode
                   : kContainerColorDarkMode,
               tabs: const [
@@ -58,7 +58,7 @@ class AskForHelp extends StatelessWidget {
                     margin: const EdgeInsets.fromLTRB(10, 0, 10, 0),
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(7),
-                      color: themeMode.isDark
+                      color: themeMode.isLight
                           ? kContainerColorLightMode
                           : kContainerColorDarkMode,
                     ),
@@ -94,7 +94,7 @@ class AskForHelp extends StatelessWidget {
                       margin: const EdgeInsets.fromLTRB(10, 0, 10, 0),
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(7),
-                        color: themeMode.isDark
+                        color: themeMode.isLight
                             ? kContainerColorLightMode
                             : kContainerColorDarkMode,
                       ),

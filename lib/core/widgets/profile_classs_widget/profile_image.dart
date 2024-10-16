@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:ween_blaqe/constants/nums.dart';
 
 import '../../../constants/coordination.dart';
-import '../../../constants/injection.dart';
+import '../../../constants/get_it_controller.dart';
 
 class ProfileImage extends StatefulWidget {
   final String image;
@@ -34,7 +34,7 @@ class _ProfileImageState extends State<ProfileImage> {
       padding: const EdgeInsets.fromLTRB(0, 0, 0, 10),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(7),
-        color: themeMode.isDark
+        color: themeMode.isLight
             ? kContainerColorLightMode
             : kContainerColorDarkMode,
       ),
@@ -63,7 +63,7 @@ class _ProfileImageState extends State<ProfileImage> {
                             ? 16
                             : 18,
                         fontFamily: 'IBM',
-                        color: themeMode.isDark
+                        color: themeMode.isLight
                             ? kTextColorLightMode
                             : kTextColorDarkMode,
                       ),
@@ -75,7 +75,7 @@ class _ProfileImageState extends State<ProfileImage> {
                             ? 16 - 3
                             : 18 - 4,
                         fontFamily: 'IBM',
-                        color: themeMode.isDark
+                        color: themeMode.isLight
                             ? kTextColorLightMode
                             : kTextColorDarkMode,
                       ),
@@ -87,7 +87,7 @@ class _ProfileImageState extends State<ProfileImage> {
                   padding: const EdgeInsets.fromLTRB(0, 0, 0, 0),
                   child: Icon(
                     Icons.arrow_forward_ios_rounded,
-                    color: themeMode.isDark
+                    color: themeMode.isLight
                         ? kTextColorLightMode
                         : kTextColorDarkMode,
                   ),

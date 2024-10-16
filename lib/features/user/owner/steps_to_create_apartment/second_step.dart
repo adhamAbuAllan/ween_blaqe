@@ -54,11 +54,11 @@ class _SecondStepState extends State<SecondStep> {
     "assets/images/apartments_images/advantages/desktop.png";
     return ColorfulSafeArea(
       bottomColor: Colors.transparent,
-      color: themeMode.isDark ? kPrimaryColorLightMode : kPrimaryColorDarkMode,
+      color: themeMode.isLight ? kPrimaryColorLightMode : kPrimaryColorDarkMode,
       child: GestureDetector(
         onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
         child: Scaffold(
-          backgroundColor: themeMode.isDark
+          backgroundColor: themeMode.isLight
               ? kBackgroundAppColorLightMode
               : kBackgroundAppColorDarkMode,
           body: SingleChildScrollView(
@@ -133,7 +133,7 @@ class _SecondStepState extends State<SecondStep> {
                   child: Text(
                     "الخطوة الثانية",
                     style: TextStyle(
-                      color: themeMode.isDark
+                      color: themeMode.isLight
                           ? kTextColorLightMode
                           : kTextColorDarkMode,
                       fontSize: 20,
@@ -166,7 +166,7 @@ class _SecondStepState extends State<SecondStep> {
                       padding: const EdgeInsets.fromLTRB(10, 2, 10, 10),
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(7),
-                        color: themeMode.isDark
+                        color: themeMode.isLight
                             ? kContainerColorLightMode
                             : kContainerColorDarkMode,
                       ),
@@ -183,7 +183,7 @@ class _SecondStepState extends State<SecondStep> {
                                   style: TextStyle(
                                       fontFamily: 'IBM',
                                       fontSize: 20,
-                                      color: themeMode.isDark
+                                      color: themeMode.isLight
                                           ? kTextColorLightMode
                                           : kTextColorDarkMode),
                                 ),
@@ -220,20 +220,20 @@ class _SecondStepState extends State<SecondStep> {
                                   // mainAxisSize: MainAxisSize.min,
 
                                   leading: Checkbox(
-                                      focusColor: themeMode.isDark
+                                      focusColor: themeMode.isLight
                                           ? kPrimaryColorLightMode
                                           : kPrimaryColorDarkMode,
                                       checkColor: Colors.white,
-                                      hoverColor: themeMode.isDark
+                                      hoverColor: themeMode.isLight
                                           ? kPrimaryColorLightMode
                                           : kPrimaryColorDarkMode,
-                                      activeColor: themeMode.isDark
+                                      activeColor: themeMode.isLight
                                           ? kPrimaryColorLightMode
                                           : kPrimaryColorDarkMode,
                                       side: BorderSide(
                                           width: 1.5,
                                           strokeAlign: 1,
-                                          color: themeMode.isDark
+                                          color: themeMode.isLight
                                               ? kPrimaryColorLightMode
                                                   .withOpacity(.3)
                                               : kPrimaryColorDarkMode
@@ -263,13 +263,13 @@ class _SecondStepState extends State<SecondStep> {
                                     style: TextStyle(
                                         fontFamily: 'IBM',
                                         fontSize: 16,
-                                        color: themeMode.isDark
+                                        color: themeMode.isLight
                                             ? kTextColorLightMode
                                             : kTextColorDarkMode),
                                   ),
                                   // const Expanded(child: Text("")),
                                   trailing: Image(
-                                    color: themeMode.isDark
+                                    color: themeMode.isLight
                                         ? kTextColorLightMode
                                         : kTextColorDarkMode,
                                     image: NetworkImage(

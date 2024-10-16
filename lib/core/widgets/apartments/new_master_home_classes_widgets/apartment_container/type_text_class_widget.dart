@@ -32,7 +32,7 @@ class ApartmentTypeText extends StatelessWidget {
             style: TextStyle(
                 fontSize: 14,
                 fontFamily: 'IBM',
-                color: themeMode.isDark
+                color: themeMode.isLight
                     ? kTextColorLightMode
                     : kTextColorDarkMode),
           ),

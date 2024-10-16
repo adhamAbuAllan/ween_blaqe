@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 
 import '../../../../api/advantages.dart';
 import '../../../../constants/coordination.dart';
-import '../../../../constants/injection.dart';
+import '../../../../constants/get_it_controller.dart';
 import '../../../../constants/nums.dart';
 
 class ShowAllAdvantages extends StatefulWidget {
@@ -21,9 +21,9 @@ class _ShowAllAdvantagesState extends State<ShowAllAdvantages> {
   Widget build(BuildContext context) {
     return ColorfulSafeArea(
       bottomColor: Colors.transparent,
-      color: themeMode.isDark ? kPrimaryColorLightMode : kPrimaryColorDarkMode,
+      color: themeMode.isLight ? kPrimaryColorLightMode : kPrimaryColorDarkMode,
       child: Scaffold(
-        backgroundColor: themeMode.isDark
+        backgroundColor: themeMode.isLight
             ? kBackgroundAppColorLightMode
             : kBackgroundAppColorDarkMode,
         body: SingleChildScrollView(
@@ -41,7 +41,7 @@ class _ShowAllAdvantagesState extends State<ShowAllAdvantages> {
                         },
                         icon: Icon(
                           Icons.arrow_back,
-                          color: themeMode.isDark
+                          color: themeMode.isLight
                               ? kTextColorLightMode
                               : kTextColorDarkMode,
                         )),
@@ -53,7 +53,7 @@ class _ShowAllAdvantagesState extends State<ShowAllAdvantages> {
                 margin: const EdgeInsets.fromLTRB(10, 30, 10, 0),
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(7),
-                  color: themeMode.isDark
+                  color: themeMode.isLight
                       ? kContainerColorLightMode
                       : kContainerColorDarkMode,
                 ),
@@ -65,7 +65,7 @@ class _ShowAllAdvantagesState extends State<ShowAllAdvantages> {
                           padding: const EdgeInsets.fromLTRB(0, 0, 10, 0),
                           child: Text("المزايا",
                               style: TextStyle(
-                                color: themeMode.isDark
+                                color: themeMode.isLight
                                     ? kTextColorLightMode
                                     : kTextColorDarkMode,
                                 fontSize: 20,
@@ -89,14 +89,14 @@ class _ShowAllAdvantagesState extends State<ShowAllAdvantages> {
                                   style: TextStyle(
                                       fontFamily: 'IBM',
                                       fontSize: 16,
-                                      color: themeMode.isDark
+                                      color: themeMode.isLight
                                           ? kTextColorLightMode
                                           : kTextColorDarkMode),
                                 ),
                                 trailing: widget.features[i].icon!.isEmpty
                                     ? SizedBox(
                                     child: CircularProgressIndicator(
-                                      color: themeMode.isDark
+                                      color: themeMode.isLight
                                           ? kPrimaryColorLightMode
                                           : kPrimaryColorDarkMode,
                                       strokeWidth: 3,
@@ -105,7 +105,7 @@ class _ShowAllAdvantagesState extends State<ShowAllAdvantages> {
                                   widget.features[i].icon!,
                                   height: 30,
                                   width: 30,
-                                  color: themeMode.isDark
+                                  color: themeMode.isLight
                                       ? kTextColorLightMode
                                       : kTextColorDarkMode,
                                 ));

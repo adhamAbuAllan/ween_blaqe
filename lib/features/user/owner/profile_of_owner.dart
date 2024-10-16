@@ -15,7 +15,7 @@ import '../../../api/users.dart';
 import 'package:ween_blaqe/constants/nums.dart';
 
 import '../../../constants/coordination.dart';
-import '../../../constants/injection.dart';
+import '../../../constants/get_it_controller.dart';
 import '../../../core/utils/styles/button.dart';
 
 // import '../../../core/widgets/profile_classs_widget/profile_image.dart';
@@ -61,7 +61,7 @@ class _ProfileOfOwnerState extends State<ProfileOfOwner> {
         bottomColor: Colors.transparent,
         color: kPrimaryColorDarkMode,
         child: Scaffold(
-          backgroundColor: themeMode.isDark
+          backgroundColor: themeMode.isLight
               ? kBackgroundAppColorLightMode
               : kBackgroundAppColorDarkMode,
           body: SingleChildScrollView(
@@ -75,7 +75,7 @@ class _ProfileOfOwnerState extends State<ProfileOfOwner> {
                   //
                   // Adjust the bottom position to center the background behind the placeholder
                   child: Container(
-                    color: themeMode.isDark
+                    color: themeMode.isLight
                         ? kContainerColorLightMode
                         : kContainerColorDarkMode,
                   ),
@@ -88,7 +88,7 @@ class _ProfileOfOwnerState extends State<ProfileOfOwner> {
                         Padding(
                           padding: const EdgeInsets.fromLTRB(0, 20, 0, 0),
                           child: BackButton(
-                            color: themeMode.isDark
+                            color: themeMode.isLight
                                 ? kTextColorLightMode
                                 : kTextColorDarkMode,
                           ),
@@ -131,7 +131,7 @@ class _ProfileOfOwnerState extends State<ProfileOfOwner> {
 
                             decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(7),
-                              color: themeMode.isDark
+                              color: themeMode.isLight
                                   ? kContainerColorLightMode
                                   : kContainerColorDarkMode,
                             ),
@@ -144,7 +144,7 @@ class _ProfileOfOwnerState extends State<ProfileOfOwner> {
                                 Text(NewSession.get("name", "def"),
                                     style:
                                         TextStyle(color: themeMode
-                                              .isDark ?
+                                              .isLight ?
                                         kTextColorLightMode :kTextColorDarkMode ,
                                         fontFamily: "IBM",
                                           fontSize: 20,
@@ -155,7 +155,7 @@ class _ProfileOfOwnerState extends State<ProfileOfOwner> {
                                 Text(
                                     NewSession.get("phone", "def"),
                                     style:
-                                        TextStyle(color: themeMode.isDark
+                                        TextStyle(color: themeMode.isLight
                                         ? kTextColorLightMode: kTextColorDarkMode,
                                             fontFamily: "IBM",
                                             fontSize: 16)),
@@ -212,7 +212,7 @@ class _ProfileOfOwnerState extends State<ProfileOfOwner> {
 
                             decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(7),
-                              color: themeMode.isDark
+                              color: themeMode.isLight
                                   ? kContainerColorLightMode
                                   : kContainerColorDarkMode,
                             ),
@@ -269,7 +269,7 @@ class _ProfileOfOwnerState extends State<ProfileOfOwner> {
 
                             decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(7),
-                              color: themeMode.isDark
+                              color: themeMode.isLight
                                   ? kContainerColorLightMode
                                   : kContainerColorDarkMode,
                             ),

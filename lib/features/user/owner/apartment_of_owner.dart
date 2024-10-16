@@ -389,8 +389,8 @@ class _ApartmentsOwnerState extends State<ApartmentsOwner>
       duration: const Duration(milliseconds: 300),
     );
     _iconColorAnimation = ColorTween(
-        begin: themeMode.isDark ? kTextColorLightMode : kTextColorDarkMode,
-        end: themeMode.isDark ? kTextColorLightMode : kTextColorDarkMode)
+        begin: themeMode.isLight ? kTextColorLightMode : kTextColorDarkMode,
+        end: themeMode.isLight ? kTextColorLightMode : kTextColorDarkMode)
         .animate(_animationController);
     _animationController.addListener(() {
       setState(() {});
@@ -431,31 +431,36 @@ int photoIndex = 0;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        backgroundColor: themeMode.isDark
+        backgroundColor: themeMode.isLight
             ? kBackgroundAppColorLightMode
             : kBackgroundAppColorDarkMode,
         appBar: AppBar(
           backgroundColor:
-          themeMode.isDark ? kPrimaryColorLightMode : kPrimaryColorDarkMode,
+          themeMode.isLight ? kPrimaryColorLightMode : kPrimaryColorDarkMode,
           title: const Text('شققك'),
           actions: apartmentModelController.isApartmentNull == false
               ? [
-            AnimatedBuilder(
-              animation: _animationController,
-              builder: (context, child) =>
-                  IconButton(
-                    icon: Icon(
-                      apiApartmentController.isDeleteMode.value
-                          ? Icons.delete
-                          : Icons.edit,
-                      color: apartmentModelController.isApartmentNull ?
-                      Colors.transparent:
-                      _iconColorAnimation
-                          .value,
-                    ),
-                    onPressed: toggleDeleteMode,
-                  ),
+          AnimatedBuilder(
+            animation: _animationController,
+            builder: (context, child) => IconButton(
+              icon: AnimatedSwitcher(
+                duration: const Duration(milliseconds: 300),
+                transitionBuilder: (Widget child, Animation<double> animation) {
+                  return ScaleTransition(scale: animation, child: child);
+                },
+                child: Icon(
+                  apiApartmentController.isDeleteMode.value
+                      ? Icons.delete
+                      : Icons.edit,
+                  key: ValueKey<bool>(apiApartmentController.isDeleteMode.value),
+                  color: apartmentModelController.isApartmentNull
+                      ? Colors.transparent
+                      : _iconColorAnimation.value,
+                ),
+              ),
+              onPressed: toggleDeleteMode,
             ),
+          ),
           ]
               : [],
         ),
@@ -489,7 +494,7 @@ int photoIndex = 0;
         }),
         floatingActionButton: FloatingActionButton(
           backgroundColor:
-          themeMode.isDark ? kPrimaryColorLightMode : kPrimaryColorDarkMode,
+          themeMode.isLight ? kPrimaryColorLightMode : kPrimaryColorDarkMode,
           onPressed: () {
             myPushName(context, MyPagesRoutes.step1);
           },

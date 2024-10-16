@@ -85,7 +85,7 @@ class _ThirdStepState extends State<ThirdStep> {
   Widget build(BuildContext context) {
     return ColorfulSafeArea(
       bottomColor: Colors.transparent,
-      color: themeMode.isDark ? kPrimaryColorLightMode : kPrimaryColorDarkMode,
+      color: themeMode.isLight ? kPrimaryColorLightMode : kPrimaryColorDarkMode,
       child: GestureDetector(
         onTap: () {
           debugPrint(
@@ -112,7 +112,7 @@ class _ThirdStepState extends State<ThirdStep> {
           //
         },
         child: Scaffold(
-          backgroundColor: themeMode.isDark
+          backgroundColor: themeMode.isLight
               ? kBackgroundAppColorLightMode
               : kBackgroundAppColorDarkMode,
           body: SingleChildScrollView(
@@ -209,7 +209,7 @@ class _ThirdStepState extends State<ThirdStep> {
                   child: Text(
                     "الخطوة الثالثة",
                     style: TextStyle(
-                      color: themeMode.isDark
+                      color: themeMode.isLight
                           ? kTextColorLightMode
                           : kTextColorDarkMode,
                       fontSize: 20,

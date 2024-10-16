@@ -36,7 +36,7 @@ class _ContainerChooseItemsClassWidgetState
         height: 140,
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(7),
-          color: themeMode.isDark
+          color: themeMode.isLight
               ? kContainerColorLightMode
               : kContainerColorDarkMode,
         ),
@@ -48,7 +48,7 @@ class _ContainerChooseItemsClassWidgetState
                 child: Text(
                   widget.title,
                   style: TextStyle(
-                    color: themeMode.isDark
+                    color: themeMode.isLight
                         ? kTextColorLightMode
                         : kTextColorDarkMode,
                     fontSize: 18,

@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:ween_blaqe/constants/nums.dart';
 
 import '../../../constants/coordination.dart';
-import '../../../constants/injection.dart';
+import '../../../constants/get_it_controller.dart';
 
 String errorText = '';
 
@@ -58,7 +58,7 @@ class _PasswordContainerClassWidgetState
       padding: const EdgeInsets.fromLTRB(0, 0, 0, 10),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(7),
-        color: themeMode.isDark
+        color: themeMode.isLight
             ? kContainerColorLightMode
             : kContainerColorDarkMode,
       ),
@@ -71,7 +71,7 @@ class _PasswordContainerClassWidgetState
                 child: Text(
                   title,
                   style: TextStyle(
-                    color: themeMode.isDark
+                    color: themeMode.isLight
                         ? kTextColorLightMode
                         : kTextColorDarkMode,
                     fontSize: 18,
@@ -151,7 +151,7 @@ class _PasswordContainerClassWidgetState
                   //   },
                   // ),
                   suffixIcon: IconButton(
-                    color: themeMode.isDark ? kTextColorLightMode : kTextColorDarkMode,
+                    color: themeMode.isLight ? kTextColorLightMode : kTextColorDarkMode,
                     icon: widget.isObscure
                         ? const Icon(Icons.visibility)
                         : const Icon(Icons.visibility_off),
@@ -167,7 +167,7 @@ class _PasswordContainerClassWidgetState
                   focusedBorder: OutlineInputBorder(
                     borderSide: BorderSide(
                       width: 1,
-                      color: themeMode.isDark
+                      color: themeMode.isLight
                           ? kPrimaryColorLightMode
                           : kPrimaryColorDarkMode,
                     ),
@@ -175,13 +175,13 @@ class _PasswordContainerClassWidgetState
                   enabledBorder: OutlineInputBorder(
                       borderSide: BorderSide(
                         width: 1,
-                        color: themeMode.isDark
+                        color: themeMode.isLight
                             ? kPrimaryColorLightMode.withOpacity(.3)
                             : kPrimaryColorDarkMode.withOpacity(.3),
                       ),
                       borderRadius: BorderRadius.circular(7))),
               style: TextStyle(
-                  fontFamily: 'IBM', fontSize: 16, color: themeMode.isDark ? kTextColorLightMode : kTextColorDarkMode),
+                  fontFamily: 'IBM', fontSize: 16, color: themeMode.isLight ? kTextColorLightMode : kTextColorDarkMode),
             ),
           ),
         ],

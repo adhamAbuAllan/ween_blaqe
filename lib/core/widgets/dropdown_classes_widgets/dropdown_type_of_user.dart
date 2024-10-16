@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:ween_blaqe/constants/nums.dart';
 
 import '../../../constants/coordination.dart';
-import '../../../constants/injection.dart';
+import '../../../constants/get_it_controller.dart';
 
 @immutable
 class DropDownTypeOfUser extends StatefulWidget {
@@ -52,7 +52,7 @@ class _DropDownTypeOfUserState extends State<DropDownTypeOfUser> {
         padding: const EdgeInsets.fromLTRB(0, 0, 0, 0),
         child: widget.typeOfUserItems.isNotEmpty
             ? DropdownButtonFormField<dynamic>(
-                dropdownColor: themeMode.isDark
+                dropdownColor: themeMode.isLight
                     ? kContainerColorLightMode
                     : kContainerColorDarkMode,
 
@@ -66,7 +66,7 @@ class _DropDownTypeOfUserState extends State<DropDownTypeOfUser> {
                   enabledBorder: OutlineInputBorder(
                     //<-- SEE HERE
                     borderSide: BorderSide(
-                        color: themeMode.isDark
+                        color: themeMode.isLight
                             ? kPrimaryColor300LightMode
                             : kPrimaryColor300DarkMode,
                         width: 0.5),
@@ -74,7 +74,7 @@ class _DropDownTypeOfUserState extends State<DropDownTypeOfUser> {
                   focusedBorder: OutlineInputBorder(
                     //<-- SEE HERE
                     borderSide: BorderSide(
-                        color: themeMode.isDark
+                        color: themeMode.isLight
                             ? kPrimaryColorLightMode
                             : kPrimaryColorDarkMode,
                         width: 1),
@@ -94,7 +94,7 @@ class _DropDownTypeOfUserState extends State<DropDownTypeOfUser> {
                           // c.name,
                           style: TextStyle(
                               fontSize: 15.0,
-                              color: themeMode.isDark
+                              color: themeMode.isLight
                                   ? kTextColorLightMode
                                   : kTextColorDarkMode,
                               fontFamily: 'IBM'),
@@ -120,7 +120,7 @@ class _DropDownTypeOfUserState extends State<DropDownTypeOfUser> {
                 child: Text("جاري التحميل..",
                     style: TextStyle(
                         fontSize: 12,
-                        color: themeMode.isDark
+                        color: themeMode.isLight
                             ? kTextColorLightMode
                             : kTextColorDarkMode,
                         fontFamily: 'IBM')),

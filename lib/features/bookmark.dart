@@ -57,11 +57,11 @@ class _BookmarkApartmentState extends State<BookmarkApartment> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: themeMode.isDark
+      backgroundColor: themeMode.isLight
           ? kBackgroundAppColorLightMode
           : kBackgroundAppColorDarkMode,
       appBar: AppBar(
-          backgroundColor: themeMode.isDark ? kPrimaryColorLightMode :
+          backgroundColor: themeMode.isLight ? kPrimaryColorLightMode :
           kPrimaryColorDarkMode,
         title: const Text('المفضلة'),
       ),

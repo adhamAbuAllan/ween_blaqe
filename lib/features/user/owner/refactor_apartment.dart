@@ -168,12 +168,12 @@ class _RefactorApartmentState extends State<RefactorApartment> {
   @override
   Widget build(BuildContext context) {
     return ColorfulSafeArea(
-      color: themeMode.isDark ? kContainerColorLightMode : kContainerColorDarkMode,
+      color: themeMode.isLight ? kContainerColorLightMode : kContainerColorDarkMode,
       child: GestureDetector(
         onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
         child: SafeArea(
           child: Scaffold(
-            backgroundColor: themeMode.isDark
+            backgroundColor: themeMode.isLight
                 ? kBackgroundAppColorLightMode
                 : kBackgroundAppColorDarkMode,
             appBar: AppBar(
@@ -183,7 +183,7 @@ class _RefactorApartmentState extends State<RefactorApartment> {
               leading: Padding(
                 padding: const EdgeInsets.symmetric(vertical: 8.0),
                 child: BackButton(
-                  color: themeMode.isDark
+                  color: themeMode.isLight
                       ? kTextColorLightMode
                       : kTextColorDarkMode,
                     style: const ButtonStyle(
@@ -251,7 +251,7 @@ class _RefactorApartmentState extends State<RefactorApartment> {
                   width: 10,
                 )
               ],
-              backgroundColor: themeMode.isDark
+              backgroundColor: themeMode.isLight
                   ? kContainerColorLightMode
                   : kContainerColorDarkMode,
             ),
@@ -327,7 +327,7 @@ class _RefactorApartmentState extends State<RefactorApartment> {
                           padding: const EdgeInsets.fromLTRB(10, 2, 10, 10),
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(7),
-                            color: themeMode.isDark
+                            color: themeMode.isLight
                                 ? kContainerColorLightMode
                                 : kContainerColorDarkMode,
                           ),
@@ -344,7 +344,7 @@ class _RefactorApartmentState extends State<RefactorApartment> {
                                       style: TextStyle(
                                           fontFamily: 'IBM',
                                           fontSize: 20,
-                                          color: themeMode.isDark
+                                          color: themeMode.isLight
                                               ? kTextColorLightMode
                                               : kTextColorDarkMode),
                                     ),
@@ -370,18 +370,18 @@ class _RefactorApartmentState extends State<RefactorApartment> {
                                         shape: RoundedRectangleBorder(
                                             borderRadius:
                                                 BorderRadius.circular(2.6)),
-                                        focusColor: themeMode.isDark
+                                        focusColor: themeMode.isLight
                                             ? kPrimaryColorLightMode
                                             : kPrimaryColorDarkMode,
                                         checkColor: Colors.white,
-                                        hoverColor: themeMode.isDark
+                                        hoverColor: themeMode.isLight
                                             ? kPrimaryColorLightMode
                                             : kPrimaryColorDarkMode,
-                                        activeColor: themeMode.isDark
+                                        activeColor: themeMode.isLight
                                             ? kPrimaryColorLightMode
                                             : kPrimaryColorDarkMode,
                                         side: BorderSide(
-                                            color: themeMode.isDark
+                                            color: themeMode.isLight
                                                 ? kPrimaryColor300LightMode
                                                 : kPrimaryColor300DarkMode),
                                         splashRadius: 20,
@@ -399,13 +399,13 @@ class _RefactorApartmentState extends State<RefactorApartment> {
                                       style: TextStyle(
                                           fontFamily: 'IBM',
                                           fontSize: 16,
-                                          color: themeMode.isDark
+                                          color: themeMode.isLight
                                               ? kTextColorLightMode
                                               : kTextColorDarkMode),
                                     ),
                                     // const Expanded(child: Text("")),
                                     trailing: Image(
-                                      color: themeMode.isDark
+                                      color: themeMode.isLight
                                           ? kTextColorLightMode
                                           : kTextColorDarkMode,
                                       image: NetworkImage(
@@ -508,7 +508,7 @@ class _RefactorApartmentState extends State<RefactorApartment> {
               },
               label: const Text('إضافة أو حذف صور'),
               icon: const Icon(Icons.photo),
-              backgroundColor: themeMode.isDark
+              backgroundColor: themeMode.isLight
                   ? kPrimaryColorLightMode
                   : kPrimaryColorDarkMode,
             ),

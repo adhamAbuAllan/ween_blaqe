@@ -37,7 +37,7 @@ class _ShowAllAdvSkeletonWidgetState extends State<ShowAllAdvSkeletonWidget> {
             margin: const EdgeInsets.fromLTRB(10, 23, 10, 0),
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(7),
-              color: themeMode.isDark ? kContainerColorLightMode : kContainerColorDarkMode,
+              color: themeMode.isLight ? kContainerColorLightMode : kContainerColorDarkMode,
             ),
             child: Column(
               children: [

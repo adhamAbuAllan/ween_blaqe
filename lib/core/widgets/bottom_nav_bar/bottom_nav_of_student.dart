@@ -1,22 +1,22 @@
 import 'package:flutter/material.dart';
-import 'package:ween_blaqe/features/user/studnet/from_master_home_to_show_more/new_master_home.dart';
-// import 'package:ween_blaqe/controller/get_controllers.dart';
 
 import '../../../api/apartments_api/one_apartment.dart';
 import '../../../constants/nums.dart';
-// import '../../../controller/get_controllers.dart';
+
+import '../../../constants/strings.dart';
+import '../../../controller/get_controllers.dart';
 import '../../../controller/student_controller/student_controller.dart';
+import '../../../features/user/studnet/from_master_home_to_show_more/new_master_home.dart';
+import '../../utils/funcations/route_pages/push_routes.dart';
 
 class BottomNavigationBarOfStudent extends StatefulWidget {
   final StudentController controller;
-  final ScrollController ? scrollController;
-
+  final ScrollController? scrollController;
 
   const BottomNavigationBarOfStudent({
     super.key,
-    required this.controller, this.scrollController,
-
-
+    required this.controller,
+    this.scrollController,
   });
 
   @override
@@ -52,9 +52,9 @@ class _BottomNavigationBarOfStudentState
       // unselectedIconTheme: const IconThemeData(opacity: .5),
       // enableFeedback: false,
       backgroundColor:
-          themeMode.isDark ? kContainerColorLightMode : kContainerColorDarkMode,
+          themeMode.isLight ? kContainerColorLightMode : kContainerColorDarkMode,
       selectedItemColor:
-          themeMode.isDark ? kPrimaryColorLightMode : kPrimaryColorDarkMode,
+          themeMode.isLight ? kPrimaryColorLightMode : kPrimaryColorDarkMode,
       unselectedItemColor: Colors.grey,
       type: BottomNavigationBarType.fixed,
       iconSize: 30,
@@ -62,27 +62,30 @@ class _BottomNavigationBarOfStudentState
       currentIndex: controller.index,
       onTap: (i) {
         setState(() {
-          if (i == 0 && controller.index == 0 && widget.scrollController!.offset >
-              400) {
-
-              //if the index is 0 then go to the top of the screen
-            debugPrint("the i = $i and the controller.index = ${controller.index}");
+          if (i == 0 &&
+              controller.index == 0 &&
+              widget.scrollController!.offset > 400) {
+            //if the index is 0 then go to the top of the screen
+            debugPrint(
+                "the i = $i and the controller.index = ${controller.index}");
             setState(() {
               widget.scrollController!.animateTo(
                 0,
                 duration: const Duration(milliseconds: 300),
                 curve: Curves.easeInOut,
               );
-
             });
-
 
             // new
             //make the [isHomeIndex] true if the index is 0
             // isHomeIndex = true;
+          } else if (i == 0 &&
+              controller.index == 0 &&
+              widget.scrollController!.offset < 100) {
+            cityModelController.cityId.value = 0;
 
-          } else {
-            // isHomeIndex = false;
+
+            myPushReplacementNamed(MyPagesRoutes.main, context: context);
           }
           controller.changeTo(i);
           // this.index = index;

@@ -52,10 +52,10 @@ class DetailImageScreenState extends State<DetailImageScreen> {
                 .top+10, // Adds space for the status bar
             right: 16.0,
             child: CircleAvatar(
-              backgroundColor: themeMode. isDark ? Colors.black.withOpacity(0.5): Colors.white.withOpacity(0.5),
+              backgroundColor: themeMode. isLight ? Colors.black.withOpacity(0.5): Colors.white.withOpacity(0.5),
               // Semi-transparent background
               child: BackButton(
-                color:  themeMode.isDark ?
+                color:  themeMode.isLight ?
                 kTextColorDarkMode: kTextColorLightMode,
 
               ),
@@ -117,7 +117,7 @@ class PhotoViewGalleryWidgetState extends State<PhotoViewGalleryWidget> {
       },
       scrollPhysics: const BouncingScrollPhysics(),
       backgroundDecoration: BoxDecoration(
-        color: themeMode.isDark
+        color: themeMode.isLight
             ? kBackgroundAppColorLightMode
             : kBackgroundAppColorDarkMode,
       ),

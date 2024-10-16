@@ -41,7 +41,7 @@ class _HomeSkeletonWidgetState extends State<HomeSkeletonWidget> {
         //     )
         //   ],
         // ),
-        backgroundColor: themeMode.isDark
+        backgroundColor: themeMode.isLight
             ? kBackgroundAppColorLightMode
             : kBackgroundAppColorDarkMode,
         body: SingleChildScrollView(
@@ -87,7 +87,7 @@ class ApartmentSkeleton extends StatelessWidget {
         padding: const EdgeInsets.all(10.0),
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(7),
-          color: themeMode.isDark
+          color: themeMode.isLight
               ? kContainerColorLightMode
               : kContainerColorDarkMode,
         ),

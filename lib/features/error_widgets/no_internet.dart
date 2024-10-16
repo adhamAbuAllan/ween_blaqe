@@ -15,7 +15,7 @@ import 'package:ween_blaqe/constants/strings.dart';
 import 'package:ween_blaqe/core/utils/funcations/route_pages/push_routes.dart';
 import 'package:ween_blaqe/core/utils/styles/text_style/aline_style.dart';
 import 'package:ween_blaqe/constants/nums.dart';
-import '../../constants/injection.dart';
+import '../../constants/get_it_controller.dart';
 import '../../controller/get_controllers.dart';
 import '../../core/utils/styles/button.dart';
 import '../../core/widgets/buttons/lines_buttons/line_buttons.dart';
@@ -133,7 +133,7 @@ class _NoInternetState extends State<NoInternet> with WidgetsBindingObserver {
   Widget build(BuildContext context) {
     return ColorfulSafeArea(
       bottomColor: Colors.transparent,
-      color: themeMode.isDark ? kPrimaryColorLightMode : kPrimaryColorDarkMode,
+      color: themeMode.isLight ? kPrimaryColorLightMode : kPrimaryColorDarkMode,
       child: StreamBuilder<ConnectivityResult>(
           stream: Connectivity().onConnectivityChanged,
           builder: (context, snapshot) {
@@ -141,7 +141,7 @@ class _NoInternetState extends State<NoInternet> with WidgetsBindingObserver {
             return Scaffold(
               appBar: connectivityController.isConnection()
                   ? AppBar(
-                      backgroundColor: themeMode.isDark
+                      backgroundColor: themeMode.isLight
                           ? kPrimaryColorLightMode
                           : kPrimaryColorDarkMode)
                   : AppBar(
@@ -159,7 +159,7 @@ class _NoInternetState extends State<NoInternet> with WidgetsBindingObserver {
                         opacity: 0,
                       ),
                     ),
-              backgroundColor: themeMode.isDark
+              backgroundColor: themeMode.isLight
                   ? kBackgroundAppColorLightMode
                   : kBackgroundAppColorDarkMode,
               body: AnimatedAlign(
@@ -185,7 +185,7 @@ class _NoInternetState extends State<NoInternet> with WidgetsBindingObserver {
                   padding: const EdgeInsets.fromLTRB(10, 0, 10, 0),
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(7),
-                    color: themeMode.isDark
+                    color: themeMode.isLight
                         ? kContainerColorLightMode
                         : kContainerColorDarkMode,
                   ),
@@ -242,7 +242,7 @@ class _NoInternetState extends State<NoInternet> with WidgetsBindingObserver {
                                         : Text("$total+",
                                             style:  TextStyle(
                                                 fontFamily: "IBM",
-                                                color: themeMode.isDark ? kPrimaryColorLightMode : kPrimaryColorDarkMode)),
+                                                color: themeMode.isLight ? kPrimaryColorLightMode : kPrimaryColorDarkMode)),
                                   ],
                                 ),
                               ),
@@ -317,7 +317,7 @@ class _NoInternetState extends State<NoInternet> with WidgetsBindingObserver {
                                     "إبدأ التسبيح",
                                     image: Image.asset(
                                         "assets/images/tasbih.png",
-                                        color: themeMode.isDark
+                                        color: themeMode.isLight
                                             ? kTextColorLightMode
                                             : kTextColorDarkMode,
                                         width: 35,
@@ -352,7 +352,7 @@ class _NoInternetState extends State<NoInternet> with WidgetsBindingObserver {
                       },
                       shape: ContinuousRectangleBorder(
                           borderRadius: BorderRadius.circular(16 / 2)),
-                      backgroundColor: themeMode.isDark
+                      backgroundColor: themeMode.isLight
                           ? kPrimaryColorLightMode
                           : kPrimaryColorDarkMode,
                       child: const FaIcon(
@@ -377,7 +377,7 @@ class _NoInternetState extends State<NoInternet> with WidgetsBindingObserver {
         child: Image(
           image: const AssetImage("assets/images/error_images/no network.png"),
           height: getIt<AppDimension>().isSmallScreen(context) ? 60 / 1.5 : 60,
-          color: themeMode.isDark ? kTextColorLightMode : kTextColorDarkMode,
+          color: themeMode.isLight ? kTextColorLightMode : kTextColorDarkMode,
           width: getIt<AppDimension>().isSmallScreen(context) ? 60 / 1.5 : 60,
         ),
       ),
@@ -395,7 +395,7 @@ class _NoInternetState extends State<NoInternet> with WidgetsBindingObserver {
                         fontSize: 16.0,
                         fontFamily: 'IBM',
                         inherit: true,
-                        color: themeMode.isDark
+                        color: themeMode.isLight
                             ? kTextColorLightMode
                             : kTextColorDarkMode),
                   ),
@@ -436,7 +436,7 @@ class _NoInternetState extends State<NoInternet> with WidgetsBindingObserver {
       animatedTexts: [
         FadeAnimatedText(
           "$total+",
-          textStyle:  TextStyle(fontFamily: "IBM", color: themeMode.isDark ? kPrimaryColorLightMode : kPrimaryColorDarkMode),
+          textStyle:  TextStyle(fontFamily: "IBM", color: themeMode.isLight ? kPrimaryColorLightMode : kPrimaryColorDarkMode),
           duration: const Duration(
             milliseconds: 100,
           ),
@@ -453,7 +453,7 @@ class _NoInternetState extends State<NoInternet> with WidgetsBindingObserver {
           borderRadius: const BorderRadius.all(Radius.circular(7)),
           border: Border.all(
             width: 1,
-            color: themeMode.isDark
+            color: themeMode.isLight
                 ? kPrimaryColorLightMode
                 : kPrimaryColorDarkMode,
           )),
@@ -477,7 +477,7 @@ class _NoInternetState extends State<NoInternet> with WidgetsBindingObserver {
                 style: TextStyle(
                     fontSize: 24,
                     fontFamily: "IBM",
-                    color: themeMode.isDark
+                    color: themeMode.isLight
                         ? kTextColorLightMode
                         : kTextColorDarkMode),
               ));

@@ -16,7 +16,7 @@ class CustomBackArrow extends StatelessWidget {
           //        32)),
           tapTargetSize: MaterialTapTargetSize.shrinkWrap,
         ),
-        color: themeMode.isDark ? kTextColorLightMode : kTextColorDarkMode,
+        color: themeMode.isLight ? kTextColorLightMode : kTextColorDarkMode,
       ),
     );
   }

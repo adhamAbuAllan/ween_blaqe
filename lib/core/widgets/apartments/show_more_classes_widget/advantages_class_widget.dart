@@ -30,7 +30,7 @@ class _GetAdvantagesState extends State<GetAdvantages> {
     return Container(
       margin: const EdgeInsets.fromLTRB(10, 23, 10, 0),
       decoration: BoxDecoration(
-        color: themeMode.isDark
+        color: themeMode.isLight
             ? kContainerColorLightMode
             : kContainerColorDarkMode,
         borderRadius: BorderRadius.circular(7),
@@ -44,7 +44,7 @@ class _GetAdvantagesState extends State<GetAdvantages> {
                 padding: const EdgeInsets.fromLTRB(0, 0, 10, 0),
                 child: Text("المزايا",
                     style: TextStyle(
-                      color: themeMode.isDark
+                      color: themeMode.isLight
                           ? kTextColorLightMode
                           : kTextColorDarkMode,
                       fontSize: 20,
@@ -98,7 +98,7 @@ class _GetAdvantagesState extends State<GetAdvantages> {
               style: TextStyle(
                   fontFamily: 'IBM',
                   fontSize: 16,
-                  color: themeMode.isDark
+                  color: themeMode.isLight
                       ? kTextColorLightMode
                       : kTextColorDarkMode)),
           trailing: entry.icon!.isEmpty
@@ -117,7 +117,7 @@ class _GetAdvantagesState extends State<GetAdvantages> {
                         height: 28,
                       )));
             },
-            color: themeMode.isDark
+            color: themeMode.isLight
                 ? kTextColorLightMode
                 : kTextColorDarkMode,
           ),

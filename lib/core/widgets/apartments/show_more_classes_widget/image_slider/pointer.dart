@@ -58,7 +58,7 @@ class _PointerOfImageState extends State<PointerOfImage> {
                   boxShadow: isActive
                       ? [
                           BoxShadow(
-                            color: themeMode.isDark
+                            color: themeMode.isLight
                                 ? kPrimaryColorLightMode.withOpacity(0.1)
                                 : kPrimaryColorDarkMode.withOpacity(0.1),
                             spreadRadius: 7,

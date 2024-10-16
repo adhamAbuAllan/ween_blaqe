@@ -54,11 +54,11 @@ class _DropDownUniversityState extends State<DropDownUniversity> {
                   // contentPadding: EdgeInsets.symmetric(vertical: 20),
                   enabledBorder: OutlineInputBorder(
                     //<-- SEE HERE
-                    borderSide: BorderSide(color: themeMode.isDark?kPrimaryColor300LightMode   :kPrimaryColor300DarkMode, width: 0.5),
+                    borderSide: BorderSide(color: themeMode.isLight?kPrimaryColor300LightMode   :kPrimaryColor300DarkMode, width: 0.5),
                   ),
                   focusedBorder: OutlineInputBorder(
                     //<-- SEE HERE
-                    borderSide: BorderSide(color: themeMode.isDark?kPrimaryColorLightMode:kPrimaryColorDarkMode, width: 1),
+                    borderSide: BorderSide(color: themeMode.isLight?kPrimaryColorLightMode:kPrimaryColorDarkMode, width: 1),
                   ),
                 ),
                 value: currentUniversity,

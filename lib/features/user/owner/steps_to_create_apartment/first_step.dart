@@ -92,7 +92,7 @@ class _FirstStepState extends State<FirstStep> {
   Widget build(BuildContext context) {
     return ColorfulSafeArea(
         color:
-            themeMode.isDark ? kPrimaryColorLightMode : kPrimaryColorDarkMode,
+            themeMode.isLight ? kPrimaryColorLightMode : kPrimaryColorDarkMode,
         child: GestureDetector(
           onTap: () {
             print("object");
@@ -103,7 +103,7 @@ class _FirstStepState extends State<FirstStep> {
             FocusManager.instance.primaryFocus?.unfocus();
           },
           child: Scaffold(
-              backgroundColor: themeMode.isDark
+              backgroundColor: themeMode.isLight
                   ? kBackgroundAppColorLightMode
                   : kBackgroundAppColorDarkMode,
               body: SingleChildScrollView(
@@ -204,7 +204,7 @@ class _FirstStepState extends State<FirstStep> {
                   child: Text(
                     "الخطوة الاولى",
                     style: TextStyle(
-                      color: themeMode.isDark
+                      color: themeMode.isLight
                           ? kTextColorLightMode
                           : kTextColorDarkMode,
                       fontSize: 20,

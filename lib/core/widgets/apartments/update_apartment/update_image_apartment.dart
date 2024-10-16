@@ -13,7 +13,7 @@ import 'package:image_picker/image_picker.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:skeletons/skeletons.dart';
 import 'package:ween_blaqe/api/apartments_api/one_apartment.dart';
-// import 'package:ween_blaqe/constants/injection.dart';
+// import 'package:ween_blaqe/constants/get_it_controller.dart';
 import 'package:ween_blaqe/constants/nums.dart';
 import 'package:ween_blaqe/controller/get_controllers.dart';
 import 'package:ween_blaqe/core/utils/styles/button.dart';
@@ -86,18 +86,18 @@ class _UpdateImagesState extends State<UpdateImages> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: themeMode.isDark
+      backgroundColor: themeMode.isLight
           ? kBackgroundAppColorLightMode
           : kBackgroundAppColorDarkMode,
       appBar: AppBar(
         automaticallyImplyLeading: false,
-        backgroundColor: themeMode.isDark
+        backgroundColor: themeMode.isLight
             ? kContainerColorLightMode
             : kContainerColorDarkMode,
         title: Text(
           "Testing Code",
           style: TextStyle(
-              color: themeMode.isDark
+              color: themeMode.isLight
                   ? kPrimaryColorLightMode
                   : kPrimaryColorDarkMode,
               fontSize: 18),
@@ -193,7 +193,7 @@ class _UpdateImagesState extends State<UpdateImages> {
                 );
               },
               heroTag: 'image0',
-              backgroundColor: themeMode.isDark ? kPrimaryColorLightMode : kPrimaryColorDarkMode,
+              backgroundColor: themeMode.isLight ? kPrimaryColorLightMode : kPrimaryColorDarkMode,
               tooltip: 'أضف صور من المعرض',
               child: const Icon(Icons.photo_library),
             ),
@@ -209,7 +209,7 @@ class _UpdateImagesState extends State<UpdateImages> {
               },
               heroTag: 'image1',
               tooltip: 'إلتقط صورة',
-              backgroundColor: themeMode.isDark ? kPrimaryColorLightMode : kPrimaryColorDarkMode,
+              backgroundColor: themeMode.isLight ? kPrimaryColorLightMode : kPrimaryColorDarkMode,
               child: const Icon(Icons.camera_alt),
             ),
           ),
@@ -330,7 +330,7 @@ class _UpdateImagesState extends State<UpdateImages> {
         'تُعرض الصور المختارة هنا',
         style: TextStyle(
           fontFamily: 'IBM',
-          color: themeMode.isDark ? kTextColorLightMode : kTextColorDarkMode,
+          color: themeMode.isLight ? kTextColorLightMode : kTextColorDarkMode,
         ),
         textAlign: TextAlign.center,
       );

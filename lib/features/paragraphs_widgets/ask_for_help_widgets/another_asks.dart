@@ -9,12 +9,12 @@ class WhatIsMeanSS extends StatelessWidget {
   Widget build(BuildContext context) {
     return ColorfulSafeArea(
       bottomColor: Colors.transparent ,
-      color: themeMode.isDark ? kPrimaryColorLightMode : kPrimaryColorDarkMode,
+      color: themeMode.isLight ? kPrimaryColorLightMode : kPrimaryColorDarkMode,
       child: Scaffold(
-        backgroundColor: themeMode.isDark ? kBackgroundAppColorLightMode : kBackgroundAppColorDarkMode,
+        backgroundColor: themeMode.isLight ? kBackgroundAppColorLightMode : kBackgroundAppColorDarkMode,
 
         appBar: AppBar(
-          backgroundColor: themeMode.isDark ? kPrimaryColorLightMode : kPrimaryColorDarkMode,
+          backgroundColor: themeMode.isLight ? kPrimaryColorLightMode : kPrimaryColorDarkMode,
         ),
         body: Column(
           children: [
@@ -27,7 +27,7 @@ class WhatIsMeanSS extends StatelessWidget {
                     "ما المقصود ب ش/ش",
                     style: TextStyle(
                       fontSize: 20.0,
-                      color: themeMode.isDark ? kTextColorLightMode : kTextColorDarkMode,
+                      color: themeMode.isLight ? kTextColorLightMode : kTextColorDarkMode,
                       fontFamily: 'IBM',
                       inherit: true,
                     ),
@@ -46,7 +46,7 @@ class WhatIsMeanSS extends StatelessWidget {
                 "(شيكل/شهري)",
                 style: TextStyle(
                   fontSize: 16.0,
-                  color: themeMode.isDark ? kTextColorLightMode : kTextColorDarkMode.withOpacity(.8),
+                  color: themeMode.isLight ? kTextColorLightMode : kTextColorDarkMode.withOpacity(.8),
                   fontFamily: 'IBM',
                   inherit: true,
                 ),

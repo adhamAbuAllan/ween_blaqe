@@ -14,9 +14,9 @@ class ApartmentShowTypesContainer extends StatelessWidget {
           decoration: BoxDecoration(
             border: Border.all(
                 width: 7,
-                color:themeMode.isDark ? kBackgroundAppColorLightMode : kBackgroundAppColorDarkMode,
+                color:themeMode.isLight ? kBackgroundAppColorLightMode : kBackgroundAppColorDarkMode,
                 strokeAlign: BorderSide.strokeAlignOutside),
-            color: themeMode.isDark ? kContainerColorLightMode : kContainerColorDarkMode,
+            color: themeMode.isLight ? kContainerColorLightMode : kContainerColorDarkMode,
             borderRadius: BorderRadiusDirectional.circular(7),
           ),
           height: 200,

@@ -12,7 +12,7 @@ import '../../api/type_of_user.dart';
 
 import 'package:ween_blaqe/constants/nums.dart';
 import '../../constants/coordination.dart';
-import '../../constants/injection.dart';
+import '../../constants/get_it_controller.dart';
 import '../../core/utils/funcations/route_pages/push_routes.dart';
 import '../../core/widgets/alirt_class_widget.dart';
 import '../../core/widgets/dropdown_classes_widgets/dropdown_type_of_user.dart';
@@ -181,12 +181,12 @@ bool hasCheckedNumberPhone = false;
   Widget build(BuildContext context) {
     return ColorfulSafeArea(
       bottomColor: Colors.transparent,
-      color: themeMode.isDark ? kPrimaryColorLightMode : kPrimaryColorDarkMode,
+      color: themeMode.isLight ? kPrimaryColorLightMode : kPrimaryColorDarkMode,
       child: Scaffold(
 
           // primary: true,
 
-          backgroundColor: themeMode.isDark
+          backgroundColor: themeMode.isLight
               ? kBackgroundAppColorLightMode
               : kBackgroundAppColorDarkMode,
           body: GestureDetector(
@@ -204,7 +204,7 @@ bool hasCheckedNumberPhone = false;
                     Padding(
                       padding: const EdgeInsets.fromLTRB(0, 25, 0, 0),
                       child: BackButton(
-                        color: themeMode.isDark
+                        color: themeMode.isLight
                             ? kTextColorLightMode
                             : kTextColorDarkMode,
                       ),
@@ -235,7 +235,7 @@ bool hasCheckedNumberPhone = false;
                                 fontSize: 28.0,
                                 fontFamily: 'IBM',
                                 inherit: true,
-                                color: themeMode.isDark
+                                color: themeMode.isLight
                                     ? kTextColorLightMode
                                     : kTextColorDarkMode,
                               ),
@@ -257,7 +257,7 @@ bool hasCheckedNumberPhone = false;
                                       fontSize: 28,
                                       fontFamily: 'IBM',
                                       inherit: true,
-                                      color: themeMode.isDark
+                                      color: themeMode.isLight
                                           ? kTextColorLightMode
                                           : kTextColorDarkMode,
                                       fontWeight: FontWeight.bold),
@@ -268,7 +268,7 @@ bool hasCheckedNumberPhone = false;
                                       fontSize: 28,
                                       fontFamily: 'IBM',
                                       inherit: true,
-                                      color: themeMode.isDark
+                                      color: themeMode.isLight
                                           ? kPrimaryColorLightMode
                                           : kPrimaryColorDarkMode,
                                       fontWeight: FontWeight.bold),
@@ -334,7 +334,7 @@ bool hasCheckedNumberPhone = false;
                                       enabledBorder: OutlineInputBorder(
                                         //<-- SEE HERE
                                         borderSide: BorderSide(
-                                            color: themeMode.isDark
+                                            color: themeMode.isLight
                                                 ? kPrimaryColor300LightMode
                                                 : kPrimaryColor300DarkMode,
                                             width: 0.5),
@@ -342,7 +342,7 @@ bool hasCheckedNumberPhone = false;
                                       focusedBorder: OutlineInputBorder(
                                         //<-- SEE HERE
                                         borderSide: BorderSide(
-                                            color: themeMode.isDark
+                                            color: themeMode.isLight
                                                 ? kPrimaryColorLightMode
                                                 : kPrimaryColorDarkMode,
                                             width: 1),
@@ -354,7 +354,7 @@ bool hasCheckedNumberPhone = false;
                                         selectedCountryCode = newValue!;
                                       });
                                     },
-                                    dropdownColor: themeMode.isDark
+                                    dropdownColor: themeMode.isLight
                                         ? kContainerColorLightMode
                                         : kContainerColorDarkMode,
                                     items: countryCodes
@@ -365,7 +365,7 @@ bool hasCheckedNumberPhone = false;
                                         child: Text(
                                           "+$value",
                                           style: TextStyle(
-                                            color: themeMode.isDark
+                                            color: themeMode.isLight
                                                 ? kTextColorLightMode
                                                 : kTextColorDarkMode,
                                           ),
@@ -398,7 +398,7 @@ bool hasCheckedNumberPhone = false;
                                     "التحقق عن طريق الواتساب",
                                     // "ستصلك رسالة لتأكيد رقمك ",
                                     style: TextStyle(
-                                      color: themeMode.isDark
+                                      color: themeMode.isLight
                                           ? kTextColorLightMode
                                           : kTextColorDarkMode,
                                       fontSize: 16,

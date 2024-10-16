@@ -19,7 +19,7 @@ class ApartmentTitleText extends StatelessWidget {
         child: Text(apartmentsRes.data?[index].title ?? "",
             softWrap: true,
             style:  TextStyle(
-              color: themeMode.isDark ? kTextColorLightMode : kTextColorDarkMode,
+              color: themeMode.isLight ? kTextColorLightMode : kTextColorDarkMode,
               fontFamily: 'IBM',
               fontSize: 16,
             )),

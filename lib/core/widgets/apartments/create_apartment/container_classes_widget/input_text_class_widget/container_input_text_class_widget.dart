@@ -6,7 +6,7 @@ import 'package:get/get.dart';
 import 'package:ween_blaqe/controller/function_controller/change_theme_mode.dart';
 
 import '../../../../../../constants/coordination.dart';
-import '../../../../../../constants/injection.dart';
+import '../../../../../../constants/get_it_controller.dart';
 import '../../../../../../constants/nums.dart';
 
 const String errorText = "";
@@ -81,7 +81,7 @@ class _ContainerInputTextClassWidgetState
 
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(7),
-        color: themeMode.isDark
+        color: themeMode.isLight
             ? kContainerColorLightMode
             : kContainerColorDarkMode,
       ),
@@ -95,7 +95,7 @@ class _ContainerInputTextClassWidgetState
                 child: Text(
                   title,
                   style: TextStyle(
-                    color: themeMode.isDark
+                    color: themeMode.isLight
                         ? kTextColorLightMode
                         : kTextColorDarkMode,
                     fontSize: 18,
@@ -109,7 +109,7 @@ class _ContainerInputTextClassWidgetState
             padding: const EdgeInsets.fromLTRB(15, 0, 10, 10),
             child: TextFormField(
               validator: widget.validator,
-              cursorColor: themeMode.isDark
+              cursorColor: themeMode.isLight
                   ? kPrimaryColorLightMode
                   : kPrimaryColorDarkMode,
               //
@@ -161,7 +161,7 @@ class _ContainerInputTextClassWidgetState
                 fontFamily: 'IBM',
                 fontSize: 16,
                 color:
-                    themeMode.isDark ? kTextColorLightMode : kTextColorDarkMode,
+                    themeMode.isLight ? kTextColorLightMode : kTextColorDarkMode,
               ),
             ),
           ),
@@ -207,13 +207,13 @@ class _ContainerInputTextClassWidgetState
         borderSide: BorderSide(
           width: 1.5,
           color:
-              themeMode.isDark ? kPrimaryColorLightMode : kPrimaryColorDarkMode,
+              themeMode.isLight ? kPrimaryColorLightMode : kPrimaryColorDarkMode,
         ),
       ),
       enabledBorder: OutlineInputBorder(
           borderSide: BorderSide(
             width: 1,
-            color: themeMode.isDark
+            color: themeMode.isLight
                 ? kPrimaryColorLightMode.withOpacity(.3)
                 : kPrimaryColorDarkMode.withOpacity(.3),
           ),

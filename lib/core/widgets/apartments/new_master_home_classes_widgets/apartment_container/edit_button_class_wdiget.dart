@@ -24,7 +24,7 @@ class EditButtonClassWdiget extends StatelessWidget {
       splashColor: Colors.transparent,
 
       icon: Icon(Icons.edit,
-          color: themeMode.isDark
+          color: themeMode.isLight
               ? kTextColorLightMode
               : kTextColorDarkMode), // Adjust colors based on theme
       onPressed: () {

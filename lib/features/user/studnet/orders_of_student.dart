@@ -31,7 +31,7 @@ class _OrdersOfStudentState extends State<OrdersOfStudent> {
     // var image = "assets/images/apartments_images/image1.png";
     // var date = "04/14/2020";
     return Scaffold(
-      backgroundColor: themeMode.isDark
+      backgroundColor: themeMode.isLight
           ? kBackgroundAppColorLightMode
           : kBackgroundAppColorDarkMode,
       body: UpgradeAlert(
@@ -58,7 +58,7 @@ class _OrdersOfStudentState extends State<OrdersOfStudent> {
                   "assets/images/mobile-development.png",
                   width: 450 / 1.3,
                   height: 420 / 1.3,
-                  color: themeMode.isDark
+                  color: themeMode.isLight
                       ? kTextColorLightMode
                       : kTextColorDarkMode,
                 ),
@@ -73,7 +73,7 @@ class _OrdersOfStudentState extends State<OrdersOfStudent> {
                   style: TextStyle(
                       fontSize: 16,
                       fontFamily: 'IBM',
-                      color: themeMode.isDark
+                      color: themeMode.isLight
                           ? kTextColorLightMode
                           : kTextColorDarkMode),
                 ),

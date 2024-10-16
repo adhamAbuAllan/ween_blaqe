@@ -18,8 +18,8 @@ class BookmarkButton extends StatelessWidget {
         icon: Icon(
           bookmarkController.isBookmarked(apartmentId) ? Icons.bookmark : Icons.bookmark_border,
           color: bookmarkController.isBookmarked(apartmentId)
-              ? themeMode.isDark ? kPrimaryColorLightMode : kPrimaryColorDarkMode // Use primaryColor if bookmarked
-              : (themeMode.isDark ? kTextColorLightMode : kTextColorDarkMode
+              ? themeMode.isLight ? kPrimaryColorLightMode : kPrimaryColorDarkMode // Use primaryColor if bookmarked
+              : (themeMode.isLight ? kTextColorLightMode : kTextColorDarkMode
 
           ), // Adjust colors based on theme
 

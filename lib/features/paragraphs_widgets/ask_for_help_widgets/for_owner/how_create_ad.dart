@@ -10,12 +10,12 @@ class HowCreateAd extends StatelessWidget {
   Widget build(BuildContext context) {
     return ColorfulSafeArea(
       // bottomColor: Colors.transparent ,
-      color: themeMode.isDark ? kPrimaryColorLightMode : kPrimaryColorDarkMode,
+      color: themeMode.isLight ? kPrimaryColorLightMode : kPrimaryColorDarkMode,
       child: Scaffold(
-        backgroundColor: themeMode.isDark ? kBackgroundAppColorLightMode : kBackgroundAppColorDarkMode,
+        backgroundColor: themeMode.isLight ? kBackgroundAppColorLightMode : kBackgroundAppColorDarkMode,
 
         appBar: AppBar(
-          backgroundColor: themeMode.isDark ? kPrimaryColorLightMode : kPrimaryColorDarkMode,
+          backgroundColor: themeMode.isLight ? kPrimaryColorLightMode : kPrimaryColorDarkMode,
         ),
         body: SingleChildScrollView(
           child: SizedBox(
@@ -30,7 +30,7 @@ class HowCreateAd extends StatelessWidget {
                         " كيف أنشئ إعلان؟",
                         style: TextStyle(
                           fontSize: 20.0,
-                          color: themeMode.isDark ? kTextColorLightMode : kTextColorDarkMode,
+                          color: themeMode.isLight ? kTextColorLightMode : kTextColorDarkMode,
                           fontFamily: 'IBM',
                           inherit: true,
                         ),
@@ -47,7 +47,7 @@ class HowCreateAd extends StatelessWidget {
                     "لإنشاء إعلان خاص بك على تطبيق وين بلاقي ، إذهب إلى الصفحة الرئيسية",
                     style: TextStyle(
                       fontSize: 16.0,
-                      color: themeMode.isDark ? kTextColorLightMode : kTextColorDarkMode.withOpacity(.8),
+                      color: themeMode.isLight ? kTextColorLightMode : kTextColorDarkMode.withOpacity(.8),
                       fontFamily: 'IBM',
                       inherit: true,
                     ),
@@ -64,7 +64,7 @@ class HowCreateAd extends StatelessWidget {
                     "إضعط على زر إضافة شقة المتواجد في اسفل الشاشة على اليمين",
                     style: TextStyle(
                       fontSize: 16.0,
-                      color: themeMode.isDark ? kTextColorLightMode : kTextColorDarkMode.withOpacity(.8),
+                      color: themeMode.isLight ? kTextColorLightMode : kTextColorDarkMode.withOpacity(.8),
                       fontFamily: 'IBM',
                       inherit: true,
                     ),
@@ -83,7 +83,7 @@ class HowCreateAd extends StatelessWidget {
                     "ثم أضغط على زر 'اطلب الإشتراك عبر واتس أب'",
                     style: TextStyle(
                       fontSize: 16.0,
-                      color: themeMode.isDark ? kTextColorLightMode : kTextColorDarkMode.withOpacity(.8),
+                      color: themeMode.isLight ? kTextColorLightMode : kTextColorDarkMode.withOpacity(.8),
                       fontFamily: 'IBM',
                       inherit: true,
                     ),
@@ -103,7 +103,7 @@ class HowCreateAd extends StatelessWidget {
                     "وسيتم الرد على رسالتك خلال بضع دقائق",
                     style: TextStyle(
                       fontSize: 16.0,
-                      color: themeMode.isDark ? kTextColorLightMode : kTextColorDarkMode.withOpacity(.8),
+                      color: themeMode.isLight ? kTextColorLightMode : kTextColorDarkMode.withOpacity(.8),
                       fontFamily: 'IBM',
                       inherit: true,
                     ),

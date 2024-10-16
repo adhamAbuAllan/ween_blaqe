@@ -15,7 +15,7 @@ import 'package:ween_blaqe/features/user/owner/profile_of_owner.dart';
 
 // import 'package:ween_blaqe/core/widgets/profile_classs_widget/profile_image.dart';
 // import 'package:ween_blaqe/features/user/owner/profile_of_owner.dart';
-import '../../../constants/injection.dart';
+import '../../../constants/get_it_controller.dart';
 import '../../../controller/get_controllers.dart';
 import '../../../core/utils/funcations/get_app_version.dart';
 
@@ -45,7 +45,7 @@ class _AccountOfOwnerState extends State<AccountOfOwner> {
   Widget build(BuildContext context) {
     // MainController controller = Get.find();
     return Scaffold(
-      backgroundColor: themeMode.isDark
+      backgroundColor: themeMode.isLight
           ? kBackgroundAppColorLightMode
           : kBackgroundAppColorDarkMode,
       body: SingleChildScrollView(
@@ -68,7 +68,7 @@ class _AccountOfOwnerState extends State<AccountOfOwner> {
                       fontSize: 26.0,
                       fontFamily: 'IBM',
                       inherit: true,
-                      color: themeMode.isDark
+                      color: themeMode.isLight
                           ? kTextColorLightMode
                           : kTextColorDarkMode,
                     ),
@@ -109,7 +109,7 @@ class _AccountOfOwnerState extends State<AccountOfOwner> {
                 margin: const EdgeInsets.fromLTRB(10, 0, 10, 0),
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(7),
-                  color: themeMode.isDark
+                  color: themeMode.isLight
                       ? kContainerColorLightMode
                       : kContainerColorDarkMode,
                 ),
@@ -132,7 +132,7 @@ class _AccountOfOwnerState extends State<AccountOfOwner> {
                               ? 16
                               : 18,
                           fontFamily: 'IBM',
-                          color: themeMode.isDark
+                          color: themeMode.isLight
                               ? kTextColorLightMode
                               : kTextColorDarkMode,
                         ),
@@ -151,7 +151,7 @@ class _AccountOfOwnerState extends State<AccountOfOwner> {
                         style: TextStyle(
                             fontSize: 16,
                             fontFamily: 'IBM',
-                            color: themeMode.isDark
+                            color: themeMode.isLight
                                 ? kTextColorLightMode
                                 : kTextColorDarkMode),
                       ),
@@ -209,7 +209,7 @@ class _AccountOfOwnerState extends State<AccountOfOwner> {
               margin: const EdgeInsets.fromLTRB(10, 0, 10, 0),
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(7),
-                color: themeMode.isDark
+                color: themeMode.isLight
                     ? kContainerColorLightMode
                     : kContainerColorDarkMode,
               ),
@@ -220,17 +220,17 @@ class _AccountOfOwnerState extends State<AccountOfOwner> {
                   // themeMode.onChanged),
                   SwitchListTile(
                       inactiveThumbColor: kBackgroundAppColorLightMode,
-                      activeColor: themeMode.isDark
+                      activeColor: themeMode.isLight
                           ? kPrimaryColorLightMode
                           : kPrimaryColorDarkMode,
                       dense: getIt<AppDimension>().isSmallScreen(context),
                       title: Row(
                         children: [
                           Icon(
-                            themeMode.isDark
+                            themeMode.isLight
                                 ? Icons.light_mode_outlined
                                 : Icons.dark_mode_outlined,
-                            color: themeMode.isDark
+                            color: themeMode.isLight
                                 ? kTextColorLightMode
                                 : kTextColorDarkMode,
                             size: getIt<AppDimension>().isSmallScreen(context)
@@ -244,12 +244,12 @@ class _AccountOfOwnerState extends State<AccountOfOwner> {
                               style: TextStyle(
                                   fontSize: 16,
                                   fontFamily: 'IBM',
-                                  color: themeMode.isDark
+                                  color: themeMode.isLight
                                       ? kTextColorLightMode
                                       : kTextColorDarkMode)),
                         ],
                       ),
-                      value: themeMode.isDark,
+                      value: themeMode.isLight,
                       onChanged: (bool value) async {
                         cityModelController.cityId.value = 0;
                         setState(() {
@@ -312,7 +312,7 @@ class _AccountOfOwnerState extends State<AccountOfOwner> {
                     myPushName(context, MyPagesRoutes.noInternet);
                   },
                       image: Image.asset("assets/images/tasbih.png",
-                          color: themeMode.isDark
+                          color: themeMode.isLight
                               ? kTextColorLightMode
                               : kTextColorDarkMode,
                           width: 35,
@@ -389,7 +389,7 @@ class _AccountOfOwnerState extends State<AccountOfOwner> {
                       "الإصدار التجريبي: ${snapshot.data} ",
                       style: TextStyle(
                           fontFamily: 'IBM',
-                          color: themeMode.isDark
+                          color: themeMode.isLight
                               ? kTextColorLightMode.withOpacity(.5)
                               : kTextColorDarkMode.withOpacity(.5)),
                       textDirection: TextDirection.rtl,
