@@ -101,9 +101,9 @@ class _AccountOfOwnerState extends State<AccountOfOwner> {
                 Navigator.push(
                     context,
                     MaterialPageRoute(
-                        builder: (context) => const ProfileOfOwner())
-
+                        builder: (context) => const ProfileOfOwner()),
                 );
+
               },
               child: Container(
                 width: double.infinity,

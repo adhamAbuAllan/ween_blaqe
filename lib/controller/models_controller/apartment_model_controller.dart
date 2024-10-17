@@ -28,14 +28,17 @@ late Future<OneApartment> futureOneApartmentList;
     if (isOwnerApartments) {
       getApartmentsByOwner().then((value) async {
 
+
         if (value.data?.isEmpty ?? false) {
           isApartmentNull = true;
+          apartments.value = value;
           update();
           return;
         } else {
           isApartmentNull = false;
           update();
         }
+
         apartments.value = value;
         debugPrint(" the length of data is ${apartments.value.data?.length}");
       }).catchError((e) {

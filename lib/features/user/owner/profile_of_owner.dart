@@ -108,7 +108,7 @@ class _ProfileOfOwnerState extends State<ProfileOfOwner> {
                     // Three colors
                     begin: Alignment.bottomCenter, // Horizontal gradient
                     end: Alignment.topCenter,
-                    stops: const [0, 0.2, 0.0], // Color stops
+                    stops: const [0, 0.25, 0.0], // Color stops
                   ),
                 ),
                 child: CircleAvatar(
@@ -305,7 +305,7 @@ class _ProfileOfOwnerState extends State<ProfileOfOwner> {
                                         ? kTextColorLightMode
                                         : kTextColorDarkMode,
                                     fontSize: 16));
-                          }),
+                          })
                         ],
                       ),
                     ),
