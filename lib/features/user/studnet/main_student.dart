@@ -42,7 +42,7 @@ class _MainStudentState extends State<MainStudent> {
         "the first time value in main Student : --${introController.isFirstTime}");
 
     // checkWifiStatus();
-    WidgetsBinding.instance.addPostFrameCallback((_) {
+    WidgetsBinding.instance.addPostFrameCallback((_ ) {
       setState(() {
         cityModelController.getCity();
 // Your state update logic here

@@ -190,6 +190,7 @@ class _LoginState extends State<Login> {
                   //phone container
                   Padding(
                     padding: const EdgeInsets.fromLTRB(0, 0, 0, 10),
+
                     child: ContainerInputTextClassWidget(
 
                       // errorText: errorText,
@@ -298,7 +299,7 @@ class _LoginState extends State<Login> {
                                 // if (isLoading) {
                                 //   return;
                                 // }
-                                go(phoneController.text,
+                                loginMethod(phoneController.text,
                                     passwordController.text);
                                 // isLoading = false;
                               });
@@ -388,7 +389,7 @@ class _LoginState extends State<Login> {
     );
   }
 
-  go(String phone, String password) async {
+  loginMethod(String phone, String password) async {
     isLoading = true;
     var url = Uri.parse(ServerWeenBalaqee.userLogin);
     var response =

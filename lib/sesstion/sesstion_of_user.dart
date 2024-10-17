@@ -43,6 +43,7 @@ saveUserInfo(User data,{DataOfOneApartment ? apartment } ) {
 
 
 removeUserInfo() {
+
   NewSession.remove("logged");
   NewSession.remove("token");
   NewSession.remove("id");

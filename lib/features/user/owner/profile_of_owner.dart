@@ -59,7 +59,7 @@ class _ProfileOfOwnerState extends State<ProfileOfOwner> {
   Widget build(BuildContext context) {
     return ColorfulSafeArea(
       bottomColor: Colors.transparent,
-      color: kPrimaryColorDarkMode,
+      color:themeMode.isLight ? kPrimaryColorLightMode:kPrimaryColorDarkMode,
       child: Scaffold(
         backgroundColor: themeMode.isLight
             ? kBackgroundAppColorLightMode
@@ -284,7 +284,7 @@ class _ProfileOfOwnerState extends State<ProfileOfOwner> {
                         children: [
                           // Row(children: [],),
 
-                          Text("عدد الإعلانات التي أنشاتها",
+                          Text("عدد الإعلانات العروضة",
                               style: TextStyle(
                                   color: themeMode.isLight
                                       ? kTextColorLightMode
@@ -295,11 +295,11 @@ class _ProfileOfOwnerState extends State<ProfileOfOwner> {
                           ),
                           Obx(() {
                             return Text(
-                                "لقد أنشأت "
+                                "لديك"
                                     " ${apartmentModelController.apartments
                                     .value
                                     .data?.length} "
-                                    "من الإعلانات",
+                                    " من الإعلانات العروضة",
                                 style: TextStyle(
                                     color: themeMode.isLight
                                         ? kTextColorLightMode
