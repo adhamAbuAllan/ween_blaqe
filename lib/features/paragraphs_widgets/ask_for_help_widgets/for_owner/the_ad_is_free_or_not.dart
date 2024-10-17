@@ -24,9 +24,13 @@ class _TheAdIsFreeOrNotState extends State<TheAdIsFreeOrNot> {
       color: themeMode.isLight ? kPrimaryColorLightMode : kPrimaryColorDarkMode,
       bottomColor: Colors.transparent,
       child: Scaffold(
-        backgroundColor: themeMode.isLight ? kBackgroundAppColorLightMode : kBackgroundAppColorDarkMode,
+        backgroundColor: themeMode.isLight
+            ? kBackgroundAppColorLightMode
+            : kBackgroundAppColorDarkMode,
         appBar: AppBar(
-          backgroundColor: themeMode.isLight ? kPrimaryColorLightMode : kPrimaryColorDarkMode,
+          backgroundColor: themeMode.isLight
+              ? kPrimaryColorLightMode
+              : kPrimaryColorDarkMode,
         ),
         body: Column(
           children: [
@@ -38,7 +42,9 @@ class _TheAdIsFreeOrNotState extends State<TheAdIsFreeOrNot> {
                 "كم يُكلفة الإشتراك لعرض إعلاناتي داخل تطبيق وين بلاقي؟",
                 style: TextStyle(
                   fontSize: 20.0,
-                  color: themeMode.isLight ? kTextColorLightMode : kTextColorDarkMode.withOpacity(.8),
+                  color: themeMode.isLight
+                      ? kTextColorLightMode
+                      : kTextColorDarkMode.withOpacity(.8),
                   fontFamily: 'IBM',
                   inherit: false,
                 ),
@@ -84,7 +90,9 @@ class _TheAdIsFreeOrNotState extends State<TheAdIsFreeOrNot> {
                     style: TextStyle(
                       fontSize: 18.0,
                       fontFamily: 'IBM',
-                      color: themeMode.isLight ? kTextColorLightMode : kTextColorDarkMode.withOpacity(.8),
+                      color: themeMode.isLight
+                          ? kTextColorLightMode
+                          : kTextColorDarkMode.withOpacity(.8),
                       inherit: true,
                     ),
                   ),
@@ -102,13 +110,17 @@ class _TheAdIsFreeOrNotState extends State<TheAdIsFreeOrNot> {
                               style: TextStyle(
                                 fontFamily: "IBM",
                                 fontSize: 22,
-                                color: themeMode.isLight ? kTextColorLightMode : kTextColorDarkMode.withOpacity(.8),
+                                color: themeMode.isLight
+                                    ? kTextColorLightMode
+                                    : kTextColorDarkMode.withOpacity(.8),
                               ),
                               text: "التكلفة الشهرية: "),
                           TextSpan(
                               style: TextStyle(
                                 fontFamily: "IBM",
-                                color: themeMode.isLight ? kTextColorLightMode : kTextColorDarkMode.withOpacity(.8),
+                                color: themeMode.isLight
+                                    ? kTextColorLightMode
+                                    : kTextColorDarkMode.withOpacity(.8),
                                 fontSize: 22,
                               ),
                               text: "199"),
@@ -121,7 +133,9 @@ class _TheAdIsFreeOrNotState extends State<TheAdIsFreeOrNot> {
                           child: FaIcon(
                             FontAwesomeIcons.shekelSign,
                             size: 18,
-                            color: themeMode.isLight ? kTextColorLightMode : kTextColorDarkMode.withOpacity(.8),
+                            color: themeMode.isLight
+                                ? kTextColorLightMode
+                                : kTextColorDarkMode.withOpacity(.8),
                           ),
                         ),
                       ],
@@ -146,7 +160,10 @@ class _TheAdIsFreeOrNotState extends State<TheAdIsFreeOrNot> {
                                       style: TextStyle(
                                         fontFamily: "IBM",
                                         fontSize: 22,
-                                        color: themeMode.isLight ? kTextColorLightMode : kTextColorDarkMode.withOpacity(.8),
+                                        color: themeMode.isLight
+                                            ? kTextColorLightMode
+                                            : kTextColorDarkMode
+                                                .withOpacity(.8),
                                       ),
                                       text: "التكلفة السنوية:"),
                                 ],
@@ -155,21 +172,22 @@ class _TheAdIsFreeOrNotState extends State<TheAdIsFreeOrNot> {
                         SizedBox(
                           child: Column(
                             children: [
-
-
                               SizedBox(
                                 child: Row(
                                   children: [
                                     SizedBox(
                                       child: RichText(
                                           softWrap: true,
-                                          text:  TextSpan(children: [
+                                          text: TextSpan(children: [
                                             TextSpan(
                                                 style: TextStyle(
                                                   fontFamily: "IBM",
-                                                  color: themeMode.isLight ? kTextColorLightMode : kTextColorDarkMode,
+                                                  color: themeMode.isLight
+                                                      ? kTextColorLightMode
+                                                      : kTextColorDarkMode,
                                                   decoration: TextDecoration
-                                                      .lineThrough,decorationColor: Colors.red,
+                                                      .lineThrough,
+                                                  decorationColor: Colors.red,
                                                   fontSize: 24,
                                                 ),
                                                 text: "2388")
@@ -178,15 +196,16 @@ class _TheAdIsFreeOrNotState extends State<TheAdIsFreeOrNot> {
                                     const SizedBox(
                                       width: 3,
                                     ),
-                                     FaIcon(
+                                    FaIcon(
                                       size: 20,
                                       FontAwesomeIcons.shekelSign,
-                                      color: themeMode.isLight ? kTextColorLightMode : kTextColorDarkMode,
+                                      color: themeMode.isLight
+                                          ? kTextColorLightMode
+                                          : kTextColorDarkMode,
                                     ),
                                   ],
                                 ),
                               ),
-
                               SizedBox(
                                 child: Row(
                                   children: [
@@ -196,7 +215,10 @@ class _TheAdIsFreeOrNotState extends State<TheAdIsFreeOrNot> {
                                         TextSpan(
                                           style: TextStyle(
                                             fontFamily: "IBM",
-                                            color: themeMode.isLight ? kTextColorLightMode : kTextColorDarkMode.withOpacity(.8),
+                                            color: themeMode.isLight
+                                                ? kTextColorLightMode
+                                                : kTextColorDarkMode
+                                                    .withOpacity(.8),
                                             fontSize: 20,
                                           ),
                                           text: "1999",
@@ -209,7 +231,9 @@ class _TheAdIsFreeOrNotState extends State<TheAdIsFreeOrNot> {
                                     FaIcon(
                                       FontAwesomeIcons.shekelSign,
                                       size: 16,
-                                      color: themeMode.isLight ? kTextColorLightMode : kTextColorDarkMode.withOpacity(.8),
+                                      color: themeMode.isLight
+                                          ? kTextColorLightMode
+                                          : kTextColorDarkMode.withOpacity(.8),
                                     ),
                                   ],
                                 ),
@@ -221,38 +245,42 @@ class _TheAdIsFreeOrNotState extends State<TheAdIsFreeOrNot> {
                     ),
                   ),
                   // const Divider(thickness: 1),
-                  const SizedBox(height: 10,),
+                  const SizedBox(
+                    height: 10,
+                  ),
                   aline,
                   Row(
                     children: [
-                       Text(
+                      Text(
                           softWrap: true,
-                          "إشترك الأن من خلال التواصل عبر ",style: TextStyle(
-                        fontFamily: "IBM",
-                        fontSize: 14,
-                        color: themeMode.isLight ? kTextColorLightMode : kTextColorDarkMode
-
-
-                      )),
+                          "إشترك الأن من خلال التواصل عبر ",
+                          style: TextStyle(
+                              fontFamily: "IBM",
+                              fontSize: 14,
+                              color: themeMode.isLight
+                                  ? kTextColorLightMode
+                                  : kTextColorDarkMode)),
                       TextButton(
-                        style: ButtonStyle(overlayColor: WidgetStatePropertyAll(const Color(0xff25D366).withOpacity(.0),) ),
-
-                        child: const Text("واتس أب",style: TextStyle(
-                        fontFamily: "IBM",
-                        fontSize: 14,
-                        color: Color(0xff25D366),
-
-
-                      )),onPressed: (){
-                        sendMessageToWhatsApp(
-                            '2569339613', "السلام عليكم، ",image: "");
-                      },),
+                        style: ButtonStyle(
+                            overlayColor: WidgetStatePropertyAll(
+                          const Color(0xff25D366).withOpacity(.0),
+                        )),
+                        child: const Text("واتس أب",
+                            style: TextStyle(
+                              fontFamily: "IBM",
+                              fontSize: 14,
+                              color: Color(0xff25D366),
+                            )),
+                        onPressed: () {
+                          sendMessageToWhatsApp('2569339613', "السلام عليكم، ",
+                              image: "");
+                        },
+                      ),
                     ],
                   ),
                 ],
               ),
             ),
-
           ],
         ),
       ),

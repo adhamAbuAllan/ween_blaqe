@@ -33,7 +33,7 @@ class _BookmarkApartmentState extends State<BookmarkApartment> {
   OneApartment getApartmentsFromBookmarks(List<int> bookmarks) {
     OneApartment result = OneApartment(data: []);
     final List<DataOfOneApartment> apartments =
-        apartmentModelController.apartments.value.data ?? [];
+        apartmentModelController.apartment.data ?? [];
 
     for (int apartmentId in bookmarks) {
       final apartment = apartments.firstWhereOrNull((a) => a.id == apartmentId);

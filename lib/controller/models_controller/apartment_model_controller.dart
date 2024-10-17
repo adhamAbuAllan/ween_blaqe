@@ -21,6 +21,7 @@ class ApartmentModelController extends GetxController {
   RxBool isUpdating = false.obs;
 RxInt apartmentLengthOfOwner = 0.obs;
 late Future<OneApartment> futureOneApartmentList;
+
   Future<OneApartment> fetchApartments({required bool isOwnerApartments ,})
   async {
     isLoading.value = true;
@@ -50,7 +51,7 @@ late Future<OneApartment> futureOneApartmentList;
         var responseBody = response.body;
         var json = jsonDecode(responseBody);
         OneApartment apartmentsRes = OneApartment.fromJson(json);
-        apartments.value = apartmentsRes;
+        apartment = apartmentsRes;
         debugPrint("a json of apartment is: -- $json");
         // setState(() {
         //   isDataLoaded = true;
@@ -60,7 +61,7 @@ late Future<OneApartment> futureOneApartmentList;
         debugPrint("msg : ${apartmentsRes.msg}");
         debugPrint("the status is ${apartmentsRes.status}");
         isLoading.value = false;
-        return apartments.value;
+        return apartment;
       } else if (apartmentModelController.apartment.msg?.isNotEmpty ?? false) {
         var errorMessage =
             ' a messsage of response of apartment is : ${response.statusCode}: ${response.body} ';
