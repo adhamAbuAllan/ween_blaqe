@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:skeletons/skeletons.dart';
 import 'package:ween_blaqe/api/apartments_api/one_apartment.dart';
 
+// import '../../../../../controller/get_controllers.dart';
 import '../../show_more_classes_widget/image_slider/custom_slider.dart';
 import '../../show_more_classes_widget/image_slider/pointer.dart';
 // import '../../show_more_classes_widget/image_slider/zoom_of_image/image_details_scree.dart';

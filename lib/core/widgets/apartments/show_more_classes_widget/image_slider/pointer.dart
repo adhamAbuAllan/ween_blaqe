@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:ween_blaqe/api/apartments_api/one_apartment.dart';
 import '../../../../../api/photos.dart';
 import '../../../../../constants/nums.dart';
+import '../../../../../controller/get_controllers.dart';
 // import '../../../../../controller/get_controllers.dart'; // Assuming this is where imageOfApartmentController is
 
 class PointerOfImage extends StatefulWidget {
@@ -14,6 +15,7 @@ class PointerOfImage extends StatefulWidget {
 
   final List<Photos> imageList;
   final DataOfOneApartment oneApartment;
+
 
   @override
   State<PointerOfImage> createState() => _PointerOfImageState();
@@ -31,7 +33,13 @@ class _PointerOfImageState extends State<PointerOfImage> {
           return GestureDetector(
             onTap: () {
               // Update the current photo index on tap
-              widget.oneApartment.currentPhotoIndex.value = index;
+              setState(() {
+
+                widget.oneApartment.currentPhotoIndex.value = index;
+                imageOfApartmentController.carouselSliderController.animateToPage(
+                  widget.oneApartment.currentPhotoIndex.value,
+                );
+              });
             },
             child: Obx(() {
               // Observe the current photo index and apply the pointer style accordingly

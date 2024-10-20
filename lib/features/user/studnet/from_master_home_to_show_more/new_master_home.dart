@@ -22,6 +22,7 @@ import '../../../../api/apartments_api/one_apartment.dart';
 import '../../../../api/photos.dart';
 import '../../../../api/users.dart';
 // import '../../../../constants/get_it_controller.dart';
+// import '../../../../core/widgets/apartments/show_more_classes_widget/image_slider/pointer.dart';
 import '../../../../main.dart';
 // import '../../../../core/utils/funcations/snakbar_for_stream_builder.dart';
 

@@ -27,7 +27,7 @@ import '../../../main.dart';
 // import 'apartment_of_owner.dart';
 import '../../../sesstion/new_session.dart';
 import '../../../sesstion/sesstion_of_user.dart';
-// import '../../../testing_code/update_data_of_user_test.dart';
+// import '../../../testing_code/update_data_of_user.dart';
 
 //account screen
 class AccountOfOwner extends StatefulWidget {

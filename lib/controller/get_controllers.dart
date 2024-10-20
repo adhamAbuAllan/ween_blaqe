@@ -7,6 +7,7 @@ import 'package:ween_blaqe/controller/models_controller/city_model_controller.da
 import 'package:ween_blaqe/controller/scroll_controller.dart';
 
 import 'bookmark_controller.dart';
+import 'change_password_controller.dart';
 import 'function_controller/api_functions_controller/cities_and_types_controller.dart';
 import 'function_controller/connectivity_controller.dart';
 import 'image_of_apartment_controller.dart';
@@ -27,3 +28,4 @@ IntroController introController = Get.find();
 ConnectivityController connectivityController  = Get.find();
 ImageOfApartmentController imageOfApartmentController = Get.find();
 ShowDetailOfImageOfApartmentController showDetailOfImageOfApartmentController = Get.find();
+ChangePasswordController changePasswordController = Get.find();

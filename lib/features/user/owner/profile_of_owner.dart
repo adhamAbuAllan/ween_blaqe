@@ -5,7 +5,7 @@ import 'package:ween_blaqe/constants/strings.dart';
 import 'package:ween_blaqe/controller/get_controllers.dart';
 import 'package:ween_blaqe/core/utils/funcations/route_pages/push_routes.dart';
 import 'package:ween_blaqe/sesstion/new_session.dart';
-import 'package:ween_blaqe/testing_code/update_data_of_user_test.dart';
+import 'package:ween_blaqe/testing_code/update_data_of_user.dart';
 
 // import 'package:ween_blaqe/core/utils/styles/show_more_widget/about_apartment_style.dart';
 // ignore: duplicate_import

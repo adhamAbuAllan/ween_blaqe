@@ -4,6 +4,7 @@ import 'package:ween_blaqe/constants/nums.dart';
 
 import '../../../constants/coordination.dart';
 import '../../../constants/get_it_controller.dart';
+// import '../../../controller/get_controllers.dart';
 
 //text filed password for registration
 class TextFieldOfPasswordClassWidget extends StatefulWidget {
@@ -17,6 +18,8 @@ class TextFieldOfPasswordClassWidget extends StatefulWidget {
   final Function(String)? checkPass;
   late final double? strength;
   final bool isObscure;
+  final String? Function(String?)? validator;
+
   final void Function(bool) onObscureChanged;
   final TextEditingController? controller;
 
@@ -33,7 +36,8 @@ class TextFieldOfPasswordClassWidget extends StatefulWidget {
       this.checkPass,
       this.controller,
       required this.isObscure,
-      required this.onObscureChanged})
+      required this.onObscureChanged,
+      this.validator})
       : super(key: key);
 
   @override
@@ -106,6 +110,7 @@ class _TextFieldOfPasswordClassWidgetState
         // padding: const EdgeInsets.fromLTRB(25, 0, 25, 12),
         padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 0),
         child: TextFormField(
+          validator: widget.validator,
           // onChanged: (value) => checkPassword(value),
           // onChanged: (v) => widget.checkPass!(widget.displayText??v),
           controller: widget.controller,
@@ -113,45 +118,62 @@ class _TextFieldOfPasswordClassWidgetState
 
           // textInputAction: TextInputAction.next,
           obscureText: widget.isObscure,
-          style:  TextStyle(fontFamily: 'IBM',color: themeMode.isLight ? kTextColorLightMode : kTextColorDarkMode),
+          style: TextStyle(
+              fontFamily: 'IBM',
+              color:
+                  themeMode.isLight ? kTextColorLightMode : kTextColorDarkMode),
           // focusNode: focusNode,
           keyboardType: inputType,
           decoration: InputDecoration(
-              contentPadding:  EdgeInsets.symmetric(vertical:
-              getIt<AppDimension>().isSmallScreen(context) ? 20/2 : 20,
-                  horizontal: 10),
-              labelText: labelInput,
-              labelStyle: TextStyle(
-                  color: Colors.grey.shade500, fontFamily: 'IBM', fontSize: 16),
-              suffixIcon: IconButton(
-                icon: widget.isObscure
-                    ? const Icon(Icons.visibility)
-                    : const Icon(Icons.visibility_off),
-                color: themeMode.isLight ? kTextColorLightMode : kTextColorDarkMode,
-                onPressed: () {
-                  setState(() {
-                    widget.onObscureChanged(!widget.isObscure);
-                  });
-                },
+            contentPadding: EdgeInsets.symmetric(
+                vertical:
+                    getIt<AppDimension>().isSmallScreen(context) ? 20 / 2 : 20,
+                horizontal: 10),
+            labelText: labelInput,
+            labelStyle: TextStyle(
+                color: Colors.grey.shade500, fontFamily: 'IBM', fontSize: 16),
+            suffixIcon: IconButton(
+              icon: widget.isObscure
+                  ? const Icon(Icons.visibility)
+                  : const Icon(Icons.visibility_off),
+              color:
+                  themeMode.isLight ? kTextColorLightMode : kTextColorDarkMode,
+              onPressed: () {
+                setState(() {
+                  widget.onObscureChanged(!widget.isObscure);
+                });
+              },
+            ),
+            hintStyle: const TextStyle(color: Colors.grey),
+            border: InputBorder.none,
+            focusedBorder: OutlineInputBorder(
+              borderSide: BorderSide(
+                width: 1,
+                color: themeMode.isLight
+                    ? kPrimaryColorLightMode
+                    : kPrimaryColorDarkMode,
               ),
-              hintStyle: const TextStyle(color: Colors.grey),
-              border: InputBorder.none,
-              focusedBorder: OutlineInputBorder(
+            ),
+            enabledBorder: OutlineInputBorder(
                 borderSide: BorderSide(
-                  width: 1,
+                  width: 0.5,
                   color: themeMode.isLight
-                      ? kPrimaryColorLightMode
-                      : kPrimaryColorDarkMode,
+                      ? kPrimaryColor300LightMode
+                      : kPrimaryColor300DarkMode,
                 ),
-              ),
-              enabledBorder: OutlineInputBorder(
-                  borderSide: BorderSide(
-                    width: 0.5,
-                    color: themeMode.isLight
-                        ? kPrimaryColor300LightMode
-                        : kPrimaryColor300DarkMode,
-                  ),
-                  borderRadius: BorderRadius.circular(7))),
+                borderRadius: BorderRadius.circular(7)),
+            errorBorder: const OutlineInputBorder(
+              borderSide:
+                  BorderSide(color: Colors.red), // Set error border color
+            ),
+
+            focusedErrorBorder: const OutlineInputBorder(
+              borderSide: BorderSide(
+                  color: Colors.red, width: 2.0), // Set focused error border
+            ),
+            errorStyle: const TextStyle(
+                color: Colors.red), // Customize error text style
+          ),
         ));
   }
 

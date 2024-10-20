@@ -57,7 +57,8 @@ class _CarouselSliderWidgetState extends State<CarouselSliderWidget> {
                 widget.oneApartment.currentPhotoIndex.value = index;
 
                 debugPrint(
-                    "index in custom slider for apartment ${widget.apartmentId}: $index");
+                    "index in custom slider for apartment ${widget.apartmentId}:"
+                        " $index");
               },
             ),
             items: widget.imageList.map((photo) {

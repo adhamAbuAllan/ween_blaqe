@@ -94,8 +94,7 @@ class _WholeWidgetOfApartmentState extends State<WholeWidgetOfApartment> {
                   ),
                 ),
               ],
-            )
-
+            ),
           ],
         ),
       ),

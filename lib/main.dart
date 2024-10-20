@@ -53,13 +53,14 @@ import 'package:ween_blaqe/features/user/studnet/main_student.dart';
 
 import 'package:ween_blaqe/sesstion/new_session.dart';
 import 'package:ween_blaqe/features/splach_screen.dart';
-import 'package:ween_blaqe/testing_code/update_data_of_user_test.dart';
+import 'package:ween_blaqe/testing_code/update_data_of_user.dart';
 
 // import 'package:ween_blaqe/testing_code/bookmark_test.dart';
 import 'constants/get_it_controller.dart';
 import 'constants/nums.dart';
 import 'constants/strings.dart';
 import 'controller/bookmark_controller.dart';
+import 'controller/change_password_controller.dart';
 import 'controller/function_controller/api_functions_controller/cities_and_types_controller.dart';
 import 'controller/function_controller/api_functions_controller/apartment_api_methods_controller.dart';
 import 'controller/function_controller/connectivity_controller.dart';
@@ -138,6 +139,7 @@ void main() async {
   Get.put(ImagesModelController());
   Get.put(ImageOfApartmentController());
   Get.put(ShowDetailOfImageOfApartmentController());
+  Get.put(ChangePasswordController());
   Get.put(BookmarkController()); //for testing
   // Get.put(BookmarkApartment());//for testing
   //for get
