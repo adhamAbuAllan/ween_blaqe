@@ -14,27 +14,27 @@ import 'package:ween_blaqe/core/widgets/apartments/create_apartment/container_cl
 // import 'package:ween_blaqe/core/utils/styles/text_style/aline_style.dart';
 
 // import '../api/users.dart';
-import '../constants/coordination.dart';
-import '../constants/get_it_controller.dart';
-import '../constants/nums.dart';
+import '../../../constants/coordination.dart';
+import '../../../constants/get_it_controller.dart';
+import '../../../constants/nums.dart';
 
 // import '../controller/get_controllers.dart';
-import '../core/utils/funcations/go_url_launcher_methodes/go_to_whatsapp_method.dart';
-import '../core/widgets/registration/text_field_of_password_class_widget.dart';
-import '../core/widgets/registration/text_filed_class_widget.dart';
-import '../main.dart';
+import '../../../core/utils/funcations/go_url_launcher_methodes/go_to_whatsapp_method.dart';
+import '../../../core/widgets/registration/text_field_of_password_class_widget.dart';
+import '../../../core/widgets/registration/text_filed_class_widget.dart';
+import '../../../main.dart';
 
 // import '../sesstion/new_session.dart';
 // import '../sesstion/sesstion_of_user.dart';
 
-class UpdateUserWidgetTest extends StatefulWidget {
-  const UpdateUserWidgetTest({super.key});
+class UpdateUserData extends StatefulWidget {
+  const UpdateUserData({super.key});
 
   @override
-  State<UpdateUserWidgetTest> createState() => _UpdateUserWidgetTestState();
+  State<UpdateUserData> createState() => _UpdateUserDataState();
 }
 
-class _UpdateUserWidgetTestState extends State<UpdateUserWidgetTest> {
+class _UpdateUserDataState extends State<UpdateUserData> {
   final _formKey = GlobalKey<FormState>();
   final _nameController = TextEditingController();
   final _phoneController = TextEditingController();

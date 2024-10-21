@@ -53,7 +53,7 @@ import 'package:ween_blaqe/features/user/studnet/main_student.dart';
 
 import 'package:ween_blaqe/sesstion/new_session.dart';
 import 'package:ween_blaqe/features/splach_screen.dart';
-import 'package:ween_blaqe/testing_code/update_data_of_user.dart';
+import 'package:ween_blaqe/features/user/owner/update_data_of_user.dart';
 
 // import 'package:ween_blaqe/testing_code/bookmark_test.dart';
 import 'constants/get_it_controller.dart';
@@ -298,7 +298,7 @@ class _OwnMaterialAppState extends State<OwnMaterialApp> {
         MyPagesRoutes.whatTheInfoReqToCreateAd: (context) =>
         const WhatTheInfoReqToCreateAd(),
         MyPagesRoutes.introScreen: (context) => const IntroScreen(),
-        MyPagesRoutes.updateUserInfo: (context) => const UpdateUserWidgetTest(),
+        MyPagesRoutes.updateUserInfo: (context) => const UpdateUserData(),
 
         //testing routes..
         // MyPagesRoutes.citiesTest:(context)=> CitiesTest(),

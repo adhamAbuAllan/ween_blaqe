@@ -5,7 +5,7 @@ import 'package:ween_blaqe/constants/strings.dart';
 import 'package:ween_blaqe/controller/get_controllers.dart';
 import 'package:ween_blaqe/core/utils/funcations/route_pages/push_routes.dart';
 import 'package:ween_blaqe/sesstion/new_session.dart';
-import 'package:ween_blaqe/testing_code/update_data_of_user.dart';
+import 'package:ween_blaqe/features/user/owner/update_data_of_user.dart';
 
 // import 'package:ween_blaqe/core/utils/styles/show_more_widget/about_apartment_style.dart';
 // ignore: duplicate_import
@@ -16,6 +16,8 @@ import 'package:ween_blaqe/constants/nums.dart';
 import '../../../constants/coordination.dart';
 import '../../../constants/get_it_controller.dart';
 import '../../../core/utils/styles/button.dart';
+// import '../../../main.dart';
+import 'change_user_image.dart';
 // import '../../../main.dart';
 
 // import '../../../core/widgets/profile_classs_widget/profile_image.dart';
@@ -51,15 +53,18 @@ class _ProfileOfOwnerState extends State<ProfileOfOwner> {
     super.initState();
     setState(() {
       apartmentModelController.fetchApartments(isOwnerApartments: true);
+      debugPrint("the profile of user : ${widget.userInfo?.profile}");
+      debugPrint("the profile of SP  : ${NewSession.get("profile", "def")}");
+      debugPrint("the profile of SP with Server  : ${"https://weenbalaqee"
+          ".com/${NewSession.get("profile", "def")}"}");
     });
   }
-
 
   @override
   Widget build(BuildContext context) {
     return ColorfulSafeArea(
       bottomColor: Colors.transparent,
-      color:themeMode.isLight ? kPrimaryColorLightMode:kPrimaryColorDarkMode,
+      color: themeMode.isLight ? kPrimaryColorLightMode : kPrimaryColorDarkMode,
       child: Scaffold(
         backgroundColor: themeMode.isLight
             ? kBackgroundAppColorLightMode
@@ -90,7 +95,6 @@ class _ProfileOfOwnerState extends State<ProfileOfOwner> {
               Container(
                 padding: const EdgeInsets.only(right: 15),
                 alignment: Alignment.bottomRight,
-
                 width: double.infinity,
                 height: 140,
                 decoration: BoxDecoration(
@@ -102,8 +106,9 @@ class _ProfileOfOwnerState extends State<ProfileOfOwner> {
                       (themeMode.isLight
                           ? kBackgroundAppColorLightMode
                           : kBackgroundAppColorDarkMode),
-                      (themeMode.isLight ?
-                      kContainerColorLightMode : kContainerColorDarkMode)
+                      (themeMode.isLight
+                          ? kContainerColorLightMode
+                          : kContainerColorDarkMode)
                     ],
                     // Three colors
                     begin: Alignment.bottomCenter, // Horizontal gradient
@@ -111,24 +116,38 @@ class _ProfileOfOwnerState extends State<ProfileOfOwner> {
                     stops: const [0, 0.25, 0.0], // Color stops
                   ),
                 ),
-                child: CircleAvatar(
-                  //put an icon , that if not user
-                  // changed it , will keep icon
-                  radius: 40, // Adjust the radius as needed
-                  backgroundColor: Colors.grey.shade700, // Set the
-                  // background color of the avatar
-                  child: const SizedBox(
-                    height: 30 * 2,
-                    width: 30 * 2,
-                    child: Center(
-                      child: Icon(
+                child: Obx(() {
+                  return GestureDetector(
+                    onTap: () {
+                      Navigator.of(context).push(MaterialPageRoute(
+                          builder: (context) => const ChangeUserImage()));
+                    },
+                    child: NewSession.get("profile", "def") ==
+                        "images/profile/user.png"
+                        ? CircleAvatar(
+                      radius: 40,
+                      //put a normal person Icon
+                      backgroundColor: Colors.grey.shade700,
+                      child: imagesModelController.isLoadingProfile.value
+                          ? const Icon(
                         Icons.person,
-                        color: Colors.white,
-                        size: 50,
-                      ),
+                        size: 40,
+                      ):null,
+                    )
+                        : CircleAvatar(
+                      radius: 40,
+                      // backgroundImage: NetworkImage(NewSession.get("profile","def")),
+                      // Adjust the radius as needed
+                      backgroundColor: Colors.grey.shade700,
+                      // Set the background color of the avatar
+                      backgroundImage: NetworkImage("https://weenbalaqee"
+                          ".com/${NewSession.get("profile", "def")}"),
+                      child: imagesModelController.isLoadingProfile.value
+                          ? const CircularProgressIndicator()
+                          : null,
                     ),
-                  ),
-                ),
+                  );
+                }),
               ),
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 15),
@@ -189,7 +208,7 @@ class _ProfileOfOwnerState extends State<ProfileOfOwner> {
                                   context,
                                   MaterialPageRoute(
                                     builder: (context) =>
-                                    const UpdateUserWidgetTest(),
+                                    const UpdateUserData(),
                                   ));
                             },
                             child: Padding(
@@ -251,9 +270,8 @@ class _ProfileOfOwnerState extends State<ProfileOfOwner> {
                             height: 15,
                           ),
                           Text(
-                              " أنشأت حسابك  ${
-                                  NewSession.get("createdAt", "def")
-                              } حتى الآن ",
+                              " أنشأت حسابك  ${NewSession.get(
+                                  "createdAt", "def")} حتى الآن ",
                               style: TextStyle(
                                   color: themeMode.isLight
                                       ? kTextColorLightMode
@@ -297,9 +315,8 @@ class _ProfileOfOwnerState extends State<ProfileOfOwner> {
                             return Text(
                                 "لديك"
                                     " ${apartmentModelController.apartments
-                                    .value
-                                    .data?.length} "
-                                    " من الإعلانات العروضة",
+                                    .value.data?.length} "
+                                    " من الإعلانات المعروضة",
                                 style: TextStyle(
                                     color: themeMode.isLight
                                         ? kTextColorLightMode
@@ -348,6 +365,14 @@ class _ProfileOfOwnerState extends State<ProfileOfOwner> {
       ),
     );
   }
+
+  // ImageProvider getImageProvider() async {
+  //   if ((await sp).get("profile") == null) {
+  // return "";
+  //   }
+  //   return NetworkImage((await sp).get("profile").toString() // URL of the
+  //   );
+  // }
 
   Future<int> countOfApartmentOfOwner() async {
     apartmentModelController.fetchApartments(isOwnerApartments: true);

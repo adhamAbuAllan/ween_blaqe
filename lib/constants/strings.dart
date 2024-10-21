@@ -28,13 +28,14 @@ class _StringLen extends StatelessWidget {
 //Loclhost for physical Divise
 class ServerWeenBalaqee {
   static String server = "https://weenbalaqee.com/api/";
-
   // static String postAll = "${server}post/all";
   static String userLogin = "${server}user/login";
   static String userUpdate = "${server}user/update";
   static String checkPhone = "${server}user/check_phone";
   static String register = "${server}user/register";
   static String changePassword = "${server}user/change_password";
+  static String createProfileImage = "${server}user/create_profile_image";
+  static String loadProfileImage = "${server}user/load_profile";
   static String apartmentOwner = "${server}apartment/owner";
   static String apartmentAll = "${server}apartment/all";
   static String apartmentOne = "${server}apartment/one";

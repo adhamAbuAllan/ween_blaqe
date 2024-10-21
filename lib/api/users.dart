@@ -30,6 +30,7 @@ class User {
     required this.id,
     required this.name,
     required this.phone,
+    this.profile,
     // required this.typeId,
    // required this.countryPhoneNumberId,
     required this.timeAgoCreated,
@@ -38,6 +39,7 @@ class User {
   late final int id;
   late final String name;
   late final String phone;
+  late final String ? profile;
   // late final TypeOfUser typeId;
  // late final CountryPhoneNumberId countryPhoneNumberId;
  //  late final String countryPhoneNumberId;
@@ -49,6 +51,8 @@ class User {
     id = json['id'];
     name = json['name'];
     phone = json['phone'];
+    profile = json['profile'];
+
     // typeId = TypeOfUser.fromJson(json['type_id']);
     //countryPhoneNumberId = CountryPhoneNumberId.fromJson(json['country_phone_number_id']);
     timeAgoCreated = json['time_ago'];
@@ -60,6 +64,7 @@ class User {
     _data['id'] = id;
     _data['name'] = name;
     _data['phone'] = phone;
+    _data['profile'] = profile;
     // _data['type_id'] = typeId.toJson();
   //  _data['country_phone_number_id'] = countryPhoneNumberId.toJson();
     _data["time_ago"] = timeAgoCreated;
