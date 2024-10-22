@@ -371,9 +371,9 @@ class _ApartmentsOwnerState extends State<ApartmentsOwner>
     // WidgetsBinding.instance.addPostFrameCallback((_) {
     //   setState(() {});
     // });
-    setState(() {
+    // setState(() {
       apartmentModelController.fetchApartments(isOwnerApartments: true);
-    });
+    // });
     debugPrint("initState apartment_of_owner.dart");
     apiApartmentController.isEditMode.value = true;
 
@@ -392,9 +392,9 @@ class _ApartmentsOwnerState extends State<ApartmentsOwner>
         begin: themeMode.isLight ? kTextColorLightMode : kTextColorDarkMode,
         end: themeMode.isLight ? kTextColorLightMode : kTextColorDarkMode)
         .animate(_animationController);
-    _animationController.addListener(() {
-      setState(() {});
-    });
+    // _animationController.addListener(() {
+    //   // setState(() {});
+    // });
     _animationController.forward();
 
     // apartmentModelController.apartments.value == OneApartment(data: [])

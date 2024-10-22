@@ -74,6 +74,7 @@ class ImagesModelController extends GetxController {
 
       return;
     }
+    imageFiles = imageFiles?.toSet().toList();
     for (XFile imageFile in imageFiles!) {
       var mimeType = lookupMimeType(imageFile.path);
       int imageSize = await imageFile.length();
@@ -201,6 +202,8 @@ class ImagesModelController extends GetxController {
       var responseBody = response.body;
       var jsonResponse = jsonDecode(responseBody);
       await NewSession.save("profile", await jsonResponse['data']['profile']);
+      await NewSession.save(
+          "createdAt", await jsonResponse['data']['time_ago']);
       debugPrint("the profile image in SP -- ${(await sp).get("profile")}");
       update();
       isLoadingProfile.value = false;

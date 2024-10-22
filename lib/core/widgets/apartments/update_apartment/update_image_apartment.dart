@@ -46,9 +46,9 @@ class _UpdateImagesState extends State<UpdateImages> {
           .toList();
     }
     if (imagesModelController.images.isNotEmpty) {
-      imagesModelController.images =
-          imagesModelController.images.toSet().toList();
-      for (var photo in imagesModelController.images) {
+      // imagesModelController.images =
+      //     imagesModelController.images;
+      for (var photo in imagesModelController.images.toSet()) {
         _imageFileList?.add(XFile(photo));
       }
     }

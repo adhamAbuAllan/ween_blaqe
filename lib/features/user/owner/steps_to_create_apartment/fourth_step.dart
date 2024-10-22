@@ -15,12 +15,14 @@ import 'package:ween_blaqe/core/utils/funcations/snakbar.dart';
 import 'package:ween_blaqe/core/utils/styles/button.dart';
 import 'package:ween_blaqe/core/widgets/alirt_class_widget.dart';
 import 'package:ween_blaqe/data_containers/add_ad_data_container.dart';
+import 'package:ween_blaqe/features/widgets_before_user_reg/account_before_login.dart';
 import 'package:ween_blaqe/main.dart';
 
 // import '../../../../api/cities.dart';
 import '../../../../api/users.dart';
 
 import '../../../../controller/models_controller/advantages_model_controller.dart';
+
 // import '../../../../core/widgets/apartments/create_apartment/container_classes_widget/check_boxs/connection_check_box/add_a_contact_class_widget.dart';
 import '../../../../core/widgets/apartments/create_apartment/container_classes_widget/image_picker/image_picker_apartment.dart';
 import '../../../../core/widgets/apartments/create_apartment/container_classes_widget/input_text_class_widget/container_input_text_class_widget.dart';
@@ -131,15 +133,17 @@ class _FourthStepState extends State<FourthStep> {
                         padding: const EdgeInsets.all(8.0),
                         child: OutlinedButton(
                           onPressed: () {
-                            if(isLoading){
-                              showSnakBar(context, "يرجى الانتظار...جاري "
+                            if (isLoading) {
+                              showSnakBar(
+                                  context,
+                                  "يرجى الانتظار...جاري "
                                   "إنشاء الإعلان");
                               return;
                             }
                             // mypopAndPushNamed(context, MyPagesRoutes.step3);
                             Navigator.pop(context);
                           },
-                          style: outlinedButton(themeMode:themeMode),
+                          style: outlinedButton(themeMode: themeMode),
                           child: const Text("رجوع"),
                         ),
                       ),
@@ -147,7 +151,6 @@ class _FourthStepState extends State<FourthStep> {
                       Padding(
                         padding: const EdgeInsets.all(8.0),
                         child: ElevatedButton(
-
                           onPressed: () {
                             // setState(() {
                             FocusScopeNode currentFocus =
@@ -169,15 +172,19 @@ class _FourthStepState extends State<FourthStep> {
                               try {
                                 cityModelController.cityId.value = 0;
                                 setState(() {
-                                  if(isLoading){
+                                  if (isLoading) {
                                     return;
                                   }
-                                  if (imagesModelController.imageFiles?.isEmpty ?? true) {
+                                  if (imagesModelController
+                                          .imageFiles?.isEmpty ??
+                                      true) {
                                     setState(() {
                                       NormalAlert.show(
-                                          context, "الرجاء إضافة صور", " يجب أن تضيف صور للشقة ", "حسنًا");
+                                          context,
+                                          "الرجاء إضافة صور",
+                                          " يجب أن تضيف صور للشقة ",
+                                          "حسنًا");
                                     });
-
 
                                     return;
                                   }
@@ -263,12 +270,10 @@ class _FourthStepState extends State<FourthStep> {
 
                             // Get.to(ApartmentsOfOwnerAfterAdd());
                           },
-
                           style: fullButton(themeMode: themeMode),
                           child: isLoading
                               ? const CircularProgressIndicator(
                                   color: Colors.white,
-
                                 )
                               : const Text("حفظ"),
                         ),
@@ -391,10 +396,10 @@ class _FourthStepState extends State<FourthStep> {
 
     if (token != null) {
       final headers = {
-        'Authorization':
-            'Bearer $token',
+        'Authorization': 'Bearer $token',
         'Content-Type': 'application/json',
       };
+
 
       debugPrint("the token is : $token");
 
@@ -435,6 +440,7 @@ class _FourthStepState extends State<FourthStep> {
         // debugPrint("apartment basic data creating...");
 
         var json = await jsonDecode(response.body);
+        json['data']['owner']['token'] = token;
 
         var apartmentId = json['data']['id'];
         // setState(() {
@@ -538,6 +544,7 @@ class _FourthStepState extends State<FourthStep> {
   }
 
   Future<void> pushToMainPage() async {
+    studentController.index = 0;
     await myPushName(context, MyPagesRoutes.main);
     // await  Navigator.of(context).push(MaterialPageRoute(
     //       builder: (BuildContext context) => const HomeBeforeAddData())

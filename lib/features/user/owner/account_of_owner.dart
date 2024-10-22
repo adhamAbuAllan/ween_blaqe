@@ -98,12 +98,12 @@ class _AccountOfOwnerState extends State<AccountOfOwner> {
             //   ),
             GestureDetector(
               onTap: () {
+                imagesModelController.loadProfileImage();
                 Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) => const ProfileOfOwner()),
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => const ProfileOfOwner()),
                 );
-
               },
               child: Container(
                 width: double.infinity,
@@ -117,45 +117,75 @@ class _AccountOfOwnerState extends State<AccountOfOwner> {
                 ),
                 child: Row(
                   children: [
-                    // const Padding(
-                    //   padding: EdgeInsets.all(8.0),
-                    //   child: CircleAvatar(
-                    //     backgroundImage: NetworkImage(
-                    //         "https://robohash.org/hicveldicta.png/"),
-                    //     radius: 30,
-                    //   ),
-                    // ),
                     Padding(
-                      padding: const EdgeInsets.only(right: 15),
-                      child: Text(
-                        NewSession.get("name", ""),
-                        style: TextStyle(
-                          fontSize: getIt<AppDimension>().isSmallScreen(context)
-                              ? 16
-                              : 18,
-                          fontFamily: 'IBM',
-                          color: themeMode.isLight
-                              ? kTextColorLightMode
-                              : kTextColorDarkMode,
+                      padding: const EdgeInsets.all(10),
+                      child: NewSession.get("profile", "def") ==
+                              "images/profile/user.png"
+                          ? CircleAvatar(
+                              radius: 32,
+                              //put a normal person Icon
+                              backgroundColor: Colors.grey.shade700,
+                              child: const Icon(
+                                Icons.person,
+                                color: Colors.white,
+                                size: 32,
+                              ))
+                          : CircleAvatar(
+                              radius: 32,
+                              // backgroundImage: NetworkImage(NewSession.get("profile","def")),
+                              // Adjust the radius as needed
+                              backgroundColor: Colors.grey.shade700,
+                              // Set the background color of the avatar
+                              backgroundImage: NetworkImage(
+                                  "https://weenbalaqee"
+                                  ".com/${NewSession.get("profile", "def")}"),
+                              child:
+                                  imagesModelController.isLoadingProfile.value
+                                      ? const CircularProgressIndicator()
+                                      : null,
+                            ),
+                    ),
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          NewSession.get("name", ""),
+                          style: TextStyle(
+                            fontSize: getIt<AppDimension>().isSmallScreen(context)
+                                ? 16
+                                : 18,
+                            fontFamily: 'IBM',
+                            color: themeMode.isLight
+                                ? kTextColorLightMode
+                                : kTextColorDarkMode,
+                          ),
                         ),
-                      ),
+                        const SizedBox(height: 2,),
+                        Text(
+                          // "عرض الملف الشخصي",
+                          NewSession.get("phone", ""),
+                          // "972569339613",
+                          style: TextStyle(
+                              fontSize: 14,
+                              fontFamily: 'IBM',
+                              color: themeMode.isLight
+                                  ? kTextColorLightMode
+                                  : kTextColorDarkMode),
+                        )
+                      ],
                     ),
                     const Expanded(
                         child: SizedBox(
                       child: Text(""),
                     )),
                     Padding(
-                      padding: const EdgeInsets.only(left: 25),
-                      child: Text(
-                        // "عرض الملف الشخصي",
-                        NewSession.get("phone", ""),
-                        // "972569339613",
-                        style: TextStyle(
-                            fontSize: 16,
-                            fontFamily: 'IBM',
-                            color: themeMode.isLight
-                                ? kTextColorLightMode
-                                : kTextColorDarkMode),
+                      padding: const EdgeInsets.only(left: 10,),
+                      child: Icon(
+                        Icons.arrow_forward_ios,
+                        color: themeMode.isLight
+                            ? kTextColorLightMode
+                            : kTextColorDarkMode,
+                        // size: ,
                       ),
                     ),
                   ],

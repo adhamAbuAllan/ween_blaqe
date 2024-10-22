@@ -12,6 +12,7 @@ import 'package:carousel_slider_plus/carousel_slider_plus.dart';
 // import 'package:flutter/material.dart';
 // import 'package:get/get.dart';
 import 'package:ween_blaqe/api/apartments_api/one_apartment.dart';
+
 // import 'package:ween_blaqe/api/photos.dart';
 // import 'package:ween_blaqe/controller/get_controllers.dart';
 // import 'package:ween_blaqe/controller/get_controllers.dart';
@@ -26,6 +27,7 @@ import 'package:ween_blaqe/core/utils/styles/button.dart';
 import '../../../../constants/coordination.dart';
 import '../../../../constants/get_it_controller.dart';
 import '../../../../constants/nums.dart';
+import '../../../../controller/get_controllers.dart';
 import '../../../../core/widgets/apartments/show_more_classes_widget/advantages_class_widget.dart';
 import '../../../../core/widgets/apartments/show_more_classes_widget/image_slider/custom_slider.dart';
 import '../../../../core/widgets/apartments/show_more_classes_widget/image_slider/pointer.dart';
@@ -196,7 +198,8 @@ class _NewShowMoreState extends State<NewShowMore> {
                         builder: (context) => DetailImageScreen(
                           context: context,
                           imageList: widget.oneApartment!.photos!,
-                          initialIndex: widget.oneApartment?.currentPhotoIndex.value ?? 0,
+                          initialIndex:
+                              widget.oneApartment?.currentPhotoIndex.value ?? 0,
                           oneApartment: widget.oneApartment!,
                         ),
                       ),
@@ -779,7 +782,7 @@ class _NewShowMoreState extends State<NewShowMore> {
               ),
               //number phone
               Container(
-                padding: EdgeInsets.only(bottom: 10),
+                padding: const EdgeInsets.only(bottom: 10),
                 margin: const EdgeInsets.fromLTRB(10, 23, 10, 0),
                 // height: 120,
                 // discription.length.toDouble() * 2,
@@ -948,6 +951,116 @@ class _NewShowMoreState extends State<NewShowMore> {
                       ],
                     ),
                     // ForInquiries(, onClick, user)
+                  ],
+                ),
+              ),
+              Container(
+                margin: const EdgeInsets.fromLTRB(10, 23, 10, 0),
+                // discription.length.toDouble() * 2,
+                //decoration of show apartment style
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(7),
+                  color: themeMode.isLight
+                      ? kContainerColorLightMode
+                      : kContainerColorDarkMode,
+                ),
+                //about the owner
+                child: Column(
+                  // this children have ( general info that : title, price , and location.
+                  children: [
+                    //title
+                    Row(
+                      children: [
+                        Padding(
+                          padding: const EdgeInsets.fromLTRB(0, 10, 10, 10),
+                          child: Text("عن المؤجر",
+                              style: TextStyle(
+                                color: themeMode.isLight
+                                    ? kTextColorLightMode
+                                    : kTextColorDarkMode,
+                                fontSize: 20,
+                                fontFamily: 'IBM',
+                              )),
+                        ),
+                        const Expanded(child: Text(""))
+                      ],
+                    ),
+                    Row(
+                      children: [
+                        Padding(
+                          padding: const EdgeInsets.all(10),
+                          child: widget.oneApartment?.owner?.profile ==
+                              "images/profile/user.png"
+                              ? CircleAvatar(
+                              radius: 28,
+                              //put a normal person Icon
+                              backgroundColor: Colors.grey.shade700,
+                              child: const Icon(
+                                Icons.person,
+                                color: Colors.white,
+                                size: 28,
+                              ))
+                              : CircleAvatar(
+                            radius: 28,
+                            // backgroundImage: NetworkImage(NewSession.get("profile","def")),
+                            // Adjust the radius as needed
+                            backgroundColor: Colors.grey.shade700,
+                            // Set the background color of the avatar
+                            backgroundImage: NetworkImage(
+                                "https://weenbalaqee"
+                                    ".com/${widget.oneApartment?.owner
+                                    ?.profile??"images/profile/user.png"}"),
+                            child:
+                            apartmentModelController.isLoading.value
+                                ? const CircularProgressIndicator()
+                                : null,
+                          ),
+                        ),
+                        Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              widget.oneApartment?.owner?.name??"",
+                              style: TextStyle(
+                                fontSize: getIt<AppDimension>().isSmallScreen(context)
+                                    ? 16
+                                    : 18,
+                                fontFamily: 'IBM',
+                                color: themeMode.isLight
+                                    ? kTextColorLightMode
+                                    : kTextColorDarkMode,
+                              ),
+                            ),
+                            const SizedBox(height: 2,),
+                            Text(
+                              // "عرض الملف الشخصي",
+                              widget.oneApartment?.owner?.phone??"",
+                              // "972569339613",
+                              style: TextStyle(
+                                  fontSize: 14,
+                                  fontFamily: 'IBM',
+                                  color: themeMode.isLight
+                                      ? kTextColorLightMode
+                                      : kTextColorDarkMode),
+                            )
+                          ],
+                        ),
+                        const Expanded(
+                            child: SizedBox(
+                              child: Text(""),
+                            )),
+                        // Padding(
+                        //   padding: const EdgeInsets.only(left: 10,),
+                        //   child: Icon(
+                        //     Icons.arrow_forward_ios,
+                        //     color: themeMode.isLight
+                        //         ? kTextColorLightMode
+                        //         : kTextColorDarkMode,
+                        //     // size: ,
+                        //   ),
+                        // ),
+                      ],
+                    )
                   ],
                 ),
               ),

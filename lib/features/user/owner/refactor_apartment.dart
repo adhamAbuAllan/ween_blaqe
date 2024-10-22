@@ -168,7 +168,8 @@ class _RefactorApartmentState extends State<RefactorApartment> {
   @override
   Widget build(BuildContext context) {
     return ColorfulSafeArea(
-      color: themeMode.isLight ? kContainerColorLightMode : kContainerColorDarkMode,
+      color: themeMode.isLight ? kContainerColorLightMode
+          : kContainerColorDarkMode,
       child: GestureDetector(
         onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
         child: SafeArea(
