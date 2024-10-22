@@ -1,6 +1,8 @@
 // import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get_state_manager/src/rx_flutter/rx_obx_widget.dart';
 import 'package:share_plus/share_plus.dart';
+import 'package:skeletons/skeletons.dart';
 import 'package:ween_blaqe/constants/coordination.dart';
 import 'package:ween_blaqe/constants/nums.dart';
 import 'package:ween_blaqe/constants/strings.dart';
@@ -39,7 +41,11 @@ class AccountOfOwner extends StatefulWidget {
 
 class _AccountOfOwnerState extends State<AccountOfOwner> {
   bool notificationState = true;
+@override
+  void initState() {
+    super.initState();
 
+  }
   // static const String rountName = "/accountOfOwner";
   @override
   Widget build(BuildContext context) {
@@ -79,7 +85,7 @@ class _AccountOfOwnerState extends State<AccountOfOwner> {
             ),
             SizedBox(
               height:
-                  getIt<AppDimension>().isSmallScreen(context) ? 50 / 2.1 : 50,
+              getIt<AppDimension>().isSmallScreen(context) ? 50 / 2.1 : 50,
             ),
 
             //use GestureDetector that when user click on container make action
@@ -117,41 +123,53 @@ class _AccountOfOwnerState extends State<AccountOfOwner> {
                 ),
                 child: Row(
                   children: [
-                    Padding(
-                      padding: const EdgeInsets.all(10),
-                      child: NewSession.get("profile", "def") ==
-                              "images/profile/user.png"
-                          ? CircleAvatar(
-                              radius: 32,
-                              //put a normal person Icon
-                              backgroundColor: Colors.grey.shade700,
-                              child: const Icon(
-                                Icons.person,
-                                color: Colors.white,
-                                size: 32,
-                              ))
-                          : CircleAvatar(
-                              radius: 32,
-                              // backgroundImage: NetworkImage(NewSession.get("profile","def")),
-                              // Adjust the radius as needed
-                              backgroundColor: Colors.grey.shade700,
-                              // Set the background color of the avatar
-                              backgroundImage: NetworkImage(
-                                  "https://weenbalaqee"
+                    Obx(() {
+                      return Padding(
+                        padding: const EdgeInsets.all(10),
+                        child: NewSession.get("profile", "def") ==
+                            "images/profile/user.png"
+                            ? CircleAvatar(
+                            radius: 32,
+                            //put a normal person Icon
+                            backgroundColor: Colors.grey.shade700,
+                            child: const Icon(
+                              Icons.person,
+                              color: Colors.white,
+                              size: 32,
+                            ))
+                            : imagesModelController.isLoadingProfile.value ?
+                        const SkeletonAvatar(
+                          style: SkeletonAvatarStyle(
+                            shape: BoxShape.circle,
+                            width: 63,
+                            height: 63,
+                          ),
+                        )
+                            :
+                        CircleAvatar(
+                          radius: 32,
+                          // backgroundImage: NetworkImage(NewSession.get("profile","def")),
+                          // Adjust the radius as needed
+                          backgroundColor: Colors.grey.shade700,
+                          // Set the background color of the avatar
+                          backgroundImage: NetworkImage(
+                              "https://weenbalaqee"
                                   ".com/${NewSession.get("profile", "def")}"),
-                              child:
-                                  imagesModelController.isLoadingProfile.value
-                                      ? const CircularProgressIndicator()
-                                      : null,
-                            ),
-                    ),
+                          child:
+                          imagesModelController.isLoadingProfile.value
+                              ? const CircularProgressIndicator()
+                              : null,
+                        ),
+                      );
+                    }),
                     Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
                           NewSession.get("name", ""),
                           style: TextStyle(
-                            fontSize: getIt<AppDimension>().isSmallScreen(context)
+                            fontSize: getIt<AppDimension>().isSmallScreen(
+                                context)
                                 ? 16
                                 : 18,
                             fontFamily: 'IBM',
@@ -176,8 +194,8 @@ class _AccountOfOwnerState extends State<AccountOfOwner> {
                     ),
                     const Expanded(
                         child: SizedBox(
-                      child: Text(""),
-                    )),
+                          child: Text(""),
+                        )),
                     Padding(
                       padding: const EdgeInsets.only(left: 10,),
                       child: Icon(
@@ -234,7 +252,7 @@ class _AccountOfOwnerState extends State<AccountOfOwner> {
             // ),
             SizedBox(
               height:
-                  getIt<AppDimension>().isSmallScreen(context) ? 60 / 2.5 : 60,
+              getIt<AppDimension>().isSmallScreen(context) ? 60 / 2.5 : 60,
             ),
             Container(
               padding: const EdgeInsets.fromLTRB(0, 0, 0, 0),
@@ -362,7 +380,7 @@ class _AccountOfOwnerState extends State<AccountOfOwner> {
                       icon: Icons.bookmark_border_outlined, context: context),
                   aline,
                   buttonAccount(
-                    () {
+                        () {
                       String url =
                           "https://play.google.com/store/apps/details?id=com.weenbalaqee.weenbalaqee";
 

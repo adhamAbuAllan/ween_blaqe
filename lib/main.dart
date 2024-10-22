@@ -46,6 +46,7 @@ import 'package:ween_blaqe/features/paragraphs_widgets/ask_for_help_widgets/for_
 import 'package:ween_blaqe/features/paragraphs_widgets/ask_for_help_widgets/for_student/system_paying.dart';
 import 'package:ween_blaqe/features/paragraphs_widgets/privacy_policy.dart';
 import 'package:ween_blaqe/features/user/owner/apartment_of_owner.dart';
+import 'package:ween_blaqe/features/user/owner/profile_of_owner.dart';
 
 import 'package:ween_blaqe/features/user/studnet/from_master_home_to_show_more/new_master_home.dart';
 import 'package:ween_blaqe/features/user/studnet/from_master_home_to_show_more/new_show_more.dart';
@@ -247,7 +248,7 @@ class _OwnMaterialAppState extends State<OwnMaterialApp> {
         // MyPagesRoutes.bookingNow: (context) => const BookingNow(),
         // MyPagesRoutes.getStarted: (context) => const GetStarted(),
         // MyPagesRoutes.searchFilter: (context) => const SearchFilter(),
-        // MyPagesRoutes.profile: (context) => const Profile(),
+        MyPagesRoutes.profileOfOwner: (context) => const ProfileOfOwner(),
         // MyPagesRoutes.ordersOfStudent: (context) => const OrdersOfStudent(),
         MyPagesRoutes.bookmarkApartment: (context) => const BookmarkApartment(),
         // MyPagesRoutes.orders: (context) => const Orders(),

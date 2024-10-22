@@ -1,6 +1,7 @@
 import 'package:colorful_safe_area/colorful_safe_area.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get_state_manager/src/rx_flutter/rx_obx_widget.dart';
+
 // import 'package:skeletons/skeletons.dart';
 import 'package:ween_blaqe/constants/strings.dart';
 import 'package:ween_blaqe/controller/get_controllers.dart';
@@ -37,6 +38,11 @@ class ProfileOfOwner extends StatefulWidget {
 }
 
 class _ProfileOfOwnerState extends State<ProfileOfOwner> {
+  // @override
+  // void deactivate() {
+  //   super.deactivate();
+  //
+  // }
   var image = "https://robohash.org/hicveldicta.png/";
 
   // var name =;
@@ -51,15 +57,16 @@ class _ProfileOfOwnerState extends State<ProfileOfOwner> {
   // var joinDate = "2020/3/3";
   var countOfApartmentsOfOwner = 0;
   var isLoading = false;
+  var isPop = false;
 
   @override
   void initState() {
     super.initState();
-      apartmentModelController.fetchApartments(isOwnerApartments: true);
-      debugPrint("the profile of user : ${widget.userInfo?.profile}");
-      debugPrint("the profile of SP  : ${NewSession.get("profile", "def")}");
-      debugPrint("the profile of SP with Server  : ${"https://weenbalaqee"
-          ".com/${NewSession.get("profile", "def")}"}");
+    apartmentModelController.fetchApartments(isOwnerApartments: true);
+    debugPrint("the profile of user : ${widget.userInfo?.profile}");
+    debugPrint("the profile of SP  : ${NewSession.get("profile", "def")}");
+    debugPrint("the profile of SP with Server  : ${"https://weenbalaqee"
+        ".com/${NewSession.get("profile", "def")}"}");
   }
 
   @override
@@ -72,7 +79,7 @@ class _ProfileOfOwnerState extends State<ProfileOfOwner> {
           backgroundColor: themeMode.isLight
               ? kBackgroundAppColorLightMode
               : kBackgroundAppColorDarkMode,
-          body: imagesModelController.isLoadingProfile.value
+          body: imagesModelController.isLoadingProfile.value && isPop == false
               ? UserProfileSkeleton(isLightMode: themeMode.isLight)
               : SingleChildScrollView(
                   child: Column(
@@ -91,6 +98,16 @@ class _ProfileOfOwnerState extends State<ProfileOfOwner> {
                                 color: themeMode.isLight
                                     ? kTextColorLightMode
                                     : kTextColorDarkMode,
+                                onPressed: () {
+                                  isPop = true;
+                                  WidgetsBinding.instance
+                                      .addPostFrameCallback((_) async {
+                                        imagesModelController
+                                            .loadProfileImage();
+                                    setState(() {});
+                                    Navigator.pop(context);
+                                  });
+                                },
                               ),
                             ),
                             const Expanded(child: Text(""))
