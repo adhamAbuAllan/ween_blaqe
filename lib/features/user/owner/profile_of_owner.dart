@@ -1,11 +1,13 @@
 import 'package:colorful_safe_area/colorful_safe_area.dart';
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get_state_manager/src/rx_flutter/rx_obx_widget.dart';
 
 // import 'package:skeletons/skeletons.dart';
 import 'package:ween_blaqe/constants/strings.dart';
 import 'package:ween_blaqe/controller/get_controllers.dart';
 import 'package:ween_blaqe/core/utils/funcations/route_pages/push_routes.dart';
+import 'package:ween_blaqe/core/widgets/buttons/social_media_connection_button.dart';
 import 'package:ween_blaqe/core/widgets/skeletons/owner_widgets/profile_skeleton.dart';
 import 'package:ween_blaqe/sesstion/new_session.dart';
 import 'package:ween_blaqe/features/user/owner/update_data_of_user.dart';
@@ -102,8 +104,7 @@ class _ProfileOfOwnerState extends State<ProfileOfOwner> {
                                   isPop = true;
                                   WidgetsBinding.instance
                                       .addPostFrameCallback((_) async {
-                                        imagesModelController
-                                            .loadProfileImage();
+                                    imagesModelController.loadProfileImage();
                                     setState(() {});
                                     Navigator.pop(context);
                                   });
@@ -268,6 +269,43 @@ class _ProfileOfOwnerState extends State<ProfileOfOwner> {
                                 ],
                               ),
                             ),
+                            const SizedBox(height: 10),
+                            Container(
+                              width: double.infinity,
+                              margin: const EdgeInsets.fromLTRB(0, 0, 0, 10),
+                              // height: 140,
+                              padding: const EdgeInsets.symmetric(
+                                  horizontal: 10, vertical: 20),
+
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(7),
+                                color: themeMode.isLight
+                                    ? kContainerColorLightMode
+                                    : kContainerColorDarkMode,
+                              ),
+                              child: Column(
+                                mainAxisSize: MainAxisSize.min,
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: <Widget>[
+                                  // Row(children: [],),
+
+                                  Text("وسائل التواصل المتاحة لديك",
+                                      style: TextStyle(
+                                          color: themeMode.isLight
+                                              ? kTextColorLightMode
+                                              : kTextColorDarkMode,
+                                          fontSize: 18,
+                                          fontFamily: "IBM")),
+                                  const SizedBox(
+                                    height: 15,
+                                  ),
+                                  SocialMediaConnectionButton(isActive:
+                                  false, soicalName: "soicalName",
+                                      socialIcon: FontAwesomeIcons.whatsapp)
+
+                                ],
+                              ),
+                            ),
                             const SizedBox(
                               height: 10,
                             ),
@@ -314,6 +352,7 @@ class _ProfileOfOwnerState extends State<ProfileOfOwner> {
                             const SizedBox(
                               height: 10,
                             ),
+
                             Container(
                               width: double.infinity,
                               margin: const EdgeInsets.fromLTRB(0, 0, 0, 10),

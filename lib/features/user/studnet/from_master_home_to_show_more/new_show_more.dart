@@ -853,7 +853,7 @@ class _NewShowMoreState extends State<NewShowMore> {
                               child: Row(
                                 children: [
                                   //whtsapp icon
-                                  const Padding(
+                                   const Padding(
                                     padding: EdgeInsets.fromLTRB(0, 0, 0, 0),
                                     child: Image(
                                       image: AssetImage(
