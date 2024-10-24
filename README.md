@@ -1,25 +1,71 @@
-[//]: # (# ween_blaqe)
 
-[//]: # ()
-[//]: # (A new Flutter project.)
+![Logo](https://weenbalaqee.com/images/git_hub_images/git_hub_header_png_final.png)
 
-[//]: # ()
-[//]: # (## Getting Started)
+![preview](https://weenbalaqee.com/images/git_hub_images/git_hub_sub_header_small.png)
 
-[//]: # ()
-[//]: # (This project is a starting point for a Flutter application.)
 
-[//]: # ()
-[//]: # (A few resources to get you started if this is your first Flutter project:)
 
-[//]: # ()
-[//]: # (- [Lab: Write your first Flutter app]&#40;https://docs.flutter.dev/get-started/codelab&#41;)
+## Features
 
-[//]: # (- [Cookbook: Useful Flutter samples]&#40;https://docs.flutter.dev/cookbook&#41;)
+- Add an apartment
 
-[//]: # ()
-[//]: # (For help getting started with Flutter development, view the)
+   ![App Screenshot](https://weenbalaqee.com/images/screenshots/Oct_2024_screenshots/screeshot_first_step_with_text.jpg)
 
-[//]: # ([online documentation]&#40;https://docs.flutter.dev/&#41;, which offers tutorials,)
+    ![App Screenshot](https://weenbalaqee.com/images/screenshots/Oct_2024_screenshots/screenshot_second_step_features.jpg) 
 
-[//]: # (samples, guidance on mobile development, and a full API reference.)
+    ![App Screenshot](https://weenbalaqee.com/images/screenshots/Oct_2024_screenshots/screenshot_third_step.jpg) 
+      
+    ![App Screenshot](https://weenbalaqee.com/images/screenshots/Oct_2024_screenshots/screenshot_fourth_step.png)
+
+    ![App Screenshot](https://weenbalaqee.com/images/screenshots/Oct_2024_screenshots/screenshot_add_images.jpg)
+    
+
+- Delete and edit an apartment Ad
+
+    ![App Screenshot](https://weenbalaqee.com/images/screenshots/Oct_2024_screenshots/screenshot_edit_apartment_part1png.png)
+
+
+    ![App Screenshot](https://weenbalaqee.com/images/screenshots/Oct_2024_screenshots/screenshot_edit_apartment_4.png)
+
+    ![App Screenshot](https://weenbalaqee.com/images/screenshots/Oct_2024_screenshots/screen_shot_edit_apartment_part3.png)
+      ![App Screenshot](https://weenbalaqee.com/images/screenshots/Oct_2024_screenshots/screenhost_edit_apartment_part4_final.jpg)
+
+
+    ![App Screenshot](https://weenbalaqee.com/images/screenshots/Oct_2024_screenshots/screenshot_add_images.jpg)
+
+   
+- Add favorite apartments
+
+    ![App Screenshot](https://weenbalaqee.com/images/screenshots/Oct_2024_screenshots/screenshot_bookmark_new.png)    
+
+- View apartments by type and city
+
+    ![App Screenshot](https://weenbalaqee.com/images/screenshots/Oct_2024_screenshots/screenshot_home_with_type_and_city_filter.jpg)    
+
+
+- View apartment information, such as features and general details
+
+    ![App Screenshot](https://weenbalaqee.com/images/screenshots/Oct_2024_screenshots/screenshot_show_more_part1.jpg)
+
+    ![App Screenshot](https://weenbalaqee.com/images/screenshots/Oct_2024_screenshots/screenshot_show_more_part2.jpg)
+
+- sebha screen
+
+    ![App Screenshot](https://weenbalaqee.com/images/screenshots/Oct_2024_screenshots/screenshot_sebha.jpg)
+          
+
+- login and signup 
+    ![App Screenshot](https://weenbalaqee.com/images/screenshots/Oct_2024_screenshots/screenshot_login_new.png)
+
+    ![App Screenshot](https://weenbalaqee.com/images/screenshots/Oct_2024_screenshots/screenshot_sginup.png)
+
+- Light/dark mode toggle
+
+    ![App Screenshot](https://weenbalaqee.com/images/screenshots/Oct_2024_screenshots/screenshot_dark_mode.png)
+
+## 🔗 Links
+[![app link](https://img.shields.io/badge/google_play-1,135,95?style=for-the-badge&logo=google-play&logoColor=white)](https://play.google.com/store/apps/details?id=com.weenbalaqee.weenbalaqee&hl=ar&pli=1)
+
+## Author
+- [@adhamAbuAllan](https://www.github.com/adhamAbuAllan)
+
