@@ -22,13 +22,17 @@
 
 - Delete and edit an apartment Ad
 
-    ![App Screenshot](https://weenbalaqee.com/images/screenshots/Oct_2024_screenshots/screenshot_edit_apartment_part1png.png)
+    ![App Screenshot](https://weenbalaqee.com/images/screenshots/Oct_2024_screenshots/screenshot_delete_apartment_new.png)
+  
+    ![App Screenshot](https://weenbalaqee.com/images/screenshots/Oct_2024_screenshots/screenshot_apartment_of_owner_new.png)
 
+    ![App Screenshot](https://weenbalaqee.com/images/screenshots/Oct_2024_screenshots/screenshot_edit_apartment_part1png.png)
 
     ![App Screenshot](https://weenbalaqee.com/images/screenshots/Oct_2024_screenshots/screenshot_edit_apartment_4.png)
 
     ![App Screenshot](https://weenbalaqee.com/images/screenshots/Oct_2024_screenshots/screen_shot_edit_apartment_part3.png)
-      ![App Screenshot](https://weenbalaqee.com/images/screenshots/Oct_2024_screenshots/screenhost_edit_apartment_part4_final.jpg)
+
+    ![App Screenshot](https://weenbalaqee.com/images/screenshots/Oct_2024_screenshots/screenhost_edit_apartment_part4_final.jpg)
 
 
     ![App Screenshot](https://weenbalaqee.com/images/screenshots/Oct_2024_screenshots/screenshot_add_images.jpg)
