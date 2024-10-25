@@ -63,6 +63,14 @@
 
     ![App Screenshot](https://weenbalaqee.com/images/screenshots/Oct_2024_screenshots/screenshot_sginup.png)
 
+-profile and edit profile
+ ![App Screenshot](https://weenbalaqee.com/images/screenshots/Oct_2024_screenshots/screenshot_profile.png)
+
+ ![App Screenshot](https://weenbalaqee.com/images/screenshots/Oct_2024_screenshots/screenshot_edit_profile_new.png)
+
+ ![App Screenshot](https://weenbalaqee.com/images/screenshots/Oct_2024_screenshots/screenshot_edit_profile_part2.png)
+
+
 - Light/dark mode toggle
 
     ![App Screenshot](https://weenbalaqee.com/images/screenshots/Oct_2024_screenshots/screenshot_dark_mode.png)
