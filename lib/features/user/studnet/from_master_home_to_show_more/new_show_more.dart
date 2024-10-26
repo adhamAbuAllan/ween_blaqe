@@ -939,7 +939,7 @@ class _NewShowMoreState extends State<NewShowMore> {
                                       //whtsapp icon
                                       Icon(
                                         Icons.phone,
-                                        color: Colors.blue,
+                                        color: Colors.blueAccent,
                                         size: 28,
                                       ),
 
