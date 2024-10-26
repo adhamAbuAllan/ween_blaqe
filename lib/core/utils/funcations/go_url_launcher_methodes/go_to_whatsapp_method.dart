@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+
 // import 'package:get/get.dart';
 import 'package:url_launcher/url_launcher.dart';
 
@@ -16,8 +17,9 @@ void sendMessageToWhatsApp(String phoneNumber, String message,
 
   String whatsappUrl =
       'https://wa.me/$phoneNumber/?text=${Uri.encodeFull("$message ${image?.isNotEmpty ?? false ? image : ""}")}';
-  whatsappUrl.startsWith("97") ? debugPrint("true:is start with 97") : debugPrint
-    ("false:is not start with 97");
+  whatsappUrl.startsWith("97")
+      ? debugPrint("true:is start with 97")
+      : debugPrint("false:is not start with 97");
 
   //this code could not be good work
 
@@ -41,6 +43,57 @@ void sendMessageToWhatsApp(String phoneNumber, String message,
     // await launch(urlWith970);`
   } else {
     throw "something was wrong";
+  }
+}
+
+void sendMessenger({String ? userName, String?message, String? image}) async {
+    final Uri url = Uri.parse(
+        'https://m'
+            '.me/$userName?text=${Uri.encodeFull("$message ${image?.isNotEmpty ?? false ? image : ""}")}');
+    if (!await launchUrl(url)) {
+      throw Exception(
+          'Could not launch $url');
+    }
+  }
+
+void sendEmail(String recipientEmail, String subject, String body,
+    {String? image}) async {
+  final Uri emailLaunchUri = Uri(
+    scheme: 'mailto',
+    path: recipientEmail,
+    query: encodeQueryParameters(<String, String>{
+      'subject': subject,
+      'body': "$body+${image?.isNotEmpty ?? false ? image : ""}",
+    }),
+  );
+
+  if (await canLaunchUrl(emailLaunchUri)) {
+    await launchUrl(emailLaunchUri);
+  } else {
+    throw "Could not launch email client";
+  }
+}
+
+String encodeQueryParameters(Map<String, String> params) {
+  return params.entries
+      .map((MapEntry<String, String> e) =>
+          '${Uri.encodeComponent(e.key)}=${Uri.encodeComponent(e.value)}')
+      .join('&');
+}
+
+void makePhoneCall(String phoneNumber) async {
+  debugPrint("the phone number is $phoneNumber");
+  if (phoneNumber.startsWith("+")) {
+    phoneNumber = phoneNumber.replaceFirst("+", "");
+    debugPrint("the phone after remove '+' number is $phoneNumber");
+  }
+
+  String phoneUrl = 'tel:$phoneNumber';
+
+  if (await canLaunchUrl(Uri.parse(phoneUrl))) {
+    await launchUrl(Uri.parse(phoneUrl));
+  } else {
+    throw "Could not launch phone dialer";
   }
 }
 // switch ()

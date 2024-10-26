@@ -167,7 +167,7 @@ class _NewMasterHomeState extends State<NewMasterHome> {
               cityId: cityModelController.cityId.value);
         });
       },
-      child: isDataLoaded //if data is loading
+      child: isDataLoaded  //if data is loading
           ? errorMessage.isNotEmpty // if have error from server
               ? Text(errorMessage) // then error will show
               : (apartmentModelController.apartment.data?.isEmpty ??

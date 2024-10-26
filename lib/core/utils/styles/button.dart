@@ -15,6 +15,7 @@ import 'package:ween_blaqe/constants/nums.dart';
 import '../../../controller/function_controller/change_theme_mode.dart';
 
 ButtonStyle fullButton() {
+
   return ElevatedButton.styleFrom(
     backgroundColor: themeMode.isLight
         ? kPrimaryColorLightMode

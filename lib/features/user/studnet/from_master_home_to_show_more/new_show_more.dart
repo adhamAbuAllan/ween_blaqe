@@ -780,7 +780,6 @@ class _NewShowMoreState extends State<NewShowMore> {
                   ],
                 ),
               ),
-              //number phone
               Container(
                 padding: const EdgeInsets.only(bottom: 10),
                 margin: const EdgeInsets.fromLTRB(10, 23, 10, 0),
@@ -798,6 +797,7 @@ class _NewShowMoreState extends State<NewShowMore> {
                   children: [
                     //title
                     Row(
+                      mainAxisAlignment: MainAxisAlignment.start,
                       children: [
                         Padding(
                           padding: const EdgeInsets.fromLTRB(0, 10, 10, 10),
@@ -810,150 +810,214 @@ class _NewShowMoreState extends State<NewShowMore> {
                                 fontFamily: 'IBM',
                               )),
                         ),
-                        const Expanded(child: Text(""))
                       ],
                     ),
-                    //phone number
-                    Row(
+                    OverflowBar(
+                      overflowAlignment: OverflowBarAlignment.start,
+                      alignment: MainAxisAlignment.start,
                       children: [
-                        const Expanded(
-                          child: Text(""),
+                        const SizedBox(
+                          width: 10,
                         ),
-                        SizedBox(
-                          // height: 50,
-                          child: OutlinedButton(
-                            onPressed: () async {
-                              // sendMessageToMessenger("https://www.facebook.com/adhm.alaan"," السلام عليكم، ممكن أستفسر عن الإعلان الخاص بـ${widget.oneApartment?.title}");
-                              sendMessageToWhatsApp(
-                                  widget.oneApartment!.owner!.phone,
-                                  "  السلام عليكم، ممكن أستفسر عن الإعلان الخاص بـ${widget.oneApartment?.title} ",
-                                  image: widget.oneApartment?.photos?[0].url);
-                              // openBrowserURL(
-                              //     url: 'https://wa.me/970569118259/',
-                              //     inApp: false);
+                        Wrap(
+                          alignment: WrapAlignment.start,
+                          spacing: 10,
+                          runSpacing: 10,
+                          children: [
+                            IntrinsicWidth(
+                              //whatsApp button
+                              child: OutlinedButton(
+                                onPressed: () async {
+                                  // sendMessageToMessenger("https://www.facebook.com/adhm.alaan"," السلام عليكم، ممكن أستفسر عن الإعلان الخاص بـ${widget.oneApartment?.title}");
+                                  sendMessageToWhatsApp(
+                                      widget.oneApartment!.owner!.phone,
+                                      "  السلام عليكم، ممكن أستفسر عن الإعلان الخاص بـ${widget.oneApartment?.title} ",
+                                      image:
+                                          widget.oneApartment?.photos?[0].url);
+                                },
+                                style: outlinedButton(themeMode: themeMode),
+                                child: Padding(
+                                  padding: const EdgeInsets.all(8.0),
+                                  child: Row(
+                                    children: [
+                                      //whtsapp icon
+                                      const Padding(
+                                        padding:
+                                            EdgeInsets.fromLTRB(0, 0, 0, 0),
+                                        child: Image(
+                                          image: AssetImage(
+                                              "assets/images/whatsapp.png"),
+                                          width: 28,
+                                          height: 28,
+                                        ),
+                                      ),
 
-                              // _launchUrl;
-                              // final value = ClipboardData(text: number_phone);
-                              // Clipboard.setData(value);
-                              //                                 number_phone2;
-
-                              // Fluttertoast.showToast(
-                              //     msg: "الرقم غير صحيح",
-                              //     toastLength: Toast.LENGTH_SHORT,
-                              //     gravity: ToastGravity.BOTTOM_RIGHT,
-                              //     timeInSecForIosWeb: 10,
-                              //     backgroundColor: Colors.blue,
-                              //     textColor: Colors.white,
-                              //     fontSize: 16.0
-                              // );
-                            },
-                            style: outlinedButton(themeMode: themeMode),
-                            child: Padding(
-                              padding: const EdgeInsets.all(8.0),
-                              child: Row(
-                                children: [
-                                  //whtsapp icon
-                                   const Padding(
-                                    padding: EdgeInsets.fromLTRB(0, 0, 0, 0),
-                                    child: Image(
-                                      image: AssetImage(
-                                          "assets/images/whatsapp.png"),
-                                      width: 28,
-                                      height: 28,
-                                    ),
+                                      //text
+                                      Padding(
+                                        padding: const EdgeInsets.fromLTRB(
+                                            0, 0, 0, 0),
+                                        child: Text(" واتس اب",
+                                            style: TextStyle(
+                                              color: themeMode.isLight
+                                                  ? kTextColorLightMode
+                                                  : kTextColorDarkMode,
+                                              fontSize: 16,
+                                              fontFamily: 'IBM',
+                                            )),
+                                      ),
+                                    ],
                                   ),
-
-                                  //text
-                                  Padding(
-                                    padding:
-                                        const EdgeInsets.fromLTRB(0, 0, 0, 0),
-                                    child: Text(" واتس اب",
-                                        style: TextStyle(
-                                          color: themeMode.isLight
-                                              ? kTextColorLightMode
-                                              : kTextColorDarkMode,
-                                          fontSize: 16,
-                                          fontFamily: 'IBM',
-                                        )),
-                                  ),
-                                ],
+                                ),
                               ),
                             ),
-                          ),
-                        ),
-                        //     SizedBox(width: 20,),
-                        //                           widget.oneApartment!.owner!.email.isEmpty?     SizedBox(): SizedBox(
-                        //                               height: 50,
-                        //                               child: OutlinedButton(
-                        //                                 onPressed: () async {
-                        //                                   sendEmailToGmail(
-                        //
-                        //
-                        //                                       widget.oneApartment!.owner!.email,"إستفسار عن إعلان ${widget.oneApartment!.title },","  السلام عليكم، ممكن أستفسر عن الإعلان الخاص بـ${widget.oneApartment?.title} ",);
-                        //
-                        //                                   // openBrowserURL(
-                        //                                   //     url: 'https://wa.me/970569118259/',
-                        //                                   //     inApp: false);
-                        //
-                        // // _launchUrl;
-                        // // final value = ClipboardData(text: number_phone);
-                        // // Clipboard.setData(value);
-                        // //                                 number_phone2;
-                        //
-                        // // Fluttertoast.showToast(
-                        // //     msg: "الرقم غير صحيح",
-                        // //     toastLength: Toast.LENGTH_SHORT,
-                        // //     gravity: ToastGravity.BOTTOM_RIGHT,
-                        // //     timeInSecForIosWeb: 10,
-                        // //     backgroundColor: Colors.blue,
-                        // //     textColor: Colors.white,
-                        // //     fontSize: 16.0
-                        // // );
-                        //                                     },
-                        //                                     style: outlineButton,
-                        //                                     child: Padding(
-                        //                                       padding: const EdgeInsets.all(8.0),
-                        //                                       child: Row(
-                        //                                         children: [
-                        // //whtsapp icon
-                        //                                           Padding(
-                        //                                         padding:
-                        //                                             EdgeInsets.fromLTRB(0, 0, 0, 0),
-                        //                                         child: Image(
-                        //                                           image: AssetImage(
-                        //                                               "assets/images/gmail.png"),
-                        //                                           width: 28,
-                        //                                           height: 28,
-                        //                                         ),
-                        //                                       ),
-                        //
-                        // //text
-                        //                                       Padding(
-                        //                                         padding:     EdgeInsets.fromLTRB(
-                        //                                             0, 0, 0, 0),
-                        //                                         child: Text(" جيميل",
-                        //                                             style: TextStyle(
-                        //                                               color:
-                        //                                                  kTextColor,
-                        //                                               fontSize: 16,
-                        //                                               fontFamily: 'IBM',
-                        //                                             )),
-                        //                                       ),
-                        //                                     ],
-                        //                                   ),
-                        //                                 ),
-                        //                               ),
-                        //                             ),
-                        const Expanded(
-                          flex: 20,
-                          child: Text(""),
+
+                            //email button
+                            widget.oneApartment?.owner!.email == "user_email"
+                                ? const SizedBox()
+                                : Padding(
+                                  padding: const EdgeInsets.symmetric(horizontal: 10),
+                                  child: IntrinsicWidth(
+                                      child: OutlinedButton(
+                                        onPressed: () async {
+                                          sendEmail(
+                                              widget.oneApartment?.owner?.email ??
+                                                  "user_email",
+                                              "يعطيك العافية معك احد مستخدمي تطبيق 'وين "
+                                                  "بلاقي ",
+                                              "  السلام عليكم، ممكن أستفسر عن الإعلان الخاص بـ${widget.oneApartment?.title} ",
+                                              image: widget
+                                                  .oneApartment?.photos?[0].url);
+                                        },
+                                        style: outlinedButton(),
+                                        child: const Padding(
+                                          padding: EdgeInsets.all(8.0),
+                                          child: Row(
+                                            children: [
+                                              //whtsapp icon
+                                              Padding(
+                                                padding: EdgeInsets.fromLTRB(
+                                                    0, 0, 0, 0),
+                                                child: Image(
+                                                  image: AssetImage(
+                                                      "assets/images/gmail.png"),
+                                                  width: 28,
+                                                  height: 28,
+                                                ),
+                                              ),
+
+                                              //text
+                                              Padding(
+                                                padding: EdgeInsets.fromLTRB(
+                                                    0, 0, 0, 0),
+                                                child: Text(" جيميل",
+                                                    style: TextStyle(
+                                                      color: Colors.white,
+                                                      fontSize: 16,
+                                                      fontFamily: 'IBM',
+                                                    )),
+                                              ),
+                                            ],
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+                                ),
+
+                            // phone
+                            IntrinsicWidth(
+                              child: OutlinedButton(
+                                onPressed: () async {
+                                  makePhoneCall(
+                                      widget.oneApartment?.owner?.phone ??
+                                          "user_phone");
+                                },
+                                style: outlinedButton(),
+                                child: const Padding(
+                                  padding: EdgeInsets.all(8.0),
+                                  child: Row(
+                                    children: [
+                                      //whtsapp icon
+                                      Icon(
+                                        Icons.phone,
+                                        color: Colors.blue,
+                                        size: 28,
+                                      ),
+
+                                      //text
+                                      Padding(
+                                        padding:
+                                            EdgeInsets.fromLTRB(0, 0, 0, 0),
+                                        child: Text(" هاتف",
+                                            style: TextStyle(
+                                              color: Colors.white,
+                                              fontSize: 16,
+                                              fontFamily: 'IBM',
+                                            )),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                              ),
+                            ),
+
+                            widget.oneApartment?.owner?.facebook == "user_name"
+                                ? const SizedBox()
+                                : Padding(
+                                  padding: const EdgeInsets.symmetric
+                                    (horizontal: 10),
+                                  child: IntrinsicWidth(
+                                      child: OutlinedButton(
+                                        onPressed: () async {
+                                          sendMessenger(
+                                              userName: widget.oneApartment?.owner
+                                                      ?.facebook ??
+                                                  "user_name",
+                                              message: "  السلام "
+                                                  "عليكم، ممكن أستفسر عن الإعلان الخاص بـ${widget.oneApartment?.title} ",
+                                              image: widget
+                                                  .oneApartment?.photos?[0].url);
+                                        },
+                                        style: outlinedButton(),
+                                        child: const Padding(
+                                          padding: EdgeInsets.all(8.0),
+                                          child: Row(
+                                            children: [
+                                              //whtsapp icon
+                                              Icon(
+                                                Icons.facebook,
+                                                color: Colors.blue,
+                                                size: 28,
+                                              ),
+
+                                              //text
+                                              Padding(
+                                                padding: EdgeInsets.fromLTRB(
+                                                    0, 0, 0, 0),
+                                                child: Text(" فيس بوك",
+                                                    style: TextStyle(
+                                                      color: Colors.white,
+                                                      fontSize: 16,
+                                                      fontFamily: 'IBM',
+                                                    )),
+                                              ),
+                                            ],
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+                                ),
+                          ],
                         ),
                       ],
                     ),
+
+                    //social connection
+
                     // ForInquiries(, onClick, user)
                   ],
                 ),
               ),
+
               Container(
                 margin: const EdgeInsets.fromLTRB(10, 23, 10, 0),
                 // discription.length.toDouble() * 2,
@@ -990,51 +1054,53 @@ class _NewShowMoreState extends State<NewShowMore> {
                         Padding(
                           padding: const EdgeInsets.all(10),
                           child: widget.oneApartment?.owner?.profile ==
-                              "images/profile/user.png"
+                                  "images/profile/user.png"
                               ? CircleAvatar(
-                              radius: 28,
-                              //put a normal person Icon
-                              backgroundColor: Colors.grey.shade700,
-                              child: const Icon(
-                                Icons.person,
-                                color: Colors.white,
-                                size: 28,
-                              ))
+                                  radius: 28,
+                                  //put a normal person Icon
+                                  backgroundColor: Colors.grey.shade700,
+                                  child: const Icon(
+                                    Icons.person,
+                                    color: Colors.white,
+                                    size: 28,
+                                  ))
                               : CircleAvatar(
-                            radius: 28,
-                            // backgroundImage: NetworkImage(NewSession.get("profile","def")),
-                            // Adjust the radius as needed
-                            backgroundColor: Colors.grey.shade700,
-                            // Set the background color of the avatar
-                            backgroundImage: NetworkImage(
-                                "https://weenbalaqee"
-                                    ".com/${widget.oneApartment?.owner
-                                    ?.profile??"images/profile/user.png"}"),
-                            child:
-                            apartmentModelController.isLoading.value
-                                ? const CircularProgressIndicator()
-                                : null,
-                          ),
+                                  radius: 28,
+                                  // backgroundImage: NetworkImage(NewSession.get("profile","def")),
+                                  // Adjust the radius as needed
+                                  backgroundColor: Colors.grey.shade700,
+                                  // Set the background color of the avatar
+                                  backgroundImage: NetworkImage(
+                                      "https://weenbalaqee"
+                                      ".com/${widget.oneApartment?.owner?.profile ?? "images/profile/user.png"}"),
+                                  child:
+                                      apartmentModelController.isLoading.value
+                                          ? const CircularProgressIndicator()
+                                          : null,
+                                ),
                         ),
                         Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Text(
-                              widget.oneApartment?.owner?.name??"",
+                              widget.oneApartment?.owner?.name ?? "",
                               style: TextStyle(
-                                fontSize: getIt<AppDimension>().isSmallScreen(context)
-                                    ? 16
-                                    : 18,
+                                fontSize:
+                                    getIt<AppDimension>().isSmallScreen(context)
+                                        ? 16
+                                        : 18,
                                 fontFamily: 'IBM',
                                 color: themeMode.isLight
                                     ? kTextColorLightMode
                                     : kTextColorDarkMode,
                               ),
                             ),
-                            const SizedBox(height: 2,),
+                            const SizedBox(
+                              height: 2,
+                            ),
                             Text(
                               // "عرض الملف الشخصي",
-                              widget.oneApartment?.owner?.phone??"",
+                              widget.oneApartment?.owner?.phone ?? "",
                               // "972569339613",
                               style: TextStyle(
                                   fontSize: 14,
@@ -1047,8 +1113,8 @@ class _NewShowMoreState extends State<NewShowMore> {
                         ),
                         const Expanded(
                             child: SizedBox(
-                              child: Text(""),
-                            )),
+                          child: Text(""),
+                        )),
                         // Padding(
                         //   padding: const EdgeInsets.only(left: 10,),
                         //   child: Icon(
