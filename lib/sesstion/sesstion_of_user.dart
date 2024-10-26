@@ -32,6 +32,8 @@ saveUserInfo(User data,{DataOfOneApartment ? apartment } ) {
   NewSession.save("phone", data.phone);
   NewSession.save("profile", data.profile);
   NewSession.save("apartmentId",apartment?.id??-1 );
+  NewSession.save("facebook", data.facebook);
+  NewSession.save("email", data.email);
   NewSession.save("createdAt",data.timeAgoCreated );
 
   // NewSession.save("countryPhoneNumberId", data.)
@@ -49,6 +51,8 @@ removeUserInfo() {
   NewSession.remove("token");
   NewSession.remove("id");
   NewSession.remove("profile");
+  NewSession.remove("facebook");
+  NewSession.remove("email");
   NewSession.remove("name");
   // NewSession.remove("gender");
   NewSession.remove("type_id");

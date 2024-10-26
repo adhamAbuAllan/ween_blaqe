@@ -65,6 +65,7 @@ import 'controller/change_password_controller.dart';
 import 'controller/function_controller/api_functions_controller/cities_and_types_controller.dart';
 import 'controller/function_controller/api_functions_controller/apartment_api_methods_controller.dart';
 import 'controller/function_controller/connectivity_controller.dart';
+import 'controller/function_controller/update_social_connection_controller.dart';
 import 'controller/image_of_apartment_controller.dart';
 import 'controller/models_controller/apartment_model_controller.dart';
 import 'controller/models_controller/images_model_controller.dart';
@@ -141,6 +142,7 @@ void main() async {
   Get.put(ImageOfApartmentController());
   Get.put(ShowDetailOfImageOfApartmentController());
   Get.put(ChangePasswordController());
+  Get.put(CreateSocialConnectionController());
   Get.put(BookmarkController()); //for testing
   // Get.put(BookmarkApartment());//for testing
   //for get

@@ -58,6 +58,7 @@ class _ChangeUserImageState extends State<ChangeUserImage> {
                       if (_profileImageFile?.path != null) {
                         imagesModelController
                             .compressAndUploadProfileImage(_profileImageFile!);
+                        imagesModelController.isUpdateImageProfile.value = true;
                         setState(() {});
                       }
                       Future.delayed(

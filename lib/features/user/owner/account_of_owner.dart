@@ -137,7 +137,7 @@ class _AccountOfOwnerState extends State<AccountOfOwner> {
                               color: Colors.white,
                               size: 32,
                             ))
-                            : imagesModelController.isLoadingProfile.value ?
+                            : imagesModelController.isUpdateImageProfile.value ?
                         const SkeletonAvatar(
                           style: SkeletonAvatarStyle(
                             shape: BoxShape.circle,
@@ -155,10 +155,10 @@ class _AccountOfOwnerState extends State<AccountOfOwner> {
                           backgroundImage: NetworkImage(
                               "https://weenbalaqee"
                                   ".com/${NewSession.get("profile", "def")}"),
-                          child:
-                          imagesModelController.isLoadingProfile.value
-                              ? const CircularProgressIndicator()
-                              : null,
+                          // child:
+                          // imagesModelController.isLoadingProfile.value
+                          //     ? const CircularProgressIndicator()
+                          //     : null,
                         ),
                       );
                     }),

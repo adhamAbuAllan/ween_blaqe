@@ -30,6 +30,7 @@ class ImagesModelController extends GetxController {
   RxBool isLoading = false.obs;
   List<int> photoWillDeleteIds = [];
   RxBool isLoadingProfile = false.obs;
+  RxBool isUpdateImageProfile = false.obs;
 
   Future<void> deleteImages(int apartmentId, List<int> photoIds) async {
     isLoading.value = true;
@@ -205,8 +206,15 @@ class ImagesModelController extends GetxController {
       await NewSession.save(
           "createdAt", await jsonResponse['data']['time_ago']);
       debugPrint("the profile image in SP -- ${(await sp).get("profile")}");
+      createSocialConnectionController.emailController.text =
+          await jsonResponse['data']['email'];
+      createSocialConnectionController.facebookController.text =
+          await jsonResponse['data']['facebook'];
+
+
       update();
       isLoadingProfile.value = false;
+      isUpdateImageProfile.value = false;
       return response.body;
     } else {
       // Handle error cases

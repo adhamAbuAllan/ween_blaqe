@@ -108,6 +108,7 @@ class _ContainerInputTextClassWidgetState
           Padding(
             padding: const EdgeInsets.fromLTRB(15, 0, 10, 10),
             child: TextFormField(
+
               validator: widget.validator,
               cursorColor: themeMode.isLight
                   ? kPrimaryColorLightMode

@@ -40,6 +40,8 @@ class User {
   late final String name;
   late final String phone;
   late final String ? profile;
+  late final String ? facebook;
+  late final String ? email;
   // late final TypeOfUser typeId;
  // late final CountryPhoneNumberId countryPhoneNumberId;
  //  late final String countryPhoneNumberId;
@@ -52,6 +54,8 @@ class User {
     name = json['name'];
     phone = json['phone'];
     profile = json['profile'];
+    facebook = json['facebook'];
+    email = json['email'];
 
     // typeId = TypeOfUser.fromJson(json['type_id']);
     //countryPhoneNumberId = CountryPhoneNumberId.fromJson(json['country_phone_number_id']);
@@ -64,6 +68,8 @@ class User {
     _data['id'] = id;
     _data['name'] = name;
     _data['phone'] = phone;
+    _data['facebook'] = facebook;
+    _data['email'] = email;
     _data['profile'] = profile;
     // _data['type_id'] = typeId.toJson();
   //  _data['country_phone_number_id'] = countryPhoneNumberId.toJson();
