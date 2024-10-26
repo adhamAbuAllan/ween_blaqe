@@ -182,24 +182,22 @@ Future<void> showInputDialog(BuildContext context,
           
         ),
         actions: <Widget>[
-          TextButton(
+          OutlinedButton(
             onPressed: () {
               Navigator.of(context).pop();
             },
             style: outlinedButton(),
-            child:  Text(
+            child:  const Text(
               'إلغاء',
-              style: TextStyle(fontFamily: 'IBM',color: themeMode.isLight ?
-              kTextColorLightMode:kTextColorDarkMode),
+              style: TextStyle(fontFamily: 'IBM',),
             ),
           ),
-          TextButton(
+          ElevatedButton(
             onPressed: onSaved,
             style: fullButton(),
-            child:  Text(
+            child:  const Text(
               'حفظ',
-              style: TextStyle(fontFamily: 'IBM', color: themeMode.isLight ?
-              kTextColorLightMode:kTextColorDarkMode),
+              style: TextStyle(fontFamily: 'IBM',),
             ),
           ),
         ],

@@ -18,11 +18,11 @@ class UserProfileSkeleton extends StatelessWidget {
         // Back Button Skeleton
         Container(
           color:
-          isLightMode ? kContainerColorLightMode : kContainerColorDarkMode,
+              isLightMode ? kContainerColorLightMode : kContainerColorDarkMode,
           child: const Row(
             children: [
               Padding(
-                padding: EdgeInsets.fromLTRB(0, 20, 10, 0),
+                padding: EdgeInsets.fromLTRB(0, 30, 10, 0),
                 child: SkeletonAvatar(
                     style: SkeletonAvatarStyle(width: 28, height: 24)),
               ),
@@ -69,12 +69,12 @@ class UserProfileSkeleton extends StatelessWidget {
             mainAxisSize: MainAxisSize.min,
             children: [
               const SizedBox(height: 20),
-              // First Container Skeleton
+              //  name and phone Container Skeleton
               Container(
                 width: double.infinity,
                 margin: const EdgeInsets.fromLTRB(0, 0, 0, 10),
                 padding:
-                const EdgeInsets.symmetric(horizontal: 10, vertical: 20),
+                    const EdgeInsets.symmetric(horizontal: 10, vertical: 20),
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(7),
                   color: isLightMode
@@ -83,6 +83,9 @@ class UserProfileSkeleton extends StatelessWidget {
                 ),
                 child: Column(
                   children: [
+                    const SizedBox(
+                      height: 20,
+                    ),
                     SkeletonLine(
                       style: SkeletonLineStyle(
                         height: 20,
@@ -131,12 +134,88 @@ class UserProfileSkeleton extends StatelessWidget {
                 ),
               ),
               const SizedBox(height: 10),
-              // Second Container Skeleton
               Container(
                 width: double.infinity,
                 margin: const EdgeInsets.fromLTRB(0, 0, 0, 10),
                 padding:
-                const EdgeInsets.symmetric(horizontal: 10, vertical: 20),
+                    const EdgeInsets.symmetric(horizontal: 10, vertical: 20),
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(7),
+                  color: isLightMode
+                      ? kContainerColorLightMode
+                      : kContainerColorDarkMode,
+                ),
+                child: Column(
+                  children: [
+                    SkeletonLine(
+                      style: SkeletonLineStyle(
+                        height: 20,
+                        width: 180,
+                        borderRadius: BorderRadius.circular(7),
+                      ),
+                    ),
+                    const SizedBox(
+                      height: 15,
+                    ),
+
+                    //first row
+                    Row(
+                      children: [
+                        const SizedBox(width: 15,),
+                        SkeletonLine(
+                          style: SkeletonLineStyle(
+                            width: 120,
+                            height: 40,
+                            // width: 150,
+                            borderRadius: BorderRadius.circular(4),
+                          ),
+                        ),
+                        const SizedBox(width: 10,),
+                        SkeletonLine(
+                          style: SkeletonLineStyle(
+                            width: 120,
+                            height: 40,
+                            // width: 150,
+                            borderRadius: BorderRadius.circular(4),
+                          ),
+                        ),
+                      ],
+                    ),
+                    const SizedBox(height: 10,),
+                    //second row
+                    Row(
+                      children: [
+                        const SizedBox(width: 5,),
+                        SkeletonLine(
+                          style: SkeletonLineStyle(
+                            width: 100,
+                            height: 40,
+                            // width: 150,
+                            borderRadius: BorderRadius.circular(4),
+                          ),
+                        ),
+                        SizedBox(width: 10,),
+                        SkeletonLine(
+                          style: SkeletonLineStyle(
+                            width: 100,
+                            height: 40,
+                            // width: 150,
+                            borderRadius: BorderRadius.circular(4),
+                          ),
+                        ),
+                      ],
+                    )
+                  ],
+                ),
+              ),
+
+              const SizedBox(height: 10),
+              // join time  Container Skeleton
+              Container(
+                width: double.infinity,
+                margin: const EdgeInsets.fromLTRB(0, 0, 0, 10),
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 10, vertical: 20),
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(7),
                   color: isLightMode
@@ -165,15 +244,17 @@ class UserProfileSkeleton extends StatelessWidget {
                 ),
               ),
               const SizedBox(height: 10),
-              // Third Container Skeleton
+              //  account of posts Container Skeleton
               Container(
                 width: double.infinity,
                 margin: const EdgeInsets.fromLTRB(0, 0, 0, 10),
                 padding:
-                const EdgeInsets.symmetric(horizontal: 10, vertical: 20),
+                    const EdgeInsets.symmetric(horizontal: 10, vertical: 20),
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(7),
-                  color: isLightMode ?kContainerColorLightMode : kContainerColorDarkMode,
+                  color: isLightMode
+                      ? kContainerColorLightMode
+                      : kContainerColorDarkMode,
                 ),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,

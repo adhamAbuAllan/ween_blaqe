@@ -130,6 +130,7 @@ class _ProfileOfOwnerState extends State<ProfileOfOwner> {
                           ],
                         ),
                       ),
+                      //image
                       Container(
                         padding: const EdgeInsets.only(right: 15),
                         alignment: Alignment.bottomRight,
@@ -204,6 +205,7 @@ class _ProfileOfOwnerState extends State<ProfileOfOwner> {
                             const SizedBox(
                               height: 20,
                             ),
+                            //name and phone
                             Container(
                               width: double.infinity,
                               margin: const EdgeInsets.fromLTRB(0, 0, 0, 10),
@@ -310,7 +312,7 @@ class _ProfileOfOwnerState extends State<ProfileOfOwner> {
                                           fontSize: 18,
                                           fontFamily: "IBM")),
                                   const SizedBox(
-                                    height: 25,
+                                    height: 15,
                                   ),
 
                                   Obx(() {
