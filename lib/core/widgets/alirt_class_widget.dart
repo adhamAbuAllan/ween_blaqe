@@ -62,7 +62,7 @@ class AlertWithTwoBtn {
                   onPressed: () {
                     Get.back();
                   },
-                  style: fullButton(themeMode: themeMode),
+                  style: fullButton(),
 
 
                   child: Text(textOfCancelButton)),
@@ -106,7 +106,7 @@ class NormalAlert {
                   onPressed: () {
                     Get.back();
                   },
-                  style: fullButton(themeMode: themeMode),
+                  style: fullButton(),
                   child: Text(
                     textOfButton,
                   )),

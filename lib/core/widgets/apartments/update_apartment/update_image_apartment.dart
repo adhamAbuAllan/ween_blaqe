@@ -119,7 +119,7 @@ class _UpdateImagesState extends State<UpdateImages> {
             padding: const EdgeInsets.all(8.0),
             child: ElevatedButton(
               onPressed: checkArray,
-              style: fullButton(themeMode: themeMode),
+              style: fullButton(),
               child: const Text("تم"),
             ),
           ),

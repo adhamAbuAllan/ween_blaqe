@@ -271,8 +271,7 @@ class _ProfileOfOwnerState extends State<ProfileOfOwner> {
                                             ? 55 / 1.2
                                             : 55,
                                         child: ElevatedButton(
-                                            style: fullButton(
-                                                themeMode: themeMode),
+                                            style: fullButton(),
                                             onPressed: () {
                                               myPushName(context,
                                                   MyPagesRoutes.updateUserInfo);

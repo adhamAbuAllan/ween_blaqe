@@ -192,7 +192,7 @@ class _FirstStepState extends State<FirstStep> {
                             debugPrint("${AddAdDataContainer.rooms}");
                           });
                         },
-                        style: fullButton(themeMode: themeMode),
+                        style: fullButton(),
                         child: const Text("التالي"),
                       ),
                     ],

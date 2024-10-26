@@ -697,7 +697,7 @@ bool hasCheckedNumberPhone = false;
                                         // }
                                       debugPrint("type_id --$typeId");
                                     },
-                                    style: fullButton(themeMode: themeMode),
+                                    style: fullButton(),
                                     child: isLoading
                                         ? const CircularProgressIndicator(
                                             color: Colors.white,

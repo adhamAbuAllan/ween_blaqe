@@ -87,7 +87,7 @@
 //                     onPressed: () {
 //                       myPushReplacementNamed( MyPagesRoutes.main,context: context);
 //                     },
-//                     style: fullButton,
+//                     style: fullButton(),
 //                     child: const Text("لنبدأ")),
 //               ),
 //             ),

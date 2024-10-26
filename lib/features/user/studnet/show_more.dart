@@ -223,7 +223,7 @@
 //                             //   }),
 //                             // );
 //                           },
-//                           style: fullButton,
+//                           style: fullButton(),
 //                           child: const Text("عرض الميزات ال11")),
 //                     ),
 //                   ),
@@ -378,7 +378,7 @@
 //                       // NewSession.get("logged", "") == "" ? toast("يرجى تسجيل الدخول لإتمام عملية لحجز") :
 //                       myPushName(context, MyPagesRoutes.bookingNow);
 //                     },
-//                     style: fullButton,
+//                     style: fullButton(),
 //                     child: const Text("إحجز الآن")),
 //               ),
 //             ),

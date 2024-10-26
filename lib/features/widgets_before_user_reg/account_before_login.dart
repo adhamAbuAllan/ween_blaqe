@@ -419,7 +419,7 @@ class _AccountBeforeLoginInStudentState
                           // showSnakBar(context,
                           //     "هذه الميزة قيد التطوير وسيتم إضافتها قريبًا");
                         },
-                        style: fullButton(themeMode: themeMode),
+                        style: fullButton(),
                         child: const Text(
                           "تسجيل الدخول",
                         )),
@@ -706,7 +706,7 @@ class _AccountBeforeLoginInStudentState
 //                         //   }),
 //                         // );
 //                       },
-//                       style: fullButton.copyWith(
+//                       style: fullButton().copyWith(
 //                           backgroundColor:
 //                                    MaterialStatePropertyAll(Colors.grey)),
 //                       child:      Text("تسجيل الدخول")),

@@ -180,7 +180,7 @@
 //                                         secondShow = true;
 //                                       });
 //                                     },
-//                                     style: fullButton,
+//                                     style: fullButton(),
 //                                     child: const Text("قبول"),
 //                                   ),
 //                                 ),

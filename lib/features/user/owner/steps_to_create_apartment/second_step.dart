@@ -121,7 +121,7 @@ class _SecondStepState extends State<SecondStep> {
 
                           myPushName(context, MyPagesRoutes.step3);
                         },
-                        style: fullButton(themeMode: themeMode),
+                        style: fullButton(),
                         child: const Text("التالي"),
                       ),
                     ],

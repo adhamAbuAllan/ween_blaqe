@@ -60,7 +60,7 @@ class _CitiesBarState extends State<CitiesBar> {
                           },
                               style: c.id == cityModelController.cityId.value &&
                                       cityModelController.cityId.value != 0
-                                  ? fullButton(themeMode: themeMode).copyWith(
+                                  ? fullButton().copyWith(
                                 foregroundColor: WidgetStateProperty.all<Color>(Colors.white),
                               )
                       : outlinedButton(themeMode:themeMode)))

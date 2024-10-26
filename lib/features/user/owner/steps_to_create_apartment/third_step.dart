@@ -197,7 +197,7 @@ class _ThirdStepState extends State<ThirdStep> {
                             }
                           });
                         },
-                        style: fullButton(themeMode: themeMode),
+                        style: fullButton(),
                         child: const Text("التالي"),
                       ),
                     ],

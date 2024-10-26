@@ -499,7 +499,7 @@ class _NoInternetState extends State<NoInternet> with WidgetsBindingObserver {
 //SebhaButton
   ElevatedButton buildSebhaElevatedButton() {
     return ElevatedButton(
-        style: fullButton(themeMode: themeMode),
+        style: fullButton(),
         onLongPress: () {
           setState(() {
             isLongPress = true;

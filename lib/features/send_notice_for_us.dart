@@ -121,7 +121,7 @@ class _SendNoticeForUsState extends State<SendNoticeForUs> {
                       }
                       // Get.to(ApartmentsOfOwnerAfterAdd());
                     },
-                    style: fullButton(themeMode: themeMode),
+                    style: fullButton(),
                     child: const Text("إرسال"),
                   ),
                 ),

@@ -83,7 +83,7 @@
 //                 // toast("يرجى تسجيل الدخول لإنشاء إعلانك")
 //                     : myPushName(context, MyPagesRoutes.step1);
 //               },
-//               style: fullButton,
+//               style: fullButton(),
 //               child: const Padding(
 //                 padding: EdgeInsets.fromLTRB(20, 0, 20, 5),
 //                 child: SizedBox(

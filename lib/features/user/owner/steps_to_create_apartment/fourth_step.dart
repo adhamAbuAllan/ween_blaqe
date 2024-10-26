@@ -270,7 +270,7 @@ class _FourthStepState extends State<FourthStep> {
 
                             // Get.to(ApartmentsOfOwnerAfterAdd());
                           },
-                          style: fullButton(themeMode: themeMode),
+                          style: fullButton(),
                           child: isLoading
                               ? const CircularProgressIndicator(
                                   color: Colors.white,

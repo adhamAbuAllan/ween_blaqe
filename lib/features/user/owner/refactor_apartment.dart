@@ -239,7 +239,7 @@ class _RefactorApartmentState extends State<RefactorApartment> {
                         // });
                         updateApartment();
                       },
-                      style: fullButton(themeMode: themeMode),
+                      style: fullButton(),
                       child: apartmentModelController.isUpdating.value
                           ? const CircularProgressIndicator(
                               color: Colors.white,

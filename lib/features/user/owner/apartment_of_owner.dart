@@ -160,7 +160,7 @@
 //                             //   }),
 //                             // );
 //                           },
-//                           style: fullButton,
+//                           style: fullButton(),
 //                           child: const Text("عرض الميزات ال11")),
 //                     ),
 //                   ),
@@ -308,7 +308,7 @@
 //                         onPressed: () {
 //                           Get.to(const RefactorApartment());
 //                         },
-//                         style: fullButton,
+//                         style: fullButton(),
 //                         child: const Text("تعديل")),
 //                   ),
 //                 ),

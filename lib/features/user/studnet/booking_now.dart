@@ -213,7 +213,7 @@
 //                             });
 //                           });
 //                         },
-//                         style: fullButton,
+//                         style: fullButton(),
 //                         child: const Text("تأكيد الحجز")),
 //                   ),
 //                 ),

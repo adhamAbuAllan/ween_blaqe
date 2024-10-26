@@ -1083,7 +1083,7 @@ class _NewShowMoreState extends State<NewShowMore> {
                         showSnakBar(context,
                             "هذه الميزة قيد التطوير وسيتم إضافتها قريبًا");
                       },
-                      style: fullButton(themeMode: themeMode).copyWith(
+                      style: fullButton().copyWith(
                           backgroundColor:
                               const WidgetStatePropertyAll(Colors.grey)),
                       child: const Text("إحجز الآن")),
