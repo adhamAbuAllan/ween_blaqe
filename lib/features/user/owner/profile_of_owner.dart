@@ -1,5 +1,6 @@
 import 'package:colorful_safe_area/colorful_safe_area.dart';
 import 'package:flutter/material.dart';
+
 // import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get_state_manager/src/rx_flutter/rx_obx_widget.dart';
 // import 'package:url_launcher/url_launcher.dart';
@@ -8,6 +9,7 @@ import 'package:get/get_state_manager/src/rx_flutter/rx_obx_widget.dart';
 import 'package:ween_blaqe/constants/strings.dart';
 import 'package:ween_blaqe/controller/get_controllers.dart';
 import 'package:ween_blaqe/core/utils/funcations/route_pages/push_routes.dart';
+
 // import 'package:ween_blaqe/core/widgets/buttons/social_media_connection_button.dart';
 import 'package:ween_blaqe/core/widgets/skeletons/owner_widgets/profile_skeleton.dart';
 import 'package:ween_blaqe/features/user/owner/social_media_buttons_connection/facebook_social_button.dart';
@@ -24,6 +26,7 @@ import 'package:ween_blaqe/constants/nums.dart';
 
 import '../../../constants/coordination.dart';
 import '../../../constants/get_it_controller.dart';
+
 // import '../../../core/utils/funcations/go_url_launcher_methodes/go_to_whatsapp_method.dart';
 import '../../../core/utils/styles/button.dart';
 
@@ -328,11 +331,26 @@ class _ProfileOfOwnerState extends State<ProfileOfOwner> {
                                                 EdgeInsets.only(right: 10 * 2),
                                             child: WhatsAppSocialButton(),
                                           ),
-                                          const FacebookSocialButton(),
-                                          const EmailSocialButton(),
+                                           Padding(
+                                            padding: EdgeInsets.only(left:                                             getIt<AppDimension>()
+                                                .isSmallScreen(context)
+                                                ? 0
+                                                :
+                                            8),
+
+                                            child: const FacebookSocialButton(),
+                                          ),
+                                           Padding(
+                                            padding: EdgeInsets.only(right:
+                                            getIt<AppDimension>()
+                                                    .isSmallScreen(context)
+                                                ? 0
+                                                :
+                                            8),
+                                            child: const EmailSocialButton(),
+                                          ),
                                           PhoneSocialButton(
                                               formattedPhone: formattedPhone),
-                                          
                                         ],
                                       ),
                                     ],
