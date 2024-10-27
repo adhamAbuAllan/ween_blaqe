@@ -95,8 +95,10 @@ flutter:
     - assets/images/apartments_images/about_apartment/
     - assets/images/whatsapp.png
     - assets/images/apartments_images/images_to_create_apartment/step_one.png
-    - assets/images/apartments_images/images_to_create_apartment/step_two.png
+   # - assets/images/apartments_images/images_to_create_apartment
+    #/second_step.png
     - assets/images/apartments_images/images_to_create_apartment/step_three.png
+    - assets/images/apartments_images/images_to_create_apartment/second_step.png
     - assets/images/apartments_images/images_to_create_apartment/step_four.png
     - assets/images/tasbih.png
     - assets/images/error_images/no network.png
@@ -119,9 +121,8 @@ flutter:
     - assets/images/apartments_images/images_to_create_apartment/first_setp_dark_mode.png
     - assets/images/apartments_images/images_to_create_apartment/thrid_setp_dark_mode.png
     - assets/images/apartments_images/images_to_create_apartment/fourth_step_dark_mode.png
-    - assets/images/apartments_images/images_to_create_apartment/fourth_step_dark_mode.png
-
-
+    - assets/images/apartments_images/images_to_create_apartment/second_step_dark_mode.png
+  #- assets/images/apartment_images/apartments_images/second_step_dark_mode.png
 
 
 

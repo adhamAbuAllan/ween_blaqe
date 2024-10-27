@@ -124,6 +124,7 @@ class _AccountOfOwnerState extends State<AccountOfOwner> {
                 child: Row(
                   children: [
                     Obx(() {
+                      imagesModelController.isUpdateImageProfile.value;
                       return Padding(
                         padding: const EdgeInsets.all(10),
                         child: NewSession.get("profile", "def") ==

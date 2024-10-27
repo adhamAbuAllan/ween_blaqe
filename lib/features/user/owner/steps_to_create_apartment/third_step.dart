@@ -221,11 +221,8 @@ class _ThirdStepState extends State<ThirdStep> {
                 Padding(
                   padding: const EdgeInsets.fromLTRB(25, 5, 25, 30),
                   child: themeMode.isLight ?   Image.asset(
-                    'assets/'
-                        'images/'
-                        'apartments_images/'
-                        'images_to_create_apartment/'
-                        'step_thrid.png',
+                    'assets/images/apartments_images'
+                        '/images_to_create_apartment/step_three.png',
                     width: 65,
                     height: 65,
                     fit: BoxFit.fill,

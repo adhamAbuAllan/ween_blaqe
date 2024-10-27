@@ -313,7 +313,7 @@ class _FourthStepState extends State<FourthStep> {
                           'images/'
                           'apartments_images/'
                           'images_to_create_apartment/'
-                          'fourth_setp_dark_mode.png',
+                          'fourth_step_dark_mode.png',
                       width: 65,
                       height: 65,
                       fit: BoxFit.fill,
