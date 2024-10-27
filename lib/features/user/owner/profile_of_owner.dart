@@ -332,6 +332,7 @@ class _ProfileOfOwnerState extends State<ProfileOfOwner> {
                                           const EmailSocialButton(),
                                           PhoneSocialButton(
                                               formattedPhone: formattedPhone),
+                                          
                                         ],
                                       ),
                                     ],

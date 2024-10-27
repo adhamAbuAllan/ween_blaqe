@@ -144,15 +144,26 @@ class _SecondStepState extends State<SecondStep> {
                 //image steps
                 Padding(
                   padding: const EdgeInsets.fromLTRB(25, 5, 25, 30),
-                  child: Image.asset(
+                  child: themeMode.isLight ?   Image.asset(
                     'assets/'
-                    'images/'
-                    'apartments_images/'
-                    'images_to_create_apartment/'
-                    'step_two.png',
+                        'images/'
+                        'apartments_images/'
+                        'images_to_create_apartment/'
+                        'step_two.png',
                     width: 65,
                     height: 65,
                     fit: BoxFit.fill,
+
+                  ):Image.asset(
+                    'assets/'
+                        'images/'
+                        'apartments_images/'
+                        'images_to_create_apartment/'
+                        'thrid_setp_dark_mode.png',
+                    width: 65,
+                    height: 65,
+                    fit: BoxFit.fill,
+
                   ),
                 ),
                 //this container have 2 main items own: text of advantages , and advantages

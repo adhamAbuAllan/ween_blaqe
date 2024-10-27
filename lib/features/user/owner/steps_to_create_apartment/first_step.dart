@@ -215,7 +215,7 @@ class _FirstStepState extends State<FirstStep> {
                 //image steps
                 Padding(
                   padding: const EdgeInsets.fromLTRB(25, 5, 25, 30),
-                  child: Image.asset(
+                  child:themeMode.isLight ?   Image.asset(
                     'assets/'
                     'images/'
                     'apartments_images/'
@@ -224,6 +224,17 @@ class _FirstStepState extends State<FirstStep> {
                     width: 65,
                     height: 65,
                     fit: BoxFit.fill,
+
+                  ):Image.asset(
+                    'assets/'
+                        'images/'
+                        'apartments_images/'
+                        'images_to_create_apartment/'
+                        'first_setp_dark_mode.png',
+                    width: 65,
+                    height: 65,
+                    fit: BoxFit.fill,
+
                   ),
                 ),
                 //city box
