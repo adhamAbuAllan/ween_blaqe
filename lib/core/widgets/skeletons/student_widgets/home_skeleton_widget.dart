@@ -2,11 +2,13 @@ import 'package:skeletons/skeletons.dart';
 import 'package:flutter/material.dart';
 import 'package:ween_blaqe/constants/nums.dart';
 
-
 class HomeSkeletonWidget extends StatefulWidget {
-  const HomeSkeletonWidget({super.key, this.hasCitiesBar,  this.scrollController});
+  const HomeSkeletonWidget(
+      {super.key, this.hasCitiesBar, this.scrollController});
+
   final bool? hasCitiesBar;
- final ScrollController? scrollController;
+  final ScrollController? scrollController;
+
   @override
   State<HomeSkeletonWidget> createState() => _HomeSkeletonWidgetState();
 }
@@ -50,15 +52,21 @@ class _HomeSkeletonWidgetState extends State<HomeSkeletonWidget> {
           scrollDirection: Axis.vertical,
           child: Column(
             children: [
-              widget.hasCitiesBar ??false ?  const Column(
-                children: [
-                  SizedBox(height: 10,),
-                  //cities skeleton
-                  CitiesBarSkeleton(),
+              widget.hasCitiesBar ?? false
+                  ? const Column(
+                      children: [
+                        SizedBox(
+                          height: 10,
+                        ),
+                        //cities skeleton
+                        CitiesBarSkeleton(),
 
-                  SizedBox(height: 10,),
-                ],
-              ):const SizedBox(),
+                        SizedBox(
+                          height: 10,
+                        ),
+                      ],
+                    )
+                  : const SizedBox(),
 
               //a list of apartments skeleton
               const ApartmentSkeleton(),
@@ -67,7 +75,6 @@ class _HomeSkeletonWidgetState extends State<HomeSkeletonWidget> {
               const ApartmentSkeleton(),
               const ApartmentSkeleton(),
               const ApartmentSkeleton(),
-
             ],
           ),
         ),
@@ -75,6 +82,7 @@ class _HomeSkeletonWidgetState extends State<HomeSkeletonWidget> {
     );
   }
 }
+
 class ApartmentSkeleton extends StatelessWidget {
   const ApartmentSkeleton({super.key});
 
@@ -93,119 +101,157 @@ class ApartmentSkeleton extends StatelessWidget {
         ),
         child: SkeletonItem(
             child: Column(
+          mainAxisAlignment: MainAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Row(
               children: [
-                Row(
-                  children: [
-                    SkeletonLine(
-                      style: SkeletonLineStyle(
-                          height: 18,
-                          width: 100,
-                          borderRadius: BorderRadius.circular(4)),
-                    ),
-                    const Expanded(child: Text("")),
-                    const Padding(
-                      padding: EdgeInsets.fromLTRB(10, 5, 0, 5),
-                      child: SkeletonAvatar(
-                          style: SkeletonAvatarStyle(width: 28, height: 28)),
-                    ),
-                  ],
+                SkeletonLine(
+                  style: SkeletonLineStyle(
+                      height: 18,
+                      width: 100,
+                      borderRadius: BorderRadius.circular(4)),
                 ),
-                const SizedBox(height: 10),
-                SkeletonAvatar(
-                  style: SkeletonAvatarStyle(width: double.infinity,
-                      height: 240,
-                      borderRadius: BorderRadius.circular(7)),
+                const Expanded(child: Text("")),
+                const Padding(
+                  padding: EdgeInsets.fromLTRB(10, 5, 0, 5),
+                  child: SkeletonAvatar(
+                      style: SkeletonAvatarStyle(width: 28, height: 28)),
                 ),
-                const SizedBox(height: 10),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    //title
-                    SkeletonLine(
-                      style: SkeletonLineStyle(
-                          height: 18,
-                          width: 200,
-                          borderRadius: BorderRadius.circular(4)),
-                    ),
-                    //price
-                    SkeletonLine(
-                      style: SkeletonLineStyle(
-                          height: 18,
-                          width: 100,
-                          borderRadius: BorderRadius.circular(4)),
-                    ),
-                  ],
-                ),
-                const SizedBox(height: 10),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    const Padding(
-                      padding: EdgeInsets.fromLTRB(10, 5, 0, 5),
-                      child: SkeletonAvatar(
-                          style: SkeletonAvatarStyle(width: 80, height: 30)),
-                    ),
-                    SkeletonLine(
-                      style: SkeletonLineStyle(
-                          height: 18,
-                          width: 100,
-                          borderRadius: BorderRadius.circular(4)),
-                    ),
-                  ],
-                )
               ],
-            )),
+            ),
+            const SizedBox(height: 10),
+            SkeletonAvatar(
+              style: SkeletonAvatarStyle(
+                  width: double.infinity,
+                  height: 240,
+                  borderRadius: BorderRadius.circular(7)),
+            ),
+            const SizedBox(height: 10),
+            Align(
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  SkeletonLine(
+                    style: SkeletonLineStyle(
+                        height: 18/1.3,
+                        width: 18/1.3,
+                        borderRadius: BorderRadius.circular(4)),
+                  ),
+                  const SizedBox(
+                    width: 10,
+                  ),
+                  SkeletonLine(
+                    style: SkeletonLineStyle(
+                        height: 18/1.3,
+                        width: 18/1.3,
+                        borderRadius: BorderRadius.circular(4)),
+                  ),
+                  const SizedBox(
+                    width: 10,
+                  ),
+                  SkeletonLine(
+                    style: SkeletonLineStyle(
+                        height: 18/1.3,
+                        width: 18/1.3,
+                        borderRadius: BorderRadius.circular(4)),
+                  ),
+                  const SizedBox(
+                    width: 10,
+                  ),
+                  SkeletonLine(
+                    style: SkeletonLineStyle(
+                        height: 18/1.3,
+                        width: 18/1.3,
+                        borderRadius: BorderRadius.circular(4)),
+                  ),
+                ],
+              ),
+            ),
+            const SizedBox(
+              height: 15,
+            ),
+            SkeletonLine(
+              style: SkeletonLineStyle(
+                  height: 18/1.3,
+                  width: 200,
+                  borderRadius: BorderRadius.circular(4)),
+            ),
+            const SizedBox(height: 10),
+            SkeletonLine(
+              style: SkeletonLineStyle(
+                  height: 18/1.3,
+                  width: 100,
+                  borderRadius: BorderRadius.circular(4)),
+            ),
+            const SizedBox(height: 10),
+            const SkeletonAvatar(
+                style: SkeletonAvatarStyle(width: 180, height: 18/1.3)),
+            const SizedBox(height: 10),
+            SkeletonLine(
+              style: SkeletonLineStyle(
+                  height: 18/1.3,
+                  width: 80,
+                  borderRadius: BorderRadius.circular(4)),
+            )
+          ],
+        )),
       ),
     );
   }
 }
+
 class CitiesBarSkeleton extends StatelessWidget {
   const CitiesBarSkeleton({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return  const SingleChildScrollView(
+    return const SingleChildScrollView(
       scrollDirection: Axis.horizontal,
       child: SkeletonItem(
           child: Row(
-            children: [
-              Padding(
-                padding: EdgeInsets.fromLTRB(10, 5, 10, 5),
-                child: SkeletonAvatar(
-                  style: SkeletonAvatarStyle(width: 90, height: 40,),),
+        children: [
+          Padding(
+            padding: EdgeInsets.fromLTRB(10, 5, 10, 5),
+            child: SkeletonAvatar(
+              style: SkeletonAvatarStyle(
+                width: 90,
+                height: 40,
               ),
-              Padding(
-                padding: EdgeInsets.fromLTRB(10, 5, 0, 5),
-                child: SkeletonAvatar(
-                    style: SkeletonAvatarStyle(width: 90, height: 40)),
-              ),
-              Padding(
-                padding: EdgeInsets.fromLTRB(10, 5, 0, 5),
-                child: SkeletonAvatar(
-                    style: SkeletonAvatarStyle(width: 90, height: 40)),
-              ),
-              Padding(
-                padding: EdgeInsets.fromLTRB(10, 5, 0, 5),
-                child: SkeletonAvatar(
-                    style: SkeletonAvatarStyle(width: 90, height: 40)),
-              ),
-              Padding(
-                padding: EdgeInsets.fromLTRB(10, 5, 0, 5),
-                child: SkeletonAvatar(
-                    style: SkeletonAvatarStyle(width: 90, height: 40)),
-              ),
-              Padding(
-                padding: EdgeInsets.fromLTRB(10, 5, 0, 5),
-                child: SkeletonAvatar(
-                    style: SkeletonAvatarStyle(width: 90, height: 40)),
-              ),
-              Padding(
-                padding: EdgeInsets.fromLTRB(10, 5, 0, 5),
-                child: SkeletonAvatar(
-                    style: SkeletonAvatarStyle(width: 90, height: 40)),
-              ),
-            ],
-          )),
+            ),
+          ),
+          Padding(
+            padding: EdgeInsets.fromLTRB(10, 5, 0, 5),
+            child: SkeletonAvatar(
+                style: SkeletonAvatarStyle(width: 90, height: 40)),
+          ),
+          Padding(
+            padding: EdgeInsets.fromLTRB(10, 5, 0, 5),
+            child: SkeletonAvatar(
+                style: SkeletonAvatarStyle(width: 90, height: 40)),
+          ),
+          Padding(
+            padding: EdgeInsets.fromLTRB(10, 5, 0, 5),
+            child: SkeletonAvatar(
+                style: SkeletonAvatarStyle(width: 90, height: 40)),
+          ),
+          Padding(
+            padding: EdgeInsets.fromLTRB(10, 5, 0, 5),
+            child: SkeletonAvatar(
+                style: SkeletonAvatarStyle(width: 90, height: 40)),
+          ),
+          Padding(
+            padding: EdgeInsets.fromLTRB(10, 5, 0, 5),
+            child: SkeletonAvatar(
+                style: SkeletonAvatarStyle(width: 90, height: 40)),
+          ),
+          Padding(
+            padding: EdgeInsets.fromLTRB(10, 5, 0, 5),
+            child: SkeletonAvatar(
+                style: SkeletonAvatarStyle(width: 90, height: 40)),
+          ),
+        ],
+      )),
     );
   }
 }
