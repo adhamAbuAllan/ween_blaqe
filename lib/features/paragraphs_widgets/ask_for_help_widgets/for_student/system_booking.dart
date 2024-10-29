@@ -7,7 +7,7 @@ import 'package:ween_blaqe/constants/strings.dart';
 import 'package:ween_blaqe/core/utils/funcations/route_pages/push_routes.dart';
 
 class SystemBooking extends StatelessWidget {
-  const SystemBooking({Key? key}) : super(key: key);
+  const SystemBooking({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -60,7 +60,7 @@ class SystemBooking extends StatelessWidget {
 }
 
 class HowCouldBookingApartment extends StatelessWidget {
-  const HowCouldBookingApartment({Key? key}) : super(key: key);
+  const HowCouldBookingApartment({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -79,7 +79,7 @@ class HowCouldBookingApartment extends StatelessWidget {
                Row(
                 children: [
                   Padding(
-                    padding: EdgeInsets.fromLTRB(0, 50, 25, 10),
+                    padding: const EdgeInsets.fromLTRB(0, 50, 25, 10),
                     child: Text(
                       "كيف يمكنني حجز شقة",
                       style: TextStyle(
@@ -91,7 +91,7 @@ class HowCouldBookingApartment extends StatelessWidget {
                       ),
                     ),
                   ),
-                  Expanded(child: Text("")),
+                  const Expanded(child: Text("")),
                 ],
               ),
               //paragraph of how user booking apartment
@@ -305,7 +305,7 @@ class HowCouldBookingApartment extends StatelessWidget {
 
 //could I cancel a booking ?
 class CouldICancelABooking extends StatelessWidget {
-  const CouldICancelABooking({Key? key}) : super(key: key);
+  const CouldICancelABooking({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -323,7 +323,7 @@ class CouldICancelABooking extends StatelessWidget {
              Row(
               children: [
                 Padding(
-                  padding: EdgeInsets.fromLTRB(0, 50, 25, 10),
+                  padding: const EdgeInsets.fromLTRB(0, 50, 25, 10),
                   child: Text(
                     " هل يمكنني إلغاء حجز شقة؟",
                     style: TextStyle(
@@ -335,7 +335,7 @@ class CouldICancelABooking extends StatelessWidget {
                     ),
                   ),
                 ),
-                Expanded(child: Text("")),
+                const Expanded(child: Text("")),
               ],
             ),
             //paragraph of what is system paying is allowed
@@ -362,7 +362,7 @@ class CouldICancelABooking extends StatelessWidget {
 //ما مدة الحجز المتاحة
 //How long is the reservation available
 class HowLongIsTheReservationAvailable extends StatelessWidget {
-  const HowLongIsTheReservationAvailable({Key? key}) : super(key: key);
+  const HowLongIsTheReservationAvailable({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -380,7 +380,7 @@ class HowLongIsTheReservationAvailable extends StatelessWidget {
              Row(
               children: [
                 Padding(
-                  padding: EdgeInsets.fromLTRB(0, 50, 25, 10),
+                  padding: const EdgeInsets.fromLTRB(0, 50, 25, 10),
                   child: Text(
                     "ما هي مدة الحجز المتاحة؟",
                     style: TextStyle(
@@ -391,7 +391,7 @@ class HowLongIsTheReservationAvailable extends StatelessWidget {
                     ),
                   ),
                 ),
-                Expanded(child: Text("")),
+                const Expanded(child: Text("")),
               ],
             ),
             //paragraph of what is system paying is allowed

@@ -8,7 +8,7 @@ import 'package:ween_blaqe/constants/nums.dart';
 
 
 class ShowAllAdvSkeletonWidget extends StatefulWidget {
-  const ShowAllAdvSkeletonWidget({Key? key}) : super(key: key);
+  const ShowAllAdvSkeletonWidget({super.key});
 
   @override
   State<ShowAllAdvSkeletonWidget> createState() => _ShowAllAdvSkeletonWidgetState();

@@ -6,7 +6,7 @@ import 'text_skeleton_ready.dart';
 
 
 class AddConnectionMediaSkeletonReady extends StatefulWidget {
-  const AddConnectionMediaSkeletonReady({Key? key}) : super(key: key);
+  const AddConnectionMediaSkeletonReady({super.key});
 
   @override
   State<AddConnectionMediaSkeletonReady> createState() => _AddConnectionMediaSkeletonReadyState();

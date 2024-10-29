@@ -6,8 +6,7 @@ import 'package:ween_blaqe/core/utils/styles/text_style/aline_style.dart';
 class DataOfOnwer extends StatefulWidget {
   final String title;
   final int? number;
-  const DataOfOnwer({Key? key, required this.title, this.number})
-      : super(key: key);
+  const DataOfOnwer({super.key, required this.title, this.number});
 
   @override
   State<DataOfOnwer> createState() => _DataOfOnwerState();

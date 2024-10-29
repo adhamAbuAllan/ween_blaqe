@@ -6,7 +6,7 @@ import '../skeletons_ready/container_of_input_text_widget_ready.dart';
 import '../skeletons_ready/text_skeleton_ready.dart';
 
 class FourthStepSkeletonWidget extends StatelessWidget {
-  const FourthStepSkeletonWidget({Key? key}) : super(key: key);
+  const FourthStepSkeletonWidget({super.key});
 
   @override
   Widget build(BuildContext context) {

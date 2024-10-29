@@ -9,7 +9,7 @@ import '../../../../controller/function_controller/change_theme_mode.dart';
 import '../../../../core/utils/funcations/go_url_launcher_methodes/go_to_whatsapp_method.dart';
 
 class TheAdIsFreeOrNot extends StatefulWidget {
-  const TheAdIsFreeOrNot({Key? key}) : super(key: key);
+  const TheAdIsFreeOrNot({super.key});
 
   @override
   State<TheAdIsFreeOrNot> createState() => _TheAdIsFreeOrNotState();

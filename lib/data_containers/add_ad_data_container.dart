@@ -1,8 +1,8 @@
 import 'package:ween_blaqe/api/users.dart';
 
-import '../api/cities.dart';
-import '../api/photos.dart';
-import '../api/type_of_apartment.dart';
+// import '../api/cities.dart';
+// import '../api/photos.dart';
+// import '../api/type_of_apartment.dart';
 
 class AddAdDataContainer {
   static int ? id;

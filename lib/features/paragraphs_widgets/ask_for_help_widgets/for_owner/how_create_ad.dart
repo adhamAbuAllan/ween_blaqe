@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import '../../../../constants/nums.dart';
 
 class HowCreateAd extends StatelessWidget {
-  const HowCreateAd({Key? key}) : super(key: key);
+  const HowCreateAd({super.key});
 
   @override
   Widget build(BuildContext context) {

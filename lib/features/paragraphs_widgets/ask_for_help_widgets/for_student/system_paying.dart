@@ -9,7 +9,7 @@ import 'package:ween_blaqe/core/utils/funcations/route_pages/push_routes.dart';
 
 //this class have buttons that go to paragraphs
 class SystemPaying extends StatelessWidget {
-  const SystemPaying({Key? key}) : super(key: key);
+  const SystemPaying({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -60,7 +60,7 @@ class SystemPaying extends StatelessWidget {
 
 //what_is_system_paying_allow?
 class WhatIsSystemPayingAllow extends StatelessWidget {
-  const WhatIsSystemPayingAllow({Key? key}) : super(key: key);
+  const WhatIsSystemPayingAllow({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -79,7 +79,7 @@ class WhatIsSystemPayingAllow extends StatelessWidget {
              Row(
               children: [
                 Padding(
-                  padding: EdgeInsets.fromLTRB(0, 50, 25, 10),
+                  padding: const EdgeInsets.fromLTRB(0, 50, 25, 10),
                   child: Text(
                     "ما هي طرق الدفع المقبولة؟",
                     style: TextStyle(
@@ -90,7 +90,7 @@ class WhatIsSystemPayingAllow extends StatelessWidget {
                     ),
                   ),
                 ),
-                Expanded(child: Text("")),
+                const Expanded(child: Text("")),
               ],
             ),
             //paragraph of what is system paying is allowed
@@ -130,7 +130,7 @@ class WhatIsSystemPayingAllow extends StatelessWidget {
 
 //could pay deposit?
 class CouldIPayByDeposit extends StatelessWidget {
-  const CouldIPayByDeposit({Key? key}) : super(key: key);
+  const CouldIPayByDeposit({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -147,7 +147,7 @@ class CouldIPayByDeposit extends StatelessWidget {
              Row(
               children: [
                 Padding(
-                  padding: EdgeInsets.fromLTRB(0, 30, 25, 10),
+                  padding: const EdgeInsets.fromLTRB(0, 30, 25, 10),
                   child: Text(
                     "هل يمكنني دفع عربون؟",
                     style: TextStyle(
@@ -159,7 +159,7 @@ class CouldIPayByDeposit extends StatelessWidget {
                     ),
                   ),
                 ),
-                Expanded(child: Text("")),
+                const Expanded(child: Text("")),
               ],
             ),
             //paragraph of what is system paying is allowed

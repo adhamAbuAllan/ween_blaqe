@@ -64,7 +64,7 @@ import 'package:ween_blaqe/constants/nums.dart';
 // }
 
 class LongParagraphReadySkeleton extends StatelessWidget {
-  const LongParagraphReadySkeleton({Key? key}) : super(key: key);
+  const LongParagraphReadySkeleton({super.key});
 
   @override
   Widget build(BuildContext context) {

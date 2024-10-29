@@ -140,6 +140,7 @@ class _SplashScreenState extends State<SplashScreen> {
   void checkWifiStatus() async {
     var connectivityResult = Connectivity().checkConnectivity();
 
+    // ignore: unrelated_type_equality_checks
     if (connectivityResult == ConnectivityResult.wifi) {
       // print("naviage to noIntrnet/you have entrent ");
       await navigateToHome();
@@ -148,6 +149,7 @@ class _SplashScreenState extends State<SplashScreen> {
         isInitialized = true;
       });
     } else {
+      // ignore: unrelated_type_equality_checks
       if (connectivityResult == ConnectivityResult.none) {
         pushAndRemoveToNoInternet();
         isInitialized = true;

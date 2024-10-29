@@ -55,7 +55,7 @@ class NewShowMore extends StatefulWidget {
 }
 
 class _NewShowMoreState extends State<NewShowMore> {
-  bool _isDataLoaded = false;
+  final bool _isDataLoaded = false;
 
   bool _isGirlStudent = false;
   bool _isBoyStudent = false;

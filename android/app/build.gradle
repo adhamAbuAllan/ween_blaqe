@@ -34,12 +34,14 @@ if (flutterVersionName == null) {
     flutterVersionName = '1.0'
 }
 
+apply plugin: 'com.android.application'
+apply plugin: 'kotlin-android'
+apply from: "$flutterRoot/packages/flutter_tools/gradle/flutter.gradle"
+
 android {
-
     namespace 'com.weenbalaqee.weenbalaqee'
-    compileSdkVersion 34
+    compileSdkVersion flutter.compileSdkVersion
     ndkVersion flutter.ndkVersion
-
 
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_11
@@ -58,29 +60,35 @@ android {
     }
 
     defaultConfig {
-        targetSdk 34
-        targetSdkVersion "34"
         // TODO: Specify your own unique Application ID (https://developer.android.com/studio/build/application-id.html).
         applicationId "com.weenbalaqee.weenbalaqee"
         // You can update the following values to match your application needs.
         // For more information, see: https://docs.flutter.dev/deployment/android#reviewing-the-build-configuration.
-        minSdkVersion 29
+        minSdkVersion 28
 //        flutter.minSdkVersion
-        targetSdkVersion flutter.targetSdkVersion
-        versionCode flutterVersionCode.toInteger()
+        targetSdkVersion 34
+//        flutter.targetSdkVersion
+        versionCode 19
         versionName flutterVersionName
     }
     signingConfigs {
         release {
-            keyAlias keystoreProperties['keyAlias']
-            keyPassword keystoreProperties['keyPassword']
-            storeFile keystoreProperties['storeFile'] ? file(keystoreProperties['storeFile']) : null
-            storePassword keystoreProperties['storePassword']
+            keyAlias 'upload'
+            keyPassword '2267380Adham'
+            storeFile file('C:/keies/upload-keystore.jks')
+            storePassword '2267380Adham'
         }
     }
     buildTypes {
+//        debug {
+//            minifyEnabled = false
+//            shrinkResources = false
+//        }
         release {
-            signingConfig signingConfigs.release
+            signingConfig signingConfigs.release 
+            minifyEnabled false
+            shrinkResources false
+//            proguardFiles getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro"
         }
     }
 
@@ -91,10 +99,4 @@ android {
     dependencies {
         implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:1.6.0"
     }
-    plugins {
-        id 'com.android.application'
-        id 'kotlin-android'
-        apply from: "$flutterRoot/packages/flutter_tools/gradle/flutter.gradle"
-    }
-
 }

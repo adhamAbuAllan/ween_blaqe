@@ -31,7 +31,7 @@ class _AddAdvantageListTileState extends State<AddAdvantageListTile> {
 
         padding: const EdgeInsets.fromLTRB(12, 0, 12, 0),
         child: ListTile(
-          leading: Icon(Icons.ac_unit),
+          leading: const Icon(Icons.ac_unit),
           title: Text(entry.advName?? "",
               style: TextStyle(
                   fontFamily: 'IBM',

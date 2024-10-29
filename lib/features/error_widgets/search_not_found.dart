@@ -138,7 +138,7 @@ import 'package:ween_blaqe/core/utils/funcations/route_pages/push_routes.dart';
 
 
 class TypeNotFound extends StatefulWidget {
-  const TypeNotFound({Key? key,this.type}) : super(key: key);
+  const TypeNotFound({super.key,this.type});
   final String ? type;
   @override
   State<TypeNotFound> createState() => _TypeNotFoundState();

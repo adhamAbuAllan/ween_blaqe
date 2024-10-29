@@ -202,9 +202,10 @@ class ImagesModelController extends GetxController {
     if (response.statusCode == 200) {
       var responseBody = response.body;
       var jsonResponse = jsonDecode(responseBody);
-      await NewSession.save("profile", await jsonResponse['data']['profile']);
-      await NewSession.save(
+       NewSession.save("profile", await jsonResponse['data']['profile']);
+       NewSession.save(
           "createdAt", await jsonResponse['data']['time_ago']);
+          
       debugPrint("you created at -- ${await jsonResponse['data']['time_ago']}");
       debugPrint("the profile image in SP -- ${(await sp).get("profile")}");
       createSocialConnectionController.emailController.text =

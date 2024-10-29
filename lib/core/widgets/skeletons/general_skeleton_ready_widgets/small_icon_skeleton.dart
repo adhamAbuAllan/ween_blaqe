@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:skeletons/skeletons.dart';
 
 class SmallIconSkeletonReady extends StatelessWidget {
-  const SmallIconSkeletonReady({Key? key}) : super(key: key);
+  const SmallIconSkeletonReady({super.key});
 
   @override
   Widget build(BuildContext context) {

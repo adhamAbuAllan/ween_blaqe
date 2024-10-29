@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:skeletons/skeletons.dart';
 
 class TextTitleSkeletonReady extends StatelessWidget {
-  const TextTitleSkeletonReady({Key? key}) : super(key: key);
+  const TextTitleSkeletonReady({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -17,7 +17,7 @@ class TextTitleSkeletonReady extends StatelessWidget {
 }
 
 class TextTitleApartmentSkeletonReady extends StatelessWidget {
-  const TextTitleApartmentSkeletonReady({Key? key}) : super(key: key);
+  const TextTitleApartmentSkeletonReady({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -32,7 +32,7 @@ class TextTitleApartmentSkeletonReady extends StatelessWidget {
 }
 
 class TextAdvantagesSkeletonReady extends StatelessWidget {
-  const TextAdvantagesSkeletonReady({Key? key}) : super(key: key);
+  const TextAdvantagesSkeletonReady({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -60,7 +60,7 @@ class TextAdvantagesSkeletonReady extends StatelessWidget {
 }
 
 class SmallTextSkeletonReady extends StatelessWidget {
-  const SmallTextSkeletonReady({Key? key}) : super(key: key);
+  const SmallTextSkeletonReady({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -77,7 +77,7 @@ class SmallTextSkeletonReady extends StatelessWidget {
 }
 
 class LongSubTextSkeletonReady extends StatelessWidget {
-  const LongSubTextSkeletonReady({Key? key}) : super(key: key);
+  const LongSubTextSkeletonReady({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -94,7 +94,7 @@ class LongSubTextSkeletonReady extends StatelessWidget {
 }
 
 class TitleTextSkeletonReady extends StatelessWidget {
-  const TitleTextSkeletonReady({Key? key}) : super(key: key);
+  const TitleTextSkeletonReady({super.key});
 
   @override
   Widget build(BuildContext context) {

@@ -5,7 +5,7 @@ import 'skeletons_ready/button_ready_selekton.dart';
 import 'skeletons_ready/container_of_input_text_widget_ready.dart';
 
 class RefactorApartmentSkeleton extends StatelessWidget {
-  const RefactorApartmentSkeleton({Key? key}) : super(key: key);
+  const RefactorApartmentSkeleton({super.key});
 
   @override
   Widget build(BuildContext context) {

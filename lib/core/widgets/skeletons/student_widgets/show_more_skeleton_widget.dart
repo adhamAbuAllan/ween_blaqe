@@ -10,7 +10,7 @@ main() {
 }
 
 class SkeletonShowMoreWidget extends StatefulWidget {
-  const SkeletonShowMoreWidget({Key? key}) : super(key: key);
+  const SkeletonShowMoreWidget({super.key});
 
   @override
   State<SkeletonShowMoreWidget> createState() => _SkeletonShowMoreWidgetState();
@@ -370,7 +370,7 @@ class SkeletonAdvantages extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: const EdgeInsets.fromLTRB(10, 23, 10, 0),
+      margin: const EdgeInsets.fromLTRB(10, 23, 10, 20),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(7),
         color: themeMode.isLight
@@ -395,84 +395,22 @@ class SkeletonAdvantages extends StatelessWidget {
             ],
           ),
           //advantages skeleton
-          Padding(
-            padding: const EdgeInsets.fromLTRB(12, 8, 12, 8),
-            child: Row(
-              children: [
-                SkeletonLine(
-                  style: SkeletonLineStyle(
-                      height: 50,
-                      width: 340,
-                      borderRadius: BorderRadius.circular(4)),
-                ),
-              ],
-            ),
-          ),
-          Padding(
-            padding: const EdgeInsets.fromLTRB(12, 8, 12, 8),
-            child: Row(
-              children: [
-                SkeletonLine(
-                  style: SkeletonLineStyle(
-                      height: 50,
-                      width: 340,
-                      borderRadius: BorderRadius.circular(4)),
-                ),
-              ],
-            ),
-          ),
-          Padding(
-            padding: const EdgeInsets.fromLTRB(12, 8, 12, 8),
-            child: Row(
-              children: [
-                SkeletonLine(
-                  style: SkeletonLineStyle(
-                      height: 50,
-                      width: 340,
-                      borderRadius: BorderRadius.circular(4)),
-                ),
-              ],
-            ),
-          ),
-          Padding(
-            padding: const EdgeInsets.fromLTRB(12, 8, 12, 8),
-            child: Row(
-              children: [
-                SkeletonLine(
-                  style: SkeletonLineStyle(
-                      height: 50,
-                      width: 340,
-                      borderRadius: BorderRadius.circular(4)),
-                ),
-              ],
-            ),
-          ),
-          Padding(
-            padding: const EdgeInsets.fromLTRB(12, 8, 12, 8),
-            child: Row(
-              children: [
-                SkeletonLine(
-                  style: SkeletonLineStyle(
-                      height: 50,
-                      width: 340,
-                      borderRadius: BorderRadius.circular(4)),
-                ),
-              ],
-            ),
-          ),
-          Padding(
-            padding: const EdgeInsets.fromLTRB(12, 8, 12, 8),
-            child: Row(
-              children: [
-                SkeletonLine(
-                  style: SkeletonLineStyle(
-                      height: 50,
-                      width: 340,
-                      borderRadius: BorderRadius.circular(4)),
-                ),
-              ],
-            ),
-          ),
+          const AddAdvantagesLineSkeleton(),
+          const AddAdvantagesLineSkeleton(titleWidth: 100,),
+          const AddAdvantagesLineSkeleton(),
+          const AddAdvantagesLineSkeleton(titleWidth: 90,),
+          const AddAdvantagesLineSkeleton(),
+          const AddAdvantagesLineSkeleton(titleWidth: 110,),
+          const AddAdvantagesLineSkeleton(),
+          const AddAdvantagesLineSkeleton(titleWidth: 80,),
+          const AddAdvantagesLineSkeleton(),
+          const AddAdvantagesLineSkeleton(titleWidth: 100,),
+          const AddAdvantagesLineSkeleton(),
+          const AddAdvantagesLineSkeleton(titleWidth: 115,),
+          const AddAdvantagesLineSkeleton(),
+          const AddAdvantagesLineSkeleton(titleWidth: 106,),
+          const AddAdvantagesLineSkeleton(),
+
           //button of advantages skeleton
           isAddAdvantages == null
               ? Padding(
@@ -489,6 +427,45 @@ class SkeletonAdvantages extends StatelessWidget {
                   ),
                 )
               : const SizedBox(),
+        ],
+      ),
+    );
+  }
+}
+
+class AddAdvantagesLineSkeleton extends StatefulWidget {
+  const AddAdvantagesLineSkeleton({super.key, this.titleWidth});
+  final double? titleWidth;
+  @override
+  State<AddAdvantagesLineSkeleton> createState() =>
+      _AddAdvantagesLineSkeletonState();
+}
+
+class _AddAdvantagesLineSkeletonState extends State<AddAdvantagesLineSkeleton> {
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.fromLTRB(12, 8, 12, 8),
+      child: Row(
+        children: [
+          SkeletonLine(
+            style: SkeletonLineStyle(
+                height: 20, width: 20, borderRadius: BorderRadius.circular(4)),
+          ),
+          const SizedBox(
+            width: 20,
+          ),
+          SkeletonLine(
+            style: SkeletonLineStyle(
+                height: 20,
+                width: widget.titleWidth ?? 120,
+                borderRadius: BorderRadius.circular(4)),
+          ),
+          const Expanded(child: SizedBox()),
+          SkeletonLine(
+            style: SkeletonLineStyle(
+                height: 35, width: 35, borderRadius: BorderRadius.circular(4)),
+          )
         ],
       ),
     );

@@ -6,7 +6,7 @@ import '../skeletons_ready/circle_of_steps_skeleton_ready.dart';
 import '../skeletons_ready/text_skeleton_ready.dart';
 
 class SecondStepSkeletonWidget extends StatelessWidget {
-  const SecondStepSkeletonWidget({Key? key}) : super(key: key);
+  const SecondStepSkeletonWidget({super.key});
 
   @override
   Widget build(BuildContext context) {

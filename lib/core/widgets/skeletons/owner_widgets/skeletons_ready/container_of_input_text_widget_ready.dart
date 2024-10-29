@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:skeletons/skeletons.dart';
 
 class ContainerInputTextReadyWidgetSkeleton extends StatelessWidget {
-  const ContainerInputTextReadyWidgetSkeleton({Key? key}) : super(key: key);
+  const ContainerInputTextReadyWidgetSkeleton({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -53,7 +53,7 @@ class ContainerInputTextReadyWidgetSkeleton extends StatelessWidget {
 }
 
 class ContainerInputLongTextReadyWidgetSkeleton extends StatelessWidget {
-  const ContainerInputLongTextReadyWidgetSkeleton({Key? key}) : super(key: key);
+  const ContainerInputLongTextReadyWidgetSkeleton({super.key});
 
   @override
   Widget build(BuildContext context) {

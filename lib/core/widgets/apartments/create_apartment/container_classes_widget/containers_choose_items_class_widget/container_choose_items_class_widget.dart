@@ -7,12 +7,12 @@ class ContainerChooseItemsClassWidget extends StatefulWidget {
   final Function(dynamic) onSelected;
   final String title;
   final Future<List<dynamic>?>? wholeListApi;
-  String currentValue;
-  int ? itemIdNotIndex;
+ final  String currentValue;
+ final int ? itemIdNotIndex;
 
   // bool dataStatus;
 
-  ContainerChooseItemsClassWidget({
+  const ContainerChooseItemsClassWidget({
     super.key,
     required this.onSelected,
     required this.title,

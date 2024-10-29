@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:skeletons/skeletons.dart';
 
 class BookMarkSkeletonWidget extends StatefulWidget {
-  const BookMarkSkeletonWidget({Key? key}) : super(key: key);
+  const BookMarkSkeletonWidget({super.key});
 
   @override
   State<BookMarkSkeletonWidget> createState() => _BookMarkSkeletonWidgetState();

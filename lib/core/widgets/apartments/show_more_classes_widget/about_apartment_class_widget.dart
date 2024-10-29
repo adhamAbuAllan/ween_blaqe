@@ -6,8 +6,7 @@ import 'package:ween_blaqe/core/utils/styles/show_more_widget/about_apartment_st
 
 class AboutApartment extends StatefulWidget {
   const AboutApartment(
-      {Key? key, required this.title, required this.image, required this.value})
-      : super(key: key);
+      {super.key, required this.title, required this.image, required this.value});
  final String title;
   final String image;
   final int value;
@@ -76,8 +75,7 @@ class AboutApartmentSquareMeter extends StatefulWidget {
   final int value;
 
  const AboutApartmentSquareMeter(
-      {Key? key, required this.title, required this.image, required this.value})
-      : super(key: key);
+      {super.key, required this.title, required this.image, required this.value});
 
   @override
   State<AboutApartmentSquareMeter> createState() => _AboutApartmentSquareMeterState();

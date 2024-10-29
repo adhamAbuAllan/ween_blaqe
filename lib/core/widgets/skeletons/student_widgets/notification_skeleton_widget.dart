@@ -4,7 +4,7 @@ import 'package:skeletons/skeletons.dart';
 import 'skeleton_ready/notifcation_skeleton_ready.dart';
 
 class NotificationSkeleton extends StatefulWidget {
-  const NotificationSkeleton({Key? key}) : super(key: key);
+  const NotificationSkeleton({super.key});
 
   @override
   State<NotificationSkeleton> createState() => _NotificationSkeletonState();

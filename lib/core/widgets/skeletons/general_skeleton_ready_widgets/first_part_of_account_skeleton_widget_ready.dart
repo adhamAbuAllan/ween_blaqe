@@ -5,7 +5,7 @@ import '../owner_widgets/skeletons_ready/text_skeleton_ready.dart';
 import 'small_icon_skeleton.dart';
 
 class FirstPartOfAccountSkeletonReady extends StatelessWidget {
-  const FirstPartOfAccountSkeletonReady({Key? key}) : super(key: key);
+  const FirstPartOfAccountSkeletonReady({super.key});
 
   @override
   Widget build(BuildContext context) {

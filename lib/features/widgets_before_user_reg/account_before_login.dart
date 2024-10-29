@@ -90,7 +90,6 @@ class _AccountBeforeLoginInStudentState
     extends State<AccountBeforeLoginInStudent> {
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
     setState(() {
       currentValue = true;

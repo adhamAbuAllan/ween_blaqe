@@ -13,18 +13,18 @@ class TextFieldOfPasswordClassWidget extends StatefulWidget {
   final String? labelInput;
   final FocusNode? focusNode;
   final bool? autoFocus;
-  late final bool? hide;
-  late final String? displayText;
+  late  bool? hide;
+  late  String? displayText;
   final Function(String)? checkPass;
-  late final double? strength;
+  late  double? strength;
   final bool isObscure;
   final String? Function(String?)? validator;
 
   final void Function(bool) onObscureChanged;
   final TextEditingController? controller;
 
-  TextFieldOfPasswordClassWidget(
-      {Key? key,
+   TextFieldOfPasswordClassWidget(
+      {super.key,
       this.inputType,
       this.labelInput,
       this.onFieldSubmitted,
@@ -37,8 +37,7 @@ class TextFieldOfPasswordClassWidget extends StatefulWidget {
       this.controller,
       required this.isObscure,
       required this.onObscureChanged,
-      this.validator})
-      : super(key: key);
+      this.validator});
 
   @override
   State<TextFieldOfPasswordClassWidget> createState() =>

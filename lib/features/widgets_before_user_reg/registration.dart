@@ -15,7 +15,7 @@ import '../../constants/coordination.dart';
 import '../../constants/get_it_controller.dart';
 import '../../core/utils/funcations/route_pages/push_routes.dart';
 import '../../core/widgets/alirt_class_widget.dart';
-import '../../core/widgets/dropdown_classes_widgets/dropdown_type_of_user.dart';
+// import '../../core/widgets/dropdown_classes_widgets/dropdown_type_of_user.dart';
 
 // import '../../core/widgets/dropdown_classes_widgets/dropdown_unviversty.dart';
 import '../../core/widgets/registration/text_field_of_password_class_widget.dart';
@@ -26,9 +26,9 @@ import '/api/users.dart';
 // import 'login.dart';
 
 // bool visable = false;
-DropDownTypeOfUser? testing;
+// DropDownTypeOfUser? testing;
 // bool testing.visable;
-var test = testing?.test;
+// var test = testing?.test;
 bool? isVisible = true;
 String errorText = '';
 
@@ -653,6 +653,7 @@ bool hasCheckedNumberPhone = false;
                                         if (passwordController.text !=
                                             surePasswordController.text) {
                                           NormalAlert.show(
+                                              // ignore: use_build_context_synchronously
                                               context,
                                               "كلمة المرور غير متطابقة",
                                               "برجاء إدخال كلمة مرور متطابقة في كلا الحقلين",
@@ -661,6 +662,7 @@ bool hasCheckedNumberPhone = false;
                                         }
                                         if(!hasCheckedNumberPhone){
                                           NormalAlert.show(
+                                              // ignore: use_build_context_synchronously
                                               context,
                                               "يرجى التحقق من رقم الهاتف",
                                               "لم تقم بالتحقق من رقم هاتفك ",
@@ -741,7 +743,7 @@ bool hasCheckedNumberPhone = false;
       // Phone number exists
       final data = await jsonDecode(response.body);
       debugPrint("phnoe number existts");
-      print(data['msg']);
+      debugPrint(data['msg']);
       setState(() {
         isLoading = false;
         NormalAlert.show(
@@ -758,12 +760,12 @@ bool hasCheckedNumberPhone = false;
       // Phone number does not exist
       final data = await jsonDecode(response.body);
 
-      print(data['msg']);
+      debugPrint(data['msg']);
       setState(() {
         isPhoneNumberIsAlreadyTaken = false;
       });
     } else {
-      print('Error: ${response.statusCode}');
+      debugPrint('Error: ${response.statusCode}');
       return;
     }
   }

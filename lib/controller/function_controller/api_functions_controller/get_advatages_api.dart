@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 // import 'package:ween_blaqe/api/advantages.dart';
 import 'package:http/http.dart' as http;
@@ -47,7 +48,7 @@ String oneItem,String uri) async {
 
       var json = jsonDecode(response.body);
       var getData = json['data'];
-      print("the data from json is : --${getData}");
+      debugPrint("the data from json is : --$getData");
       for (var item in getData) {
         advName.add(item['adv_name']) ;
         icon.add(item['icon']);

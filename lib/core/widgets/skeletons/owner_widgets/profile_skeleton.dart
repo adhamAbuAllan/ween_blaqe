@@ -195,7 +195,7 @@ class UserProfileSkeleton extends StatelessWidget {
                               borderRadius: BorderRadius.circular(4),
                             ),
                           ),
-                          SizedBox(width: 10,),
+                          const SizedBox(width: 10,),
                           SkeletonLine(
                             style: SkeletonLineStyle(
                               width: 100,

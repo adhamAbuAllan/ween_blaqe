@@ -1,5 +1,6 @@
 import 'dart:convert';
 // import 'package:flutter/material.dart';
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
 import 'package:ween_blaqe/api/type_of_apartment.dart';
@@ -79,7 +80,7 @@ cityIds.clear();
     if (res.statusCode == 200) {
       var jsonData = jsonDecode(res.body);
       var getData = jsonData['data'];
-      print("the data from json is : --$getData");
+      debugPrint("the data from json is : --$getData");
       for (var item in getData) {
         list?.add(item['name']);
       }

@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:skeletons/skeletons.dart';
 
 class SmallButtonReadySkeleton extends StatelessWidget {
-  const SmallButtonReadySkeleton({Key? key}) : super(key: key);
+  const SmallButtonReadySkeleton({super.key});
 
   @override
   Widget build(BuildContext context) {

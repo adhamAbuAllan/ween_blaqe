@@ -16,7 +16,7 @@ class TextFieldClassWdiget extends StatelessWidget {
   final TextEditingController? controller;
 
   const TextFieldClassWdiget(
-      {Key? key,
+      {super.key,
       required this.labelName,
       required this.textInputType,
       required this.fontSize,
@@ -24,8 +24,7 @@ class TextFieldClassWdiget extends StatelessWidget {
       this.onFieldSubmitted,
       this.controller,
       this.autoFocus,
-      Z})
-      : super(key: key);
+      Z});
 
   @override
   Widget build(BuildContext context) {

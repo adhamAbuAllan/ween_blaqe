@@ -33,8 +33,8 @@ TextEditingController countOfBathRoomsController = TextEditingController();
 
 class FirstStep extends StatefulWidget {
   const FirstStep({
-    Key? key,
-  }) : super(key: key);
+    super.key,
+  });
 
   @override
   State<FirstStep> createState() => _FirstStepState();
@@ -48,10 +48,10 @@ class _FirstStepState extends State<FirstStep> {
     super.initState();
     wholeListApi = readyCityAndTypeOfApartmentApi.getDataCityApiToEdit(
         readyCityAndTypeOfApartmentApi.itemsCity, ServerWeenBalaqee.city);
-    print("this in first step values,"
-        "oneCityName --${oneCityName}"
-        "cities name --${citiesName},"
-        "index of city --${indexOfCity}");
+    debugPrint("this in first step values,"
+        "oneCityName --$oneCityName"
+        "cities name --$citiesName,"
+        "index of city --$indexOfCity");
 
     // setState(() {
     //   readyCityApi.dataStatus=true;
@@ -95,7 +95,7 @@ class _FirstStepState extends State<FirstStep> {
             themeMode.isLight ? kPrimaryColorLightMode : kPrimaryColorDarkMode,
         child: GestureDetector(
           onTap: () {
-            print("object");
+            debugPrint("object");
             // setState(() {
             //   // dataStatus = true;
             // });
@@ -292,7 +292,7 @@ class _FirstStepState extends State<FirstStep> {
                           controller: countOfBathRoomsController,
                           focusNode: countBathroomsfocusnode,
                           onFieldSubmitted: (value) {
-                            print("value is $value in bath room text field");
+                            debugPrint("value is $value in bath room text field");
                           }),
                     ),
                   ]),

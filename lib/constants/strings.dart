@@ -1,26 +1,26 @@
-import 'package:flutter/material.dart';
+// import 'package:flutter/material.dart';
 import 'package:upgrader/upgrader.dart';
 // import 'package:ween_blaqe/i_well_delete_it/learn_from_udemy/chat_app/widgets/custom_button.dart';
 
-main() {
-  runApp(MaterialApp(
-    home: _StringLen(),
-  ));
-}
+// main() {
+//   runApp(MaterialApp(
+//     home: _StringLen(),
+//   ));
+// }
 
-class _StringLen extends StatelessWidget {
-  String text =
-      "https://weenbalaqee.com/laravel-ween-balaqee/assets/images/subsections_photos/img_1234.png";
+// class _StringLen extends StatelessWidget {
+//   String text =
+//       "https://weenbalaqee.com/laravel-ween-balaqee/assets/images/subsections_photos/img_1234.png";
 
-  _StringLen();
+//   _StringLen();
 
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      body: Center(child: Text("${text.length}")),
-    );
-  }
-}
+//   @override
+//   Widget build(BuildContext context) {
+//     return Scaffold(
+//       body: Center(child: Text("${text.length}")),
+//     );
+//   }
+// }
 
 ///Server Part///
 ///

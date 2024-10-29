@@ -4,7 +4,7 @@ import 'package:ween_blaqe/constants/nums.dart';
 import 'text_skeleton_ready.dart';
 
 class AddAdvantagesSkeletonReady extends StatefulWidget {
-  const AddAdvantagesSkeletonReady({Key? key}) : super(key: key);
+  const AddAdvantagesSkeletonReady({super.key});
 
   @override
   State<AddAdvantagesSkeletonReady> createState() =>
@@ -19,7 +19,9 @@ class _AddAdvantagesSkeletonReadyState
       margin: const EdgeInsets.fromLTRB(10, 0, 10, 10),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(7),
-        color:themeMode.isLight ? kContainerColorLightMode:kContainerColorDarkMode,
+        color: themeMode.isLight
+            ? kContainerColorLightMode
+            : kContainerColorDarkMode,
       ),
       child: Column(
         children: [
@@ -39,44 +41,40 @@ class _AddAdvantagesSkeletonReadyState
             ],
           ),
           //advantages skeleton
-          const Padding(
-              padding: EdgeInsets.fromLTRB(12, 8, 12, 8),
-              child: TextAdvantagesSkeletonReady()),
-          const Padding(
-              padding: EdgeInsets.fromLTRB(12, 8, 12, 8),
-              child: TextAdvantagesSkeletonReady()),
-          const Padding(
-              padding: EdgeInsets.fromLTRB(12, 8, 12, 8),
-              child: TextAdvantagesSkeletonReady()),
-          const Padding(
-              padding: EdgeInsets.fromLTRB(12, 8, 12, 8),
-              child: TextAdvantagesSkeletonReady()),
-          const Padding(
-              padding: EdgeInsets.fromLTRB(12, 8, 12, 8),
-              child: TextAdvantagesSkeletonReady()),
-          const Padding(
-              padding: EdgeInsets.fromLTRB(12, 8, 12, 8),
-              child: TextAdvantagesSkeletonReady()),
-          const Padding(
-              padding: EdgeInsets.fromLTRB(12, 8, 12, 8),
-              child: TextAdvantagesSkeletonReady()),
-          const Padding(
-              padding: EdgeInsets.fromLTRB(12, 8, 12, 8),
-              child: TextAdvantagesSkeletonReady()),
-          const Padding(
-              padding: EdgeInsets.fromLTRB(12, 8, 12, 8),
-              child: TextAdvantagesSkeletonReady()),
-          const Padding(
-              padding: EdgeInsets.fromLTRB(12, 8, 12, 8),
-              child: TextAdvantagesSkeletonReady()),
-          const Padding(
-              padding: EdgeInsets.fromLTRB(12, 8, 12, 8),
-              child: TextAdvantagesSkeletonReady()),
-          const Padding(
-              padding: EdgeInsets.fromLTRB(12, 8, 12, 8),
-              child: TextAdvantagesSkeletonReady()),
+          const TextAdvantageesSkeletonReadyWithPadding(),
+          const TextAdvantageesSkeletonReadyWithPadding(),
+          const TextAdvantageesSkeletonReadyWithPadding(),
+          const TextAdvantageesSkeletonReadyWithPadding(),
+          const TextAdvantageesSkeletonReadyWithPadding(),
+          const TextAdvantageesSkeletonReadyWithPadding(),
+          const TextAdvantageesSkeletonReadyWithPadding(),
+          const TextAdvantageesSkeletonReadyWithPadding(),
+          const TextAdvantageesSkeletonReadyWithPadding(),
+          const TextAdvantageesSkeletonReadyWithPadding(),
+          const TextAdvantageesSkeletonReadyWithPadding(),
+          const TextAdvantageesSkeletonReadyWithPadding(),
+          const TextAdvantageesSkeletonReadyWithPadding(),
+          const TextAdvantageesSkeletonReadyWithPadding(),
+          const TextAdvantageesSkeletonReadyWithPadding(),
+          const TextAdvantageesSkeletonReadyWithPadding(),
+          const TextAdvantageesSkeletonReadyWithPadding(),
+          const TextAdvantageesSkeletonReadyWithPadding(),
+          const TextAdvantageesSkeletonReadyWithPadding(),
+          const TextAdvantageesSkeletonReadyWithPadding(),
+          const TextAdvantageesSkeletonReadyWithPadding(),
         ],
       ),
     );
+  }
+}
+
+class TextAdvantageesSkeletonReadyWithPadding extends StatelessWidget {
+  const TextAdvantageesSkeletonReadyWithPadding({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return const Padding(
+        padding: EdgeInsets.fromLTRB(12, 8, 12, 8),
+        child: TextAdvantagesSkeletonReady());
   }
 }

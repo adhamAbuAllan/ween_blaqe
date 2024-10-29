@@ -7,15 +7,15 @@ import '../../../api/cities.dart';
 import '../../../api/type_of_apartment.dart';
 
 class DropdownButtonClassWidget extends StatefulWidget {
-  String firstItem;
+  final String firstItem;
 
-  int itemIdNotIndex;
+  final int itemIdNotIndex;
   final Function(dynamic) onSelected;
 
   // bool dataStatus;
   final Future<List<dynamic>?>? wholeListApi;
   final bool ?forCity;
-  DropdownButtonClassWidget({
+ const DropdownButtonClassWidget({
     super.key,
     // required this.dataStatus,
     required this.firstItem,

@@ -266,7 +266,7 @@ class _OwnMaterialAppState extends State<OwnMaterialApp> {
 
         MyPagesRoutes.splashScreen: (context) => const SplashScreen(),
         MyPagesRoutes.refactorApartment: (context) => const RefactorApartment(),
-        MyPagesRoutes.privacyPolicy: (context) => PrivacyPolicy(),
+        MyPagesRoutes.privacyPolicy: (context) => const PrivacyPolicy(),
         MyPagesRoutes.askForHelp: (context) => const AskForHelp(),
         MyPagesRoutes.systemPaying: (context) => const SystemPaying(),
         MyPagesRoutes.whatIsSystemPayingAllow: (context) =>

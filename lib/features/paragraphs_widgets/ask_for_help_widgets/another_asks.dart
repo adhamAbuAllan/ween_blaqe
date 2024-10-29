@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 
 import 'package:ween_blaqe/constants/nums.dart';
 class WhatIsMeanSS extends StatelessWidget {
-  const WhatIsMeanSS({Key? key}) : super(key: key);
+  const WhatIsMeanSS({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -22,7 +22,7 @@ class WhatIsMeanSS extends StatelessWidget {
              Row(
               children: [
                 Padding(
-                  padding: EdgeInsets.fromLTRB(0, 50, 25, 10),
+                  padding: const EdgeInsets.fromLTRB(0, 50, 25, 10),
                   child: Text(
                     "ما المقصود ب ش/ش",
                     style: TextStyle(
@@ -33,7 +33,7 @@ class WhatIsMeanSS extends StatelessWidget {
                     ),
                   ),
                 ),
-                Expanded(child: Text("")),
+                const Expanded(child: Text("")),
               ],
             ),
             //paragraph of what is system paying is allowed

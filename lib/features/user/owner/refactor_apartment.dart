@@ -315,7 +315,7 @@ class _RefactorApartmentState extends State<RefactorApartment> {
                             controller: countOfBathRoomsController,
                             focusNode: countBathroomsfocusnode,
                             onFieldSubmitted: (value) {
-                              print("value is $value in bath room text field");
+                              debugPrint("value is $value in bath room text field");
                             }),
                       ),
                     ]),
@@ -592,6 +592,7 @@ class _RefactorApartmentState extends State<RefactorApartment> {
     apartmentModelController.isUpdating.value = false;
     imagesModelController.imageFiles = null;
     // await apartmentModelController.fetchApartments(isOwnerApartments: true);
+    // ignore: use_build_context_synchronously
     showSnakBar(context, "تم حفظ التغييرات بنجاح");
   }
 

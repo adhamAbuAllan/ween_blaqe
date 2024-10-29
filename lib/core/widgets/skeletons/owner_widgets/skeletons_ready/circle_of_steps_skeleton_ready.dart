@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:skeletons/skeletons.dart';
 
 class CircleOfStepsSkeletonReady extends StatelessWidget {
-  const CircleOfStepsSkeletonReady({Key? key}) : super(key: key);
+  const CircleOfStepsSkeletonReady({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -13,7 +13,7 @@ class CircleOfStepsSkeletonReady extends StatelessWidget {
 }
 
 class SmallCircleSkeletonReady extends StatelessWidget {
-  const SmallCircleSkeletonReady({Key? key}) : super(key: key);
+  const SmallCircleSkeletonReady({super.key});
 
   @override
   Widget build(BuildContext context) {

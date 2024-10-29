@@ -73,7 +73,7 @@ import 'feature_of_check_box.dart';
 //   }
 // }
 class AddAcontact extends StatefulWidget {
-  const AddAcontact({Key? key, this.userInfo}) : super(key: key);
+  const AddAcontact({super.key, this.userInfo});
   final User? userInfo;
 
   @override

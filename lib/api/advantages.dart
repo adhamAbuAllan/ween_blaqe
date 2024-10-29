@@ -25,7 +25,7 @@ class App extends StatelessWidget {
 }
 
 class TestAdv extends StatefulWidget {
-  const TestAdv({Key? key}) : super(key: key);
+  const TestAdv({super.key});
   @override
   State<TestAdv> createState() => _TestAdvState();
 }
