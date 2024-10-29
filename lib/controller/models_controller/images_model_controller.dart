@@ -205,6 +205,7 @@ class ImagesModelController extends GetxController {
       await NewSession.save("profile", await jsonResponse['data']['profile']);
       await NewSession.save(
           "createdAt", await jsonResponse['data']['time_ago']);
+      debugPrint("you created at -- ${await jsonResponse['data']['time_ago']}");
       debugPrint("the profile image in SP -- ${(await sp).get("profile")}");
       createSocialConnectionController.emailController.text =
           await jsonResponse['data']['email'];
