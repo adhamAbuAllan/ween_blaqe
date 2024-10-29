@@ -24,7 +24,9 @@ class FacebookSocialButton extends StatelessWidget {
             labelUserName: "اسم المستخدم",
             socialDialogName: "فيس بوك",
             socialName: "فيس بوك",
-            check: () async {
+            check: createSocialConnectionController.facebookController.text
+            != "user_name" ? ()
+          async {
               final Uri url = Uri.parse(
                   'https://m'
                       '.me/${createSocialConnectionController.facebookController
@@ -33,7 +35,7 @@ class FacebookSocialButton extends StatelessWidget {
                 throw Exception(
                     'Could not launch $url');
               }
-            },
+            } : null,
             userName:
             createSocialConnectionController
                 .facebookController.text,
