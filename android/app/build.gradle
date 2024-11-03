@@ -61,7 +61,6 @@ android {
 
     defaultConfig {
         // TODO: Specify your own unique Application ID (https://developer.android.com/studio/build/application-id.html).
-        applicationId "com.weenbalaqee.weenbalaqee"
         // You can update the following values to match your application needs.
         // For more information, see: https://docs.flutter.dev/deployment/android#reviewing-the-build-configuration.
         minSdkVersion 28
@@ -74,9 +73,7 @@ android {
     signingConfigs {
         release {
             keyAlias 'upload'
-            keyPassword '2267380Adham'
             storeFile file('C:/keies/upload-keystore.jks')
-            storePassword '2267380Adham'
         }
     }
     buildTypes {
