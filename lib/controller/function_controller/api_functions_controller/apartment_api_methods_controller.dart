@@ -133,7 +133,7 @@ class MethodsApiApartmentController extends GetxController{
         Get.snackbar('حذف شقة', 'تم حذف الشقة بنجاح');
       } else {
         // Handle API error
-        Get.snackbar('فشل الحذف', 'لا يمكن حذف نفس الشقة مرتين');
+        Get.snackbar('يرجى الإنتظار', 'جاري حذف الإعلان...');
       }
     } catch (e) {
       // Handle any exceptions

@@ -175,8 +175,7 @@ class _NoInternetState extends State<NoInternet> with WidgetsBindingObserver {
                       ? (getIt<AppDimension>().isSmallScreen(context)
                           ? 500 / 1.15
                           : 500)
-                      : (connectivityController.isConnection() ? 120:
-                  170),
+                      : (connectivityController.isConnection() ? 170 : 170),
                   onEnd: () {
                     setState(() {
                       isContExpanding = false;
@@ -240,9 +239,11 @@ class _NoInternetState extends State<NoInternet> with WidgetsBindingObserver {
                                             child: buildAnimatedTextKit(),
                                           )
                                         : Text("$total+",
-                                            style:  TextStyle(
+                                            style: TextStyle(
                                                 fontFamily: "IBM",
-                                                color: themeMode.isLight ? kPrimaryColorLightMode : kPrimaryColorDarkMode)),
+                                                color: themeMode.isLight
+                                                    ? kPrimaryColorLightMode
+                                                    : kPrimaryColorDarkMode)),
                                   ],
                                 ),
                               ),
@@ -252,7 +253,8 @@ class _NoInternetState extends State<NoInternet> with WidgetsBindingObserver {
                           ? (!isContExpanding
                               ? buildBorderSebhaContainer()
                               : const SizedBox())
-                          : connectivityController.isConnection()                              ? aline
+                          : connectivityController.isConnection()
+                              ? aline
                               : const SizedBox(),
                       isWantToSepha
                           ? AnimatedSize(
@@ -288,7 +290,8 @@ class _NoInternetState extends State<NoInternet> with WidgetsBindingObserver {
                                           ? 55 / 1.2
                                           : 55,
                                       child: OutlinedButton(
-                                          style: outlinedButton(themeMode:themeMode),
+                                          style: outlinedButton(
+                                              themeMode: themeMode),
                                           onPressed: () {
                                             setState(() {
                                               total = 0;
@@ -436,7 +439,11 @@ class _NoInternetState extends State<NoInternet> with WidgetsBindingObserver {
       animatedTexts: [
         FadeAnimatedText(
           "$total+",
-          textStyle:  TextStyle(fontFamily: "IBM", color: themeMode.isLight ? kPrimaryColorLightMode : kPrimaryColorDarkMode),
+          textStyle: TextStyle(
+              fontFamily: "IBM",
+              color: themeMode.isLight
+                  ? kPrimaryColorLightMode
+                  : kPrimaryColorDarkMode),
           duration: const Duration(
             milliseconds: 100,
           ),
@@ -598,11 +605,13 @@ class InternetConnectivityChecker extends StatelessWidget {
           return const NoInternet(
             isHaveAppBar: false,
           );
-        } else if (connectivityController.isConnection()) { // Corrected condition
+        } else if (connectivityController.isConnection()) {
+          // Corrected condition
           return child;
         } else {
           return const Center(child: CircularProgressIndicator());
-        }      },
+        }
+      },
     );
   }
 }

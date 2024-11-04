@@ -346,8 +346,11 @@ import '../../../controller/get_controllers.dart';
 
 // import '../../../controller/models_controller/apartment_model_controller.dart';
 import '../../../core/utils/funcations/route_pages/push_routes.dart';
+import '../../../core/utils/funcations/snakbar.dart';
+import '../../../core/widgets/alirt_class_widget.dart';
 import '..'
     '/../../core/widgets/apartments/new_master_home_classes_widgets/apartment_container/list_of_apartments.dart';
+import '../../../sesstion/new_session.dart';
 import '../../error_widgets/no_internet.dart';
 // ... other imports
 
@@ -372,25 +375,23 @@ class _ApartmentsOwnerState extends State<ApartmentsOwner>
     //   setState(() {});
     // });
     // setState(() {
-      apartmentModelController.fetchApartments(isOwnerApartments: true);
+    apartmentModelController.fetchApartments(isOwnerApartments: true);
     // });
     debugPrint("initState apartment_of_owner.dart");
     apiApartmentController.isEditMode.value = true;
 
     debugPrint(
-        "apartment.isEditMode.value = ${apiApartmentController.isEditMode
-            .value}");
+        "apartment.isEditMode.value = ${apiApartmentController.isEditMode.value}");
     debugPrint(
-        "apartment.delete.value = ${apiApartmentController.isDeleteMode
-            .value}");
+        "apartment.delete.value = ${apiApartmentController.isDeleteMode.value}");
 
     _animationController = AnimationController(
       vsync: this,
       duration: const Duration(milliseconds: 300),
     );
     _iconColorAnimation = ColorTween(
-        begin: themeMode.isLight ? kTextColorLightMode : kTextColorDarkMode,
-        end: themeMode.isLight ? kTextColorLightMode : kTextColorDarkMode)
+            begin: themeMode.isLight ? kTextColorLightMode : kTextColorDarkMode,
+            end: themeMode.isLight ? kTextColorLightMode : kTextColorDarkMode)
         .animate(_animationController);
     // _animationController.addListener(() {
     //   // setState(() {});
@@ -427,7 +428,9 @@ class _ApartmentsOwnerState extends State<ApartmentsOwner>
       }
     });
   }
-int photoIndex = 0;
+
+  int photoIndex = 0;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -435,33 +438,37 @@ int photoIndex = 0;
             ? kBackgroundAppColorLightMode
             : kBackgroundAppColorDarkMode,
         appBar: AppBar(
-          backgroundColor:
-          themeMode.isLight ? kPrimaryColorLightMode : kPrimaryColorDarkMode,
+          backgroundColor: themeMode.isLight
+              ? kPrimaryColorLightMode
+              : kPrimaryColorDarkMode,
           title: const Text('شققك'),
           actions: apartmentModelController.isApartmentNull == false
               ? [
-          AnimatedBuilder(
-            animation: _animationController,
-            builder: (context, child) => IconButton(
-              icon: AnimatedSwitcher(
-                duration: const Duration(milliseconds: 300),
-                transitionBuilder: (Widget child, Animation<double> animation) {
-                  return ScaleTransition(scale: animation, child: child);
-                },
-                child: Icon(
-                  apiApartmentController.isDeleteMode.value
-                      ? Icons.delete
-                      : Icons.edit,
-                  key: ValueKey<bool>(apiApartmentController.isDeleteMode.value),
-                  color: apartmentModelController.isApartmentNull
-                      ? Colors.transparent
-                      : _iconColorAnimation.value,
-                ),
-              ),
-              onPressed: toggleDeleteMode,
-            ),
-          ),
-          ]
+                  AnimatedBuilder(
+                    animation: _animationController,
+                    builder: (context, child) => IconButton(
+                      icon: AnimatedSwitcher(
+                        duration: const Duration(milliseconds: 300),
+                        transitionBuilder:
+                            (Widget child, Animation<double> animation) {
+                          return ScaleTransition(
+                              scale: animation, child: child);
+                        },
+                        child: Icon(
+                          apiApartmentController.isDeleteMode.value
+                              ? Icons.delete
+                              : Icons.edit,
+                          key: ValueKey<bool>(
+                              apiApartmentController.isDeleteMode.value),
+                          color: apartmentModelController.isApartmentNull
+                              ? Colors.transparent
+                              : _iconColorAnimation.value,
+                        ),
+                      ),
+                      onPressed: toggleDeleteMode,
+                    ),
+                  ),
+                ]
               : [],
         ),
         body: Obx(() {
@@ -471,37 +478,53 @@ int photoIndex = 0;
             return InternetConnectivityChecker(
               child: apartmentModelController.isApartmentNull
                   ? const EmptyScreenClassWidget(
-                centerIcon: Icons.apartment,
-                centerText: "تُعرض إعلاناتك هنا",
-                centerIconInUnderCenterText: Icons.add_home_outlined,
-                underCenterTextBeforeIcon: 'انقر على الزر ',
-                underCenterTextAfterIcon: '  للبدء في إنشاء إعلان جديد',
-              )
+                      centerIcon: Icons.apartment,
+                      centerText: "تُعرض إعلاناتك هنا",
+                      centerIconInUnderCenterText: Icons.add_home_outlined,
+                      underCenterTextBeforeIcon: 'انقر على الزر ',
+                      underCenterTextAfterIcon: '  للبدء في إنشاء إعلان جديد',
+                    )
                   : ApartmentsList(
-                haveCitiesBar: false,
-                apartmentsRes: apartmentModelController.apartments.value,
-                // scrollController: ScrollController(),
-                isDeleteMode: apiApartmentController.isDeleteMode.value,
-                onPressed: () {
-                  setState(() {
-                    apartmentModelController.fetchApartments(
-                        isOwnerApartments: true);
-                  });
-                },
-              ),
+                      haveCitiesBar: false,
+                      apartmentsRes: apartmentModelController.apartments.value,
+                      // scrollController: ScrollController(),
+                      isDeleteMode: apiApartmentController.isDeleteMode.value,
+                      onPressed: () {
+                        setState(() {
+                          apartmentModelController.fetchApartments(
+                              isOwnerApartments: true);
+                        });
+                      },
+                    ),
             );
           }
         }),
         floatingActionButton: FloatingActionButton(
-          backgroundColor:
-          themeMode.isLight ? kPrimaryColorLightMode : kPrimaryColorDarkMode,
+          backgroundColor: themeMode.isLight
+              ? kPrimaryColorLightMode
+              : kPrimaryColorDarkMode,
           onPressed: () {
-            myPushName(context, MyPagesRoutes.step1);
+            if (connectivityController.isConnection()) {
+              NewSession.get("logged", "") == ""
+                  ? alert(
+                      "يرجى تسجيل الدخول لإنشاء إعلانك",
+                      "قم بتسجيل الدخول أولا لتتمكن من إضافة الشقة الخاصة بك",
+                      "حسنًا")
+                  : myPushName(context, MyPagesRoutes.step1);
+            } else {
+              showSnakBar(context, "انت غير متصل بالانترنت");
+
+              return;
+            }
           },
           child: const Icon(
             Icons.add_home_outlined,
             color: Colors.white,
           ),
         ));
+  }
+
+  void alert(String title, String message, String textOfButton) {
+    NormalAlert.show(context, title, message, textOfButton);
   }
 }

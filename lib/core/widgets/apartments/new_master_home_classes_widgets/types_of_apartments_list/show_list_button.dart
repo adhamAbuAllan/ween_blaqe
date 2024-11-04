@@ -3,14 +3,15 @@ import 'package:get/get.dart';
 import 'package:ween_blaqe/constants/nums.dart';
 import 'package:ween_blaqe/controller/function_controller/change_theme_mode.dart';
 
+import '../../../../../constants/coordination.dart';
+import '../../../../../constants/get_it_controller.dart';
 import '../../../../utils/styles/button.dart';
-
 
 class ApartmentShowTypesButton extends StatefulWidget {
   final void Function()? onPressed;
-  final String ? text;
+  final String? text;
 
- const ApartmentShowTypesButton({super.key, this.onPressed,this.text });
+  const ApartmentShowTypesButton({super.key, this.onPressed, this.text});
 
   @override
   State<ApartmentShowTypesButton> createState() =>
@@ -24,20 +25,23 @@ class _ApartmentShowTypesButtonState extends State<ApartmentShowTypesButton> {
       opacity: .95,
       child: BtnShowTypesOfApartments(
         onPressed: widget.onPressed,
-        text:widget.text ,
-
+        text: widget.text,
       ),
     );
   }
 }
+
 //
 class BtnShowTypesOfApartments extends StatefulWidget {
-  const BtnShowTypesOfApartments({super.key,required this.onPressed, this.text});
+  const BtnShowTypesOfApartments(
+      {super.key, required this.onPressed, this.text});
+
   final void Function()? onPressed;
-  final String ? text;
+  final String? text;
 
   @override
-  State<BtnShowTypesOfApartments> createState() => _BtnShowTypesOfApartmentsState();
+  State<BtnShowTypesOfApartments> createState() =>
+      _BtnShowTypesOfApartmentsState();
 }
 
 class _BtnShowTypesOfApartmentsState extends State<BtnShowTypesOfApartments> {
@@ -46,18 +50,19 @@ class _BtnShowTypesOfApartmentsState extends State<BtnShowTypesOfApartments> {
   @override
   Widget build(BuildContext context) {
     return OutlinedButton(
-        style: outlinedButton(themeMode:themeMode),
+        style: outlinedButton(themeMode: themeMode),
         onPressed: widget.onPressed,
         //                              Container(height: 50,width: 100,color: Colors.white,),
         child: Container(
-            padding:
-            const EdgeInsets.only(
-                top: 4),
-            // height: 35,
-            color:themeMode.isLight ? kContainerColorLightMode : kContainerColorDarkMode,
-            child: widget.text?.isNotEmpty??false ? Text(
-                " ${widget.text} ") :   const Text(
-                " صنف السكن ")));
+            padding: const EdgeInsets.only(top: 4),
+            height:
+                getIt<AppDimension>().isSmallScreen(context)
+                    ?0 : 35,
+            color: themeMode.isLight
+                ? kContainerColorLightMode
+                : kContainerColorDarkMode,
+            child: widget.text?.isNotEmpty ?? false
+                ? Text(" ${widget.text} ")
+                : const Text(" صنف السكن ")));
   }
 }
-

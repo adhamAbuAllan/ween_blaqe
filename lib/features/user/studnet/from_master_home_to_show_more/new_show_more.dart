@@ -889,12 +889,12 @@ class _NewShowMoreState extends State<NewShowMore> {
                                                   .oneApartment?.photos?[0].url);
                                         },
                                         style: outlinedButton(),
-                                        child: const Padding(
-                                          padding: EdgeInsets.all(8.0),
+                                        child: Padding(
+                                          padding: const EdgeInsets.all(8.0),
                                           child: Row(
                                             children: [
                                               //whtsapp icon
-                                              Padding(
+                                              const Padding(
                                                 padding: EdgeInsets.fromLTRB(
                                                     0, 0, 0, 0),
                                                 child: Image(
@@ -907,11 +907,12 @@ class _NewShowMoreState extends State<NewShowMore> {
 
                                               //text
                                               Padding(
-                                                padding: EdgeInsets.fromLTRB(
+                                                padding: const EdgeInsets.fromLTRB(
                                                     0, 0, 0, 0),
                                                 child: Text(" جيميل",
                                                     style: TextStyle(
-                                                      color: Colors.white,
+                                                      color: themeMode.isLight ?
+                                                      kTextColorLightMode:kTextColorDarkMode,
                                                       fontSize: 16,
                                                       fontFamily: 'IBM',
                                                     )),
@@ -932,12 +933,12 @@ class _NewShowMoreState extends State<NewShowMore> {
                                           "user_phone");
                                 },
                                 style: outlinedButton(),
-                                child: const Padding(
-                                  padding: EdgeInsets.all(8.0),
+                                child: Padding(
+                                  padding: const EdgeInsets.all(8.0),
                                   child: Row(
                                     children: [
                                       //whtsapp icon
-                                      Icon(
+                                      const Icon(
                                         Icons.phone,
                                         color: Colors.blueAccent,
                                         size: 28,
@@ -946,10 +947,11 @@ class _NewShowMoreState extends State<NewShowMore> {
                                       //text
                                       Padding(
                                         padding:
-                                            EdgeInsets.fromLTRB(0, 0, 0, 0),
+                                            const EdgeInsets.fromLTRB(0, 0, 0, 0),
                                         child: Text(" هاتف",
                                             style: TextStyle(
-                                              color: Colors.white,
+                                              color: themeMode.isLight ?
+                                              kTextColorLightMode:kTextColorDarkMode,
                                               fontSize: 16,
                                               fontFamily: 'IBM',
                                             )),
@@ -978,12 +980,12 @@ class _NewShowMoreState extends State<NewShowMore> {
                                                   .oneApartment?.photos?[0].url);
                                         },
                                         style: outlinedButton(),
-                                        child: const Padding(
-                                          padding: EdgeInsets.all(8.0),
+                                        child: Padding(
+                                          padding: const EdgeInsets.all(8.0),
                                           child: Row(
                                             children: [
                                               //whtsapp icon
-                                              Icon(
+                                              const Icon(
                                                 Icons.facebook,
                                                 color: Colors.blue,
                                                 size: 28,
@@ -991,11 +993,12 @@ class _NewShowMoreState extends State<NewShowMore> {
 
                                               //text
                                               Padding(
-                                                padding: EdgeInsets.fromLTRB(
+                                                padding: const EdgeInsets.fromLTRB(
                                                     0, 0, 0, 0),
                                                 child: Text(" فيس بوك",
                                                     style: TextStyle(
-                                                      color: Colors.white,
+                                                      color: themeMode.isLight ?
+                                                      kTextColorLightMode:kTextColorDarkMode,
                                                       fontSize: 16,
                                                       fontFamily: 'IBM',
                                                     )),
