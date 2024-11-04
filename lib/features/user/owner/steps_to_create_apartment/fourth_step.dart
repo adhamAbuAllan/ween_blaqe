@@ -1,7 +1,7 @@
 // import 'dart:js';
 
 import 'dart:convert';
-import 'dart:ffi';
+// import 'dart:ffi';
 
 import 'package:colorful_safe_area/colorful_safe_area.dart';
 import 'package:flutter/material.dart';
@@ -10,7 +10,7 @@ import 'package:ween_blaqe/api/apartments_api/one_apartment.dart';
 
 // import 'package:ween_blaqe/api/type_of_apartment.dart';
 import 'package:ween_blaqe/constants/strings.dart';
-import 'package:ween_blaqe/controller/function_controller/api_functions_controller/apartment_api_methods_controller.dart';
+// import 'package:ween_blaqe/controller/function_controller/api_functions_controller/apartment_api_methods_controller.dart';
 import 'package:ween_blaqe/controller/get_controllers.dart';
 import 'package:ween_blaqe/core/utils/funcations/route_pages/push_routes.dart';
 import 'package:ween_blaqe/core/utils/funcations/snakbar.dart';
@@ -23,6 +23,7 @@ import 'package:ween_blaqe/main.dart';
 // import '../../../../api/cities.dart';
 import '../../../../api/users.dart';
 
+import '../../../../constants/localization.dart';
 import '../../../../controller/models_controller/advantages_model_controller.dart';
 
 // import '../../../../core/widgets/apartments/create_apartment/container_classes_widget/check_boxs/connection_check_box/add_a_contact_class_widget.dart';
@@ -146,7 +147,8 @@ class _FourthStepState extends State<FourthStep> {
                             Navigator.pop(context);
                           },
                           style: outlinedButton(themeMode: themeMode),
-                          child: const Text("رجوع"),
+                          child: Text(SetLocalization.of(context)!
+                              .getTranslateValue("back")),
                         ),
                       ),
                       const Expanded(child: Text("")),
@@ -277,7 +279,8 @@ class _FourthStepState extends State<FourthStep> {
                               ? const CircularProgressIndicator(
                                   color: Colors.white,
                                 )
-                              : const Text("حفظ"),
+                              : Text(SetLocalization.of(context)!
+                                  .getTranslateValue("save")),
                         ),
                       ),
                     ],
@@ -287,7 +290,8 @@ class _FourthStepState extends State<FourthStep> {
                   Padding(
                     padding: const EdgeInsets.fromLTRB(0, 10, 0, 0),
                     child: Text(
-                      "الخطوة الأخيرة",
+                      SetLocalization.of(context)!
+                          .getTranslateValue("final_step"),
                       style: TextStyle(
                         color: themeMode.isLight
                             ? kTextColorLightMode
@@ -300,27 +304,27 @@ class _FourthStepState extends State<FourthStep> {
                   //image steps
                   Padding(
                     padding: const EdgeInsets.fromLTRB(25, 5, 25, 30),
-                    child: themeMode.isLight ?   Image.asset(
-                      'assets/'
-                          'images/'
-                          'apartments_images/'
-                          'images_to_create_apartment/'
-                          'step_four.png',
-                      width: 65,
-                      height: 65,
-                      fit: BoxFit.fill,
-
-                    ):Image.asset(
-                      'assets/'
-                          'images/'
-                          'apartments_images/'
-                          'images_to_create_apartment/'
-                          'fourth_step_dark_mode.png',
-                      width: 65,
-                      height: 65,
-                      fit: BoxFit.fill,
-
-                    ),
+                    child: themeMode.isLight
+                        ? Image.asset(
+                            'assets/'
+                            'images/'
+                            'apartments_images/'
+                            'images_to_create_apartment/'
+                            'step_four.png',
+                            width: 65,
+                            height: 65,
+                            fit: BoxFit.fill,
+                          )
+                        : Image.asset(
+                            'assets/'
+                            'images/'
+                            'apartments_images/'
+                            'images_to_create_apartment/'
+                            'fourth_step_dark_mode.png',
+                            width: 65,
+                            height: 65,
+                            fit: BoxFit.fill,
+                          ),
                   ),
 
                   //add images
@@ -412,7 +416,6 @@ class _FourthStepState extends State<FourthStep> {
         'Authorization': 'Bearer $token',
         'Content-Type': 'application/json',
       };
-
 
       debugPrint("the token is : $token");
 

@@ -6,6 +6,7 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
 import 'package:ween_blaqe/constants/coordination.dart';
+import 'package:ween_blaqe/constants/localization.dart';
 
 // import 'package:ween_blaqe/core/utils/funcations/route_pages/push_routes.dart';
 // import 'package:ween_blaqe/core/utils/styles/text_style/aline_style.dart';
@@ -111,7 +112,7 @@ class _WhatTheInfoReqToCreateAdState extends State<WhatTheInfoReqToCreateAd> {
                             height: 100,
                             width: 300,
                             child: Text(
-                              "ما هي البيانات المطلوبة لإنشاء إعلان؟",
+                              SetLocalization.of(context)!.getTranslateValue("required_data_for_listing"),
                               style: TextStyle(
                                 fontSize: 28.0,
                                 fontFamily: 'IBM',
@@ -130,7 +131,7 @@ class _WhatTheInfoReqToCreateAdState extends State<WhatTheInfoReqToCreateAd> {
                     Padding(
                       padding: const EdgeInsets.fromLTRB(0, 20, 20, 10),
                       child: Text(
-                        "بيانات الشقة",
+                        SetLocalization.of(context)!.getTranslateValue("apartment_data"),
                         style: TextStyle(
                           fontSize: 26.0,
                           fontFamily: 'IBM',
@@ -147,7 +148,7 @@ class _WhatTheInfoReqToCreateAdState extends State<WhatTheInfoReqToCreateAd> {
                         Padding(
                           padding: const EdgeInsets.fromLTRB(0, 0, 25, 10),
                           child: Text(
-                            "معلومات عامة",
+                            SetLocalization.of(context)!.getTranslateValue("general_info"),
                             style: TextStyle(
                               fontSize: 22.0,
                               fontFamily: 'IBM',
@@ -204,17 +205,18 @@ class _WhatTheInfoReqToCreateAdState extends State<WhatTheInfoReqToCreateAd> {
                         columns: [
                           DataColumn(
                             numeric: false,
-                            label: Text("الاسم",
+                            label: Text(SetLocalization.of(context)!.getTranslateValue("name"),
                                 style: TextStyle(
                                     fontSize: 16,
                                     fontFamily: "IBM",
                                     color: themeMode.isLight
                                         ? kTextColorLightMode
                                         : kTextColorDarkMode)),
-                            tooltip: "إسم المعلومة المطلوبة",
+                            tooltip: SetLocalization.of(context)!.getTranslateValue("required_info_name"),
                           ),
                           DataColumn(
-                            label: Text("مثال",
+                            label: Text(SetLocalization.of(context)!
+                                .getTranslateValue("example"),
                                 style: TextStyle(
                                     fontSize: 16,
                                     fontFamily: "IBM",
@@ -226,7 +228,7 @@ class _WhatTheInfoReqToCreateAdState extends State<WhatTheInfoReqToCreateAd> {
                         ],
                         rows: [
                           DataRow(cells: [
-                            DataCell(Text("عنوان الإعلان",
+                            DataCell(Text(SetLocalization.of(context)!.getTranslateValue("listing_title"),
                                 style: TextStyle(
                                     fontSize: 14,
                                     fontFamily: "IBM",
@@ -234,7 +236,8 @@ class _WhatTheInfoReqToCreateAdState extends State<WhatTheInfoReqToCreateAd> {
                                         ? kTextColorLightMode
                                         : kTextColorDarkMode))),
                             DataCell(Text(
-                              "شقة مفروشة بالقرب من جامعة بولتكنك",
+                              SetLocalization.of(context)!.getTranslateValue(
+                                  "furnished_apartment_example"),
                               style: TextStyle(
                                   fontSize: 14,
                                   fontFamily: "IBM",
@@ -255,7 +258,8 @@ class _WhatTheInfoReqToCreateAdState extends State<WhatTheInfoReqToCreateAd> {
                                           ? kTextColorLightMode
                                           : kTextColorDarkMode,
                                     ),
-                                    "المكان"),
+                                    SetLocalization.of(context)!
+                                        .getTranslateValue("location")),
                                 placeholder: false),
                             DataCell(Text(
                                 style: TextStyle(
@@ -276,7 +280,7 @@ class _WhatTheInfoReqToCreateAdState extends State<WhatTheInfoReqToCreateAd> {
                                       color: themeMode.isLight
                                           ? kTextColorLightMode
                                           : kTextColorDarkMode),
-                                  "عدد الطلاب المسموح به",
+                                  SetLocalization.of(context)!.getTranslateValue("allowed_students"),
                                 ),
                                 placeholder: false),
                             DataCell(Text("3",
@@ -290,7 +294,7 @@ class _WhatTheInfoReqToCreateAdState extends State<WhatTheInfoReqToCreateAd> {
                           DataRow(cells: [
                             DataCell(
                                 showEditIcon: false,
-                                Text("نوع السكن",
+                                Text(SetLocalization.of(context)!.getTranslateValue("housing_type_students"),
                                     style: TextStyle(
                                       fontSize: 14,
                                       fontFamily: "IBM",
@@ -299,7 +303,8 @@ class _WhatTheInfoReqToCreateAdState extends State<WhatTheInfoReqToCreateAd> {
                                           : kTextColorDarkMode,
                                     )),
                                 placeholder: false),
-                            DataCell(Text("طلاب",
+                            DataCell(Text(SetLocalization.of(context)!
+                                .getTranslateValue("students"),
                                 style: TextStyle(
                                     fontSize: 14,
                                     fontFamily: "IBM",
@@ -310,7 +315,7 @@ class _WhatTheInfoReqToCreateAdState extends State<WhatTheInfoReqToCreateAd> {
                           DataRow(cells: [
                             DataCell(
                                 showEditIcon: false,
-                                Text("الأجرة الشهرية",
+                                Text(SetLocalization.of(context)!.getTranslateValue("monthly_rent"),
                                     style: TextStyle(
                                       fontSize: 14,
                                       fontFamily: "IBM",
@@ -384,16 +389,17 @@ class _WhatTheInfoReqToCreateAdState extends State<WhatTheInfoReqToCreateAd> {
                       columns: [
                         DataColumn(
                             numeric: false,
-                            label: Text("الاسم",
+                            label: Text(SetLocalization.of(context)!.getTranslateValue("name"),
                                 style: TextStyle(
                                     fontSize: 16,
                                     fontFamily: "IBM",
                                     color: themeMode.isLight
                                         ? kTextColorLightMode
                                         : kTextColorDarkMode)),
-                            tooltip: "إسم المعلومة المطلوبة"),
+                            tooltip: SetLocalization.of(context)!.getTranslateValue("required_info_name")),
                         DataColumn(
-                            label: Text("مثال",
+                            label: Text(SetLocalization.of(context)!
+                                .getTranslateValue("example"),
                                 style: TextStyle(
                                     fontSize: 16,
                                     fontFamily: "IBM",
@@ -404,7 +410,8 @@ class _WhatTheInfoReqToCreateAdState extends State<WhatTheInfoReqToCreateAd> {
                       ],
                       rows: [
                         DataRow(cells: [
-                          DataCell(Text("مساحة الشقة",
+                          DataCell(Text(SetLocalization
+                              .of(context)!.getTranslateValue("apartment_area"),
                               style: TextStyle(
                                   fontSize: 14,
                                   fontFamily: "IBM",
@@ -423,7 +430,8 @@ class _WhatTheInfoReqToCreateAdState extends State<WhatTheInfoReqToCreateAd> {
                         DataRow(cells: [
                           DataCell(
                               showEditIcon: false,
-                              Text("عدد الغرف",
+                              Text(                                SetLocalization
+                                  .of(context)!.getTranslateValue("number_of_rooms"),
                                   style: TextStyle(
                                     fontSize: 14,
                                     fontFamily: "IBM",
@@ -444,7 +452,8 @@ class _WhatTheInfoReqToCreateAdState extends State<WhatTheInfoReqToCreateAd> {
                           DataCell(
                               showEditIcon: false,
                               Text(
-                                "عدد الحمامات",
+                                SetLocalization
+                                    .of(context)!.getTranslateValue("number_of_bathrooms") ,
                                 style: TextStyle(
                                     fontSize: 14,
                                     fontFamily: "IBM",
@@ -468,7 +477,7 @@ class _WhatTheInfoReqToCreateAdState extends State<WhatTheInfoReqToCreateAd> {
                       width: double.infinity,
                       padding: const EdgeInsets.fromLTRB(0, 50, 25, 10),
                       child: Text(
-                        "مزايا الشقة",
+                        SetLocalization.of(context)!.getTranslateValue("apartment_features"),
                         style: TextStyle(
                           fontSize: 22.0,
                           fontFamily: 'IBM',
@@ -516,7 +525,7 @@ class _WhatTheInfoReqToCreateAdState extends State<WhatTheInfoReqToCreateAd> {
                         DataColumn(
                             numeric: false,
                             label: Text(
-                              "الاسم",
+                              SetLocalization.of(context)!.getTranslateValue("name"),
                               style: TextStyle(
                                   fontFamily: "IBM",
                                   fontSize: 16,
@@ -524,10 +533,12 @@ class _WhatTheInfoReqToCreateAdState extends State<WhatTheInfoReqToCreateAd> {
                                       ? kTextColorLightMode
                                       : kTextColorDarkMode),
                             ),
-                            tooltip: "إسم الميزة"),
+                            tooltip:                               SetLocalization
+                                .of(context)!.getTranslateValue("feature_name")),
                         DataColumn(
                             label: Text(
-                              "ايقونة الميزة",
+                              SetLocalization
+                                  .of(context)!.getTranslateValue("feature_icon"),
                               style: TextStyle(
                                   fontFamily: "IBM",
                                   color: themeMode.isLight
@@ -594,7 +605,8 @@ class _WhatTheInfoReqToCreateAdState extends State<WhatTheInfoReqToCreateAd> {
                     Padding(
                       padding: const EdgeInsets.fromLTRB(0, 20, 20, 10),
                       child: Text(
-                        "بيانات المالك",
+                        SetLocalization
+                            .of(context)!.getTranslateValue("owner_data"),
                         style: TextStyle(
                           fontSize: 26.0,
                           fontFamily: 'IBM',
@@ -643,16 +655,17 @@ class _WhatTheInfoReqToCreateAdState extends State<WhatTheInfoReqToCreateAd> {
                       columns: [
                         DataColumn(
                             numeric: false,
-                            label: Text("الاسم",
+                            label: Text(SetLocalization.of(context)!.getTranslateValue("name"),
                                 style: TextStyle(
                                     fontSize: 16,
                                     fontFamily: "IBM",
                                     color: themeMode.isLight
                                         ? kTextColorLightMode
                                         : kTextColorDarkMode)),
-                            tooltip: "إسم المعلومة المطلوبة"),
+                            tooltip: SetLocalization.of(context)!.getTranslateValue("required_info_name")),
                         DataColumn(
-                            label: Text("مثال",
+                            label: Text(SetLocalization.of(context)!
+                                .getTranslateValue("example"),
                                 style: TextStyle(
                                     fontSize: 16,
                                     fontFamily: "IBM",

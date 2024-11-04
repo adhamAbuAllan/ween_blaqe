@@ -1,6 +1,7 @@
 // import 'dart:ffi';
 
 import 'package:colorful_safe_area/colorful_safe_area.dart';
+
 // import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
@@ -14,10 +15,12 @@ import 'package:ween_blaqe/core/utils/styles/text_style/aline_style.dart';
 
 import '../../constants/coordination.dart';
 import '../../constants/get_it_controller.dart';
+import '../../constants/localization.dart';
 import '../../constants/nums.dart';
 import '../../constants/strings.dart';
 import '../../controller/get_controllers.dart';
 import '../../core/utils/funcations/get_app_version.dart';
+
 // import '../../core/utils/funcations/snakbar.dart';
 import '../../core/widgets/buttons/lines_buttons/line_buttons.dart';
 
@@ -122,7 +125,7 @@ class _AccountBeforeLoginInStudentState
                           20,
                           0),
                       child: Text(
-                        "حسابي",
+                        SetLocalization.of(context)!.getTranslateValue("my_account"),
                         style: TextStyle(
                           color: themeMode.isLight
                               ? kTextColorLightMode
@@ -149,8 +152,9 @@ class _AccountBeforeLoginInStudentState
                               ? 75 / 1.5
                               : 75),
                       child: SizedBox(
-                        width:getIt<AppDimension>().isMediumScreen(context)
-                            ?300:400,
+                        width: getIt<AppDimension>().isMediumScreen(context)
+                            ? 300
+                            : 400,
                         child: Text(
                           // "قم بتسجيل الدخول لتحجز اول شقة لك ",
                           "لا يتطلب حجز شقة حساب جديد أو تسجيل دخول ",
@@ -247,7 +251,7 @@ class _AccountBeforeLoginInStudentState
                             const SizedBox(
                               width: 18,
                             ),
-                            Text("المظهر",
+                            Text(SetLocalization.of(context)!.getTranslateValue("appearance"),
                                 style: TextStyle(
                                     fontSize: 16,
                                     fontFamily: 'IBM',
@@ -272,7 +276,7 @@ class _AccountBeforeLoginInStudentState
                       myPushName(context, MyPagesRoutes.askForHelp);
                     },
                         icon: Icons.info_outline,
-                        "اطلب المساعدة",
+                        SetLocalization.of(context)!.getTranslateValue("request_help"),
                         context: context),
 
                     aline,
@@ -281,7 +285,8 @@ class _AccountBeforeLoginInStudentState
                       myPushName(context, MyPagesRoutes.privacyPolicy);
                     },
                         icon: Icons.privacy_tip_outlined,
-                        "سياسة الخصوصية",
+                        SetLocalization.of(context)!
+                            .getTranslateValue("privacy_policy"),
                         context: context),
                     // aline,
                     //switch to owner
@@ -335,7 +340,7 @@ class _AccountBeforeLoginInStudentState
                       myPushName(context, MyPagesRoutes.sendNoticeForUs);
                     },
                         icon: Icons.feedback_outlined,
-                        "أرسل ملاحظات إلينا",
+                        SetLocalization.of(context)!.getTranslateValue("send_notify_for_us"),
                         context: context),
                     aline,
                     buttonAccount(() {
@@ -349,7 +354,7 @@ class _AccountBeforeLoginInStudentState
                             height: getIt<AppDimension>().isSmallScreen(context)
                                 ? 32 - 5
                                 : 32),
-                        "السبحة",
+                        SetLocalization.of(context)!.getTranslateValue("sebha"),
                         context: context),
                     aline,
                     buttonAccount(() {
@@ -357,8 +362,11 @@ class _AccountBeforeLoginInStudentState
                           isOwnerApartments: false);
 
                       myPushName(context, MyPagesRoutes.bookmarkApartment);
-                    }, "المفضلة",
-                        icon: Icons.bookmark_border, context: context),
+                    },
+                        SetLocalization.of(context)!
+                            .getTranslateValue("favorites"),
+                        icon: Icons.bookmark_border,
+                        context: context),
                     aline,
                     buttonAccount(
                       () {
@@ -378,7 +386,7 @@ class _AccountBeforeLoginInStudentState
                           Uri.parse(url),
                         );
                       },
-                      "مشاركة التطبيق",
+                      SetLocalization.of(context)!.getTranslateValue("share_app"),
                       context: context,
                       icon: Icons.share_outlined,
                     ),
@@ -479,7 +487,7 @@ class _AccountBeforeLoginInStudentState
                           AsyncSnapshot<String> snapshot) {
                         if (snapshot.hasData) {
                           return Text(
-                            "الإصدار التجريبي: ${snapshot.data} ",
+                            "${SetLocalization.of(context)!.getTranslateValue("beta_version")}: ${snapshot.data} ",
                             style: TextStyle(
                                 fontFamily: 'IBM',
                                 color: themeMode.isLight
@@ -488,7 +496,8 @@ class _AccountBeforeLoginInStudentState
                             textDirection: TextDirection.rtl,
                           );
                         } else if (snapshot.hasError) {
-                          return Text("${snapshot.error}خطأ: ");
+                          return Text("${snapshot.error}${SetLocalization.of
+                            (context)!.getTranslateValue("error")}: ");
                         } else {
                           return const CircularProgressIndicator();
                         }

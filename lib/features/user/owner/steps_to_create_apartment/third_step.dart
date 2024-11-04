@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:ween_blaqe/core/utils/styles/button.dart';
 
 import '../../../../api/type_of_apartment.dart';
+import '../../../../constants/localization.dart';
 import '../../../../controller/get_controllers.dart';
 import '../../../../core/widgets/alirt_class_widget.dart';
 import '../../../../core/widgets/apartments/create_apartment/'
@@ -127,7 +128,8 @@ class _ThirdStepState extends State<ThirdStep> {
                           Navigator.pop(context);
                         },
                         style: outlinedButton(themeMode:themeMode),
-                        child: const Text("رجوع"),
+                        child:  Text(SetLocalization.of(context)!.getTranslateValue
+                          ("back")),
                       ),
                       const Expanded(child: SizedBox()),
                       ElevatedButton(
@@ -198,7 +200,8 @@ class _ThirdStepState extends State<ThirdStep> {
                           });
                         },
                         style: fullButton(),
-                        child: const Text("التالي"),
+                        child:  Text(SetLocalization.of(context)!
+                            .getTranslateValue("next")),
                       ),
                     ],
                   ),
@@ -207,7 +210,8 @@ class _ThirdStepState extends State<ThirdStep> {
                 Padding(
                   padding: const EdgeInsets.fromLTRB(0, 10, 0, 0),
                   child: Text(
-                    "الخطوة الثالثة",
+                    SetLocalization.of(context)!.getTranslateValue
+                      ("third_step"),
                     style: TextStyle(
                       color: themeMode.isLight
                           ? kTextColorLightMode
@@ -253,7 +257,7 @@ class _ThirdStepState extends State<ThirdStep> {
                 //countStudent padding
                 ContainerChooseItemsClassWidget(
                     wholeListApi: wholeListApi,
-                    title: "نوع السكن",
+                    title: SetLocalization.of(context)!.getTranslateValue("housing_type_students") ,
                     currentValue: firstValueTypeApartment,
                     onSelected: (type) {
                       if (type is TypeOfApartment) {
@@ -270,7 +274,7 @@ class _ThirdStepState extends State<ThirdStep> {
                     }),
                 ContainerInputTextClassWidget(
                   title: indexOfTypeOfApartment == 1 ?
-                  countPersonText:countStudentText,
+                  countPersonText:SetLocalization.of(context)!.getTranslateValue("allowed_students"),
                   hintInput: countStudentHint,
                   controller: countOfStudentController,
                   inputType: TextInputType.number,

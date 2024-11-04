@@ -16,6 +16,7 @@ import 'package:ween_blaqe/core/widgets/apartments/create_apartment/container_cl
 // import '../api/users.dart';
 import '../../../constants/coordination.dart';
 import '../../../constants/get_it_controller.dart';
+import '../../../constants/localization.dart';
 import '../../../constants/nums.dart';
 
 // import '../controller/get_controllers.dart';
@@ -183,7 +184,8 @@ class _UpdateUserDataState extends State<UpdateUserData> {
 
                     //change name container
                     ContainerInputTextClassWidget(
-                      title: "الاسم ",
+                      title: SetLocalization
+                          .of(context)!.getTranslateValue("name"),
                       hintInput: "",
                       inputType: TextInputType.name,
                       controller: _nameController,

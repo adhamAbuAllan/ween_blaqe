@@ -123,7 +123,8 @@ flutter:
     - assets/images/apartments_images/images_to_create_apartment/fourth_step_dark_mode.png
     - assets/images/apartments_images/images_to_create_apartment/second_step_dark_mode.png
   #- assets/images/apartment_images/apartments_images/second_step_dark_mode.png
-
+    - assets/languages/en.json
+    - assets/languages/ar.json
 
 
 

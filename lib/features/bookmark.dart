@@ -2,10 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../api/apartments_api/one_apartment.dart';
+import '../constants/localization.dart';
 import '../constants/nums.dart';
 import '../controller/get_controllers.dart';
 import '../core/widgets/apartments/new_master_home_classes_widgets/apartment_container/list_of_apartments.dart';
 import '../core/widgets/empty_screen_class_widget.dart';
+
 class BookmarkApartment extends StatefulWidget {
   const BookmarkApartment({super.key});
 
@@ -52,6 +54,7 @@ class _BookmarkApartmentState extends State<BookmarkApartment> {
     super.initState();
     getSpcficApartments();
   }
+
   int photoIndex = 0;
 
   @override
@@ -61,19 +64,23 @@ class _BookmarkApartmentState extends State<BookmarkApartment> {
           ? kBackgroundAppColorLightMode
           : kBackgroundAppColorDarkMode,
       appBar: AppBar(
-          backgroundColor: themeMode.isLight ? kPrimaryColorLightMode :
-          kPrimaryColorDarkMode,
-        title: const Text('المفضلة'),
+        backgroundColor:
+            themeMode.isLight ? kPrimaryColorLightMode : kPrimaryColorDarkMode,
+        title: Text(SetLocalization.of(context)!.getTranslateValue(
+          "favorites",
+        )),
       ),
-      body: apartmentsBookmarked.data?.isEmpty??true?const EmptyScreenClassWidget(
-          centerIcon: Icons.bookmark_outline,
-          centerText: "تُعرض الشقق المفضلة هُنا",
-          underCenterText:"  "
-      ): ApartmentsList(
-        haveCitiesBar: false,
-        apartmentsRes: apartmentsBookmarked,
-          // scrollController: scrollController
-      ),
+      body: apartmentsBookmarked.data?.isEmpty ?? true
+          ?  EmptyScreenClassWidget(
+              centerIcon: Icons.bookmark_outline,
+              centerText: SetLocalization.of(context)!
+                  .getTranslateValue("favorite_apartments_displayed_here"),
+              underCenterText: "  ")
+          : ApartmentsList(
+              haveCitiesBar: false,
+              apartmentsRes: apartmentsBookmarked,
+              // scrollController: scrollController
+            ),
     );
   }
 

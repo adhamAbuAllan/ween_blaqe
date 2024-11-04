@@ -11,6 +11,7 @@ import '../../../../api/advantages.dart';
 
 import 'package:ween_blaqe/constants/strings.dart';
 import 'package:ween_blaqe/core/utils/funcations/route_pages/push_routes.dart';
+import '../../../../constants/localization.dart';
 import '../../../../constants/nums.dart';
 import '../../../../core/widgets/alirt_class_widget.dart';
 
@@ -73,7 +74,8 @@ class _SecondStepState extends State<SecondStep> {
                           Navigator.pop(context);
                         },
                         style: outlinedButton(themeMode:themeMode),
-                        child: const Text("رجوع"),
+                        child:  Text(SetLocalization.of(context)!.getTranslateValue
+                          ("back")),
                       ),
                       const Expanded(child: Text("")),
                       ElevatedButton(
@@ -122,7 +124,8 @@ class _SecondStepState extends State<SecondStep> {
                           myPushName(context, MyPagesRoutes.step3);
                         },
                         style: fullButton(),
-                        child: const Text("التالي"),
+                        child:  Text(SetLocalization.of(context)!
+                            .getTranslateValue("next")),
                       ),
                     ],
                   ),
@@ -131,7 +134,8 @@ class _SecondStepState extends State<SecondStep> {
                 Padding(
                   padding: const EdgeInsets.fromLTRB(0, 10, 0, 0),
                   child: Text(
-                    "الخطوة الثانية",
+                    SetLocalization.of(context)!.getTranslateValue
+                      ("second_step"),
                     style: TextStyle(
                       color: themeMode.isLight
                           ? kTextColorLightMode
@@ -182,7 +186,8 @@ class _SecondStepState extends State<SecondStep> {
                                 padding:
                                     const EdgeInsets.fromLTRB(0, 0, 10, 10),
                                 child: Text(
-                                  "حدد المزايا",
+                                  SetLocalization.of(context)!.getTranslateValue
+                                    ("select_features"),
                                   style: TextStyle(
                                       fontFamily: 'IBM',
                                       fontSize: 20,

@@ -26,6 +26,7 @@ import 'package:ween_blaqe/core/utils/styles/button.dart';
 // import 'package:ween_blaqe/features/error_widgets/no_internet.dart';
 import '../../../../constants/coordination.dart';
 import '../../../../constants/get_it_controller.dart';
+import '../../../../constants/localization.dart';
 import '../../../../constants/nums.dart';
 import '../../../../controller/get_controllers.dart';
 import '../../../../core/widgets/apartments/show_more_classes_widget/advantages_class_widget.dart';
@@ -184,24 +185,25 @@ class _NewShowMoreState extends State<NewShowMore> {
               ), // image/s of apartment
               _isDataLoaded
                   ? SkeletonAvatar(
-                      style: SkeletonAvatarStyle(
-                          width: 368,
-                          height: 240,
-                          borderRadius: BorderRadius.circular(7)),
-                    )
+                style: SkeletonAvatarStyle(
+                    width: 368,
+                    height: 240,
+                    borderRadius: BorderRadius.circular(7)),
+              )
                   : const SizedBox(),
               GestureDetector(
                   onTap: () {
                     Navigator.push(
                       context,
                       MaterialPageRoute(
-                        builder: (context) => DetailImageScreen(
-                          context: context,
-                          imageList: widget.oneApartment!.photos!,
-                          initialIndex:
+                        builder: (context) =>
+                            DetailImageScreen(
+                              context: context,
+                              imageList: widget.oneApartment!.photos!,
+                              initialIndex:
                               widget.oneApartment?.currentPhotoIndex.value ?? 0,
-                          oneApartment: widget.oneApartment!,
-                        ),
+                              oneApartment: widget.oneApartment!,
+                            ),
                       ),
                     );
                   },
@@ -240,15 +242,17 @@ class _NewShowMoreState extends State<NewShowMore> {
                         Padding(
                           padding: const EdgeInsets.fromLTRB(0, 0, 10, 0),
                           child: Text(
-                            "معلومات عامة",
+                            SetLocalization
+                                .of(context)!
+                                .getTranslateValue("general_info"),
                             style: TextStyle(
                                 fontSize: 20,
                                 fontFamily: 'IBM',
                                 color: themeMode.isLight
                                     ? kTextColorLightMode
                                     : kTextColorDarkMode
-                                //kTextColor
-                                ),
+                              //kTextColor
+                            ),
                           ),
                         ),
                         const Expanded(
@@ -291,7 +295,9 @@ class _NewShowMoreState extends State<NewShowMore> {
                           child: Padding(
                             padding: const EdgeInsets.fromLTRB(0, 0, 10, 10),
                             child: Text(
-                              "المكان:${widget.oneApartment?.city?.name ?? ""
+                              "${SetLocalization.of(context)!
+                                  .getTranslateValue("location")}${widget
+                                  .oneApartment?.city?.name ?? ""
 
                               // data.
                               }-${widget.oneApartment?.location ?? ""
@@ -319,12 +325,19 @@ class _NewShowMoreState extends State<NewShowMore> {
                           padding: const EdgeInsets.fromLTRB(0, 0, 5, 10),
                           child: Text(
                               (_isBoyStudent
-                                  ? "عدد الطلاب المسموح به:${widget.oneApartment?.countOfStudnet ?? 0}"
+                                  ? "${SetLocalization.of(context)!
+                                  .getTranslateValue(
+                                  "allowed_students")}:${widget.oneApartment
+                                  ?.countOfStudnet
+                                  ?? 0}"
                                   : (_isGirlStudent
-                                      ? "عدد الطالبات المسموح به:${widget.oneApartment?.countOfStudnet ?? 0}"
-                                      : (_isFamilies
-                                          ? "عدد الافراد المسموح به:${widget.oneApartment?.countOfStudnet ?? 0}"
-                                          : "عدد الافراد المسموح به:${widget.oneApartment?.countOfStudnet ?? 0}"))),
+                                  ? "عدد الطالبات المسموح به:${widget
+                                  .oneApartment?.countOfStudnet ?? 0}"
+                                  : (_isFamilies
+                                  ? "عدد الافراد المسموح به:${widget
+                                  .oneApartment?.countOfStudnet ?? 0}"
+                                  : "عدد الافراد المسموح به:${widget
+                                  .oneApartment?.countOfStudnet ?? 0}"))),
                               style: TextStyle(
                                 color: themeMode.isLight
                                     ? kTextColorLightMode
@@ -342,7 +355,9 @@ class _NewShowMoreState extends State<NewShowMore> {
                         Padding(
                           padding: const EdgeInsets.fromLTRB(0, 0, 5, 10),
                           child: Text(
-                              "نوع السكن:${widget.oneApartment?.type?.name ?? ""}",
+                              "${SetLocalization.of(context)!.getTranslateValue(
+                                  "housing_type_students")}:${widget
+                                  .oneApartment?.type?.name ?? ""}",
                               style: TextStyle(
                                 color: themeMode.isLight
                                     ? kTextColorLightMode
@@ -431,7 +446,7 @@ class _NewShowMoreState extends State<NewShowMore> {
                                   duration: const Duration(milliseconds: 700),
                                   curve: Curves.linear,
                                   reverseDuration:
-                                      const Duration(milliseconds: 700),
+                                  const Duration(milliseconds: 700),
                                   clipBehavior: Clip.antiAlias,
                                   child: OutlinedButton(
                                     onPressed: () {
@@ -441,21 +456,21 @@ class _NewShowMoreState extends State<NewShowMore> {
                                     },
                                     style: outlinedButton(themeMode: themeMode)
                                         .copyWith(
-                                            padding:
-                                                const WidgetStatePropertyAll(
-                                                    EdgeInsets.all(10)),
-                                            overlayColor:
-                                                const WidgetStatePropertyAll(
-                                                    Colors.transparent),
-                                            side: WidgetStatePropertyAll(BorderSide(
-                                                width: !isRoomSizeChange ? 1 : 2,
-                                                color: isRoomSizeChange
-                                                    ? themeMode.isLight
-                                                        ? kPrimaryColorLightMode
-                                                        : kPrimaryColorDarkMode
-                                                    : themeMode.isLight
-                                                        ? kPrimaryColor300LightMode
-                                                        : kPrimaryColor300DarkMode))),
+                                        padding:
+                                        const WidgetStatePropertyAll(
+                                            EdgeInsets.all(10)),
+                                        overlayColor:
+                                        const WidgetStatePropertyAll(
+                                            Colors.transparent),
+                                        side: WidgetStatePropertyAll(BorderSide(
+                                            width: !isRoomSizeChange ? 1 : 2,
+                                            color: isRoomSizeChange
+                                                ? themeMode.isLight
+                                                ? kPrimaryColorLightMode
+                                                : kPrimaryColorDarkMode
+                                                : themeMode.isLight
+                                                ? kPrimaryColor300LightMode
+                                                : kPrimaryColor300DarkMode))),
                                     child: Column(
                                       children: [
                                         Text(
@@ -471,21 +486,23 @@ class _NewShowMoreState extends State<NewShowMore> {
 
                                             Padding(
                                               padding:
-                                                  const EdgeInsets.fromLTRB(
-                                                      5, 0, 5, 0),
+                                              const EdgeInsets.fromLTRB(
+                                                  5, 0, 5, 0),
                                               child: isRoomSizeChange
                                                   ? FittedBox(
-                                                      child: buildAnimatedTextKit(
-                                                          "${widget.oneApartment?.rooms ?? 0}"),
-                                                    )
+                                                child: buildAnimatedTextKit(
+                                                    "${widget.oneApartment
+                                                        ?.rooms ?? 0}"),
+                                              )
                                                   : Text(
-                                                      "${widget.oneApartment?.rooms ?? 0}",
-                                                      style: TextStyle(
-                                                          color: themeMode
-                                                                  .isLight
-                                                              ? kTextColorLightMode
-                                                              : kTextColorDarkMode),
-                                                    ),
+                                                "${widget.oneApartment?.rooms ??
+                                                    0}",
+                                                style: TextStyle(
+                                                    color: themeMode
+                                                        .isLight
+                                                        ? kTextColorLightMode
+                                                        : kTextColorDarkMode),
+                                              ),
                                             ),
                                             Image(
                                               image: AssetImage(
@@ -514,32 +531,34 @@ class _NewShowMoreState extends State<NewShowMore> {
                                   duration: const Duration(milliseconds: 700),
                                   curve: Curves.linear,
                                   reverseDuration:
-                                      const Duration(milliseconds: 700),
+                                  const Duration(milliseconds: 700),
                                   clipBehavior: Clip.antiAlias,
                                   child: OutlinedButton(
                                     onPressed: () {
                                       setState(() {
                                         isRoomBathSizeChange =
-                                            !isRoomBathSizeChange;
+                                        !isRoomBathSizeChange;
                                       });
                                     },
                                     style: outlinedButton(themeMode: themeMode)
                                         .copyWith(
-                                            padding:
-                                                const WidgetStatePropertyAll(
-                                                    EdgeInsets.all(10)),
-                                            overlayColor:
-                                                const WidgetStatePropertyAll(
-                                                    Colors.transparent),
-                                            side: WidgetStatePropertyAll(BorderSide(
-                                                width: !isRoomBathSizeChange ? 1 : 2,
-                                                color: isRoomBathSizeChange
-                                                    ? themeMode.isLight
-                                                        ? kPrimaryColorLightMode
-                                                        : kPrimaryColorDarkMode
-                                                    : themeMode.isLight
-                                                        ? kPrimaryColor300LightMode
-                                                        : kPrimaryColor300DarkMode))),
+                                        padding:
+                                        const WidgetStatePropertyAll(
+                                            EdgeInsets.all(10)),
+                                        overlayColor:
+                                        const WidgetStatePropertyAll(
+                                            Colors.transparent),
+                                        side: WidgetStatePropertyAll(BorderSide(
+                                            width: !isRoomBathSizeChange
+                                                ? 1
+                                                : 2,
+                                            color: isRoomBathSizeChange
+                                                ? themeMode.isLight
+                                                ? kPrimaryColorLightMode
+                                                : kPrimaryColorDarkMode
+                                                : themeMode.isLight
+                                                ? kPrimaryColor300LightMode
+                                                : kPrimaryColor300DarkMode))),
                                     child: Column(
                                       children: [
                                         // const Expanded(
@@ -565,21 +584,23 @@ class _NewShowMoreState extends State<NewShowMore> {
 
                                             Padding(
                                               padding:
-                                                  const EdgeInsets.fromLTRB(
-                                                      5, 0, 0, 0),
+                                              const EdgeInsets.fromLTRB(
+                                                  5, 0, 0, 0),
                                               child: isRoomBathSizeChange
                                                   ? FittedBox(
-                                                      child: buildAnimatedTextKit(
-                                                          "${widget.oneApartment?.bathrooms ?? 0}"),
-                                                    )
+                                                child: buildAnimatedTextKit(
+                                                    "${widget.oneApartment
+                                                        ?.bathrooms ?? 0}"),
+                                              )
                                                   : Text(
-                                                      "${widget.oneApartment?.bathrooms ?? 0}",
-                                                      style: TextStyle(
-                                                          color: themeMode
-                                                                  .isLight
-                                                              ? kTextColorLightMode
-                                                              : kTextColorDarkMode),
-                                                    ),
+                                                "${widget.oneApartment
+                                                    ?.bathrooms ?? 0}",
+                                                style: TextStyle(
+                                                    color: themeMode
+                                                        .isLight
+                                                        ? kTextColorLightMode
+                                                        : kTextColorDarkMode),
+                                              ),
                                             ),
                                             Image(
                                               image: const AssetImage(
@@ -605,7 +626,7 @@ class _NewShowMoreState extends State<NewShowMore> {
                                   duration: const Duration(milliseconds: 700),
                                   curve: Curves.linear,
                                   reverseDuration:
-                                      const Duration(milliseconds: 700),
+                                  const Duration(milliseconds: 700),
                                   clipBehavior: Clip.antiAlias,
                                   child: OutlinedButton(
                                     onPressed: () {
@@ -615,22 +636,22 @@ class _NewShowMoreState extends State<NewShowMore> {
                                     },
                                     style: outlinedButton(themeMode: themeMode)
                                         .copyWith(
-                                            padding:
-                                                const WidgetStatePropertyAll(
-                                                    //10
-                                                    EdgeInsets.all(10)), // ),
-                                            overlayColor:
-                                                const WidgetStatePropertyAll(
-                                                    Colors.transparent),
-                                            side: WidgetStatePropertyAll(BorderSide(
-                                                width: !isAreaSizeChange ? 1 : 2,
-                                                color: isAreaSizeChange
-                                                    ? themeMode.isLight
-                                                        ? kPrimaryColorLightMode
-                                                        : kPrimaryColorDarkMode
-                                                    : themeMode.isLight
-                                                        ? kPrimaryColor300LightMode
-                                                        : kPrimaryColor300DarkMode))),
+                                        padding:
+                                        const WidgetStatePropertyAll(
+                                          //10
+                                            EdgeInsets.all(10)), // ),
+                                        overlayColor:
+                                        const WidgetStatePropertyAll(
+                                            Colors.transparent),
+                                        side: WidgetStatePropertyAll(BorderSide(
+                                            width: !isAreaSizeChange ? 1 : 2,
+                                            color: isAreaSizeChange
+                                                ? themeMode.isLight
+                                                ? kPrimaryColorLightMode
+                                                : kPrimaryColorDarkMode
+                                                : themeMode.isLight
+                                                ? kPrimaryColor300LightMode
+                                                : kPrimaryColor300DarkMode))),
                                     child: Column(
                                       children: [
                                         Text(
@@ -646,21 +667,25 @@ class _NewShowMoreState extends State<NewShowMore> {
 
                                             Padding(
                                               padding:
-                                                  const EdgeInsets.fromLTRB(
-                                                      5, 0, 5, 0),
+                                              const EdgeInsets.fromLTRB(
+                                                  5, 0, 5, 0),
                                               child: isAreaSizeChange
                                                   ? FittedBox(
-                                                      child: buildAnimatedTextKit(
-                                                          "²م${widget.oneApartment?.squareMeters ?? 0}"),
-                                                    )
+                                                child: buildAnimatedTextKit(
+                                                    "${SetLocalization
+                                                        .of(context)!.getTranslateValue("m2")}${widget
+                                                        .oneApartment
+                                                        ?.squareMeters ?? 0}"),
+                                              )
                                                   : Text(
-                                                      "²م${widget.oneApartment?.squareMeters ?? 0}",
-                                                      style: TextStyle(
-                                                          color: themeMode
-                                                                  .isLight
-                                                              ? kTextColorLightMode
-                                                              : kTextColorDarkMode),
-                                                    ),
+                                                "²م${widget.oneApartment
+                                                    ?.squareMeters ?? 0}",
+                                                style: TextStyle(
+                                                    color: themeMode
+                                                        .isLight
+                                                        ? kTextColorLightMode
+                                                        : kTextColorDarkMode),
+                                              ),
                                             ),
                                             Image(
                                               image: const AssetImage(
@@ -831,9 +856,10 @@ class _NewShowMoreState extends State<NewShowMore> {
                                   // sendMessageToMessenger("https://www.facebook.com/adhm.alaan"," السلام عليكم، ممكن أستفسر عن الإعلان الخاص بـ${widget.oneApartment?.title}");
                                   sendMessageToWhatsApp(
                                       widget.oneApartment!.owner!.phone,
-                                      "  السلام عليكم، ممكن أستفسر عن الإعلان الخاص بـ${widget.oneApartment?.title} ",
+                                      "  السلام عليكم، ممكن أستفسر عن الإعلان الخاص بـ${widget
+                                          .oneApartment?.title} ",
                                       image:
-                                          widget.oneApartment?.photos?[0].url);
+                                      widget.oneApartment?.photos?[0].url);
                                 },
                                 style: outlinedButton(themeMode: themeMode),
                                 child: Padding(
@@ -843,7 +869,7 @@ class _NewShowMoreState extends State<NewShowMore> {
                                       //whtsapp icon
                                       const Padding(
                                         padding:
-                                            EdgeInsets.fromLTRB(0, 0, 0, 0),
+                                        EdgeInsets.fromLTRB(0, 0, 0, 0),
                                         child: Image(
                                           image: AssetImage(
                                               "assets/images/whatsapp.png"),
@@ -875,54 +901,59 @@ class _NewShowMoreState extends State<NewShowMore> {
                             widget.oneApartment?.owner!.email == "user_email"
                                 ? const SizedBox()
                                 : Padding(
-                                  padding: const EdgeInsets.symmetric(horizontal: 10),
-                                  child: IntrinsicWidth(
-                                      child: OutlinedButton(
-                                        onPressed: () async {
-                                          sendEmail(
-                                              widget.oneApartment?.owner?.email ??
-                                                  "user_email",
-                                              "يعطيك العافية معك احد مستخدمي تطبيق 'وين "
-                                                  "بلاقي ",
-                                              "  السلام عليكم، ممكن أستفسر عن الإعلان الخاص بـ${widget.oneApartment?.title} ",
-                                              image: widget
-                                                  .oneApartment?.photos?[0].url);
-                                        },
-                                        style: outlinedButton(),
-                                        child: Padding(
-                                          padding: const EdgeInsets.all(8.0),
-                                          child: Row(
-                                            children: [
-                                              //whtsapp icon
-                                              const Padding(
-                                                padding: EdgeInsets.fromLTRB(
-                                                    0, 0, 0, 0),
-                                                child: Image(
-                                                  image: AssetImage(
-                                                      "assets/images/gmail.png"),
-                                                  width: 28,
-                                                  height: 28,
-                                                ),
-                                              ),
-
-                                              //text
-                                              Padding(
-                                                padding: const EdgeInsets.fromLTRB(
-                                                    0, 0, 0, 0),
-                                                child: Text(" جيميل",
-                                                    style: TextStyle(
-                                                      color: themeMode.isLight ?
-                                                      kTextColorLightMode:kTextColorDarkMode,
-                                                      fontSize: 16,
-                                                      fontFamily: 'IBM',
-                                                    )),
-                                              ),
-                                            ],
+                              padding: const EdgeInsets.symmetric(
+                                  horizontal: 10),
+                              child: IntrinsicWidth(
+                                child: OutlinedButton(
+                                  onPressed: () async {
+                                    sendEmail(
+                                        widget.oneApartment?.owner
+                                            ?.email ??
+                                            "user_email",
+                                        "يعطيك العافية معك احد مستخدمي تطبيق 'وين "
+                                            "بلاقي ",
+                                        "  السلام عليكم، ممكن أستفسر عن الإعلان الخاص بـ${widget
+                                            .oneApartment?.title} ",
+                                        image: widget.oneApartment
+                                            ?.photos?[0].url);
+                                  },
+                                  style: outlinedButton(),
+                                  child: Padding(
+                                    padding: const EdgeInsets.all(8.0),
+                                    child: Row(
+                                      children: [
+                                        //whtsapp icon
+                                        const Padding(
+                                          padding: EdgeInsets.fromLTRB(
+                                              0, 0, 0, 0),
+                                          child: Image(
+                                            image: AssetImage(
+                                                "assets/images/gmail.png"),
+                                            width: 28,
+                                            height: 28,
                                           ),
                                         ),
-                                      ),
+
+                                        //text
+                                        Padding(
+                                          padding:
+                                          const EdgeInsets.fromLTRB(
+                                              0, 0, 0, 0),
+                                          child: Text(" جيميل",
+                                              style: TextStyle(
+                                                color: themeMode.isLight
+                                                    ? kTextColorLightMode
+                                                    : kTextColorDarkMode,
+                                                fontSize: 16,
+                                                fontFamily: 'IBM',
+                                              )),
+                                        ),
+                                      ],
                                     ),
+                                  ),
                                 ),
+                              ),
+                            ),
 
                             // phone
                             IntrinsicWidth(
@@ -946,12 +977,13 @@ class _NewShowMoreState extends State<NewShowMore> {
 
                                       //text
                                       Padding(
-                                        padding:
-                                            const EdgeInsets.fromLTRB(0, 0, 0, 0),
+                                        padding: const EdgeInsets.fromLTRB(
+                                            0, 0, 0, 0),
                                         child: Text(" هاتف",
                                             style: TextStyle(
-                                              color: themeMode.isLight ?
-                                              kTextColorLightMode:kTextColorDarkMode,
+                                              color: themeMode.isLight
+                                                  ? kTextColorLightMode
+                                                  : kTextColorDarkMode,
                                               fontSize: 16,
                                               fontFamily: 'IBM',
                                             )),
@@ -965,50 +997,53 @@ class _NewShowMoreState extends State<NewShowMore> {
                             widget.oneApartment?.owner?.facebook == "user_name"
                                 ? const SizedBox()
                                 : Padding(
-                                  padding: const EdgeInsets.symmetric
-                                    (horizontal: 10),
-                                  child: IntrinsicWidth(
-                                      child: OutlinedButton(
-                                        onPressed: () async {
-                                          sendMessenger(
-                                              userName: widget.oneApartment?.owner
-                                                      ?.facebook ??
-                                                  "user_name",
-                                              message: "  السلام "
-                                                  "عليكم، ممكن أستفسر عن الإعلان الخاص بـ${widget.oneApartment?.title} ",
-                                              image: widget
-                                                  .oneApartment?.photos?[0].url);
-                                        },
-                                        style: outlinedButton(),
-                                        child: Padding(
-                                          padding: const EdgeInsets.all(8.0),
-                                          child: Row(
-                                            children: [
-                                              //whtsapp icon
-                                              const Icon(
-                                                Icons.facebook,
-                                                color: Colors.blue,
-                                                size: 28,
-                                              ),
-
-                                              //text
-                                              Padding(
-                                                padding: const EdgeInsets.fromLTRB(
-                                                    0, 0, 0, 0),
-                                                child: Text(" فيس بوك",
-                                                    style: TextStyle(
-                                                      color: themeMode.isLight ?
-                                                      kTextColorLightMode:kTextColorDarkMode,
-                                                      fontSize: 16,
-                                                      fontFamily: 'IBM',
-                                                    )),
-                                              ),
-                                            ],
-                                          ),
+                              padding: const EdgeInsets.symmetric(
+                                  horizontal: 10),
+                              child: IntrinsicWidth(
+                                child: OutlinedButton(
+                                  onPressed: () async {
+                                    sendMessenger(
+                                        userName: widget.oneApartment
+                                            ?.owner?.facebook ??
+                                            "user_name",
+                                        message: "  السلام "
+                                            "عليكم، ممكن أستفسر عن الإعلان الخاص بـ${widget
+                                            .oneApartment?.title} ",
+                                        image: widget.oneApartment
+                                            ?.photos?[0].url);
+                                  },
+                                  style: outlinedButton(),
+                                  child: Padding(
+                                    padding: const EdgeInsets.all(8.0),
+                                    child: Row(
+                                      children: [
+                                        //whtsapp icon
+                                        const Icon(
+                                          Icons.facebook,
+                                          color: Colors.blue,
+                                          size: 28,
                                         ),
-                                      ),
+
+                                        //text
+                                        Padding(
+                                          padding:
+                                          const EdgeInsets.fromLTRB(
+                                              0, 0, 0, 0),
+                                          child: Text(" فيس بوك",
+                                              style: TextStyle(
+                                                color: themeMode.isLight
+                                                    ? kTextColorLightMode
+                                                    : kTextColorDarkMode,
+                                                fontSize: 16,
+                                                fontFamily: 'IBM',
+                                              )),
+                                        ),
+                                      ],
                                     ),
+                                  ),
                                 ),
+                              ),
+                            ),
                           ],
                         ),
                       ],
@@ -1057,30 +1092,31 @@ class _NewShowMoreState extends State<NewShowMore> {
                         Padding(
                           padding: const EdgeInsets.all(10),
                           child: widget.oneApartment?.owner?.profile ==
-                                  "images/profile/user.png"
+                              "images/profile/user.png"
                               ? CircleAvatar(
-                                  radius: 28,
-                                  //put a normal person Icon
-                                  backgroundColor: Colors.grey.shade700,
-                                  child: const Icon(
-                                    Icons.person,
-                                    color: Colors.white,
-                                    size: 28,
-                                  ))
+                              radius: 28,
+                              //put a normal person Icon
+                              backgroundColor: Colors.grey.shade700,
+                              child: const Icon(
+                                Icons.person,
+                                color: Colors.white,
+                                size: 28,
+                              ))
                               : CircleAvatar(
-                                  radius: 28,
-                                  // backgroundImage: NetworkImage(NewSession.get("profile","def")),
-                                  // Adjust the radius as needed
-                                  backgroundColor: Colors.grey.shade700,
-                                  // Set the background color of the avatar
-                                  backgroundImage: NetworkImage(
-                                      "https://weenbalaqee"
-                                      ".com/${widget.oneApartment?.owner?.profile ?? "images/profile/user.png"}"),
-                                  child:
-                                      apartmentModelController.isLoading.value
-                                          ? const CircularProgressIndicator()
-                                          : null,
-                                ),
+                            radius: 28,
+                            // backgroundImage: NetworkImage(NewSession.get("profile","def")),
+                            // Adjust the radius as needed
+                            backgroundColor: Colors.grey.shade700,
+                            // Set the background color of the avatar
+                            backgroundImage: NetworkImage(
+                                "https://weenbalaqee"
+                                    ".com/${widget.oneApartment?.owner
+                                    ?.profile ?? "images/profile/user.png"}"),
+                            child:
+                            apartmentModelController.isLoading.value
+                                ? const CircularProgressIndicator()
+                                : null,
+                          ),
                         ),
                         Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
@@ -1089,9 +1125,9 @@ class _NewShowMoreState extends State<NewShowMore> {
                               widget.oneApartment?.owner?.name ?? "",
                               style: TextStyle(
                                 fontSize:
-                                    getIt<AppDimension>().isSmallScreen(context)
-                                        ? 16
-                                        : 18,
+                                getIt<AppDimension>().isSmallScreen(context)
+                                    ? 16
+                                    : 18,
                                 fontFamily: 'IBM',
                                 color: themeMode.isLight
                                     ? kTextColorLightMode
@@ -1116,8 +1152,8 @@ class _NewShowMoreState extends State<NewShowMore> {
                         ),
                         const Expanded(
                             child: SizedBox(
-                          child: Text(""),
-                        )),
+                              child: Text(""),
+                            )),
                         // Padding(
                         //   padding: const EdgeInsets.only(left: 10,),
                         //   child: Icon(
@@ -1154,7 +1190,7 @@ class _NewShowMoreState extends State<NewShowMore> {
                       },
                       style: fullButton().copyWith(
                           backgroundColor:
-                              const WidgetStatePropertyAll(Colors.grey)),
+                          const WidgetStatePropertyAll(Colors.grey)),
                       child: const Text("إحجز الآن")),
                 ),
               ),

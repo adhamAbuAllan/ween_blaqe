@@ -9,6 +9,7 @@ import 'package:ween_blaqe/controller/get_controllers.dart';
 import 'package:ween_blaqe/core/utils/funcations/route_pages/push_routes.dart';
 import 'package:ween_blaqe/core/utils/funcations/snakbar.dart';
 import 'package:ween_blaqe/features/user/owner/account_of_owner.dart';
+import '../../../constants/localization.dart';
 import '../../../controller/student_controller/student_controller.dart';
 import '../../../core/widgets/alirt_class_widget.dart';
 import '../../../core/widgets/bottom_nav_bar/bottom_nav_of_student.dart';
@@ -370,7 +371,8 @@ class _MainStudentState extends State<MainStudent> {
                 //       )
                 // buildSpeedDial()
                 FloatingActionButton(
-              tooltip: "اضافة أعلان",
+              tooltip: SetLocalization
+                  .of(context)!.getTranslateValue("add_listing"),
               backgroundColor: themeMode.isLight
                   ? kPrimaryColorLightMode
                   : kPrimaryColorDarkMode,

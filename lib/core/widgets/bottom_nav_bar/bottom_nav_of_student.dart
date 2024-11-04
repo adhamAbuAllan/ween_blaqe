@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../../api/apartments_api/one_apartment.dart';
+import '../../../constants/localization.dart';
 import '../../../constants/nums.dart';
 
 import '../../../constants/strings.dart';
@@ -100,11 +101,11 @@ class _BottomNavigationBarOfStudentState
         // }
       },
       //items of BottomNavigationBer Widget
-      items: const [
+      items:  [
         //home item
         BottomNavigationBarItem(
             icon: Icon(Icons.home_outlined),
-            label: 'الرئيسية',
+            label: SetLocalization.of(context)!.getTranslateValue("home"),
             activeIcon: Icon(Icons.home)),
         //notification item
         // BottomNavigationBarItem(
@@ -123,7 +124,7 @@ class _BottomNavigationBarOfStudentState
           icon: Icon(
             Icons.home_repair_service_outlined,
           ),
-          label: 'الحجوزات',
+          label: SetLocalization.of(context)!.getTranslateValue("orders"),
           activeIcon: Icon(Icons.home_repair_service),
         ),
         //bookmarks item
@@ -134,7 +135,7 @@ class _BottomNavigationBarOfStudentState
         //account item
         BottomNavigationBarItem(
             icon: Icon(Icons.person_2_outlined),
-            label: 'حسابي',
+            label: SetLocalization.of(context)!.getTranslateValue("my_account"),
             activeIcon: Icon(Icons.person_2)),
       ],
     );

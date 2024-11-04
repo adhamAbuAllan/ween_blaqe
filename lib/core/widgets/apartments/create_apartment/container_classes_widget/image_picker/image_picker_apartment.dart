@@ -17,6 +17,9 @@ import 'package:ween_blaqe/controller/get_controllers.dart';
 import 'package:ween_blaqe/core/utils/styles/button.dart';
 import 'package:ween_blaqe/core/widgets/alirt_class_widget.dart';
 import 'package:ween_blaqe/features/user/owner/steps_to_create_apartment/fourth_step.dart';
+
+import '../../../../../../constants/localization.dart';
+
 // import 'package:video_player/video_player.dart';
 class AddImages extends StatefulWidget {
   const AddImages(
@@ -71,26 +74,25 @@ class _AddImagesState extends State<AddImages> {
     if (isMultiImage) {
       await _displayPickImage(context!,
           (double? maxWidth, double? maxHeight, int? quality) async {
-          final List<XFile> pickedFileList = await _picker.pickMultiImage(
-            maxWidth: maxWidth,
-            maxHeight: maxHeight,
-            imageQuality: quality,
-          );
-          setState(() {
-            if (_imageFileList != null) {
-              for (var images in pickedFileList) {
-                setState(() {
-                  _imageFileList?.add(images);
-                  debugPrint("the pickedFileList is : $images");
-                });
-              }
-            } else {
+        final List<XFile> pickedFileList = await _picker.pickMultiImage(
+          maxWidth: maxWidth,
+          maxHeight: maxHeight,
+          imageQuality: quality,
+        );
+        setState(() {
+          if (_imageFileList != null) {
+            for (var images in pickedFileList) {
               setState(() {
-                _imageFileList = pickedFileList;
+                _imageFileList?.add(images);
+                debugPrint("the pickedFileList is : $images");
               });
             }
-          });
-
+          } else {
+            setState(() {
+              _imageFileList = pickedFileList;
+            });
+          }
+        });
       });
     } else {
       await _displayPickImage(context!,
@@ -144,7 +146,7 @@ class _AddImagesState extends State<AddImages> {
             // See https://pub.dev/packages/image_picker#getting-ready-for-the-web-platform
             return Stack(children: [
               ClipRRect(
-            borderRadius: BorderRadius.circular(7),
+                borderRadius: BorderRadius.circular(7),
                 child: Image.file(
                   File(
                     _imageFileList![index].path,
@@ -156,7 +158,7 @@ class _AddImagesState extends State<AddImages> {
               ),
               Positioned(
                   left: MediaQuery.of(context).size.width <= 413 &&
-                      MediaQuery.of(context).size.width >= 390
+                          MediaQuery.of(context).size.width >= 390
                       ? 10.0
                       : 20.0,
                   top: 2,
@@ -292,8 +294,9 @@ class _AddImagesState extends State<AddImages> {
               onPressed: () {
                 Navigator.pop(context);
               },
-              style: outlinedButton(themeMode:themeMode),
-              child: const Text(" رجوع "),
+              style: outlinedButton(themeMode: themeMode),
+              child:
+                  Text(SetLocalization.of(context)!.getTranslateValue("back")),
             ),
           ),
           const Expanded(child: Text("")),
@@ -302,7 +305,8 @@ class _AddImagesState extends State<AddImages> {
             child: ElevatedButton(
               onPressed: checkArray,
               style: fullButton(),
-              child: const Text("تم"),
+              child:
+                  Text(SetLocalization.of(context)!.getTranslateValue("done")),
             ),
           ),
         ],
@@ -331,7 +335,7 @@ class _AddImagesState extends State<AddImages> {
                       case ConnectionState.active:
                         if (snapshot.hasError) {
                           return Text(
-                            ': خطأ ${snapshot.error}}',
+                            ': ${SetLocalization.of(context)!.getTranslateValue("error")} ${snapshot.error}}',
                             textAlign: TextAlign.center,
                           );
                         } else {
@@ -371,8 +375,11 @@ class _AddImagesState extends State<AddImages> {
                 );
               },
               heroTag: 'image0',
-              backgroundColor: themeMode.isLight ? kPrimaryColorLightMode : kPrimaryColorDarkMode,
-              tooltip: 'أضف صور من المعرض',
+              backgroundColor: themeMode.isLight
+                  ? kPrimaryColorLightMode
+                  : kPrimaryColorDarkMode,
+              tooltip:                         SetLocalization
+                  .of(context)!.getTranslateValue("add_photos_from_gallery"),
               child: const Icon(Icons.photo_library),
             ),
           ),
@@ -386,8 +393,11 @@ class _AddImagesState extends State<AddImages> {
                 );
               },
               heroTag: 'image1',
-              tooltip: 'إلتقط صورة',
-              backgroundColor: themeMode.isLight ? kPrimaryColorLightMode : kPrimaryColorDarkMode,
+              tooltip: SetLocalization
+                  .of(context)!.getTranslateValue("take_photo"),
+              backgroundColor: themeMode.isLight
+                  ? kPrimaryColorLightMode
+                  : kPrimaryColorDarkMode,
               child: const Icon(Icons.camera_alt),
             ),
           ),

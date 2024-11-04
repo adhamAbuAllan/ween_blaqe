@@ -6,6 +6,7 @@ import 'package:introduction_screen/introduction_screen.dart';
 import 'package:ween_blaqe/main.dart';
 // import 'package:ween_blaqe/sesstion/sesstion_of_user.dart';
 
+import '../constants/localization.dart';
 import '../constants/nums.dart';
 
 // import '../constants/strings.dart';
@@ -151,7 +152,7 @@ class IntroScreenState extends State<IntroScreen> {
         skip: const Text('تخطي',
             style: TextStyle(fontFamily: 'IBM', fontWeight: FontWeight.w600)),
         next: const Icon(Icons.arrow_back),
-        done: const Text('تم',
+        done: Text(SetLocalization.of(context)!.getTranslateValue("done"),
             style: TextStyle(fontFamily: 'IBM', fontWeight: FontWeight.w600)),
         curve: Curves.fastLinearToSlowEaseIn,
         controlsMargin: const EdgeInsets.fromLTRB(16, 0, 16, 30),
@@ -168,8 +169,9 @@ class IntroScreenState extends State<IntroScreen> {
         ),
 
         dotsContainerDecorator: const ShapeDecoration(
-
-          shadows: [BoxShadow(color: Color(0xc0303030)),],
+          shadows: [
+            BoxShadow(color: Color(0xc0303030)),
+          ],
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.all(Radius.circular(7.0)),
           ),

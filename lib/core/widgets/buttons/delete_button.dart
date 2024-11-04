@@ -7,6 +7,7 @@ import 'package:ween_blaqe/core/widgets/alirt_class_widget.dart';
 // import 'package:ween_blaqe/features/user/studnet/from_master_home_to_show_more/new_master_home.dart';
 
 import '../../../api/apartments_api/one_apartment.dart';
+import '../../../constants/localization.dart';
 
 // import '../../../features/user/owner/apartment_of_owner.dart';
 
@@ -41,7 +42,8 @@ class DeleteButton extends StatelessWidget {
         //   widget.callAPIAndAssignData;
         // });
         AlertWithTwoBtn.show(context, "حذف",
-            "حذف شقة ${apartmentsRes.data?[index].title}", "حذف", "إلغاء", () {
+            "حذف شقة ${apartmentsRes.data?[index].title}", "حذف",
+            SetLocalization.of(context)!.getTranslateValue("cancel"), () {
               bookmarkController.bookmarks.remove(apartmentId);
               apiApartmentController.deleteApartmentWithUpdate(apartmentId);
 

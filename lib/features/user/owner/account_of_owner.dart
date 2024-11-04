@@ -18,6 +18,7 @@ import 'package:ween_blaqe/features/user/owner/profile_of_owner.dart';
 // import 'package:ween_blaqe/core/widgets/profile_classs_widget/profile_image.dart';
 // import 'package:ween_blaqe/features/user/owner/profile_of_owner.dart';
 import '../../../constants/get_it_controller.dart';
+import '../../../constants/localization.dart';
 import '../../../controller/get_controllers.dart';
 import '../../../core/utils/funcations/get_app_version.dart';
 
@@ -69,7 +70,7 @@ class _AccountOfOwnerState extends State<AccountOfOwner> {
                       20,
                       0),
                   child: Text(
-                    "حسابي",
+                    SetLocalization.of(context)!.getTranslateValue("my_account"),
                     style: TextStyle(
                       fontSize: 26.0,
                       fontFamily: 'IBM',
@@ -291,7 +292,7 @@ class _AccountOfOwnerState extends State<AccountOfOwner> {
                           const SizedBox(
                             width: 18,
                           ),
-                          Text("المظهر",
+                          Text(SetLocalization.of(context)!.getTranslateValue("appearance"),
                               style: TextStyle(
                                   fontSize: 16,
                                   fontFamily: 'IBM',
@@ -315,14 +316,14 @@ class _AccountOfOwnerState extends State<AccountOfOwner> {
                   //apartments of owner
                   buttonAccount(() {
                     myPushName(context, MyPagesRoutes.apartmentsOwner);
-                  }, icon: Icons.apartment, "شققك", context: context),
+                  }, icon: Icons.apartment, SetLocalization.of(context)!.getTranslateValue("orders"), context: context),
                   //ask for help
                   aline,
                   buttonAccount(() {
                     myPushName(context, MyPagesRoutes.askForHelp);
                   },
                       icon: Icons.info_outline,
-                      "اطلب المساعدة",
+                      SetLocalization.of(context)!.getTranslateValue("request_help"),
                       context: context),
 
                   aline,
@@ -331,7 +332,8 @@ class _AccountOfOwnerState extends State<AccountOfOwner> {
                     myPushName(context, MyPagesRoutes.privacyPolicy);
                   },
                       icon: Icons.privacy_tip_outlined,
-                      "سياسة الخصوصية",
+                      SetLocalization.of(context)!
+                          .getTranslateValue("privacy_policy"),
                       context: context),
                   // aline,
                   //share app
@@ -356,7 +358,7 @@ class _AccountOfOwnerState extends State<AccountOfOwner> {
                     myPushName(context, MyPagesRoutes.sendNoticeForUs);
                   },
                       icon: Icons.feedback_outlined,
-                      "أرسل ملاحظات إلينا",
+                      SetLocalization.of(context)!.getTranslateValue("send_notify_for_us"),
                       context: context),
                   aline,
                   buttonAccount(() {
@@ -370,14 +372,16 @@ class _AccountOfOwnerState extends State<AccountOfOwner> {
                           height: getIt<AppDimension>().isSmallScreen(context)
                               ? 35 - 5
                               : 35),
-                      "السبحة",
+                      SetLocalization.of(context)!.getTranslateValue("sebha")  ,
                       context: context),
                   aline,
                   buttonAccount(() {
                     apartmentModelController.fetchApartments(
                         isOwnerApartments: false);
                     myPushName(context, MyPagesRoutes.bookmarkApartment);
-                  }, "المفضلة",
+                  }, SetLocalization.of(context)!.getTranslateValue(
+                    "favorites",
+                  ),
                       icon: Icons.bookmark_border_outlined, context: context),
                   aline,
                   buttonAccount(
@@ -398,7 +402,7 @@ class _AccountOfOwnerState extends State<AccountOfOwner> {
                         Uri.parse(url),
                       );
                     },
-                    "مشاركة التطبيق",
+                    SetLocalization.of(context)!.getTranslateValue("share_app"),
                     context: context,
                     icon: Icons.share_outlined,
                   )
@@ -425,7 +429,7 @@ class _AccountOfOwnerState extends State<AccountOfOwner> {
                       myPushAndRemoveUntilName(context, const Main(), "");
                     },
                     style: outlinedButton(themeMode: themeMode),
-                    child: const Text("تسجيل الخروج")),
+                    child:  Text(SetLocalization.of(context)!.getTranslateValue("logout"))),
               ),
             ),
             //Beta Version
@@ -437,7 +441,7 @@ class _AccountOfOwnerState extends State<AccountOfOwner> {
                     (BuildContext context, AsyncSnapshot<String> snapshot) {
                   if (snapshot.hasData) {
                     return Text(
-                      "الإصدار التجريبي: ${snapshot.data} ",
+                      "${SetLocalization.of(context)!.getTranslateValue("beta_version")}: ${snapshot.data} ",
                       style: TextStyle(
                           fontFamily: 'IBM',
                           color: themeMode.isLight
@@ -446,7 +450,8 @@ class _AccountOfOwnerState extends State<AccountOfOwner> {
                       textDirection: TextDirection.rtl,
                     );
                   } else if (snapshot.hasError) {
-                    return Text("${snapshot.error}خطأ: ");
+                    return Text("${snapshot.error}${SetLocalization.of
+                      (context)!.getTranslateValue("error")}: ");
                   } else {
                     return const CircularProgressIndicator();
                   }

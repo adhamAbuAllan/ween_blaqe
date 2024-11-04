@@ -7,6 +7,7 @@ import 'package:ween_blaqe/core/utils/styles/button.dart';
 
 // import '../../../../api/advantages.dart';
 import '../../../../api/cities.dart';
+import '../../../../constants/localization.dart';
 import '../../../../constants/nums.dart';
 import '../../../../core/widgets/alirt_class_widget.dart';
 import '../../../../core/widgets/apartments/create_apartment/'
@@ -118,7 +119,8 @@ class _FirstStepState extends State<FirstStep> {
                           Navigator.pop(context);
                         },
                         style: outlinedButton(themeMode:themeMode),
-                        child: const Text("إلغاء"),
+                        child:  Text(SetLocalization.of(context)!
+                            .getTranslateValue("cancel")),
                       ),
                       const Expanded(child: SizedBox()),
                       ElevatedButton(
@@ -193,7 +195,8 @@ class _FirstStepState extends State<FirstStep> {
                           });
                         },
                         style: fullButton(),
-                        child: const Text("التالي"),
+                        child:  Text(SetLocalization.of(context)!
+                            .getTranslateValue("next")),
                       ),
                     ],
                   ),
@@ -202,7 +205,8 @@ class _FirstStepState extends State<FirstStep> {
                 Padding(
                   padding: const EdgeInsets.fromLTRB(0, 10, 0, 0),
                   child: Text(
-                    "الخطوة الاولى",
+                    SetLocalization.of(context)!.getTranslateValue
+                      ("first_step"),
                     style: TextStyle(
                       color: themeMode.isLight
                           ? kTextColorLightMode
@@ -286,7 +290,8 @@ class _FirstStepState extends State<FirstStep> {
                     Padding(
                       padding: const EdgeInsets.fromLTRB(0, 0, 0, 0),
                       child: ContainerInputTextClassWidget(
-                          title: chooseCountBathroomsText,
+                          title:                                 SetLocalization
+                              .of(context)!.getTranslateValue("number_of_bathrooms"),
                           hintInput: hintCountBathrooms,
                           inputType: number,
                           controller: countOfBathRoomsController,

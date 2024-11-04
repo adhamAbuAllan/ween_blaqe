@@ -4,6 +4,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 // import 'package:ween_blaqe/sesstion/new_session.dart';
 // import 'package:ween_blaqe/features/widgets_before_user_reg/account_before_login.dart';
 
+import '../../../constants/localization.dart';
 import '../../../constants/nums.dart';
 
 import '../../../core/utils/styles/button.dart';
@@ -187,17 +188,18 @@ Future<void> showInputDialog(BuildContext context,
               Navigator.of(context).pop();
             },
             style: outlinedButton(),
-            child:  const Text(
-              'إلغاء',
-              style: TextStyle(fontFamily: 'IBM',),
+            child:   Text(
+              SetLocalization.of(context)!.getTranslateValue("cancel"),
+              style: const TextStyle(fontFamily: 'IBM',),
             ),
           ),
           ElevatedButton(
             onPressed: onSaved,
             style: fullButton(),
-            child:  const Text(
-              'حفظ',
-              style: TextStyle(fontFamily: 'IBM',),
+            child:   Text(
+              SetLocalization.of(context)!.getTranslateValue
+                ("save"),
+              style: const TextStyle(fontFamily: 'IBM',),
             ),
           ),
         ],

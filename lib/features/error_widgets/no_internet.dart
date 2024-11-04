@@ -11,6 +11,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:vibration/vibration.dart';
 import 'package:ween_blaqe/constants/coordination.dart';
+import 'package:ween_blaqe/constants/localization.dart';
 import 'package:ween_blaqe/constants/strings.dart';
 import 'package:ween_blaqe/core/utils/funcations/route_pages/push_routes.dart';
 import 'package:ween_blaqe/core/utils/styles/text_style/aline_style.dart';
@@ -298,7 +299,10 @@ class _NoInternetState extends State<NoInternet> with WidgetsBindingObserver {
                                               saveTotal(total);
                                             });
                                           },
-                                          child: const Text("تصفير")),
+                                          child:  Text(SetLocalization
+                                              .of(context)!.getTranslateValue(
+                                                "reset"
+                                              ))),
                                     ),
                                   ],
                                 )

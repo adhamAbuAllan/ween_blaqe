@@ -13,10 +13,13 @@ import 'package:image_picker/image_picker.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:skeletons/skeletons.dart';
 import 'package:ween_blaqe/api/apartments_api/one_apartment.dart';
+
 // import 'package:ween_blaqe/constants/get_it_controller.dart';
 import 'package:ween_blaqe/constants/nums.dart';
 import 'package:ween_blaqe/controller/get_controllers.dart';
 import 'package:ween_blaqe/core/utils/styles/button.dart';
+
+import '../../../../constants/localization.dart';
 
 // import '../../../../constants/coordination.dart';
 
@@ -110,8 +113,9 @@ class _UpdateImagesState extends State<UpdateImages> {
                 // imagesModelController.photoWillDeleteIds.clear();
                 Navigator.pop(context);
               },
-              style: outlinedButton(themeMode:themeMode),
-              child: const Text(" إلغاء "),
+              style: outlinedButton(themeMode: themeMode),
+              child: Text(
+                  SetLocalization.of(context)!.getTranslateValue("cancel")),
             ),
           ),
           const Expanded(child: Text("")),
@@ -120,7 +124,8 @@ class _UpdateImagesState extends State<UpdateImages> {
             child: ElevatedButton(
               onPressed: checkArray,
               style: fullButton(),
-              child: const Text("تم"),
+              child:
+                  Text(SetLocalization.of(context)!.getTranslateValue("done")),
             ),
           ),
         ],
@@ -149,7 +154,7 @@ class _UpdateImagesState extends State<UpdateImages> {
                       case ConnectionState.active:
                         if (snapshot.hasError) {
                           return Text(
-                            ': خطأ ${snapshot.error}}',
+                            ': ${SetLocalization.of(context)!.getTranslateValue("error")} ${snapshot.error}}',
                             textAlign: TextAlign.center,
                             style: const TextStyle(
                               color: Colors.grey,
@@ -193,8 +198,11 @@ class _UpdateImagesState extends State<UpdateImages> {
                 );
               },
               heroTag: 'image0',
-              backgroundColor: themeMode.isLight ? kPrimaryColorLightMode : kPrimaryColorDarkMode,
-              tooltip: 'أضف صور من المعرض',
+              backgroundColor: themeMode.isLight
+                  ? kPrimaryColorLightMode
+                  : kPrimaryColorDarkMode,
+              tooltip: SetLocalization.of(context)!
+                  .getTranslateValue("add_photos_from_gallery"),
               child: const Icon(Icons.photo_library),
             ),
           ),
@@ -208,8 +216,11 @@ class _UpdateImagesState extends State<UpdateImages> {
                 );
               },
               heroTag: 'image1',
-              tooltip: 'إلتقط صورة',
-              backgroundColor: themeMode.isLight ? kPrimaryColorLightMode : kPrimaryColorDarkMode,
+              tooltip: SetLocalization
+                  .of(context)!.getTranslateValue("take_photo"),
+              backgroundColor: themeMode.isLight
+                  ? kPrimaryColorLightMode
+                  : kPrimaryColorDarkMode,
               child: const Icon(Icons.camera_alt),
             ),
           ),

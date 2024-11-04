@@ -1,14 +1,11 @@
 import 'package:colorful_safe_area/colorful_safe_area.dart';
 import 'package:flutter/material.dart';
+import 'package:ween_blaqe/constants/localization.dart';
 
 import '../../constants/nums.dart';
 
-
- 
-
-
 class PrivacyPolicy extends StatefulWidget {
-     const PrivacyPolicy({super.key});
+  const PrivacyPolicy({super.key});
 
   @override
   State<PrivacyPolicy> createState() => _PrivacyPolicyState();
@@ -23,28 +20,35 @@ class _PrivacyPolicyState extends State<PrivacyPolicy> {
   @override
   Widget build(BuildContext context) {
     return ColorfulSafeArea(
-      bottomColor: Colors.transparent ,
+      bottomColor: Colors.transparent,
       color: themeMode.isLight ? kPrimaryColorLightMode : kPrimaryColorDarkMode,
       child: Scaffold(
-        backgroundColor: themeMode.isLight ? kBackgroundAppColorLightMode : kBackgroundAppColorDarkMode,
+        backgroundColor: themeMode.isLight
+            ? kBackgroundAppColorLightMode
+            : kBackgroundAppColorDarkMode,
         appBar: AppBar(
-          backgroundColor: themeMode.isLight ? kPrimaryColorLightMode : kPrimaryColorDarkMode,
+          backgroundColor: themeMode.isLight
+              ? kPrimaryColorLightMode
+              : kPrimaryColorDarkMode,
         ),
         body: SingleChildScrollView(
           child: Column(
             children: [
               //title
-               Row(
+              Row(
                 children: [
                   Padding(
                     padding: const EdgeInsets.fromLTRB(0, 50, 20, 30),
                     child: Text(
-                      "سياسة الخصوصية",
+                      SetLocalization.of(context)!
+                          .getTranslateValue("privacy_policy"),
                       style: TextStyle(
                         fontSize: 28.0,
                         fontFamily: 'IBM',
                         inherit: true,
-color:themeMode.isLight ? kTextColorLightMode : kTextColorDarkMode,
+                        color: themeMode.isLight
+                            ? kTextColorLightMode
+                            : kTextColorDarkMode,
                       ),
                     ),
                   ),
@@ -52,7 +56,7 @@ color:themeMode.isLight ? kTextColorLightMode : kTextColorDarkMode,
                 ],
               ),
               //title of info and use that
-               Row(
+              Row(
                 children: [
                   Padding(
                     padding: const EdgeInsets.fromLTRB(0, 0, 25, 10),
@@ -62,7 +66,9 @@ color:themeMode.isLight ? kTextColorLightMode : kTextColorDarkMode,
                         fontSize: 22.0,
                         fontFamily: 'IBM',
                         inherit: true,
-color:themeMode.isLight ? kTextColorLightMode : kTextColorDarkMode,
+                        color: themeMode.isLight
+                            ? kTextColorLightMode
+                            : kTextColorDarkMode,
                       ),
                     ),
                   ),
@@ -72,8 +78,8 @@ color:themeMode.isLight ? kTextColorLightMode : kTextColorDarkMode,
               //paragraph of info and use that
               Container(
                 width: double.infinity,
-                margin:    const EdgeInsets.fromLTRB(25, 0, 30, 10),
-                child:  Text(
+                margin: const EdgeInsets.fromLTRB(25, 0, 30, 10),
+                child: Text(
                   "نتحمل المسؤولية كاملة فيما يتعلق بحماية معلوماتك الشخصية ونضعها فوق"
                   " كل إعتبار. توضح هذه السياسة كيف نستخدم المعلومات الشخصية التي "
                   "نتلقاها منك، وعند استخدامك للتطبيق الذي يضم منصات الهواتف الذكية "
@@ -82,65 +88,75 @@ color:themeMode.isLight ? kTextColorLightMode : kTextColorDarkMode,
                     fontSize: 16.0,
                     fontFamily: 'IBM',
                     inherit: true,
-color:themeMode.isLight ? kTextColorLightMode : kTextColorDarkMode,
+                    color: themeMode.isLight
+                        ? kTextColorLightMode
+                        : kTextColorDarkMode,
                   ),
                 ),
               ),
               //title of into that get from user
               Container(
                 width: double.infinity,
-                padding:    const EdgeInsets.fromLTRB(0, 0, 25, 10),
-                child:    Text(
+                padding: const EdgeInsets.fromLTRB(0, 0, 25, 10),
+                child: Text(
                   "العلومات التي نحصل عليها:",
                   style: TextStyle(
                     fontSize: 22.0,
                     fontFamily: 'IBM',
                     inherit: true,
-color:themeMode.isLight ? kTextColorLightMode : kTextColorDarkMode,
+                    color: themeMode.isLight
+                        ? kTextColorLightMode
+                        : kTextColorDarkMode,
                   ),
                 ),
               ),
               //paragraph of info that get them from user
               Container(
                 width: double.infinity,
-                margin:    const EdgeInsets.fromLTRB(25, 0, 30, 10),
-                child:    Text(
+                margin: const EdgeInsets.fromLTRB(25, 0, 30, 10),
+                child: Text(
                   // "معلومات شخصية و معلومات الحجز",
                   "معلومات المالك",
                   style: TextStyle(
                     fontSize: 16.0,
                     fontFamily: 'IBM',
                     inherit: true,
-color:themeMode.isLight ? kTextColorLightMode : kTextColorDarkMode,
+                    color: themeMode.isLight
+                        ? kTextColorLightMode
+                        : kTextColorDarkMode,
                   ),
                 ),
               ),
               //title of info that app use
               Container(
                 width: double.infinity,
-                padding:    const EdgeInsets.fromLTRB(0, 0, 25, 5),
-                child:    Text(
+                padding: const EdgeInsets.fromLTRB(0, 0, 25, 5),
+                child: Text(
                   "استخدام العلومات ",
                   style: TextStyle(
                     fontSize: 22.0,
                     fontFamily: 'IBM',
                     inherit: true,
-color:themeMode.isLight ? kTextColorLightMode : kTextColorDarkMode,
+                    color: themeMode.isLight
+                        ? kTextColorLightMode
+                        : kTextColorDarkMode,
                   ),
                 ),
               ),
               //subtitle that what info we use
               Container(
                 width: double.infinity,
-                margin:    const EdgeInsets.fromLTRB(25, 0, 30, 10),
-                child:    Text(
+                margin: const EdgeInsets.fromLTRB(25, 0, 30, 10),
+                child: Text(
                   // "نسخدم العلومات لكل من المالك و الطالب كما يلي ",
                   "نستخدم معلومات المالك كما يلي",
                   style: TextStyle(
                     fontSize: 16.0,
                     fontFamily: 'IBM',
                     inherit: true,
-color:themeMode.isLight ? kTextColorLightMode : kTextColorDarkMode,
+                    color: themeMode.isLight
+                        ? kTextColorLightMode
+                        : kTextColorDarkMode,
                   ),
                 ),
               ),
@@ -161,42 +177,48 @@ color:themeMode.isLight ? kTextColorLightMode : kTextColorDarkMode,
               //use phone number of owner
               Container(
                 width: double.infinity,
-                padding:    const EdgeInsets.fromLTRB(0, 0, 25, 10),
-                child:    Text(
+                padding: const EdgeInsets.fromLTRB(0, 0, 25, 10),
+                child: Text(
                   "الهاتف",
                   style: TextStyle(
                     fontSize: 18.0,
                     fontFamily: 'IBM',
                     inherit: true,
-color:themeMode.isLight ? kTextColorLightMode : kTextColorDarkMode,
+                    color: themeMode.isLight
+                        ? kTextColorLightMode
+                        : kTextColorDarkMode,
                   ),
                 ),
               ),
               //paragraph way app use phone number of owner
               Container(
                 width: double.infinity,
-                margin:    const EdgeInsets.fromLTRB(25, 0, 30, 10),
-                child:    Text(
+                margin: const EdgeInsets.fromLTRB(25, 0, 30, 10),
+                child: Text(
                   "يُستخدم رقم الهاتف الخاص بك ليستطيع المستخدم التواصل معك في حال أراد الاستفسار عن الإعلان الخاص بك",
                   style: TextStyle(
                     fontSize: 16.0,
                     fontFamily: 'IBM',
                     inherit: true,
-color:themeMode.isLight ? kTextColorLightMode : kTextColorDarkMode,
+                    color: themeMode.isLight
+                        ? kTextColorLightMode
+                        : kTextColorDarkMode,
                   ),
                 ),
               ),
               //paragraph2 way app use phone number of owner
               Container(
                 width: double.infinity,
-                margin:    const EdgeInsets.fromLTRB(25, 0, 30, 10),
-                child:    Text(
+                margin: const EdgeInsets.fromLTRB(25, 0, 30, 10),
+                child: Text(
                   "كذلك نستخدم رقم الهاتف الخاص بالمالك في حال وجود بعض النشاطات الغير مرغوب فيها ",
                   style: TextStyle(
                     fontSize: 16.0,
                     fontFamily: 'IBM',
                     inherit: true,
-color:themeMode.isLight ? kTextColorLightMode : kTextColorDarkMode,
+                    color: themeMode.isLight
+                        ? kTextColorLightMode
+                        : kTextColorDarkMode,
                   ),
                 ),
               ),
@@ -306,22 +328,24 @@ color:themeMode.isLight ? kTextColorLightMode : kTextColorDarkMode,
               //apartment info
               Container(
                 width: double.infinity,
-                padding:    const EdgeInsets.fromLTRB(0, 0, 25, 10),
-                child:    Text(
+                padding: const EdgeInsets.fromLTRB(0, 0, 25, 10),
+                child: Text(
                   "معلومات شقة المالك",
                   style: TextStyle(
                     fontSize: 22.0,
                     fontFamily: 'IBM',
                     inherit: true,
-color:themeMode.isLight ? kTextColorLightMode : kTextColorDarkMode,
+                    color: themeMode.isLight
+                        ? kTextColorLightMode
+                        : kTextColorDarkMode,
                   ),
                 ),
               ),
               //paragraph way app use info of apartment
               Container(
                 width: double.infinity,
-                margin:    const EdgeInsets.fromLTRB(25, 0, 30, 10),
-                child:    Text(
+                margin: const EdgeInsets.fromLTRB(25, 0, 30, 10),
+                child: Text(
                   "تستخدم معلومات"
                   " الشقة الخاصة بالمالك ليتمكن المستخدم من معرفة"
                   " تفاصيل الشقة الخاص بالمالك بشكل أفضل من خلال "
@@ -330,7 +354,9 @@ color:themeMode.isLight ? kTextColorLightMode : kTextColorDarkMode,
                     fontSize: 16.0,
                     fontFamily: 'IBM',
                     inherit: true,
-color:themeMode.isLight ? kTextColorLightMode : kTextColorDarkMode,
+                    color: themeMode.isLight
+                        ? kTextColorLightMode
+                        : kTextColorDarkMode,
                   ),
                 ),
               ),

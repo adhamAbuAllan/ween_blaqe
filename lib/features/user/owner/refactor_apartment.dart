@@ -1,6 +1,7 @@
 import 'package:colorful_safe_area/colorful_safe_area.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+
 // import 'package:get/get_common/get_reset.dart';
 import 'package:get/get_state_manager/src/rx_flutter/rx_obx_widget.dart';
 import 'package:ween_blaqe/api/type_of_apartment.dart';
@@ -14,6 +15,7 @@ import 'package:ween_blaqe/core/widgets/alirt_class_widget.dart';
 import '../../../api/advantages.dart';
 import '../../../api/apartments_api/one_apartment.dart';
 import '../../../api/cities.dart';
+import '../../../constants/localization.dart';
 import '../../../constants/strings.dart';
 import '../../../controller/get_controllers.dart';
 import '../../../controller/models_controller/advantages_model_controller.dart';
@@ -168,7 +170,8 @@ class _RefactorApartmentState extends State<RefactorApartment> {
   @override
   Widget build(BuildContext context) {
     return ColorfulSafeArea(
-      color: themeMode.isLight ? kContainerColorLightMode
+      color: themeMode.isLight
+          ? kContainerColorLightMode
           : kContainerColorDarkMode,
       child: GestureDetector(
         onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
@@ -180,19 +183,18 @@ class _RefactorApartmentState extends State<RefactorApartment> {
             appBar: AppBar(
               automaticallyImplyLeading: false,
               title: const Text("تعديل إعلان الشقة"),
-
               leading: Padding(
                 padding: const EdgeInsets.symmetric(vertical: 8.0),
                 child: BackButton(
                   color: themeMode.isLight
                       ? kTextColorLightMode
                       : kTextColorDarkMode,
-                    style: const ButtonStyle(
-                      // iconSize : WidgetStateProperty.all(34),
-                      //    maximumSize: WidgetStateProperty.all(Size(32,
-                      //        32)),
-                      tapTargetSize: MaterialTapTargetSize.shrinkWrap,
-                    ),
+                  style: const ButtonStyle(
+                    // iconSize : WidgetStateProperty.all(34),
+                    //    maximumSize: WidgetStateProperty.all(Size(32,
+                    //        32)),
+                    tapTargetSize: MaterialTapTargetSize.shrinkWrap,
+                  ),
                   onPressed: () async {
                     if (apartmentModelController.isUpdating.value) {
                       NormalAlert.show(
@@ -212,7 +214,6 @@ class _RefactorApartmentState extends State<RefactorApartment> {
                     });
                     Navigator.pop(context);
                   },
-
                 ),
               ),
               actions: [
@@ -244,7 +245,8 @@ class _RefactorApartmentState extends State<RefactorApartment> {
                           ? const CircularProgressIndicator(
                               color: Colors.white,
                             )
-                          : const Text("حفظ"),
+                          : Text(SetLocalization.of(context)!
+                              .getTranslateValue("save")),
                     );
                   }),
                 ),
@@ -298,7 +300,8 @@ class _RefactorApartmentState extends State<RefactorApartment> {
                       Padding(
                         padding: const EdgeInsets.fromLTRB(0, 0, 0, 10),
                         child: ContainerInputTextClassWidget(
-                            title: "عدد الغرف",
+                            title: SetLocalization
+                                .of(context)!.getTranslateValue("number_of_rooms"),
                             hintInput: "0",
                             inputType: TextInputType.number,
                             controller: countOfRoomsController,
@@ -309,13 +312,15 @@ class _RefactorApartmentState extends State<RefactorApartment> {
                       Padding(
                         padding: const EdgeInsets.fromLTRB(0, 0, 0, 0),
                         child: ContainerInputTextClassWidget(
-                            title: "عدد الحمامات",
+                            title:                                 SetLocalization
+                                .of(context)!.getTranslateValue("number_of_bathrooms"),
                             hintInput: "0",
                             inputType: TextInputType.number,
                             controller: countOfBathRoomsController,
                             focusNode: countBathroomsfocusnode,
                             onFieldSubmitted: (value) {
-                              debugPrint("value is $value in bath room text field");
+                              debugPrint(
+                                  "value is $value in bath room text field");
                             }),
                       ),
                     ]),
@@ -341,7 +346,8 @@ class _RefactorApartmentState extends State<RefactorApartment> {
                                     padding:
                                         const EdgeInsets.fromLTRB(0, 0, 10, 10),
                                     child: Text(
-                                  "حدد المزايا",
+                                      SetLocalization.of(context)!.getTranslateValue
+                                        ("select_features"),
                                       style: TextStyle(
                                           fontFamily: 'IBM',
                                           fontSize: 20,
@@ -440,7 +446,8 @@ class _RefactorApartmentState extends State<RefactorApartment> {
                     child: ContainerChooseItemsClassWidget(
                         itemIdNotIndex: widget.oneApartment?.type?.id,
                         wholeListApi: wholeTypeListApi,
-                        title: "نوع السكن",
+                        title: SetLocalization.of(context)!
+                            .getTranslateValue("housing_type_students"),
                         currentValue: typesName,
                         onSelected: (type) {
                           if (type is TypeOfApartment) {
@@ -455,7 +462,8 @@ class _RefactorApartmentState extends State<RefactorApartment> {
                   Padding(
                     padding: const EdgeInsets.only(bottom: 10),
                     child: ContainerInputTextClassWidget(
-                      title: countStudentText,
+                      title: SetLocalization.of(context)!
+                          .getTranslateValue("allowed_students"),
                       hintInput: countStudentHint,
                       controller: countOfStudentController,
                       inputType: TextInputType.number,

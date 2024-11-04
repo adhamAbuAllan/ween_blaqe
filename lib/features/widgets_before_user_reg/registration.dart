@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 
 // import 'package:get/get.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:ween_blaqe/constants/localization.dart';
 import 'package:ween_blaqe/constants/strings.dart';
 import 'package:ween_blaqe/core/utils/funcations/go_url_launcher_methodes/go_to_whatsapp_method.dart';
 import 'package:ween_blaqe/core/utils/function_that_effect_widgets/remove_plus_from_phone_number.dart';
@@ -230,7 +231,8 @@ bool hasCheckedNumberPhone = false;
                                 0,
                                 0),
                             child: Text(
-                              "إبدأ التسجيل",
+                              SetLocalization.of(context)!.getTranslateValue
+                                ("start_registration"),
                               style: TextStyle(
                                 fontSize: 28.0,
                                 fontFamily: 'IBM',
@@ -288,7 +290,7 @@ bool hasCheckedNumberPhone = false;
                             TextFieldClassWdiget(
                                 fontSize: textFormFieldFontsSize,
                                 // foucsNode: focusNodeOfFullName,
-                                labelName: fullName,
+                                labelName: SetLocalization.of(context)!.getTranslateValue("full_name"),
                                 autoFocus: true,
                                 controller: nameController,
                                 // onFieldSubmitted: () {

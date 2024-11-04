@@ -17,7 +17,7 @@ class ApartmentLocatoinText extends StatelessWidget {
       child: Padding(
         padding: const EdgeInsets.fromLTRB(0, 0, 10, 10),
         child: Text(
-          "المكان:${apartmentsRes.data?[index].city?.name ?? ""
+          "المكان${apartmentsRes.data?[index].city?.name ?? ""
 
           // data.
           }-${apartmentsRes.data?[index].location ?? ""

@@ -58,6 +58,7 @@ import 'package:ween_blaqe/features/user/owner/update_data_of_user.dart';
 
 // import 'package:ween_blaqe/testing_code/bookmark_test.dart';
 import 'constants/get_it_controller.dart';
+import 'constants/localization.dart';
 import 'constants/nums.dart';
 import 'constants/strings.dart';
 import 'controller/bookmark_controller.dart';
@@ -164,6 +165,11 @@ class OwnMaterialApp extends StatefulWidget {
     super.key,
     // required this.logged
   });
+  static void setLocale(BuildContext context, Locale locale) {
+    _OwnMaterialAppState? state = context
+        .findAncestorStateOfType<_OwnMaterialAppState>();
+    state!.setLocale(locale);
+  }
 
   // final bool logged = false;
 
@@ -173,7 +179,12 @@ class OwnMaterialApp extends StatefulWidget {
 
 class _OwnMaterialAppState extends State<OwnMaterialApp> {
   String newestApartmentId = '-1';
-
+  Locale? _local;
+  void setLocale(Locale locale) {
+    setState(() {
+      _local = locale;
+    });
+  }
   @override
   void initState() {
     super.initState();
@@ -208,15 +219,26 @@ class _OwnMaterialAppState extends State<OwnMaterialApp> {
               selectedIconTheme: IconThemeData(size: 26))),
       //make screen rtl
       localizationsDelegates: const [
-        GlobalCupertinoLocalizations.delegate,
+        SetLocalization.localizationsDelegate,
         GlobalMaterialLocalizations.delegate,
         GlobalWidgetsLocalizations.delegate,
+        GlobalCupertinoLocalizations.delegate,
       ],
       supportedLocales: const [
-        Locale("en", "US"),
-        Locale("ar", "SA"), // OR Locale('ar', 'AE') OR Other RTL locales
+        Locale('en'), // English
+        Locale('ar'), // Arabic
       ],
-      locale: const Locale("ar", "SA"),
+      locale: _local,
+      // localizationsDelegates: const [
+      //   GlobalCupertinoLocalizations.delegate,
+      //   GlobalMaterialLocalizations.delegate,
+      //   GlobalWidgetsLocalizations.delegate,
+      // ],
+      // supportedLocales: const [
+      //   Locale("en", "US"),
+      //   Locale("ar", "SA"), // OR Locale('ar', 'AE') OR Other RTL locales
+      // ],
+      // locale: const Locale("ar", "SA"),
       // locale: Locale("en", "US"),
       // localizationsDelegates: context.localizationDelegates,
       // supportedLocales: context.supportedLocales,
