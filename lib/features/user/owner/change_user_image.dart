@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:get/get_state_manager/src/rx_flutter/rx_obx_widget.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:ween_blaqe/constants/localization.dart';
 
 // import 'package:skeletons/skeletons.dart';
 import 'package:ween_blaqe/constants/nums.dart';
@@ -44,9 +45,9 @@ class _ChangeUserImageState extends State<ChangeUserImage> {
       appBar: AppBar(
         backgroundColor:
         themeMode.isLight ? kPrimaryColorLightMode : kPrimaryColorDarkMode,
-        title: const Text(
-          "تغيير الصورة الشخصية",
-          style: TextStyle(fontFamily: "IBM"),
+        title:  Text(
+          SetLocalization.of(context)!.getTranslateValue("change_profile_picture"),
+          style: const TextStyle(fontFamily: "IBM"),
         ),
         actions: [
           Padding(
@@ -99,7 +100,7 @@ class _ChangeUserImageState extends State<ChangeUserImage> {
                                       ? kPrimaryColorLightMode
                                       : kPrimaryColorDarkMode,
                                 ),
-                                title: Text('من المعرض',
+                                title: Text(SetLocalization.of(context)!.getTranslateValue("from_gallery"),
                                     style: TextStyle(
                                         color: themeMode.isLight
                                             ? kTextColorLightMode
@@ -116,7 +117,7 @@ class _ChangeUserImageState extends State<ChangeUserImage> {
                                         ? kPrimaryColorLightMode
                                         : kPrimaryColorDarkMode),
                                 title: Text(
-                                  'من الكاميرا',
+                                  SetLocalization.of(context)!.getTranslateValue("from_camera"),
                                   style: TextStyle(
                                       color: themeMode.isLight
                                           ? kTextColorLightMode

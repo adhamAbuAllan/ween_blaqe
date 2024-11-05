@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:upgrader/upgrader.dart';
+import 'package:ween_blaqe/constants/localization.dart';
 
 // import 'package:get/get.dart';
 import 'package:ween_blaqe/constants/nums.dart';
@@ -46,9 +47,9 @@ class _OrdersOfStudentState extends State<OrdersOfStudent> {
         ),
         child: SingleChildScrollView(
           child: Column(
-            children: [
-              const TitleClassWidget(title: "الحجوزات"),
-              const SubtitleCalssWidget(subtitle: "قائمة الحجوزات"),
+            children: [ 
+               TitleClassWidget(title: SetLocalization.of(context)!.getTranslateValue("bookings")),
+               SubtitleCalssWidget(subtitle: SetLocalization.of(context)!.getTranslateValue("booking_list")),
               const SizedBox(
                 height: 25,
               ),
@@ -68,7 +69,7 @@ class _OrdersOfStudentState extends State<OrdersOfStudent> {
                   top: 15.0,
                 ),
                 child: Text(
-                  "ميزة قائمة الحجوزات قيد التطوير....",
+                  SetLocalization.of(context)!.getTranslateValue("booking_feature_in_development"),
                   overflow: TextOverflow.ellipsis,
                   style: TextStyle(
                       fontSize: 16,

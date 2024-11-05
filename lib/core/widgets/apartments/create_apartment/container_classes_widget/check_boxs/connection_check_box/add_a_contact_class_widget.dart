@@ -2,6 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:ween_blaqe/constants/localization.dart';
 import 'package:ween_blaqe/constants/strings.dart';
 import 'package:ween_blaqe/controller/function_controller/change_theme_mode.dart';
 import 'package:ween_blaqe/core/utils/funcations/route_pages/push_routes.dart';
@@ -97,7 +98,7 @@ class _AddAcontactState extends State<AddAcontact> {
     //     data: widget.userInfo?.email ?? ""));
     features.add(FeatureOfCheckBox(
         id: 3,
-        name: "هاتف",
+        name: SetLocalization.of(context)!.getTranslateValue("phone"),
         icon: "assets/images/phone-call.png",
         data: "0${234
             // widget.userInfo!.phone

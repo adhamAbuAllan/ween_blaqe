@@ -177,8 +177,10 @@ Future<void> showInputDialog(BuildContext context,
                 fontSize: 16,
               ),
             ),
-          check != null ? TextButton(onPressed: check, child: const Text("تحقق",style:
-          TextStyle(fontFamily: 'IBM',color: Colors.blue),)):const SizedBox()
+          check != null ? TextButton(onPressed: check, child:  Text(
+            //verify
+            SetLocalization.of(context)!.getTranslateValue("verify"),style:
+          const TextStyle(fontFamily: 'IBM',color: Colors.blue),)):const SizedBox()
           ],
           
         ),

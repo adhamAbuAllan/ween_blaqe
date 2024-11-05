@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
 class GetDataTest extends GetxController{
@@ -27,7 +28,7 @@ class GetDataTest extends GetxController{
     if(res.statusCode == 200){
       var jsonData = jsonDecode(res.body);
       var getData = jsonData['data'];
-      print("your data before forloop is : --$getData");
+      debugPrint("your data before forloop is : --$getData");
       for(var item in getData){
       // items.add(item["name"]);
         cityItems?.add(item["name"]);

@@ -163,7 +163,8 @@ class _UpdateUserDataState extends State<UpdateUserData> {
                               20,
                               0),
                           child: Text(
-                            "تعديل بياناتي",
+                            SetLocalization.of(context)!
+                                .getTranslateValue("edit_my_data"),
                             style: TextStyle(
                               fontSize: 26.0,
                               fontFamily: 'IBM',
@@ -178,14 +179,15 @@ class _UpdateUserDataState extends State<UpdateUserData> {
                       ],
                     ),
                     SizedBox(
-                      height:
-                      getIt<AppDimension>().isSmallScreen(context) ? 50 / 2.1 : 50,
+                      height: getIt<AppDimension>().isSmallScreen(context)
+                          ? 50 / 2.1
+                          : 50,
                     ),
 
                     //change name container
                     ContainerInputTextClassWidget(
-                      title: SetLocalization
-                          .of(context)!.getTranslateValue("name"),
+                      title: SetLocalization.of(context)!
+                          .getTranslateValue("name"),
                       hintInput: "",
                       inputType: TextInputType.name,
                       controller: _nameController,
@@ -217,7 +219,8 @@ class _UpdateUserDataState extends State<UpdateUserData> {
                                 padding:
                                     const EdgeInsets.fromLTRB(0, 10, 10, 10),
                                 child: Text(
-                                  "رقم الهاتف",
+                                  SetLocalization.of(context)!
+                                      .getTranslateValue("phone_number"),
                                   style: TextStyle(
                                     color: themeMode.isLight
                                         ? kTextColorLightMode
@@ -293,7 +296,8 @@ class _UpdateUserDataState extends State<UpdateUserData> {
                                   child: TextFieldClassWdiget(
                                       fontSize: 16,
                                       controller: _phoneController,
-                                      labelName: "رقم الهاتف",
+                                      labelName: SetLocalization.of(context)!
+                                          .getTranslateValue("phone_number"),
                                       textInputType: TextInputType.phone),
                                 ),
                               ],
@@ -307,7 +311,8 @@ class _UpdateUserDataState extends State<UpdateUserData> {
                         Padding(
                           padding: const EdgeInsets.fromLTRB(0, 0, 10, 0),
                           child: Text(
-                            "التحقق عن طريق الواتساب",
+                            SetLocalization.of(context)!
+                                .getTranslateValue("verify_via_whatsapp"),
                             // "ستصلك رسالة لتأكيد رقمك ",
                             style: TextStyle(
                               color: themeMode.isLight
@@ -327,9 +332,10 @@ class _UpdateUserDataState extends State<UpdateUserData> {
                                   "إنشاء حساب جديد"
                                   " ");
                             },
-                            child: const Text(
-                              "تحقق",
-                              style: TextStyle(
+                            child: Text(
+                              SetLocalization.of(context)!
+                                  .getTranslateValue("verify"),
+                              style: const TextStyle(
                                   color: Colors.blue,
                                   fontSize: 16,
                                   fontFamily: 'IBM'),
@@ -356,7 +362,8 @@ class _UpdateUserDataState extends State<UpdateUserData> {
                                 padding:
                                     const EdgeInsets.fromLTRB(0, 0, 10, 10),
                                 child: Text(
-                                  "تغيرر كملة المرور",
+                                  SetLocalization.of(context)!
+                                      .getTranslateValue("change_password"),
                                   style: TextStyle(
                                     color: themeMode.isLight
                                         ? kTextColorLightMode
@@ -376,11 +383,10 @@ class _UpdateUserDataState extends State<UpdateUserData> {
                                 //old password
                                 TextFieldOfPasswordClassWidget(
                                   validator: (value) {
-                                    if(value == newPasswordController.text &&
-                                   value?.isNotEmpty == true) {
+                                    if (value == newPasswordController.text &&
+                                        value?.isNotEmpty == true) {
                                       return "لا يمكن ان تتشابه كلمة المرور "
                                           "القديمة و الجديدة";
-
                                     }
                                     if (errorStatusCode == 400) {
                                       return " كلمة المرور خاطئة";
@@ -396,7 +402,7 @@ class _UpdateUserDataState extends State<UpdateUserData> {
                                   },
                                   controller: oldPasswordController,
                                   inputType: textFormFieldTypePassword,
-                                  labelInput: oldPasswordLabelName,
+                                  labelInput: SetLocalization.of(context)!.getTranslateValue("old_password"),
                                 ),
                                 //new password
                                 TextFieldOfPasswordClassWidget(
@@ -408,7 +414,7 @@ class _UpdateUserDataState extends State<UpdateUserData> {
                                   },
                                   controller: newPasswordController,
                                   inputType: textFormFieldTypePassword,
-                                  labelInput: newPasswordLabelName,
+                                  labelInput: SetLocalization.of(context)!.getTranslateValue("new_password"),
                                   // onFieldSubmitted: () {
                                   //   focusNodeOfSurePassword.requestFocus();
                                   // },
@@ -444,7 +450,7 @@ class _UpdateUserDataState extends State<UpdateUserData> {
                                   // focusNode: focusNodeOfPassword,
 
                                   inputType: textFormFieldTypePassword,
-                                  labelInput: surePasswordLabelName,
+                                  labelInput: SetLocalization.of(context)!.getTranslateValue("confirm_new_password"),
                                 ),
                               ],
                             ),
@@ -489,8 +495,7 @@ class _UpdateUserDataState extends State<UpdateUserData> {
     });
     setState(() {
       dataHasChanged == false
-          ? subtitleStreamController.add("لم تقم بإي "
-              "تغييرات حتى الآن")
+          ? subtitleStreamController.add(SetLocalization.of(context)!.getTranslateValue("no_changes_made_yet"))
           : null;
     });
     dataHasChanged = false;
@@ -501,7 +506,7 @@ class _UpdateUserDataState extends State<UpdateUserData> {
     debugPrint("ownerId : $ownerId");
     if (completePhoneNumber != (await sp).get("phone") ||
         _nameController.text != (await sp).get("name")) {
-      subtitleStreamController.add("جاري حفظ التغييرات...");
+      subtitleStreamController.add(SetLocalization.of(context)!.getTranslateValue("saving_changes"));
       //remove name in sp
       (await sp).remove("name");
       //remove phone in sp
@@ -550,7 +555,7 @@ class _UpdateUserDataState extends State<UpdateUserData> {
       //old password and new password and new sure password controllers is
       // not empty
       if (newPasswordController.text == sureNewPasswordController.text) {
-        if(newPasswordController.text == newPasswordController.text){
+        if (newPasswordController.text == newPasswordController.text) {
           return;
         }
 
@@ -560,7 +565,6 @@ class _UpdateUserDataState extends State<UpdateUserData> {
         var token = (await sp).get("token");
         final response = await http.post(
           url,
-
           headers: {
             'Authorization': 'Bearer $token',
             'Content-Type': 'application/json',
@@ -582,7 +586,6 @@ class _UpdateUserDataState extends State<UpdateUserData> {
           dataHasChanged = true;
           setState(() {
             errorStatusCode = 0;
-
           });
           await Future.delayed(const Duration(seconds: 3), () {
             subtitleStreamController.add("");

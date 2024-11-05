@@ -6,6 +6,7 @@ import 'dart:convert';
 import 'package:colorful_safe_area/colorful_safe_area.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
+import 'package:ween_blaqe/constants/localization.dart';
 import 'package:ween_blaqe/constants/strings.dart';
 import 'package:ween_blaqe/controller/get_controllers.dart';
 import 'package:ween_blaqe/core/utils/funcations/route_pages/push_routes.dart';
@@ -201,7 +202,7 @@ class _LoginState extends State<Login> {
                         }
                         return null;
                       },
-                      title: phoneText,
+                      title: SetLocalization.of(context)!.getTranslateValue("phone_number"),
                       controller: phoneController,
                       // errorText:"asdf" ,
                       hintInput: hintPhone,

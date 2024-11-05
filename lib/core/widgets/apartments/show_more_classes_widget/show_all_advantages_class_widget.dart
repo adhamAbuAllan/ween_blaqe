@@ -1,6 +1,7 @@
 
 import 'package:colorful_safe_area/colorful_safe_area.dart';
 import 'package:flutter/material.dart';
+import 'package:ween_blaqe/constants/localization.dart';
 
 import '../../../../api/advantages.dart';
 import '../../../../constants/coordination.dart';
@@ -63,7 +64,7 @@ class _ShowAllAdvantagesState extends State<ShowAllAdvantages> {
                       children: [
                         Padding(
                           padding: const EdgeInsets.fromLTRB(0, 0, 10, 0),
-                          child: Text("المزايا",
+                          child: Text(SetLocalization.of(context)!.getTranslateValue("features"),
                               style: TextStyle(
                                 color: themeMode.isLight
                                     ? kTextColorLightMode

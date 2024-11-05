@@ -384,7 +384,7 @@ bool hasCheckedNumberPhone = false;
                                   child: TextFieldClassWdiget(
                                       fontSize: textFormFieldFontsSize,
                                       controller: phoneController,
-                                      labelName: phoneBoxName,
+                                      labelName: SetLocalization.of(context)!.getTranslateValue("phone_number"),
                                       textInputType: textFormFieldTypePhone),
                                 ),
                               ],
@@ -397,7 +397,7 @@ bool hasCheckedNumberPhone = false;
                                   padding:
                                       const EdgeInsets.fromLTRB(0, 0, 0, 0),
                                   child: Text(
-                                    "التحقق عن طريق الواتساب",
+                                    SetLocalization.of(context)!.getTranslateValue("verify_via_whatsapp"),
                                     // "ستصلك رسالة لتأكيد رقمك ",
                                     style: TextStyle(
                                       color: themeMode.isLight
@@ -419,9 +419,9 @@ bool hasCheckedNumberPhone = false;
                                           "إنشاء حساب جديد"
                                           " ");
                                     },
-                                    child: const Text(
-                                      "تحقق",
-                                      style: TextStyle(
+                                    child:  Text(
+                                      SetLocalization.of(context)!.getTranslateValue("verify"),
+                                      style: const TextStyle(
                                           color: Colors.blue,
                                           fontSize: 16,
                                           fontFamily: 'IBM'),

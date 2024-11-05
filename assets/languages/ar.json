@@ -51,7 +51,7 @@
   "home": "الرئيسية",
   "orders": "الححوزات",
   "your_apartments": "شققك",
- "request_help" : "اطلب المساعدة",
+  "request_help": "اطلب المساعدة",
   "send_notify_for_us": "أرسل ملاحظات إلينا",
   "sebha": "السبحة",
   "share_app": "مشاركة التطبيق",
@@ -87,12 +87,13 @@
   "rent": "الأجرة",
   "about_apartment": "حول الشقة",
   "features": "المزايا",
-  "view_other_features": "عرض الميزات ال اخرى",
+  "view_other_features": "عرض الميزات ال ",
+  "other":"الأخرى",
   "apartment_description": "وصف الشقة",
   "inquiry": "للإستفسار",
   "about_owner": "عن المؤجر",
   "book_now": "إحجز الآن",
-  "bookings": "الحجزوات",
+  "bookings": "الحجوزات",
   "booking_list": "قائمة الحجوزات",
   "booking_feature_in_development": "ميزة قائمة الحجوزات قيد التطوير….",
   "area": "المساحة",
@@ -104,6 +105,7 @@
   "address": "العنوان",
   "room_count": "عد د الغرف",
   "example_apartment_address": "مثال:الخليل-واد الحرية-بجانب مسجد ابوعيشة",
+  "example_apartmnet_description": "اي المزيد من التفاصيل ، مثل هل الشقة في مكان هادئ ام في مركز المدينة ، و في اي طابق ، هل يوجد بالقرب منها بقالة ، هل المواصلات إليها سهلة... .",
   "currency": "ش",
   "price": "السعر",
   "enter_monthly_rent": "يرجى إدخال الإيجار بشكل شهري",
@@ -167,8 +169,9 @@
   "la_hawla_wala_quwata": "ولا حول ولا قوة إلا بالله",
   "skip": "تخطي",
   "no_internet_connection": "لا يتوفّر اتصال بالانترنت.",
-  "try_enabling_mobile_data_or_wifi": "جرّب تفعيل بيانات الجوّال أو تفعيل Wi-Fi"
-
-
-
+  "try_enabling_mobile_data_or_wifi": "جرّب تفعيل بيانات الجوّال أو تفعيل Wi-Fi",
+  "example_of_info_required": "مثال على المعلومة المطلوبة",
+  "example_of_location": "الخليل-واد الهرية-بالقرب من جامعة بولتكنك",
+  "info_of_general_info": "العلومات العامة هي العلومات التي تحتوي على عنوان الإعلان و مكان الشقة و عدد الافراد او الطلاب المسوح به و الصنف-طلاب ، طالبات ، عائلات...- و الأجرة الشهرية "
 }
+//SetLocalization.of(context)!.getTranslateValue("value")

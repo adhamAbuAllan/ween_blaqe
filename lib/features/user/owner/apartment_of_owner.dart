@@ -334,6 +334,7 @@
 // }
 
 import 'package:flutter/material.dart';
+import 'package:ween_blaqe/constants/localization.dart';
 import 'package:ween_blaqe/core/widgets/empty_screen_class_widget.dart';
 import 'package:ween_blaqe/core/widgets/skeletons/student_widgets/home_skeleton_widget.dart';
 
@@ -477,9 +478,9 @@ class _ApartmentsOwnerState extends State<ApartmentsOwner>
           } else {
             return InternetConnectivityChecker(
               child: apartmentModelController.isApartmentNull
-                  ? const EmptyScreenClassWidget(
+                  ?  EmptyScreenClassWidget(
                       centerIcon: Icons.apartment,
-                      centerText: "تُعرض إعلاناتك هنا",
+                      centerText: SetLocalization.of(context)!.getTranslateValue("your_ads_displayed_here"),
                       centerIconInUnderCenterText: Icons.add_home_outlined,
                       underCenterTextBeforeIcon: 'انقر على الزر ',
                       underCenterTextAfterIcon: '  للبدء في إنشاء إعلان جديد',

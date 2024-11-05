@@ -27,7 +27,7 @@ import 'package:ween_blaqe/api/advantages.dart';
 // import 'dart:html';
 
 class AdvantagesClassWidget extends StatefulWidget {
-  const AdvantagesClassWidget({Key? key}) : super(key: key);
+  const AdvantagesClassWidget({super.key});
 
   @override
   State<AdvantagesClassWidget> createState() => _AdvantagesClassWidgetState();

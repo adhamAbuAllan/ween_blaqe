@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
 import 'package:url_launcher/url_launcher.dart';
+import 'package:ween_blaqe/constants/localization.dart';
 import 'package:ween_blaqe/sesstion/new_session.dart';
 
 import '../../../../controller/get_controllers.dart';
@@ -22,8 +23,8 @@ class FacebookSocialButton extends StatelessWidget {
                 : false,
 
             labelUserName: "اسم المستخدم",
-            socialDialogName: "فيس بوك",
-            socialName: "فيس بوك",
+            socialDialogName: SetLocalization.of(context)!.getTranslateValue("facebook"),
+            socialName: SetLocalization.of(context)!.getTranslateValue("facebook"),
             check: createSocialConnectionController.facebookController.text
             != "user_name" ? ()
           async {

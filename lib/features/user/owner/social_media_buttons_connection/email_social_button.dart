@@ -2,6 +2,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get_state_manager/src/rx_flutter/rx_obx_widget.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:flutter/material.dart';
+import 'package:ween_blaqe/constants/localization.dart';
 import '../../../../controller/get_controllers.dart';
 import '../../../../core/widgets/buttons/social_media_connection_button.dart';
 import '../../../../sesstion/new_session.dart';
@@ -21,7 +22,7 @@ class EmailSocialButton extends StatelessWidget {
             labelUserName:
             " البريد الالكتروني "
                 "الخاص بك",
-            socialDialogName: "جيميل",
+            socialDialogName: SetLocalization.of(context)!.getTranslateValue("gmail"),
             isActive:
 NewSession.get("email", "user_email") != "user_email"
                 ? true : false,
@@ -31,7 +32,7 @@ NewSession.get("email", "user_email") != "user_email"
             controller:
             createSocialConnectionController
                 .emailController,
-            socialName: "جيميل",
+            socialName: SetLocalization.of(context)!.getTranslateValue("gmail"),
             socialIcon:
             FontAwesomeIcons.envelope,
             onSaved: () {

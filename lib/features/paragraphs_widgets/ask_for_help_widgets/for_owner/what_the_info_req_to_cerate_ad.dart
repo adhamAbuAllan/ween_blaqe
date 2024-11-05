@@ -223,7 +223,7 @@ class _WhatTheInfoReqToCreateAdState extends State<WhatTheInfoReqToCreateAd> {
                                     color: themeMode.isLight
                                         ? kTextColorLightMode
                                         : kTextColorDarkMode)),
-                            tooltip: "مثال على العلومة المطلوبة",
+                            tooltip: "مثال على المعلومة المطلوبة",
                           ),
                         ],
                         rows: [
@@ -341,7 +341,7 @@ class _WhatTheInfoReqToCreateAdState extends State<WhatTheInfoReqToCreateAd> {
                       width: double.infinity,
                       padding: const EdgeInsets.fromLTRB(0, 50, 25, 10),
                       child: Text(
-                        "حول الشقة",
+                        SetLocalization.of(context)!.getTranslateValue("about_apartment"),
                         style: TextStyle(
                           fontSize: 22.0,
                           fontFamily: 'IBM',
@@ -575,7 +575,7 @@ class _WhatTheInfoReqToCreateAdState extends State<WhatTheInfoReqToCreateAd> {
                       width: double.infinity,
                       padding: const EdgeInsets.fromLTRB(0, 50, 25, 10),
                       child: Text(
-                        "وصف الشقة",
+                        SetLocalization.of(context)!.getTranslateValue("apartment_description"),
                         style: TextStyle(
                           fontSize: 22.0,
                           fontFamily: 'IBM',
@@ -695,7 +695,7 @@ class _WhatTheInfoReqToCreateAdState extends State<WhatTheInfoReqToCreateAd> {
                         DataRow(cells: [
                           DataCell(
                               showEditIcon: false,
-                              Text("رقم الهاتف",
+                              Text(SetLocalization.of(context)!.getTranslateValue("phone_number"),
                                   style: TextStyle(
                                     fontSize: 14,
                                     fontFamily: "IBM",

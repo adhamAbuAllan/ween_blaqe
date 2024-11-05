@@ -165,6 +165,10 @@
   "la_hawla_wala_quwata": "La Hawla Wala Quwata Illa Billah",
   "skip": "Skip",
   "no_internet_connection": "No Internet Connection.",
-  "try_enabling_mobile_data_or_wifi": "Try Enabling Mobile Data or Wi-Fi"
-
+  "try_enabling_mobile_data_or_wifi": "Try Enabling Mobile Data or Wi-Fi",
+  "try_enabling_mobile_data_or_wifi": "Try Enabling Mobile Data or Wi-Fi",
+  "example_of_info_required": "Example of Info Required",
+  "example_of_location": "Example of Location: Hebron - Wadi Al-Hurriya - Beside Abu Aisha Mosque",
+  "info_of_general_info": "General information includes the advertisement title, meeting place, number of individuals or students allowed, category - male, female, families... - and monthly fee.",
+"example_apartmnet_description":"Any more details, such as whether the apartment is in a quiet area or in the city center, on which floor, is there a grocery store nearby, is transportation easy to get there... ."
 }

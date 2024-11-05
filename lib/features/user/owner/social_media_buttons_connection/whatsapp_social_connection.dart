@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
+import 'package:ween_blaqe/constants/localization.dart';
 
 import '../../../../controller/get_controllers.dart';
 import '../../../../core/utils/funcations/go_url_launcher_methodes/go_to_whatsapp_method.dart';
@@ -25,7 +26,7 @@ class WhatsAppSocialButton extends StatelessWidget {
             );
           },
           labelUserName: " رقم الواتس اب ",
-          socialDialogName: "واتس اب",
+          socialDialogName: SetLocalization.of(context)!.getTranslateValue("whatsapp"),
           controller:
           createSocialConnectionController
               .whatsappController,
@@ -34,7 +35,7 @@ class WhatsAppSocialButton extends StatelessWidget {
           isActive:
           createSocialConnectionController
               .whatsAppIsActive.value,
-          socialName: "واتس اب",
+          socialName: SetLocalization.of(context)!.getTranslateValue("whatsapp"),
           socialIcon:
           FontAwesomeIcons.whatsapp,
         ),

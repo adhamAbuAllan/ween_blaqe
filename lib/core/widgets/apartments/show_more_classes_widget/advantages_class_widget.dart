@@ -2,6 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:skeletons/skeletons.dart';
+import 'package:ween_blaqe/constants/localization.dart';
 import 'package:ween_blaqe/core/widgets/apartments/show_more_classes_widget/show_all_advantages_class_widget.dart';
 
 import '../../../../api/advantages.dart';
@@ -42,7 +43,7 @@ class _GetAdvantagesState extends State<GetAdvantages> {
             children: [
               Padding(
                 padding: const EdgeInsets.fromLTRB(0, 0, 10, 0),
-                child: Text("المزايا",
+                child: Text(SetLocalization.of(context)!.getTranslateValue("features"),
                     style: TextStyle(
                       color: themeMode.isLight
                           ? kTextColorLightMode
@@ -78,7 +79,7 @@ class _GetAdvantagesState extends State<GetAdvantages> {
                   },
                   style: fullButton(),
                   child: Text(
-                      "عرض الميزات ال${(advantages?.length ?? 0) - 10} الآخرى")),
+                      "${SetLocalization.of(context)!.getTranslateValue("view_other_features")} ${(advantages?.length ?? 0) - 10} ${SetLocalization.of(context)!.getTranslateValue("other")}")),
             ),
           )
               : const SizedBox(),

@@ -334,9 +334,9 @@ class _NewShowMoreState extends State<NewShowMore> {
                                   ? "عدد الطالبات المسموح به:${widget
                                   .oneApartment?.countOfStudnet ?? 0}"
                                   : (_isFamilies
-                                  ? "عدد الافراد المسموح به:${widget
+                                  ? "${SetLocalization.of(context)!.getTranslateValue("allowed_people_count")}:${widget
                                   .oneApartment?.countOfStudnet ?? 0}"
-                                  : "عدد الافراد المسموح به:${widget
+                                  : "${SetLocalization.of(context)!.getTranslateValue("allowed_people_count")}:${widget
                                   .oneApartment?.countOfStudnet ?? 0}"))),
                               style: TextStyle(
                                 color: themeMode.isLight
@@ -375,7 +375,7 @@ class _NewShowMoreState extends State<NewShowMore> {
                         Padding(
                           padding: const EdgeInsets.fromLTRB(0, 0, 10, 10),
                           child: Text(
-                            "الأجرة:${widget.oneApartment?.price ?? ""
+                            "${SetLocalization.of(context)!.getTranslateValue("rent")}:${widget.oneApartment?.price ?? ""
                             // data.
 
                             }",
@@ -389,7 +389,7 @@ class _NewShowMoreState extends State<NewShowMore> {
                         ),
                         Padding(
                           padding: const EdgeInsets.fromLTRB(0, 0, 3, 10),
-                          child: Text("شيكل/شهري",
+                          child: Text(SetLocalization.of(context)!.getTranslateValue("shekel_per_month"),
                               style: TextStyle(
                                 color: themeMode.isLight
                                     ? kPrimaryColorLightMode
@@ -419,7 +419,7 @@ class _NewShowMoreState extends State<NewShowMore> {
                         Padding(
                           padding: const EdgeInsets.fromLTRB(0, 0, 20, 0),
                           child: Text(
-                            "حول الشقة",
+                            SetLocalization.of(context)!.getTranslateValue("about_apartment"),
                             style: TextStyle(
                                 fontSize: 20,
                                 fontFamily: 'IBM',
@@ -474,7 +474,7 @@ class _NewShowMoreState extends State<NewShowMore> {
                                     child: Column(
                                       children: [
                                         Text(
-                                          titleAboutApartmentroom,
+                                          SetLocalization.of(context)!.getTranslateValue("rooms"),
                                           style: TextStyle(
                                               color: themeMode.isLight
                                                   ? kTextColorLightMode
@@ -565,7 +565,7 @@ class _NewShowMoreState extends State<NewShowMore> {
                                         //   child: Text(""),
                                         // ),
                                         Text(
-                                          "الحمامات",
+                                          SetLocalization.of(context)!.getTranslateValue("bathrooms"),
                                           style: TextStyle(
                                               color: themeMode.isLight
                                                   ? kTextColorLightMode
@@ -655,7 +655,7 @@ class _NewShowMoreState extends State<NewShowMore> {
                                     child: Column(
                                       children: [
                                         Text(
-                                          "المساحة",
+                                          SetLocalization.of(context)!.getTranslateValue("area"),
                                           style: TextStyle(
                                               color: themeMode.isLight
                                                   ? kTextColorLightMode
@@ -777,7 +777,7 @@ class _NewShowMoreState extends State<NewShowMore> {
                       children: [
                         Padding(
                           padding: const EdgeInsets.fromLTRB(0, 10, 10, 0),
-                          child: Text("وصف الشقة",
+                          child: Text(SetLocalization.of(context)!.getTranslateValue("apartment_description"),
                               style: TextStyle(
                                 color: themeMode.isLight
                                     ? kTextColorLightMode
@@ -826,7 +826,7 @@ class _NewShowMoreState extends State<NewShowMore> {
                       children: [
                         Padding(
                           padding: const EdgeInsets.fromLTRB(0, 10, 10, 10),
-                          child: Text("للإستفسار",
+                          child: Text(SetLocalization.of(context)!.getTranslateValue("inquiry"),
                               style: TextStyle(
                                 color: themeMode.isLight
                                     ? kTextColorLightMode
@@ -882,7 +882,7 @@ class _NewShowMoreState extends State<NewShowMore> {
                                       Padding(
                                         padding: const EdgeInsets.fromLTRB(
                                             0, 0, 0, 0),
-                                        child: Text(" واتس اب",
+                                        child: Text(SetLocalization.of(context)!.getTranslateValue("whatsapp"),
                                             style: TextStyle(
                                               color: themeMode.isLight
                                                   ? kTextColorLightMode
@@ -939,7 +939,7 @@ class _NewShowMoreState extends State<NewShowMore> {
                                           padding:
                                           const EdgeInsets.fromLTRB(
                                               0, 0, 0, 0),
-                                          child: Text(" جيميل",
+                                          child: Text(SetLocalization.of(context)!.getTranslateValue("gmail"),
                                               style: TextStyle(
                                                 color: themeMode.isLight
                                                     ? kTextColorLightMode
@@ -979,7 +979,7 @@ class _NewShowMoreState extends State<NewShowMore> {
                                       Padding(
                                         padding: const EdgeInsets.fromLTRB(
                                             0, 0, 0, 0),
-                                        child: Text(" هاتف",
+                                        child: Text(SetLocalization.of(context)!.getTranslateValue("phone"),
                                             style: TextStyle(
                                               color: themeMode.isLight
                                                   ? kTextColorLightMode
@@ -1029,7 +1029,7 @@ class _NewShowMoreState extends State<NewShowMore> {
                                           padding:
                                           const EdgeInsets.fromLTRB(
                                               0, 0, 0, 0),
-                                          child: Text(" فيس بوك",
+                                          child: Text(SetLocalization.of(context)!.getTranslateValue("facebook"),
                                               style: TextStyle(
                                                 color: themeMode.isLight
                                                     ? kTextColorLightMode
@@ -1075,7 +1075,7 @@ class _NewShowMoreState extends State<NewShowMore> {
                       children: [
                         Padding(
                           padding: const EdgeInsets.fromLTRB(0, 10, 10, 10),
-                          child: Text("عن المؤجر",
+                          child: Text(SetLocalization.of(context)!.getTranslateValue("about_owner"),
                               style: TextStyle(
                                 color: themeMode.isLight
                                     ? kTextColorLightMode
@@ -1191,7 +1191,7 @@ class _NewShowMoreState extends State<NewShowMore> {
                       style: fullButton().copyWith(
                           backgroundColor:
                           const WidgetStatePropertyAll(Colors.grey)),
-                      child: const Text("إحجز الآن")),
+                      child:  Text(SetLocalization.of(context)!.getTranslateValue("book_now"))),
                 ),
               ),
             ],

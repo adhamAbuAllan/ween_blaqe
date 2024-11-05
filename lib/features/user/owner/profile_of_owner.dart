@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 
 // import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get_state_manager/src/rx_flutter/rx_obx_widget.dart';
+import 'package:ween_blaqe/constants/localization.dart';
 // import 'package:url_launcher/url_launcher.dart';
 
 // import 'package:skeletons/skeletons.dart';
@@ -279,7 +280,7 @@ class _ProfileOfOwnerState extends State<ProfileOfOwner> {
                                               myPushName(context,
                                                   MyPagesRoutes.updateUserInfo);
                                             },
-                                            child: const Text("تعديل البيانات",
+                                            child:  Text(SetLocalization.of(context)!.getTranslateValue("edit_data"),
                                                 style: TextStyle(
                                                     fontFamily: "IBM"))),
                                       ),
@@ -306,7 +307,7 @@ class _ProfileOfOwnerState extends State<ProfileOfOwner> {
                                 children: <Widget>[
                                   // Row(children: [],),
 
-                                  Text("وسائل التواصل المتاحة لديك",
+                                  Text(SetLocalization.of(context)!.getTranslateValue("available_contact_methods"),
                                       style: TextStyle(
                                           color: themeMode.isLight
                                               ? kTextColorLightMode
@@ -380,7 +381,7 @@ class _ProfileOfOwnerState extends State<ProfileOfOwner> {
                                 children: <Widget>[
                                   // Row(children: [],),
 
-                                  Text("وقت الإنضمام",
+                                  Text(SetLocalization.of(context)!.getTranslateValue("joining_time"),
                                       style: TextStyle(
                                           color: themeMode.isLight
                                               ? kTextColorLightMode
@@ -391,7 +392,7 @@ class _ProfileOfOwnerState extends State<ProfileOfOwner> {
                                     height: 15,
                                   ),
                                   Text(
-                                      " أنشأت حسابك  ${NewSession.get("createdAt", "def")} حتى الآن ",
+                                      " ${SetLocalization.of(context)!.getTranslateValue("account_created_since")}  ${NewSession.get("createdAt", "def")} ${SetLocalization.of(context)!.getTranslateValue("until_now")}",
                                       style: TextStyle(
                                           color: themeMode.isLight
                                               ? kTextColorLightMode
@@ -424,7 +425,7 @@ class _ProfileOfOwnerState extends State<ProfileOfOwner> {
                                 children: [
                                   // Row(children: [],),
 
-                                  Text("عدد الإعلانات العروضة",
+                                  Text(SetLocalization.of(context)!.getTranslateValue("ads_shown_count"),
                                       style: TextStyle(
                                           color: themeMode.isLight
                                               ? kTextColorLightMode
@@ -436,9 +437,9 @@ class _ProfileOfOwnerState extends State<ProfileOfOwner> {
                                   ),
                                   Obx(() {
                                     return Text(
-                                        "لديك"
+                                        "${SetLocalization.of(context)!.getTranslateValue("you_have")}"
                                         " ${apartmentModelController.apartments.value.data?.length} "
-                                        " من الإعلانات المعروضة",
+                                        " ${SetLocalization.of(context)!.getTranslateValue("of_ads_displayed")}",
                                         style: TextStyle(
                                             color: themeMode.isLight
                                                 ? kTextColorLightMode
