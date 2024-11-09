@@ -28,7 +28,7 @@
 //                       "شاشات سيتم إضافتها مستقبلاً",
 //                       style: TextStyle(
 //                         fontSize: 22.0,
-//                         fontFamily: 'IBM',
+//                         
 //                         inherit: true,
 //                       ),
 //                     ),

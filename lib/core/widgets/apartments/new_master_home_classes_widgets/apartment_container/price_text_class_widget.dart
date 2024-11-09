@@ -26,15 +26,17 @@ class _ApartmentPriceTextState extends State<ApartmentPriceText> {
         Padding(
           padding: const EdgeInsets.fromLTRB(0, 0, 10, 10),
           child: Text(
-            "${SetLocalization.of(context)!.getTranslateValue("rent")}:${widget.apartmentsRes.data?[widget.index].price ?? ""
+            "${SetLocalization.of(context)!.getTranslateValue("rent")}: "
+                "${widget.apartmentsRes.data?[widget.index].price ?? ""
             // data.
 
-            }",
+            } ",
             style: TextStyle(
               color: themeMode.isLight
                   ? kPrimaryColorLightMode
                   : kPrimaryColorDarkMode,
-              fontFamily: 'IBM',
+              fontWeight: FontWeight.w600,
+              
             ),
           ),
         ),
@@ -45,8 +47,9 @@ class _ApartmentPriceTextState extends State<ApartmentPriceText> {
                 color: themeMode.isLight
                     ? kPrimaryColorLightMode
                     : kPrimaryColorDarkMode,
-                fontSize: 12,
-                fontFamily: 'IBM',
+                fontWeight: FontWeight.w300 ,
+                fontSize: 15,
+                
               )),
         ),
       ],

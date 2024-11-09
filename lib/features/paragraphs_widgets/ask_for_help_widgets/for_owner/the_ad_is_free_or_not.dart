@@ -45,7 +45,7 @@ class _TheAdIsFreeOrNotState extends State<TheAdIsFreeOrNot> {
                   color: themeMode.isLight
                       ? kTextColorLightMode
                       : kTextColorDarkMode.withOpacity(.8),
-                  fontFamily: 'IBM',
+                  
                   inherit: false,
                 ),
               ),
@@ -59,7 +59,7 @@ class _TheAdIsFreeOrNotState extends State<TheAdIsFreeOrNot> {
             //     style: TextStyle(
             //       fontSize: 18.0,
             //       color: Colors.grey.shade800,
-            //       fontFamily: 'IBM',
+            //       
             //       inherit: true,
             //     ),
             //   ),
@@ -73,7 +73,7 @@ class _TheAdIsFreeOrNotState extends State<TheAdIsFreeOrNot> {
             //     style: TextStyle(
             //       fontSize: 16.0,
             //       color: Colors.grey.shade800,
-            //       fontFamily: 'IBM',
+            //       
             //       inherit: true,
             //     ),
             //   ),
@@ -89,7 +89,7 @@ class _TheAdIsFreeOrNotState extends State<TheAdIsFreeOrNot> {
                     "أعرض إعلاناتك بلا حدود على تطبيق وين بلاقي بتكلفة قليلة نسبيًا",
                     style: TextStyle(
                       fontSize: 18.0,
-                      fontFamily: 'IBM',
+                      
                       color: themeMode.isLight
                           ? kTextColorLightMode
                           : kTextColorDarkMode.withOpacity(.8),
@@ -108,7 +108,7 @@ class _TheAdIsFreeOrNotState extends State<TheAdIsFreeOrNot> {
                             text: TextSpan(children: [
                           TextSpan(
                               style: TextStyle(
-                                fontFamily: "IBM",
+                                
                                 fontSize: 22,
                                 color: themeMode.isLight
                                     ? kTextColorLightMode
@@ -117,7 +117,7 @@ class _TheAdIsFreeOrNotState extends State<TheAdIsFreeOrNot> {
                               text: "التكلفة الشهرية: "),
                           TextSpan(
                               style: TextStyle(
-                                fontFamily: "IBM",
+                                
                                 color: themeMode.isLight
                                     ? kTextColorLightMode
                                     : kTextColorDarkMode.withOpacity(.8),
@@ -158,7 +158,7 @@ class _TheAdIsFreeOrNotState extends State<TheAdIsFreeOrNot> {
                                 children: [
                                   TextSpan(
                                       style: TextStyle(
-                                        fontFamily: "IBM",
+                                        
                                         fontSize: 22,
                                         color: themeMode.isLight
                                             ? kTextColorLightMode
@@ -181,7 +181,7 @@ class _TheAdIsFreeOrNotState extends State<TheAdIsFreeOrNot> {
                                           text: TextSpan(children: [
                                             TextSpan(
                                                 style: TextStyle(
-                                                  fontFamily: "IBM",
+                                                  
                                                   color: themeMode.isLight
                                                       ? kTextColorLightMode
                                                       : kTextColorDarkMode,
@@ -214,7 +214,7 @@ class _TheAdIsFreeOrNotState extends State<TheAdIsFreeOrNot> {
                                           text: TextSpan(children: [
                                         TextSpan(
                                           style: TextStyle(
-                                            fontFamily: "IBM",
+                                            
                                             color: themeMode.isLight
                                                 ? kTextColorLightMode
                                                 : kTextColorDarkMode
@@ -255,7 +255,7 @@ class _TheAdIsFreeOrNotState extends State<TheAdIsFreeOrNot> {
                           softWrap: true,
                           "إشترك الأن من خلال التواصل عبر ",
                           style: TextStyle(
-                              fontFamily: "IBM",
+                              
                               fontSize: 14,
                               color: themeMode.isLight
                                   ? kTextColorLightMode
@@ -267,7 +267,7 @@ class _TheAdIsFreeOrNotState extends State<TheAdIsFreeOrNot> {
                         )),
                         child: const Text("واتس أب",
                             style: TextStyle(
-                              fontFamily: "IBM",
+                              
                               fontSize: 14,
                               color: Color(0xff25D366),
                             )),

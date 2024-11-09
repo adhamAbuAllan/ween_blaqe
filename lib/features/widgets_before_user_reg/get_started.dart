@@ -31,7 +31,7 @@
 //                 style: TextStyle(
 //                     fontSize: 28,
 //                     inherit: true,
-//                     fontFamily: 'IBM',
+//                     
 //                     color: Colors.black,
 //                     fontWeight: FontWeight.bold),
 //               ),
@@ -44,7 +44,7 @@
 //                 style: TextStyle(
 //                     fontSize: 28.0,
 //                     inherit: true,
-//                     fontFamily: 'IBM',
+//                     
 //                     color: kPrimaryColor),
 //               ),
 //             ),
@@ -56,7 +56,7 @@
 //                 style: TextStyle(
 //                     fontSize: 28.0,
 //                     inherit: true,
-//                     fontFamily: 'IBM',
+//                     
 //                     color: kPrimaryColor),
 //               ),
 //             ),
@@ -68,7 +68,7 @@
 //                 style: TextStyle(
 //                     fontSize: 28.0,
 //                     inherit: true,
-//                     fontFamily: 'IBM',
+//                     
 //                     color: Colors.blue),
 //               ),
 //             ),

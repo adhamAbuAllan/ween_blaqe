@@ -28,7 +28,7 @@
 //                         'إبدأ في نشر شققك',
 //                         style: TextStyle(
 //                             fontSize: 28.0,
-//                             fontFamily: 'IBM',
+//                             
 //                             inherit: true,
 //                             color: Colors.black87),
 //                       ),
@@ -40,14 +40,14 @@
 //                       Text('على',
 //                           style: TextStyle(
 //                               fontSize: 28,
-//                               fontFamily: 'IBM',
+//                               
 //                               inherit: true,
 //                               color: Colors.black87,
 //                               fontWeight: FontWeight.bold)),
 //                       Text(' وين بلاقي',
 //                           style: TextStyle(
 //                               fontSize: 28,
-//                               fontFamily: 'IBM',
+//                               
 //                               inherit: true,
 //                               color: kPrimaryColor,
 //                               fontWeight: FontWeight.bold)),
@@ -70,7 +70,7 @@
 //                 "قم بإنشاء أول شقة لك",
 //                 style: TextStyle(
 //                   fontSize: 16.0,
-//                   fontFamily: 'IBM',
+//                   
 //                   inherit: true,
 //                 ),
 //               ),

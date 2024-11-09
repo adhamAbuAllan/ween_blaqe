@@ -18,7 +18,7 @@
 //             const Text("نبذة عني"
 //               ,style: TextStyle(
 //                 fontSize: 18,
-//                 fontFamily: 'IBM',
+//                 
 //               ),
 //             ),
 //             const Expanded(child: SizedBox()),
@@ -31,7 +31,7 @@
 //                 child:const Text("إضافة",
 //                   style: TextStyle( color: Colors.black,
 //                     decoration: TextDecoration.underline,
-//                     fontFamily: 'IBM',
+//                     
 //                   ),),
 //                 onPressed: (){
 //                   toggle();
@@ -52,7 +52,7 @@
 //                 child: const Text("أدخل شيئًا عن نفسك"
 //                     ,style: TextStyle(
 //                       fontSize: 16,
-//                       fontFamily: 'IBM',
+//                       
 //                     )
 //                 ),
 //               ),
@@ -64,7 +64,7 @@
 //                 child: TextFormField(
 //                   style: const TextStyle(
 //                     fontSize: 16,
-//                     fontFamily: 'IBM',
+//                     
 //                   ),
 //                   decoration: InputDecoration(
 //                       border: InputBorder.none,

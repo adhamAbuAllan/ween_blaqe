@@ -73,9 +73,9 @@ class _LoginState extends State<Login> {
   // String errorText = "";
 
   //alert box
-  var titleOfAlirt = "بيانات خاطئة";
-  var messageOfAlirt = "رقم الهاتف أو كلمة المرور خاطئة";
-  var textOfOkButton = "موافق";
+  // var titleOfAlirt = "بيانات خاطئة";
+  // var messageOfAlirt = "رقم الهاتف أو كلمة المرور خاطئة";
+  // var textOfOkButton = "موافق";
   final _formKey = GlobalKey<FormState>(); // Create a GlobalKey for the Form
 
   // late final String numberPhone;
@@ -133,17 +133,22 @@ class _LoginState extends State<Login> {
                     children: [
                       Padding(
                         padding: EdgeInsets.fromLTRB(
-                            0,
+                            20,
                             getIt<AppDimension>().isSmallScreen(context)
                                 ? 20
                                 : 30,
                             20,
                             0),
                         child: Text(
-                          "تسجيل الدخول",
+                          SetLocalization.of(context)!
+                              .getTranslateValue("login"),
                           style: TextStyle(
-                              fontSize: 28.0,
-                              fontFamily: 'IBM',
+                              fontSize:
+                                  getIt<AppDimension>().isSmallScreen(context)
+                                      ? 22
+                                      : 26,
+                              
+                              fontWeight: FontWeight.w600,
                               inherit: true,
                               color: themeMode.isLight
                                   ? kTextColorLightMode
@@ -156,31 +161,43 @@ class _LoginState extends State<Login> {
                   //nameApp
                   Row(
                     children: [
+                      const SizedBox(
+                        width: 20,
+                      ),
                       Padding(
-                        padding: const EdgeInsets.fromLTRB(0, 0, 20, 30),
+                        padding: const EdgeInsets.fromLTRB(0, 0, 0, 30),
                         child: Row(
-                          children: [
+                          children: <Widget>[
                             Text(
-                              "في ",
+                              SetLocalization.of(context)!
+                                  .getTranslateValue("in"),
                               style: TextStyle(
-                                  fontSize: 28,
-                                  fontFamily: 'IBM',
+                                  fontSize: getIt<AppDimension>()
+                                          .isSmallScreen(context)
+                                      ? 22
+                                      : 26,
+                                  
                                   inherit: true,
-                                  fontWeight: FontWeight.bold,
+                                  fontWeight: FontWeight.w600,
                                   color: themeMode.isLight
                                       ? kTextColorLightMode
                                       : kTextColorDarkMode),
                             ),
                             Text(
-                              "وين بلاقي",
+                              SetLocalization.of(context)!
+                                  .getTranslateValue("ween_balaqee"),
                               style: TextStyle(
-                                  fontSize: 28,
-                                  fontFamily: 'IBM',
-                                  inherit: true,
-                                  color: themeMode.isLight
-                                      ? kPrimaryColorLightMode
-                                      : kPrimaryColorDarkMode,
-                                  fontWeight: FontWeight.bold),
+                                fontSize:
+                                    getIt<AppDimension>().isSmallScreen(context)
+                                        ? 22
+                                        : 26,
+                                
+                                inherit: true,
+                                color: themeMode.isLight
+                                    ? kPrimaryColorLightMode
+                                    : kPrimaryColorDarkMode,
+                                fontWeight: FontWeight.w600,
+                              ),
                             ),
                           ],
                         ),
@@ -191,21 +208,22 @@ class _LoginState extends State<Login> {
                   //phone container
                   Padding(
                     padding: const EdgeInsets.fromLTRB(0, 0, 0, 10),
-
                     child: ContainerInputTextClassWidget(
-
                       // errorText: errorText,
                       validator: (value) {
                         if (value != null && !value.startsWith('97')) {
-                          return  'رقم الهاتف يجب ان يبدا برمز الدولة ';
-
+                          return SetLocalization.of(context)!.getTranslateValue(
+                              "phone_number_should_start_with_country_code");
                         }
                         return null;
                       },
-                      title: SetLocalization.of(context)!.getTranslateValue("phone_number"),
+                      hintMaxLines: 1,
+                      title: SetLocalization.of(context)!
+                          .getTranslateValue("phone_number"),
                       controller: phoneController,
                       // errorText:"asdf" ,
-                      hintInput: hintPhone,
+                      hintInput: SetLocalization.of(context)!
+                          .getTranslateValue("enter_number_with_country_code"),
                       // textInputAction: TextInputAction.next,
                       autoFocus: autoFocus,
                       // value: "123",
@@ -231,8 +249,10 @@ class _LoginState extends State<Login> {
                     },
                     isObscure: isObscure,
 
-                    hintInput: hintPassword,
-                    title: passwordtext,
+                    hintInput: SetLocalization.of(context)!
+                        .getTranslateValue("your_password"),
+                    title: SetLocalization.of(context)!
+                        .getTranslateValue("password"),
 
                     controller: passwordController,
                     // focusNode: passwordFocus,
@@ -258,8 +278,7 @@ class _LoginState extends State<Login> {
                       child: ElevatedButton(
                           style: fullButton(),
                           onPressed: () {
-                            setState(() {
-                            });
+                            setState(() {});
                             _formKey.currentState!.validate();
                             cityModelController.cityId.value = 0;
                             isLoading = true;
@@ -277,8 +296,14 @@ class _LoginState extends State<Login> {
                               });
                               // autoFocus = true;
                               // errorText = "يرجى ادخال رقم الهاتف";
-                              NormalAlert.show(context, "حقل فارغ",
-                                  "يرجى تعبئة حقل رقم الهاتف", "حسنًا");
+                              NormalAlert.show(
+                                  context,
+                                  SetLocalization.of(context)!
+                                      .getTranslateValue("empty_field"),
+                                  SetLocalization.of(context)!.getTranslateValue(
+                                      "please_entry_the_phone_number_field"),
+                                  SetLocalization.of(context)!
+                                      .getTranslateValue("ok"));
                               return;
                             }
                             debugPrint(phoneController.text);
@@ -286,8 +311,15 @@ class _LoginState extends State<Login> {
                               setState(() {
                                 isLoading = false;
                               });
-                              NormalAlert.show(context, "حقل فارغ",
-                                  "يرجى تعبئة حقل كلمة المرور", "حسنًا");
+                              NormalAlert.show(
+                                  context,
+                                  SetLocalization.of(context)!
+                                      .getTranslateValue("empty_field"),
+                                  SetLocalization.of(context)!
+                                      .getTranslateValue(
+                                          "please_entry_the_password_field"),
+                                  SetLocalization.of(context)!
+                                      .getTranslateValue("ok"));
 
                               // autoFocusOfPassword = true;
                               return;
@@ -324,7 +356,8 @@ class _LoginState extends State<Login> {
                             // isLoading = false;
                           },
                           child: isLoading == false
-                              ? const Text("تسجيل الدخول")
+                              ? Text(SetLocalization.of(context)!
+                                  .getTranslateValue("login"))
                               : const CircularProgressIndicator(
                                   color: Colors.white,
                                 )),
@@ -348,8 +381,10 @@ class _LoginState extends State<Login> {
                               }),
                             );
                           },
-                          style: outlinedButton(themeMode: themeMode),
-                          child: const Text("تسجيل حساب جديد")),
+                          style: outlinedButton(context:context,themeMode:
+                              themeMode),
+                          child: Text(SetLocalization.of(context)!
+                              .getTranslateValue("register_new_account"))),
                     ),
                   ),
                   //forget password?
@@ -376,7 +411,7 @@ class _LoginState extends State<Login> {
                   //     child: Text(
                   //       "شاشات سيتم إضافتها مستقبلاً",
                   //       style: TextStyle(
-                  //         fontFamily: "IBM",
+                  //         
                   //         fontSize: 14,
                   //         color: Colors.grey.shade400,
                   //       ),
@@ -397,7 +432,7 @@ class _LoginState extends State<Login> {
         await http.post(url, body: {"phone": phone, "password": password});
     debugPrint("response:$response");
     if (response.statusCode <= 400) {
-      var res = UserRes.fromJson(jsonDecode(response.body));
+        var res = UserRes.fromJson(jsonDecode(response.body));
       apartmentModelController.ownerToken = res.data.token;
       autoFocus = false;
       saveUserInfo(res.data);
@@ -406,7 +441,12 @@ class _LoginState extends State<Login> {
       setState(() {
         isLoading = false;
 
-        NormalAlert.show(context, titleOfAlirt, messageOfAlirt, textOfOkButton);
+        NormalAlert.show(
+            context,
+            SetLocalization.of(context)!.getTranslateValue("incorrect_data"),
+            SetLocalization.of(context)!
+                .getTranslateValue("phoneOrPasswordIncorrect"),
+            SetLocalization.of(context)!.getTranslateValue("ok"));
         debugPrint(
             "you have an error that the status code is ${response.statusCode}");
       });

@@ -87,7 +87,7 @@
 //                       "تصفية",
 //                       style: TextStyle(
 //                         fontSize: 26.0,
-//                         fontFamily: 'IBM',
+//                         
 //                         inherit: true,
 //                       ),
 //                     ),
@@ -157,7 +157,7 @@
 //                           child: Text(
 //                             "المزايا",
 //                             style: TextStyle(
-//                                 fontFamily: 'IBM',
+//                                 
 //                                 fontSize: 20,
 //                                 color: Colors.grey.shade800),
 //                           ),

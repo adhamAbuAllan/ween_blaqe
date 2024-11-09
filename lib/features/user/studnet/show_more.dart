@@ -151,7 +151,7 @@
 //                           "حول الشقة",
 //                           style: TextStyle(
 //                             fontSize: 20,
-//                             fontFamily: 'IBM',
+//                             
 //                           ),
 //                         ),
 //                       ),
@@ -201,7 +201,7 @@
 //                             style: TextStyle(
 //                               color: Colors.black87,
 //                               fontSize: 20,
-//                               fontFamily: 'IBM',
+//                               
 //                             )),
 //                       ),
 //                       Expanded(child: Text("")),
@@ -252,7 +252,7 @@
 //                             style: TextStyle(
 //                               color: Colors.black87,
 //                               fontSize: 20,
-//                               fontFamily: 'IBM',
+//                               
 //                             )),
 //                       ),
 //                       Expanded(child: Text(""))
@@ -265,7 +265,7 @@
 //                         style: const TextStyle(
 //                           color: Colors.black87,
 //                           fontSize: 16,
-//                           fontFamily: 'IBM',
+//                           
 // // fontWeight: FontWeight.bold
 //                         )),
 //                   ),
@@ -294,7 +294,7 @@
 //                             style: TextStyle(
 //                               color: Colors.black87,
 //                               fontSize: 20,
-//                               fontFamily: 'IBM',
+//                               
 //                             )),
 //                       ),
 //                       Expanded(child: Text(""))
@@ -349,7 +349,7 @@
 //                                       style: TextStyle(
 //                                         color: Colors.black87,
 //                                         fontSize: 16,
-//                                         fontFamily: 'IBM',
+//                                         
 //                                       )),
 //                                 ),
 //                               ],

@@ -2,59 +2,89 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:ween_blaqe/api/apartments_api/one_apartment.dart';
-import 'package:ween_blaqe/controller/get_controllers.dart';
 import 'package:http/http.dart' as http;
 
+import '../../api/apartments_api/one_apartment.dart';
+import '../../constants/localization.dart';
 import '../../constants/strings.dart';
 import '../../main.dart';
+import '../get_controllers.dart';
 
-class ApartmentModelController extends GetxController {
-  OneApartment apartment = OneApartment();
-  bool isApartmentNull = false;
-  late String? ownerToken =
-      apartmentModelController.apartment.data?[1].owner?.token;
+class ApartmentModelController extends GetxController{
+
+  OneApartment apartmentsList = OneApartment();
+  var apartmentsOfOwner = OneApartment(data: []).obs;
   late dynamic apartmentId = '-1';
+  late String? ownerToken = apartmentModelController.apartmentsList.data?[1].owner?.token;
+  RxString apartmentType = 'طلاب'.obs; //first type
+  RxString errorMessage = ''.obs; // message of error server
 
-  var isLoading = false.obs;
-  var apartments = OneApartment(data: []).obs;
+  RxInt apartmentLengthOfOwner = 0.obs;
+  RxBool isLoading = false.obs;
   RxBool isUpdating = false.obs;
-RxInt apartmentLengthOfOwner = 0.obs;
-late Future<OneApartment> futureOneApartmentList;
+  final RxBool isDeleteMode = false.obs;
+  final RxBool isEditMode = false.obs;
+  final RxBool isOwnerHaveApartments = false.obs;
+  RxBool isVisible = false.obs;//[isVisible] usage to hide or show button and a list of types when user scroll or tab on scree
+  RxBool isSebhaVisible =
+  false.obs; //[isSebhaVisible] usage to hide or show button of Sebha.
+  //those values : [isBoyStudent] , [isGirlStudent] , [isFamilies] , [isAll]
+  // usage to make point on the type of apartment when user chose one of them .
+  RxBool isGirlStudent = false.obs; //for boy students
+  RxBool isBoyStudent = false.obs; //for girl students
+  RxBool isFamilies = false.obs; //for families
+  RxBool isAllTypesOfApartment = false.obs; // for all types
+  // [isListOfTypes] values usages to show all types of apartments
+  RxBool isListOfTypes = false.obs; //the types on the list
 
-  Future<OneApartment> fetchApartments({required bool isOwnerApartments ,})
-  async {
+
+  Future<OneApartment> fetchApartments({
+    String? type,
+    int? cityId,
+    bool ? isAll,
+    required bool isOwnerApartments,
+  }) async {
     isLoading.value = true;
+
     if (isOwnerApartments) {
       getApartmentsByOwner().then((value) async {
-
-
         if (value.data?.isEmpty ?? false) {
-          isApartmentNull = true;
-          apartments.value = value;
+          isOwnerApartments = true;
+          apartmentsOfOwner.value = value;
           update();
           return;
         } else {
-          isApartmentNull = false;
+          isOwnerHaveApartments.value = false;
           update();
         }
 
-        apartments.value = value;
-        debugPrint(" the length of data is ${apartments.value.data?.length}");
+        apartmentsOfOwner.value = value;
+        debugPrint(" the length of data is ${  apartmentsOfOwner.value.data?.length}");
       }).catchError((e) {
         debugPrint('Error fetching apartments: $e');
       }).whenComplete(() {
         isLoading.value = false;
       });
     } else {
-      final uri = Uri.parse(ServerWeenBalaqee.apartmentAll);
+      // final uri = Uri.parse(ServerWeenBalaqee.apartmentAll);
+      late Uri uri;
+      if (isAll ?? true) {
+        uri =
+            Uri.parse("${ServerWeenBalaqee.apartmentAll}?city_id=${cityId ?? 0}");
+      } else {
+        uri = Uri.parse(
+            "${ServerWeenBalaqee.apartmentAll}?type=$type&&city_id=${cityId ??
+                0}");
+      }
       final response = await http.get(uri);
       if (response.statusCode == 200) {
         // All ok
+        connectivityController.isResponseIsOk.value = true;
+
         var responseBody = response.body;
         var json = jsonDecode(responseBody);
         OneApartment apartmentsRes = OneApartment.fromJson(json);
-        apartment = apartmentsRes;
+        apartmentsList= apartmentsRes;
         debugPrint("a json of apartment is: -- $json");
         // setState(() {
         //   isDataLoaded = true;
@@ -64,8 +94,9 @@ late Future<OneApartment> futureOneApartmentList;
         debugPrint("msg : ${apartmentsRes.msg}");
         debugPrint("the status is ${apartmentsRes.status}");
         isLoading.value = false;
-        return apartment;
-      } else if (apartmentModelController.apartment.msg?.isNotEmpty ?? false) {
+        connectivityController.isInitState.value = true;
+        return apartmentsList;
+      } else if (apartmentModelController.apartmentsList.msg?.isNotEmpty ?? false) {
         var errorMessage =
             ' a messsage of response of apartment is : ${response.statusCode}: ${response.body} ';
         debugPrint(errorMessage);
@@ -107,4 +138,114 @@ late Future<OneApartment> futureOneApartmentList;
           'Failed to fetch apartments'); // Throw an exception to be caught in fetchApartments
     }
   }
+
+  Future<void> deleteAdvInApartment(String apartmentId) async {
+    var token = (await sp).get("token");
+
+    final url = Uri.parse(ServerWeenBalaqee.apartmentAdvantagesDelete);
+
+
+    final response = await http.post(
+      url,
+      headers: {
+        'Authorization':
+        'Bearer $token',
+        'Content-Type': 'application/json'},
+      body: jsonEncode({'apartment_id': apartmentId}),
+    );if (response.statusCode == 200) {
+      // Success
+      debugPrint('Advantages deleted successfully');
+    } else {
+      // Error
+      debugPrint('Failed to delete advantages: ${response.body}');
+      // You might want to throw an exception or handle the error in a more appropriate way
+    }
+  }
+
+  Future<void> updateApartment(
+      String id,
+      String? rooms,
+      String? bathrooms,
+      String? squareMeters,
+      String? title,
+      String? description,
+      String? location,
+      String? price,
+      int ?cityId,
+      int ?typeId ) async {
+    var token = (await sp).get("token");
+
+    final url = Uri.parse(ServerWeenBalaqee.apartmentUpdate); // Replace with your
+    // base
+    // URL
+
+    final Map<String, dynamic> requestBody = {
+      'id': id,
+      if (rooms != null) 'rooms': rooms,
+      if (bathrooms != null) 'bathrooms': bathrooms,
+      if (squareMeters != null) 'square_meters': squareMeters,
+      if (title != null) 'title': title,
+      if (description != null) 'description': description,
+      if (location != null) 'location': location,
+      if (price != null) 'price': price,
+      if (cityId != null) 'city_id': cityId,
+      if (typeId != null) 'type_id': typeId,
+
+    };
+
+    final response = await http.post(
+      url,headers: { 'Authorization':
+    'Bearer $token','Content-Type': 'application/json'},
+      body: jsonEncode(requestBody),
+    );
+
+    if (response.statusCode == 200) {
+      // Success
+      debugPrint('Apartment updated successfully');
+    } else {
+      // Error
+      debugPrint('Failed to update apartment: ${response.body}');
+      // You might want to throw an exception or handle the error in a more appropriate way
+    }
+  }
+
+  Future<void> deleteApartmentWithUpdate(int apartmentId,BuildContext context)
+  async {
+    var token = (await sp).get("token");
+    try {
+      // Call your API to delete the apartment
+      final response = await http.post(
+        Uri.parse(ServerWeenBalaqee.apartmentDelete), // Replace with your actual API endpoint
+        body: jsonEncode({'id': apartmentId}),
+        headers: {
+          'Authorization': 'Bearer $token',
+          // '$token',
+          'Content-Type': 'application/json',
+          'Accept': 'application/json',
+        },
+      );
+
+      if (response.statusCode == 200) {
+        // Remove the apartment from the local list
+        apartmentModelController.apartmentsOfOwner.update((val) {
+          val?.data?.removeWhere((apartment) => apartment.id == apartmentId);
+        });
+
+
+        // Remove the apartment from bookmarks if it's bookmarked
+        bookmarkController.bookmarks.remove(apartmentModelController.apartmentsOfOwner
+            .value.data?.indexWhere((apartment) => apartment.id == apartmentId));
+
+        // Show success message or handle success as needed
+        Get.snackbar(SetLocalization.of(context)!.getTranslateValue("deleteApartment"), SetLocalization.of(context)!.getTranslateValue("apartmentDeletedSuccess"));
+      } else {
+        // Handle API error
+        Get.snackbar(SetLocalization.of(context)!.getTranslateValue("pleaseWait"), SetLocalization.of(context)!.getTranslateValue("deletingAd"));
+      }
+    } catch (e) {
+      // Handle any exceptions
+      Get.snackbar('Error', 'An error occurred');
+    }
+  }
+
 }

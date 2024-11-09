@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:ween_blaqe/constants/coordination.dart';
 import 'package:ween_blaqe/core/utils/styles/button.dart';
+import '../../constants/get_it_controller.dart';
 import '../../constants/nums.dart';
 
 class AlertWithTwoBtn {
@@ -33,25 +35,35 @@ class AlertWithTwoBtn {
             title: Text(
               title,
               style: TextStyle(
-                  color: themeMode.isLight ? kTextColorLightMode : kTextColorDarkMode,
-                  fontFamily: 'IBM', fontSize: 18),
+                  color: themeMode.isLight
+                      ? kTextColorLightMode
+                      : kTextColorDarkMode,
+                  
+                      fontSize: getIt<AppDimension>().isSmallScreen(context)
+                  ?16:18),
             ),
             content: Text(
               message,
               style: TextStyle(
-                  color: themeMode.isLight ? kTextColorLightMode : kTextColorDarkMode, fontFamily: 'IBM', fontSize: 18),
+                  color: themeMode.isLight
+                      ? kTextColorLightMode
+                      : kTextColorDarkMode,
+                  
+               fontSize: getIt<AppDimension>().isSmallScreen(context)
+                  ?16:18),
             ),
             actions: [
               OutlinedButton(
                   onPressed: () {
                     onClicked();
                   },
-                  style: outlinedButton(themeMode:themeMode),
+                  style: outlinedButton(themeMode: themeMode,context: context),
                   child: Text(
                     textOfOkButton,
-                    style: const TextStyle(
-                      fontSize: 16,
-                      fontFamily: 'IBM',
+                    style:  TextStyle(
+                                fontSize: getIt<AppDimension>().isSmallScreen(context)
+          ?14:16,
+                      
                       color:
                           kPrimaryColorLightMode, //for delete apartment button
                     ),
@@ -63,8 +75,6 @@ class AlertWithTwoBtn {
                     Get.back();
                   },
                   style: fullButton(),
-
-
                   child: Text(textOfCancelButton)),
             ],
           );
@@ -79,9 +89,9 @@ class NormalAlert {
         context: context,
         builder: (context) {
           return AlertDialog(
-              backgroundColor: themeMode.isLight
-                  ? kContainerColorLightMode
-                  : kContainerColorDarkMode,
+            backgroundColor: themeMode.isLight
+                ? kContainerColorLightMode
+                : kContainerColorDarkMode,
             shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(7),
                 side: BorderSide(
@@ -94,12 +104,22 @@ class NormalAlert {
             title: Text(
               title,
               style: TextStyle(
-                  color: themeMode.isLight ? kTextColorLightMode : kTextColorDarkMode, fontFamily: 'IBM', fontSize: 18),
+                  color: themeMode.isLight
+                      ? kTextColorLightMode
+                      : kTextColorDarkMode,
+                  
+                  fontSize: getIt<AppDimension>().isSmallScreen(context)
+                      ?16:18),
             ),
             content: Text(
               message,
               style: TextStyle(
-                  color: themeMode.isLight ? kTextColorLightMode : kTextColorDarkMode, fontFamily: 'IBM', fontSize: 18),
+                  color: themeMode.isLight
+                      ? kTextColorLightMode
+                      : kTextColorDarkMode,
+                  
+                  fontSize: getIt<AppDimension>().isSmallScreen(context)
+                      ?16:18 ),
             ),
             actions: [
               ElevatedButton(
@@ -109,6 +129,11 @@ class NormalAlert {
                   style: fullButton(),
                   child: Text(
                     textOfButton,
+                    style: TextStyle(
+                        fontSize: getIt<AppDimension>().isSmallScreen(context)
+                            ? 14
+                            : 16,
+                        fontFamily: "IBM"),
                   )),
             ],
           );

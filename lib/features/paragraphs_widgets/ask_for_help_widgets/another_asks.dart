@@ -2,6 +2,8 @@ import 'package:colorful_safe_area/colorful_safe_area.dart';
 import 'package:flutter/material.dart';
 
 import 'package:ween_blaqe/constants/nums.dart';
+
+import '../../../constants/localization.dart';
 class WhatIsMeanSS extends StatelessWidget {
   const WhatIsMeanSS({super.key});
 
@@ -17,37 +19,34 @@ class WhatIsMeanSS extends StatelessWidget {
           backgroundColor: themeMode.isLight ? kPrimaryColorLightMode : kPrimaryColorDarkMode,
         ),
         body: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             //title of what is system paying is allowed
-             Row(
-              children: [
-                Padding(
-                  padding: const EdgeInsets.fromLTRB(0, 50, 25, 10),
-                  child: Text(
-                    "ما المقصود ب ش/ش",
-                    style: TextStyle(
-                      fontSize: 20.0,
-                      color: themeMode.isLight ? kTextColorLightMode : kTextColorDarkMode,
-                      fontFamily: 'IBM',
-                      inherit: true,
-                    ),
-                  ),
-                ),
-                const Expanded(child: Text("")),
-              ],
-            ),
+             Padding(
+               padding: const EdgeInsets.fromLTRB(25, 50, 25, 10),
+               child: Text(
+                 SetLocalization.of(context)!.getTranslateValue("what_is_ss"),
+                 style: TextStyle(
+                   fontSize: 20.0,
+                   color: themeMode.isLight ? kTextColorLightMode : kTextColorDarkMode,
+                   
+                   fontWeight: FontWeight.w600 ,
+                   inherit: true,
+                 ),
+               softWrap: true,
+               ),
+             ),
             //paragraph of what is system paying is allowed
             Container(
               width: double.infinity,
-              margin: const EdgeInsets.fromLTRB(25, 0, 30, 10),
-              child: Text(
-                "تظهر هذه "
-                "الكلمة في أسفل الصورة الخاصة في كل إعلان حيث تعني "
-                "(شيكل/شهري)",
+              margin: const EdgeInsets.fromLTRB(30, 0, 30, 10),
+              child: Text(SetLocalization.of(context)!.getTranslateValue("shekel_per_month_note")
+                ,
                 style: TextStyle(
                   fontSize: 16.0,
                   color: themeMode.isLight ? kTextColorLightMode : kTextColorDarkMode.withOpacity(.8),
-                  fontFamily: 'IBM',
+                  
+                  fontWeight: FontWeight.w500,
                   inherit: true,
                 ),
               ),
@@ -82,7 +81,7 @@ class WhatIsMeanSS extends StatelessWidget {
 //                 style: TextStyle(
 //                   fontSize: 20.0,
 //                   color: Colors.black87,
-//                   fontFamily: 'IBM',
+//                   
 //                   inherit: false,
 //                 ),
 //               ),
@@ -97,7 +96,7 @@ class WhatIsMeanSS extends StatelessWidget {
 //             //
 //             //       fontSize: 20.0,
 //             //       color: Colors.black87,
-//             //       fontFamily: 'IBM',
+//             //       
 //             //       inherit: false,
 //             //     ),
 //             //   ),
@@ -112,7 +111,7 @@ class WhatIsMeanSS extends StatelessWidget {
 //                 style: TextStyle(
 //                   fontSize: 16.0,
 //                   color: Colors.grey.shade800,
-//                   fontFamily: 'IBM',
+//                   
 //                   inherit: true,
 //                 ),
 //               ),

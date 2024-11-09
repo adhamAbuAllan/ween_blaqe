@@ -24,6 +24,7 @@ import '../../../core/utils/funcations/get_app_version.dart';
 
 // import '../../../core/utils/funcations/snakbar.dart';
 import '../../../core/widgets/buttons/lines_buttons/line_buttons.dart';
+import '../../../core/widgets/buttons/lines_buttons/switch_language_buttons.dart';
 import '../../../main.dart';
 
 // import '../../bookmark.dart';
@@ -42,11 +43,12 @@ class AccountOfOwner extends StatefulWidget {
 
 class _AccountOfOwnerState extends State<AccountOfOwner> {
   bool notificationState = true;
-@override
+
+  @override
   void initState() {
     super.initState();
-
   }
+
   // static const String rountName = "/accountOfOwner";
   @override
   Widget build(BuildContext context) {
@@ -63,18 +65,22 @@ class _AccountOfOwnerState extends State<AccountOfOwner> {
               children: [
                 Padding(
                   padding: EdgeInsets.fromLTRB(
-                      0,
+                      20,
                       getIt<AppDimension>().isSmallScreen(context)
                           ? 50 / 1.6
                           : 50,
                       20,
                       0),
                   child: Text(
-                    SetLocalization.of(context)!.getTranslateValue("my_account"),
+                    SetLocalization.of(context)!
+                        .getTranslateValue("my_account"),
                     style: TextStyle(
-                      fontSize: 26.0,
-                      fontFamily: 'IBM',
+                      fontSize:
+                      getIt<AppDimension>().isSmallScreen(context)
+                          ? 22
+                          : 26,
                       inherit: true,
+                      fontWeight: FontWeight.w600,
                       color: themeMode.isLight
                           ? kTextColorLightMode
                           : kTextColorDarkMode,
@@ -86,7 +92,7 @@ class _AccountOfOwnerState extends State<AccountOfOwner> {
             ),
             SizedBox(
               height:
-              getIt<AppDimension>().isSmallScreen(context) ? 50 / 2.1 : 50,
+                  getIt<AppDimension>().isSmallScreen(context) ? 50 / 2.1 : 50,
             ),
 
             //use GestureDetector that when user click on container make action
@@ -114,7 +120,9 @@ class _AccountOfOwnerState extends State<AccountOfOwner> {
               },
               child: Container(
                 width: double.infinity,
-                padding: const EdgeInsets.fromLTRB(0, 10, 10, 10),
+                padding:  EdgeInsets.fromLTRB(5,  getIt<AppDimension>()
+                    .isSmallScreen(context) ? 0 : 10, 5, getIt<AppDimension>()
+                    .isSmallScreen(context) ? 0 : 10),
                 margin: const EdgeInsets.fromLTRB(10, 0, 10, 0),
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(7),
@@ -129,39 +137,53 @@ class _AccountOfOwnerState extends State<AccountOfOwner> {
                       return Padding(
                         padding: const EdgeInsets.all(10),
                         child: NewSession.get("profile", "def") ==
-                            "images/profile/user.png"
+                                "images/profile/user.png"
                             ? CircleAvatar(
-                            radius: 32,
-                            //put a normal person Icon
-                            backgroundColor: Colors.grey.shade700,
-                            child: const Icon(
-                              Icons.person,
-                              color: Colors.white,
-                              size: 32,
-                            ))
-                            : imagesModelController.isUpdateImageProfile.value ?
-                        const SkeletonAvatar(
-                          style: SkeletonAvatarStyle(
-                            shape: BoxShape.circle,
-                            width: 63,
-                            height: 63,
-                          ),
-                        )
-                            :
-                        CircleAvatar(
-                          radius: 32,
-                          // backgroundImage: NetworkImage(NewSession.get("profile","def")),
-                          // Adjust the radius as needed
-                          backgroundColor: Colors.grey.shade700,
-                          // Set the background color of the avatar
-                          backgroundImage: NetworkImage(
-                              "https://weenbalaqee"
-                                  ".com/${NewSession.get("profile", "def")}"),
-                          // child:
-                          // imagesModelController.isLoadingProfile.value
-                          //     ? const CircularProgressIndicator()
-                          //     : null,
-                        ),
+                                radius:
+                                    getIt<AppDimension>().isSmallScreen(context)
+                                        ? 32 / 1.5
+                                        : 32,
+                                //put a normal person Icon
+                                backgroundColor: Colors.grey.shade700,
+                                child: Icon(
+                                  Icons.person,
+                                  color: Colors.white,
+                                  size: getIt<AppDimension>()
+                                          .isSmallScreen(context)
+                                      ? 32 / 1.5
+                                      : 32,
+                                ))
+                            : imagesModelController.isUpdateImageProfile.value
+                                ? SkeletonAvatar(
+                                    style: SkeletonAvatarStyle(
+                                      shape: BoxShape.circle,
+                                      width: getIt<AppDimension>()
+                                              .isSmallScreen(context)
+                                          ? 63 / 1.5
+                                          : 63,
+                                      height: getIt<AppDimension>()
+                                              .isSmallScreen(context)
+                                          ? 63 / 1.5
+                                          : 63,
+                                    ),
+                                  )
+                                : CircleAvatar(
+                                    radius: getIt<AppDimension>()
+                                            .isSmallScreen(context)
+                                        ? 32 / 1.5
+                                        : 32,
+                                    // backgroundImage: NetworkImage(NewSession.get("profile","def")),
+                                    // Adjust the radius as needed
+                                    backgroundColor: Colors.grey.shade700,
+                                    // Set the background color of the avatar
+                                    backgroundImage: NetworkImage(
+                                        "https://weenbalaqee"
+                                        ".com/${NewSession.get("profile", "def")}"),
+                                    // child:
+                                    // imagesModelController.isLoadingProfile.value
+                                    //     ? const CircularProgressIndicator()
+                                    //     : null,
+                                  ),
                       );
                     }),
                     Column(
@@ -170,24 +192,31 @@ class _AccountOfOwnerState extends State<AccountOfOwner> {
                         Text(
                           NewSession.get("name", ""),
                           style: TextStyle(
-                            fontSize: getIt<AppDimension>().isSmallScreen(
-                                context)
-                                ? 16
-                                : 18,
-                            fontFamily: 'IBM',
+                            fontSize:
+                                getIt<AppDimension>().isSmallScreen(context)
+                                    ? 16
+                                    : 18,
+
+                            fontWeight: FontWeight.w600,
                             color: themeMode.isLight
                                 ? kTextColorLightMode
                                 : kTextColorDarkMode,
                           ),
                         ),
-                        const SizedBox(height: 2,),
+                        SizedBox(
+                          height: getIt<AppDimension>().isSmallScreen(context)
+                              ? 0
+                              : 2,
+                        ),
                         Text(
                           // "عرض الملف الشخصي",
                           NewSession.get("phone", ""),
                           // "972569339613",
                           style: TextStyle(
                               fontSize: 14,
-                              fontFamily: 'IBM',
+
+                              fontWeight: FontWeight.w500,
+
                               color: themeMode.isLight
                                   ? kTextColorLightMode
                                   : kTextColorDarkMode),
@@ -196,10 +225,12 @@ class _AccountOfOwnerState extends State<AccountOfOwner> {
                     ),
                     const Expanded(
                         child: SizedBox(
-                          child: Text(""),
-                        )),
+                      child: Text(""),
+                    )),
                     Padding(
-                      padding: const EdgeInsets.only(left: 10,),
+                      padding: const EdgeInsets.only(
+                        left: 10,
+                      ),
                       child: Icon(
                         Icons.arrow_forward_ios,
                         color: themeMode.isLight
@@ -234,7 +265,7 @@ class _AccountOfOwnerState extends State<AccountOfOwner> {
             //       "الاشعارات",
             //       style: TextStyle(
             //         fontSize: 18,
-            //         fontFamily: 'IBM',
+            //         ,
             //       ),
             //     ),
             //     Expanded(child: SizedBox()),
@@ -254,7 +285,7 @@ class _AccountOfOwnerState extends State<AccountOfOwner> {
             // ),
             SizedBox(
               height:
-              getIt<AppDimension>().isSmallScreen(context) ? 60 / 2.5 : 60,
+                  getIt<AppDimension>().isSmallScreen(context) ? 60 / 2.5 : 60,
             ),
             Container(
               padding: const EdgeInsets.fromLTRB(0, 0, 0, 0),
@@ -292,10 +323,12 @@ class _AccountOfOwnerState extends State<AccountOfOwner> {
                           const SizedBox(
                             width: 18,
                           ),
-                          Text(SetLocalization.of(context)!.getTranslateValue("appearance"),
+                          Text(
+                              SetLocalization.of(context)!
+                                  .getTranslateValue("appearance"),
                               style: TextStyle(
                                   fontSize: 16,
-                                  fontFamily: 'IBM',
+
                                   color: themeMode.isLight
                                       ? kTextColorLightMode
                                       : kTextColorDarkMode)),
@@ -313,17 +346,29 @@ class _AccountOfOwnerState extends State<AccountOfOwner> {
                         });
                       }),
                   aline,
+                  const SwitchLanguageButtons(),
+
+                  Padding(
+                    padding: const EdgeInsets.only(top: 4.0),
+                    child: aline,
+                  ),
+                  aline,
                   //apartments of owner
                   buttonAccount(() {
                     myPushName(context, MyPagesRoutes.apartmentsOwner);
-                  }, icon: Icons.apartment, SetLocalization.of(context)!.getTranslateValue("orders"), context: context),
+                  },
+                      icon: Icons.apartment,
+                      SetLocalization.of(context)!
+                          .getTranslateValue("your_apartments"),
+                      context: context),
                   //ask for help
                   aline,
                   buttonAccount(() {
                     myPushName(context, MyPagesRoutes.askForHelp);
                   },
                       icon: Icons.info_outline,
-                      SetLocalization.of(context)!.getTranslateValue("request_help"),
+                      SetLocalization.of(context)!
+                          .getTranslateValue("request_help"),
                       context: context),
 
                   aline,
@@ -358,7 +403,8 @@ class _AccountOfOwnerState extends State<AccountOfOwner> {
                     myPushName(context, MyPagesRoutes.sendNoticeForUs);
                   },
                       icon: Icons.feedback_outlined,
-                      SetLocalization.of(context)!.getTranslateValue("send_notify_for_us"),
+                      SetLocalization.of(context)!
+                          .getTranslateValue("send_notify_for_us"),
                       context: context),
                   aline,
                   buttonAccount(() {
@@ -372,20 +418,22 @@ class _AccountOfOwnerState extends State<AccountOfOwner> {
                           height: getIt<AppDimension>().isSmallScreen(context)
                               ? 35 - 5
                               : 35),
-                      SetLocalization.of(context)!.getTranslateValue("sebha")  ,
+                      SetLocalization.of(context)!.getTranslateValue("sebha"),
                       context: context),
                   aline,
                   buttonAccount(() {
                     apartmentModelController.fetchApartments(
                         isOwnerApartments: false);
                     myPushName(context, MyPagesRoutes.bookmarkApartment);
-                  }, SetLocalization.of(context)!.getTranslateValue(
-                    "favorites",
-                  ),
-                      icon: Icons.bookmark_border_outlined, context: context),
+                  },
+                      SetLocalization.of(context)!.getTranslateValue(
+                        "favorites",
+                      ),
+                      icon: Icons.bookmark_border_outlined,
+                      context: context),
                   aline,
                   buttonAccount(
-                        () {
+                    () {
                       String url =
                           "https://play.google.com/store/apps/details?id=com.weenbalaqee.weenbalaqee";
 
@@ -428,8 +476,9 @@ class _AccountOfOwnerState extends State<AccountOfOwner> {
                       // checkCurrentAuthState(context);
                       myPushAndRemoveUntilName(context, const Main(), "");
                     },
-                    style: outlinedButton(themeMode: themeMode),
-                    child:  Text(SetLocalization.of(context)!.getTranslateValue("logout"))),
+                    style: outlinedButton(themeMode: themeMode,context: context),
+                    child: Text(SetLocalization.of(context)!
+                        .getTranslateValue("logout"))),
               ),
             ),
             //Beta Version
@@ -443,15 +492,15 @@ class _AccountOfOwnerState extends State<AccountOfOwner> {
                     return Text(
                       "${SetLocalization.of(context)!.getTranslateValue("beta_version")}: ${snapshot.data} ",
                       style: TextStyle(
-                          fontFamily: 'IBM',
+
                           color: themeMode.isLight
                               ? kTextColorLightMode.withOpacity(.5)
                               : kTextColorDarkMode.withOpacity(.5)),
-                      textDirection: TextDirection.rtl,
+                      // textDirection: TextDirection.rtl,
                     );
                   } else if (snapshot.hasError) {
-                    return Text("${snapshot.error}${SetLocalization.of
-                      (context)!.getTranslateValue("error")}: ");
+                    return Text(
+                        "${snapshot.error}${SetLocalization.of(context)!.getTranslateValue("error")}: ");
                   } else {
                     return const CircularProgressIndicator();
                   }

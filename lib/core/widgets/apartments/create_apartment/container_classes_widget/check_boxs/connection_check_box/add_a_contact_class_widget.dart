@@ -64,7 +64,7 @@ import 'feature_of_check_box.dart';
 //           ),
 //
 //           Text(name,
-//             style: TextStyle(fontFamily: 'IBM', fontSize:16,color: Colors.grey.shade800),
+//             style: TextStyle( fontSize:16,color: Colors.grey.shade800),
 //           ),
 //           Expanded(child: Text("")),
 //           Image(image: AssetImage(icon),width: 32,height: 32,)
@@ -160,7 +160,7 @@ class _AddAcontactState extends State<AddAcontact> {
               Text(
                 feature.name,
                 style: TextStyle(
-                    fontFamily: 'IBM',
+                    
                     fontSize: 16,
                     color: Colors.grey.shade800),
               ),

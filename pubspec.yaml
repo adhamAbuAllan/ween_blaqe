@@ -142,8 +142,28 @@ flutter:
 #        - asset: fonts/Cairo/Cairo-SemiBold.ttf
     - family: IBM
       fonts:
+        - asset: fonts/IBM/IBMPlexSansArabic-Bold.ttf
+        - asset: fonts/IBM/IBMPlexSansArabic-ExtraLight.ttf
+        - asset: fonts/IBM/IBMPlexSansArabic-Light.ttf
+        - asset: fonts/IBM/IBMPlexSansArabic-Medium.ttf
+        - asset: fonts/IBM/IBMPlexSansArabic-Regular.ttf
         - asset: fonts/IBM/IBMPlexSansArabic-SemiBold.ttf
-          weight: 700
+        - asset: fonts/IBM/IBMPlexSansArabic-Thin.ttf
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 #    - family: TT Norms
 #      fonts:
 #        - asset: fonts/TT_Norms/TTNorms-Regular.otf

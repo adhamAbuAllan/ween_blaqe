@@ -102,7 +102,7 @@ myPushReplacementNamed( String routeName,{BuildContext ? context}) {
 //testing animation screen navigation
 
 Future<void> myPushNameAnimation(BuildContext context) async {
-  await Navigator.of(context).push(
+  await Navigator.of(context).pushReplacement(
     PageRouteBuilder(
       pageBuilder: (context, animation, secondaryAnimation) {
         return const SplashScreen(); // Replace YourDestinationScreen with your actual destination screen

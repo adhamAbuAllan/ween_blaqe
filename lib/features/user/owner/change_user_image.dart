@@ -9,6 +9,8 @@ import 'package:ween_blaqe/constants/localization.dart';
 import 'package:ween_blaqe/constants/nums.dart';
 
 import 'package:ween_blaqe/controller/get_controllers.dart';
+import '../../../constants/coordination.dart';
+import '../../../constants/get_it_controller.dart';
 import '../../../sesstion/new_session.dart';
 
 class ChangeUserImage extends StatefulWidget {
@@ -44,10 +46,17 @@ class _ChangeUserImageState extends State<ChangeUserImage> {
           : kBackgroundAppColorDarkMode,
       appBar: AppBar(
         backgroundColor:
-        themeMode.isLight ? kPrimaryColorLightMode : kPrimaryColorDarkMode,
-        title:  Text(
-          SetLocalization.of(context)!.getTranslateValue("change_profile_picture"),
-          style: const TextStyle(fontFamily: "IBM"),
+            themeMode.isLight ? kPrimaryColorLightMode : kPrimaryColorDarkMode,
+        title: Text(
+          SetLocalization.of(context)!
+              .getTranslateValue("change_profile_picture"),
+          style: TextStyle(
+              
+              fontWeight: FontWeight.w600,
+              fontSize: getIt<AppDimension>().isSmallScreen(context) ? 16 :
+              null,
+              color:
+                  themeMode.isLight ? kTextColorLightMode : kTextColorDarkMode),
         ),
         actions: [
           Padding(
@@ -64,14 +73,16 @@ class _ChangeUserImageState extends State<ChangeUserImage> {
                       }
                       Future.delayed(
                         const Duration(seconds: 3),
-                            () {
+                        () {
                           Navigator.pop(context);
                         },
                       );
                     });
                   },
                   icon: imagesModelController.isLoadingProfile.value
-                      ? const CircularProgressIndicator(color: Colors.white,)
+                      ? const CircularProgressIndicator(
+                          color: Colors.white,
+                        )
                       : const Icon(Icons.check));
             }),
           ),
@@ -100,7 +111,9 @@ class _ChangeUserImageState extends State<ChangeUserImage> {
                                       ? kPrimaryColorLightMode
                                       : kPrimaryColorDarkMode,
                                 ),
-                                title: Text(SetLocalization.of(context)!.getTranslateValue("from_gallery"),
+                                title: Text(
+                                    SetLocalization.of(context)!
+                                        .getTranslateValue("from_gallery"),
                                     style: TextStyle(
                                         color: themeMode.isLight
                                             ? kTextColorLightMode
@@ -117,7 +130,8 @@ class _ChangeUserImageState extends State<ChangeUserImage> {
                                         ? kPrimaryColorLightMode
                                         : kPrimaryColorDarkMode),
                                 title: Text(
-                                  SetLocalization.of(context)!.getTranslateValue("from_camera"),
+                                  SetLocalization.of(context)!
+                                      .getTranslateValue("from_camera"),
                                   style: TextStyle(
                                       color: themeMode.isLight
                                           ? kTextColorLightMode
@@ -137,41 +151,49 @@ class _ChangeUserImageState extends State<ChangeUserImage> {
                   );
                 },
                 child: _profileImageFile?.path == null &&
-                    NewSession.get("profile", "def") ==
-                        "images/profile/user.png"
+                        NewSession.get("profile", "def") ==
+                            "images/profile/user.png"
                     ? CircleAvatar(
-                  radius: 40 * 4,
-                  //put a normal person Icon
-                  backgroundColor: Colors.grey.shade700,
-                  child: const Icon(
-                    Icons.person,
-                    size: 40 * 3,
-                    color: Colors.white,
-                  ),
-                )
+                        radius: getIt<AppDimension>().isSmallScreen(context)
+                            ? 40 * 2
+                            : (40 * 4),
+                        //put a normal person Icon
+                        backgroundColor: Colors.grey.shade700,
+                        child: Icon(
+                          Icons.person,
+                          size: getIt<AppDimension>().isSmallScreen(context)
+                              ? 40 * 2
+                              : (40 * 4),
+                          color: Colors.white,
+                        ),
+                      )
                     : (_profileImageFile?.path != null
-                    ? CircleAvatar(
-                    radius: 40 * 4,
-                    // backgroundImage: NetworkImage(NewSession.get("profile","def")),
-                    // Adjust the radius as needed
-                    backgroundColor: Colors.grey.shade700,
-                    // Set the background color of the avatar
-                    backgroundImage:
-                    FileImage(File(_profileImageFile?.path ?? "")))
-                    : CircleAvatar(
-                  radius: 40 * 4,
-                  // backgroundImage: NetworkImage(NewSession.get("profile","def")),
-                  // Adjust the radius as needed
-                  // Set the background color of the avatar
-                  backgroundColor: Colors.grey.shade700,
-                  backgroundImage: NetworkImage("https://weenbalaqee"
-                      ".com/${NewSession.get("profile", "def")}"),
-                  // child: SkeletonAvatar(
-                  //     style: SkeletonAvatarStyle(
-                  //         width: 65 * 5,
-                  //         height: 65 * 5,
-                  //         borderRadius: BorderRadius.circular(65 * 5))),
-                ))),
+                        ? CircleAvatar(
+                            radius: getIt<AppDimension>().isSmallScreen(context)
+                                ? 40 * 2
+                                : (40 * 4),
+                            // backgroundImage: NetworkImage(NewSession.get("profile","def")),
+                            // Adjust the radius as needed
+                            backgroundColor: Colors.grey.shade700,
+                            // Set the background color of the avatar
+                            backgroundImage:
+                                FileImage(File(_profileImageFile?.path ?? "")))
+                        : CircleAvatar(
+                            radius: getIt<AppDimension>().isSmallScreen(context)
+                                ? 40 * 2
+                                : (40 * 4),
+                            // backgroundImage: NetworkImage(NewSession.get("profile","def")),
+                            // Adjust the radius as needed
+                            // Set the background color of the avatar
+                            backgroundColor: Colors.grey.shade700,
+                            backgroundImage: NetworkImage("https://weenbalaqee"
+                                ".com/${NewSession.get("profile", "def")}"),
+                            // child: SkeletonAvatar(
+                            //     style: SkeletonAvatarStyle(
+                            //         width: 65 * 5,
+                            //         height: 65 * 5,
+                            //         borderRadius: BorderRadius.circular(65 * 5))),
+                          ))),
             const SizedBox(height: 20),
           ],
         ),

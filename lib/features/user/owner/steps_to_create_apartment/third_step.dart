@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:ween_blaqe/core/utils/styles/button.dart';
 
 import '../../../../api/type_of_apartment.dart';
+import '../../../../constants/coordination.dart';
+import '../../../../constants/get_it_controller.dart';
 import '../../../../constants/localization.dart';
 import '../../../../controller/get_controllers.dart';
 import '../../../../core/widgets/alirt_class_widget.dart';
@@ -127,9 +129,10 @@ class _ThirdStepState extends State<ThirdStep> {
                         onPressed: () {
                           Navigator.pop(context);
                         },
-                        style: outlinedButton(themeMode:themeMode),
-                        child:  Text(SetLocalization.of(context)!.getTranslateValue
-                          ("back")),
+                        style: outlinedButton(context:context,themeMode:
+                        themeMode),
+                        child: Text(SetLocalization.of(context)!
+                            .getTranslateValue("back")),
                       ),
                       const Expanded(child: SizedBox()),
                       ElevatedButton(
@@ -183,24 +186,16 @@ class _ThirdStepState extends State<ThirdStep> {
                             } catch (c) {
                               NormalAlert.show(
                                   context,
-                                  "بيانات ناقصة",
-                                  "يوجد "
-                                      "بيانات"
-                                      " ناقصة "
-                                      "، تأكد "
-                                      "من إدخال "
-                                      "البيانات"
-                                      " في جميع "
-                                      "الحقول،"
-                                      "ثم حاول"
-                                      " مرة إخرى",
-                                  "حسنًا");
+                                  "",
+                                  SetLocalization.of(context)!.getTranslateValue("missing_data_message"),
+                                  SetLocalization.of(context)!
+                                      .getTranslateValue("ok"));
                               return;
                             }
                           });
                         },
                         style: fullButton(),
-                        child:  Text(SetLocalization.of(context)!
+                        child: Text(SetLocalization.of(context)!
                             .getTranslateValue("next")),
                       ),
                     ],
@@ -210,82 +205,106 @@ class _ThirdStepState extends State<ThirdStep> {
                 Padding(
                   padding: const EdgeInsets.fromLTRB(0, 10, 0, 0),
                   child: Text(
-                    SetLocalization.of(context)!.getTranslateValue
-                      ("third_step"),
+                    SetLocalization.of(context)!
+                        .getTranslateValue("third_step"),
                     style: TextStyle(
                       color: themeMode.isLight
                           ? kTextColorLightMode
                           : kTextColorDarkMode,
-                      fontSize: 20,
-                      fontFamily: 'IBM',
+                      fontSize: getIt<AppDimension>()
+                          .isSmallScreen(context)
+                          ? 18:20,
+                      
+                      fontWeight: FontWeight.w500,
                     ),
                   ),
                 ),
                 //image steps
                 Padding(
-                  padding: const EdgeInsets.fromLTRB(25, 5, 25, 30),
-                  child: themeMode.isLight ?   Image.asset(
-                    'assets/images/apartments_images'
-                        '/images_to_create_apartment/step_three.png',
-                    width: 65,
-                    height: 65,
-                    fit: BoxFit.fill,
-
-                  ):Image.asset(
-                    'assets/'
-                        'images/'
-                        'apartments_images/'
-                        'images_to_create_apartment/'
-                        'thrid_setp_dark_mode.png',
-                    width: 65,
-                    height: 65,
-                    fit: BoxFit.fill,
-
-                  ),
+                  padding: const EdgeInsets.fromLTRB(25, 10, 25, 30),
+                  child: themeMode.isLight
+                      ? Image.asset(
+                          'assets/images/apartments_images'
+                          '/images_to_create_apartment/step_three.png',
+                    width:getIt<AppDimension>()
+                        .isSmallScreen(context)
+                        ? 65/1.1:  65,
+                    height: getIt<AppDimension>()
+                        .isSmallScreen(context)
+                        ? 65/1.1:  65,
+                          fit: BoxFit.fill,
+                        )
+                      : Image.asset(
+                          'assets/'
+                          'images/'
+                          'apartments_images/'
+                          'images_to_create_apartment/'
+                          'thrid_setp_dark_mode.png',
+                    width:getIt<AppDimension>()
+                        .isSmallScreen(context)
+                        ? 65/1.1:  65,
+                    height: getIt<AppDimension>()
+                        .isSmallScreen(context)
+                        ? 65/1.1:  65,
+                          fit: BoxFit.fill,
+                        ),
                 ),
                 //price padding
                 Padding(
-                  padding: const EdgeInsets.fromLTRB(0, 0, 0, 10),
+                  padding:  EdgeInsets.only(bottom:  getIt<AppDimension> ()
+                      .isSmallScreen(context) ? 0:10),
                   child: ContainerInputTextClassWidget(
-                    title: priceText,
-                    hintInput: priceHint,
+                    title:
+                        SetLocalization.of(context)!.getTranslateValue("price"),
+                    hintInput: SetLocalization.of(context)!.getTranslateValue("enter_monthly_rent"),
                     controller: priceController,
                     inputType: TextInputType.number,
                     focusNode: priceFocusNode,
                   ),
                 ),
                 //countStudent padding
-                ContainerChooseItemsClassWidget(
-                    wholeListApi: wholeListApi,
-                    title: SetLocalization.of(context)!.getTranslateValue("housing_type_students") ,
-                    currentValue: firstValueTypeApartment,
-                    onSelected: (type) {
-                      if (type is TypeOfApartment) {
-                        setState(() {
-                          indexOfTypeOfApartment = type.id ?? -1;
-                        });
-                        readyCityAndTypeOfApartmentApi
-                            .saveData(indexOfTypeOfApartment, isCity: false);
-                      }
+                Padding(
+                  padding:  EdgeInsets.only(bottom: getIt<AppDimension> ().isSmallScreen(context) ? 0:10),
+                  child: ContainerChooseItemsClassWidget(
+                      wholeListApi: wholeListApi,
+                      title: SetLocalization.of(context)!
+                          .getTranslateValue("housing_type_students"),
+                      currentValue: firstValueTypeApartment,
+                      onSelected: (type) {
+                        if (type is TypeOfApartment) {
+                          setState(() {
+                            indexOfTypeOfApartment = type.id ?? -1;
+                          });
+                          readyCityAndTypeOfApartmentApi
+                              .saveData(indexOfTypeOfApartment, isCity: false);
+                        }
 
-                      debugPrint("the index of type of city from get "
-                          "data controller in third step is"
-                          " : --${readyCityAndTypeOfApartmentApi.indexApartmentType}");
-                    }),
-                ContainerInputTextClassWidget(
-                  title: indexOfTypeOfApartment == 1 ?
-                  countPersonText:SetLocalization.of(context)!.getTranslateValue("allowed_students"),
-                  hintInput: countStudentHint,
-                  controller: countOfStudentController,
-                  inputType: TextInputType.number,
-                  focusNode: countStudentFocusNode,
+                        debugPrint("the index of type of city from get "
+                            "data controller in third step is"
+                            " : --${readyCityAndTypeOfApartmentApi.indexApartmentType}");
+                      }),
+                ),
+                Padding(
+                  padding:  EdgeInsets.only(bottom: getIt<AppDimension> ().isSmallScreen(context) ? 0:10),
+                  child: ContainerInputTextClassWidget(
+                    title: indexOfTypeOfApartment == 1
+                        ? countPersonText
+                        : SetLocalization.of(context)!
+                            .getTranslateValue("allowed_students"),
+                    hintInput: countStudentHint,
+                    controller: countOfStudentController,
+                    inputType: TextInputType.number,
+                    focusNode: countStudentFocusNode,
+                  ),
                 ),
                 //square padding
                 Padding(
-                  padding: const EdgeInsets.fromLTRB(0, 0, 0, 10),
+                  padding:  EdgeInsets.only(top:  getIt<AppDimension> ()
+                      .isSmallScreen(context) ? 0:10),
                   child: ContainerInputTextClassWidget(
-                    title: squareText,
-                    hintInput: squareHint,
+                    title: SetLocalization.of(context)!.getTranslateValue("apartment_size")
+                    ,
+                    hintInput: SetLocalization.of(context)!.getTranslateValue("enter_apartment_size"),
                     controller: squareMetersController,
                     inputType: TextInputType.number,
                     focusNode: squareFocusNode,

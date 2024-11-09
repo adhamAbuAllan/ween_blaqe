@@ -17,20 +17,23 @@ class ApartmentLocatoinText extends StatelessWidget {
       child: Padding(
         padding: const EdgeInsets.fromLTRB(0, 0, 10, 10),
         child: Text(
-          "المكان${apartmentsRes.data?[index].city?.name ?? ""
+          "المكان: ${apartmentsRes.data?[index].city?.name ?? ""
 
           // data.
-          }-${apartmentsRes.data?[index].location ?? ""
+          } - ${apartmentsRes.data?[index].location ?? ""
           // .data
 
           }",
           softWrap: true,
-          textDirection: TextDirection.rtl,
+          // textDirection: TextDirection.rtl,
           style: TextStyle(
             fontSize: 16,
             color:
                 themeMode.isLight ? kTextColorLightMode : kTextColorDarkMode,
-            fontFamily: 'IBM',
+            wordSpacing: 1,
+            height: 1.7,
+            fontWeight: FontWeight.w300,
+            
           ),
         ),
       ),

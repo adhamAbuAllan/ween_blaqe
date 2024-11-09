@@ -1,17 +1,20 @@
 import 'dart:convert';
 
 // import 'dart:html';
-import 'dart:io';
 
 import 'package:colorful_safe_area/colorful_safe_area.dart';
+
 // import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
+import 'package:ween_blaqe/constants/coordination.dart';
 import 'package:ween_blaqe/constants/strings.dart';
 import 'package:ween_blaqe/controller/get_controllers.dart';
 import 'package:ween_blaqe/core/utils/funcations/snakbar.dart';
 import 'package:ween_blaqe/core/utils/styles/button.dart';
 import '../api/comments.dart';
+import '../constants/get_it_controller.dart';
+import '../constants/localization.dart';
 import '../constants/nums.dart';
 import '../core/widgets/apartments/create_apartment/container_classes_widget/input_text_class_widget/container_input_text_class_widget.dart';
 
@@ -25,11 +28,11 @@ class SendNoticeForUs extends StatefulWidget {
 class _SendNoticeForUsState extends State<SendNoticeForUs> {
   TextEditingController sendNoticeForUcController = TextEditingController();
 
-  var sendNoticeForUsText = "ما هي ملاحظاتك؟";
-  var sendNoticeForUsHint = "أضف ملاحظاتك هنا";
+  // var sendNoticeForUsText = "ما هي ملاحظاتك؟";
+  // var sendNoticeForUsHint = "أضف ملاحظاتك هنا";
 
   // "أقترح إضافة خاصية البحث عن شركاء حيث يستطيع الطالب البحث عن شريك له يشاركه في الشقة من خلال التطبيق";
-  var messageOfToast = "شكراً لك لقد تم إرسال إقتراحك بنجاح";
+  // var messageOfToast = "شكراً لك لقد تم إرسال إقتراحك بنجاح";
   bool darkModeTest = true;
 
   @override
@@ -59,34 +62,12 @@ class _SendNoticeForUsState extends State<SendNoticeForUs> {
               actions: [
                 Opacity(
                   opacity: !themeMode.isLight ? 0 : 1,
-                  child: Padding(
-                      padding: const EdgeInsets.only(
+                  child: const Padding(
+                      padding: EdgeInsets.only(
                         right: 6,
                         top: 1,
                       ),
-                      child: IconButton(
-                        splashColor: Colors.transparent,
-                        icon: Platform.isAndroid
-                            ? const Icon(
-                                Icons.arrow_back,
-                                color: kTextColorLightMode,
-                                size: 24,
-                              )
-                            : Platform.isIOS
-                                ? const Icon(
-                                    Icons.arrow_back_ios,
-                                    color: kTextColorLightMode,
-                                    size: 24,
-                                  )
-                                : const Icon(
-                                    Icons.arrow_back,
-                                    color: kTextColorDarkMode,
-                                    size: 24,
-                                  ),
-                        onPressed: () {
-                          Navigator.pop(context);
-                        },
-                      )
+                      child: BackButton()
                       // OutlinedButton(
                       //   onPressed: () {
                       //     Navigator.pop(context);
@@ -98,52 +79,78 @@ class _SendNoticeForUsState extends State<SendNoticeForUs> {
                 ),
                 const Expanded(child: Text("")),
                 Padding(
-                  padding: const EdgeInsets.all(8.0),
+                  padding: EdgeInsets.symmetric(
+                    vertical:getIt<AppDimension>().isSmallScreen(context)
+                        ? 10
+                        : 8 ,
+                      horizontal: getIt<AppDimension>().isSmallScreen(context)
+                          ? 10
+                          : 8),
                   child: ElevatedButton(
                     onPressed: () {
                       if (connectivityController.isConnection()) {
                         if (sendNoticeForUcController.text == "" ||
                             sendNoticeForUcController.text.length < 35) {
-                          showSnakBar(context,
-                              "يرجى كتابة سطر واحد مكون من 35 حرف على الاقل");
+                          showSnakBar(
+                              context,
+                              SetLocalization.of(context)!
+                                  .getTranslateValue("min_chars_warning"));
 
                           // toast("يرجى كتابة سطر واحد مكون من 35 حرف على الاقل");
                         } else {
                           // toast(messageOfToast);
                           go(sendNoticeForUcController.text);
 
-                          showSnakBar(context,
-                              "شكرًا لك على ملاحظتك, سيتم أخذها بعين الاعتبار ");
+                          showSnakBar(
+                              context,
+                              SetLocalization.of(context)!.getTranslateValue(
+                                  "feedback_acknowledgement"));
                         }
                       } else {
-                        showSnakBar(context, "انت غير متصل بالانترنت");
+                        showSnakBar(
+                            context,
+                            SetLocalization.of(context)!
+                                .getTranslateValue("no_internet"));
                         return;
                       }
                       // Get.to(ApartmentsOfOwnerAfterAdd());
                     },
                     style: fullButton(),
-                    child: const Text("إرسال"),
+                    child: Text(SetLocalization.of(context)!
+                        .getTranslateValue("submit")),
                   ),
                 ),
               ],
             ),
 
-            body: Column(
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
-              children: [
-                ContainerInputTextClassWidget(
-                  title: sendNoticeForUsText,
+            body: SingleChildScrollView(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  SizedBox(
+                    height: getIt<AppDimension>().isSmallScreen(context)
+                        ? 100
+                        : 250,
+                  ),
+                  ContainerInputTextClassWidget(
+                    title: SetLocalization.of(context)!
+                        .getTranslateValue("feedback"),
+                    helperText: SetLocalization.of(context)!
+                        .getTranslateValue("min_chars_warning"),
 
-                  hintInput: sendNoticeForUsHint,
-                  maxLines: 8,
-                  maxLength: darkModeTest ? null : 300,
+                    hintInput: SetLocalization.of(context)!
+                        .getTranslateValue("add_your_feedback_here"),
+                    maxLines: 8,
+                    maxLength: 255,
 
-                  hintMaxLines: 10,
-                  inputType: TextInputType.text,
-                  controller: sendNoticeForUcController,
-                  // focusNode: discrptionFocusedNode
-                )
-              ],
+                    // hintMaxLines: 10,
+                    inputType: TextInputType.text,
+                    controller: sendNoticeForUcController,
+                    // focusNode: discrptionFocusedNode
+                  )
+                ],
+              ),
             ),
           ),
         ));

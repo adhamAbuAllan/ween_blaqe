@@ -21,6 +21,7 @@ import '../../core/widgets/alirt_class_widget.dart';
 // import '../../core/widgets/dropdown_classes_widgets/dropdown_unviversty.dart';
 import '../../core/widgets/registration/text_field_of_password_class_widget.dart';
 import '../../core/widgets/registration/text_filed_class_widget.dart';
+import '../../sesstion/new_session.dart';
 import '../../sesstion/sesstion_of_user.dart';
 import 'package:http/http.dart' as http;
 import '/api/users.dart';
@@ -68,7 +69,7 @@ class _RegisterState extends State<Register> {
   final Future<SharedPreferences> sp = SharedPreferences.getInstance();
 
   //full name box
-  var fullName = "الاسم الكامل";
+  // var fullName = "الاسم الكامل";
   var textFormFieldFontsSize = 16.0;
   var textFormFieldType = TextInputType.text;
 
@@ -175,7 +176,8 @@ class _RegisterState extends State<Register> {
   String selectedCountryCode = '970'; // Default country code
   final List<String> countryCodes = ['970', '972'];
   bool isLoading = false;
-bool hasCheckedNumberPhone = false;
+  bool hasCheckedNumberPhone = false;
+
   // int idOfCountryCodesList = 1;
 
   @override
@@ -231,12 +233,17 @@ bool hasCheckedNumberPhone = false;
                                 0,
                                 0),
                             child: Text(
-                              SetLocalization.of(context)!.getTranslateValue
-                                ("start_registration"),
+                              SetLocalization.of(context)!
+                                  .getTranslateValue("start_registration"),
                               style: TextStyle(
-                                fontSize: 28.0,
-                                fontFamily: 'IBM',
+                                  fontSize:
+                                      getIt<AppDimension>().isSmallScreen(context)
+                                          ? 22
+                                          : 26,
+                                
                                 inherit: true,
+                                fontWeight: FontWeight.w600,
+
                                 color: themeMode.isLight
                                     ? kTextColorLightMode
                                     : kTextColorDarkMode,
@@ -254,26 +261,35 @@ bool hasCheckedNumberPhone = false;
                             child: Row(
                               children: [
                                 Text(
-                                  "في",
+                                  SetLocalization.of(context)!
+                                      .getTranslateValue("in"),
                                   style: TextStyle(
-                                      fontSize: 28,
-                                      fontFamily: 'IBM',
+                                      fontSize: getIt<AppDimension>()
+                                              .isSmallScreen(context)
+                                          ? 22
+                                          : 26,
+                                      
                                       inherit: true,
+                                      fontWeight: FontWeight.w600,
                                       color: themeMode.isLight
                                           ? kTextColorLightMode
-                                          : kTextColorDarkMode,
-                                      fontWeight: FontWeight.bold),
+                                          : kTextColorDarkMode),
                                 ),
                                 Text(
-                                  " وين بلاقي",
+                                  SetLocalization.of(context)!
+                                      .getTranslateValue("ween_balaqee"),
                                   style: TextStyle(
-                                      fontSize: 28,
-                                      fontFamily: 'IBM',
+                                      fontSize: getIt<AppDimension>()
+                                              .isSmallScreen(context)
+                                          ? 22
+                                          : 26,
+                                      
                                       inherit: true,
                                       color: themeMode.isLight
                                           ? kPrimaryColorLightMode
                                           : kPrimaryColorDarkMode,
-                                      fontWeight: FontWeight.bold),
+                                    fontWeight: FontWeight.w600,
+                                  ),
                                 ),
                               ],
                             ),
@@ -290,7 +306,8 @@ bool hasCheckedNumberPhone = false;
                             TextFieldClassWdiget(
                                 fontSize: textFormFieldFontsSize,
                                 // foucsNode: focusNodeOfFullName,
-                                labelName: SetLocalization.of(context)!.getTranslateValue("full_name"),
+                                labelName: SetLocalization.of(context)!
+                                    .getTranslateValue("full_name"),
                                 autoFocus: true,
                                 controller: nameController,
                                 // onFieldSubmitted: () {
@@ -302,13 +319,17 @@ bool hasCheckedNumberPhone = false;
                               children: [
                                 Padding(
                                   padding:
-                                      const EdgeInsets.fromLTRB(0, 2.5, 0, 10),
+                                      const EdgeInsets.fromLTRB(0, 5, 0, 10),
                                   child: Text(
-                                    "تأكد من مطابقته للاسم الموجود في بطاقة هويتك",
+                                    SetLocalization.of(context)!
+                                        .getTranslateValue(
+                                            "identity_verification"),
                                     style: TextStyle(
-                                      color: Colors.grey.shade600,
-                                      fontFamily: "IBM",
-                                      fontSize: 12,
+                                      color: themeMode.isLight ?
+                                      kTextColorLightMode:kTextColorDarkMode,
+                                      
+                                      fontSize: 14,
+
                                     ),
                                   ),
                                 ),
@@ -384,7 +405,8 @@ bool hasCheckedNumberPhone = false;
                                   child: TextFieldClassWdiget(
                                       fontSize: textFormFieldFontsSize,
                                       controller: phoneController,
-                                      labelName: SetLocalization.of(context)!.getTranslateValue("phone_number"),
+                                      labelName: SetLocalization.of(context)!
+                                          .getTranslateValue("phone_number"),
                                       textInputType: textFormFieldTypePhone),
                                 ),
                               ],
@@ -393,34 +415,46 @@ bool hasCheckedNumberPhone = false;
                             //hint under number phone filed
                             Row(
                               children: [
-                                Padding(
-                                  padding:
-                                      const EdgeInsets.fromLTRB(0, 0, 0, 0),
-                                  child: Text(
-                                    SetLocalization.of(context)!.getTranslateValue("verify_via_whatsapp"),
-                                    // "ستصلك رسالة لتأكيد رقمك ",
-                                    style: TextStyle(
-                                      color: themeMode.isLight
-                                          ? kTextColorLightMode
-                                          : kTextColorDarkMode,
-                                      fontSize: 16,
-                                      fontFamily: 'IBM',
-                                    ),
+                                Text(
+                                  SetLocalization.of(context)!
+                                      .getTranslateValue("verify_via_whatsapp"),
+                                  // "ستصلك رسالة لتأكيد رقمك ",
+                                  style: TextStyle(
+                                    color: themeMode.isLight
+                                        ? kTextColorLightMode
+                                        : kTextColorDarkMode,
+                                    fontSize: getIt<AppDimension>()
+                                            .isSmallScreen(context)
+                                        ? 14
+                                        : 16,
+                                    
                                   ),
                                 ),
                                 // const Expanded(child: Text("")),
                                 TextButton(
+                                    style: ButtonStyle(
+
+                                        padding: WidgetStateProperty.all(
+                                            const EdgeInsets.symmetric
+                                              (horizontal: 5, )),
+                                        alignment: NewSession.get("language", ""
+                                            "ar")
+                                            == "en" ?
+                                        Alignment
+                                            .centerLeft : Alignment.centerRight
+                                    ),
                                     onPressed: () {
                                       hasCheckedNumberPhone = true;
                                       sendMessageToWhatsApp(
                                           selectedCountryCode +
                                               phoneController.text,
-                                          "رقم الهاتف صحيح ، يرجى الرجوع و إتمام عملية "
-                                          "إنشاء حساب جديد"
-                                          " ");
+                                          SetLocalization.of(context)!
+                                              .getTranslateValue(
+                                                  "phone_valid_account_creation"));
                                     },
-                                    child:  Text(
-                                      SetLocalization.of(context)!.getTranslateValue("verify"),
+                                    child: Text(
+                                      SetLocalization.of(context)!
+                                          .getTranslateValue("verify"),
                                       style: const TextStyle(
                                           color: Colors.blue,
                                           fontSize: 16,
@@ -428,12 +462,7 @@ bool hasCheckedNumberPhone = false;
                                     ))
                               ],
                             ),
-                            SizedBox(
-                              height:
-                                  getIt<AppDimension>().isSmallScreen(context)
-                                      ? 25 / 2
-                                      : 25,
-                            ),
+                            const SizedBox(height: 5),
                             //password
                             TextFieldOfPasswordClassWidget(
                               isObscure: isObscure,
@@ -444,30 +473,31 @@ bool hasCheckedNumberPhone = false;
                               },
                               controller: passwordController,
                               inputType: textFormFieldTypePassword,
-                              labelInput: passwordLabelName,
+                              labelInput: SetLocalization.of(context)!
+                                  .getTranslateValue("password"),
                               // onFieldSubmitted: () {
                               //   focusNodeOfSurePassword.requestFocus();
                               // },
                             ),
-                            //sure password
-                            TextFieldOfPasswordClassWidget(
-                              isObscure: isSureObscure,
-                              onObscureChanged: (newValue) {
-                                setState(() {
-                                  isSureObscure = newValue;
-                                });
-                              },
-                              // focusNode: fn,
-                              controller: surePasswordController,
-                              // focusNode: focusNodeOfPassword,
-
-                              inputType: textFormFieldTypePassword,
-                              labelInput: surePasswordLabelName,
-                              // onFieldSubmitted: () {
-                              //   foucsNodeOfType.requestFocus();
-                              // },
-                              // focusNode: focusNodeOfSurePassword,
-                            ),
+                            //sure password field is [optional]
+                            // TextFieldOfPasswordClassWidget(
+                            //   isObscure: isSureObscure,
+                            //   onObscureChanged: (newValue) {
+                            //     setState(() {
+                            //       isSureObscure = newValue;
+                            //     });
+                            //   },
+                            //   // focusNode: fn,
+                            //   controller: surePasswordController,
+                            //   // focusNode: focusNodeOfPassword,
+                            //
+                            //   inputType: textFormFieldTypePassword,
+                            //   labelInput: SetLocalization.of(context)!.getTranslateValue("confirm_password"),
+                            //   // onFieldSubmitted: () {
+                            //   //   foucsNodeOfType.requestFocus();
+                            //   // },
+                            //   // focusNode: focusNodeOfSurePassword,
+                            // ),
                             // SizedBox(
                             //   height:
                             //       getIt<AppDimension>().isSmallScreen(context)
@@ -487,7 +517,7 @@ bool hasCheckedNumberPhone = false;
                             //               ? kTextColorLightMode
                             //               : kTextColorDarkMode,
                             //           fontSize: 16,
-                            //           fontFamily: "IBM",
+                            //           
                             //         ),
                             //       ),
                             //     ),
@@ -565,7 +595,7 @@ bool hasCheckedNumberPhone = false;
                             //         //               ? kTextColorLightMode
                             //         //               : kTextColorDarkMode,
                             //         //           fontSize: 16,
-                            //         //           fontFamily: 'IBM',
+                            //         //           
                             //         //         ),
                             //         //       ),
                             //         //     ),
@@ -596,22 +626,28 @@ bool hasCheckedNumberPhone = false;
                             //                 )),
 
                             Padding(
-                              padding: const EdgeInsets.only(top: 30.0),
+                              padding: EdgeInsets.only(
+                                  top: getIt<AppDimension>()
+                                          .isSmallScreen(context)
+                                      ? 22
+                                      : 30.0),
                               child: GestureDetector(
                                 onTap: () {
                                   myPushName(
                                       context, MyPagesRoutes.privacyPolicy);
                                 },
-                                child: const Opacity(
+                                child: Opacity(
                                   opacity: .5,
                                   child: Text(
-                                    "من خلال تحديد إنشاء حساب ، فإنني أوافق على شروط سياسة "
-                                    "الخصوصية",
-                                    style: TextStyle(
+                                    SetLocalization.of(context)!
+                                        .getTranslateValue("agree_terms"),
+                                    style: const TextStyle(
                                       decoration: TextDecoration.underline,
                                       color: Colors.blue,
                                       fontSize: 14.5,
-                                      fontFamily: 'IBM',
+                                      
+                                      fontWeight: FontWeight.w600,
+
                                     ),
                                   ),
                                 ),
@@ -628,77 +664,104 @@ bool hasCheckedNumberPhone = false;
                                         : 55,
                                 child: ElevatedButton(
                                     onPressed: () async {
+                                      String incorrectData = SetLocalization.of(
+                                              context)!
+                                          .getTranslateValue("incorrect_data");
+                                      String fillAllFields = SetLocalization.of(
+                                              context)!
+                                          .getTranslateValue("fill_all_fields");
+                                      // String passwordMismatch =
+                                      //     SetLocalization.of(context)!
+                                      //         .getTranslateValue(
+                                      //             "password_mismatch");//
+                                      //             enable it if [sure password field] enabled
+                                      // String enterMatchingPasswords =
+                                      //     SetLocalization.of(context)!
+                                      //         .getTranslateValue(
+                                      //             "enter_matching_password
+                                      //             s"); enable it if [sure password field] enabled
+                                      String phoneVerification =
+                                          SetLocalization.of(context)!
+                                              .getTranslateValue(
+                                                  "phone_verification");
+                                      String unverifiedPhone =
+                                          SetLocalization.of(context)!
+                                              .getTranslateValue(
+                                                  "unverified_phone");
+                                      String ok = SetLocalization.of(context)!
+                                          .getTranslateValue("ok");
+
                                       // isLoading = true;
                                       if (nameController.text.isEmpty ||
-                                          phoneController.text.isEmpty ||
-                                          passwordController.text.isEmpty ||
-                                          surePasswordController.text.isEmpty) {
+                                              phoneController.text.isEmpty ||
+                                              passwordController.text.isEmpty
+                                          //   ||  surePasswordController.text.isEmpty//[optional]
+                                          ) {
                                         setState(() {
                                           isLoading = false;
-                                          NormalAlert.show(
-                                              context,
-                                              "بيانات خاطئة",
-                                              "برجاء التاكد من تعبئة جميع الحقول",
-                                              "حسنًا");
+                                          NormalAlert.show(context,
+                                              incorrectData, fillAllFields, ok);
                                         });
                                         return;
                                       }
                                       await checkPhoneNumber(
                                           phoneController.text);
-                                      if(isPhoneNumberIsAlreadyTaken){
+                                      if (isPhoneNumberIsAlreadyTaken) {
                                         return;
                                       }
-                                      phoneController.text =
-                                      removePlusSymbol(
+                                      phoneController.text = removePlusSymbol(
                                           phoneController.text);
                                       // if(){};
-                                        if (passwordController.text !=
-                                            surePasswordController.text) {
-                                          NormalAlert.show(
-                                              // ignore: use_build_context_synchronously
-                                              context,
-                                              "كلمة المرور غير متطابقة",
-                                              "برجاء إدخال كلمة مرور متطابقة في كلا الحقلين",
-                                              "حسنًا");
-                                          return;
-                                        }
-                                        if(!hasCheckedNumberPhone){
-                                          NormalAlert.show(
-                                              // ignore: use_build_context_synchronously
-                                              context,
-                                              "يرجى التحقق من رقم الهاتف",
-                                              "لم تقم بالتحقق من رقم هاتفك ",
-                                              "حسنًا");
-                                          return;
-                                        }
-                                        // if(isLoading){
-                                        //   return;
+                                      /*
+                                      check matching passwords is [optional]
+                                       */
+                                      // if (passwordController.text !=
+                                      //     surePasswordController.text) {
+                                      //   NormalAlert.show(
+                                      //       // ignore: use_build_context_synchronously
+                                      //       context,
+                                      //       passwordMismatch,
+                                      //       enterMatchingPasswords,
+                                      //       ok);
+                                      //   return;
+                                      // }
+                                      if (!hasCheckedNumberPhone) {
+                                        NormalAlert.show(
+                                            // ignore: use_build_context_synchronously
+                                            context,
+                                            phoneVerification,
+                                            unverifiedPhone,
+                                            ok);
+                                        return;
+                                      }
+                                      // if(isLoading){
+                                      //   return;
+                                      // }
+                                      await go(
+                                        nameController.text,
+                                        selectedCountryCode +
+                                            phoneController.text,
+                                        passwordController.text,
+
+                                        //     (c){{
+                                        // typeId = c.id;
+
                                         // }
-                                       await go(
-                                          nameController.text,
-                                          selectedCountryCode +
-                                              phoneController.text,
-                                          passwordController.text,
+                                        //     },
+                                        //   typeOfUserItems[3]
 
-                                          //     (c){{
-                                          // typeId = c.id;
+                                        // typeId as TypeOfUser,universityId as University,
 
-                                          // }
-                                          //     },
-                                          //   typeOfUserItems[3]
+                                        // firstItemOfType.name,
+                                        typeId,
+                                        universityId,
 
-                                          // typeId as TypeOfUser,universityId as University,
+                                        // firstItemOfGender!,
+                                      );
 
-                                          // firstItemOfType.name,
-                                          typeId,
-                                          universityId,
-
-                                          // firstItemOfGender!,
-                                        );
-
-                                        // if(typeOfUserItems!=null){
-                                        //   print(typeOfUserItems);
-                                        // }
+                                      // if(typeOfUserItems!=null){
+                                      //   print(typeOfUserItems);
+                                      // }
                                       debugPrint("type_id --$typeId");
                                     },
                                     style: fullButton(),
@@ -706,7 +769,9 @@ bool hasCheckedNumberPhone = false;
                                         ? const CircularProgressIndicator(
                                             color: Colors.white,
                                           )
-                                        : const Text("إنشاء حساب")),
+                                        : Text(SetLocalization.of(context)!
+                                            .getTranslateValue(
+                                                "create_account"))),
                               ),
                             ),
                           ],
@@ -757,7 +822,6 @@ bool hasCheckedNumberPhone = false;
         isPhoneNumberIsAlreadyTaken = true;
         return;
       });
-
     } else if (response.statusCode == 404) {
       // Phone number does not exist
       final data = await jsonDecode(response.body);

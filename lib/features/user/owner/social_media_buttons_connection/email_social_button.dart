@@ -19,9 +19,7 @@ class EmailSocialButton extends StatelessWidget {
 
       return IntrinsicWidth(
         child: SocialMediaConnectionButton(
-            labelUserName:
-            " البريد الالكتروني "
-                "الخاص بك",
+            labelUserName: SetLocalization.of(context)!.getTranslateValue("your_email"),
             socialDialogName: SetLocalization.of(context)!.getTranslateValue("gmail"),
             isActive:
 NewSession.get("email", "user_email") != "user_email"

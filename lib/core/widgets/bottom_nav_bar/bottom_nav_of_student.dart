@@ -46,7 +46,7 @@ class _BottomNavigationBarOfStudentState
     return BottomNavigationBar(
       selectedLabelStyle: const TextStyle(fontFamily: 'IBM'),
       unselectedLabelStyle: const TextStyle(
-        fontFamily: 'IBM',
+        
       ),
 
       // selectedIconTheme: const IconThemeData(opacity: 1),
@@ -104,9 +104,9 @@ class _BottomNavigationBarOfStudentState
       items:  [
         //home item
         BottomNavigationBarItem(
-            icon: Icon(Icons.home_outlined),
+            icon: const Icon(Icons.home_outlined),
             label: SetLocalization.of(context)!.getTranslateValue("home"),
-            activeIcon: Icon(Icons.home)),
+            activeIcon: const Icon(Icons.home)),
         //notification item
         // BottomNavigationBarItem(
         //   icon: Icon(
@@ -121,11 +121,11 @@ class _BottomNavigationBarOfStudentState
         // ),
         //orders item
         BottomNavigationBarItem(
-          icon: Icon(
+          icon: const Icon(
             Icons.home_repair_service_outlined,
           ),
           label: SetLocalization.of(context)!.getTranslateValue("orders"),
-          activeIcon: Icon(Icons.home_repair_service),
+          activeIcon: const Icon(Icons.home_repair_service),
         ),
         //bookmarks item
         // BottomNavigationBarItem(
@@ -134,9 +134,9 @@ class _BottomNavigationBarOfStudentState
         // ),
         //account item
         BottomNavigationBarItem(
-            icon: Icon(Icons.person_2_outlined),
+            icon: const Icon(Icons.person_2_outlined),
             label: SetLocalization.of(context)!.getTranslateValue("my_account"),
-            activeIcon: Icon(Icons.person_2)),
+            activeIcon: const Icon(Icons.person_2)),
       ],
     );
   }

@@ -34,7 +34,7 @@ class _AddAdvantageListTileState extends State<AddAdvantageListTile> {
           leading: const Icon(Icons.ac_unit),
           title: Text(entry.advName?? "",
               style: TextStyle(
-                  fontFamily: 'IBM',
+                  
                   fontSize: 16,
                   color: themeMode.isLight
                       ? kTextColorLightMode
@@ -77,7 +77,7 @@ class _AddAdvantageListTileState extends State<AddAdvantageListTile> {
             child: ListTile(
               title: Text(entry.advName,
                   style: TextStyle(
-                      fontFamily: 'IBM',
+                      
                       fontSize: 16,
                       color: themeMode.isDark
                           ? kTextColorLightMode

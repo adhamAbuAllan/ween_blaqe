@@ -40,7 +40,7 @@ class _CitiesBarState extends State<CitiesBar> {
               ? const CitiesBarSkeleton()
               : Row(
                   children: cityModelController.cities
-                      .map((c) => city(c, () async {
+                      .map((c) => cityButton(context: context,c, () async {
                             setState(() {
                               cityModelController.isLoading.value = true;
                             });
@@ -63,7 +63,7 @@ class _CitiesBarState extends State<CitiesBar> {
                                   ? fullButton().copyWith(
                                 foregroundColor: WidgetStateProperty.all<Color>(Colors.white),
                               )
-                      : outlinedButton(themeMode:themeMode)))
+                      : outlinedButton(themeMode:themeMode,context: context)))
                       .toList()),
         );
       }),

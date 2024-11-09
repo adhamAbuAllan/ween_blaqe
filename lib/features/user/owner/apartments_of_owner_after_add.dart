@@ -38,7 +38,7 @@
 //                     "شققك",
 //                     style: TextStyle(
 //                       fontSize: 28.0,
-//                       fontFamily: 'IBM',
+//                       
 //                       inherit: true,
 //                     ),
 //                   ),
@@ -56,7 +56,7 @@
 //
 //                     style: TextStyle(
 //                       color: Colors.grey.shade600,
-//                       fontFamily: 'IBM',
+//                       
 //                       fontSize: 14,
 //                     ),
 //                   ),

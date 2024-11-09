@@ -171,7 +171,7 @@
 //                         NewSession.get("name", ""),
 //                         style: const TextStyle(
 //                             fontSize: 16,
-//                             fontFamily: 'IBM',
+//                             
 //                             color: Colors.black87),
 //                       ),
 //                       const Padding(
@@ -182,7 +182,7 @@
 //                           "عرض الملف الشخصي",
 //                           style: TextStyle(
 //                               fontSize: 12,
-//                               fontFamily: 'IBM',
+//                               
 //                               color: Colors.grey),
 //                         ),
 //                       ),
@@ -216,7 +216,7 @@
 //                 "الاشعارات",
 //                 style: TextStyle(
 //                   fontSize: 18,
-//                   fontFamily: 'IBM',
+//                   
 //                 ),
 //               ),
 //               const Expanded(

@@ -5,6 +5,9 @@ import 'package:ween_blaqe/constants/nums.dart';
 
 import '../../../api/cities.dart';
 import '../../../api/type_of_apartment.dart';
+import '../../../constants/coordination.dart';
+import '../../../constants/get_it_controller.dart';
+import '../../../constants/localization.dart';
 
 class DropdownButtonClassWidget extends StatefulWidget {
   final String firstItem;
@@ -37,13 +40,13 @@ class _DropdownButtonClassWidget extends State<DropdownButtonClassWidget> {
   @override
   Widget build(BuildContext context) {
     return Padding(
-        padding: const EdgeInsets.fromLTRB(10, 0, 10, 0),
+        padding: const EdgeInsets.fromLTRB(20, 0, 20, 10),
         child: FutureBuilder<List<dynamic>?>(
             future: widget.wholeListApi,
             builder: (context, snapshot) {
               if (snapshot.connectionState == ConnectionState.waiting) {
-                return const Text("جاري التحميل..",
-                    style: TextStyle(
+                return  Text(SetLocalization.of(context)!.getTranslateValue("loading..."),
+                    style: const TextStyle(
                         fontSize: 12, color: Colors.white, fontFamily: 'IBM'));
               } else if (snapshot.hasError) {
                 return Text('Error: ${snapshot.error}');
@@ -52,6 +55,10 @@ class _DropdownButtonClassWidget extends State<DropdownButtonClassWidget> {
 
                 return DropdownButtonFormField<dynamic>(
                   decoration: InputDecoration(
+                    contentPadding: EdgeInsets.symmetric(
+                        vertical:
+                        getIt<AppDimension>().isSmallScreen(context) ? 20 / 2 : 20,
+                        horizontal: 12),
                     enabledBorder: OutlineInputBorder(
                       borderSide: BorderSide(
                         width: 1,
@@ -91,15 +98,17 @@ class _DropdownButtonClassWidget extends State<DropdownButtonClassWidget> {
                     }
                     return DropdownMenuItem<dynamic>(
                       value: item,
+
                       child: FittedBox(
                         child: Text(
                           itemName,
                           style: TextStyle(
-                            // fontSize: 14,
+                                      fontSize: getIt<AppDimension>().isSmallScreen(context)
+                              ?15:16,
                             color: themeMode.isLight
                                 ?kTextColorLightMode
                                 : kTextColorDarkMode,
-                            fontFamily: 'IBM',
+                            
                           ),
                         ),
                       ),

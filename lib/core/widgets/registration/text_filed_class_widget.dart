@@ -39,7 +39,7 @@ class TextFieldClassWdiget extends StatelessWidget {
           // focusNode: foucsNode,
           keyboardType: textInputType,
           style: TextStyle(
-              fontFamily: 'IBM',
+              
               color:
                   themeMode.isLight ? kTextColorLightMode : kTextColorDarkMode),
 
@@ -51,7 +51,7 @@ class TextFieldClassWdiget extends StatelessWidget {
                   horizontal: 10),
               labelText: labelName,
               labelStyle: TextStyle(
-                  color: Colors.grey, fontFamily: 'IBM', fontSize: fontSize),
+                  color: Colors.grey,  fontSize: fontSize),
               // alignLabelWithHint: true,
               hintStyle: const TextStyle(
                 color: Colors.grey,

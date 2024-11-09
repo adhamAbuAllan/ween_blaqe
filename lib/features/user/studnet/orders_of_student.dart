@@ -7,8 +7,10 @@ import 'package:ween_blaqe/constants/nums.dart';
 import 'package:ween_blaqe/core/widgets/subtitle_class_widget.dart';
 import 'package:ween_blaqe/core/widgets/title_class_widget.dart';
 
-// import '../../../constants/strings.dart';
+import '../../../constants/coordination.dart';
+import '../../../constants/get_it_controller.dart';
 
+// import '../../../constants/strings.dart';
 
 // import '../../../core/widgets/orders_classs_widget/container_order_student_class_widget.dart';
 
@@ -47,37 +49,57 @@ class _OrdersOfStudentState extends State<OrdersOfStudent> {
         ),
         child: SingleChildScrollView(
           child: Column(
-            children: [ 
-               TitleClassWidget(title: SetLocalization.of(context)!.getTranslateValue("bookings")),
-               SubtitleCalssWidget(subtitle: SetLocalization.of(context)!.getTranslateValue("booking_list")),
+            children: [
+              SizedBox(height: getIt<AppDimension>().isSmallScreen(context) ?
+              30 : 50),
+              TitleClassWidget(
+                  title: SetLocalization.of(context)!
+                      .getTranslateValue("bookings")),
+              SubtitleWidget(
+                  subtitle: SetLocalization.of(context)!
+                      .getTranslateValue("booking_list")),
               const SizedBox(
                 height: 25,
               ),
               Padding(
-                padding: const EdgeInsets.symmetric(vertical: 25),
+                padding: EdgeInsets.symmetric(
+                    vertical:
+                    getIt<AppDimension>().isSmallScreen(context) ? 0 : 25),
                 child: Image.asset(
-                  "assets/images/mobile-development.png",
-                  width: 450 / 1.3,
-                  height: 420 / 1.3,
-                  color: themeMode.isLight
-                      ? kTextColorLightMode
-                      : kTextColorDarkMode,
+                    "assets/images/mobile-development.png",
+                    height: getIt<AppDimension>().isSmallScreen(context) ?
+                    130 * 2 :
+                    (420 / 1.1),
+                    width: getIt<AppDimension>().isSmallScreen(context) ?
+                    130 * 2 : (450 / 1.1),
+
+                    color: themeMode.isLight
+                    ? kTextColorLightMode
+                        : kTextColorDarkMode,
                 ),
               ),
               Padding(
-                padding: const EdgeInsets.only(
-                  top: 15.0,
+                padding: EdgeInsets.symmetric(
+                  vertical: 15.0,
+                  horizontal: getIt<AppDimension>().isSmallScreen(context) ?
+                  25: 0
+
                 ),
                 child: Text(
-                  SetLocalization.of(context)!.getTranslateValue("booking_feature_in_development"),
+                  SetLocalization.of(context)!
+                      .getTranslateValue("booking_advantage_in_development"),
                   overflow: TextOverflow.ellipsis,
                   style: TextStyle(
                       fontSize: 16,
-                      fontFamily: 'IBM',
+
                       color: themeMode.isLight
                           ? kTextColorLightMode
                           : kTextColorDarkMode),
+                softWrap: true,
+
+                  maxLines: 2,
                 ),
+
               )
 
               // (show == false
@@ -92,7 +114,7 @@ class _OrdersOfStudentState extends State<OrdersOfStudent> {
               //               },
               //               child: Text("لم تقم بحجز أي شقة حتى الان",
               //                   style: TextStyle(
-              //                     fontFamily: "IBM",
+              //
               //                     color: Colors.grey.shade800,
               //                     fontSize: 16,
               //                   )),

@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:colorful_safe_area/colorful_safe_area.dart';
 import 'package:flutter/material.dart';
+
 // import 'package:get/get_state_manager/src/rx_flutter/rx_obx_widget.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
@@ -11,6 +12,7 @@ import 'package:ween_blaqe/constants/strings.dart';
 
 // import 'package:ween_blaqe/core/utils/styles/button.dart';
 import 'package:ween_blaqe/core/widgets/apartments/create_apartment/container_classes_widget/input_text_class_widget/container_input_text_class_widget.dart';
+import 'package:ween_blaqe/sesstion/new_session.dart';
 // import 'package:ween_blaqe/core/utils/styles/text_style/aline_style.dart';
 
 // import '../api/users.dart';
@@ -119,8 +121,13 @@ class _UpdateUserDataState extends State<UpdateUserData> {
                       return Text(
                         snapshot.data ?? "",
                         // Display the stream value as the subtitle
-                        style:
-                            const TextStyle(fontSize: 14, color: Colors.white),
+                        style: TextStyle(
+                            fontSize:
+                                getIt<AppDimension>().isSmallScreen(context)
+                                    ? 12
+                                    : 14,
+                            color: Colors.white,
+                            fontFamily: "IBM"),
                       );
                     } else {
                       return const Text(""); // Hide the subtitle if
@@ -132,7 +139,10 @@ class _UpdateUserDataState extends State<UpdateUserData> {
             ),
             actions: [
               Padding(
-                  padding: const EdgeInsets.only(left: 10),
+                  padding: EdgeInsets.symmetric(
+                      horizontal: getIt<AppDimension>().isSmallScreen(context)
+                          ? 10
+                          : 8),
                   child: IconButton(
                     onPressed: () => updateUser(),
                     icon: const Icon(
@@ -156,7 +166,7 @@ class _UpdateUserDataState extends State<UpdateUserData> {
                       children: [
                         Padding(
                           padding: EdgeInsets.fromLTRB(
-                              0,
+                              20,
                               getIt<AppDimension>().isSmallScreen(context)
                                   ? 50 / 1.6
                                   : 50,
@@ -166,8 +176,11 @@ class _UpdateUserDataState extends State<UpdateUserData> {
                             SetLocalization.of(context)!
                                 .getTranslateValue("edit_my_data"),
                             style: TextStyle(
-                              fontSize: 26.0,
-                              fontFamily: 'IBM',
+                              fontSize:
+                                  getIt<AppDimension>().isSmallScreen(context)
+                                      ? 22
+                                      : 26,
+                              fontWeight: FontWeight.w600,
                               inherit: true,
                               color: themeMode.isLight
                                   ? kTextColorLightMode
@@ -187,7 +200,7 @@ class _UpdateUserDataState extends State<UpdateUserData> {
                     //change name container
                     ContainerInputTextClassWidget(
                       title: SetLocalization.of(context)!
-                          .getTranslateValue("name"),
+                          .getTranslateValue("full_name"),
                       hintInput: "",
                       inputType: TextInputType.name,
                       controller: _nameController,
@@ -217,7 +230,7 @@ class _UpdateUserDataState extends State<UpdateUserData> {
                             children: [
                               Padding(
                                 padding:
-                                    const EdgeInsets.fromLTRB(0, 10, 10, 10),
+                                    const EdgeInsets.fromLTRB(20, 10, 20, 10),
                                 child: Text(
                                   SetLocalization.of(context)!
                                       .getTranslateValue("phone_number"),
@@ -226,14 +239,15 @@ class _UpdateUserDataState extends State<UpdateUserData> {
                                         ? kTextColorLightMode
                                         : kTextColorDarkMode,
                                     fontSize: 18,
-                                    fontFamily: 'IBM',
+                                    fontWeight: FontWeight.w500,
                                   ),
                                 ),
                               ),
                             ],
                           ),
                           Padding(
-                            padding: const EdgeInsets.symmetric(horizontal: 10),
+                            padding: const EdgeInsets.symmetric(
+                                horizontal: 20, vertical: 0),
                             child: Row(
                               children: [
                                 Expanded(
@@ -292,7 +306,10 @@ class _UpdateUserDataState extends State<UpdateUserData> {
                                   width: 10,
                                 ),
                                 Expanded(
-                                  flex: 2,
+                                  flex: getIt<AppDimension>()
+                                          .isSmallScreen(context)
+                                      ? 1
+                                      : 2,
                                   child: TextFieldClassWdiget(
                                       fontSize: 16,
                                       controller: _phoneController,
@@ -303,45 +320,57 @@ class _UpdateUserDataState extends State<UpdateUserData> {
                               ],
                             ),
                           ),
+                          Row(
+                            children: [
+                              const SizedBox(
+                                width: 20,
+                              ),
+                              Text(
+                                SetLocalization.of(context)!
+                                    .getTranslateValue("verify_via_whatsapp"),
+                                style: TextStyle(
+                                  color: themeMode.isLight
+                                      ? kTextColorLightMode
+                                      : kTextColorDarkMode,
+                                  fontSize: 16,
+                                  fontWeight: FontWeight.w500,
+                                ),
+                              ),
+                              // const Expanded(child: Text("")),
+                              TextButton(
+                                  style: ButtonStyle(
+                                      padding: WidgetStateProperty.all(
+                                          const EdgeInsets.symmetric(
+                                              horizontal: 5)),
+                                      alignment: NewSession.get(
+                                                  "language",
+                                                  ""
+                                                      "ar") ==
+                                              "en"
+                                          ? Alignment.centerLeft
+                                          : Alignment.centerRight),
+                                  onPressed: () {
+                                    sendMessageToWhatsApp(
+                                        selectedCountryCode +
+                                            _phoneController.text,
+                                        "رقم الهاتف صحيح ، يرجى الرجوع و إتمام عملية "
+                                        "إنشاء حساب جديد"
+                                        " ");
+                                  },
+                                  child: Text(
+                                    SetLocalization.of(context)!
+                                        .getTranslateValue("verify"),
+                                    style: const TextStyle(
+                                        color: Colors.blue,
+                                        fontSize: 16,
+                                        fontWeight: FontWeight.w500),
+                                  )),
+                            ],
+                          )
                         ],
                       ),
                     ),
-                    Row(
-                      children: [
-                        Padding(
-                          padding: const EdgeInsets.fromLTRB(0, 0, 10, 0),
-                          child: Text(
-                            SetLocalization.of(context)!
-                                .getTranslateValue("verify_via_whatsapp"),
-                            // "ستصلك رسالة لتأكيد رقمك ",
-                            style: TextStyle(
-                              color: themeMode.isLight
-                                  ? kTextColorLightMode
-                                  : kTextColorDarkMode,
-                              fontSize: 16,
-                              fontFamily: 'IBM',
-                            ),
-                          ),
-                        ),
-                        // const Expanded(child: Text("")),
-                        TextButton(
-                            onPressed: () {
-                              sendMessageToWhatsApp(
-                                  selectedCountryCode + _phoneController.text,
-                                  "رقم الهاتف صحيح ، يرجى الرجوع و إتمام عملية "
-                                  "إنشاء حساب جديد"
-                                  " ");
-                            },
-                            child: Text(
-                              SetLocalization.of(context)!
-                                  .getTranslateValue("verify"),
-                              style: const TextStyle(
-                                  color: Colors.blue,
-                                  fontSize: 16,
-                                  fontFamily: 'IBM'),
-                            ))
-                      ],
-                    ),
+
                     // change password container
                     Container(
                       margin: const EdgeInsets.fromLTRB(10, 20, 10, 50),
@@ -360,7 +389,7 @@ class _UpdateUserDataState extends State<UpdateUserData> {
                             children: [
                               Padding(
                                 padding:
-                                    const EdgeInsets.fromLTRB(0, 0, 10, 10),
+                                    const EdgeInsets.fromLTRB(20, 0, 20, 10),
                                 child: Text(
                                   SetLocalization.of(context)!
                                       .getTranslateValue("change_password"),
@@ -369,7 +398,7 @@ class _UpdateUserDataState extends State<UpdateUserData> {
                                         ? kTextColorLightMode
                                         : kTextColorDarkMode,
                                     fontSize: 18,
-                                    fontFamily: 'IBM',
+                                    fontWeight: FontWeight.w500,
                                   ),
                                 ),
                               ),
@@ -377,7 +406,7 @@ class _UpdateUserDataState extends State<UpdateUserData> {
                           ),
                           //old password
                           Padding(
-                            padding: const EdgeInsets.only(right: 10),
+                            padding: const EdgeInsets.only(right: 20, left: 10),
                             child: Column(
                               children: [
                                 //old password
@@ -385,11 +414,14 @@ class _UpdateUserDataState extends State<UpdateUserData> {
                                   validator: (value) {
                                     if (value == newPasswordController.text &&
                                         value?.isNotEmpty == true) {
-                                      return "لا يمكن ان تتشابه كلمة المرور "
-                                          "القديمة و الجديدة";
+                                      return SetLocalization.of(context)!
+                                          .getTranslateValue(
+                                              "passwords_do_not_match");
                                     }
                                     if (errorStatusCode == 400) {
-                                      return " كلمة المرور خاطئة";
+                                      return SetLocalization.of(context)!
+                                          .getTranslateValue(
+                                              "incorrect_password");
                                     } else {
                                       return null;
                                     }
@@ -402,7 +434,8 @@ class _UpdateUserDataState extends State<UpdateUserData> {
                                   },
                                   controller: oldPasswordController,
                                   inputType: textFormFieldTypePassword,
-                                  labelInput: SetLocalization.of(context)!.getTranslateValue("old_password"),
+                                  labelInput: SetLocalization.of(context)!
+                                      .getTranslateValue("old_password"),
                                 ),
                                 //new password
                                 TextFieldOfPasswordClassWidget(
@@ -414,15 +447,20 @@ class _UpdateUserDataState extends State<UpdateUserData> {
                                   },
                                   controller: newPasswordController,
                                   inputType: textFormFieldTypePassword,
-                                  labelInput: SetLocalization.of(context)!.getTranslateValue("new_password"),
+                                  labelInput: SetLocalization.of(context)!
+                                      .getTranslateValue("new_password"),
                                   // onFieldSubmitted: () {
                                   //   focusNodeOfSurePassword.requestFocus();
                                   // },
                                   validator: (value) {
                                     if (errorStatusCode == 422) {
-                                      return " كلمة المرور الجديدة قصيرة";
+                                      return SetLocalization.of(context)!
+                                          .getTranslateValue(
+                                              "password_too_short");
                                     } else if (errorStatusCode == 401) {
-                                      return "كلمة المرور غير متطابقة";
+                                      return SetLocalization.of(context)!
+                                          .getTranslateValue(
+                                              "password_mismatch");
                                     } else {
                                       return null;
                                     }
@@ -432,9 +470,13 @@ class _UpdateUserDataState extends State<UpdateUserData> {
                                 TextFieldOfPasswordClassWidget(
                                   validator: (value) {
                                     if (errorStatusCode == 422) {
-                                      return " كلمة المرور الجديدة قصيرة";
+                                      return SetLocalization.of(context)!
+                                          .getTranslateValue(
+                                              "password_too_short");
                                     } else if (errorStatusCode == 401) {
-                                      return "كلمة المرور غير متطابقة";
+                                      return SetLocalization.of(context)!
+                                          .getTranslateValue(
+                                              "password_mismatch");
                                     } else {
                                       return null;
                                     }
@@ -450,7 +492,9 @@ class _UpdateUserDataState extends State<UpdateUserData> {
                                   // focusNode: focusNodeOfPassword,
 
                                   inputType: textFormFieldTypePassword,
-                                  labelInput: SetLocalization.of(context)!.getTranslateValue("confirm_new_password"),
+                                  labelInput: SetLocalization.of(context)!
+                                      .getTranslateValue(
+                                          "confirm_new_password"),
                                 ),
                               ],
                             ),
@@ -495,7 +539,8 @@ class _UpdateUserDataState extends State<UpdateUserData> {
     });
     setState(() {
       dataHasChanged == false
-          ? subtitleStreamController.add(SetLocalization.of(context)!.getTranslateValue("no_changes_made_yet"))
+          ? subtitleStreamController.add(SetLocalization.of(context)!
+              .getTranslateValue("no_changes_made_yet"))
           : null;
     });
     dataHasChanged = false;
@@ -506,7 +551,8 @@ class _UpdateUserDataState extends State<UpdateUserData> {
     debugPrint("ownerId : $ownerId");
     if (completePhoneNumber != (await sp).get("phone") ||
         _nameController.text != (await sp).get("name")) {
-      subtitleStreamController.add(SetLocalization.of(context)!.getTranslateValue("saving_changes"));
+      subtitleStreamController.add(
+          SetLocalization.of(context)!.getTranslateValue("saving_changes"));
       //remove name in sp
       (await sp).remove("name");
       //remove phone in sp
@@ -529,7 +575,8 @@ class _UpdateUserDataState extends State<UpdateUserData> {
 
         (await sp).setString("name", _nameController.text);
 
-        subtitleStreamController.add("تم حفظ التغييرات"); //
+        subtitleStreamController.add(
+            SetLocalization.of(context)!.getTranslateValue("changes_saved")); //
         debugPrint('User updated successfully');
 
         dataHasChanged = true;
@@ -559,7 +606,8 @@ class _UpdateUserDataState extends State<UpdateUserData> {
           return;
         }
 
-        subtitleStreamController.add("جاري حفظ التغييرات...");
+        subtitleStreamController.add(SetLocalization.of(context)!
+            .getTranslateValue("saving_changes..."));
         // sure password and new password controllers is same --> make action
         final url = Uri.parse(ServerWeenBalaqee.changePassword);
         var token = (await sp).get("token");
@@ -582,7 +630,8 @@ class _UpdateUserDataState extends State<UpdateUserData> {
 
         if (response.statusCode == 200) {
           // debugPrint("sueccess");
-          subtitleStreamController.add("تم حفظ التغييرات"); //
+          subtitleStreamController.add(SetLocalization.of(context)!
+              .getTranslateValue("changes_saved")); //
           dataHasChanged = true;
           setState(() {
             errorStatusCode = 0;

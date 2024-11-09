@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../api/apartments_api/one_apartment.dart';
+import '../constants/coordination.dart';
+import '../constants/get_it_controller.dart';
 import '../constants/localization.dart';
 import '../constants/nums.dart';
 import '../controller/get_controllers.dart';
@@ -35,7 +37,7 @@ class _BookmarkApartmentState extends State<BookmarkApartment> {
   OneApartment getApartmentsFromBookmarks(List<int> bookmarks) {
     OneApartment result = OneApartment(data: []);
     final List<DataOfOneApartment> apartments =
-        apartmentModelController.apartment.data ?? [];
+        apartmentModelController.apartmentsList.data ?? [];
 
     for (int apartmentId in bookmarks) {
       final apartment = apartments.firstWhereOrNull((a) => a.id == apartmentId);
@@ -68,7 +70,12 @@ class _BookmarkApartmentState extends State<BookmarkApartment> {
             themeMode.isLight ? kPrimaryColorLightMode : kPrimaryColorDarkMode,
         title: Text(SetLocalization.of(context)!.getTranslateValue(
           "favorites",
-        )),
+        ),style: TextStyle(
+            
+            fontSize: getIt<AppDimension>().isSmallScreen(context) ? 16 :
+            null,
+            color:
+            themeMode.isLight ? kTextColorLightMode : kTextColorDarkMode)),
       ),
       body: apartmentsBookmarked.data?.isEmpty ?? true
           ?  EmptyScreenClassWidget(

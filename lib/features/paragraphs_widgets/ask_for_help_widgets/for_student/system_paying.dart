@@ -2,6 +2,7 @@ import 'package:colorful_safe_area/colorful_safe_area.dart';
 import 'package:flutter/material.dart';
 import 'package:ween_blaqe/core/utils/styles/text_style/aline_style.dart';
 
+import '../../../../constants/localization.dart';
 import '../../../../constants/nums.dart';
 import '../../../../core/widgets/buttons/lines_buttons/line_buttons.dart';
 import 'package:ween_blaqe/constants/strings.dart';
@@ -14,17 +15,23 @@ class SystemPaying extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ColorfulSafeArea(
-      bottomColor: Colors.transparent ,
+      bottomColor: Colors.transparent,
       color: themeMode.isLight ? kPrimaryColorLightMode : kPrimaryColorDarkMode,
       child: Scaffold(
-        backgroundColor: themeMode.isLight ? kBackgroundAppColorLightMode : kBackgroundAppColorDarkMode,
-
+        backgroundColor: themeMode.isLight
+            ? kBackgroundAppColorLightMode
+            : kBackgroundAppColorDarkMode,
         appBar: AppBar(
-          title: const Text(
-            'الدفع',
-            style: TextStyle(fontFamily: 'IBM'),
+          title: Text(
+            SetLocalization.of(context)!.getTranslateValue("payment"),
+            style:
+                const TextStyle(
+                    fontWeight: FontWeight.w600
+                ),
           ),
-          backgroundColor: themeMode.isLight ? kPrimaryColorLightMode : kPrimaryColorDarkMode,
+          backgroundColor: themeMode.isLight
+              ? kPrimaryColorLightMode
+              : kPrimaryColorDarkMode,
         ),
         body: Column(
           children: [
@@ -35,7 +42,9 @@ class SystemPaying extends StatelessWidget {
                   margin: const EdgeInsets.fromLTRB(10, 0, 10, 0),
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(7),
-                    color: themeMode.isLight ? kContainerColorLightMode : kContainerColorDarkMode,
+                    color: themeMode.isLight
+                        ? kContainerColorLightMode
+                        : kContainerColorDarkMode,
                   ),
                   child: Column(
                     //cancel
@@ -43,11 +52,17 @@ class SystemPaying extends StatelessWidget {
                       askForHelpButton(() {
                         myPushName(
                             context, MyPagesRoutes.whatIsSystemPayingAllow);
-                      }, "ما هي طرق الدفع المقبولة؟"),
+                      },
+                          SetLocalization.of(context)!
+                              .getTranslateValue("accepted_payment_methods"),
+                          context),
                       aline,
                       askForHelpButton(() {
                         myPushName(context, MyPagesRoutes.couldIPayByDeposit);
-                      }, "هل يمكنني دفع عربون؟"),
+                      },
+                          SetLocalization.of(context)!
+                              .getTranslateValue("can_i_pay_deposit"),
+                          context),
                     ],
                   )),
             ),
@@ -65,62 +80,71 @@ class WhatIsSystemPayingAllow extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ColorfulSafeArea(
-      bottomColor: Colors.transparent ,
+      bottomColor: Colors.transparent,
       color: themeMode.isLight ? kPrimaryColorLightMode : kPrimaryColorDarkMode,
       child: Scaffold(
-        backgroundColor: themeMode.isLight ? kBackgroundAppColorLightMode : kBackgroundAppColorDarkMode,
-
+        backgroundColor: themeMode.isLight
+            ? kBackgroundAppColorLightMode
+            : kBackgroundAppColorDarkMode,
         appBar: AppBar(
-          backgroundColor: themeMode.isLight ? kPrimaryColorLightMode : kPrimaryColorDarkMode,
+          backgroundColor: themeMode.isLight
+              ? kPrimaryColorLightMode
+              : kPrimaryColorDarkMode,
         ),
         body: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             //title of what is system paying is allowed
-             Row(
-              children: [
-                Padding(
-                  padding: const EdgeInsets.fromLTRB(0, 50, 25, 10),
-                  child: Text(
-                    "ما هي طرق الدفع المقبولة؟",
-                    style: TextStyle(
-                      fontSize: 20.0,
-                      color:themeMode.isLight ? kTextColorLightMode : kTextColorDarkMode,
-                      fontFamily: 'IBM',
-                      inherit: true,
-                    ),
-                  ),
+            Padding(
+              padding: const EdgeInsets.fromLTRB(25, 50, 25, 10),
+              child: Text(
+                SetLocalization.of(context)!
+                    .getTranslateValue("accepted_payment_methods"),
+                style: TextStyle(
+                  fontSize: 20.0,
+                  color: themeMode.isLight
+                      ? kTextColorLightMode
+                      : kTextColorDarkMode,
+                  
+                  fontWeight: FontWeight.w600,
+                  inherit: false,
                 ),
-                const Expanded(child: Text("")),
-              ],
+                softWrap: true,
+              ),
             ),
             //paragraph of what is system paying is allowed
             Container(
               width: double.infinity,
-              margin: const EdgeInsets.fromLTRB(25, 0, 30, 10),
-              child:  Text(
-                "يتم الدفع عن طريق الاتفاق بينك و بين المالك ، وغالبًا ما تكون الصفقات بين المؤجر و المستأجر في الضفة الغربية بالدفع نقداً. ",
+              margin: const EdgeInsets.fromLTRB(30, 0, 30, 10),
+              child: Text(
+                SetLocalization.of(context)!
+                    .getTranslateValue("payment_by_agreement"),
                 style: TextStyle(
                   fontSize: 16.0,
-                  color: themeMode.isLight ? kTextColorLightMode : kTextColorDarkMode.withOpacity(.8),
-                fontFamily: 'IBM',
+                  color: themeMode.isLight
+                      ? kTextColorLightMode
+                      : kTextColorDarkMode.withOpacity(.8),
+                  
+                  fontWeight: FontWeight.w500,
                   inherit: true,
                 ),
               ),
             ),
-            Container(
-              width: double.infinity,
-              margin: const EdgeInsets.fromLTRB(25, 0, 30, 10),
-              child:  Text(
-                "سيتم العمل على إجاد طرق اخرى للدفع مثل"
-                " البطاقات الإتمانية و غيرها من الطرق مسقبلاً بإذن الله",
-                style: TextStyle(
-                  fontSize: 16.0,
-                  fontFamily: 'IBM',
-                  inherit: true,
-                  color: themeMode.isLight ? kTextColorLightMode : kTextColorDarkMode.withOpacity(.7)
-                ),
-              ),
-            ),
+            // Container(
+            //   width: double.infinity,
+            //   margin: const EdgeInsets.fromLTRB(25, 0, 30, 10),
+            //   child: Text(
+            //     "سيتم العمل على إجاد طرق اخرى للدفع مثل"
+            //     " البطاقات الإتمانية و غيرها من الطرق مسقبلاً بإذن الله",
+            //     style: TextStyle(
+            //         fontSize: 16.0,
+            //         
+            //         inherit: true,
+            //         color: themeMode.isLight
+            //             ? kTextColorLightMode
+            //             : kTextColorDarkMode.withOpacity(.7)),
+            //   ),
+            // ),
           ],
         ),
       ),
@@ -137,41 +161,49 @@ class CouldIPayByDeposit extends StatelessWidget {
     return ColorfulSafeArea(
       color: themeMode.isLight ? kPrimaryColorLightMode : kPrimaryColorDarkMode,
       child: Scaffold(
-        backgroundColor: themeMode.isLight ? kBackgroundAppColorLightMode : kBackgroundAppColorDarkMode,
+        backgroundColor: themeMode.isLight
+            ? kBackgroundAppColorLightMode
+            : kBackgroundAppColorDarkMode,
         appBar: AppBar(
-          backgroundColor: themeMode.isLight ? kPrimaryColorLightMode : kPrimaryColorDarkMode,
+          backgroundColor: themeMode.isLight
+              ? kPrimaryColorLightMode
+              : kPrimaryColorDarkMode,
         ),
         body: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             //title of what is system paying is allowed
-             Row(
-              children: [
-                Padding(
-                  padding: const EdgeInsets.fromLTRB(0, 30, 25, 10),
-                  child: Text(
-                    "هل يمكنني دفع عربون؟",
-                    style: TextStyle(
-                      fontSize: 20.0,
-                      color:themeMode.isLight ? kTextColorLightMode : kTextColorDarkMode,
-                      fontFamily: 'IBM',
-                      inherit: true,
-
-                    ),
-                  ),
+            Padding(
+              padding: const EdgeInsets.fromLTRB(25, 30, 25, 10),
+              child: Text(
+                SetLocalization.of(context)!
+                    .getTranslateValue("can_i_pay_deposit"),
+                style: TextStyle(
+                  fontSize: 20.0,
+                  color: themeMode.isLight
+                      ? kTextColorLightMode
+                      : kTextColorDarkMode,
+                  fontWeight: FontWeight.w600,
+                  
+                  inherit: true,
                 ),
-                const Expanded(child: Text("")),
-              ],
+                softWrap: true,
+              ),
             ),
             //paragraph of what is system paying is allowed
             Container(
               width: double.infinity,
-              margin: const EdgeInsets.fromLTRB(25, 0, 30, 10),
-              child:  Text(
-                "حسب الاتفاق بينك و بين المؤجر، ولكن غالبًا ما يوافق المؤجرون على دفع عربون حتى يظمن المؤجر حقه.",
+              margin: const EdgeInsets.fromLTRB(30, 0, 30, 10),
+              child: Text(
+                SetLocalization.of(context)!
+                    .getTranslateValue("deposit_payment_agreement"),
                 style: TextStyle(
                   fontSize: 16.0,
-                  color: themeMode.isLight ? kTextColorLightMode : kTextColorDarkMode.withOpacity(.8),
-                  fontFamily: 'IBM',
+                  color: themeMode.isLight
+                      ? kTextColorLightMode
+                      : kTextColorDarkMode.withOpacity(.8),
+                  fontWeight: FontWeight.w500,
+                  
                   inherit: true,
                 ),
               ),

@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:ween_blaqe/constants/nums.dart';
+import 'package:ween_blaqe/constants/localization.dart';
 import 'package:ween_blaqe/controller/function_controller/change_theme_mode.dart';
 
-import '../../../../../constants/coordination.dart';
-import '../../../../../constants/get_it_controller.dart';
+
 import '../../../../utils/styles/button.dart';
 
 class ApartmentShowTypesButton extends StatefulWidget {
@@ -21,11 +20,14 @@ class ApartmentShowTypesButton extends StatefulWidget {
 class _ApartmentShowTypesButtonState extends State<ApartmentShowTypesButton> {
   @override
   Widget build(BuildContext context) {
-    return Opacity(
-      opacity: .95,
-      child: BtnShowTypesOfApartments(
-        onPressed: widget.onPressed,
-        text: widget.text,
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 8.0),
+      child: Opacity(
+        opacity: .95,
+        child: BtnShowTypesOfApartments(
+          onPressed: widget.onPressed,
+          text: widget.text,
+        ),
       ),
     );
   }
@@ -50,19 +52,13 @@ class _BtnShowTypesOfApartmentsState extends State<BtnShowTypesOfApartments> {
   @override
   Widget build(BuildContext context) {
     return OutlinedButton(
-        style: outlinedButton(themeMode: themeMode),
+
+        style: outlinedButton(themeMode: themeMode,context: context,
+            isFloatingOutlinedButton: true),
         onPressed: widget.onPressed,
         //                              Container(height: 50,width: 100,color: Colors.white,),
-        child: Container(
-            padding: const EdgeInsets.only(top: 4),
-            height:
-                getIt<AppDimension>().isSmallScreen(context)
-                    ?0 : 35,
-            color: themeMode.isLight
-                ? kContainerColorLightMode
-                : kContainerColorDarkMode,
-            child: widget.text?.isNotEmpty ?? false
-                ? Text(" ${widget.text} ")
-                : const Text(" صنف السكن ")));
+        child: widget.text?.isNotEmpty ?? false
+            ? Text(" ${widget.text} ")
+            :  Text(SetLocalization.of(context)!.getTranslateValue("housing_type_btn")));
   }
 }

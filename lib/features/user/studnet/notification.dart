@@ -35,7 +35,7 @@
 //                     "الاشعارات",
 //                     style: TextStyle(
 //                       fontSize: 26.0,
-//                       fontFamily: 'IBM',
+//                       
 //                       inherit: true,
 //                     ),
 //                   ),
@@ -94,7 +94,7 @@
 //                       },
 //                       child: Text("لا يوجد لديك إشعارات",
 //                           style: TextStyle(
-//                             fontFamily: "IBM",
+//                             
 //                             color: Colors.grey.shade800,
 //                             fontSize: 16,
 //                           )),
@@ -143,7 +143,7 @@
 //                     "الاشعارات",
 //                     style: TextStyle(
 //                       fontSize: 26.0,
-//                       fontFamily: 'IBM',
+//                       
 //                       inherit: true,
 //                     ),
 //                   ),

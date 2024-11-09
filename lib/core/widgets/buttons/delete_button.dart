@@ -45,7 +45,7 @@ class DeleteButton extends StatelessWidget {
             "حذف شقة ${apartmentsRes.data?[index].title}", "حذف",
             SetLocalization.of(context)!.getTranslateValue("cancel"), () {
               bookmarkController.bookmarks.remove(apartmentId);
-              apiApartmentController.deleteApartmentWithUpdate(apartmentId);
+              apiApartmentController.deleteApartmentWithUpdate(apartmentId,context);
 
               // Get.offAll(() => const NewMasterHome());
 

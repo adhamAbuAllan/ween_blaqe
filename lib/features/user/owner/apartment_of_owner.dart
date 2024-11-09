@@ -92,7 +92,7 @@
 //                           "حول الشقة",
 //                           style: TextStyle(
 //                             fontSize: 20,
-//                             fontFamily: 'IBM',
+//
 //                           ),
 //                         ),
 //                       ),
@@ -138,7 +138,7 @@
 //                             style: TextStyle(
 //                               color: Colors.black87,
 //                               fontSize: 20,
-//                               fontFamily: 'IBM',
+//
 //                             )),
 //                       ),
 //                       Expanded(child: Text("")),
@@ -188,7 +188,7 @@
 //                         style: TextStyle(
 //                           color: Colors.black87,
 //                           fontSize: 20,
-//                           fontFamily: 'IBM',
+//
 //                         )),
 //                   ),
 // //description
@@ -198,7 +198,7 @@
 //                         style: TextStyle(
 //                           color: Colors.black87,
 //                           fontSize: 16,
-//                           fontFamily: 'IBM',
+//
 // // fontWeight: FontWeight.bold
 //                         )),
 //                   ),
@@ -226,7 +226,7 @@
 //                         style: TextStyle(
 //                           color: Colors.black87,
 //                           fontSize: 20,
-//                           fontFamily: 'IBM',
+//
 //                         )),
 //                   ),
 // //phone number
@@ -278,7 +278,7 @@
 //                                       style: TextStyle(
 //                                         color: Colors.black87,
 //                                         fontSize: 16,
-//                                         fontFamily: 'IBM',
+//
 //                                       )),
 //                                 ),
 //                               ],
@@ -339,6 +339,8 @@ import 'package:ween_blaqe/core/widgets/empty_screen_class_widget.dart';
 import 'package:ween_blaqe/core/widgets/skeletons/student_widgets/home_skeleton_widget.dart';
 
 // import '../../../api/apartments_api/one_apartment.dart';
+import '../../../constants/coordination.dart';
+import '../../../constants/get_it_controller.dart';
 import '../../../constants/nums.dart';
 import 'package:get/get.dart';
 
@@ -372,12 +374,9 @@ class _ApartmentsOwnerState extends State<ApartmentsOwner>
   @override
   void initState() {
     super.initState();
-    // WidgetsBinding.instance.addPostFrameCallback((_) {
-    //   setState(() {});
-    // });
-    // setState(() {
-    apartmentModelController.fetchApartments(isOwnerApartments: true);
-    // });
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      apartmentModelController.fetchApartments(isOwnerApartments: true);
+    });
     debugPrint("initState apartment_of_owner.dart");
     apiApartmentController.isEditMode.value = true;
 
@@ -442,31 +441,44 @@ class _ApartmentsOwnerState extends State<ApartmentsOwner>
           backgroundColor: themeMode.isLight
               ? kPrimaryColorLightMode
               : kPrimaryColorDarkMode,
-          title: const Text('شققك'),
-          actions: apartmentModelController.isApartmentNull == false
+          title: Text('شققك',
+              style: TextStyle(
+                  fontSize:
+                      getIt<AppDimension>().isSmallScreen(context) ? 16 : null,
+                  color: themeMode.isLight
+                      ? kTextColorLightMode
+                      : kTextColorDarkMode)),
+          actions: apartmentModelController.isOwnerHaveApartments.value == false
               ? [
-                  AnimatedBuilder(
-                    animation: _animationController,
-                    builder: (context, child) => IconButton(
-                      icon: AnimatedSwitcher(
-                        duration: const Duration(milliseconds: 300),
-                        transitionBuilder:
-                            (Widget child, Animation<double> animation) {
-                          return ScaleTransition(
-                              scale: animation, child: child);
-                        },
-                        child: Icon(
-                          apiApartmentController.isDeleteMode.value
-                              ? Icons.delete
-                              : Icons.edit,
-                          key: ValueKey<bool>(
-                              apiApartmentController.isDeleteMode.value),
-                          color: apartmentModelController.isApartmentNull
-                              ? Colors.transparent
-                              : _iconColorAnimation.value,
+                  Padding(
+                    padding: EdgeInsets.symmetric(
+                        horizontal: getIt<AppDimension>().isSmallScreen(context)
+                            ? 10
+                            : 8),
+                    child: AnimatedBuilder(
+                      animation: _animationController,
+                      builder: (context, child) => IconButton(
+                        icon: AnimatedSwitcher(
+                          duration: const Duration(milliseconds: 300),
+                          transitionBuilder:
+                              (Widget child, Animation<double> animation) {
+                            return ScaleTransition(
+                                scale: animation, child: child);
+                          },
+                          child: Icon(
+                            apiApartmentController.isDeleteMode.value
+                                ? Icons.delete
+                                : Icons.edit,
+                            key: ValueKey<bool>(
+                                apiApartmentController.isDeleteMode.value),
+                            color: apartmentModelController
+                                    .isOwnerHaveApartments.value
+                                ? Colors.transparent
+                                : _iconColorAnimation.value,
+                          ),
                         ),
+                        onPressed: toggleDeleteMode,
                       ),
-                      onPressed: toggleDeleteMode,
                     ),
                   ),
                 ]
@@ -477,30 +489,33 @@ class _ApartmentsOwnerState extends State<ApartmentsOwner>
             return const Center(child: HomeSkeletonWidget());
           } else {
             return InternetConnectivityChecker(
-              child: apartmentModelController.isApartmentNull
-                  ?  EmptyScreenClassWidget(
+              child: apartmentModelController.isOwnerHaveApartments.value
+                  ? EmptyScreenClassWidget(
                       centerIcon: Icons.apartment,
-                      centerText: SetLocalization.of(context)!.getTranslateValue("your_ads_displayed_here"),
+                      centerText: SetLocalization.of(context)!
+                          .getTranslateValue("your_ads_displayed_here"),
                       centerIconInUnderCenterText: Icons.add_home_outlined,
-                      underCenterTextBeforeIcon: 'انقر على الزر ',
-                      underCenterTextAfterIcon: '  للبدء في إنشاء إعلان جديد',
+                      underCenterTextBeforeIcon: SetLocalization.of(context)!
+                          .getTranslateValue("click_on_the_button"),
+                      underCenterTextAfterIcon: SetLocalization.of(context)!
+                          .getTranslateValue("to_create_new_ad"),
                     )
                   : ApartmentsList(
                       haveCitiesBar: false,
-                      apartmentsRes: apartmentModelController.apartments.value,
+                      apartmentsRes:
+                          apartmentModelController.apartmentsOfOwner.value,
                       // scrollController: ScrollController(),
                       isDeleteMode: apiApartmentController.isDeleteMode.value,
                       onPressed: () {
-                        setState(() {
-                          apartmentModelController.fetchApartments(
-                              isOwnerApartments: true);
-                        });
+                        apartmentModelController.fetchApartments(
+                            isOwnerApartments: true);
                       },
                     ),
             );
           }
         }),
         floatingActionButton: FloatingActionButton(
+          tooltip: SetLocalization.of(context)!.getTranslateValue("add_ad"),
           backgroundColor: themeMode.isLight
               ? kPrimaryColorLightMode
               : kPrimaryColorDarkMode,
@@ -508,12 +523,17 @@ class _ApartmentsOwnerState extends State<ApartmentsOwner>
             if (connectivityController.isConnection()) {
               NewSession.get("logged", "") == ""
                   ? alert(
-                      "يرجى تسجيل الدخول لإنشاء إعلانك",
-                      "قم بتسجيل الدخول أولا لتتمكن من إضافة الشقة الخاصة بك",
-                      "حسنًا")
+                      SetLocalization.of(context)!
+                          .getTranslateValue("login_to_create_ad"),
+                      SetLocalization.of(context)!
+                          .getTranslateValue("login_to_add_apartment"),
+                      SetLocalization.of(context)!.getTranslateValue("ok"))
                   : myPushName(context, MyPagesRoutes.step1);
             } else {
-              showSnakBar(context, "انت غير متصل بالانترنت");
+              showSnakBar(
+                  context,
+                  SetLocalization.of(context)!
+                      .getTranslateValue("no_internet"));
 
               return;
             }

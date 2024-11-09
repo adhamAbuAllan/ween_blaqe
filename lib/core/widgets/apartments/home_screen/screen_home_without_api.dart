@@ -116,7 +116,7 @@
 //                     child: Text(apartment.title??"",
 //                         style: TextStyle(
 //                           color: Colors.grey.shade800,
-//                           fontFamily: 'IBM',
+//                           
 //                           fontSize: 15,
 //
 //                         )),
@@ -127,7 +127,7 @@
 //                     child: Text(apartment.price.toString(),
 //                         style: const TextStyle(color: kPrimaryColorDarkMode,
 //                           fontSize: 16,
-//                           fontFamily: 'IBM',)),
+//                           )),
 //                   ),
 //                   const Padding(
 //                     padding: EdgeInsets.fromLTRB(10, 0, 3, 0),
@@ -135,7 +135,7 @@
 //                         style: TextStyle(
 //                           color: Colors.grey,
 //                           fontSize: 12,
-//                           fontFamily: 'IBM',
+//                           
 //                         )),
 //                   ),
 //                 ],
@@ -159,7 +159,7 @@
 //                         " عرض المزيد ",
 //                         style: TextStyle(
 //                           fontSize: 13,
-//                           fontFamily: 'IBM',
+//                           
 //                         ),
 //                       ),
 //                     ),
@@ -171,7 +171,7 @@
 //                         style: TextStyle(
 //                           color: Colors.grey,
 //                           fontSize: 16,
-//                           fontFamily: 'IBM',
+//                           
 //                         )),
 //                   ),
 //                   Padding(
@@ -180,7 +180,7 @@
 //                         style: const TextStyle(
 //                           color: Colors.grey,
 //                           fontSize: 16,
-//                           fontFamily: 'IBM',
+//                           
 //                         )),
 //                   ),
 //                 ],
@@ -322,7 +322,7 @@
 // //                     child: Text("سكن طلاب في مدينة الخليل",
 // //                         style: TextStyle(
 // //                           color: Colors.grey.shade800,
-// //                           fontFamily: 'IBM',
+// //                           
 // //                           fontSize: 15,
 // //                         )),
 // //                   ),
@@ -333,7 +333,7 @@
 // //                         style: TextStyle(
 // //                           color: kPrimaryColor,
 // //                           fontSize: 16,
-// //                           fontFamily: 'IBM',
+// //                           
 // //                         )),
 // //                   ),
 // //                   const Padding(
@@ -342,7 +342,7 @@
 // //                         style: TextStyle(
 // //                           color: Colors.grey,
 // //                           fontSize: 12,
-// //                           fontFamily: 'IBM',
+// //                           
 // //                         )),
 // //                   ),
 // //                 ],
@@ -362,7 +362,7 @@
 // //                         " عرض المزيد ",
 // //                         style: TextStyle(
 // //                           fontSize: 13,
-// //                           fontFamily: 'IBM',
+// //                           
 // //                         ),
 // //                       ),
 // //                     ),
@@ -374,7 +374,7 @@
 // //                         style: TextStyle(
 // //                           color: Colors.grey,
 // //                           fontSize: 16,
-// //                           fontFamily: 'IBM',
+// //                           
 // //                         )),
 // //                   ),
 // //                   const Padding(
@@ -383,7 +383,7 @@
 // //                         style: TextStyle(
 // //                           color: Colors.grey,
 // //                           fontSize: 16,
-// //                           fontFamily: 'IBM',
+// //                           
 // //                         )),
 // //                   ),
 // //                 ],
@@ -435,7 +435,7 @@
 // //                     child: Text("سكن طلاب في مدينة الخليل",
 // //                         style: TextStyle(
 // //                           color: Colors.grey.shade800,
-// //                           fontFamily: 'IBM',
+// //                           
 // //                           fontSize: 15,
 // //                         )),
 // //                   ),
@@ -446,7 +446,7 @@
 // //                         style: TextStyle(
 // //                           color: kPrimaryColor,
 // //                           fontSize: 16,
-// //                           fontFamily: 'IBM',
+// //                           
 // //                         )),
 // //                   ),
 // //                   const Padding(
@@ -455,7 +455,7 @@
 // //                         style: TextStyle(
 // //                           color: Colors.grey,
 // //                           fontSize: 12,
-// //                           fontFamily: 'IBM',
+// //                           
 // //                         )),
 // //                   ),
 // //                 ],
@@ -475,7 +475,7 @@
 // //                         " عرض المزيد ",
 // //                         style: TextStyle(
 // //                           fontSize: 13,
-// //                           fontFamily: 'IBM',
+// //                           
 // //                         ),
 // //                       ),
 // //                     ),
@@ -487,7 +487,7 @@
 // //                         style: TextStyle(
 // //                           color: Colors.grey,
 // //                           fontSize: 16,
-// //                           fontFamily: 'IBM',
+// //                           
 // //                         )),
 // //                   ),
 // //                   const Padding(
@@ -496,7 +496,7 @@
 // //                         style: TextStyle(
 // //                           color: Colors.grey,
 // //                           fontSize: 16,
-// //                           fontFamily: 'IBM',
+// //                           
 // //                         )),
 // //                   ),
 // //                 ],

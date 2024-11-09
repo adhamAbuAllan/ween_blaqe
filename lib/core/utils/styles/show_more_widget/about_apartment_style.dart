@@ -14,7 +14,7 @@ final ButtonStyle outlineBox = OutlinedButton.styleFrom(
 
   foregroundColor: themeMode.isLight ? kPrimaryColorLightMode : kPrimaryColorDarkMode,
   textStyle: const TextStyle(
-    fontFamily: 'IBM',
+    
   ),
   side:  BorderSide(width: 0.7, color: themeMode.isLight ? kPrimaryColorLightMode : kPrimaryColorDarkMode),
   padding: const EdgeInsets.all(0),

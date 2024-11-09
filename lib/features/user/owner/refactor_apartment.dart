@@ -15,6 +15,8 @@ import 'package:ween_blaqe/core/widgets/alirt_class_widget.dart';
 import '../../../api/advantages.dart';
 import '../../../api/apartments_api/one_apartment.dart';
 import '../../../api/cities.dart';
+import '../../../constants/coordination.dart';
+import '../../../constants/get_it_controller.dart';
 import '../../../constants/localization.dart';
 import '../../../constants/strings.dart';
 import '../../../controller/get_controllers.dart';
@@ -182,7 +184,16 @@ class _RefactorApartmentState extends State<RefactorApartment> {
                 : kBackgroundAppColorDarkMode,
             appBar: AppBar(
               automaticallyImplyLeading: false,
-              title: const Text("تعديل إعلان الشقة"),
+              title: Text(
+                  SetLocalization.of(context)!
+                      .getTranslateValue("edit_apartment_ad"),
+                  style: TextStyle(
+                    
+                    fontWeight: FontWeight.w600,
+                    fontSize: getIt<AppDimension>().isSmallScreen(context)
+                        ? 16
+                        : null,
+                  )),
               leading: Padding(
                 padding: const EdgeInsets.symmetric(vertical: 8.0),
                 child: BackButton(
@@ -226,7 +237,10 @@ class _RefactorApartmentState extends State<RefactorApartment> {
                 //                       ),
                 //     )),
                 Padding(
-                  padding: const EdgeInsets.all(8.0),
+                  padding: EdgeInsets.symmetric(
+                      vertical: getIt<AppDimension>().isSmallScreen(context) ? 10: 8,
+                      horizontal:
+                       8),
                   child: Obx(() {
                     return ElevatedButton(
                       onPressed: () {
@@ -261,76 +275,94 @@ class _RefactorApartmentState extends State<RefactorApartment> {
             body: SingleChildScrollView(
               child: Column(
                 children: [
-                  Padding(
-                    padding: const EdgeInsets.fromLTRB(0, 10, 0, 10),
-                    child: Column(children: [
-                      Padding(
-                        padding: const EdgeInsets.only(bottom: 10.0),
-                        child: ContainerChooseItemsClassWidget(
-                            itemIdNotIndex: widget.oneApartment?.city?.id,
-                            wholeListApi: wholeCityListApi,
-                            title: "المدنية",
-                            currentValue: selectedCityName,
-                            onSelected: (c) {
-                              if (c is City) {
-                                setState(() {
-                                  selectedCityId = c.id ?? -1;
-                                });
-                                // ... use other properties of c
-                              } else {
-                                debugPrint("Invalid object type");
-                              }
-                              debugPrint("selectedCityId is $selectedCityId");
-                            }),
-                      ),
+                  Column(children: [
+                    const SizedBox(
+                      height: 10,
+                    ),
+                    Padding(
+                      padding: EdgeInsets.only(
+                          bottom: getIt<AppDimension>().isSmallScreen(context)
+                              ? 0
+                              : 10),
+                      child: ContainerChooseItemsClassWidget(
+                          itemIdNotIndex: widget.oneApartment?.city?.id,
+                          wholeListApi: wholeCityListApi,
+                          title: "المدنية",
+                          currentValue: selectedCityName,
+                          onSelected: (c) {
+                            if (c is City) {
+                              setState(() {
+                                selectedCityId = c.id ?? -1;
+                              });
+                              // ... use other properties of c
+                            } else {
+                              debugPrint("Invalid object type");
+                            }
+                            debugPrint("selectedCityId is $selectedCityId");
+                          }),
+                    ),
 
-                      //location box
-                      Padding(
-                        padding: const EdgeInsets.fromLTRB(0, 0, 0, 10),
-                        child: ContainerInputTextClassWidget(
-                            title: "العنوان",
-                            hintInput:
-                                "مثال:الخليل-وادالهرية-بجانب مسجد ابوعيشة",
-                            inputType: TextInputType.text,
-                            controller: addressController,
-                            focusNode: addressFocusnose,
-                            onFieldSubmitted: (value) {}),
-                      ),
-                      //rooms box
-                      Padding(
-                        padding: const EdgeInsets.fromLTRB(0, 0, 0, 10),
-                        child: ContainerInputTextClassWidget(
-                            title: SetLocalization
-                                .of(context)!.getTranslateValue("number_of_rooms"),
-                            hintInput: "0",
-                            inputType: TextInputType.number,
-                            controller: countOfRoomsController,
-                            focusNode: countRoomsfocusnode,
-                            onFieldSubmitted: (value) {}),
-                      ),
-                      //bathrooms box
-                      Padding(
-                        padding: const EdgeInsets.fromLTRB(0, 0, 0, 0),
-                        child: ContainerInputTextClassWidget(
-                            title:                                 SetLocalization
-                                .of(context)!.getTranslateValue("number_of_bathrooms"),
-                            hintInput: "0",
-                            inputType: TextInputType.number,
-                            controller: countOfBathRoomsController,
-                            focusNode: countBathroomsfocusnode,
-                            onFieldSubmitted: (value) {
-                              debugPrint(
-                                  "value is $value in bath room text field");
-                            }),
-                      ),
-                    ]),
-                  ),
+                    //location box
+                    Padding(
+                      padding: EdgeInsets.only(
+                          bottom: getIt<AppDimension>().isSmallScreen(context)
+                              ? 0
+                              : 10),
+                      child: ContainerInputTextClassWidget(
+                          title: SetLocalization.of(context)!
+                              .getTranslateValue("address"),
+                          hintInput: SetLocalization.of(context)!
+                              .getTranslateValue("example_apartment_address"),
+                          inputType: TextInputType.text,
+                          controller: addressController,
+                          focusNode: addressFocusnose,
+                          onFieldSubmitted: (value) {}),
+                    ),
+                    //rooms box
+                    Padding(
+                      padding: EdgeInsets.only(
+                          bottom: getIt<AppDimension>().isSmallScreen(context)
+                              ? 0
+                              : 10),
+                      child: ContainerInputTextClassWidget(
+                          title: SetLocalization.of(context)!
+                              .getTranslateValue("number_of_rooms"),
+                          hintInput: "0",
+                          inputType: TextInputType.number,
+                          controller: countOfRoomsController,
+                          focusNode: countRoomsfocusnode,
+                          onFieldSubmitted: (value) {}),
+                    ),
+                    //bathrooms box
+                    Padding(
+                      padding: EdgeInsets.only(
+                          bottom: getIt<AppDimension>().isSmallScreen(context)
+                              ? 0
+                              : 10),
+                      child: ContainerInputTextClassWidget(
+                          title: SetLocalization.of(context)!
+                              .getTranslateValue("number_of_bathrooms"),
+                          hintInput: "0",
+                          inputType: TextInputType.number,
+                          controller: countOfBathRoomsController,
+                          focusNode: countBathroomsfocusnode,
+                          onFieldSubmitted: (value) {
+                            debugPrint(
+                                "value is $value in bath room text field");
+                          }),
+                    ),
+                  ]),
                   isDataLoading
                       ? const SkeletonAdvantages(isAddAdvantages: true)
                       : Container(
                           // height: 100,
-                          margin: const EdgeInsets.fromLTRB(10, 2, 10, 10),
-                          padding: const EdgeInsets.fromLTRB(10, 2, 10, 10),
+                          margin: EdgeInsets.fromLTRB(
+                              10,
+                              0,
+                              10,
+                              getIt<AppDimension>().isSmallScreen(context)
+                                  ? 10
+                                  : 20),
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(7),
                             color: themeMode.isLight
@@ -338,26 +370,26 @@ class _RefactorApartmentState extends State<RefactorApartment> {
                                 : kContainerColorDarkMode,
                           ),
                           child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               //this row for text
-                              Row(
-                                children: [
-                                  Padding(
-                                    padding:
-                                        const EdgeInsets.fromLTRB(0, 0, 10, 10),
-                                    child: Text(
-                                      SetLocalization.of(context)!.getTranslateValue
-                                        ("select_features"),
-                                      style: TextStyle(
-                                          fontFamily: 'IBM',
-                                          fontSize: 20,
-                                          color: themeMode.isLight
-                                              ? kTextColorLightMode
-                                              : kTextColorDarkMode),
-                                    ),
-                                  ),
-                                  const Expanded(child: Text("")),
-                                ],
+                              Padding(
+                                padding: const EdgeInsets.symmetric(
+                                    vertical: 10, horizontal: 20),
+                                child: Text(
+                                  SetLocalization.of(context)!
+                                      .getTranslateValue("select_advantages"),
+                                  style: TextStyle(
+                                      
+                                      fontSize: getIt<AppDimension>()
+                                              .isSmallScreen(context)
+                                          ? 18
+                                          : 20,
+                                      fontWeight: FontWeight.w500,
+                                      color: themeMode.isLight
+                                          ? kTextColorLightMode
+                                          : kTextColorDarkMode),
+                                ),
                               ),
                               //here could owner add advantages
                               // const AddAdvantages()
@@ -404,8 +436,11 @@ class _RefactorApartmentState extends State<RefactorApartment> {
                                       feature.advName ?? "",
                                       // feature.advName,
                                       style: TextStyle(
-                                          fontFamily: 'IBM',
-                                          fontSize: 16,
+                                          
+                                          fontSize: getIt<AppDimension>()
+                                                  .isSmallScreen(context)
+                                              ? 14
+                                              : 16,
                                           color: themeMode.isLight
                                               ? kTextColorLightMode
                                               : kTextColorDarkMode),
@@ -422,18 +457,29 @@ class _RefactorApartmentState extends State<RefactorApartment> {
                                           (context, child, loadingProgress) {
                                         return child;
                                       },
-                                      width: 30,
-                                      height: 30,
+                                      width: getIt<AppDimension>()
+                                              .isSmallScreen(context)
+                                          ? 24
+                                          : 30,
+                                      height: getIt<AppDimension>()
+                                              .isSmallScreen(context)
+                                          ? 24
+                                          : 30,
                                     ));
                               }).toList())
                             ],
                           ),
                         ),
                   Padding(
-                    padding: const EdgeInsets.fromLTRB(0, 10, 0, 10),
+                    padding: EdgeInsets.only(
+                        bottom: getIt<AppDimension>().isSmallScreen(context)
+                            ? 0
+                            : 10),
                     child: ContainerInputTextClassWidget(
-                      title: priceText,
-                      hintInput: priceHint,
+                      title: SetLocalization.of(context)!
+                          .getTranslateValue("price"),
+                      hintInput: SetLocalization.of(context)!
+                          .getTranslateValue("enter_monthly_rent"),
                       controller: priceController,
                       inputType: TextInputType.number,
                       focusNode: priceFocusNode,
@@ -442,7 +488,10 @@ class _RefactorApartmentState extends State<RefactorApartment> {
                   //countStudent padding
 
                   Padding(
-                    padding: const EdgeInsets.only(bottom: 10),
+                    padding: EdgeInsets.only(
+                        bottom: getIt<AppDimension>().isSmallScreen(context)
+                            ? 0
+                            : 10),
                     child: ContainerChooseItemsClassWidget(
                         itemIdNotIndex: widget.oneApartment?.type?.id,
                         wholeListApi: wholeTypeListApi,
@@ -460,7 +509,10 @@ class _RefactorApartmentState extends State<RefactorApartment> {
                         }),
                   ),
                   Padding(
-                    padding: const EdgeInsets.only(bottom: 10),
+                    padding: EdgeInsets.only(
+                        bottom: getIt<AppDimension>().isSmallScreen(context)
+                            ? 0
+                            : 10),
                     child: ContainerInputTextClassWidget(
                       title: SetLocalization.of(context)!
                           .getTranslateValue("allowed_students"),
@@ -472,9 +524,11 @@ class _RefactorApartmentState extends State<RefactorApartment> {
                   ),
                   //square padding
                   Padding(
-                    padding: const EdgeInsets.fromLTRB(0, 0, 0, 10),
+                    padding: EdgeInsets.fromLTRB(0, 0, 0,
+                        getIt<AppDimension>().isSmallScreen(context) ? 0 : 10),
                     child: ContainerInputTextClassWidget(
-                      title: squareText,
+                      title: SetLocalization.of(context)!
+                          .getTranslateValue("apartment_size"),
                       hintInput: squareHint,
                       controller: squareMetersController,
                       inputType: TextInputType.number,
@@ -482,20 +536,25 @@ class _RefactorApartmentState extends State<RefactorApartment> {
                     ),
                   ),
                   Padding(
-                    padding: const EdgeInsets.fromLTRB(0, 0, 0, 10),
+                    padding: EdgeInsets.fromLTRB(0, 0, 0,
+                        getIt<AppDimension>().isSmallScreen(context) ? 0 : 10),
                     child: ContainerInputTextClassWidget(
-                        title: addSuitableTitleForAdText,
+                        title: SetLocalization.of(context)!
+                            .getTranslateValue("add_address"),
                         controller: titleController,
-                        hintInput: addSuitableTitleForAdHnit,
+                        hintInput: SetLocalization.of(context)!
+                            .getTranslateValue("furnished_student_housing"),
                         inputType: TextInputType.text,
                         focusNode: adFocusNode,
                         onFieldSubmitted: (value) {}),
                   ),
                   // discriptopin the apartment
                   ContainerInputTextClassWidget(
-                      title: discrptionApartmentText,
+                      title: SetLocalization.of(context)!
+                          .getTranslateValue("apartment_overview"),
                       controller: descriptionController,
-                      hintInput: discrptionApartmentHint,
+                      hintInput: SetLocalization.of(context)!
+                          .getTranslateValue("private_student_apartment"),
                       inputType: TextInputType.text,
                       // maxLines: 1,
 
@@ -515,7 +574,14 @@ class _RefactorApartmentState extends State<RefactorApartment> {
                   ),
                 ));
               },
-              label: const Text('إضافة أو حذف صور'),
+              label: Text(
+                SetLocalization.of(context)!
+                    .getTranslateValue("add_or_remove_images"),
+                style: TextStyle(
+                    fontSize:
+                        getIt<AppDimension>().isSmallScreen(context) ? 13 :
+                        null),
+              ),
               icon: const Icon(Icons.photo),
               backgroundColor: themeMode.isLight
                   ? kPrimaryColorLightMode

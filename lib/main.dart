@@ -21,6 +21,7 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:ween_blaqe/controller/function_controller/animation_about_apartment_boxs_controller.dart';
 import 'package:ween_blaqe/controller/function_controller/api_functions_controller/get_advatages_api.dart';
 import 'package:ween_blaqe/controller/function_controller/change_theme_mode.dart';
 import 'package:ween_blaqe/controller/function_controller/intro_controller.dart';
@@ -64,11 +65,11 @@ import 'constants/strings.dart';
 import 'controller/bookmark_controller.dart';
 import 'controller/change_password_controller.dart';
 import 'controller/function_controller/api_functions_controller/cities_and_types_controller.dart';
-import 'controller/function_controller/api_functions_controller/apartment_api_methods_controller.dart';
+import 'controller/models_controller/apartment_model_controller.dart';
 import 'controller/function_controller/connectivity_controller.dart';
+import 'controller/function_controller/language_controller.dart';
 import 'controller/function_controller/update_social_connection_controller.dart';
 import 'controller/image_of_apartment_controller.dart';
-import 'controller/models_controller/apartment_model_controller.dart';
 import 'controller/models_controller/images_model_controller.dart';
 import 'controller/models_controller/type_of_apartment_models_controller.dart';
 
@@ -118,8 +119,8 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await NewSession.init();
   await SystemChrome.setPreferredOrientations([
-  DeviceOrientation.portraitUp,
-  DeviceOrientation.portraitDown,
+    DeviceOrientation.portraitUp,
+    DeviceOrientation.portraitDown,
   ]);
   // await EasyLocalization.ensureInitialized();
   // final Future<SharedPreferences> prefs = SharedPreferences.getInstance();
@@ -130,7 +131,7 @@ void main() async {
   Get.put(IntroController());
   Get.put(CityModelController());
   Get.put(ApartmentModelController());
-  Get.put(MethodsApiApartmentController());
+  Get.put(ApartmentModelController());
   Get.put(ChangeThemeMode());
   Get.put(ConnectivityController());
   // Get.put(OwnerController());
@@ -144,13 +145,26 @@ void main() async {
   Get.put(ShowDetailOfImageOfApartmentController());
   Get.put(ChangePasswordController());
   Get.put(CreateSocialConnectionController());
+  Get.put(LanguageController());
+  Get.put(AnimationBoxController());
   Get.put(BookmarkController()); //for testing
   // Get.put(BookmarkApartment());//for testing
   //for get
+  String savedLanguage = Get.put(LanguageController()).getSavedLanguage();
+
+  // Set the initial locale
+  Locale initialLocale;
+  if (savedLanguage == 'ar') {
+    initialLocale = const Locale('ar', 'JO');
+  } else {
+    initialLocale = const Locale('en', 'US');
+  }
   await configureInjection();
   runApp(const OwnMaterialApp(
-  // logged: token != null,
-  ));
+      // logged: token != null,
+      ));
+  Get.updateLocale(initialLocale); // Update locale usingGetX
+
   // await Firebase.initializeApp(
   //   options: DefaultFirebaseOptions.currentPlatform,
   // );
@@ -161,13 +175,15 @@ void main() async {
 // }
 //ownMaterialApp that could play any screen in this class from admin
 class OwnMaterialApp extends StatefulWidget {
+
   const OwnMaterialApp({
     super.key,
     // required this.logged
   });
+
   static void setLocale(BuildContext context, Locale locale) {
-    _OwnMaterialAppState? state = context
-        .findAncestorStateOfType<_OwnMaterialAppState>();
+    _OwnMaterialAppState? state =
+        context.findAncestorStateOfType<_OwnMaterialAppState>();
     state!.setLocale(locale);
   }
 
@@ -179,12 +195,16 @@ class OwnMaterialApp extends StatefulWidget {
 
 class _OwnMaterialAppState extends State<OwnMaterialApp> {
   String newestApartmentId = '-1';
-  Locale? _local;
+  Locale? _local = NewSession.get("isFirstTime", "") != "OK"
+      ? const Locale("ar", "JO")
+      : null;
+
   void setLocale(Locale locale) {
     setState(() {
       _local = locale;
     });
   }
+
   @override
   void initState() {
     super.initState();
@@ -193,12 +213,11 @@ class _OwnMaterialAppState extends State<OwnMaterialApp> {
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(
-
       debugShowCheckedModeBanner: false,
 
       darkTheme: ThemeData(
         useMaterial3: false,
-
+        fontFamily: 'IBM',
         colorScheme: ColorScheme.fromSwatch().copyWith(secondary: Colors.grey),
 
         // brightness: Brightness.darkf
@@ -209,7 +228,6 @@ class _OwnMaterialAppState extends State<OwnMaterialApp> {
       theme: ThemeData(
           useMaterial3: false,
           fontFamily: 'IBM',
-
           // brightness: Brightness.,
 
           // scaffoldBackgroundColor: Colors.grey.shade200,
@@ -225,26 +243,11 @@ class _OwnMaterialAppState extends State<OwnMaterialApp> {
         GlobalCupertinoLocalizations.delegate,
       ],
       supportedLocales: const [
-        Locale('en'), // English
         Locale('ar'), // Arabic
+        Locale('en'), // English
       ],
-      locale: _local,
-      // localizationsDelegates: const [
-      //   GlobalCupertinoLocalizations.delegate,
-      //   GlobalMaterialLocalizations.delegate,
-      //   GlobalWidgetsLocalizations.delegate,
-      // ],
-      // supportedLocales: const [
-      //   Locale("en", "US"),
-      //   Locale("ar", "SA"), // OR Locale('ar', 'AE') OR Other RTL locales
-      // ],
-      // locale: const Locale("ar", "SA"),
-      // locale: Locale("en", "US"),
-      // localizationsDelegates: context.localizationDelegates,
-      // supportedLocales: context.supportedLocales,
-      // locale: context.locale,
 
-// home: (),
+      locale: _local,
 
       initialRoute: MyPagesRoutes.splashScreen,
       //  initialRoute: MyPagesRoutes.newMasterHome,
@@ -255,9 +258,8 @@ class _OwnMaterialAppState extends State<OwnMaterialApp> {
         MyPagesRoutes.step1: (context) => const FirstStep(),
         MyPagesRoutes.step2: (context) => const SecondStep(),
         MyPagesRoutes.step3: (context) => const ThirdStep(),
-        MyPagesRoutes.step4: (context) =>
-            FourthStep(
-              oneApartmentId: apartmentModelController.apartment.data?.first,
+        MyPagesRoutes.step4: (context) => FourthStep(
+              oneApartmentId: apartmentModelController.apartmentsList.data?.first,
             ),
         MyPagesRoutes.login: (context) => const Login(),
         MyPagesRoutes.register: (context) => const Register(),
@@ -292,24 +294,24 @@ class _OwnMaterialAppState extends State<OwnMaterialApp> {
         MyPagesRoutes.askForHelp: (context) => const AskForHelp(),
         MyPagesRoutes.systemPaying: (context) => const SystemPaying(),
         MyPagesRoutes.whatIsSystemPayingAllow: (context) =>
-        const WhatIsSystemPayingAllow(),
+            const WhatIsSystemPayingAllow(),
         MyPagesRoutes.couldIPayByDeposit: (context) =>
-        const CouldIPayByDeposit(),
+            const CouldIPayByDeposit(),
         MyPagesRoutes.whatIsMeanSS: (context) => const WhatIsMeanSS(),
         MyPagesRoutes.howCouldBookingApartment: (context) =>
-        const HowCouldBookingApartment(),
+            const HowCouldBookingApartment(),
         MyPagesRoutes.systemBooking: (context) => const SystemBooking(),
         MyPagesRoutes.couldICancelABooking: (context) =>
-        const CouldICancelABooking(),
+            const CouldICancelABooking(),
         MyPagesRoutes.howLongIsTheReservationAvailable: (context) =>
-        const HowLongIsTheReservationAvailable(),
+            const HowLongIsTheReservationAvailable(),
         MyPagesRoutes.howCreateAd: (context) => const HowCreateAd(),
         // MyPagesRoutes.couldBeOwnerAndStudentInOneTime: (context) =>
         //     const CouldBeOwnerAndStudentInOneTime(),
         MyPagesRoutes.sendNoticeForUs: (context) => const SendNoticeForUs(),
         MyPagesRoutes.theAdIsFreeOrNot: (context) => const TheAdIsFreeOrNot(),
         MyPagesRoutes.skeletonShowMoreWidget: (context) =>
-        const SkeletonShowMoreWidget(),
+            const SkeletonShowMoreWidget(),
         // MyPagesRoutes.screensWillAddFuture: (context) =>
         //     const ScreensWillAddFuture(),
         MyPagesRoutes.noInternet: (context) => const NoInternet(),
@@ -317,11 +319,11 @@ class _OwnMaterialAppState extends State<OwnMaterialApp> {
         // MyPagesRoutes.skeletonBookingNow: (context) =>
         //     const BookingNowSkeletonWidget(),
         MyPagesRoutes.skeletonParagraph: (context) =>
-        const LongParagraphReadySkeleton(),
+            const LongParagraphReadySkeleton(),
         MyPagesRoutes.newMasterHome: (context) => const NewMasterHome(),
         MyPagesRoutes.newShowMore: (context) => const NewShowMore(),
         MyPagesRoutes.whatTheInfoReqToCreateAd: (context) =>
-        const WhatTheInfoReqToCreateAd(),
+            const WhatTheInfoReqToCreateAd(),
         MyPagesRoutes.introScreen: (context) => const IntroScreen(),
         MyPagesRoutes.updateUserInfo: (context) => const UpdateUserData(),
 
@@ -371,6 +373,8 @@ class _MainState extends State<Main> {
   @override
   void initState() {
     super.initState();
+    debugPrint(
+        "code language now is in sp is -- ${NewSession.get("language", "def")}");
     // introController.saveIsFirstTime();
     controller.addListener(listener);
     SystemChrome.setPreferredOrientations([
@@ -390,7 +394,7 @@ class _MainState extends State<Main> {
     myPushNameAndRemoveUntil(
         context,
         MyPagesRoutes.main,
-            (route) => route.settings.name == MyPagesRoutes.main,
+        (route) => route.settings.name == MyPagesRoutes.main,
         MyPagesRoutes.main);
   }
 
@@ -427,7 +431,7 @@ class _MainState extends State<Main> {
         // top
         bottomColor: Colors.transparent,
         color:
-        themeMode.isLight ? kPrimaryColorLightMode : kPrimaryColorDarkMode,
+            themeMode.isLight ? kPrimaryColorLightMode : kPrimaryColorDarkMode,
         child: Scaffold(
             backgroundColor: Colors.grey.shade200,
             body: GetBuilder<MainController>(
@@ -443,8 +447,8 @@ class _MainState extends State<Main> {
               },
             )
 
-          //
-        ),
+            //
+            ),
       ),
     );
   }

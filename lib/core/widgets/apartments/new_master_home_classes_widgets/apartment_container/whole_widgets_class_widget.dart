@@ -87,7 +87,8 @@ class _WholeWidgetOfApartmentState extends State<WholeWidgetOfApartment> {
                     "${widget.apartmentsRes.data?[widget.index].timeAgo ?? "التاريخ"} ",
                     style: TextStyle(
                       color: Colors.grey.shade300,
-                      fontFamily: "IBM",
+                      fontWeight:   FontWeight.w200 ,
+                      
                       fontSize: 14,
 
                     ),

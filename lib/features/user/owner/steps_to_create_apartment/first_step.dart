@@ -1,5 +1,6 @@
 import 'package:colorful_safe_area/colorful_safe_area.dart';
 import 'package:flutter/material.dart';
+import 'package:ween_blaqe/constants/coordination.dart';
 import 'package:ween_blaqe/constants/strings.dart';
 import 'package:ween_blaqe/controller/get_controllers.dart';
 import 'package:ween_blaqe/core/utils/funcations/route_pages/push_routes.dart';
@@ -7,6 +8,7 @@ import 'package:ween_blaqe/core/utils/styles/button.dart';
 
 // import '../../../../api/advantages.dart';
 import '../../../../api/cities.dart';
+import '../../../../constants/get_it_controller.dart';
 import '../../../../constants/localization.dart';
 import '../../../../constants/nums.dart';
 import '../../../../core/widgets/alirt_class_widget.dart';
@@ -73,12 +75,12 @@ class _FirstStepState extends State<FirstStep> {
 
 //   double opacity = 1;
   //choose address box
-  String chooseAddressTitle = "العنوان";
+  // String chooseAddressTitle = "العنوان";
   String hintAddress = "مثال:الخليل-وادالهرية-بجانب مسجد ابوعيشة";
   TextInputType text = TextInputType.text;
 
 //choose rooms box
-  String chooseCountRoomText = "عدد الغرف ";
+//   String chooseCountRoomText = "عدد الغرف ";
   String hintCountRooms = "0";
   TextInputType number = TextInputType.number;
   var addressFocusnose = FocusNode();
@@ -118,7 +120,7 @@ class _FirstStepState extends State<FirstStep> {
                         onPressed: () {
                           Navigator.pop(context);
                         },
-                        style: outlinedButton(themeMode:themeMode),
+                        style: outlinedButton(themeMode:themeMode,context: context),
                         child:  Text(SetLocalization.of(context)!
                             .getTranslateValue("cancel")),
                       ),
@@ -211,22 +213,29 @@ class _FirstStepState extends State<FirstStep> {
                       color: themeMode.isLight
                           ? kTextColorLightMode
                           : kTextColorDarkMode,
-                      fontSize: 20,
-                      fontFamily: 'IBM',
+                      fontSize: getIt<AppDimension>()
+                          .isSmallScreen(context)
+                          ? 18:20,
+                      
+                      fontWeight: FontWeight.w500,
                     ),
                   ),
                 ),
                 //image steps
                 Padding(
-                  padding: const EdgeInsets.fromLTRB(25, 5, 25, 30),
+                  padding: const EdgeInsets.fromLTRB(25, 10, 25, 30),
                   child:themeMode.isLight ?   Image.asset(
                     'assets/'
                     'images/'
                     'apartments_images/'
                     'images_to_create_apartment/'
                     'step_one.png',
-                    width: 65,
-                    height: 65,
+                    width:getIt<AppDimension>()
+                        .isSmallScreen(context)
+                        ? 65/1.1:  65,
+                    height: getIt<AppDimension>()
+                        .isSmallScreen(context)
+                        ? 65/1.1:  65,
                     fit: BoxFit.fill,
 
                   ):Image.asset(
@@ -235,19 +244,23 @@ class _FirstStepState extends State<FirstStep> {
                         'apartments_images/'
                         'images_to_create_apartment/'
                         'first_setp_dark_mode.png',
-                    width: 65,
-                    height: 65,
+                    width: getIt<AppDimension>()
+                        .isSmallScreen(context)
+                        ? 65/1.1:  65,
+                    height: getIt<AppDimension>()
+                        .isSmallScreen(context)
+                        ? 65/1.1:  65,
                     fit: BoxFit.fill,
 
                   ),
                 ),
                 //city box
-                Padding(
-                  padding: const EdgeInsets.fromLTRB(0, 0, 0, 10),
-                  child: Column(children: [
-                    ContainerChooseItemsClassWidget(
+                Column(children: [
+                  Padding(
+                    padding:  EdgeInsets.only(bottom: getIt<AppDimension> ().isSmallScreen(context) ? 0:10),
+                    child: ContainerChooseItemsClassWidget(
                       wholeListApi: wholeListApi,
-                      title: "المدنية",
+                      title: SetLocalization.of(context)!.getTranslateValue("city"),
                       currentValue: oneCityName,
                       // dataStatus: true,
                       onSelected: (c) {
@@ -263,45 +276,46 @@ class _FirstStepState extends State<FirstStep> {
                         debugPrint("the index of city is $indexOfCity");
                       },
                     ),
+                  ),
 
-                    //location box
-                    Padding(
-                      padding: const EdgeInsets.fromLTRB(0, 0, 0, 10),
-                      child: ContainerInputTextClassWidget(
-                          title: chooseAddressTitle,
-                          hintInput: hintAddress,
-                          inputType: text,
-                          controller: addressController,
-                          focusNode: addressFocusnose,
-                          onFieldSubmitted: (value) {}),
-                    ),
-                    //rooms box
-                    Padding(
-                      padding: const EdgeInsets.fromLTRB(0, 0, 0, 10),
-                      child: ContainerInputTextClassWidget(
-                          title: chooseCountRoomText,
-                          hintInput: hintCountRooms,
-                          inputType: number,
-                          controller: countOfRoomsController,
-                          focusNode: countRoomsfocusnode,
-                          onFieldSubmitted: (value) {}),
-                    ),
-                    //bathrooms box
-                    Padding(
-                      padding: const EdgeInsets.fromLTRB(0, 0, 0, 0),
-                      child: ContainerInputTextClassWidget(
-                          title:                                 SetLocalization
-                              .of(context)!.getTranslateValue("number_of_bathrooms"),
-                          hintInput: hintCountBathrooms,
-                          inputType: number,
-                          controller: countOfBathRoomsController,
-                          focusNode: countBathroomsfocusnode,
-                          onFieldSubmitted: (value) {
-                            debugPrint("value is $value in bath room text field");
-                          }),
-                    ),
-                  ]),
-                ),
+                  //location box
+                  Padding(
+                    padding:  EdgeInsets.only(bottom: getIt<AppDimension> ().isSmallScreen(context) ? 0:10),
+                    child: ContainerInputTextClassWidget(
+                        title: SetLocalization.of(context)!.getTranslateValue
+                          ("address"),
+                        hintInput: SetLocalization.of(context)!.getTranslateValue("example_apartment_address"),
+                        inputType: text,
+                        controller: addressController,
+                        focusNode: addressFocusnose,
+                        onFieldSubmitted: (value) {}),
+                  ),
+                  //rooms box
+                  Padding(
+                    padding:  EdgeInsets.only(bottom: getIt<AppDimension> ().isSmallScreen(context) ? 0:10),
+                    child: ContainerInputTextClassWidget(
+                        title: SetLocalization.of(context)!.getTranslateValue("room_count"),
+                        hintInput: hintCountRooms,
+                        inputType: number,
+                        controller: countOfRoomsController,
+                        focusNode: countRoomsfocusnode,
+                        onFieldSubmitted: (value) {}),
+                  ),
+                  //bathrooms box
+                  Padding(
+                    padding:  EdgeInsets.only(bottom:  getIt<AppDimension> ().isSmallScreen(context) ? 0:10),
+                    child: ContainerInputTextClassWidget(
+                        title:                                 SetLocalization
+                            .of(context)!.getTranslateValue("number_of_bathrooms"),
+                        hintInput: hintCountBathrooms,
+                        inputType: number,
+                        controller: countOfBathRoomsController,
+                        focusNode: countBathroomsfocusnode,
+                        onFieldSubmitted: (value) {
+                          debugPrint("value is $value in bath room text field");
+                        }),
+                  ),
+                ]),
               ])))),
         ));
   }

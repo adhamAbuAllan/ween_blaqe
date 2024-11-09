@@ -136,8 +136,11 @@ class _ProfileOfOwnerState extends State<ProfileOfOwner> {
                       ),
                       //image
                       Container(
-                        padding: const EdgeInsets.only(right: 15),
-                        alignment: Alignment.bottomRight,
+                        padding: const EdgeInsets.only(right: 15,left: 15),
+                        alignment: NewSession.get("language", 'ar') == 'en' ?
+                        Alignment.bottomLeft :
+                            Alignment
+                        .bottomRight,
                         width: double.infinity,
                         height: 140,
                         decoration: BoxDecoration(
@@ -234,7 +237,8 @@ class _ProfileOfOwnerState extends State<ProfileOfOwner> {
                                         color: themeMode.isLight
                                             ? kTextColorLightMode
                                             : kTextColorDarkMode,
-                                        fontFamily: "IBM",
+                                        
+                                        fontWeight: FontWeight.w600,
                                         fontSize: 20,
                                       )),
                                   const SizedBox(
@@ -245,7 +249,8 @@ class _ProfileOfOwnerState extends State<ProfileOfOwner> {
                                           color: themeMode.isLight
                                               ? kTextColorLightMode
                                               : kTextColorDarkMode,
-                                          fontFamily: "IBM",
+                                          
+                                          fontWeight: FontWeight.w600,
                                           fontSize: 16)),
                                   const SizedBox(
                                     height: 30,
@@ -281,7 +286,7 @@ class _ProfileOfOwnerState extends State<ProfileOfOwner> {
                                                   MyPagesRoutes.updateUserInfo);
                                             },
                                             child:  Text(SetLocalization.of(context)!.getTranslateValue("edit_data"),
-                                                style: TextStyle(
+                                                style: const TextStyle(
                                                     fontFamily: "IBM"))),
                                       ),
                                     ),
@@ -313,7 +318,9 @@ class _ProfileOfOwnerState extends State<ProfileOfOwner> {
                                               ? kTextColorLightMode
                                               : kTextColorDarkMode,
                                           fontSize: 18,
-                                          fontFamily: "IBM")),
+                                          
+                                      fontWeight: FontWeight.w600
+                                      )),
                                   const SizedBox(
                                     height: 15,
                                   ),
@@ -327,29 +334,35 @@ class _ProfileOfOwnerState extends State<ProfileOfOwner> {
                                         runSpacing: 10,
 
                                         children: [
-                                          const Padding(
+                                           Padding(
                                             padding:
-                                                EdgeInsets.only(right: 10 * 2),
-                                            child: WhatsAppSocialButton(),
+                                               NewSession.get("language", "ar"
+                                               ) ==
+                                                   "en" ? const EdgeInsets.only
+                                                 (left: 10 *2) : const EdgeInsets.only
+                                                 (right: 10 *
+                                      2),
+                                            child: const WhatsAppSocialButton(),
                                           ),
                                            Padding(
-                                            padding: EdgeInsets.only(left:                                             getIt<AppDimension>()
+                                            padding:
+                                            NewSession.get("language", "ar")
+                                                == "en" ?
+                                            EdgeInsets.only(right:                                             getIt<AppDimension>()
                                                 .isSmallScreen(context)
                                                 ? 0
                                                 :
-                                            8),
+                                            8):
+
+                                            EdgeInsets.only(left:                                             getIt<AppDimension>()
+                                                .isSmallScreen(context)
+                                                ? 0
+                                                :
+                                            16),
 
                                             child: const FacebookSocialButton(),
                                           ),
-                                           Padding(
-                                            padding: EdgeInsets.only(right:
-                                            getIt<AppDimension>()
-                                                    .isSmallScreen(context)
-                                                ? 0
-                                                :
-                                            8),
-                                            child: const EmailSocialButton(),
-                                          ),
+                                           const EmailSocialButton(),
                                           PhoneSocialButton(
                                               formattedPhone: formattedPhone),
                                         ],
@@ -386,6 +399,7 @@ class _ProfileOfOwnerState extends State<ProfileOfOwner> {
                                           color: themeMode.isLight
                                               ? kTextColorLightMode
                                               : kTextColorDarkMode,
+                                          fontWeight: FontWeight.w600,
                                           fontSize: 18,
                                           fontFamily: "IBM")),
                                   const SizedBox(
@@ -398,6 +412,7 @@ class _ProfileOfOwnerState extends State<ProfileOfOwner> {
                                               ? kTextColorLightMode
                                               : kTextColorDarkMode,
                                           fontSize: 16,
+                                          fontWeight: FontWeight.w500,
                                           fontFamily: "IBM")),
                                 ],
                               ),
@@ -431,6 +446,7 @@ class _ProfileOfOwnerState extends State<ProfileOfOwner> {
                                               ? kTextColorLightMode
                                               : kTextColorDarkMode,
                                           fontSize: 18,
+                                          fontWeight: FontWeight.w600,
                                           fontFamily: "IBM")),
                                   const SizedBox(
                                     height: 15,
@@ -438,13 +454,14 @@ class _ProfileOfOwnerState extends State<ProfileOfOwner> {
                                   Obx(() {
                                     return Text(
                                         "${SetLocalization.of(context)!.getTranslateValue("you_have")}"
-                                        " ${apartmentModelController.apartments.value.data?.length} "
+                                        " ${apartmentModelController.apartmentsOfOwner.value.data?.length} "
                                         " ${SetLocalization.of(context)!.getTranslateValue("of_ads_displayed")}",
                                         style: TextStyle(
                                             color: themeMode.isLight
                                                 ? kTextColorLightMode
                                                 : kTextColorDarkMode,
                                             fontSize: 16,
+                                            fontWeight: FontWeight.w500,
                                             fontFamily: "IBM"));
                                   })
                                 ],
@@ -493,7 +510,7 @@ class _ProfileOfOwnerState extends State<ProfileOfOwner> {
 
   Future<int> countOfApartmentOfOwner() async {
     apartmentModelController.fetchApartments(isOwnerApartments: true);
-    var apartments = apartmentModelController.apartments.value;
+    var apartments = apartmentModelController.apartmentsOfOwner.value;
 
     var apartmentOfOwner = widget.apartments?.id;
     for (var i = 0; i < apartments.data!.length;) {

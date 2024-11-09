@@ -86,7 +86,7 @@ class _SplashScreenState extends State<SplashScreen> {
     //         // Text(
     //         //   "وين",
     //         //   style: TextStyle(
-    //         //     fontFamily: 'IBM',
+    //         //     
     //         //     fontSize: 70,
     //         //     color: Colors.white,
     //         //     // height: 4
@@ -110,7 +110,7 @@ class _SplashScreenState extends State<SplashScreen> {
     //         //   "بلاقي",
     //         //   style: TextStyle(
     //         //     // letterSpacing: 1,
-    //         //     fontFamily: 'IBM',
+    //         //     
     //         //     fontSize: 70,
     //         //     color: Colors.white,
     //         //     // height: 4
@@ -181,7 +181,7 @@ class _SplashScreenState extends State<SplashScreen> {
   //           // Text(
   //           //   "وين",
   //           //   style: TextStyle(
-  //           //     fontFamily: 'IBM',
+  //           //     
   //           //     fontSize: 70,
   //           //     color: Colors.white,
   //           //     // height: 4
@@ -205,7 +205,7 @@ class _SplashScreenState extends State<SplashScreen> {
   //           //   "بلاقي",
   //           //   style: TextStyle(
   //           //     // letterSpacing: 1,
-  //           //     fontFamily: 'IBM',
+  //           //     
   //           //     fontSize: 70,
   //           //     color: Colors.white,
   //           //     // height: 4
@@ -265,7 +265,8 @@ class _SplashScreenState extends State<SplashScreen> {
     
     Future.delayed(const Duration(milliseconds: 1700), () {
       // Navigator.pushReplacementNamed(context, MyPagesRoutes.noInternet);
-
+      NewSession.get("isFirstTime", "")!= "OK" ? NewSession.save("language",
+          "ar"):null;
       NewSession.get('isFirstTime', "") != "OK"
           ? Navigator.pushReplacementNamed(context, MyPagesRoutes.introScreen)
           : Navigator.pushReplacementNamed(context, MyPagesRoutes.main);

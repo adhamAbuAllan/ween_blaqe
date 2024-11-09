@@ -1,6 +1,8 @@
 import 'package:colorful_safe_area/colorful_safe_area.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get_state_manager/src/rx_flutter/rx_obx_widget.dart';
+import 'package:ween_blaqe/constants/coordination.dart';
+import 'package:ween_blaqe/constants/get_it_controller.dart';
 import 'package:ween_blaqe/controller/get_controllers.dart';
 import 'package:ween_blaqe/core/utils/styles/button.dart';
 
@@ -73,9 +75,10 @@ class _SecondStepState extends State<SecondStep> {
                         onPressed: () {
                           Navigator.pop(context);
                         },
-                        style: outlinedButton(themeMode:themeMode),
-                        child:  Text(SetLocalization.of(context)!.getTranslateValue
-                          ("back")),
+                        style: outlinedButton(context: context,themeMode:
+                        themeMode),
+                        child: Text(SetLocalization.of(context)!
+                            .getTranslateValue("back")),
                       ),
                       const Expanded(child: Text("")),
                       ElevatedButton(
@@ -124,7 +127,7 @@ class _SecondStepState extends State<SecondStep> {
                           myPushName(context, MyPagesRoutes.step3);
                         },
                         style: fullButton(),
-                        child:  Text(SetLocalization.of(context)!
+                        child: Text(SetLocalization.of(context)!
                             .getTranslateValue("next")),
                       ),
                     ],
@@ -134,33 +137,45 @@ class _SecondStepState extends State<SecondStep> {
                 Padding(
                   padding: const EdgeInsets.fromLTRB(0, 10, 0, 0),
                   child: Text(
-                    SetLocalization.of(context)!.getTranslateValue
-                      ("second_step"),
+                    SetLocalization.of(context)!
+                        .getTranslateValue("second_step"),
                     style: TextStyle(
                       color: themeMode.isLight
                           ? kTextColorLightMode
                           : kTextColorDarkMode,
-                      fontSize: 20,
-                      fontFamily: 'IBM',
+                      fontSize: getIt<AppDimension>()
+                          .isSmallScreen(context)
+                          ? 18:20,
+                      
+                      fontWeight: FontWeight.w500,
                     ),
                   ),
                 ),
                 //image steps
                 Padding(
-                  padding: const EdgeInsets.fromLTRB(25, 5, 25, 30),
-                  child: themeMode.isLight ?   Image.asset(
-                    'assets/images/apartments_images/images_to_create_apartment/second_step.png',
-                    width: 65,
-                    height: 65,
-                    fit: BoxFit.fill,
-
-                  ):Image.asset(
-                    'assets/images/apartments_images/images_to_create_apartment/second_step_dark_mode'
-                        '.png',
-                    width: 65,
-                    height: 65,
-                    fit: BoxFit.fill,
-                  ),
+                  padding: const EdgeInsets.fromLTRB(25, 10, 25, 30),
+                  child: themeMode.isLight
+                      ? Image.asset(
+                          'assets/images/apartments_images/images_to_create_apartment/second_step.png',
+                    width:getIt<AppDimension>()
+                        .isSmallScreen(context)
+                        ? 65/1.1:  65,
+                    height: getIt<AppDimension>()
+                        .isSmallScreen(context)
+                        ? 65/1.1:  65,
+                          fit: BoxFit.fill,
+                        )
+                      : Image.asset(
+                          'assets/images/apartments_images/images_to_create_apartment/second_step_dark_mode'
+                          '.png',
+                    width:getIt<AppDimension>()
+                        .isSmallScreen(context)
+                        ? 65/1.1:  65,
+                    height: getIt<AppDimension>()
+                        .isSmallScreen(context)
+                        ? 65/1.1:  65,
+                          fit: BoxFit.fill,
+                        ),
                 ),
                 //this container have 2 main items own: text of advantages , and advantages
                 Obx(() {
@@ -178,26 +193,27 @@ class _SecondStepState extends State<SecondStep> {
                             : kContainerColorDarkMode,
                       ),
                       child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+
                         children: [
                           //this row for text
-                          Row(
-                            children: [
-                              Padding(
-                                padding:
-                                    const EdgeInsets.fromLTRB(0, 0, 10, 10),
-                                child: Text(
-                                  SetLocalization.of(context)!.getTranslateValue
-                                    ("select_features"),
-                                  style: TextStyle(
-                                      fontFamily: 'IBM',
-                                      fontSize: 20,
-                                      color: themeMode.isLight
-                                          ? kTextColorLightMode
-                                          : kTextColorDarkMode),
-                                ),
-                              ),
-                              const Expanded(child: Text("")),
-                            ],
+                          Padding(
+                            padding:
+                            const EdgeInsets.symmetric(vertical: 10,
+                                horizontal: 20),
+                            child: Text(
+                              SetLocalization.of(context)!
+                                  .getTranslateValue("select_advantages"),
+                              style: TextStyle(
+                                  
+                                  fontSize: getIt<AppDimension>()
+                                      .isSmallScreen(context)
+                                      ?18:  20,
+                                  fontWeight: FontWeight.w500,
+                                  color: themeMode.isLight
+                                      ? kTextColorLightMode
+                                      : kTextColorDarkMode),
+                            ),
                           ),
                           //here could owner add advantages
                           // const AddAdvantages()
@@ -269,8 +285,10 @@ class _SecondStepState extends State<SecondStep> {
                                     feature.advName ?? "",
                                     // feature.advName,
                                     style: TextStyle(
-                                        fontFamily: 'IBM',
-                                        fontSize: 16,
+                                        
+                                        fontSize: getIt<AppDimension>()
+                                            .isSmallScreen(context)
+                                            ? 14:16,
                                         color: themeMode.isLight
                                             ? kTextColorLightMode
                                             : kTextColorDarkMode),
@@ -287,8 +305,14 @@ class _SecondStepState extends State<SecondStep> {
                                         (context, child, loadingProgress) {
                                       return child;
                                     },
-                                    width: 30,
-                                    height: 30,
+                                    width: getIt<AppDimension>()
+                                            .isSmallScreen(context)
+                                        ? 24
+                                        : 30,
+                                    height: getIt<AppDimension>()
+                                        .isSmallScreen(context)
+                                        ? 24
+                                        : 30,
                                   ));
                             }).toList()),
                           )

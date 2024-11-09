@@ -40,7 +40,7 @@
 //             ),
 //              Text(calculator.res.toString(),style: TextStyle(
 //                fontSize: 50,
-//                fontFamily: 'IBM',
+//                
 //                color: Colors.blue
 //              ),)
 //               ],);

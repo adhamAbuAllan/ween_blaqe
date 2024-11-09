@@ -17,7 +17,10 @@ import 'package:ween_blaqe/controller/get_controllers.dart';
 import 'package:ween_blaqe/core/utils/styles/button.dart';
 import 'package:ween_blaqe/core/widgets/alirt_class_widget.dart';
 import 'package:ween_blaqe/features/user/owner/steps_to_create_apartment/fourth_step.dart';
+import 'package:ween_blaqe/sesstion/new_session.dart';
 
+import '../../../../../../constants/coordination.dart';
+import '../../../../../../constants/get_it_controller.dart';
 import '../../../../../../constants/localization.dart';
 
 // import 'package:video_player/video_player.dart';
@@ -157,10 +160,36 @@ class _AddImagesState extends State<AddImages> {
                 ),
               ),
               Positioned(
-                  left: MediaQuery.of(context).size.width <= 413 &&
-                          MediaQuery.of(context).size.width >= 390
-                      ? 10.0
-                      : 20.0,
+                  left: ( //check if the language is english
+                      NewSession.get("language", "ar") == "en"
+                          ? null // is not english give me default value
+                          : ( // is english , check if the screen is small
+
+                              getIt<AppDimension>().isSmallScreen(context)
+                                  ? // if screen is small give me 5 only
+                                  5
+                                  : ( // if screen is not small check if screen is medium
+
+                                      MediaQuery.sizeOf(context).width <= 413 &&
+                                              MediaQuery.sizeOf(context)
+                                                      .width >=
+                                                  390
+                                          ? // if screen is medium give me 10 only
+                                          10.0
+                                          : // then screen is not medium give me 20 only
+                                          20.0))),
+                  right: ( // is the same of left position but the difference
+                      // check is
+                      // not english language
+
+                      NewSession.get("language", "ar") != "en"
+                          ? null
+                          : (getIt<AppDimension>().isSmallScreen(context)
+                              ? 5
+                              : (MediaQuery.sizeOf(context).width <= 413 &&
+                                      MediaQuery.sizeOf(context).width >= 390
+                                  ? 10.0
+                                  : 30.0))),
                   top: 2,
                   child: GestureDetector(
                     child: const Icon(
@@ -194,7 +223,6 @@ class _AddImagesState extends State<AddImages> {
       return Text(
         'تُعرض الصور المختارة هنا',
         style: TextStyle(
-          fontFamily: 'IBM',
           color: themeMode.isLight ? kTextColorLightMode : kTextColorDarkMode,
         ),
         textAlign: TextAlign.center,
@@ -294,7 +322,7 @@ class _AddImagesState extends State<AddImages> {
               onPressed: () {
                 Navigator.pop(context);
               },
-              style: outlinedButton(themeMode: themeMode),
+              style: outlinedButton(themeMode: themeMode,context: context),
               child:
                   Text(SetLocalization.of(context)!.getTranslateValue("back")),
             ),
@@ -378,8 +406,8 @@ class _AddImagesState extends State<AddImages> {
               backgroundColor: themeMode.isLight
                   ? kPrimaryColorLightMode
                   : kPrimaryColorDarkMode,
-              tooltip:                         SetLocalization
-                  .of(context)!.getTranslateValue("add_photos_from_gallery"),
+              tooltip: SetLocalization.of(context)!
+                  .getTranslateValue("add_photos_from_gallery"),
               child: const Icon(Icons.photo_library),
             ),
           ),
@@ -393,8 +421,8 @@ class _AddImagesState extends State<AddImages> {
                 );
               },
               heroTag: 'image1',
-              tooltip: SetLocalization
-                  .of(context)!.getTranslateValue("take_photo"),
+              tooltip:
+                  SetLocalization.of(context)!.getTranslateValue("take_photo"),
               backgroundColor: themeMode.isLight
                   ? kPrimaryColorLightMode
                   : kPrimaryColorDarkMode,

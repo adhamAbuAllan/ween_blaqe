@@ -19,7 +19,10 @@ import 'package:ween_blaqe/constants/nums.dart';
 import 'package:ween_blaqe/controller/get_controllers.dart';
 import 'package:ween_blaqe/core/utils/styles/button.dart';
 
+import '../../../../constants/coordination.dart';
+import '../../../../constants/get_it_controller.dart';
 import '../../../../constants/localization.dart';
+import '../../../../sesstion/new_session.dart';
 
 // import '../../../../constants/coordination.dart';
 
@@ -107,25 +110,31 @@ class _UpdateImagesState extends State<UpdateImages> {
         ),
         actions: [
           Padding(
-            padding: const EdgeInsets.all(8.0),
+            padding: EdgeInsets.symmetric(
+                vertical: getIt<AppDimension>().isSmallScreen(context) ? 10: 8,
+                horizontal:
+                getIt<AppDimension>().isSmallScreen(context) ? 10: 8),
             child: OutlinedButton(
               onPressed: () {
                 // imagesModelController.photoWillDeleteIds.clear();
                 Navigator.pop(context);
               },
-              style: outlinedButton(themeMode: themeMode),
+              style: outlinedButton(themeMode: themeMode,context: context),
               child: Text(
                   SetLocalization.of(context)!.getTranslateValue("cancel")),
             ),
           ),
           const Expanded(child: Text("")),
           Padding(
-            padding: const EdgeInsets.all(8.0),
+            padding:  EdgeInsets.symmetric(
+                vertical: getIt<AppDimension>().isSmallScreen(context) ? 10: 8,
+                horizontal:
+                getIt<AppDimension>().isSmallScreen(context) ? 10: 8),
             child: ElevatedButton(
               onPressed: checkArray,
               style: fullButton(),
               child:
-                  Text(SetLocalization.of(context)!.getTranslateValue("done")),
+              Text(SetLocalization.of(context)!.getTranslateValue("done")),
             ),
           ),
         ],
@@ -135,41 +144,42 @@ class _UpdateImagesState extends State<UpdateImages> {
         child: Center(
           child: !kIsWeb && defaultTargetPlatform == TargetPlatform.android
               ? FutureBuilder<void>(
-                  future: retrieveLostData(),
-                  builder:
-                      (BuildContext context, AsyncSnapshot<void> snapshot) {
-                    switch (snapshot.connectionState) {
-                      case ConnectionState.none:
-                      case ConnectionState.waiting:
-                        return ClipRRect(
-                            borderRadius: BorderRadius.circular(7),
-                            child: const SkeletonAvatar(
-                              style: SkeletonAvatarStyle(
-                                height: 100,
-                                width: 100,
-                              ),
-                            ));
-                      case ConnectionState.done:
-                        return _handlePreview();
-                      case ConnectionState.active:
-                        if (snapshot.hasError) {
-                          return Text(
-                            ': ${SetLocalization.of(context)!.getTranslateValue("error")} ${snapshot.error}}',
-                            textAlign: TextAlign.center,
-                            style: const TextStyle(
-                              color: Colors.grey,
-                              fontFamily: 'IBM',
-                            ),
-                          );
-                        } else {
-                          return const Text(
-                            '',
-                            textAlign: TextAlign.center,
-                          );
-                        }
-                    }
-                  },
-                )
+            future: retrieveLostData(),
+            builder:
+                (BuildContext context, AsyncSnapshot<void> snapshot) {
+              switch (snapshot.connectionState) {
+                case ConnectionState.none:
+                case ConnectionState.waiting:
+                  return ClipRRect(
+                      borderRadius: BorderRadius.circular(7),
+                      child: const SkeletonAvatar(
+                        style: SkeletonAvatarStyle(
+                          height: 100,
+                          width: 100,
+                        ),
+                      ));
+                case ConnectionState.done:
+                  return _handlePreview();
+                case ConnectionState.active:
+                  if (snapshot.hasError) {
+                    return Text(
+                      ': ${SetLocalization.of(context)!.getTranslateValue(
+                          "error")} ${snapshot.error}}',
+                      textAlign: TextAlign.center,
+                      style: const TextStyle(
+                        color: Colors.grey,
+
+                      ),
+                    );
+                  } else {
+                    return const Text(
+                      '',
+                      textAlign: TextAlign.center,
+                    );
+                  }
+              }
+            },
+          )
               : _handlePreview(),
         ),
       ),
@@ -216,8 +226,8 @@ class _UpdateImagesState extends State<UpdateImages> {
                 );
               },
               heroTag: 'image1',
-              tooltip: SetLocalization
-                  .of(context)!.getTranslateValue("take_photo"),
+              tooltip:
+              SetLocalization.of(context)!.getTranslateValue("take_photo"),
               backgroundColor: themeMode.isLight
                   ? kPrimaryColorLightMode
                   : kPrimaryColorDarkMode,
@@ -239,7 +249,10 @@ class _UpdateImagesState extends State<UpdateImages> {
       return GestureDetector(
         onTap: () {
           debugPrint(
-              "the width of screen is ${MediaQuery.of(context).size.width}");
+              "the width of screen is ${MediaQuery
+                  .of(context)
+                  .size
+                  .width}");
         },
         child: Semantics(
           // label: 'image_picker_example_picked_images',
@@ -251,73 +264,106 @@ class _UpdateImagesState extends State<UpdateImages> {
               return Obx(() {
                 return imagesModelController.isLoading.value
                     ? ClipRRect(
-                        borderRadius: BorderRadius.circular(7),
-                        child: const SkeletonAvatar(
-                          style: SkeletonAvatarStyle(
-                            height: 110,
-                            width: 110,
-                          ),
-                        ))
+                    borderRadius: BorderRadius.circular(7),
+                    child: const SkeletonAvatar(
+                      style: SkeletonAvatarStyle(
+                        height: 110,
+                        width: 110,
+                      ),
+                    ))
                     : Stack(children: [
-                        Builder(builder: (context) {
-                          return ClipRRect(
-                            borderRadius: BorderRadius.circular(7),
-                            child: widget.oneApartment?.photos != null &&
-                                    _imageFileList != null &&
-                                    widget.oneApartment!.photos!.length >
-                                        index &&
-                                    _imageFileList!.length > index
-                                ? Image.network(
-                                    key: ValueKey(_imageFileList?[index].path),
-                                    _imageFileList?[index].path ?? "null",
-                                    height: 110,
-                                    width: 110,
-                                    fit: BoxFit.cover,
-                                  )
-                                : Image.file(
-                                    File(
-                                      _imageFileList?[index].path ?? "",
-                                    ),
-                                    height: 110,
-                                    width: 110,
-                                    fit: BoxFit.cover,
-                                  ),
-                          );
-                        }),
-                        Positioned(
-                            left: MediaQuery.of(context).size.width <= 413 &&
-                                    MediaQuery.of(context).size.width >= 390
-                                ? 10.0
-                                : 20.0,
-                            top: 2,
-                            child: GestureDetector(
-                              child: const Icon(
-                                Icons.cancel,
-                                color: Color(0xf0e09000),
-                              ),
-                              onTap: () {
-                                setState(() {
-                                  widget.oneApartment?.photos?.removeWhere((p) {
-                                    if (p.url == _imageFileList![index].path) {
-                                      if (p.id != null) {
-                                        photosWillDeleteIds.add(p.id!);
-                                      }
-                                      return true; // Remove the photo from widget.oneApartment?.photos
-                                    }
-                                    return false;
-                                    // Keep the photo in widget.oneApartment?.photos
-                                  });
-                                  // for (var controllerPhoto in imagesModelController.images) {
-                                  //   if (controllerPhoto == _imageFileList![index]
-                                  //       .path ) {
-                                  //     debugPrint("controller photo is : $controllerPhoto");
-                                  //
-                                  //   }}
-                                  _imageFileList?.removeAt(index);
-                                });
-                              },
-                            )),
-                      ]);
+                  Builder(builder: (context) {
+                    return ClipRRect(
+                      borderRadius: BorderRadius.circular(7),
+                      child: widget.oneApartment?.photos != null &&
+                          _imageFileList != null &&
+                          widget.oneApartment!.photos!.length >
+                              index &&
+                          _imageFileList!.length > index
+                          ? Image.network(
+                        key: ValueKey(_imageFileList?[index].path),
+                        _imageFileList?[index].path ?? "null",
+                        height: 110,
+                        width: 110,
+                        fit: BoxFit.cover,
+                      )
+                          : Image.file(
+                        File(
+                          _imageFileList?[index].path ?? "",
+                        ),
+                        height: 110,
+                        width: 110,
+                        fit: BoxFit.cover,
+                      ),
+                    );
+                  }),
+                  Positioned(
+                      left: ( //check if the language is english
+                          NewSession.get("language", "ar") == "en"
+                              ? null // is not english give me default value
+                              : ( // is english , check if the screen is small
+
+                              getIt<AppDimension>().isSmallScreen(context)
+                                  ? // if screen is small give me 5 only
+                              5
+                                  : ( // if screen is not small check if screen is medium
+
+                                  MediaQuery
+                                      .sizeOf(context)
+                                      .width <= 413 &&
+                                      MediaQuery
+                                          .sizeOf(context)
+                                          .width >=
+                                          390
+                                      ? // if screen is medium give me 10 only
+                                  10.0
+                                      : // then screen is not medium give me 20 only
+                                  20.0))),
+                      right: ( // is the same of left position but the difference
+                          // check is
+                          // not english language
+
+                          NewSession.get("language", "ar") != "en"
+                              ? null
+                              : (getIt<AppDimension>().isSmallScreen(context)
+                              ? 5
+                              : (MediaQuery
+                              .sizeOf(context)
+                              .width <= 413 &&
+                              MediaQuery
+                                  .sizeOf(context)
+                                  .width >= 390
+                              ? 10.0
+                              : 30.0))),
+                      top: 2,
+                      child: GestureDetector(
+                        child: const Icon(
+                          Icons.cancel,
+                          color: Color(0xf0e09000),
+                        ),
+                        onTap: () {
+                          setState(() {
+                            widget.oneApartment?.photos?.removeWhere((p) {
+                              if (p.url == _imageFileList![index].path) {
+                                if (p.id != null) {
+                                  photosWillDeleteIds.add(p.id!);
+                                }
+                                return true; // Remove the photo from widget.oneApartment?.photos
+                              }
+                              return false;
+                              // Keep the photo in widget.oneApartment?.photos
+                            });
+                            // for (var controllerPhoto in imagesModelController.images) {
+                            //   if (controllerPhoto == _imageFileList![index]
+                            //       .path ) {
+                            //     debugPrint("controller photo is : $controllerPhoto");
+                            //
+                            //   }}
+                            _imageFileList?.removeAt(index);
+                          });
+                        },
+                      )),
+                ]);
               });
             },
             itemCount: _imageFileList?.length,
@@ -338,9 +384,10 @@ class _UpdateImagesState extends State<UpdateImages> {
       );
     } else if (_imageFileList == null) {
       return Text(
-        'تُعرض الصور المختارة هنا',
+        SetLocalization.of(context)!
+            .getTranslateValue("selected_images_displayed_here"),
         style: TextStyle(
-          fontFamily: 'IBM',
+
           color: themeMode.isLight ? kTextColorLightMode : kTextColorDarkMode,
         ),
         textAlign: TextAlign.center,
@@ -357,8 +404,8 @@ class _UpdateImagesState extends State<UpdateImages> {
   }
 
 //floating button method display dialog
-  Future<void> _displayPickImage(
-      BuildContext context, OnPickImageCallback onPick) async {
+  Future<void> _displayPickImage(BuildContext context,
+      OnPickImageCallback onPick) async {
     final double? width = maxWidthController.text.isNotEmpty
         ? double.parse(maxWidthController.text)
         : null;
@@ -402,55 +449,55 @@ class _UpdateImagesState extends State<UpdateImages> {
 
     if (isMultiImage) {
       await _displayPickImage(context!,
-          (double? maxWidth, double? maxHeight, int? quality) async {
-        try {
-          final List<XFile> pickedFileList = await _picker.pickMultiImage(
-            maxWidth: maxWidth,
-            maxHeight: maxHeight,
-            imageQuality: quality,
-          );
-          setState(() {
-            if (_imageFileList != null) {
-              for (var images in pickedFileList) {
-                setState(() {
-                  _imageFileList?.add(images);
-                  debugPrint("the pickedFileList is : $images");
-                });
-              }
-            } else {
+              (double? maxWidth, double? maxHeight, int? quality) async {
+            try {
+              final List<XFile> pickedFileList = await _picker.pickMultiImage(
+                maxWidth: maxWidth,
+                maxHeight: maxHeight,
+                imageQuality: quality,
+              );
               setState(() {
-                _imageFileList = pickedFileList;
+                if (_imageFileList != null) {
+                  for (var images in pickedFileList) {
+                    setState(() {
+                      _imageFileList?.add(images);
+                      debugPrint("the pickedFileList is : $images");
+                    });
+                  }
+                } else {
+                  setState(() {
+                    _imageFileList = pickedFileList;
+                  });
+                }
+              });
+            } catch (e) {
+              setState(() {
+                _pickImageError = e;
               });
             }
           });
-        } catch (e) {
-          setState(() {
-            _pickImageError = e;
-          });
-        }
-      });
     } else {
       await _displayPickImage(context!,
-          (double? maxWidth, double? maxHeight, int? quality) async {
-        try {
-          final XFile? pickedFile = await _picker.pickImage(
-            source: source,
-            maxWidth: maxWidth,
-            maxHeight: maxHeight,
-            imageQuality: quality,
-          );
-          setState(() {
-            _setImageFileListFromFile(pickedFile);
-            if (pickedFile != null) {
-              debugPrint("the pickedFile is : $pickedFile");
+              (double? maxWidth, double? maxHeight, int? quality) async {
+            try {
+              final XFile? pickedFile = await _picker.pickImage(
+                source: source,
+                maxWidth: maxWidth,
+                maxHeight: maxHeight,
+                imageQuality: quality,
+              );
+              setState(() {
+                _setImageFileListFromFile(pickedFile);
+                if (pickedFile != null) {
+                  debugPrint("the pickedFile is : $pickedFile");
+                }
+              });
+            } catch (e) {
+              setState(() {
+                _pickImageError = e;
+              });
             }
           });
-        } catch (e) {
-          setState(() {
-            _pickImageError = e;
-          });
-        }
-      });
     }
   }
 
@@ -468,14 +515,16 @@ class _UpdateImagesState extends State<UpdateImages> {
           setState(() {
             imagesModelController.images.add(image.path);
             debugPrint(
-                "images in image controller is : ${imagesModelController.images}");
+                "images in image controller is : ${imagesModelController
+                    .images}");
           });
         }
       }
       //that to delete images for api after click ok button
       imagesModelController.photoWillDeleteIds = photosWillDeleteIds;
       debugPrint(
-          "the photos id that will deleted is : ${imagesModelController.photoWillDeleteIds}");
+          "the photos id that will deleted is : ${imagesModelController
+              .photoWillDeleteIds}");
       // setState(() {
       //   imagesModelController.imageFiles = _imageFileList;
       // });

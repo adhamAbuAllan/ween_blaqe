@@ -18,26 +18,25 @@ class PasswordContainerClassWidget extends StatefulWidget {
   final Function? onFieldSubmitted;
   final Function(bool)? setPassword;
   final TextEditingController? controller;
-  final void Function(bool)  onObscureChanged;
+  final void Function(bool) onObscureChanged;
 
-  const PasswordContainerClassWidget({
-    super.key,
-    required this.title,
-    required this.isObscure,
-    required this.hintInput,
-    required this.inputType,
-    this.focusNode,
-    this.onFieldSubmitted,
-    this.isVisible,
-    this.autoFocus,
-    this.controller,
-    this.setPassword,
-   required this.onObscureChanged
+  const PasswordContainerClassWidget(
+      {super.key,
+      required this.title,
+      required this.isObscure,
+      required this.hintInput,
+      required this.inputType,
+      this.focusNode,
+      this.onFieldSubmitted,
+      this.isVisible,
+      this.autoFocus,
+      this.controller,
+      this.setPassword,
+      required this.onObscureChanged
 
-
-    // this.autoFocus
-    // this.autoFocus,
-  });
+      // this.autoFocus
+      // this.autoFocus,
+      });
 
   @override
   State<PasswordContainerClassWidget> createState() =>
@@ -67,22 +66,24 @@ class _PasswordContainerClassWidgetState
           Row(
             children: [
               Padding(
-                padding: const EdgeInsets.fromLTRB(0, 10, 10, 10),
+                padding: const EdgeInsets.fromLTRB(20, 10, 20, 10),
                 child: Text(
                   title,
                   style: TextStyle(
                     color: themeMode.isLight
                         ? kTextColorLightMode
                         : kTextColorDarkMode,
-                    fontSize: 18,
-                    fontFamily: 'IBM',
+                    fontSize: getIt<AppDimension>().isSmallScreen(context)
+                        ? 16
+                        :18,
+                    
                   ),
                 ),
               ),
             ],
           ),
           Padding(
-            padding: const EdgeInsets.fromLTRB(15, 0, 10, 10),
+            padding: const EdgeInsets.fromLTRB(20, 0, 20, 10),
             child: TextFormField(
 // enableInteractiveSelection:true ,
 
@@ -130,11 +131,12 @@ class _PasswordContainerClassWidgetState
               controller: widget.controller,
 
               decoration: InputDecoration(
-                   contentPadding:  EdgeInsets.symmetric(
-                     vertical: getIt<AppDimension>().isSmallScreen(context) ? 20/2 :
-                     20,
-                     horizontal: 12,
-                   ),
+                  contentPadding: EdgeInsets.symmetric(
+                    vertical: getIt<AppDimension>().isSmallScreen(context)
+                        ? 20 / 2
+                        : 20,
+                    horizontal: 12,
+                  ),
                   hintText: hihtInput,
 
                   // errorText: errorText.isEmpty ? null : errorText,
@@ -151,17 +153,19 @@ class _PasswordContainerClassWidgetState
                   //   },
                   // ),
                   suffixIcon: IconButton(
-                    color: themeMode.isLight ? kTextColorLightMode : kTextColorDarkMode,
+                    color: themeMode.isLight
+                        ? kTextColorLightMode
+                        : kTextColorDarkMode,
                     icon: widget.isObscure
                         ? const Icon(Icons.visibility)
                         : const Icon(Icons.visibility_off),
-                    onPressed: (){
+                    onPressed: () {
                       setState(() {
                         widget.onObscureChanged(!widget.isObscure);
                       });
                     },
                   ),
-                  hintStyle: const TextStyle(
+                  hintStyle:  const TextStyle(
                     color: Colors.grey,
                   ),
                   focusedBorder: OutlineInputBorder(
@@ -181,7 +185,11 @@ class _PasswordContainerClassWidgetState
                       ),
                       borderRadius: BorderRadius.circular(7))),
               style: TextStyle(
-                  fontFamily: 'IBM', fontSize: 16, color: themeMode.isLight ? kTextColorLightMode : kTextColorDarkMode),
+                  
+                 fontSize:  getIt<AppDimension>().isSmallScreen(context) ? 15 : 16,
+                  color: themeMode.isLight
+                      ? kTextColorLightMode
+                      : kTextColorDarkMode),
             ),
           ),
         ],

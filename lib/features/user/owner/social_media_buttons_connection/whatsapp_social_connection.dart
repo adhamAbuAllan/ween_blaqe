@@ -25,7 +25,7 @@ class WhatsAppSocialButton extends StatelessWidget {
                 "رقم الواتس صحيح"
             );
           },
-          labelUserName: " رقم الواتس اب ",
+          labelUserName: SetLocalization.of(context)!.getTranslateValue("whatsapp_number"),
           socialDialogName: SetLocalization.of(context)!.getTranslateValue("whatsapp"),
           controller:
           createSocialConnectionController

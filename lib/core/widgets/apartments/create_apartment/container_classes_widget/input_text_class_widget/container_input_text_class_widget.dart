@@ -26,6 +26,7 @@ class ContainerInputTextClassWidget extends StatefulWidget {
   final Widget? valueUnderFormTextField;
   final bool? expanded;
   final String? Function(String?)? validator;
+  final String? helperText;
 
   // TextInputAction? textInputAction;
   final bool? autoFocus;
@@ -50,6 +51,7 @@ class ContainerInputTextClassWidget extends StatefulWidget {
     this.expanded,
     this.valueUnderFormTextField,
     this.validator,
+    this.helperText,
     // this.errorText
   });
 
@@ -90,24 +92,26 @@ class _ContainerInputTextClassWidgetState
           Row(
             children: [
               Padding(
-                padding: const EdgeInsets.fromLTRB(0, 10, 10, 10),
+                padding: const EdgeInsets.fromLTRB(20, 10, 20, 10),
                 child: Text(
                   title,
                   style: TextStyle(
                     color: themeMode.isLight
                         ? kTextColorLightMode
                         : kTextColorDarkMode,
-                    fontSize: 18,
-                    fontFamily: 'IBM',
+                    fontSize: getIt<AppDimension>().isSmallScreen(context)
+                        ? 16
+                        :18,
+                    
+                    fontWeight: FontWeight.w500,
                   ),
                 ),
               ),
             ],
           ),
           Padding(
-            padding: const EdgeInsets.fromLTRB(15, 0, 10, 10),
+              padding: const EdgeInsets.fromLTRB(20, 0, 20, 10),
             child: TextFormField(
-
               validator: widget.validator,
               cursorColor: themeMode.isLight
                   ? kPrimaryColorLightMode
@@ -152,83 +156,99 @@ class _ContainerInputTextClassWidgetState
               maxLines: widget.maxLines,
               // maxLengthEnforcement: MaxLengthEnforcement.truncateAfterCompositionEnds,
               maxLength: widget.maxLength,
-              textDirection: TextDirection.rtl,
+              // textDirection: TextDirection.rtl,
               keyboardType: inputType,
               autofocus: widget.autoFocus ?? false,
+
               // focusNode: focusNode,
-              decoration: buildInputDecoration(hintInput),
+              decoration: buildInputDecoration(hintInput,
+                  helperText: widget.helperText),
               style: TextStyle(
-                fontFamily: 'IBM',
-                fontSize: 16,
-                color:
-                    themeMode.isLight ? kTextColorLightMode : kTextColorDarkMode,
+                
+                fontSize: getIt<AppDimension>().isSmallScreen(context) ? 15 :
+                16,
+                color: themeMode.isLight
+                    ? kTextColorLightMode
+                    : kTextColorDarkMode,
               ),
             ),
           ),
           widget.expanded == true
               ? Row(
-                  children: [
-                    Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 10.0),
-                      child: widget.valueUnderFormTextField ??
-                          const SizedBox(
-                            width: .1,
-                            height: .1,
-                          ),
+            children: [
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 10.0),
+                child: widget.valueUnderFormTextField ??
+                    const SizedBox(
+                      width: .1,
+                      height: .1,
                     ),
-                  ],
-                )
+              ),
+            ],
+          )
               : const SizedBox(
-                  height: .1,
-                  width: .1,
-                )
+            height: .1,
+            width: .1,
+          )
         ],
       ),
     );
   }
 
-  InputDecoration buildInputDecoration(String hintInput) {
+  InputDecoration buildInputDecoration(String hintInput, {String? helperText}) {
     ChangeThemeMode themeMode = Get.find();
 
     return InputDecoration(
-      contentPadding: EdgeInsets.symmetric(
-        vertical: getIt<AppDimension>().isSmallScreen(context) ? 20 / 2 : 20,
-        horizontal: 12,
-      ),
-      errorText: errorText.isEmpty ? null : errorText,
-      hintTextDirection: TextDirection.rtl,
-      hintText: hintInput,
-      border: InputBorder.none,
-      hintMaxLines: widget.hintMaxLines,
-      hintStyle: const TextStyle(
-        color: Colors.grey,
-      ),
-      focusedBorder: OutlineInputBorder(
-        borderSide: BorderSide(
-          width: 1.5,
-          color:
-              themeMode.isLight ? kPrimaryColorLightMode : kPrimaryColorDarkMode,
-        ),
-      ),
-      enabledBorder: OutlineInputBorder(
-          borderSide: BorderSide(
-            width: 1,
-            color: themeMode.isLight
-                ? kPrimaryColorLightMode.withOpacity(.3)
-                : kPrimaryColorDarkMode.withOpacity(.3),
-          ),
-          borderRadius: BorderRadius.circular(7)),
+        helperStyle: TextStyle(
+            color: themeMode.isLight ? kTextColorLightMode : kTextColorDarkMode,
+            fontFamily: "IBM"),
+        helperText: helperText,
+        contentPadding: EdgeInsets.symmetric(
+            vertical:
+            getIt<AppDimension>().isSmallScreen(context) ? 20 / 2 : 20,
+            horizontal: 12),
+        errorText: errorText.isEmpty ? null : errorText,
 
-      // ... your existing decoration properties ...
-      errorBorder: const OutlineInputBorder(
-        borderSide: BorderSide(color: Colors.red), // Set error border color
-      ),
-      focusedErrorBorder: const OutlineInputBorder(
-        borderSide: BorderSide(
-            color: Colors.red, width: 2.0), // Set focused error border
-      ),
-      errorStyle:
-          const TextStyle(color: Colors.red), // Customize error text style
+        // hintTextDirection: TextDirection.rtl,
+        hintText: hintInput,
+        border: InputBorder.none,
+        hintMaxLines: widget.hintMaxLines,
+        hintStyle: const TextStyle(
+          color: Colors.grey,
+        ),
+        focusedBorder: OutlineInputBorder(
+          borderSide: BorderSide(
+            width: 1.5,
+            color: themeMode.isLight
+                ? kPrimaryColorLightMode
+                : kPrimaryColorDarkMode,
+          ),
+        ),
+        enabledBorder: OutlineInputBorder(
+            borderSide: BorderSide(
+              width: 1,
+              color: themeMode.isLight
+                  ? kPrimaryColorLightMode.withOpacity(.3)
+                  : kPrimaryColorDarkMode.withOpacity(.3),
+            ),
+            borderRadius: BorderRadius.circular(7)),
+
+        // ... your existing decoration properties ...
+
+        errorBorder: const OutlineInputBorder(
+          borderSide: BorderSide(color: Colors.red), // Set error border color
+        ),
+        focusedErrorBorder: const OutlineInputBorder(
+          borderSide: BorderSide(
+              color: Colors.red, width: 2.0), // Set focused error border
+        ),
+        errorStyle: const TextStyle(
+          color: Colors.red,
+          
+        ),
+        helperMaxLines: 2
+      // Customize
+      // error text style
     );
   }
 }

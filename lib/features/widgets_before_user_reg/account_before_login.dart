@@ -12,6 +12,8 @@ import 'package:ween_blaqe/core/utils/funcations/route_pages/push_routes.dart';
 // import 'package:ween_blaqe/core/utils/funcations/snakbar.dart';
 import 'package:ween_blaqe/core/utils/styles/button.dart';
 import 'package:ween_blaqe/core/utils/styles/text_style/aline_style.dart';
+import 'package:ween_blaqe/core/widgets/buttons/lines_buttons/switch_language_buttons.dart';
+// import 'package:ween_blaqe/sesstion/new_session.dart';
 
 import '../../constants/coordination.dart';
 import '../../constants/get_it_controller.dart';
@@ -46,7 +48,7 @@ main() {
 
     theme: ThemeData(
         useMaterial3: false,
-        fontFamily: 'IBM',
+        
 
         // brightness: Brightness.,
 
@@ -118,20 +120,26 @@ class _AccountBeforeLoginInStudentState
                   children: [
                     Padding(
                       padding: EdgeInsets.fromLTRB(
-                          0,
+                          20,
                           getIt<AppDimension>().isSmallScreen(context)
                               ? 50 / 1.6
                               : 50,
                           20,
                           0),
                       child: Text(
-                        SetLocalization.of(context)!.getTranslateValue("my_account"),
+                        SetLocalization.of(context)!
+                            .getTranslateValue("my_account"),
                         style: TextStyle(
                           color: themeMode.isLight
                               ? kTextColorLightMode
                               : kTextColorDarkMode,
-                          fontSize: 28.0,
-                          fontFamily: 'IBM',
+                          fontSize:
+                          getIt<AppDimension>().isSmallScreen(context)
+                              ? 22
+                              : 26,
+                          
+                          fontWeight: FontWeight.w600,
+
                           inherit: true,
                         ),
                       ),
@@ -141,33 +149,31 @@ class _AccountBeforeLoginInStudentState
                 ),
 
                 //subtitle of title
-                Row(
-                  children: [
-                    Padding(
-                      padding: EdgeInsets.fromLTRB(
-                          0,
-                          0,
-                          10,
-                          getIt<AppDimension>().isSmallScreen(context)
-                              ? 75 / 1.5
-                              : 75),
-                      child: SizedBox(
-                        width: getIt<AppDimension>().isMediumScreen(context)
-                            ? 300
-                            : 400,
-                        child: Text(
-                          // "قم بتسجيل الدخول لتحجز اول شقة لك ",
-                          "لا يتطلب حجز شقة حساب جديد أو تسجيل دخول ",
-                          style: TextStyle(
-                              color: Colors.grey.shade600,
-                              fontSize: 14,
-                              fontFamily: 'IBM'),
-                          softWrap: true,
-                        ),
-                      ),
+                Padding(
+                  padding: EdgeInsets.fromLTRB(
+                      20,
+                      0,
+                      20,
+                      getIt<AppDimension>().isSmallScreen(context)
+                          ? 75 / 1.5
+                          : 75),
+                  child: SizedBox(
+                    width: getIt<AppDimension>().isMediumScreen(context)
+                        ? 300
+                        : 400,
+                    child: Text(
+                      // "قم بتسجيل الدخول لتحجز اول شقة لك ",
+                      SetLocalization.of(context)!
+                          .getTranslateValue("booking_no_account_required"),
+                      style: TextStyle(
+                          color: Colors.grey.shade600,
+                          fontSize: 14,
+                          fontWeight: FontWeight.w500,
+
+                          fontFamily: 'IBM'),
+                      softWrap: true,
                     ),
-                    const Expanded(child: Text("")),
-                  ],
+                  ),
                 ),
                 // aline,
 
@@ -193,7 +199,7 @@ class _AccountBeforeLoginInStudentState
                 //         "الاشعارات",
                 //         style: TextStyle(
                 //           fontSize: 18,
-                //           fontFamily: 'IBM',
+                //           
                 //         ),
                 //       ),
                 //            Spacer(),
@@ -251,10 +257,12 @@ class _AccountBeforeLoginInStudentState
                             const SizedBox(
                               width: 18,
                             ),
-                            Text(SetLocalization.of(context)!.getTranslateValue("appearance"),
+                            Text(
+                                SetLocalization.of(context)!
+                                    .getTranslateValue("appearance"),
                                 style: TextStyle(
                                     fontSize: 16,
-                                    fontFamily: 'IBM',
+                                    
                                     color: themeMode.isLight
                                         ? kTextColorLightMode
                                         : kTextColorDarkMode)),
@@ -263,20 +271,24 @@ class _AccountBeforeLoginInStudentState
                         value: themeMode.isLight,
                         onChanged: (bool value) async {
                           cityModelController.cityId.value = 0;
-                          setState(() {
-                            themeMode.onChanged(value);
-                            // sp.get('isDark');
-                            // myPushName(context, MyPagesRoutes.splashScreen);
+                          await myPushNameAnimation(context);
 
-                            myPushNameAnimation(context);
-                          });
+                          themeMode.onChanged(value);
+                          // sp.get('isDark');
+                          // myPushName(context, MyPagesRoutes.splashScreen);
                         }),
                     aline,
+                    const SwitchLanguageButtons(),
+                    Padding(
+                      padding: const EdgeInsets.only(top: 4.0),
+                      child: aline,
+                    ),
                     buttonAccount(() {
                       myPushName(context, MyPagesRoutes.askForHelp);
                     },
                         icon: Icons.info_outline,
-                        SetLocalization.of(context)!.getTranslateValue("request_help"),
+                        SetLocalization.of(context)!
+                            .getTranslateValue("request_help"),
                         context: context),
 
                     aline,
@@ -340,7 +352,8 @@ class _AccountBeforeLoginInStudentState
                       myPushName(context, MyPagesRoutes.sendNoticeForUs);
                     },
                         icon: Icons.feedback_outlined,
-                        SetLocalization.of(context)!.getTranslateValue("send_notify_for_us"),
+                        SetLocalization.of(context)!
+                            .getTranslateValue("send_notify_for_us"),
                         context: context),
                     aline,
                     buttonAccount(() {
@@ -386,7 +399,8 @@ class _AccountBeforeLoginInStudentState
                           Uri.parse(url),
                         );
                       },
-                      SetLocalization.of(context)!.getTranslateValue("share_app"),
+                      SetLocalization.of(context)!
+                          .getTranslateValue("share_app"),
                       context: context,
                       icon: Icons.share_outlined,
                     ),
@@ -427,34 +441,37 @@ class _AccountBeforeLoginInStudentState
                           //     "هذه الميزة قيد التطوير وسيتم إضافتها قريبًا");
                         },
                         style: fullButton(),
-                        child: const Text(
-                          "تسجيل الدخول",
+                        child: Text(
+                          SetLocalization.of(context)!
+                              .getTranslateValue("login"),
                         )),
                   ),
                 ),
                 //ask user if don't have count and create account
                 Row(
                   children: [
+                    const SizedBox(
+                      width: 25,
+                    ),
                     //ask user if don't have account
-                    Padding(
-                      padding: const EdgeInsets.fromLTRB(0, 0, 20, 0),
-                      child: Text(
-                        "ألا تمتلك حساب؟",
-                        style: TextStyle(
-                            color: themeMode.isLight
-                                ? kTextColorLightMode
-                                : kTextColorDarkMode,
-                            fontFamily: "IBM"),
-                      ),
+                    Text(
+                      SetLocalization.of(context)!
+                          .getTranslateValue("dont_have_account"),
+                      style: TextStyle(
+                          color: themeMode.isLight
+                              ? kTextColorLightMode
+                              : kTextColorDarkMode,
+                          fontFamily: "IBM"),
                     ),
                     //reg
                     TextButton(
-                      child: const Text(
-                        "إنشاء حساب",
-                        style: TextStyle(
+                      child: Text(
+                        SetLocalization.of(context)!
+                            .getTranslateValue("create_account"),
+                        style: const TextStyle(
                           color: Colors.blueAccent,
                           decoration: TextDecoration.underline,
-                          fontFamily: 'IBM',
+                          
                         ),
                       ),
                       onPressed: () {
@@ -489,15 +506,15 @@ class _AccountBeforeLoginInStudentState
                           return Text(
                             "${SetLocalization.of(context)!.getTranslateValue("beta_version")}: ${snapshot.data} ",
                             style: TextStyle(
-                                fontFamily: 'IBM',
+                                
                                 color: themeMode.isLight
                                     ? kTextColorLightMode.withOpacity(.5)
                                     : kTextColorDarkMode.withOpacity(.5)),
-                            textDirection: TextDirection.rtl,
+                            // textDirection: TextDirection.rtl,
                           );
                         } else if (snapshot.hasError) {
-                          return Text("${snapshot.error}${SetLocalization.of
-                            (context)!.getTranslateValue("error")}: ");
+                          return Text(
+                              "${snapshot.error}${SetLocalization.of(context)!.getTranslateValue("error")}: ");
                         } else {
                           return const CircularProgressIndicator();
                         }
@@ -539,7 +556,7 @@ class _AccountBeforeLoginInStudentState
                 //   // child: Divider(color: Colors.black.withOpacity(.6),thickness: 7,indent: 10,endIndent: 10),
                 // ),
                 //      SizedBox(height: 150,),
-                // Align(alignment: Alignment.bottomRight,child: Text("إصدار:2023.1",style: TextStyle(fontFamily: "IBM",fontSize: 12,color: Colors.grey.withOpacity(.7)),))
+                // Align(alignment: Alignment.bottomRight,child: Text("إصدار:2023.1",style: TextStyle(fontSize: 12,color: Colors.grey.withOpacity(.7)),))
               ],
             ),
           ),
@@ -576,7 +593,7 @@ class _AccountBeforeLoginInStudentState
 //                       "الحساب",
 //                       style: TextStyle(
 //                         fontSize: 28.0,
-//                         fontFamily: 'IBM',
+//                         
 //                         inherit: true,
 //                       ),
 //                     ),
@@ -618,7 +635,7 @@ class _AccountBeforeLoginInStudentState
 //                     "الاشعارات",
 //                     style: TextStyle(
 //                       fontSize: 18,
-//                       fontFamily: 'IBM',
+//                       
 //                     ),
 //                   ),
 //                   Padding(
@@ -741,7 +758,7 @@ class _AccountBeforeLoginInStudentState
 //                       style: TextStyle(
 //                         color: Colors.black,
 //                         decoration: TextDecoration.underline,
-//                         fontFamily: 'IBM',
+//                         
 //                       ),
 //                     ),
 //                     onPressed: () {

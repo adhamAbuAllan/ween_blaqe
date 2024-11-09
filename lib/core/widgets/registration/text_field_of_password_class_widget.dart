@@ -118,7 +118,7 @@ class _TextFieldOfPasswordClassWidgetState
           // textInputAction: TextInputAction.next,
           obscureText: widget.isObscure,
           style: TextStyle(
-              fontFamily: 'IBM',
+              
               color:
                   themeMode.isLight ? kTextColorLightMode : kTextColorDarkMode),
           // focusNode: focusNode,
@@ -130,7 +130,7 @@ class _TextFieldOfPasswordClassWidgetState
                 horizontal: 10),
             labelText: labelInput,
             labelStyle: TextStyle(
-                color: Colors.grey.shade500, fontFamily: 'IBM', fontSize: 16),
+                color: Colors.grey.shade500,  fontSize: 16),
             suffixIcon: IconButton(
               icon: widget.isObscure
                   ? const Icon(Icons.visibility)

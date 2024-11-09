@@ -62,7 +62,7 @@ class _ProfileImageState extends State<ProfileImage> {
                         fontSize: getIt<AppDimension>().isSmallScreen(context)
                             ? 16
                             : 18,
-                        fontFamily: 'IBM',
+                        
                         color: themeMode.isLight
                             ? kTextColorLightMode
                             : kTextColorDarkMode,
@@ -74,7 +74,7 @@ class _ProfileImageState extends State<ProfileImage> {
                         fontSize: getIt<AppDimension>().isSmallScreen(context)
                             ? 16 - 3
                             : 18 - 4,
-                        fontFamily: 'IBM',
+                        
                         color: themeMode.isLight
                             ? kTextColorLightMode
                             : kTextColorDarkMode,
@@ -105,7 +105,7 @@ class _ProfileImageState extends State<ProfileImage> {
                 child: Text(
                   "انضم في$dateOfJoin",
                   style: const TextStyle(
-                      fontSize: 13, fontFamily: 'IBM', color: Colors.grey),
+                      fontSize: 13,  color: Colors.grey),
                 ),
               ),
               const Expanded(child: Text(""))

@@ -149,11 +149,12 @@ class IntroScreenState extends State<IntroScreen> {
         // Display as right-to-left
         back: const Icon(Icons.arrow_forward),
 
-        skip: const Text('تخطي',
-            style: TextStyle(fontFamily: 'IBM', fontWeight: FontWeight.w600)),
+        skip:  Text(SetLocalization.of(context)!.getTranslateValue("skip")
+            ,
+            style: const TextStyle( fontWeight: FontWeight.w600)),
         next: const Icon(Icons.arrow_back),
         done: Text(SetLocalization.of(context)!.getTranslateValue("done"),
-            style: TextStyle(fontFamily: 'IBM', fontWeight: FontWeight.w600)),
+            style: const TextStyle( fontWeight: FontWeight.w600)),
         curve: Curves.fastLinearToSlowEaseIn,
         controlsMargin: const EdgeInsets.fromLTRB(16, 0, 16, 30),
         controlsPadding: const EdgeInsets.fromLTRB(8.0, 4.0, 8.0, 4.0),

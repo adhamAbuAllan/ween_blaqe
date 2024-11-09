@@ -171,7 +171,7 @@
 //               feature.advName??"",
 //               // feature.advName,
 //               style: TextStyle(
-//                   fontFamily: 'IBM', fontSize: 16, color: Colors.grey.shade800),
+//                    fontSize: 16, color: Colors.grey.shade800),
 //             ),
 //             const Expanded(child: Text("")),
 //             Image(
@@ -295,7 +295,7 @@
 // //         Text(
 // //           feature.name,
 // //           // feature.advName,
-// //           style: TextStyle(fontFamily: 'IBM',fontSize: 16,color: Colors.grey.shade800),
+// //           style: TextStyle(fontSize: 16,color: Colors.grey.shade800),
 // //         ),
 // //         const Expanded(child: Text("") ),
 // //         Image( image: AssetImage(feature.icon),width: 30,height: 30,)
@@ -373,7 +373,7 @@
 // //           ),
 // //
 // //           Text(name,
-// //             style: TextStyle(fontFamily: 'IBM', fontSize:16,color: Colors.grey.shade800),
+// //             style: TextStyle( fontSize:16,color: Colors.grey.shade800),
 // //           ),
 // //           Expanded(child: Text("")),
 // //           Image(image: AssetImage(icon),width: 32,height: 32,)

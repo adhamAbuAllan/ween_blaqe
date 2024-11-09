@@ -31,7 +31,7 @@ class HowCreateAd extends StatelessWidget {
                         style: TextStyle(
                           fontSize: 20.0,
                           color: themeMode.isLight ? kTextColorLightMode : kTextColorDarkMode,
-                          fontFamily: 'IBM',
+                          
                           inherit: true,
                         ),
                       ),
@@ -48,7 +48,7 @@ class HowCreateAd extends StatelessWidget {
                     style: TextStyle(
                       fontSize: 16.0,
                       color: themeMode.isLight ? kTextColorLightMode : kTextColorDarkMode.withOpacity(.8),
-                      fontFamily: 'IBM',
+                      
                       inherit: true,
                     ),
                   ),
@@ -65,7 +65,7 @@ class HowCreateAd extends StatelessWidget {
                     style: TextStyle(
                       fontSize: 16.0,
                       color: themeMode.isLight ? kTextColorLightMode : kTextColorDarkMode.withOpacity(.8),
-                      fontFamily: 'IBM',
+                      
                       inherit: true,
                     ),
                   ),
@@ -84,7 +84,7 @@ class HowCreateAd extends StatelessWidget {
                     style: TextStyle(
                       fontSize: 16.0,
                       color: themeMode.isLight ? kTextColorLightMode : kTextColorDarkMode.withOpacity(.8),
-                      fontFamily: 'IBM',
+                      
                       inherit: true,
                     ),
                   ),
@@ -104,7 +104,7 @@ class HowCreateAd extends StatelessWidget {
                     style: TextStyle(
                       fontSize: 16.0,
                       color: themeMode.isLight ? kTextColorLightMode : kTextColorDarkMode.withOpacity(.8),
-                      fontFamily: 'IBM',
+                      
                       inherit: true,
                     ),
                   ),

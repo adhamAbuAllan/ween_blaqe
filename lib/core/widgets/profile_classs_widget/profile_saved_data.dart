@@ -34,7 +34,7 @@
 //                 title,
 //                 style: TextStyle(
 //                     fontSize: 18,
-//                     fontFamily: 'IBM',
+//                     
 //                     color: Colors.grey.shade800),
 //               ),
 //               const Expanded(child: SizedBox()),
@@ -49,7 +49,7 @@
 //                 child: Text(subtitle ?? "",
 //                     style: const TextStyle(
 //                       fontSize: 16,
-//                       fontFamily: 'IBM',
+//                       
 //                     )),
 //               ),
 //               const Expanded(child: SizedBox()),

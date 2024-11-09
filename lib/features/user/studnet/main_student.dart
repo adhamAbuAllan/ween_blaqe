@@ -143,7 +143,7 @@ class _MainStudentState extends State<MainStudent> {
                 //               style: TextStyle(
                 //                 fontSize: 18.0,
                 //                 color: Colors.orange,
-                //                 fontFamily: 'IBM',
+                //                 
                 //                 inherit: true,
                 //               )),
                 //                             ]),
@@ -154,7 +154,7 @@ class _MainStudentState extends State<MainStudent> {
                 //                     style: TextStyle(
                 //                       color: Colors.grey[600],
                 //                       fontSize: 24,
-                //                       fontFamily: "IBM",
+                //                       
                 //                     ),
                 //                   ),
                 //
@@ -173,7 +173,7 @@ class _MainStudentState extends State<MainStudent> {
                 //                                 style: TextStyle(
                 //                                   color: Colors.grey[600],
                 //                                   fontSize: 24,
-                //                                   fontFamily: "IBM",
+                //                                   
                 //                                 )),
                 //                           ],
                 //                         ),
@@ -189,14 +189,14 @@ class _MainStudentState extends State<MainStudent> {
                 //                                 text: TextSpan(children: [
                 //                               TextSpan(
                 //                                   style: TextStyle(
-                //                                     fontFamily: "IBM",
+                //                                     
                 //                                     fontSize: 18,
                 //                                     color: Colors.grey[600],
                 //                                   ),
                 //                                   text: "التكلفة الشهرية: "),
                 //                               TextSpan(
                 //                                   style: TextStyle(
-                //                                     fontFamily: "IBM",
+                //                                     
                 //                                     color: Colors.grey[600],
                 //                                     fontSize: 18,
                 //                                   ),
@@ -228,7 +228,7 @@ class _MainStudentState extends State<MainStudent> {
                 //                                     children: [
                 //                                       TextSpan(
                 //                                           style: TextStyle(
-                //                                             fontFamily: "IBM",
+                //                                             
                 //                                             fontSize: 18,
                 //                                             color: Colors.grey[600],
                 //                                           ),
@@ -286,7 +286,7 @@ class _MainStudentState extends State<MainStudent> {
                 //                                                   TextSpan(children: [
                 //                                             TextSpan(
                 //                                                 style: TextStyle(
-                //                                                   fontFamily: "IBM",
+                //                                                   
                 //                                                   color: Colors
                 //                                                       .grey[600],
                 //                                                   fontSize: 14,
@@ -328,7 +328,7 @@ class _MainStudentState extends State<MainStudent> {
                 //                         child: const Text(
                 //                           "طلب الإشتراك عبر واتس أب",
                 //                           style: TextStyle(
-                //                             fontFamily: "IBM",
+                //                             
                 //                           ),
                 //                         )),
                 //                     CupertinoActionSheetAction(
@@ -339,14 +339,14 @@ class _MainStudentState extends State<MainStudent> {
                 //                         child: const Text(
                 //                           "عرض تفاصيل الإشتراك",
                 //                           style: TextStyle(
-                //                             fontFamily: "IBM",
+                //                             
                 //                           ),
                 //                         )),
                 //                   ],
                 //                   cancelButton: CupertinoActionSheetAction(
                 //                     child: const Text('إلغاء',
                 //                         style: TextStyle(
-                //                           fontFamily: "IBM",
+                //                           
                 //                         )),
                 //                     onPressed: () {
                 //                       Navigator.pop(context);
@@ -370,9 +370,10 @@ class _MainStudentState extends State<MainStudent> {
                 //         ),
                 //       )
                 // buildSpeedDial()
-                FloatingActionButton(
+            FloatingActionButton(
+
               tooltip: SetLocalization
-                  .of(context)!.getTranslateValue("add_listing"),
+                  .of(context)!.getTranslateValue("add_ad"),
               backgroundColor: themeMode.isLight
                   ? kPrimaryColorLightMode
                   : kPrimaryColorDarkMode,
@@ -382,12 +383,15 @@ class _MainStudentState extends State<MainStudent> {
                 if (connectivityController.isConnection()) {
                   NewSession.get("logged", "") == ""
                       ? alert(
-                          "يرجى تسجيل الدخول لإنشاء إعلانك",
-                          "قم بتسجيل الدخول أولا لتتمكن من إضافة الشقة الخاصة بك",
-                          "حسنًا")
+                      SetLocalization.of(context)!
+                          .getTranslateValue("login_to_create_ad"),
+                          SetLocalization.of(context)!.getTranslateValue(
+                            "login_to_add_apartment"
+                          ),
+                          SetLocalization.of(context)!.getTranslateValue("ok"))
                       : myPushName(context, MyPagesRoutes.step1);
                 } else {
-                  showSnakBar(context, "انت غير متصل بالانترنت");
+                  showSnakBar(context, SetLocalization.of(context)!.getTranslateValue("no_internet"));
 
                   return;
                 }
@@ -396,7 +400,9 @@ class _MainStudentState extends State<MainStudent> {
                 Icons.add_home_outlined,
                 color: Colors.white,
               ),
-            ));
+            ),
+        );
+
       }),
     );
   }

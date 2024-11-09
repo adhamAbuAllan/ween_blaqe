@@ -1,11 +1,14 @@
 import 'package:colorful_safe_area/colorful_safe_area.dart';
 import 'package:flutter/material.dart';
+import 'package:ween_blaqe/constants/coordination.dart';
 import 'package:ween_blaqe/constants/localization.dart';
 
 import 'package:ween_blaqe/constants/nums.dart';
-import 'package:ween_blaqe/constants/strings.dart';
+// import 'package:ween_blaqe/constants/strings.dart';
 import 'package:ween_blaqe/controller/get_controllers.dart';
-import 'package:ween_blaqe/core/utils/funcations/route_pages/push_routes.dart';
+// import 'package:ween_blaqe/core/utils/funcations/route_pages/push_routes.dart';
+
+import '../../constants/get_it_controller.dart';
 
 // class SearchNotFound extends StatefulWidget {
 //   const SearchNotFound({Key? key}) : super(key: key);
@@ -36,7 +39,7 @@ import 'package:ween_blaqe/core/utils/funcations/route_pages/push_routes.dart';
 //                         child: Text("لا توجد نتائج بحث عن",
 //                             style: TextStyle(
 //                               fontSize: 16.0,
-//                               fontFamily: 'IBM',
+//                               
 //                               inherit: true,
 //                               color: Colors.grey.shade800,
 //                             )),
@@ -46,7 +49,7 @@ import 'package:ween_blaqe/core/utils/funcations/route_pages/push_routes.dart';
 //                         child: Text("سكن طلاب في مدينة أريحا",
 //                             style: TextStyle(
 //                               fontSize: 16.0,
-//                               fontFamily: 'IBM',
+//                               
 //                               inherit: true,
 //                               color: Colors.grey.shade600,
 //                             )),
@@ -56,7 +59,7 @@ import 'package:ween_blaqe/core/utils/funcations/route_pages/push_routes.dart';
 //                         child: Text("إليك بعض الاقتراحات لبحث أكثر جدوى:",
 //                             style: TextStyle(
 //                               fontSize: 16.0,
-//                               fontFamily: 'IBM',
+//                               
 //                               inherit: true,
 //                               color: Colors.grey.shade800,
 //                             )),
@@ -66,7 +69,7 @@ import 'package:ween_blaqe/core/utils/funcations/route_pages/push_routes.dart';
 //                         child: Text("• تأكد من كتابة الكلمات بشكل صحيح.",
 //                             style: TextStyle(
 //                               fontSize: 16.0,
-//                               fontFamily: 'IBM',
+//                               
 //                               inherit: true,
 //                               color: Colors.grey.shade800,
 //                             )),
@@ -76,7 +79,7 @@ import 'package:ween_blaqe/core/utils/funcations/route_pages/push_routes.dart';
 //                         child: Text("• جرّب كلمات مختلفة.",
 //                             style: TextStyle(
 //                               fontSize: 16.0,
-//                               fontFamily: 'IBM',
+//                               
 //                               inherit: true,
 //                               color: Colors.grey.shade800,
 //                             )),
@@ -86,7 +89,7 @@ import 'package:ween_blaqe/core/utils/funcations/route_pages/push_routes.dart';
 //                         child: Text("• جرّب استخدام كلمات لمدن معروفة في بلدك",
 //                             style: TextStyle(
 //                               fontSize: 16.0,
-//                               fontFamily: 'IBM',
+//                               
 //                               inherit: true,
 //                               color: Colors.grey.shade800,
 //                             )),
@@ -115,7 +118,7 @@ import 'package:ween_blaqe/core/utils/funcations/route_pages/push_routes.dart';
 //                       style: TextStyle(
 //                           color: kPrimaryColor,
 //                           fontWeight: FontWeight.bold,
-//                           fontFamily: 'IBM',
+//                           
 //                           decoration: TextDecoration.underline),
 //                     ),
 //                     onPressed: () {},
@@ -167,7 +170,7 @@ class _TypeNotFoundState extends State<TypeNotFound> {
                             " ${SetLocalization.of(context)!.getTranslateValue("housing_type")}${widget.type} ${SetLocalization.of(context)!.getTranslateValue("not_available")} ",
                             style: TextStyle(
                               fontSize: 18.0,
-                              fontFamily: 'IBM',
+                              
                               inherit: true,
                               color: themeMode.isLight
                                   ? kTextColorLightMode
@@ -181,8 +184,8 @@ class _TypeNotFoundState extends State<TypeNotFound> {
                             "${SetLocalization.of(context)!.getTranslateValue("apartments_will_be_added")}${widget.type} "
                             "${SetLocalization.of(context)!.getTranslateValue("coming_soon")} ",
                             style: TextStyle(
-                              fontSize: 16.0,
-                              fontFamily: 'IBM',
+                              fontSize:  16.0,
+                              
                               inherit: true,
                               color: themeMode.isLight
                                   ? kTextColorLightMode
@@ -194,7 +197,7 @@ class _TypeNotFoundState extends State<TypeNotFound> {
                       //   child: Text("• تأكد من كتابة الكلمات بشكل صحيح.",
                       //       style: TextStyle(
                       //         fontSize: 16.0,
-                      //         fontFamily: 'IBM',
+                      //         
                       //         inherit: true,
                       //         color: Colors.grey.shade800,
                       //       )),
@@ -204,7 +207,7 @@ class _TypeNotFoundState extends State<TypeNotFound> {
                       //   child: Text("• جرّب كلمات مختلفة.",
                       //       style: TextStyle(
                       //         fontSize: 16.0,
-                      //         fontFamily: 'IBM',
+                      //         
                       //         inherit: true,
                       //         color: Colors.grey.shade800,
                       //       )),
@@ -214,7 +217,7 @@ class _TypeNotFoundState extends State<TypeNotFound> {
                       //   child: Text("• جرّب استخدام كلمات لمدن معروفة في بلدك",
                       //       style: TextStyle(
                       //         fontSize: 16.0,
-                      //         fontFamily: 'IBM',
+                      //         
                       //         inherit: true,
                       //         color: Colors.grey.shade800,
                       //       )),
@@ -237,8 +240,11 @@ class _TypeNotFoundState extends State<TypeNotFound> {
                         : const AssetImage(
                             "assets/images/error_images/not_found_dark_mode.png",
                           ),
-                    height: 130 * 2.5,
-                    width: 130 * 2.5,
+                    height: getIt<AppDimension>().isSmallScreen(context) ?
+                    130*1.5 :
+                    (130 * 2.5),
+                    width: getIt<AppDimension>().isSmallScreen(context) ?
+                    130*1.5 :( 130 * 2.5),
                     // color: kContainerColor.withOpacity(.7),
                   ),
                 ),
@@ -259,13 +265,20 @@ class _TypeNotFoundState extends State<TypeNotFound> {
                               ? kPrimaryColorLightMode
                               : kPrimaryColorDarkMode,
                           fontWeight: FontWeight.bold,
-                          fontFamily: 'IBM',
+                          
                           decoration: TextDecoration.underline),
                     ),
-                    onPressed: () {
-                      cityModelController.cityId.value = 0;
-                      myPushReplacementNamed(MyPagesRoutes.main,
-                          context: context);
+                    onPressed: () async {
+
+                      apartmentModelController.isBoyStudent.value = false;
+                      apartmentModelController.isGirlStudent.value = false;
+                      apartmentModelController.isFamilies.value = false;
+                      apartmentModelController.isSebhaVisible.value = false;
+                      apartmentModelController.isAllTypesOfApartment.value = true;
+                     await apartmentModelController.fetchApartments
+                       (isOwnerApartments: false,
+                          type: apartmentModelController.apartmentType.value,
+                          cityId: 0,isAll: true);
                     },
                   ),
                 )

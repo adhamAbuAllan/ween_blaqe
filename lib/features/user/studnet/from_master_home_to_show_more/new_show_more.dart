@@ -2,43 +2,30 @@
 // import 'dart:ui';
 
 import 'package:flutter/material.dart';
-import 'package:animated_text_kit/animated_text_kit.dart';
 
-// import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:skeletons/skeletons.dart';
 import 'package:carousel_slider_plus/carousel_slider_plus.dart';
-// import 'package:colorful_safe_area/colorful_safe_area.dart';
 
-// import 'package:flutter/material.dart';
-// import 'package:get/get.dart';
 import 'package:ween_blaqe/api/apartments_api/one_apartment.dart';
 
-// import 'package:ween_blaqe/api/photos.dart';
-// import 'package:ween_blaqe/controller/get_controllers.dart';
-// import 'package:ween_blaqe/controller/get_controllers.dart';
-
-// import 'package:ween_blaqe/controller/get_controllers.dart';
 import 'package:ween_blaqe/controller/pointer_of_images_controller.dart';
-import 'package:ween_blaqe/core/utils/funcations/go_url_launcher_methodes/go_to_whatsapp_method.dart';
 import 'package:ween_blaqe/core/utils/funcations/snakbar.dart';
 import 'package:ween_blaqe/core/utils/styles/button.dart';
+import 'package:ween_blaqe/core/widgets/apartments/show_more_classes_widget/new_show_more_containers/about_owner_container_widget.dart';
 
-// import 'package:ween_blaqe/features/error_widgets/no_internet.dart';
 import '../../../../constants/coordination.dart';
 import '../../../../constants/get_it_controller.dart';
 import '../../../../constants/localization.dart';
 import '../../../../constants/nums.dart';
-import '../../../../controller/get_controllers.dart';
+
 import '../../../../core/widgets/apartments/show_more_classes_widget/advantages_class_widget.dart';
 import '../../../../core/widgets/apartments/show_more_classes_widget/image_slider/custom_slider.dart';
 import '../../../../core/widgets/apartments/show_more_classes_widget/image_slider/pointer.dart';
 import '../../../../core/widgets/apartments/show_more_classes_widget/image_slider/zoom_of_image/image_details_scree.dart';
-// import '../../../../i_well_delete_it/slove_get_advantage_data/advantages_class_widget.dart';
-
-// import '../../../toast_widget.dart';
-// main() {
-//   runApp(    const MaterialApp(home: NewShowMore()));
-// }
+import '../../../../core/widgets/apartments/show_more_classes_widget/new_show_more_containers/about_apartment_container_widget.dart';
+import '../../../../core/widgets/apartments/show_more_classes_widget/new_show_more_containers/description_of_apartment_container_widget.dart';
+import '../../../../core/widgets/apartments/show_more_classes_widget/new_show_more_containers/for_inquiries_container_widget.dart';
+import '../../../../core/widgets/apartments/show_more_classes_widget/new_show_more_containers/general_of_apartment_info_container_widget.dart';
 
 class NewShowMore extends StatefulWidget {
   const NewShowMore({
@@ -50,7 +37,6 @@ class NewShowMore extends StatefulWidget {
   final DataOfOneApartment? oneApartment;
   final Function(int index, CarouselPageChangedReason reason)? onPageChanged;
 
-  // late List<Photos>? photosOfApartment;
   @override
   State<NewShowMore> createState() => _NewShowMoreState();
 }
@@ -62,15 +48,12 @@ class _NewShowMoreState extends State<NewShowMore> {
   bool _isBoyStudent = false;
   bool _isFamilies = false;
 
-  // Object tag = 'photo';
   bool isStart = false;
 
   @override
   void initState() {
     super.initState();
 
-    // debugPrint(
-    //     "initPage Index = ${widget.currentIndex}");
     isStart = true;
     if (widget.oneApartment?.type?.name == "طلاب") {
       _isBoyStudent = true;
@@ -81,47 +64,11 @@ class _NewShowMoreState extends State<NewShowMore> {
     if (widget.oneApartment?.type?.name == "عائلات") {
       _isFamilies = true;
     }
-
-    // myPushName(context, MyPagesRoutes.skeletonShowMoreWidget);
-    // SkeletonShowMoreWidget;
   }
 
-  // depugPrint(widget.oneApartment?.price??"");
-  // print(widget.oneApartment?.title??"");
-  // print(widget.oneApartment?.type??"");
-  // print(widget.oneApartment?.city??"");
-  // print(widget.oneApartment?.location??"");
-  // print(widget.oneApartment?.rooms??"");
-  // print(widget.oneApartment?.description??"");
-  //general info box
-  // var title = AddAdDataContainer.title;
-  // var city = AddAdDataContainer.city;
-  // var price = AddAdDataContainer.price;
-  // var countOfStudent = AddAdDataContainer.countOfStudent;
-  // var location = AddAdDataContainer.address;
-  //about apartment box
-  // var titleAboutApartmentSM = "المساحة";
-  // var imageAboutApartmentSM =
-  // "assets/images/apartments_images/about_apartment/area.png";
-  // var valueAboutApartmentSM = AddAdDataContainer.squareMeters??0;
-  // var titleAboutApartment = "الاًسرّة";
-  // var imageAboutApartment =
-  //     "assets/images/apartments_images/about_apartment/bed1.png";
-  // var valueAboutApartment = 2;
   var imageAboutApartmentRoom =
       "assets/images/apartments_images/about_apartment/room.png";
   var titleAboutApartmentroom = "الغرف";
-
-  // var valueAboutApartmentRoom = AddAdDataContainer.rooms??0;
-  // var imageAboutApartmentBathroom =
-  //     "assets/images/apartments_images/about_apartment/bathroom.png";
-  // var valueAboutApartmentBathroom = AddAdDataContainer.bathRooms??0;
-  // var titleAboutApartmentBathroom = "الحمامات";
-  // final CarouselController imageController = CarouselController();
-
-  // var ownIndex = 0;
-// var arrayOfApartments = widget.arrayOfApartments;
-//   int current = 0;
 
   PointerController pointerController = PointerController();
 
@@ -134,7 +81,6 @@ class _NewShowMoreState extends State<NewShowMore> {
 
   @override
   Widget build(BuildContext context) {
-    // bool isMove = false;
     return Scaffold(
       backgroundColor: themeMode.isLight
           ? kBackgroundAppColorLightMode
@@ -145,65 +91,64 @@ class _NewShowMoreState extends State<NewShowMore> {
           child: Column(
             // mainAxisAlignment: MainAxisAlignment.center,
             children: [
+              SizedBox(
+                height: getIt<AppDimension>().isSmallScreen(context)
+                    ? 50 / 1.6
+                    : 50,
+              ),
               //back arrow button
-              //back arrow button
-              Padding(
-                padding: const EdgeInsets.fromLTRB(20, 20, 0, 0),
-                child: Row(
-                  crossAxisAlignment: CrossAxisAlignment.end,
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Padding(
-                      padding: const EdgeInsets.fromLTRB(0, 20, 8, 0),
-                      child: BackButton(
-                        style: const ButtonStyle(
-                          // iconSize : WidgetStateProperty.all(34),
-                          //    maximumSize: WidgetStateProperty.all(Size(32,
-                          //        32)),
-                          tapTargetSize: MaterialTapTargetSize.shrinkWrap,
-                        ),
-                        color: themeMode.isLight
-                            ? kTextColorLightMode
-                            : kTextColorDarkMode,
+              Row(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.fromLTRB(8, 0, 8, 0),
+                    child: BackButton(
+                      style: const ButtonStyle(
+                        tapTargetSize: MaterialTapTargetSize.shrinkWrap,
                       ),
+                      color: themeMode.isLight
+                          ? kTextColorLightMode
+                          : kTextColorDarkMode,
                     ),
-                    Text(
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 20),
+                    child: Text(
                       "${widget.oneApartment?.timeAgo} ",
                       style: TextStyle(
                           color: themeMode.isLight
                               ? kTextColorLightMode
                               : kTextColorDarkMode,
-                          fontFamily: "IBM",
                           fontSize: 14),
-                    )
-                  ],
-                ),
+                    ),
+                  )
+                ],
               ),
 
-              const SizedBox(
-                height: 20,
+              SizedBox(
+                height: getIt<AppDimension>().isSmallScreen(context) ? 10 : 20,
               ), // image/s of apartment
               _isDataLoaded
                   ? SkeletonAvatar(
-                style: SkeletonAvatarStyle(
-                    width: 368,
-                    height: 240,
-                    borderRadius: BorderRadius.circular(7)),
-              )
+                      style: SkeletonAvatarStyle(
+                          width: 368,
+                          height: 240,
+                          borderRadius: BorderRadius.circular(7)),
+                    )
                   : const SizedBox(),
               GestureDetector(
                   onTap: () {
                     Navigator.push(
                       context,
                       MaterialPageRoute(
-                        builder: (context) =>
-                            DetailImageScreen(
-                              context: context,
-                              imageList: widget.oneApartment!.photos!,
-                              initialIndex:
+                        builder: (context) => DetailImageScreen(
+                          context: context,
+                          imageList: widget.oneApartment!.photos!,
+                          initialIndex:
                               widget.oneApartment?.currentPhotoIndex.value ?? 0,
-                              oneApartment: widget.oneApartment!,
-                            ),
+                          oneApartment: widget.oneApartment!,
+                        ),
                       ),
                     );
                   },
@@ -224,957 +169,36 @@ class _NewShowMoreState extends State<NewShowMore> {
                     ],
                   )),
 
-              Container(
-                margin: const EdgeInsets.fromLTRB(10, 23, 10, 0),
-                padding: const EdgeInsets.all(5),
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(7),
-                  color: themeMode.isLight
-                      ? kContainerColorLightMode
-                      : kContainerColorDarkMode,
-                ),
-                child: Column(
-                  // this children have ( general info that : title, price , and location
-                  // .
-                  children: [
-                    Row(
-                      children: [
-                        Padding(
-                          padding: const EdgeInsets.fromLTRB(0, 0, 10, 0),
-                          child: Text(
-                            SetLocalization
-                                .of(context)!
-                                .getTranslateValue("general_info"),
-                            style: TextStyle(
-                                fontSize: 20,
-                                fontFamily: 'IBM',
-                                color: themeMode.isLight
-                                    ? kTextColorLightMode
-                                    : kTextColorDarkMode
-                              //kTextColor
-                            ),
-                          ),
-                        ),
-                        const Expanded(
-                          child: Text(""),
-                        ),
-                      ],
-                    ),
-                    //title
-                    Row(
-                      children: [
-                        SizedBox(
-                          width: getIt<AppDimension>().isSmallScreen(context)
-                              ? 360 / 1.5
-                              : 360,
-                          child: Padding(
-                            padding: const EdgeInsets.fromLTRB(10, 0, 10, 10),
-                            child: Text(
-                                widget.oneApartment?.title ?? ""
-                                // data.
-                                ,
-                                softWrap: true,
-                                style: TextStyle(
-                                  color: themeMode.isLight
-                                      ? kTextColorLightMode
-                                      : kTextColorDarkMode,
-                                  fontSize: 18,
-                                  fontFamily: 'IBM',
-                                )),
-                          ),
-                        ),
-                      ],
-                    ),
-                    // location
-                    Row(
-                      children: [
-                        SizedBox(
-                          width: getIt<AppDimension>().isSmallScreen(context)
-                              ? 360 / 1.1
-                              : 360,
-                          child: Padding(
-                            padding: const EdgeInsets.fromLTRB(0, 0, 10, 10),
-                            child: Text(
-                              "${SetLocalization.of(context)!
-                                  .getTranslateValue("location")}${widget
-                                  .oneApartment?.city?.name ?? ""
-
-                              // data.
-                              }-${widget.oneApartment?.location ?? ""
-                              // .data
-
-                              }",
-                              softWrap: true,
-                              textDirection: TextDirection.rtl,
-                              style: TextStyle(
-                                color: themeMode.isLight
-                                    ? kTextColorLightMode
-                                    : kTextColorDarkMode,
-                                fontFamily: 'IBM',
-                              ),
-                            ),
-                          ),
-                        ),
-                        const Expanded(child: Text("")),
-                      ],
-                    ),
-                    // count of student
-                    Row(
-                      children: [
-                        Padding(
-                          padding: const EdgeInsets.fromLTRB(0, 0, 5, 10),
-                          child: Text(
-                              (_isBoyStudent
-                                  ? "${SetLocalization.of(context)!
-                                  .getTranslateValue(
-                                  "allowed_students")}:${widget.oneApartment
-                                  ?.countOfStudnet
-                                  ?? 0}"
-                                  : (_isGirlStudent
-                                  ? "عدد الطالبات المسموح به:${widget
-                                  .oneApartment?.countOfStudnet ?? 0}"
-                                  : (_isFamilies
-                                  ? "${SetLocalization.of(context)!.getTranslateValue("allowed_people_count")}:${widget
-                                  .oneApartment?.countOfStudnet ?? 0}"
-                                  : "${SetLocalization.of(context)!.getTranslateValue("allowed_people_count")}:${widget
-                                  .oneApartment?.countOfStudnet ?? 0}"))),
-                              style: TextStyle(
-                                color: themeMode.isLight
-                                    ? kTextColorLightMode
-                                    : kTextColorDarkMode,
-                                fontSize: 16,
-                                fontFamily: 'IBM',
-                              )),
-                        ),
-                        const Expanded(child: Text("")),
-                      ],
-                    ),
-
-                    Row(
-                      children: [
-                        Padding(
-                          padding: const EdgeInsets.fromLTRB(0, 0, 5, 10),
-                          child: Text(
-                              "${SetLocalization.of(context)!.getTranslateValue(
-                                  "housing_type_students")}:${widget
-                                  .oneApartment?.type?.name ?? ""}",
-                              style: TextStyle(
-                                color: themeMode.isLight
-                                    ? kTextColorLightMode
-                                    : kTextColorDarkMode,
-                                fontSize: 16,
-                                fontFamily: 'IBM',
-                              )),
-                        ),
-                        const Expanded(child: Text("")),
-                      ],
-                    ),
-                    //price
-                    Row(
-                      children: [
-                        Padding(
-                          padding: const EdgeInsets.fromLTRB(0, 0, 10, 10),
-                          child: Text(
-                            "${SetLocalization.of(context)!.getTranslateValue("rent")}:${widget.oneApartment?.price ?? ""
-                            // data.
-
-                            }",
-                            style: TextStyle(
-                              color: themeMode.isLight
-                                  ? kPrimaryColorLightMode
-                                  : kPrimaryColorDarkMode,
-                              fontFamily: 'IBM',
-                            ),
-                          ),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.fromLTRB(0, 0, 3, 10),
-                          child: Text(SetLocalization.of(context)!.getTranslateValue("shekel_per_month"),
-                              style: TextStyle(
-                                color: themeMode.isLight
-                                    ? kPrimaryColorLightMode
-                                    : kPrimaryColorDarkMode,
-                                fontSize: 16,
-                                fontFamily: 'IBM',
-                              )),
-                        ),
-                      ],
-                    ),
-                  ],
-                ),
+              GeneralOfApartmentInfoContainerWidget(
+                oneApartment: widget.oneApartment,
+                isGirlStudent: _isGirlStudent,
+                isBoyStudent: _isBoyStudent,
+                isFamilies: _isFamilies,
               ),
-              Container(
-                margin: const EdgeInsets.fromLTRB(10, 23, 10, 0),
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(7),
-                  color: themeMode.isLight
-                      ? kContainerColorLightMode
-                      : kContainerColorDarkMode,
-                ),
-                child: Column(
-                  children: [
-                    //about apartment  text
-                    Row(
-                      children: [
-                        Padding(
-                          padding: const EdgeInsets.fromLTRB(0, 0, 20, 0),
-                          child: Text(
-                            SetLocalization.of(context)!.getTranslateValue("about_apartment"),
-                            style: TextStyle(
-                                fontSize: 20,
-                                fontFamily: 'IBM',
-                                color: themeMode.isLight
-                                    ? kTextColorLightMode
-                                    : kTextColorDarkMode),
-                          ),
-                        ),
-                        const Expanded(child: Text("")),
-                      ],
-                    ),
 
-                    //about apartment items
-                    FittedBox(
-                      child: Padding(
-                        padding: const EdgeInsets.fromLTRB(0, 0, 0, 5),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Padding(
-                              padding: const EdgeInsets.all(10.0),
-                              child: FittedBox(
-                                child: AnimatedSize(
-                                  duration: const Duration(milliseconds: 700),
-                                  curve: Curves.linear,
-                                  reverseDuration:
-                                  const Duration(milliseconds: 700),
-                                  clipBehavior: Clip.antiAlias,
-                                  child: OutlinedButton(
-                                    onPressed: () {
-                                      setState(() {
-                                        isRoomSizeChange = !isRoomSizeChange;
-                                      });
-                                    },
-                                    style: outlinedButton(themeMode: themeMode)
-                                        .copyWith(
-                                        padding:
-                                        const WidgetStatePropertyAll(
-                                            EdgeInsets.all(10)),
-                                        overlayColor:
-                                        const WidgetStatePropertyAll(
-                                            Colors.transparent),
-                                        side: WidgetStatePropertyAll(BorderSide(
-                                            width: !isRoomSizeChange ? 1 : 2,
-                                            color: isRoomSizeChange
-                                                ? themeMode.isLight
-                                                ? kPrimaryColorLightMode
-                                                : kPrimaryColorDarkMode
-                                                : themeMode.isLight
-                                                ? kPrimaryColor300LightMode
-                                                : kPrimaryColor300DarkMode))),
-                                    child: Column(
-                                      children: [
-                                        Text(
-                                          SetLocalization.of(context)!.getTranslateValue("rooms"),
-                                          style: TextStyle(
-                                              color: themeMode.isLight
-                                                  ? kTextColorLightMode
-                                                  : kTextColorDarkMode),
-                                        ),
-                                        Row(
-                                          children: [
-                                            //Cubic meters
-
-                                            Padding(
-                                              padding:
-                                              const EdgeInsets.fromLTRB(
-                                                  5, 0, 5, 0),
-                                              child: isRoomSizeChange
-                                                  ? FittedBox(
-                                                child: buildAnimatedTextKit(
-                                                    "${widget.oneApartment
-                                                        ?.rooms ?? 0}"),
-                                              )
-                                                  : Text(
-                                                "${widget.oneApartment?.rooms ??
-                                                    0}",
-                                                style: TextStyle(
-                                                    color: themeMode
-                                                        .isLight
-                                                        ? kTextColorLightMode
-                                                        : kTextColorDarkMode),
-                                              ),
-                                            ),
-                                            Image(
-                                              image: AssetImage(
-                                                  imageAboutApartmentRoom),
-                                              width: 32,
-                                              height: 32,
-                                              color: themeMode.isLight
-                                                  ? kTextColorLightMode
-                                                  : kTextColorDarkMode,
-                                            ),
-                                          ],
-                                        ),
-                                      ],
-                                    ),
-                                  ),
-                                ),
-                              ),
-                            ),
-                            Padding(
-                              padding: const EdgeInsets.all(10.0),
-                              child: FittedBox(
-                                // clipBehavior: Clip.antiAlias,
-                                // alignment: Alignment.topCenter,
-                                // fit: BoxFit.none,
-                                child: AnimatedSize(
-                                  duration: const Duration(milliseconds: 700),
-                                  curve: Curves.linear,
-                                  reverseDuration:
-                                  const Duration(milliseconds: 700),
-                                  clipBehavior: Clip.antiAlias,
-                                  child: OutlinedButton(
-                                    onPressed: () {
-                                      setState(() {
-                                        isRoomBathSizeChange =
-                                        !isRoomBathSizeChange;
-                                      });
-                                    },
-                                    style: outlinedButton(themeMode: themeMode)
-                                        .copyWith(
-                                        padding:
-                                        const WidgetStatePropertyAll(
-                                            EdgeInsets.all(10)),
-                                        overlayColor:
-                                        const WidgetStatePropertyAll(
-                                            Colors.transparent),
-                                        side: WidgetStatePropertyAll(BorderSide(
-                                            width: !isRoomBathSizeChange
-                                                ? 1
-                                                : 2,
-                                            color: isRoomBathSizeChange
-                                                ? themeMode.isLight
-                                                ? kPrimaryColorLightMode
-                                                : kPrimaryColorDarkMode
-                                                : themeMode.isLight
-                                                ? kPrimaryColor300LightMode
-                                                : kPrimaryColor300DarkMode))),
-                                    child: Column(
-                                      children: [
-                                        // const Expanded(
-                                        //   child: Text(""),
-                                        // ),
-                                        Text(
-                                          SetLocalization.of(context)!.getTranslateValue("bathrooms"),
-                                          style: TextStyle(
-                                              color: themeMode.isLight
-                                                  ? kTextColorLightMode
-                                                  : kTextColorDarkMode),
-                                        ),
-                                        // const Expanded(
-                                        //   child: Text(""),
-                                        // ),
-                                        Row(
-                                          // mainAxisSize: MainAxisSize.max,
-                                          children: [
-                                            //Cubic meters
-                                            // const Expanded(
-                                            //   child: Text(""),
-                                            // ),
-
-                                            Padding(
-                                              padding:
-                                              const EdgeInsets.fromLTRB(
-                                                  5, 0, 0, 0),
-                                              child: isRoomBathSizeChange
-                                                  ? FittedBox(
-                                                child: buildAnimatedTextKit(
-                                                    "${widget.oneApartment
-                                                        ?.bathrooms ?? 0}"),
-                                              )
-                                                  : Text(
-                                                "${widget.oneApartment
-                                                    ?.bathrooms ?? 0}",
-                                                style: TextStyle(
-                                                    color: themeMode
-                                                        .isLight
-                                                        ? kTextColorLightMode
-                                                        : kTextColorDarkMode),
-                                              ),
-                                            ),
-                                            Image(
-                                              image: const AssetImage(
-                                                  "assets/images/apartments_images/about_apartment/bathroom.png"),
-                                              width: 32,
-                                              height: 32,
-                                              color: themeMode.isLight
-                                                  ? kTextColorLightMode
-                                                  : kTextColorDarkMode,
-                                            ),
-                                          ],
-                                        ),
-                                      ],
-                                    ),
-                                  ),
-                                ),
-                              ),
-                            ),
-                            Padding(
-                              padding: const EdgeInsets.all(10.0),
-                              child: FittedBox(
-                                child: AnimatedSize(
-                                  duration: const Duration(milliseconds: 700),
-                                  curve: Curves.linear,
-                                  reverseDuration:
-                                  const Duration(milliseconds: 700),
-                                  clipBehavior: Clip.antiAlias,
-                                  child: OutlinedButton(
-                                    onPressed: () {
-                                      setState(() {
-                                        isAreaSizeChange = !isAreaSizeChange;
-                                      });
-                                    },
-                                    style: outlinedButton(themeMode: themeMode)
-                                        .copyWith(
-                                        padding:
-                                        const WidgetStatePropertyAll(
-                                          //10
-                                            EdgeInsets.all(10)), // ),
-                                        overlayColor:
-                                        const WidgetStatePropertyAll(
-                                            Colors.transparent),
-                                        side: WidgetStatePropertyAll(BorderSide(
-                                            width: !isAreaSizeChange ? 1 : 2,
-                                            color: isAreaSizeChange
-                                                ? themeMode.isLight
-                                                ? kPrimaryColorLightMode
-                                                : kPrimaryColorDarkMode
-                                                : themeMode.isLight
-                                                ? kPrimaryColor300LightMode
-                                                : kPrimaryColor300DarkMode))),
-                                    child: Column(
-                                      children: [
-                                        Text(
-                                          SetLocalization.of(context)!.getTranslateValue("area"),
-                                          style: TextStyle(
-                                              color: themeMode.isLight
-                                                  ? kTextColorLightMode
-                                                  : kTextColorDarkMode),
-                                        ),
-                                        Row(
-                                          children: [
-                                            //Cubic meters
-
-                                            Padding(
-                                              padding:
-                                              const EdgeInsets.fromLTRB(
-                                                  5, 0, 5, 0),
-                                              child: isAreaSizeChange
-                                                  ? FittedBox(
-                                                child: buildAnimatedTextKit(
-                                                    "${SetLocalization
-                                                        .of(context)!.getTranslateValue("m2")}${widget
-                                                        .oneApartment
-                                                        ?.squareMeters ?? 0}"),
-                                              )
-                                                  : Text(
-                                                "²م${widget.oneApartment
-                                                    ?.squareMeters ?? 0}",
-                                                style: TextStyle(
-                                                    color: themeMode
-                                                        .isLight
-                                                        ? kTextColorLightMode
-                                                        : kTextColorDarkMode),
-                                              ),
-                                            ),
-                                            Image(
-                                              image: const AssetImage(
-                                                "assets/images/apartments_images/about_apartment/area.png",
-                                              ),
-                                              width: 32,
-                                              height: 32,
-                                              color: themeMode.isLight
-                                                  ? kTextColorLightMode
-                                                  : kTextColorDarkMode,
-                                            ),
-                                          ],
-                                        ),
-                                      ],
-                                    ),
-                                  ),
-                                ),
-                              ),
-                            )
-
-                            // AboutApartmentSquareMeter(
-                            //     title: titleAboutApartmentSM,
-                            //     image: imageAboutApartmentSM,
-                            //     value: valueAboutApartmentSM),
-                            //
-                            // AboutApartment(
-                            //     title: titleAboutApartmentroom,
-                            //     image: imageAboutApartmentRoom,
-                            //     value: valueAboutApartmentRoom),
-                            // AboutApartment(
-                            //     title: titleAboutApartmentBathroom,
-                            //     image: imageAboutApartmentBathroom,
-                            //     value: valueAboutApartmentBathroom),
-                          ],
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
+              AboutApartmentContainerWidget(
+                oneApartment: widget.oneApartment ?? DataOfOneApartment(),
+                imageAboutApartmentRoom: imageAboutApartmentRoom,
               ),
               //advantages
 
               GetAdvantages(oneApartment: widget.oneApartment),
+              DescriptionOfApartmentContainerWidget(
+                  oneApartment: widget.oneApartment ?? DataOfOneApartment()),
 
-              // Container(
-              //   margin:     EdgeInsets.fromLTRB(10, 23, 10, 0),
-              //   decoration: BoxDecoration(
-              //     borderRadius: BorderRadius.circular(7),
-              //     color: kContainerColor,
-              //   ),
-              //   child:     Column(
-              //     mainAxisSize: MainAxisSize.min,
-              //     children: [
-              //       Row(
-              //         children: [
-              //           Padding(
-              //             padding: EdgeInsets.fromLTRB(0, 0, 10, 0),
-              //             child: Text("المزايا",
-              //                 style: TextStyle(
-              //                   color:kTextColor,
-              //                   fontSize: 20,
-              //                   fontFamily: 'IBM',
-              //                 )),
-              //           ),
-              //           Expanded(child: Text("")),
-              //         ],
-              //       ),
-              //       AdvantagesClassWidget(),
-              //
-              //     ],
-              //   ),
-              // ),
-              //notes of owner
-              Container(
-                margin: const EdgeInsets.fromLTRB(10, 23, 10, 0),
-                // discription.length.toDouble() * 2,
-                //decoration of show apartment style
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(7),
-                  color: themeMode.isLight
-                      ? kContainerColorLightMode
-                      : kContainerColorDarkMode,
-                ),
-                child: Column(
-                  // this children have ( general info that : title, price , and location.
-                  children: [
-                    //title
-                    Row(
-                      children: [
-                        Padding(
-                          padding: const EdgeInsets.fromLTRB(0, 10, 10, 0),
-                          child: Text(SetLocalization.of(context)!.getTranslateValue("apartment_description"),
-                              style: TextStyle(
-                                color: themeMode.isLight
-                                    ? kTextColorLightMode
-                                    : kTextColorDarkMode,
-                                fontSize: 20,
-                                fontFamily: 'IBM',
-                              )),
-                        ),
-                        const Expanded(child: Text(""))
-                      ],
-                    ),
-                    //description
-                    Padding(
-                      padding: const EdgeInsets.fromLTRB(10, 0, 10, 10),
-                      child: Text(widget.oneApartment?.description ?? "",
-                          style: TextStyle(
-                            color: themeMode.isLight
-                                ? kTextColorLightMode
-                                : kTextColorDarkMode,
-                            fontSize: 16,
-                            fontFamily: 'IBM',
-                            // fontWeight: FontWeight.bold
-                          )),
-                    ),
-                  ],
-                ),
+              ForInquiriesContainerWidget(
+                oneApartment: widget.oneApartment,
               ),
-              Container(
-                padding: const EdgeInsets.only(bottom: 10),
-                margin: const EdgeInsets.fromLTRB(10, 23, 10, 0),
-                // height: 120,
-                // discription.length.toDouble() * 2,
-                //decoration of show apartment style
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(7),
-                  color: themeMode.isLight
-                      ? kContainerColorLightMode
-                      : kContainerColorDarkMode,
-                ),
-                child: Column(
-                  // this widget For inquiries that have title and social media
-                  children: [
-                    //title
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      children: [
-                        Padding(
-                          padding: const EdgeInsets.fromLTRB(0, 10, 10, 10),
-                          child: Text(SetLocalization.of(context)!.getTranslateValue("inquiry"),
-                              style: TextStyle(
-                                color: themeMode.isLight
-                                    ? kTextColorLightMode
-                                    : kTextColorDarkMode,
-                                fontSize: 20,
-                                fontFamily: 'IBM',
-                              )),
-                        ),
-                      ],
-                    ),
-                    OverflowBar(
-                      overflowAlignment: OverflowBarAlignment.start,
-                      alignment: MainAxisAlignment.start,
-                      children: [
-                        const SizedBox(
-                          width: 10,
-                        ),
-                        Wrap(
-                          alignment: WrapAlignment.start,
-                          spacing: 10,
-                          runSpacing: 10,
-                          children: [
-                            IntrinsicWidth(
-                              //whatsApp button
-                              child: OutlinedButton(
-                                onPressed: () async {
-                                  // sendMessageToMessenger("https://www.facebook.com/adhm.alaan"," السلام عليكم، ممكن أستفسر عن الإعلان الخاص بـ${widget.oneApartment?.title}");
-                                  sendMessageToWhatsApp(
-                                      widget.oneApartment!.owner!.phone,
-                                      "  السلام عليكم، ممكن أستفسر عن الإعلان الخاص بـ${widget
-                                          .oneApartment?.title} ",
-                                      image:
-                                      widget.oneApartment?.photos?[0].url);
-                                },
-                                style: outlinedButton(themeMode: themeMode),
-                                child: Padding(
-                                  padding: const EdgeInsets.all(8.0),
-                                  child: Row(
-                                    children: [
-                                      //whtsapp icon
-                                      const Padding(
-                                        padding:
-                                        EdgeInsets.fromLTRB(0, 0, 0, 0),
-                                        child: Image(
-                                          image: AssetImage(
-                                              "assets/images/whatsapp.png"),
-                                          width: 28,
-                                          height: 28,
-                                        ),
-                                      ),
-
-                                      //text
-                                      Padding(
-                                        padding: const EdgeInsets.fromLTRB(
-                                            0, 0, 0, 0),
-                                        child: Text(SetLocalization.of(context)!.getTranslateValue("whatsapp"),
-                                            style: TextStyle(
-                                              color: themeMode.isLight
-                                                  ? kTextColorLightMode
-                                                  : kTextColorDarkMode,
-                                              fontSize: 16,
-                                              fontFamily: 'IBM',
-                                            )),
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                              ),
-                            ),
-
-                            //email button
-                            widget.oneApartment?.owner!.email == "user_email"
-                                ? const SizedBox()
-                                : Padding(
-                              padding: const EdgeInsets.symmetric(
-                                  horizontal: 10),
-                              child: IntrinsicWidth(
-                                child: OutlinedButton(
-                                  onPressed: () async {
-                                    sendEmail(
-                                        widget.oneApartment?.owner
-                                            ?.email ??
-                                            "user_email",
-                                        "يعطيك العافية معك احد مستخدمي تطبيق 'وين "
-                                            "بلاقي ",
-                                        "  السلام عليكم، ممكن أستفسر عن الإعلان الخاص بـ${widget
-                                            .oneApartment?.title} ",
-                                        image: widget.oneApartment
-                                            ?.photos?[0].url);
-                                  },
-                                  style: outlinedButton(),
-                                  child: Padding(
-                                    padding: const EdgeInsets.all(8.0),
-                                    child: Row(
-                                      children: [
-                                        //whtsapp icon
-                                        const Padding(
-                                          padding: EdgeInsets.fromLTRB(
-                                              0, 0, 0, 0),
-                                          child: Image(
-                                            image: AssetImage(
-                                                "assets/images/gmail.png"),
-                                            width: 28,
-                                            height: 28,
-                                          ),
-                                        ),
-
-                                        //text
-                                        Padding(
-                                          padding:
-                                          const EdgeInsets.fromLTRB(
-                                              0, 0, 0, 0),
-                                          child: Text(SetLocalization.of(context)!.getTranslateValue("gmail"),
-                                              style: TextStyle(
-                                                color: themeMode.isLight
-                                                    ? kTextColorLightMode
-                                                    : kTextColorDarkMode,
-                                                fontSize: 16,
-                                                fontFamily: 'IBM',
-                                              )),
-                                        ),
-                                      ],
-                                    ),
-                                  ),
-                                ),
-                              ),
-                            ),
-
-                            // phone
-                            IntrinsicWidth(
-                              child: OutlinedButton(
-                                onPressed: () async {
-                                  makePhoneCall(
-                                      widget.oneApartment?.owner?.phone ??
-                                          "user_phone");
-                                },
-                                style: outlinedButton(),
-                                child: Padding(
-                                  padding: const EdgeInsets.all(8.0),
-                                  child: Row(
-                                    children: [
-                                      //whtsapp icon
-                                      const Icon(
-                                        Icons.phone,
-                                        color: Colors.blueAccent,
-                                        size: 28,
-                                      ),
-
-                                      //text
-                                      Padding(
-                                        padding: const EdgeInsets.fromLTRB(
-                                            0, 0, 0, 0),
-                                        child: Text(SetLocalization.of(context)!.getTranslateValue("phone"),
-                                            style: TextStyle(
-                                              color: themeMode.isLight
-                                                  ? kTextColorLightMode
-                                                  : kTextColorDarkMode,
-                                              fontSize: 16,
-                                              fontFamily: 'IBM',
-                                            )),
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                              ),
-                            ),
-
-                            widget.oneApartment?.owner?.facebook == "user_name"
-                                ? const SizedBox()
-                                : Padding(
-                              padding: const EdgeInsets.symmetric(
-                                  horizontal: 10),
-                              child: IntrinsicWidth(
-                                child: OutlinedButton(
-                                  onPressed: () async {
-                                    sendMessenger(
-                                        userName: widget.oneApartment
-                                            ?.owner?.facebook ??
-                                            "user_name",
-                                        message: "  السلام "
-                                            "عليكم، ممكن أستفسر عن الإعلان الخاص بـ${widget
-                                            .oneApartment?.title} ",
-                                        image: widget.oneApartment
-                                            ?.photos?[0].url);
-                                  },
-                                  style: outlinedButton(),
-                                  child: Padding(
-                                    padding: const EdgeInsets.all(8.0),
-                                    child: Row(
-                                      children: [
-                                        //whtsapp icon
-                                        const Icon(
-                                          Icons.facebook,
-                                          color: Colors.blue,
-                                          size: 28,
-                                        ),
-
-                                        //text
-                                        Padding(
-                                          padding:
-                                          const EdgeInsets.fromLTRB(
-                                              0, 0, 0, 0),
-                                          child: Text(SetLocalization.of(context)!.getTranslateValue("facebook"),
-                                              style: TextStyle(
-                                                color: themeMode.isLight
-                                                    ? kTextColorLightMode
-                                                    : kTextColorDarkMode,
-                                                fontSize: 16,
-                                                fontFamily: 'IBM',
-                                              )),
-                                        ),
-                                      ],
-                                    ),
-                                  ),
-                                ),
-                              ),
-                            ),
-                          ],
-                        ),
-                      ],
-                    ),
-
-                    //social connection
-
-                    // ForInquiries(, onClick, user)
-                  ],
-                ),
-              ),
-
-              Container(
-                margin: const EdgeInsets.fromLTRB(10, 23, 10, 0),
-                // discription.length.toDouble() * 2,
-                //decoration of show apartment style
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(7),
-                  color: themeMode.isLight
-                      ? kContainerColorLightMode
-                      : kContainerColorDarkMode,
-                ),
-                //about the owner
-                child: Column(
-                  // this children have ( general info that : title, price , and location.
-                  children: [
-                    //title
-                    Row(
-                      children: [
-                        Padding(
-                          padding: const EdgeInsets.fromLTRB(0, 10, 10, 10),
-                          child: Text(SetLocalization.of(context)!.getTranslateValue("about_owner"),
-                              style: TextStyle(
-                                color: themeMode.isLight
-                                    ? kTextColorLightMode
-                                    : kTextColorDarkMode,
-                                fontSize: 20,
-                                fontFamily: 'IBM',
-                              )),
-                        ),
-                        const Expanded(child: Text(""))
-                      ],
-                    ),
-                    Row(
-                      children: [
-                        Padding(
-                          padding: const EdgeInsets.all(10),
-                          child: widget.oneApartment?.owner?.profile ==
-                              "images/profile/user.png"
-                              ? CircleAvatar(
-                              radius: 28,
-                              //put a normal person Icon
-                              backgroundColor: Colors.grey.shade700,
-                              child: const Icon(
-                                Icons.person,
-                                color: Colors.white,
-                                size: 28,
-                              ))
-                              : CircleAvatar(
-                            radius: 28,
-                            // backgroundImage: NetworkImage(NewSession.get("profile","def")),
-                            // Adjust the radius as needed
-                            backgroundColor: Colors.grey.shade700,
-                            // Set the background color of the avatar
-                            backgroundImage: NetworkImage(
-                                "https://weenbalaqee"
-                                    ".com/${widget.oneApartment?.owner
-                                    ?.profile ?? "images/profile/user.png"}"),
-                            child:
-                            apartmentModelController.isLoading.value
-                                ? const CircularProgressIndicator()
-                                : null,
-                          ),
-                        ),
-                        Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text(
-                              widget.oneApartment?.owner?.name ?? "",
-                              style: TextStyle(
-                                fontSize:
-                                getIt<AppDimension>().isSmallScreen(context)
-                                    ? 16
-                                    : 18,
-                                fontFamily: 'IBM',
-                                color: themeMode.isLight
-                                    ? kTextColorLightMode
-                                    : kTextColorDarkMode,
-                              ),
-                            ),
-                            const SizedBox(
-                              height: 2,
-                            ),
-                            Text(
-                              // "عرض الملف الشخصي",
-                              widget.oneApartment?.owner?.phone ?? "",
-                              // "972569339613",
-                              style: TextStyle(
-                                  fontSize: 14,
-                                  fontFamily: 'IBM',
-                                  color: themeMode.isLight
-                                      ? kTextColorLightMode
-                                      : kTextColorDarkMode),
-                            )
-                          ],
-                        ),
-                        const Expanded(
-                            child: SizedBox(
-                              child: Text(""),
-                            )),
-                        // Padding(
-                        //   padding: const EdgeInsets.only(left: 10,),
-                        //   child: Icon(
-                        //     Icons.arrow_forward_ios,
-                        //     color: themeMode.isLight
-                        //         ? kTextColorLightMode
-                        //         : kTextColorDarkMode,
-                        //     // size: ,
-                        //   ),
-                        // ),
-                      ],
-                    )
-                  ],
-                ),
-              ),
+              AboutOwnerContainerWidget(
+                  oneApartment: widget.oneApartment ?? DataOfOneApartment()),
 
               Padding(
                 padding: const EdgeInsets.fromLTRB(25, 25, 25, 25),
                 child: SizedBox(
                   width: double.infinity,
-                  height: 55,
+                  height: getIt<AppDimension>().isSmallScreen(context)
+                      ? 55 / 1.2
+                      : 55,
                   child: ElevatedButton(
                       onPressed: () {
                         // NewSession.get("logged", "") == ""
@@ -1190,349 +214,13 @@ class _NewShowMoreState extends State<NewShowMore> {
                       },
                       style: fullButton().copyWith(
                           backgroundColor:
-                          const WidgetStatePropertyAll(Colors.grey)),
-                      child:  Text(SetLocalization.of(context)!.getTranslateValue("book_now"))),
+                              const WidgetStatePropertyAll(Colors.grey)),
+                      child: Text(SetLocalization.of(context)!
+                          .getTranslateValue("book_now"))),
                 ),
               ),
             ],
           )),
     );
   }
-
-  // Future<List<Photos>> fetchPhotos() async {
-  //   setState(() {
-  //     _isDataLoaded = true;
-  //   });
-  //   Uri uri = Uri.parse(ServerLocalDiv.apartmentAll);
-  //   final response = await http.get(uri);
-  //   if (response.statusCode == 200) {
-  //     List jsonResponse = jsonDecode(response.body);
-  //
-  //     return jsonResponse.map((item) => Photos.fromJson(item)).toList();
-  //   } else {
-  //     setState(() {
-  //       _isDataLoaded = false;
-  //     });
-  //     throw Exception('Failed to load photos from API');
-  //   }
-  // }
-
-  //aniatoin
-  AnimatedTextKit buildAnimatedTextKit(String text) {
-    return AnimatedTextKit(
-      totalRepeatCount: 3,
-      pause: Duration.zero,
-      onFinished: () {
-        setState(() {
-          isRoomSizeChange = false;
-          isRoomBathSizeChange = false;
-          isAreaSizeChange = false;
-        });
-      },
-      //aniatedTextOfCounter
-      animatedTexts: [
-        FadeAnimatedText(
-          text,
-          textStyle: TextStyle(
-              fontFamily: "IBM",
-              color: themeMode.isLight
-                  ? kPrimaryColorLightMode
-                  : kPrimaryColorDarkMode),
-          duration: const Duration(
-            milliseconds: 100,
-          ),
-        ),
-      ],
-    );
-  }
-
-//////////////////////
-//   CarouselSlider buildCarouselSlider(
-//       {List<Photos>? photos, CarouselController? controller}) {
-//     return CarouselSlider(
-//                 items:
-//         photos?.map((photo) {
-//           return Builder(
-//             builder: (BuildContext context) {
-//               return
-//
-//               Container(
-//                 margin:     EdgeInsets.all(5.0),
-//                 child: ClipRRect(
-//                     borderRadius:
-//                         BorderRadius.all(Radius.circular(7.0)),
-//                     child: Stack(
-//                       children: <Widget>[
-//                         Image.network(
-//                             photo.url!,
-//                             fit: BoxFit.cover,
-//                             width: 1000.0),
-//                         Positioned(
-//                           bottom: 0.0,
-//                           left: 0.0,
-//                           right: 0.0,
-//                           child: Container(
-//                             decoration:     BoxDecoration(
-//                               gradient: LinearGradient(
-//                                   colors: [
-//                                     Color.fromARGB(0, 0, 0, 0),
-//                                     Color.fromARGB(0, 0, 0, 0)
-//                                   ],
-//                                   begin: Alignment.bottomCenter,
-//                                   end: Alignment.topCenter,
-//                                   tileMode: TileMode.mirror
-//                                 // stops: List.empty()
-//
-//                               ),
-//                             ),
-//                             padding:     EdgeInsets.symmetric(
-//                                 vertical: 10.0, horizontal: 20.0),
-//                           ),
-//                         ),
-//                       ],
-//                     )),
-//               );
-//
-//             },
-//           );
-//
-//         }).toList(),
-//                   // widget.getImages!.generateImageSliders,
-//                   carouselController: controller,
-//                   options: CarouselOptions(
-//                       autoPlay: false,
-//                       enlargeCenterPage: true,
-//                       aspectRatio: 2.0,
-//                       animateToClosest: true,
-//                       pauseAutoPlayOnTouch: true,
-//                       pauseAutoPlayOnManualNavigate: true,
-//                       pauseAutoPlayInFiniteScroll: true,
-//                       pageSnapping: true,
-//                       enableInfiniteScroll: false,
-//                       // reverse: true,
-//                       disableCenter: true,
-//                       // enlargeFactor: ,
-//                       // initialPage: 1,
-//                       viewportFraction: 0.93,
-//                       height: 240,
-//                       scrollDirection: Axis.horizontal,
-//                       autoPlayCurve: Curves.fastLinearToSlowEaseIn,
-//                       enlargeStrategy: CenterPageEnlargeStrategy.height,
-//                       onPageChanged: (index, reason) {
-//                         setState(() {
-//                           current = index;
-//
-//                         });
-// ;
-//                       }),
-//                 );
-//   }
-//last -v
-
-//   SizedBox multiImages(List<Photos> photos) {
-//     return SizedBox(
-//       height: 240,
-//       width: 368,
-//       child: ListView.builder(
-//         scrollDirection: Axis.horizontal,
-//         itemCount: photos.length,
-//         // widget.oneApartment?.photos?.length,
-// physics:     NeverScrollableScrollPhysics(),
-//         itemBuilder: ((context, index) {
-//           return SizedBox(
-//             height: 240,
-//             width: 390,
-//             child: Column(children: [
-//               SizedBox(
-//                 child: CarouselSlider(
-//                 // items:  widget.oneApartment?.photos[index].url ?? [],
-//
-//                   // widget.getImages!.generateImageSliders,
-//                   carouselController: controller,
-//                   options: CarouselOptions(
-//                       autoPlay: false,
-//                       enlargeCenterPage: true,
-//                       aspectRatio: 2.0,
-//                       animateToClosest: true,
-//                       pauseAutoPlayOnTouch: true,
-//                       pauseAutoPlayOnManualNavigate: true,
-//                       pauseAutoPlayInFiniteScroll: true,
-//                       pageSnapping: true,
-//                       enableInfiniteScroll: false,
-//                       // reverse: true,
-//                       disableCenter: true,
-//                       // enlargeFactor: ,
-//                       // initialPage: 1,
-//                       viewportFraction: 0.93,
-//                       height: 240,
-//                       scrollDirection: Axis.horizontal,
-//                       autoPlayCurve: Curves.fastLinearToSlowEaseIn,
-//                       enlargeStrategy: CenterPageEnlargeStrategy.height,
-//                       onPageChanged: (index, reason) {
-//                         // setState(() {
-//                         //   current = index;
-//                         // });
-//                       }),
-//                   items: [
-//                     Container(
-//                       margin:     EdgeInsets.all(5.0),
-//                       child: ClipRRect(
-//                           borderRadius:
-//                                   BorderRadius.all(Radius.circular(7.0)),
-//                           child: Stack(
-//                             children: <Widget>[
-//                               Image.network(
-//                                   // item.url
-//                                   // widget.oneApartment!.photos![index].url,
-//                                   widget.oneApartment?.photos![index].url!??"",
-//                                   fit: BoxFit.cover,
-//                                   width: 1000.0),
-//                               Positioned(
-//                                 bottom: 0.0,
-//                                 left: 0.0,
-//                                 right: 0.0,
-//                                 child: Container(
-//                                   decoration:     BoxDecoration(
-//                                     gradient: LinearGradient(
-//                                         colors: [
-//                                           Color.fromARGB(0, 0, 0, 0),
-//                                           Color.fromARGB(0, 0, 0, 0)
-//                                         ],
-//                                         begin: Alignment.bottomCenter,
-//                                         end: Alignment.topCenter,
-//                                         tileMode: TileMode.mirror
-//                                         // stops: List.empty()
-//
-//                                         ),
-//                                   ),
-//                                   padding:     EdgeInsets.symmetric(
-//                                       vertical: 10.0, horizontal: 20.0),
-//                                 ),
-//                               ),
-//                             ],
-//                           )),
-//                     )
-//                   ],
-//                 ),
-//               ),
-//                   Row(
-//                 mainAxisAlignment: MainAxisAlignment.center,
-//                 // children: [widget.onePlayer?.photos[index].urlentries.map((entry) {
-//                 //   return GestureDetector(
-//                 //     onTap: () => controller.animateToPage(entry.key),
-//                 //     child: Container(
-//                 //       width: 12.0,
-//                 //       height: 12.0,
-//                 //       margin:
-//                 //           EdgeInsets.symmetric(vertical: 8.0, horizontal: 4.0),
-//                 //       decoration: BoxDecoration(
-//                 //           borderRadius: BorderRadiusDirectional.circular(7 / 3.5),
-//                 //           shape: BoxShape.rectangle,
-//                 //           color: (Theme.of(context).brightness == Brightness.dark
-//                 //               ? kPrimaryColor300
-//                 //               : kPrimaryColor)
-//                 //               .withOpacity(current == entry.key ? 0.9 : 0.4)),
-//                 //     ),
-//                 //   );
-//                 // }).toList(),]
-//               )
-//
-//               // Row(
-//               //   mainAxisAlignment: MainAxisAlignment.center,
-//               //   children: widget.onePlayer?.photos[index].url.asMap().entries.map((entry) {
-//               //     return GestureDetector(
-//               //       onTap: () => controller.animateToPage(entry.key),
-//               //       child: Container(
-//               //         width: 12.0,
-//               //         height: 12.0,
-//               //         margin:
-//               //             EdgeInsets.symmetric(vertical: 8.0, horizontal: 4.0),
-//               //         decoration: BoxDecoration(
-//               //             borderRadius: BorderRadiusDirectional.circular(7 / 3.5),
-//               //             shape: BoxShape.rectangle,
-//               //             color: (Theme.of(context).brightness == Brightness.dark
-//               //                 ? kPrimaryColor300
-//               //                 : kPrimaryColor)
-//               //                 .withOpacity(current == entry.key ? 0.9 : 0.4)),
-//               //       ),
-//               //     );
-//               //   }).toList(),
-//               // ),
-//             ]),
-//           );
-//         }),
-//       ),
-//     );
-//   }
-
-// Future openBrowserURL({
-//   required String url,
-//   bool inApp = false,
-// }) async {
-//   if (await canLaunchUrl(Uri.parse(url))) {
-//     await launchUrl(
-//       Uri.parse(url),
-
-//       // forceSafariVC: inApp,
-//       // forceWebView: inApp,
-//       // enableJavaScript: true,
-//     );
-//   }
-// }
-
-// void sendMessageToWhatsApp(String phoneNumber, String message) async {
-//   String url = 'https://wa.me/$phoneNumber/?text=${Uri.encodeFull(message)}';
-//
-//   if (await canLaunchUrl(Uri.parse(url))) {
-//     await launch(url);
-//   } else {
-//     throw 'Could not launch $url';
-//   }
-// }
 }
-// class GetImages extends StatelessWidget {
-//       GetImages({super.key});
-//
-//   @override
-//   Widget build(BuildContext context) {
-//     return     Placeholder();
-//   }
-//
-//
-//   final List<Widget>? imageSliders =
-//       ?.map((item) => Container(
-//   margin:     EdgeInsets.all(5.0),
-//   child: ClipRRect(
-//   borderRadius:     BorderRadius.all(Radius.circular(7.0)),
-//   child: Stack(
-//   children: <Widget>[
-//   Image.network(item.url?? "https://via.placeholder.com/150", fit: BoxFit.cover, width: 1000.0),
-//   Positioned(
-//   bottom: 0.0,
-//   left: 0.0,
-//   right: 0.0,
-//   child: Container(
-//   decoration:     BoxDecoration(
-//   gradient: LinearGradient(
-//   colors: [
-//   Color.fromARGB(0, 0, 0, 0),
-//   Color.fromARGB(0, 0, 0, 0)
-//   ],
-//   begin: Alignment.bottomCenter,
-//   end: Alignment.topCenter,
-//   tileMode: TileMode.mirror
-//   // stops: List.empty()
-//
-//   ),
-//   ),
-//   padding:     EdgeInsets.symmetric(
-//   vertical: 10.0, horizontal: 20.0),
-//   ),
-//   ),
-//   ],
-//   )),
-//   ))
-//       .toList();
-// }
-
-/////////////////////

@@ -33,60 +33,56 @@ class _PrivacyPolicyState extends State<PrivacyPolicy> {
         ),
         body: SingleChildScrollView(
           child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               //title
-              Row(
-                children: [
-                  Padding(
-                    padding: const EdgeInsets.fromLTRB(0, 50, 20, 30),
-                    child: Text(
-                      SetLocalization.of(context)!
-                          .getTranslateValue("privacy_policy"),
-                      style: TextStyle(
-                        fontSize: 28.0,
-                        fontFamily: 'IBM',
-                        inherit: true,
-                        color: themeMode.isLight
-                            ? kTextColorLightMode
-                            : kTextColorDarkMode,
-                      ),
-                    ),
+              Padding(
+                padding: const EdgeInsets.fromLTRB(20, 50, 20, 30),
+                child: Text(
+                  SetLocalization.of(context)!
+                      .getTranslateValue("privacy_policy"),
+                  style: TextStyle(
+                    fontSize: 28.0,
+                    
+                    fontWeight: FontWeight.w800,
+
+                    inherit: true,
+                    color: themeMode.isLight
+                        ? kTextColorLightMode
+                        : kTextColorDarkMode,
                   ),
-                  const Expanded(child: Text("")),
-                ],
+                  softWrap: true,
+                ),
               ),
               //title of info and use that
-              Row(
-                children: [
-                  Padding(
-                    padding: const EdgeInsets.fromLTRB(0, 0, 25, 10),
-                    child: Text(
-                      "جمع المعلومات و استخدامها",
-                      style: TextStyle(
-                        fontSize: 22.0,
-                        fontFamily: 'IBM',
-                        inherit: true,
-                        color: themeMode.isLight
-                            ? kTextColorLightMode
-                            : kTextColorDarkMode,
-                      ),
-                    ),
+              Padding(
+                padding: const EdgeInsets.fromLTRB(25, 0, 25, 10),
+                child: Text(
+                  SetLocalization.of(context)!
+                      .getTranslateValue("collect_and_use_data"),
+                  style: TextStyle(
+                    fontSize: 22.0,
+                    
+                    inherit: true,
+                    fontWeight: FontWeight.w600,
+
+                    color: themeMode.isLight
+                        ? kTextColorLightMode
+                        : kTextColorDarkMode,
                   ),
-                  const Expanded(child: Text("")),
-                ],
+                  softWrap: true,
+                ),
               ),
               //paragraph of info and use that
               Container(
                 width: double.infinity,
-                margin: const EdgeInsets.fromLTRB(25, 0, 30, 10),
+                margin: const EdgeInsets.fromLTRB(30, 0, 30, 10),
                 child: Text(
-                  "نتحمل المسؤولية كاملة فيما يتعلق بحماية معلوماتك الشخصية ونضعها فوق"
-                  " كل إعتبار. توضح هذه السياسة كيف نستخدم المعلومات الشخصية التي "
-                  "نتلقاها منك، وعند استخدامك للتطبيق الذي يضم منصات الهواتف الذكية "
-                  "'اندرويد' و 'ios' تكون بذلك موافقًا على استخدام تلك المعلومات ",
+                  SetLocalization.of(context)!
+                      .getTranslateValue("data_protection_policy"),
                   style: TextStyle(
                     fontSize: 16.0,
-                    fontFamily: 'IBM',
+                    
                     inherit: true,
                     color: themeMode.isLight
                         ? kTextColorLightMode
@@ -97,12 +93,15 @@ class _PrivacyPolicyState extends State<PrivacyPolicy> {
               //title of into that get from user
               Container(
                 width: double.infinity,
-                padding: const EdgeInsets.fromLTRB(0, 0, 25, 10),
+                padding: const EdgeInsets.fromLTRB(25, 0, 25, 10),
                 child: Text(
-                  "العلومات التي نحصل عليها:",
+                  SetLocalization.of(context)!
+                      .getTranslateValue("collected_information"),
                   style: TextStyle(
                     fontSize: 22.0,
-                    fontFamily: 'IBM',
+                    
+                    fontWeight: FontWeight.w700,
+
                     inherit: true,
                     color: themeMode.isLight
                         ? kTextColorLightMode
@@ -113,14 +112,16 @@ class _PrivacyPolicyState extends State<PrivacyPolicy> {
               //paragraph of info that get them from user
               Container(
                 width: double.infinity,
-                margin: const EdgeInsets.fromLTRB(25, 0, 30, 10),
+                margin: const EdgeInsets.fromLTRB(30, 0, 30, 10),
                 child: Text(
                   // "معلومات شخصية و معلومات الحجز",
-                  "معلومات المالك",
+                  SetLocalization.of(context)!.getTranslateValue("owner_info"),
                   style: TextStyle(
                     fontSize: 16.0,
-                    fontFamily: 'IBM',
+                    
                     inherit: true,
+                    fontWeight: FontWeight.w600,
+
                     color: themeMode.isLight
                         ? kTextColorLightMode
                         : kTextColorDarkMode,
@@ -130,12 +131,14 @@ class _PrivacyPolicyState extends State<PrivacyPolicy> {
               //title of info that app use
               Container(
                 width: double.infinity,
-                padding: const EdgeInsets.fromLTRB(0, 0, 25, 5),
+                padding: const EdgeInsets.fromLTRB(25, 0, 25, 5),
                 child: Text(
-                  "استخدام العلومات ",
+                  SetLocalization.of(context)!.getTranslateValue("info_usage"),
                   style: TextStyle(
                     fontSize: 22.0,
-                    fontFamily: 'IBM',
+                    
+                    fontWeight: FontWeight.w500,
+
                     inherit: true,
                     color: themeMode.isLight
                         ? kTextColorLightMode
@@ -146,13 +149,14 @@ class _PrivacyPolicyState extends State<PrivacyPolicy> {
               //subtitle that what info we use
               Container(
                 width: double.infinity,
-                margin: const EdgeInsets.fromLTRB(25, 0, 30, 10),
+                margin: const EdgeInsets.fromLTRB(30, 0, 30, 10),
                 child: Text(
                   // "نسخدم العلومات لكل من المالك و الطالب كما يلي ",
-                  "نستخدم معلومات المالك كما يلي",
+                  SetLocalization.of(context)!
+                      .getTranslateValue("owner_info_usage"),
                   style: TextStyle(
                     fontSize: 16.0,
-                    fontFamily: 'IBM',
+                    
                     inherit: true,
                     color: themeMode.isLight
                         ? kTextColorLightMode
@@ -168,7 +172,7 @@ class _PrivacyPolicyState extends State<PrivacyPolicy> {
               //     "معلومات المالك ",
               //     style: TextStyle(
               //       fontSize: 22.0,
-              //       fontFamily: 'IBM',
+              //       
               //       inherit: true,
 // color:kTextColor,
               //     ),
@@ -177,12 +181,14 @@ class _PrivacyPolicyState extends State<PrivacyPolicy> {
               //use phone number of owner
               Container(
                 width: double.infinity,
-                padding: const EdgeInsets.fromLTRB(0, 0, 25, 10),
+                padding: const EdgeInsets.fromLTRB(25, 0, 25, 10),
                 child: Text(
-                  "الهاتف",
+                  SetLocalization.of(context)!.getTranslateValue("the_phone"),
                   style: TextStyle(
                     fontSize: 18.0,
-                    fontFamily: 'IBM',
+                    
+                    fontWeight: FontWeight.w600,
+
                     inherit: true,
                     color: themeMode.isLight
                         ? kTextColorLightMode
@@ -193,12 +199,12 @@ class _PrivacyPolicyState extends State<PrivacyPolicy> {
               //paragraph way app use phone number of owner
               Container(
                 width: double.infinity,
-                margin: const EdgeInsets.fromLTRB(25, 0, 30, 10),
+                margin: const EdgeInsets.fromLTRB(30, 0, 30, 10),
                 child: Text(
-                  "يُستخدم رقم الهاتف الخاص بك ليستطيع المستخدم التواصل معك في حال أراد الاستفسار عن الإعلان الخاص بك",
+                  SetLocalization.of(context)!.getTranslateValue("phone_usage"),
                   style: TextStyle(
                     fontSize: 16.0,
-                    fontFamily: 'IBM',
+                    
                     inherit: true,
                     color: themeMode.isLight
                         ? kTextColorLightMode
@@ -209,12 +215,12 @@ class _PrivacyPolicyState extends State<PrivacyPolicy> {
               //paragraph2 way app use phone number of owner
               Container(
                 width: double.infinity,
-                margin: const EdgeInsets.fromLTRB(25, 0, 30, 10),
+                margin: const EdgeInsets.fromLTRB(30, 0, 30, 10),
                 child: Text(
-                  "كذلك نستخدم رقم الهاتف الخاص بالمالك في حال وجود بعض النشاطات الغير مرغوب فيها ",
+                  SetLocalization.of(context)!.getTranslateValue("info_phone_usage_details"),
                   style: TextStyle(
                     fontSize: 16.0,
-                    fontFamily: 'IBM',
+                    
                     inherit: true,
                     color: themeMode.isLight
                         ? kTextColorLightMode
@@ -231,7 +237,7 @@ class _PrivacyPolicyState extends State<PrivacyPolicy> {
               //     "معلومات الطالب ",
               //     style: TextStyle(
               //       fontSize: 22.0,
-              //       fontFamily: 'IBM',
+              //       
               //       inherit: true,
 // color:kTextColor,
               //     ),
@@ -245,7 +251,7 @@ class _PrivacyPolicyState extends State<PrivacyPolicy> {
               //     "الهاتف",
               //     style: TextStyle(
               //       fontSize: 18.0,
-              //       fontFamily: 'IBM',
+              //       
               //       inherit: true,
 // color:kTextColor,
               //     ),
@@ -260,7 +266,7 @@ class _PrivacyPolicyState extends State<PrivacyPolicy> {
               //     " في حال وجود بعض النشاطات الغير مرغوب فيها ",
               //     style: TextStyle(
               //       fontSize: 16.0,
-              //       fontFamily: 'IBM',
+              //       
               //       inherit: true,
 // color:kTextColor,
               //     ),
@@ -274,7 +280,7 @@ class _PrivacyPolicyState extends State<PrivacyPolicy> {
               //     "الجامعة",
               //     style: TextStyle(
               //       fontSize: 18.0,
-              //       fontFamily: 'IBM',
+              //       
               //       inherit: true,
 // color:kTextColor,
               //     ),
@@ -290,7 +296,7 @@ class _PrivacyPolicyState extends State<PrivacyPolicy> {
               //     "المتواجدة في المدينة التي تتواجد بها الجامعة ",
               //     style: TextStyle(
               //       fontSize: 16.0,
-              //       fontFamily: 'IBM',
+              //       
               //       inherit: true,
 // color:kTextColor,
               //     ),
@@ -304,7 +310,7 @@ class _PrivacyPolicyState extends State<PrivacyPolicy> {
               //     "الجنس",
               //     style: TextStyle(
               //       fontSize: 18.0,
-              //       fontFamily: 'IBM',
+              //       
               //       inherit: true,
 // color:kTextColor,
               //     ),
@@ -318,7 +324,7 @@ class _PrivacyPolicyState extends State<PrivacyPolicy> {
               //     "نقوم بعرض الشقق له/لها حسب جنس الطالب ",
               //     style: TextStyle(
               //       fontSize: 16.0,
-              //       fontFamily: 'IBM',
+              //       
               //       inherit: true,
 // color:kTextColor,
               //     ),
@@ -328,12 +334,14 @@ class _PrivacyPolicyState extends State<PrivacyPolicy> {
               //apartment info
               Container(
                 width: double.infinity,
-                padding: const EdgeInsets.fromLTRB(0, 0, 25, 10),
+                padding: const EdgeInsets.fromLTRB(25, 0, 25, 10),
                 child: Text(
-                  "معلومات شقة المالك",
+                  SetLocalization.of(context)!.getTranslateValue("owner_apartment_info"),
                   style: TextStyle(
                     fontSize: 22.0,
-                    fontFamily: 'IBM',
+                    
+                    fontWeight: FontWeight.w600,
+
                     inherit: true,
                     color: themeMode.isLight
                         ? kTextColorLightMode
@@ -344,15 +352,13 @@ class _PrivacyPolicyState extends State<PrivacyPolicy> {
               //paragraph way app use info of apartment
               Container(
                 width: double.infinity,
-                margin: const EdgeInsets.fromLTRB(25, 0, 30, 10),
+                margin: const EdgeInsets.fromLTRB(30, 0, 30, 10),
                 child: Text(
-                  "تستخدم معلومات"
-                  " الشقة الخاصة بالمالك ليتمكن المستخدم من معرفة"
-                  " تفاصيل الشقة الخاص بالمالك بشكل أفضل من خلال "
-                  "البيانات المدخلة عند إنشاء الإعلان الخاص بالشقة",
+                  SetLocalization.of(context)!.getTranslateValue("owner_apartment_info_usage")
+,
                   style: TextStyle(
                     fontSize: 16.0,
-                    fontFamily: 'IBM',
+                    
                     inherit: true,
                     color: themeMode.isLight
                         ? kTextColorLightMode
@@ -369,7 +375,7 @@ class _PrivacyPolicyState extends State<PrivacyPolicy> {
               //     "البيانات التي نجمعها من التطبيق",
               //     style: TextStyle(
               //       fontSize: 22.0,
-              //       fontFamily: 'IBM',
+              //       
               //       inherit: true,
 // color:kTextColor,
               //     ),
@@ -384,7 +390,7 @@ class _PrivacyPolicyState extends State<PrivacyPolicy> {
               //     "رقم هاتفك ، و اسمك و معرَّف الجهاز، وعنوان الIP",
               //     style: TextStyle(
               //       fontSize: 16.0,
-              //       fontFamily: 'IBM',
+              //       
               //       inherit: true,
 // color:kTextColor,
               //     ),

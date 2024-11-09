@@ -6,6 +6,8 @@
 	<string>نحتاج للوصول إلى الكاميرا لتتمكن من إلتقاط صور للشقة</string>
 	<key>NSDocumentsFolderUsageDescription</key>
 	<string>نحتاج إلى الوصول إلى معرض الصور لكي تتمكن من إضافة صور للشقة</string>
+    <key>NSPhotoLibraryUsageDescription</key>
+    <string>نحتاج إلى الوصول إلى معرض الصور لكي تتمكن من إضافة صور للشقة</string>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>$(DEVELOPMENT_LANGUAGE)</string>
 	<key>CFBundleDisplayName</key>

@@ -50,7 +50,7 @@ class _EmptyScreenClassWidgetState extends State<EmptyScreenClassWidget> {
             widget.centerText,
             style: TextStyle(
               fontSize: 18,
-              fontFamily: 'IBM',
+              
               color:
                   themeMode.isLight ? kTextColorLightMode : kTextColorDarkMode,
             ),
@@ -65,7 +65,7 @@ class _EmptyScreenClassWidgetState extends State<EmptyScreenClassWidget> {
                   widget.underCenterText??"put your under center text here",
                   style: TextStyle(
                     fontSize: 16,
-                    fontFamily: 'IBM',
+                    
                     color: themeMode.isLight
                         ? kTextColorLightMode
                         : kTextColorDarkMode,
@@ -102,7 +102,7 @@ class _CustomUnderCenterTextState extends State<CustomUnderCenterText> {
           TextSpan(text: "${widget.underCenterTextBeforeIcon} ",style:
           TextStyle(
             fontSize: 16,
-            fontFamily: 'IBM',
+            
             color: themeMode.isLight
                 ? kTextColorLightMode
                 : kTextColorDarkMode,
@@ -118,7 +118,7 @@ class _CustomUnderCenterTextState extends State<CustomUnderCenterText> {
           TextSpan(text: " ${widget.underCenterTextAfterIcon}", style:
           TextStyle(
             fontSize: 16,
-            fontFamily: 'IBM',
+            
             color: themeMode.isLight
                 ? kTextColorLightMode
                 : kTextColorDarkMode,

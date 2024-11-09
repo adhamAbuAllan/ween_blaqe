@@ -84,7 +84,7 @@
 //                     "معلومات عامة",
 //                     style: TextStyle(
 //                       fontSize: 20,
-//                       fontFamily: 'IBM',
+//                       
 //                     ),
 //                   ),
 //                 ),
@@ -105,7 +105,7 @@
 //                         style: const TextStyle(
 //                           color: Colors.black87,
 //                           fontSize: 16,
-//                           fontFamily: 'IBM',
+//                           
 //                         )),
 //                   ),
 //                 ),
@@ -127,7 +127,7 @@
 //                     textDirection: TextDirection.rtl,
 //                     style: TextStyle(
 //                       color: Colors.grey.shade800,
-//                       fontFamily: 'IBM',
+//                       
 //                     ),
 //                   ),
 //                 ),
@@ -146,7 +146,7 @@
 //                     }",
 //                     style: const TextStyle(
 //                       color: Colors.orange,
-//                       fontFamily: 'IBM',
+//                       
 //                     ),
 //                   ),
 //                 ),
@@ -156,7 +156,7 @@
 //                       style: TextStyle(
 //                         color: Colors.orange,
 //                         fontSize: 16,
-//                         fontFamily: 'IBM',
+//                         
 //                       )),
 //                 ),
 //                 const Expanded(child: Text("")),
@@ -168,7 +168,7 @@
 //                       style: const TextStyle(
 //                         color: Colors.grey,
 //                         fontSize: 16,
-//                         fontFamily: 'IBM',
+//                         
 //                       )),
 //                 ),
 //               ],
@@ -199,7 +199,7 @@
 // //                 "معلومات عامة",
 // //                 style: TextStyle(
 // //                   fontSize: 20,
-// //                   fontFamily: 'IBM',
+// //                   
 // //                 ),
 // //               ),
 // //             ),
@@ -218,7 +218,7 @@
 // //                   style: const TextStyle(
 // //                     color: Colors.black87,
 // //                     fontSize: 16,
-// //                     fontFamily: 'IBM',
+// //                     
 // //                   )),
 // //             ),
 // //           ],
@@ -239,7 +239,7 @@
 // //                 textDirection: TextDirection.rtl,
 // //                 style: TextStyle(
 // //                   color: Colors.grey.shade800,
-// //                   fontFamily: 'IBM',
+// //                   
 // //                 ),
 // //               ),
 // //             ),
@@ -256,7 +256,7 @@
 // //                 price}",
 // //                 style: const TextStyle(
 // //                   color: Colors.orange,
-// //                   fontFamily: 'IBM',
+// //                   
 // //                 ),
 // //               ),
 // //             ),
@@ -266,7 +266,7 @@
 // //                   style: TextStyle(
 // //                     color: Colors.orange,
 // //                     fontSize: 16,
-// //                     fontFamily: 'IBM',
+// //                     
 // //                   )),
 // //             ),
 // //             const Expanded(child: Text("")),
@@ -280,7 +280,7 @@
 // //                   style: const TextStyle(
 // //                     color: Colors.grey,
 // //                     fontSize: 16,
-// //                     fontFamily: 'IBM',
+// //                     
 // //                   )),
 // //             ),
 // //           ],

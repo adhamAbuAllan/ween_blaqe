@@ -23,7 +23,7 @@ class UserProfileSkeleton extends StatelessWidget {
             child: const Row(
               children: [
                 Padding(
-                  padding: EdgeInsets.fromLTRB(0, 30, 10, 0),
+                  padding: EdgeInsets.fromLTRB(10, 30, 10, 0),
                   child: SkeletonAvatar(
                       style: SkeletonAvatarStyle(width: 28, height: 24)),
                 ),

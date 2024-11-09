@@ -101,7 +101,7 @@
 //                         "الحجز",
 //                         style: TextStyle(
 //                           fontSize: 26.0,
-//                           fontFamily: 'IBM',
+//                           
 //                           inherit: true,
 //                         ),1
 //                       ),
@@ -173,7 +173,7 @@
 //                       valueUnderFormTextField: months <=0 ?  const Text(""):Text(
 //                         " إجمالي السعر : $stringTotalOfPrice شيكل",
 //                         style: const TextStyle(
-//                             fontFamily: 'IBM', color: Colors.orange),
+//                              color: Colors.orange),
 //                       ),
 //                       controller: countOfMonthController,
 //                       hintInput: chooseCountOfMonthsHint,

@@ -16,10 +16,12 @@ import 'package:ween_blaqe/constants/strings.dart';
 import 'package:ween_blaqe/core/utils/funcations/route_pages/push_routes.dart';
 import 'package:ween_blaqe/core/utils/styles/text_style/aline_style.dart';
 import 'package:ween_blaqe/constants/nums.dart';
+import 'package:ween_blaqe/sesstion/new_session.dart';
 import '../../constants/get_it_controller.dart';
 import '../../controller/get_controllers.dart';
 import '../../core/utils/styles/button.dart';
 import '../../core/widgets/buttons/lines_buttons/line_buttons.dart';
+import '../widgets_before_user_reg/account_before_login.dart';
 // import 'package:carousel_slider_plus/carousel_controller.dart';
 
 main() {
@@ -73,6 +75,18 @@ class _NoInternetState extends State<NoInternet> with WidgetsBindingObserver {
     debugPrint("is snack bark show in init State in NoInternet class :  "
         "--${connectivityController.isSnackBarShow.value}");
     super.initState();
+    NewSession.get("language", "ar") == 'en'
+        ? sephaText = [
+            "Subhan Allah",
+            "Alhamdulillah",
+            "La Ilaha Illallah",
+            "Allahu Akbar",
+            "Subhan Allah Wabihamdih",
+            "Subhan Allah Azim",
+            "Astaghfirullah",
+          ]
+        : sephaText;
+
     connectivityController.isSnackBarShow.value = false;
 
     WidgetsBinding.instance.addObserver(this);
@@ -163,199 +177,211 @@ class _NoInternetState extends State<NoInternet> with WidgetsBindingObserver {
               backgroundColor: themeMode.isLight
                   ? kBackgroundAppColorLightMode
                   : kBackgroundAppColorDarkMode,
-              body: AnimatedAlign(
-                alignment:
-                    isWantToSepha ? Alignment.center : Alignment.topCenter,
-                duration: const Duration(milliseconds: 800),
-                child: AnimatedContainer(
-                  margin: const EdgeInsets.fromLTRB(0, 100, 0, 0),
-                  width: getIt<AppDimension>().isSmallScreen(context)
-                      ? 373 / 1.1
-                      : 373,
-                  height: isWantToSepha
-                      ? (getIt<AppDimension>().isSmallScreen(context)
-                          ? 500 / 1.15
-                          : 500)
-                      : (connectivityController.isConnection() ? 170 : 170),
-                  onEnd: () {
-                    setState(() {
-                      isContExpanding = false;
-                    });
-                  },
-                  padding: const EdgeInsets.fromLTRB(10, 0, 10, 0),
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(7),
-                    color: themeMode.isLight
-                        ? kContainerColorLightMode
-                        : kContainerColorDarkMode,
-                  ),
+              body: SingleChildScrollView(
+                child: AnimatedAlign(
+                  alignment:
+                      isWantToSepha ? Alignment.center : Alignment.topCenter,
                   duration: const Duration(milliseconds: 800),
-                  child: Column(
-                    children: [
-                      //
-                      // isAnimate ? AnimatedAlign(duration: const Duration(milliseconds: 700),
-                      //     curve: Curves.linear,
-                      //     alignment: Alignment.bottomCenter,
-                      //     child: yourChildrenWidgets()) : yourPerantWidget(),
-                      //
-                      connectivityController.isConnection()
-                          ? const SizedBox(
-                              height: 10 * 3,
-                            )
-                          : buildCounterTextRow(),
-                      connectivityController.isConnection()
-                          ? const SizedBox()
-                          : aline,
-                      // !isContExpanding?const SizedBox() :  const AnimatedSize(
-                      //   duration: Duration(milliseconds: 2800),
-                      //   curve: Curves.linear,
-                      //   child: SizedBox(height: 80),
-                      // ),
-                      isWantToSepha
-                          ? AnimatedSize(
-                              duration: const Duration(milliseconds: 1000),
-                              curve: Curves.linear,
-                              child:
-                                  SizedBox(height: !isContExpanding ? 60 : 0),
-                            )
-                          : const SizedBox(),
-
-                      isContExpanding
-                          ? const AnimatedSize(
-                              duration: Duration(milliseconds: 2900),
-                              curve: Curves.linear,
-                              child: SizedBox())
-                          : AnimatedAlign(
-                              duration: const Duration(milliseconds: 2900),
-                              alignment: Alignment.centerRight,
-                              child: SizedBox(
-                                height: 25,
-                                child: Row(
-                                  mainAxisAlignment: MainAxisAlignment.start,
-                                  mainAxisSize: MainAxisSize.max,
-                                  children: [
-                                    isAnimate
-                                        ? SizedBox(
-                                            height: 28,
-                                            child: buildAnimatedTextKit(),
-                                          )
-                                        : Text("$total+",
-                                            style: TextStyle(
-                                                fontFamily: "IBM",
-                                                color: themeMode.isLight
-                                                    ? kPrimaryColorLightMode
-                                                    : kPrimaryColorDarkMode)),
-                                  ],
+                  child: AnimatedContainer(
+                    margin: EdgeInsets.fromLTRB(0,getIt<AppDimension>()
+                        .isSmallScreen(context)? 50:
+                        100, 0,
+                        0),
+                    width: getIt<AppDimension>().isSmallScreen(context)
+                        ? 373 / 1.2
+                        : 373,
+                    height: isWantToSepha
+                        ? (getIt<AppDimension>().isSmallScreen(context)
+                            ? 500 / 1.55
+                            : 500)
+                        : (connectivityController.isConnection() ? 170 : 170),
+                    onEnd: () {
+                      setState(() {
+                        isContExpanding = false;
+                      });
+                    },
+                    padding: const EdgeInsets.fromLTRB(10, 0, 10, 0),
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(7),
+                      color: themeMode.isLight
+                          ? kContainerColorLightMode
+                          : kContainerColorDarkMode,
+                    ),
+                    duration: const Duration(milliseconds: 800),
+                    child: Column(
+                      children: [
+                        //
+                        // isAnimate ? AnimatedAlign(duration: const Duration(milliseconds: 700),
+                        //     curve: Curves.linear,
+                        //     alignment: Alignment.bottomCenter,
+                        //     child: yourChildrenWidgets()) : yourPerantWidget(),
+                        //
+                        connectivityController.isConnection()
+                            ? SizedBox(
+                                height: getIt<AppDimension>().isSmallScreen
+                                  (context) ? 10 :10 * 3,
+                              )
+                            : buildCounterTextRow(),
+                        connectivityController.isConnection()
+                            ? const SizedBox()
+                            : aline,
+                        // !isContExpanding?const SizedBox() :  const AnimatedSize(
+                        //   duration: Duration(milliseconds: 2800),
+                        //   curve: Curves.linear,
+                        //   child: SizedBox(height: 80),
+                        // ),
+                        isWantToSepha
+                            ? AnimatedSize(
+                                duration: const Duration(milliseconds: 1000),
+                                curve: Curves.linear,
+                                child:
+                                    SizedBox(height: !isContExpanding ? 
+                                    (getIt<AppDimension>().isSmallScreen
+                                      (context)?0:60) :
+                                    0),
+                              )
+                            : const SizedBox(),
+                
+                        isContExpanding
+                            ? const AnimatedSize(
+                                duration: Duration(milliseconds: 2900),
+                                curve: Curves.linear,
+                                child: SizedBox())
+                            : AnimatedAlign(
+                                duration: const Duration(milliseconds: 2900),
+                                alignment: Alignment.centerRight,
+                                child: SizedBox(
+                                  height: 25,
+                                  child: Row(
+                                    mainAxisAlignment: MainAxisAlignment.start,
+                                    mainAxisSize: MainAxisSize.max,
+                                    children: [
+                                      isAnimate
+                                          ? SizedBox(
+                                              height: 28,
+                                              child: buildAnimatedTextKit(),
+                                            )
+                                          : Text("$total+",
+                                              style: TextStyle(
+                                                  
+                                                  color: themeMode.isLight
+                                                      ? kPrimaryColorLightMode
+                                                      : kPrimaryColorDarkMode)),
+                                    ],
+                                  ),
                                 ),
                               ),
-                            ),
-
-                      isWantToSepha
-                          ? (!isContExpanding
-                              ? buildBorderSebhaContainer()
-                              : const SizedBox())
-                          : connectivityController.isConnection()
-                              ? aline
-                              : const SizedBox(),
-                      isWantToSepha
-                          ? AnimatedSize(
-                              duration: const Duration(milliseconds: 1000),
-                              curve: Curves.linear,
-                              child: SizedBox(
-                                  height: getIt<AppDimension>()
-                                          .isSmallScreen(context)
-                                      ? 80 / 1.3
-                                      : 80),
-                            )
-                          : const SizedBox(),
-
-                      isWantToSepha
-                          ? (!isContExpanding
-                              ? Column(
-                                  children: [
-                                    SizedBox(
-                                      width: double.infinity,
-                                      height: getIt<AppDimension>()
-                                              .isSmallScreen(context)
-                                          ? 55 / 1.2
-                                          : 55,
-                                      child: buildSebhaElevatedButton(),
+                
+                        isWantToSepha
+                            ? (!isContExpanding
+                                ? buildBorderSebhaContainer()
+                                : const SizedBox())
+                            : connectivityController.isConnection()
+                                ? aline
+                                : const SizedBox(),
+                        isWantToSepha
+                            ? AnimatedSize(
+                                duration: const Duration(milliseconds: 1000),
+                                curve: Curves.linear,
+                                child: SizedBox(
+                                    height: getIt<AppDimension>()
+                                            .isSmallScreen(context)
+                                        ? 80 / 1.3
+                                        : 80),
+                              )
+                            : const SizedBox(),
+                
+                        isWantToSepha
+                            ? (!isContExpanding
+                                ? Column(
+                                    children: [
+                                      SizedBox(
+                                        width: double.infinity,
+                                        height: getIt<AppDimension>()
+                                                .isSmallScreen(context)
+                                            ? 55 / 1.2
+                                            : 55,
+                                        child: buildSebhaElevatedButton(),
+                                      ),
+                                      const SizedBox(
+                                        height: 20,
+                                      ),
+                                      SizedBox(
+                                        width: double.infinity,
+                                        height: getIt<AppDimension>()
+                                                .isSmallScreen(context)
+                                            ? 55 / 1.2
+                                            : 55,
+                                        child: OutlinedButton(
+                                            style: outlinedButton(
+                                                themeMode: themeMode,context:
+                                            context),
+                                            onPressed: () {
+                                              setState(() {
+                                                total = 0;
+                                                saveTotal(total);
+                                              });
+                                            },
+                                            child: Text(
+                                                SetLocalization.of(context)!
+                                                    .getTranslateValue("reset"))),
+                                      ),
+                                    ],
+                                  )
+                                : const SizedBox())
+                            : (isContExpanding
+                                ? const AnimatedSize(
+                                    duration: Duration(seconds: 1))
+                                : AnimatedAlign(
+                                    duration: const Duration(milliseconds: 100),
+                                    curve: Curves.bounceInOut,
+                                    alignment: Alignment.bottomCenter,
+                                    child: buttonHaveTitleAndIcon(
+                                      () {
+                                        setState(() {
+                                          isWantToSepha = true;
+                                          isContExpanding = true;
+                                        });
+                                      },
+                                      SetLocalization.of(context)!
+                                          .getTranslateValue("start_tasbih"),
+                                      image: Image.asset(
+                                          "assets/images/tasbih.png",
+                                          color: themeMode.isLight
+                                              ? kTextColorLightMode
+                                              : kTextColorDarkMode,
+                                          width: 35,
+                                          height: isContExpanding ? 0 : 35),
+                                      isIcon: false,
                                     ),
-                                    const SizedBox(
-                                      height: 20,
-                                    ),
-                                    SizedBox(
-                                      width: double.infinity,
-                                      height: getIt<AppDimension>()
-                                              .isSmallScreen(context)
-                                          ? 55 / 1.2
-                                          : 55,
-                                      child: OutlinedButton(
-                                          style: outlinedButton(
-                                              themeMode: themeMode),
-                                          onPressed: () {
-                                            setState(() {
-                                              total = 0;
-                                              saveTotal(total);
-                                            });
-                                          },
-                                          child:  Text(SetLocalization
-                                              .of(context)!.getTranslateValue(
-                                                "reset"
-                                              ))),
-                                    ),
-                                  ],
-                                )
-                              : const SizedBox())
-                          : (isContExpanding
-                              ? const AnimatedSize(
-                                  duration: Duration(seconds: 1))
-                              : AnimatedAlign(
-                                  duration: const Duration(milliseconds: 100),
-                                  curve: Curves.bounceInOut,
-                                  alignment: Alignment.bottomCenter,
-                                  child: buttonHaveTitleAndIcon(
-                                    () {
-                                      setState(() {
-                                        isWantToSepha = true;
-                                        isContExpanding = true;
-                                      });
-                                    },
-                                    "إبدأ التسبيح",
-                                    image: Image.asset(
-                                        "assets/images/tasbih.png",
-                                        color: themeMode.isLight
-                                            ? kTextColorLightMode
-                                            : kTextColorDarkMode,
-                                        width: 35,
-                                        height: isContExpanding ? 0 : 35),
-                                    isIcon: false,
-                                  ),
-                                ))
-                      // const Icon(
-                      //   // Icons.tasb,
-                      //   FontAwesomeIcons.tas
-                      //   color: Colors.black,
-                      //   size: 27,
-                      // )),
-                      // aline,
-                      // buttonHaveTitleAndIcon(
-                      //     () {},
-                      //     "تفعيل بيانات الهاتف",
-                      //     const Icon(
-                      //       Icons.cell_wifi_outlined,
-                      //       size: 27,
-                      //       color: Colors.black,
-                      //     ))
-                    ],
+                                  ))
+                        // const Icon(
+                        //   // Icons.tasb,
+                        //   FontAwesomeIcons.tas
+                        //   color: Colors.black,
+                        //   size: 27,
+                        // )),
+                        // aline,
+                        // buttonHaveTitleAndIcon(
+                        //     () {},
+                        //     "تفعيل بيانات الهاتف",
+                        //     const Icon(
+                        //       Icons.cell_wifi_outlined,
+                        //       size: 27,
+                        //       color: Colors.black,
+                        //     ))
+                      ],
+                    ),
                   ),
                 ),
               ),
               floatingActionButton: connectivityController.isConnection()
                   ? FloatingActionButton(
+                      tooltip: SetLocalization.of(context)!
+                          .getTranslateValue('reload'),
                       onPressed: () {
                         cityModelController.cityId.value = 0;
-                        myPushName(context, MyPagesRoutes.main);
+                        pushToMainPage();
                       },
                       shape: ContinuousRectangleBorder(
                           borderRadius: BorderRadius.circular(16 / 2)),
@@ -397,10 +423,11 @@ class _NoInternetState extends State<NoInternet> with WidgetsBindingObserver {
               text: TextSpan(
                 children: <TextSpan>[
                   TextSpan(
-                    text: 'لا يتوفّر اتصال بالانترنت.',
+                    text: SetLocalization.of(context)!
+                        .getTranslateValue("no_internet_connection"),
                     style: TextStyle(
                         fontSize: 16.0,
-                        fontFamily: 'IBM',
+                        
                         inherit: true,
                         color: themeMode.isLight
                             ? kTextColorLightMode
@@ -411,13 +438,14 @@ class _NoInternetState extends State<NoInternet> with WidgetsBindingObserver {
             ),
           ),
           RichText(
-            text: const TextSpan(
+            text: TextSpan(
               children: <TextSpan>[
                 TextSpan(
-                    text: ' جرّب تفعيل بيانات الجوّال أو تفعيل Wi-Fi',
-                    style: TextStyle(
+                    text: SetLocalization.of(context)!
+                        .getTranslateValue("try_enabling_mobile_data_or_wifi"),
+                    style: const TextStyle(
                         fontSize: 16,
-                        fontFamily: 'IBM',
+                        
                         inherit: true,
                         color: Colors.grey,
                         fontWeight: FontWeight.bold)),
@@ -444,7 +472,7 @@ class _NoInternetState extends State<NoInternet> with WidgetsBindingObserver {
         FadeAnimatedText(
           "$total+",
           textStyle: TextStyle(
-              fontFamily: "IBM",
+              
               color: themeMode.isLight
                   ? kPrimaryColorLightMode
                   : kPrimaryColorDarkMode),
@@ -487,7 +515,7 @@ class _NoInternetState extends State<NoInternet> with WidgetsBindingObserver {
                 entry.value,
                 style: TextStyle(
                     fontSize: 24,
-                    fontFamily: "IBM",
+                    
                     color: themeMode.isLight
                         ? kTextColorLightMode
                         : kTextColorDarkMode),
@@ -583,12 +611,28 @@ class _NoInternetState extends State<NoInternet> with WidgetsBindingObserver {
           });
         },
         child: Text(
-          "سّبح",
+          SetLocalization.of(context)!.getTranslateValue("tasbih"),
           style: TextStyle(color: Colors.white.withOpacity(.95)),
         ));
   }
 
   var loading = false;
+
+  Future<void> pushToMainPage() async {
+    studentController.index = 0;
+    await myPushNameAndRemoveUntil(
+        context,
+        MyPagesRoutes.main,
+        (route) => route.settings.name == MyPagesRoutes.main,
+        (NewSession.get("logged", "def") == "ok"
+            ? MyPagesRoutes.accountOfOwner
+            : MyPagesRoutes.accountBeforeLoginInStudent));
+    // await  Navigator.of(context).push(MaterialPageRoute(
+    //       builder: (BuildContext context) => const HomeBeforeAddData())
+    // );
+
+    // studentController.index = 0;
+  }
 }
 
 void saveTotal(int totalValue) async {

@@ -70,7 +70,7 @@ class _ShowAllAdvantagesState extends State<ShowAllAdvantages> {
                                     ? kTextColorLightMode
                                     : kTextColorDarkMode,
                                 fontSize: 20,
-                                fontFamily: 'IBM',
+                                
                               )),
                         ),
                         const Expanded(child: Text("")),
@@ -88,7 +88,7 @@ class _ShowAllAdvantagesState extends State<ShowAllAdvantages> {
                                 title: Text(
                                   widget.features[i].advName!,
                                   style: TextStyle(
-                                      fontFamily: 'IBM',
+                                      
                                       fontSize: 16,
                                       color: themeMode.isLight
                                           ? kTextColorLightMode

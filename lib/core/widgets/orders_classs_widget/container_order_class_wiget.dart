@@ -61,7 +61,7 @@
 //                     // "$date",
 //                     style: TextStyle(
 //                       fontSize: 14,
-//                       fontFamily: 'IBM',
+//                       
 //                       inherit: true,
 //                       color: Colors.grey.shade600,
 //                     )),
@@ -88,7 +88,7 @@
 //                         studentName,
 //                         style: const TextStyle(
 //                             fontSize: 16,
-//                             fontFamily: 'IBM',
+//                             
 //                             color: Colors.black87),
 //                       ),
 //                     ),
@@ -98,7 +98,7 @@
 //                         title,
 //                         style: const TextStyle(
 //                             fontSize: 12,
-//                             fontFamily: 'IBM',
+//                             
 //                             color: Colors.grey),
 //                       ),
 //                     ),
@@ -128,7 +128,7 @@
 //                 child: Text(apartmentTitle,
 //                     style: const TextStyle(
 //                       color: Colors.black87,
-//                       fontFamily: 'IBM',
+//                       
 //                       fontSize: 16,
 //                     )),
 //               ),
@@ -229,7 +229,7 @@
 //                     // "$date",
 //                     style: TextStyle(
 //                       fontSize: 14,
-//                       fontFamily: 'IBM',
+//                       
 //                       inherit: true,
 //                       color: Colors.grey.shade600,
 //                     )),
@@ -256,7 +256,7 @@
 //                         studentName,
 //                         style: const TextStyle(
 //                             fontSize: 16,
-//                             fontFamily: 'IBM',
+//                             
 //                             color: Colors.black87),
 //                       ),
 //                     ),
@@ -266,7 +266,7 @@
 //                         title,
 //                         style: const TextStyle(
 //                             fontSize: 12,
-//                             fontFamily: 'IBM',
+//                             
 //                             color: Colors.grey),
 //                       ),
 //                     ),
@@ -293,7 +293,7 @@
 //                 messageOfResponse,
 //                 style: TextStyle(
 //                     fontSize: 12,
-//                     fontFamily: 'IBM',
+//                     
 //                     color: Colors.grey.shade800),
 //               )
 //             ],

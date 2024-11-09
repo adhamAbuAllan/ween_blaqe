@@ -6,17 +6,17 @@ import 'package:ween_blaqe/features/user/studnet/from_master_home_to_show_more/n
 
 import '../../../../../constants/nums.dart';
 
-class ApartmentShowMoreButton extends StatefulWidget {
-  final OneApartment apartmentsRes;
-  final int index;
-
-  const ApartmentShowMoreButton(
-      {super.key, required this.index, required this.apartmentsRes});
-
-  @override
-  State<ApartmentShowMoreButton> createState() =>
-      _ApartmentShowMoreButtonState();
-}
+// class ApartmentShowMoreButton extends StatefulWidget {
+//   final OneApartment apartmentsRes;
+//   final int index;
+//
+//   const ApartmentShowMoreButton(
+//       {super.key, required this.index, required this.apartmentsRes});
+//
+//   @override
+//   State<ApartmentShowMoreButton> createState() =>
+//       _ApartmentShowMoreButtonState();
+// }
 
 class _ApartmentShowMoreButtonState extends State<ApartmentShowMoreButton> {
   @override
@@ -45,12 +45,12 @@ class _ApartmentShowMoreButtonState extends State<ApartmentShowMoreButton> {
                   )));
           // myPushName(context, MyPagesRoutes.showMore);
         },
-        style: outlinedButton(themeMode: themeMode),
+        style: outlinedButton(themeMode: themeMode, context: context),
         child: const Text(
           " عرض المزيد ",
           style: TextStyle(
             fontSize: 14,
-            fontFamily: 'IBM',
+            
           ),
         ),
       ),

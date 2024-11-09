@@ -58,7 +58,7 @@ class _AdvantagesClassWidgetState extends State<AdvantagesClassWidget> {
             Text(
               "feature.advName",
               style: TextStyle(
-                  fontFamily: 'IBM', fontSize: 16, color: Colors.grey.shade800),
+                   fontSize: 16, color: Colors.grey.shade800),
             ),
             // const Expanded(child: Text("")),
             // Image(

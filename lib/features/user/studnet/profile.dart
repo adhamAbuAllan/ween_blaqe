@@ -62,7 +62,7 @@
 //                       "الملف الشخصي",
 //                       style: TextStyle(
 //                         fontSize: 26.0,
-//                         fontFamily: 'IBM',
+//                         
 //                         inherit: true,
 //                       ),
 //                     ),
@@ -87,7 +87,7 @@
 //                       NewSession.get("name", ""),
 //                       style: const TextStyle(
 //                           fontSize: 16,
-//                           fontFamily: 'IBM',
+//                           
 //                           color: Colors.black87),
 //                     ),
 //                   ],
@@ -101,7 +101,7 @@
 //                     child: Text(
 //                       "انضم في ديسمبر 2023",
 //                       style: TextStyle(
-//                           fontSize: 12, fontFamily: 'IBM', color: Colors.grey),
+//                           fontSize: 12,  color: Colors.grey),
 //                     ),
 //                   ),
 //                   Expanded(child: Text(""))
@@ -118,7 +118,7 @@
 //                     "نبذة عني",
 //                     style: TextStyle(
 //                       fontSize: 18,
-//                       fontFamily: 'IBM',
+//                       
 //                     ),
 //                   ),
 //                   const Expanded(child: SizedBox()),
@@ -131,7 +131,7 @@
 //                         style: TextStyle(
 //                           color: Colors.black,
 //                           decoration: TextDecoration.underline,
-//                           fontFamily: 'IBM',
+//                           
 //                         ),
 //                       ),
 //                       onPressed: () {
@@ -152,7 +152,7 @@
 //                       child: const Text("أدخل شيئًا عن نفسك",
 //                           style: TextStyle(
 //                             fontSize: 16,
-//                             fontFamily: 'IBM',
+//                             
 //                           )),
 //                     ),
 //                   ),
@@ -163,7 +163,7 @@
 // //                     child: TextFormField(
 // //                         style: TextStyle(
 // //                           fontSize: 16,
-// //                           fontFamily: 'IBM',
+// //                           
 // //                         ),
 // //                       decoration: InputDecoration(
 // //                           border: InputBorder.none,
@@ -200,7 +200,7 @@
 //                     "الموقع",
 //                     style: TextStyle(
 //                       fontSize: 18,
-//                       fontFamily: 'IBM',
+//                       
 //                     ),
 //                   ),
 //                   const Expanded(child: SizedBox()),
@@ -213,7 +213,7 @@
 //                         style: TextStyle(
 //                           color: Colors.black,
 //                           decoration: TextDecoration.underline,
-//                           fontFamily: 'IBM',
+//                           
 //                         ),
 //                       ),
 //                       onPressed: () {
@@ -233,7 +233,7 @@
 //                 child: Text("أدخل موقعك",
 //                     style: TextStyle(
 //                       fontSize: 16,
-//                       fontFamily: 'IBM',
+//                       
 //                     )),
 //               ),
 //               aline,
@@ -248,7 +248,7 @@
 //                     "التعليم",
 //                     style: TextStyle(
 //                       fontSize: 18,
-//                       fontFamily: 'IBM',
+//                       
 //                     ),
 //                   ),
 //                   const Expanded(child: SizedBox()),
@@ -261,7 +261,7 @@
 //                         style: TextStyle(
 //                           color: Colors.black,
 //                           decoration: TextDecoration.underline,
-//                           fontFamily: 'IBM',
+//                           
 //                         ),
 //                       ),
 //                       onPressed: () {
@@ -281,7 +281,7 @@
 //                 child: Text("أدخل تخصصك",
 //                     style: TextStyle(
 //                       fontSize: 16,
-//                       fontFamily: 'IBM',
+//                       
 //                     )),
 //               ),
 //               aline,
@@ -296,7 +296,7 @@
 //                     "الجامعة",
 //                     style: TextStyle(
 //                       fontSize: 18,
-//                       fontFamily: 'IBM',
+//                       
 //                     ),
 //                   ),
 //                   const Expanded(child: SizedBox()),
@@ -309,7 +309,7 @@
 //                         style: TextStyle(
 //                           color: Colors.black,
 //                           decoration: TextDecoration.underline,
-//                           fontFamily: 'IBM',
+//                           
 //                         ),
 //                       ),
 //                       onPressed: () {
@@ -329,7 +329,7 @@
 //                 child: Text("جامعة بولتكنك فلسطين",
 //                     style: TextStyle(
 //                       fontSize: 16,
-//                       fontFamily: 'IBM',
+//                       
 //                     )),
 //               ),
 //             ],

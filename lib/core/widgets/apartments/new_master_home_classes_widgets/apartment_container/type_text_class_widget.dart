@@ -31,7 +31,8 @@ class ApartmentTypeText extends StatelessWidget {
             " سكن ${apartmentsRes.data?[index].type?.name ?? ""}",
             style: TextStyle(
                 fontSize: 14,
-                fontFamily: 'IBM',
+                fontWeight: FontWeight.w600,
+                
                 color: themeMode.isLight
                     ? kTextColorLightMode
                     : kTextColorDarkMode),

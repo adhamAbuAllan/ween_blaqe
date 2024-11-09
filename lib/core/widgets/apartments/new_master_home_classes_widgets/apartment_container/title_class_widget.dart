@@ -2,10 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:ween_blaqe/api/apartments_api/one_apartment.dart';
 import 'package:ween_blaqe/constants/nums.dart';
 
-
 class ApartmentTitleText extends StatelessWidget {
- final OneApartment apartmentsRes;
- final int index;
+  final OneApartment apartmentsRes;
+  final int index;
 
   const ApartmentTitleText(
       {super.key, required this.index, required this.apartmentsRes});
@@ -18,10 +17,11 @@ class ApartmentTitleText extends StatelessWidget {
         padding: const EdgeInsets.all(8.0),
         child: Text(apartmentsRes.data?[index].title ?? "",
             softWrap: true,
-            style:  TextStyle(
-              color: themeMode.isLight ? kTextColorLightMode : kTextColorDarkMode,
-              fontFamily: 'IBM',
+            style: TextStyle(
+              color:
+                  themeMode.isLight ? kTextColorLightMode : kTextColorDarkMode,
               fontSize: 16,
+              fontWeight: FontWeight.bold,
             )),
       ),
     );

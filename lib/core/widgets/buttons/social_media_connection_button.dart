@@ -4,6 +4,8 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 // import 'package:ween_blaqe/sesstion/new_session.dart';
 // import 'package:ween_blaqe/features/widgets_before_user_reg/account_before_login.dart';
 
+import '../../../constants/coordination.dart';
+import '../../../constants/get_it_controller.dart';
 import '../../../constants/localization.dart';
 import '../../../constants/nums.dart';
 
@@ -20,7 +22,8 @@ class SocialMediaConnectionButton extends StatefulWidget {
     this.labelUserName,
     this.controller,
     this.onChanged,
-    this.onSaved, this.check,
+    this.onSaved,
+    this.check,
   });
 
   final IconData? socialIcon;
@@ -52,10 +55,9 @@ class _SocialMediaConnectionButtonState
             controller: widget.controller,
             onChanged: widget.onChanged,
             onSaved: widget.onSaved,
-        check: widget.check
-        );
+            check: widget.check);
       },
-      style: outlinedButton(themeMode: themeMode).copyWith(
+      style: outlinedButton(themeMode: themeMode,context: context).copyWith(
         overlayColor: const WidgetStatePropertyAll(Colors.transparent),
         side: WidgetStatePropertyAll(
           BorderSide(
@@ -72,7 +74,6 @@ class _SocialMediaConnectionButtonState
       child: Padding(
         padding: const EdgeInsets.all(5),
         child: Wrap(
-
           // Use Wrap instead of Row
           children: [
             Padding(
@@ -84,7 +85,7 @@ class _SocialMediaConnectionButtonState
                         ? kTextColorLightMode
                         : kTextColorDarkMode)
                     : Colors.grey,
-                size: 28,
+                size: getIt<AppDimension>().isSmallScreen(context) ? 24 : 28,
               ),
             ),
             Padding(
@@ -97,8 +98,11 @@ class _SocialMediaConnectionButtonState
                           ? kTextColorLightMode
                           : kTextColorDarkMode)
                       : (Colors.grey),
-                  fontSize: 16,
-                  fontFamily: 'IBM',
+                  fontSize:
+                      getIt<AppDimension>().isSmallScreen(context) ? 14 : 16,
+                  
+                  fontWeight:
+                      widget.isActive ? FontWeight.w500 : FontWeight.w400,
                 ),
               ),
             ),
@@ -115,7 +119,7 @@ Future<void> showInputDialog(BuildContext context,
     String? labelUserName,
     TextEditingController? controller,
     required void Function()? onSaved,
-      final void Function()? check,
+    final void Function()? check,
     void Function(String)? onChanged}) async {
   return showDialog<void>(
     context: context,
@@ -134,76 +138,100 @@ Future<void> showInputDialog(BuildContext context,
             width: 0.5,
           ),
         ),
-        actionsPadding: const EdgeInsets.fromLTRB(120, 0, 10, 0),
+        actionsPadding: const EdgeInsets.fromLTRB(10, 0, 10, 0),
         title: Text(
           socialName ?? "",
           style: TextStyle(
             color: themeMode.isLight ? kTextColorLightMode : kTextColorDarkMode,
-            fontFamily: 'IBM',
+            
             fontSize: 18,
           ),
         ),
-        content: Column(
-          mainAxisSize: MainAxisSize.min,
-          mainAxisAlignment:  MainAxisAlignment.end,
-          crossAxisAlignment:   CrossAxisAlignment.end,
-          children: <Widget>[
-            TextFormField(
+        content: SingleChildScrollView(
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            mainAxisAlignment: MainAxisAlignment.end,
+            crossAxisAlignment: CrossAxisAlignment.end,
+            children: <Widget>[
+              TextFormField(
+                decoration: InputDecoration(
+                  labelText: labelUserName ?? "",
+                  labelStyle: TextStyle(
+                    color: themeMode.isLight
+                        ? kTextColorLightMode
+                        : kTextColorDarkMode,
 
-              decoration: InputDecoration(
-                labelText: labelUserName ?? "",
-                labelStyle: TextStyle(
+                    fontSize: 16,
+                  ),
+                ),
+                // initialValue:  socialName,
+                controller: controller,
+                onChanged: onChanged,
+
+                //     (value) {
+                //   controller?.text = value;
+                //   userName = value;
+                // },
+
+                style: TextStyle(
                   color: themeMode.isLight
                       ? kTextColorLightMode
                       : kTextColorDarkMode,
-                  fontFamily: 'IBM',
+
                   fontSize: 16,
                 ),
               ),
-              // initialValue:  socialName,
-              controller: controller,
-              onChanged: onChanged,
+              check != null
+                  ? TextButton(
+                      onPressed: check,
+                      child: Text(
+                        //verify
+                        SetLocalization.of(context)!
+                            .getTranslateValue("verify"),
+                        style:  TextStyle(
+                             color: Colors.blue,
+                          fontSize: getIt<AppDimension>().isSmallScreen(context)
+                              ?14:16,
+                        ),
+                      ))
+                  : const SizedBox()
+            ],
+          ),
+        ),
 
-              //     (value) {
-              //   controller?.text = value;
-              //   userName = value;
-              // },
+        actions: <Widget>[
+          SizedBox(
+            width: double.infinity,
+            child: ElevatedButton(
 
-              style: TextStyle(
-                color: themeMode.isLight
-                    ? kTextColorLightMode
-                    : kTextColorDarkMode,
-                fontFamily: 'IBM',
-                fontSize: 16,
+              onPressed: onSaved,
+              style: fullButton(),
+              child: Text(
+                SetLocalization.of(context)!.getTranslateValue("save"),
+                style: const TextStyle(
+                  
+                ),
               ),
             ),
-          check != null ? TextButton(onPressed: check, child:  Text(
-            //verify
-            SetLocalization.of(context)!.getTranslateValue("verify"),style:
-          const TextStyle(fontFamily: 'IBM',color: Colors.blue),)):const SizedBox()
-          ],
-          
-        ),
-        actions: <Widget>[
-          OutlinedButton(
-            onPressed: () {
-              Navigator.of(context).pop();
-            },
-            style: outlinedButton(),
-            child:   Text(
-              SetLocalization.of(context)!.getTranslateValue("cancel"),
-              style: const TextStyle(fontFamily: 'IBM',),
-            ),
           ),
-          ElevatedButton(
-            onPressed: onSaved,
-            style: fullButton(),
-            child:   Text(
-              SetLocalization.of(context)!.getTranslateValue
-                ("save"),
-              style: const TextStyle(fontFamily: 'IBM',),
+          SizedBox(
+            width: double.infinity,
+
+            child: OutlinedButton(
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+              style: outlinedButton(context: context),
+              child: Text(
+                SetLocalization.of(context)!.getTranslateValue("cancel"),
+                style:  TextStyle(
+
+                  fontSize: getIt<AppDimension>().isSmallScreen(context)
+                      ?14:16,
+                ),
+              ),
             ),
-          ),
+          )
         ],
       );
     },

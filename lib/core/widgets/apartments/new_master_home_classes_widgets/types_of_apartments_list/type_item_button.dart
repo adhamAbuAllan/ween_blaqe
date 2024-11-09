@@ -1,7 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:ween_blaqe/constants/coordination.dart';
 import 'package:ween_blaqe/constants/nums.dart';
 import 'package:ween_blaqe/controller/function_controller/change_theme_mode.dart';
+
+import '../../../../../constants/get_it_controller.dart';
+import '../../../../../sesstion/new_session.dart';
 
 class ApartmentShowTypesTextButton extends StatefulWidget {
   final String textType;
@@ -22,14 +26,32 @@ class _ApartmentShowTypesTextButtonState
   @override
   Widget build(BuildContext context) {
     return Expanded(
-      flex: 7,
       child: TextButton(
-          style:  ButtonStyle(
-              overlayColor: WidgetStatePropertyAll(themeMode.isLight ? kPrimaryColor300LightMode : kPrimaryColor300DarkMode)),
+      
+          style: ButtonStyle(
+            padding: const WidgetStatePropertyAll(
+              EdgeInsets.symmetric(horizontal: 10),
+            ),
+            alignment: NewSession.get("language", "ar") == "en"
+                ""  ? Alignment.centerLeft:
+            Alignment.centerRight,
+            overlayColor: WidgetStatePropertyAll(themeMode.isLight
+                ? kPrimaryColorLightMode
+                : kPrimaryColorDarkMode),
+      
+          ),
           onPressed: widget.onPressed,
-          child: Text("${widget.textType}           ",
-              style:  TextStyle(
-                  color:themeMode.isLight ? kTextColorLightMode : kTextColorDarkMode, fontFamily: 'IBM'))),
+          child: Text(
+      
+            widget.textType,
+              style: TextStyle(
+      
+                  color: themeMode.isLight
+                      ? kTextColorLightMode
+                      : kTextColorDarkMode,
+                  fontSize:
+                      getIt<AppDimension>().isSmallScreen(context) ? 14 : 15,
+                  fontFamily: 'IBM'),),),
     );
   }
 }

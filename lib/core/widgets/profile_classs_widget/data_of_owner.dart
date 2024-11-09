@@ -31,7 +31,7 @@ class _DataOfOnwerState extends State<DataOfOnwer> {
               Text(
                 title,
                 style: const TextStyle(
-                    fontSize: 18, fontFamily: 'IBM', color: Colors.black87),
+                    fontSize: 18,  color: Colors.black87),
               ),
               const Expanded(child: SizedBox()),
               //add TextButton
@@ -46,7 +46,7 @@ class _DataOfOnwerState extends State<DataOfOnwer> {
                     style: TextStyle(
                       fontSize: 16,
                       color: Colors.grey.shade800,
-                      fontFamily: 'IBM',
+                      
                     )),
               ),
               const Expanded(child: SizedBox()),

@@ -6,6 +6,7 @@ import 'package:ween_blaqe/core/utils/funcations/route_pages/push_routes.dart';
 import 'package:ween_blaqe/core/utils/styles/text_style/aline_style.dart';
 
 import 'package:ween_blaqe/constants/nums.dart';
+import '../../../constants/localization.dart';
 import '../../../core/utils/funcations/go_url_launcher_methodes/go_to_whatsapp_method.dart';
 import '../../../core/widgets/buttons/lines_buttons/line_buttons.dart';
 
@@ -28,20 +29,31 @@ class AskForHelp extends StatelessWidget {
             backgroundColor: themeMode.isLight
                 ? kPrimaryColorLightMode
                 : kPrimaryColorDarkMode,
-            title: const Text(
-              'المساعدة',
-              style: TextStyle(
+            title: Text(
+              SetLocalization.of(context)!.getTranslateValue("help"),
+              style: const TextStyle(
                 fontSize: 22.0,
-                fontFamily: 'IBM',
+                
+                  fontWeight: FontWeight.w600
+
               ),
             ),
             bottom: TabBar(
               dividerColor: themeMode.isLight
                   ? kContainerColorLightMode
                   : kContainerColorDarkMode,
-              tabs: const [
-                Tab(text: 'مُستأجر'),
-                Tab(text: 'مالك'),
+              labelStyle: const TextStyle(
+                
+                fontWeight: FontWeight.w700
+              ),
+
+              tabs: [
+                Tab(
+                    text: SetLocalization.of(context)!
+                        .getTranslateValue("tenant")),
+                Tab(
+                    text: SetLocalization.of(context)!
+                        .getTranslateValue("owner")),
               ],
             ),
           ),
@@ -67,15 +79,24 @@ class AskForHelp extends StatelessWidget {
                       children: [
                         askForHelpButton(() {
                           myPushName(context, MyPagesRoutes.systemPaying);
-                        }, "الدفع"),
+                        },
+                            SetLocalization.of(context)!
+                                .getTranslateValue("payment"),
+                            context),
                         aline,
                         askForHelpButton(() {
                           myPushName(context, MyPagesRoutes.systemBooking);
-                        }, "الحجز"),
+                        },
+                            SetLocalization.of(context)!
+                                .getTranslateValue("reservation"),
+                            context),
                         aline,
                         askForHelpButton(() {
                           myPushName(context, MyPagesRoutes.whatIsMeanSS);
-                        }, "ما المقصود ب ش/ش"),
+                        },
+                            SetLocalization.of(context)!
+                                .getTranslateValue("what_is_ss"),
+                            context),
                       ],
                     ),
                   ),
@@ -108,7 +129,10 @@ class AskForHelp extends StatelessWidget {
                           askForHelpButton(() {
                             myPushName(context,
                                 MyPagesRoutes.whatTheInfoReqToCreateAd);
-                          }, "ما هي البيانات المطلوبة لنشر إعلان"),
+                          },
+                              SetLocalization.of(context)!
+                                  .getTranslateValue("required_data_for_ad"),
+                              context),
                           // aline,
                           // askForHelpButton(() {
                           //   myPushName(context,
@@ -131,7 +155,6 @@ class AskForHelp extends StatelessWidget {
               onPressed: () {
                 sendMessageToWhatsApp(
                     '972569339613', "السلام عليكم، ممكن مساعدة، ");
-
               },
               backgroundColor: const Color(0xff25D366),
 

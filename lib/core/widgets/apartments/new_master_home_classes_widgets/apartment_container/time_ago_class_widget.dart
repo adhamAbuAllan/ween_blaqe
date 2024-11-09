@@ -37,7 +37,7 @@ class _TimeAgoWidgetState extends State<TimeAgoWidget> {
               "${widget.apartmentsRes.data?[widget.index].timeAgo ?? "التاريخ"} ",
               style: TextStyle(
                 color: Colors.grey.shade300,
-                fontFamily: "IBM",
+                
                 fontSize: 14,
                 shadows: [
                   Shadow(

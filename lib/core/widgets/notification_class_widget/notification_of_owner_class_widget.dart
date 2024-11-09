@@ -61,7 +61,7 @@
 //                   child: Text(dateOfNotification,
 //                       style: TextStyle(
 //                         fontSize: 14,
-//                         fontFamily: 'IBM',
+//                         
 //                         inherit: true,
 //                         color: Colors.grey.shade600,
 //                       )),
@@ -89,7 +89,7 @@
 //                     Text(title,
 //                         style: TextStyle(
 //                           fontSize: 14,
-//                           fontFamily: 'IBM',
+//                           
 //                           inherit: true,
 //                           color: Colors.grey.shade800,
 //                         )),
@@ -100,7 +100,7 @@
 //                             text: 'العنوان:',
 //                             style: TextStyle(
 //                                 fontSize: 14.0,
-//                                 fontFamily: 'IBM',
+//                                 
 //                                 inherit: true,
 //                                 color: Colors.grey.shade800),
 //                           ),
@@ -108,7 +108,7 @@
 //                               text: location,
 //                               style: TextStyle(
 //                                 fontSize: 16,
-//                                 fontFamily: 'IBM',
+//                                 
 //                                 inherit: true,
 //                                 color: Colors.grey.shade800,
 //                               )),
@@ -124,7 +124,7 @@
 //                               text: responseFromOwner,
 //                               style: const TextStyle(
 //                                 fontSize: 16,
-//                                 fontFamily: 'IBM',
+//                                 
 //                                 inherit: true,
 //                                 color: kPrimaryColor,
 //                               )),
