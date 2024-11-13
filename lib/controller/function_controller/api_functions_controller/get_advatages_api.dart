@@ -6,7 +6,7 @@ import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
 // import 'package:ween_blaqe/api/apartments_api/one_apartment.dart';
 
-// import '../../get_controllers.dart';
+// import '../../auth_provider.dart';
 
 class GetAdvantages extends GetxController {
 

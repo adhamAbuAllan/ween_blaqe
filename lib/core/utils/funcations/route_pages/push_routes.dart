@@ -18,6 +18,14 @@ myPushReplace(BuildContext context, Widget page, String routeName) {
       },
       settings: RouteSettings(name: routeName)));
 }
+Future<void> myPushReplaceFuture(BuildContext context,Widget page, String
+routeName)async {
+ await Navigator.of(context).pushReplacement(MaterialPageRoute(
+      builder: (ctx) {
+        return page;
+      },
+      settings: RouteSettings(name: routeName)));
+}
 
 //push and remove all screen until first screen
 myPushAndRemoveUntilIsFirst(
@@ -99,6 +107,14 @@ myPushNameAndRemoveUntil(BuildContext context, String routeName,
 myPushReplacementNamed( String routeName,{BuildContext ? context}) {
   Navigator.of(context!).pushReplacementNamed(routeName);
 }
+
+ Future<void> myPushReplacementNamedFuture(String routeName,BuildContext
+ context)async {
+ await Navigator.pushReplacementNamed(context, routeName );
+}
+
+
+
 //testing animation screen navigation
 
 Future<void> myPushNameAnimation(BuildContext context) async {

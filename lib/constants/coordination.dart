@@ -84,12 +84,12 @@ class AppDimension {
 // Calculate diagonal screen size in inches
     double screenSizeInches =
         sqrt(pow(physicalScreenWidth, 2) + pow(physicalScreenHeight, 2));
-    debugPrint("screen size in inches is $screenSizeInches");
+    // debugPrint("screen size in inches is $screenSizeInches");
 if(screenSizeInches == 13.810970226550339){
   return false;
 
 }
-    return screenSizeInches < 28; //
+    return screenSizeInches < 17; //
   }
 
   bool isSmallScreenToAppBar(BuildContext context) {

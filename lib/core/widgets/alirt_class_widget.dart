@@ -109,7 +109,7 @@ class NormalAlert {
                       : kTextColorDarkMode,
                   
                   fontSize: getIt<AppDimension>().isSmallScreen(context)
-                      ?16:18),
+                      ?15:16),
             ),
             content: Text(
               message,
@@ -119,7 +119,7 @@ class NormalAlert {
                       : kTextColorDarkMode,
                   
                   fontSize: getIt<AppDimension>().isSmallScreen(context)
-                      ?16:18 ),
+                      ?14:16, ),
             ),
             actions: [
               ElevatedButton(
@@ -131,9 +131,8 @@ class NormalAlert {
                     textOfButton,
                     style: TextStyle(
                         fontSize: getIt<AppDimension>().isSmallScreen(context)
-                            ? 14
-                            : 16,
-                        fontFamily: "IBM"),
+                            ? 13
+                            : 15,fontWeight: FontWeight.w100,fontFamily: "IBM",),
                   )),
             ],
           );

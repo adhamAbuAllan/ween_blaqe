@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:ween_blaqe/constants/nums.dart';
 // import 'package:ween_blaqe/constants/strings.dart';
-// import 'package:ween_blaqe/controller/get_controllers.dart';
+// import 'package:ween_blaqe/controller/auth_provider.dart';
 
 import '../../../api/cities.dart';
 import '../../../api/type_of_apartment.dart';

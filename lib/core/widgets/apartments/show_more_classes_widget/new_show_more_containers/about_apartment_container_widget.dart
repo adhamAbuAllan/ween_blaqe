@@ -61,10 +61,12 @@ class _AboutApartmentContainerWidgetState
             child: Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                AnimateRoomBox(oneApartment: widget.oneApartment,
-                  imageAboutApartmentRoom: widget.imageAboutApartmentRoom,),
-                AnimateBathRoomBox(oneApartment: widget.oneApartment,),
-                AnimateAreaBox(oneApartment: widget.oneApartment,),
+                Flexible(
+                  child: AnimateRoomBox(oneApartment: widget.oneApartment,
+                    imageAboutApartmentRoom: widget.imageAboutApartmentRoom,),
+                ),
+                Flexible(child: AnimateBathRoomBox(oneApartment: widget.oneApartment,)),
+                Flexible(child: AnimateAreaBox(oneApartment: widget.oneApartment,)),
 
 
               ],

@@ -13,6 +13,7 @@ import 'package:ween_blaqe/core/utils/funcations/route_pages/push_routes.dart';
 import 'package:ween_blaqe/core/utils/styles/button.dart';
 import 'package:ween_blaqe/core/utils/styles/text_style/aline_style.dart';
 import 'package:ween_blaqe/core/widgets/buttons/lines_buttons/switch_language_buttons.dart';
+import 'package:ween_blaqe/testing_code/find_the_fastest_way_in_state_managment/riverpod/login_and_register_section/login_ui_test.dart';
 // import 'package:ween_blaqe/sesstion/new_session.dart';
 
 import '../../constants/coordination.dart';
@@ -31,7 +32,7 @@ import '../../controller/student_controller/student_controller.dart';
 // import '../bookmark.dart';
 
 // import '../../main.dart';
-// import 'login.dart';
+// import 'login_method.dart';
 main() {
   runApp(MaterialApp(
     debugShowCheckedModeBanner: false,
@@ -427,7 +428,12 @@ class _AccountBeforeLoginInStudentState
                         onPressed: () {
                           cityModelController.cityId.value = 0;
                           if (connectivityController.isConnection()) {
-                            myPushName(context, MyPagesRoutes.login);
+                            Navigator.push(context, MaterialPageRoute(
+                              builder: (context) {
+                                return const LoginUiTest();
+                              },
+                            ));
+                            // myPushName(context, MyPagesRoutes.login);
                           } else {
                             myPushName(context, MyPagesRoutes.noInternet);
                           }

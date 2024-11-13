@@ -1,0 +1,40 @@
+import 'package:flutter/material.dart';
+
+import '../../../../constants/coordination.dart';
+import '../../../../constants/get_it_controller.dart';
+import '../../../../constants/localization.dart';
+import '../../../../constants/strings.dart';
+import '../../../utils/funcations/route_pages/push_routes.dart';
+class PrivacyPolicyTextWidget extends StatelessWidget {
+  const PrivacyPolicyTextWidget({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return                 Padding(
+      padding: EdgeInsets.only(
+          top: getIt<AppDimension>()
+              .isSmallScreen(context)
+              ? 22
+              : 30.0),
+      child: GestureDetector(
+        onTap: () {
+          myPushName(
+              context, MyPagesRoutes.privacyPolicy);
+        },
+        child: Opacity(
+          opacity: .5,
+          child: Text(
+            SetLocalization.of(context)!
+                .getTranslateValue("agree_terms"),
+            style: const TextStyle(
+              decoration: TextDecoration.underline,
+              color: Colors.blue,
+              fontSize: 14.5,
+              fontWeight: FontWeight.w600,
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+}

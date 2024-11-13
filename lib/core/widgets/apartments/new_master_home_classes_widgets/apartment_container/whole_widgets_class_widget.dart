@@ -11,7 +11,7 @@ import 'apartment_container_class_widget.dart';
 // import 'button_show_more_class_widget.dart';
 
 class WholeWidgetOfApartment extends StatefulWidget {
-   const WholeWidgetOfApartment({
+  const WholeWidgetOfApartment({
     super.key,
     required this.index,
     required this.apartmentsRes,
@@ -32,10 +32,9 @@ class _WholeWidgetOfApartmentState extends State<WholeWidgetOfApartment> {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: (){
+      onTap: () {
         Navigator.of(context).push(MaterialPageRoute(
-            builder: (BuildContext context) =>
-                NewShowMore(
+            builder: (BuildContext context) => NewShowMore(
                   oneApartment: widget.apartmentsRes.data?[widget.index],
                 )));
       },
@@ -63,7 +62,6 @@ class _WholeWidgetOfApartmentState extends State<WholeWidgetOfApartment> {
             ),
             Row(
               children: [
-
                 // ApartmentShowMoreButton(
                 //   index: widget.index,
                 //   apartmentsRes: widget.apartmentsRes,
@@ -82,15 +80,13 @@ class _WholeWidgetOfApartmentState extends State<WholeWidgetOfApartment> {
             Row(
               children: [
                 Padding(
-                  padding: const EdgeInsets.fromLTRB(0, 0, 10, 10),
+                  padding: const EdgeInsets.symmetric(vertical: 4),
                   child: Text(
                     "${widget.apartmentsRes.data?[widget.index].timeAgo ?? "التاريخ"} ",
                     style: TextStyle(
                       color: Colors.grey.shade300,
-                      fontWeight:   FontWeight.w200 ,
-                      
+                      fontWeight: FontWeight.w200,
                       fontSize: 14,
-
                     ),
                   ),
                 ),

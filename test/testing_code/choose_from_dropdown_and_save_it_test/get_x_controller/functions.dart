@@ -1,6 +1,6 @@
 // import 'package:get/get.dart';
 //
-// import 'get_controllers.dart';
+// import 'auth_provider.dart';
 //
 // class CityFunctionsControllersTest extends GetxController{
 //   dynamic onChange(dynamic i){

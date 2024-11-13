@@ -151,7 +151,8 @@ class FacebookButton extends StatelessWidget {
                     color: themeMode.isLight
                         ? kTextColorLightMode
                         : kTextColorDarkMode,
-                    fontSize:getIt<AppDimension>().isSmallScreen(context) ?15:
+                    fontWeight: FontWeight.w400,
+                    fontSize:getIt<AppDimension>().isSmallScreen(context) ?14:
                     16,
                   )),
             ),
@@ -200,8 +201,8 @@ class PhoneButton extends StatelessWidget {
                   style: TextStyle(
                     color: themeMode.isLight
                         ? kTextColorLightMode
-                        : kTextColorDarkMode,
-                    fontSize:getIt<AppDimension>().isSmallScreen(context)?15:
+                        : kTextColorDarkMode,fontWeight: FontWeight.w400,
+                    fontSize:getIt<AppDimension>().isSmallScreen(context)?14:
                     16,
                   )),
             ),
@@ -264,7 +265,8 @@ class EmailButton extends StatelessWidget {
                     color: themeMode.isLight
                         ? kTextColorLightMode
                         : kTextColorDarkMode,
-                    fontSize:getIt<AppDimension>().isSmallScreen(context) ?15: 16,
+                    fontWeight: FontWeight.w400,
+                    fontSize:getIt<AppDimension>().isSmallScreen(context) ?14: 16,
                   )),
             ),
           ],
@@ -321,7 +323,8 @@ class WhatsAppButton extends StatelessWidget {
                     color: themeMode.isLight
                         ? kTextColorLightMode
                         : kTextColorDarkMode,
-                    fontSize: getIt<AppDimension>().isSmallScreen(context) ? 15 : 16,
+                    fontWeight: FontWeight.w400,
+                    fontSize: getIt<AppDimension>().isSmallScreen(context) ? 14 : 16,
                   )),
             ),
           ],

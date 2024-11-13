@@ -210,12 +210,12 @@
   "feedback_acknowledgement": "Thank you for your feedback, it will be taken into account",
   "agree_terms": "By choosing to create an account, I agree to the Privacy Policy terms",
   "incorrect_data": "Incorrect data",
-  "fill_all_fields": "Please ensure all fields are filled out",
+  "fill_field": "Please fill the field",
   "enter_matching_passwords": "Please enter matching passwords in both fields",
   "phone_verification": "Please verify your phone number",
   "unverified_phone": "You have not verified your phone number",
   "duplicate_data": "Duplicate data",
-  "try_different_phone": "Try using a different phone number",
+  "try_different_phone": "The phone number is already in use",
   "phone_valid_account_creation": "The phone number is correct, please go back and complete creating a new account",
   "confirm_password": "Confirm Password",
   "identity_verification": "Make sure it matches the name on your ID card",
@@ -229,6 +229,9 @@
   "female_students": "Female Students",
   "families": "Families",
   "all_types": "All",
-  "housing_type_btn": " Housing Type "
+  "housing_type_btn": " Housing Type ",
+  "all_advantages" : "All Advantages",
+  "weak_password" : "Weak Password",
+  "the_phone_number_is_not_suitable" : "The phone number is not suitable"
 }
 

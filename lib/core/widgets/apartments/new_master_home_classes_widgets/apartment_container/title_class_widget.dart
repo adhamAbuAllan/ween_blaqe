@@ -14,7 +14,7 @@ class ApartmentTitleText extends StatelessWidget {
     return SizedBox(
       width: 250,
       child: Padding(
-        padding: const EdgeInsets.all(8.0),
+        padding: const EdgeInsets.symmetric(vertical: 4),
         child: Text(apartmentsRes.data?[index].title ?? "",
             softWrap: true,
             style: TextStyle(

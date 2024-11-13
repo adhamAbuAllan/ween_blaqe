@@ -26,7 +26,7 @@ class ApartmentTypeText extends StatelessWidget {
     return Row(
       children: [
         Padding(
-          padding: const EdgeInsets.all(8.0),
+          padding: const EdgeInsets.symmetric(vertical: 8.0),
           child: Text(
             " سكن ${apartmentsRes.data?[index].type?.name ?? ""}",
             style: TextStyle(

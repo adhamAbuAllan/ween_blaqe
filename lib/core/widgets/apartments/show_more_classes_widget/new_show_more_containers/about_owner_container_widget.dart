@@ -60,7 +60,7 @@ class _AboutOwnerContainerWidgetState extends State<AboutOwnerContainerWidget> {
                         "images/profile/user.png"
                     ? CircleAvatar(
                         radius: getIt<AppDimension>().isSmallScreen(context)
-                            ? 24
+                            ? 26
                             : 28,
                         //put a normal person Icon
                         backgroundColor: Colors.grey.shade700,
@@ -68,12 +68,12 @@ class _AboutOwnerContainerWidgetState extends State<AboutOwnerContainerWidget> {
                           Icons.person,
                           color: Colors.white,
                           size: getIt<AppDimension>().isSmallScreen(context)
-                              ? 24
+                              ? 26
                               : 28,
                         ))
                     : CircleAvatar(
                         radius: getIt<AppDimension>().isSmallScreen(context)
-                            ? 24
+                            ? 26
                             : 28,
                         // backgroundImage: NetworkImage(NewSession.get("profile","def")),
                         // Adjust the radius as needed
@@ -93,25 +93,25 @@ class _AboutOwnerContainerWidgetState extends State<AboutOwnerContainerWidget> {
                     widget.oneApartment.owner?.name ?? "",
                     style: TextStyle(
                       fontSize: getIt<AppDimension>().isSmallScreen(context)
-                          ? 16
+                          ? 15
                           : 18,
                       color: themeMode.isLight
                           ? kTextColorLightMode
                           : kTextColorDarkMode,
                     ),
                   ),
-                  const SizedBox(
-                    height: 2,
-                  ),
+
                   Text(
                     // "عرض الملف الشخصي",
                     widget.oneApartment.owner?.phone ?? "",
                     // "972569339613",
                     style: TextStyle(
                         fontSize: 14,
+                        fontWeight: FontWeight.w200,
                         color: themeMode.isLight
                             ? kTextColorLightMode
                             : kTextColorDarkMode),
+
                   )
                 ],
               ),

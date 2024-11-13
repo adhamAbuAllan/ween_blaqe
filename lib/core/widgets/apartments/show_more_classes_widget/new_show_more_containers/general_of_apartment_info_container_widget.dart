@@ -30,7 +30,7 @@ class _GeneralOfApartmentInfoContainerWidgetState
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: getIt<AppDimension>().isSmallScreen(context) ? 250 : 300,
+      // height: getIt<AppDimension>().isSmallScreen(context) ? 250 : 300,
       width: double.infinity,
       margin: const EdgeInsets.fromLTRB(10, 23, 10, 0),
       padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 20),
@@ -42,7 +42,7 @@ class _GeneralOfApartmentInfoContainerWidgetState
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
-        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
         // this children have ( general info that : title, price , and location
         // .
         children: [

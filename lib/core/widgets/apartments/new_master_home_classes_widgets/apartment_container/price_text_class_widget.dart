@@ -24,7 +24,7 @@ class _ApartmentPriceTextState extends State<ApartmentPriceText> {
     return Row(
       children: [
         Padding(
-          padding: const EdgeInsets.fromLTRB(0, 0, 10, 10),
+          padding: const EdgeInsets.symmetric(vertical: 4),
           child: Text(
             "${SetLocalization.of(context)!.getTranslateValue("rent")}: "
                 "${widget.apartmentsRes.data?[widget.index].price ?? ""
@@ -41,7 +41,7 @@ class _ApartmentPriceTextState extends State<ApartmentPriceText> {
           ),
         ),
         Padding(
-          padding: const EdgeInsets.fromLTRB(0, 0, 3, 10),
+          padding: const EdgeInsets.fromLTRB(0, 0, 3, 4),
           child: Text(SetLocalization.of(context)!.getTranslateValue("shekel_per_month"),
               style: TextStyle(
                 color: themeMode.isLight

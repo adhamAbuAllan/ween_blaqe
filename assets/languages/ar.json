@@ -219,12 +219,12 @@
   "feedback_acknowledgement": "شكرًا لك على ملاحظتك, سيتم أخذها بعين الاعتبار",
   "agree_terms": "من خلال تحديد إنشاء حساب ، فإنني أوافق على شروط سياسة الخصوصية",
   "incorrect_data": "بيانات خاطئة",
-  "fill_all_fields": "برجاء التاكد من تعبئة جميع الحقول",
+  "fill_field": "يرجى تعبئة الحقل",
   "enter_matching_passwords": "برجاء إدخال كلمة مرور متطابقة في كلا الحقلين",
   "phone_verification": "يرجى التحقق من رقم الهاتف",
   "unverified_phone": "لم تقم بالتحقق من رقم هاتفك",
   "duplicate_data": "بيانات مشابهة",
-  "try_different_phone": "جرب إستخدام رقم هاتف مختلف",
+  "try_different_phone": "رقم الهاتف موجود مسبقا",
   "phone_valid_account_creation": "رقم الهاتف صحيح ، يرجى الرجوع و إتمام عملية إنشاء حساب جديد",
   "confirm_password": "تأكيد كلمة المرور",
   "identity_verification": "تأكد من مطابقته للاسم الموجود في بطاقة هويتك",
@@ -239,6 +239,9 @@
   "female_students": "طالبات",
   "families": "عائلات",
   "all_types": "الكل",
-  "housing_type_btn": " صنف السكن "
+  "housing_type_btn": " صنف السكن ",
+ "all_advantages" : "جميع المزايا",
+  "weak_password" : "كلمة مرور ضعيفة",
+  "the_phone_number_is_not_suitable": "رقم الهاتف غير مناسب"
 
 }

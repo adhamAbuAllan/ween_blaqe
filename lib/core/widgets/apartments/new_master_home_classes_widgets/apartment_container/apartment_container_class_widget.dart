@@ -8,6 +8,7 @@ final Widget child;
   Widget build(BuildContext context) {
     return Container(
       margin: const EdgeInsets.fromLTRB(10, 0, 10, 23),
+      padding: const EdgeInsets.symmetric(horizontal: 10),
       // width: 373,
       /*
       this is  wrong don't add height in the container

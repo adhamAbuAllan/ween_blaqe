@@ -62,6 +62,7 @@ class _BottomNavigationBarOfStudentState
       elevation: 0,
       currentIndex: controller.index,
       onTap: (i) {
+        debugPrint("the isLoading = ${apartmentModelController.isLoading.value}");
         setState(() {
           if (i == 0 &&
               controller.index == 0 &&

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 // import 'package:skeletons/skeletons.dart';
-// import 'package:ween_blaqe/controller/get_controllers.dart';
-// import 'package:ween_blaqe/controller/get_controllers.dart';
+// import 'package:ween_blaqe/controller/auth_provider.dart';
+// import 'package:ween_blaqe/controller/auth_provider.dart';
 
 import '../../../../../../../api/advantages.dart';
 import '../../../../../../../constants/nums.dart';

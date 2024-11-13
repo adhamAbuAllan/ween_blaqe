@@ -87,6 +87,7 @@ class _NewMasterHomeState extends State<NewMasterHome> {
             cityId: cityModelController.cityId.value);
       },
       child: Obx(() => !apartmentModelController.isLoading.value
+
           ? errorMessage.isNotEmpty
           ? Text(errorMessage)
           : (apartmentModelController.apartmentsList.data?.isEmpty ?? false)
@@ -94,6 +95,7 @@ class _NewMasterHomeState extends State<NewMasterHome> {
           : FutureBuilder(
           future: Connectivity().checkConnectivity(),
           builder: (context, snapshot) {
+
             if (!connectivityController.isSnackBarShow.value) {
               connectivityController.handleConnectivityChange(
                   context, snapshot.data);
@@ -140,6 +142,7 @@ class _NewMasterHomeState extends State<NewMasterHome> {
                     child: apartmentModelController.isSebhaVisible.value
                         ? ApartmentShowTypesButton(
                       onPressed: () {
+
                         apartmentModelController.isListOfTypes.value =
                         !apartmentModelController.isListOfTypes.value;
                       },

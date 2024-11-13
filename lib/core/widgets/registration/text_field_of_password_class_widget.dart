@@ -4,7 +4,7 @@ import 'package:ween_blaqe/constants/nums.dart';
 
 import '../../../constants/coordination.dart';
 import '../../../constants/get_it_controller.dart';
-// import '../../../controller/get_controllers.dart';
+// import '../../../controller/auth_provider.dart';
 
 //text filed password for registration
 class TextFieldOfPasswordClassWidget extends StatefulWidget {
@@ -22,6 +22,7 @@ class TextFieldOfPasswordClassWidget extends StatefulWidget {
 
   final void Function(bool) onObscureChanged;
   final TextEditingController? controller;
+  final String ? helperText;
 
    TextFieldOfPasswordClassWidget(
       {super.key,
@@ -37,7 +38,7 @@ class TextFieldOfPasswordClassWidget extends StatefulWidget {
       this.controller,
       required this.isObscure,
       required this.onObscureChanged,
-      this.validator});
+      this.validator,  this.helperText});
 
   @override
   State<TextFieldOfPasswordClassWidget> createState() =>
@@ -60,6 +61,77 @@ class _TextFieldOfPasswordClassWidgetState
   RegExp letterReg = RegExp(r".*[A-Za-z].*");
 
   // displayText = 'الرجاء إدخال كلمة المرور ';
+
+  @override
+  Widget build(BuildContext context) {
+
+    return Padding(
+
+        padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 0),
+        child: TextFormField(
+          validator: widget.validator,
+         controller: widget.controller,
+          obscureText: widget.isObscure,
+          style: TextStyle(
+              
+              color:
+                  themeMode.isLight ? kTextColorLightMode : kTextColorDarkMode),
+          keyboardType: widget.inputType,
+          decoration: InputDecoration(
+            contentPadding: EdgeInsets.symmetric(
+                vertical:
+                    getIt<AppDimension>().isSmallScreen(context) ? 20 / 2 : 20,
+                horizontal: 10),
+            labelText: widget.labelInput,
+            labelStyle: TextStyle(
+                color: Colors.grey.shade500,  fontSize: 16),
+            suffixIcon: IconButton(
+              icon: widget.isObscure
+                  ? const Icon(Icons.visibility)
+                  : const Icon(Icons.visibility_off),
+              color:
+                  themeMode.isLight ? kTextColorLightMode : kTextColorDarkMode,
+              onPressed: () {
+                setState(() {
+                  widget.onObscureChanged(!widget.isObscure);
+                });
+              },
+            ),
+            hintStyle: const TextStyle(color: Colors.grey),
+            border: InputBorder.none,
+            focusedBorder: OutlineInputBorder(
+              borderSide: BorderSide(
+                width: 1,
+                color: themeMode.isLight
+                    ? kPrimaryColorLightMode
+                    : kPrimaryColorDarkMode,
+              ),
+            ),
+
+            enabledBorder: OutlineInputBorder(
+
+                borderSide: BorderSide(
+                  width: 0.5,
+                  color: themeMode.isLight
+                      ? kPrimaryColor300LightMode
+                      : kPrimaryColor300DarkMode,
+                ),
+                borderRadius: BorderRadius.circular(7)),
+            helperText: widget.helperText,
+            errorBorder: const OutlineInputBorder(
+              borderSide:
+                  BorderSide(color: Colors.red), // Set error border color
+            ),
+
+            focusedErrorBorder: const OutlineInputBorder(
+              borderSide: BorderSide(
+                  color: Colors.red, width: 2.0), // Set focused error border
+            ),
+            errorStyle: const TextStyle(
+                color: Colors.red), // Customize error text style
+          ),
+        ));
+  }
 
   void checkPassword(String value) {
     widget.controller?.text = value.trim();
@@ -95,95 +167,4 @@ class _TextFieldOfPasswordClassWidgetState
     }
   }
 
-  @override
-  Widget build(BuildContext context) {
-    // IconData invisible_ic = Icons.visibility_off;
-    // IconData visible_ic = Icons.visibility;
-    // IconData currentIcon = Icons.visibility_off;
-
-    var labelInput = widget.labelInput;
-    var inputType = widget.inputType;
-    // bool visible = false;
-    // var focusNode = FocusNode();
-    return Padding(
-        // padding: const EdgeInsets.fromLTRB(25, 0, 25, 12),
-        padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 0),
-        child: TextFormField(
-          validator: widget.validator,
-          // onChanged: (value) => checkPassword(value),
-          // onChanged: (v) => widget.checkPass!(widget.displayText??v),
-          controller: widget.controller,
-          // autofocus: widget.autoFocus ?? false,
-
-          // textInputAction: TextInputAction.next,
-          obscureText: widget.isObscure,
-          style: TextStyle(
-              
-              color:
-                  themeMode.isLight ? kTextColorLightMode : kTextColorDarkMode),
-          // focusNode: focusNode,
-          keyboardType: inputType,
-          decoration: InputDecoration(
-            contentPadding: EdgeInsets.symmetric(
-                vertical:
-                    getIt<AppDimension>().isSmallScreen(context) ? 20 / 2 : 20,
-                horizontal: 10),
-            labelText: labelInput,
-            labelStyle: TextStyle(
-                color: Colors.grey.shade500,  fontSize: 16),
-            suffixIcon: IconButton(
-              icon: widget.isObscure
-                  ? const Icon(Icons.visibility)
-                  : const Icon(Icons.visibility_off),
-              color:
-                  themeMode.isLight ? kTextColorLightMode : kTextColorDarkMode,
-              onPressed: () {
-                setState(() {
-                  widget.onObscureChanged(!widget.isObscure);
-                });
-              },
-            ),
-            hintStyle: const TextStyle(color: Colors.grey),
-            border: InputBorder.none,
-            focusedBorder: OutlineInputBorder(
-              borderSide: BorderSide(
-                width: 1,
-                color: themeMode.isLight
-                    ? kPrimaryColorLightMode
-                    : kPrimaryColorDarkMode,
-              ),
-            ),
-            enabledBorder: OutlineInputBorder(
-                borderSide: BorderSide(
-                  width: 0.5,
-                  color: themeMode.isLight
-                      ? kPrimaryColor300LightMode
-                      : kPrimaryColor300DarkMode,
-                ),
-                borderRadius: BorderRadius.circular(7)),
-            errorBorder: const OutlineInputBorder(
-              borderSide:
-                  BorderSide(color: Colors.red), // Set error border color
-            ),
-
-            focusedErrorBorder: const OutlineInputBorder(
-              borderSide: BorderSide(
-                  color: Colors.red, width: 2.0), // Set focused error border
-            ),
-            errorStyle: const TextStyle(
-                color: Colors.red), // Customize error text style
-          ),
-        ));
-  }
-
-  checkTowFieldPassword(String firstValue, String secondValue) {
-    // var  errorText = '';
-    (value) {
-      //  setState(() {
-      // if(firstValue!=secondValue){
-      //   errorText = "كلمتي المرور غير متطالبقتين";
-      // }
-      //  });
-    };
-  }
 }

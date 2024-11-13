@@ -4,7 +4,7 @@ import 'package:ween_blaqe/api/apartments_api/one_apartment.dart';
 import '../../../../../api/photos.dart';
 import '../../../../../constants/nums.dart';
 import '../../../../../controller/get_controllers.dart';
-// import '../../../../../controller/get_controllers.dart'; // Assuming this is where imageOfApartmentController is
+// import '../../../../../controller/auth_provider.dart'; // Assuming this is where imageOfApartmentController is
 
 class PointerOfImage extends StatefulWidget {
   const PointerOfImage({

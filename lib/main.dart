@@ -19,6 +19,7 @@ flutter clean واعمل بيلد تاني وارفعه وكل ما تيجي ت�
 import 'package:colorful_safe_area/colorful_safe_area.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:get/get.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:ween_blaqe/controller/function_controller/animation_about_apartment_boxs_controller.dart';
@@ -74,6 +75,7 @@ import 'controller/models_controller/images_model_controller.dart';
 import 'controller/models_controller/type_of_apartment_models_controller.dart';
 
 // import 'features/bookmark.dart';
+import 'controller/models_controller/user_model_controller.dart';
 import 'controller/scroll_controller.dart';
 import 'features/intro_screen.dart';
 import 'features/send_notice_for_us.dart';
@@ -147,6 +149,7 @@ void main() async {
   Get.put(CreateSocialConnectionController());
   Get.put(LanguageController());
   Get.put(AnimationBoxController());
+  Get.put(UserModelController());
   Get.put(BookmarkController()); //for testing
   // Get.put(BookmarkApartment());//for testing
   //for get
@@ -160,9 +163,11 @@ void main() async {
     initialLocale = const Locale('en', 'US');
   }
   await configureInjection();
-  runApp(const OwnMaterialApp(
-      // logged: token != null,
-      ));
+  runApp(const ProviderScope(
+    child: OwnMaterialApp(
+        // logged: token != null,
+        ),
+  ));
   Get.updateLocale(initialLocale); // Update locale usingGetX
 
   // await Firebase.initializeApp(
@@ -286,7 +291,7 @@ class _OwnMaterialAppState extends State<OwnMaterialApp> {
         //     const ApartmentsOfOwnerAfterAdd(),
         // MyPagesRoutes.apartmentOfOwnerBeforeAdd: (context) =>
         //     const ApartmentOfOwnerBeforeAdd(),
-        MyPagesRoutes.apartmentsOwner: (context) => const ApartmentsOwner(),
+        MyPagesRoutes.apartmentsOwner: (context) =>  const ApartmentsOwner(),
 
         MyPagesRoutes.splashScreen: (context) => const SplashScreen(),
         MyPagesRoutes.refactorApartment: (context) => const RefactorApartment(),

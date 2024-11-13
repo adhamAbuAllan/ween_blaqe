@@ -1,4 +1,3 @@
-
 import 'package:colorful_safe_area/colorful_safe_area.dart';
 import 'package:flutter/material.dart';
 import 'package:ween_blaqe/constants/localization.dart';
@@ -27,93 +26,66 @@ class _ShowAllAdvantagesState extends State<ShowAllAdvantages> {
         backgroundColor: themeMode.isLight
             ? kBackgroundAppColorLightMode
             : kBackgroundAppColorDarkMode,
-        body: SingleChildScrollView(
-          physics: const NeverScrollableScrollPhysics(),
+        appBar: AppBar(
+          title: Text(
+              SetLocalization.of(context)!.getTranslateValue("all_advantages"),
+              style: TextStyle(
+                color: themeMode.isLight
+                    ? kTextColorLightMode
+                    : kTextColorDarkMode,
+                fontSize:
+                    getIt<AppDimension>().isSmallScreen(context) ? 18 : 20,
+                fontWeight: FontWeight.w600,
+              )),
+          backgroundColor: themeMode.isLight
+              ? kPrimaryColorLightMode
+              : kPrimaryColorDarkMode,
+          // centerTitle: false,
+        ),
+        body: Expanded(
           child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Row(
-                children: [
-                  Padding(
-                    padding: const EdgeInsets.fromLTRB(0, 25, 0, 0),
-                    child: IconButton(
-                        padding: const EdgeInsets.only(right: 10),
-                        onPressed: () {
-                          Navigator.of(context).pop(context);
-                        },
-                        icon: Icon(
-                          Icons.arrow_back,
-                          color: themeMode.isLight
-                              ? kTextColorLightMode
-                              : kTextColorDarkMode,
-                        )),
-                  ),
-                  const Expanded(child: Text("")),
-                ],
-              ),
-              Container(
-                margin: const EdgeInsets.fromLTRB(10, 30, 10, 0),
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(7),
-                  color: themeMode.isLight
-                      ? kContainerColorLightMode
-                      : kContainerColorDarkMode,
-                ),
-                child: Column(
-                  children: [
-                    Row(
-                      children: [
-                        Padding(
-                          padding: const EdgeInsets.fromLTRB(0, 0, 10, 0),
-                          child: Text(SetLocalization.of(context)!.getTranslateValue("features"),
-                              style: TextStyle(
+              Expanded(
+                child: ListView.builder(
+                    padding: const EdgeInsets.only(bottom: 0),
+                    itemCount: widget.features.length,
+                    itemBuilder: ((c, i) {
+                      return ListTile(
+                          title: Text(
+                            widget.features[i].advName!,
+                            style: TextStyle(
+                                fontSize:
+                                    getIt<AppDimension>().isSmallScreen(context)
+                                        ? 14
+                                        : 16,
                                 color: themeMode.isLight
                                     ? kTextColorLightMode
-                                    : kTextColorDarkMode,
-                                fontSize: 20,
-                                
-                              )),
-                        ),
-                        const Expanded(child: Text("")),
-                      ],
-                    ),
-                    SizedBox(
-                      height: getIt<AppDimension>()
-                          .isSmallScreen(context)
-                          ? 525/1.1:585,
-                      child: ListView.builder(
-                          padding: const EdgeInsets.all(0),
-                          itemCount: widget.features.length,
-                          itemBuilder: ((c, i) {
-                            return ListTile(
-                                title: Text(
-                                  widget.features[i].advName!,
-                                  style: TextStyle(
-                                      
-                                      fontSize: 16,
-                                      color: themeMode.isLight
-                                          ? kTextColorLightMode
-                                          : kTextColorDarkMode),
-                                ),
-                                trailing: widget.features[i].icon!.isEmpty
-                                    ? SizedBox(
-                                    child: CircularProgressIndicator(
-                                      color: themeMode.isLight
-                                          ? kPrimaryColorLightMode
-                                          : kPrimaryColorDarkMode,
-                                      strokeWidth: 3,
-                                    ))
-                                    : Image.network(
+                                    : kTextColorDarkMode),
+                          ),
+                          trailing: widget.features[i].icon!.isEmpty
+                              ? SizedBox(
+                                  child: CircularProgressIndicator(
+                                  color: themeMode.isLight
+                                      ? kPrimaryColorLightMode
+                                      : kPrimaryColorDarkMode,
+                                  strokeWidth: 3,
+                                ))
+                              : Image.network(
                                   widget.features[i].icon!,
-                                  height: 30,
-                                  width: 30,
+                                  height: getIt<AppDimension>()
+                                          .isSmallScreen(context)
+                                      ? 26
+                                      : 30,
+                                  width: getIt<AppDimension>()
+                                          .isSmallScreen(context)
+                                      ? 26
+                                      : 30,
                                   color: themeMode.isLight
                                       ? kTextColorLightMode
                                       : kTextColorDarkMode,
                                 ));
-                          })),
-                    ),
-                  ],
-                ),
+                    })),
               ),
             ],
           ),

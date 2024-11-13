@@ -15,7 +15,7 @@ class ApartmentLocatoinText extends StatelessWidget {
     return SizedBox(
       width: 250,
       child: Padding(
-        padding: const EdgeInsets.fromLTRB(0, 0, 10, 10),
+        padding: const EdgeInsets.symmetric(vertical: 4),
         child: Text(
           "المكان: ${apartmentsRes.data?[index].city?.name ?? ""
 

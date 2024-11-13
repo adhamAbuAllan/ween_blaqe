@@ -1,6 +1,7 @@
 // import 'dart:html';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:get/get.dart';
 import 'package:ween_blaqe/controller/function_controller/change_theme_mode.dart';
 
@@ -8,10 +9,8 @@ import '../../../../../../constants/coordination.dart';
 import '../../../../../../constants/get_it_controller.dart';
 import '../../../../../../constants/nums.dart';
 
-const String errorText = "";
-
 //container input text class widget
-class ContainerInputTextClassWidget extends StatefulWidget {
+class ContainerInputTextClassWidget extends  ConsumerWidget{
   final String title;
   final String hintInput;
   final TextInputType inputType;
@@ -22,7 +21,7 @@ class ContainerInputTextClassWidget extends StatefulWidget {
   final int? hintMaxLines;
   final int? maxLines;
   final int? maxLength;
-  final Function(String value)? onEdit;
+  final Function(String value)? onChanged;
   final Widget? valueUnderFormTextField;
   final bool? expanded;
   final String? Function(String?)? validator;
@@ -32,47 +31,30 @@ class ContainerInputTextClassWidget extends StatefulWidget {
   final bool? autoFocus;
   final TextEditingController? controller;
 
-  const ContainerInputTextClassWidget({
-    super.key,
-    required this.title,
-    required this.hintInput,
-    required this.inputType,
-    this.focusNode,
-    this.maxLines,
-    this.hintMaxLines,
-    this.maxLength,
-    this.onFieldSubmitted,
-    this.value,
-    this.autoFocus,
-    // this.textInputAction,
-    this.controller,
-    this.errorText,
-    this.onEdit,
-    this.expanded,
-    this.valueUnderFormTextField,
-    this.validator,
-    this.helperText,
-    // this.errorText
-  });
+  const ContainerInputTextClassWidget(
+      {super.key,
+      required this.title,
+      required this.hintInput,
+      required this.inputType,
+      this.focusNode,
+      this.maxLines,
+      this.hintMaxLines,
+      this.maxLength,
+      this.onFieldSubmitted,
+      this.value,
+      this.autoFocus,
+      // this.textInputAction,
+      this.controller,
+      this.errorText,
+      this.onChanged,
+      this.expanded,
+      this.valueUnderFormTextField,
+      this.validator,
+      this.helperText,
+      });
 
   @override
-  State<ContainerInputTextClassWidget> createState() =>
-      _ContainerInputTextClassWidgetState();
-}
-
-class _ContainerInputTextClassWidgetState
-    extends State<ContainerInputTextClassWidget> {
-  @override
-  Widget build(BuildContext context) {
-    var title = widget.title;
-    var controller = widget.controller;
-    var hintInput = widget.hintInput;
-    var inputType = widget.inputType;
-    // var focusNode = widget.focusNode;
-    var value = widget.value;
-    // var autoFocus = widget.autoFocus;
-    // var is_first = false;
-    // var symboles = "()!@#%^&*_+-=?><~|`;'{}][:/,؟’";
+  Widget build(BuildContext context,WidgetRef ref) {
     return Container(
       // transformAlignment: Alignment.bottomCenter,
 
@@ -99,10 +81,8 @@ class _ContainerInputTextClassWidgetState
                     color: themeMode.isLight
                         ? kTextColorLightMode
                         : kTextColorDarkMode,
-                    fontSize: getIt<AppDimension>().isSmallScreen(context)
-                        ? 16
-                        :18,
-                    
+                    fontSize:
+                        getIt<AppDimension>().isSmallScreen(context) ? 16 : 18,
                     fontWeight: FontWeight.w500,
                   ),
                 ),
@@ -110,12 +90,13 @@ class _ContainerInputTextClassWidgetState
             ],
           ),
           Padding(
-              padding: const EdgeInsets.fromLTRB(20, 0, 20, 10),
+            padding: const EdgeInsets.fromLTRB(20, 0, 20, 10),
             child: TextFormField(
-              validator: widget.validator,
+              validator: validator,
               cursorColor: themeMode.isLight
                   ? kPrimaryColorLightMode
                   : kPrimaryColorDarkMode,
+
               //
               // onChanged: (value) {
               //   // autoFocus = false;
@@ -152,50 +133,51 @@ class _ContainerInputTextClassWidgetState
               textInputAction: TextInputAction.next,
               controller: controller,
               initialValue: value,
-              onChanged: widget.onEdit,
-              maxLines: widget.maxLines,
+              onChanged: onChanged,
+              maxLines: maxLines,
               // maxLengthEnforcement: MaxLengthEnforcement.truncateAfterCompositionEnds,
-              maxLength: widget.maxLength,
+              maxLength: maxLength,
               // textDirection: TextDirection.rtl,
               keyboardType: inputType,
-              autofocus: widget.autoFocus ?? false,
+              autofocus: autoFocus ?? false,
 
               // focusNode: focusNode,
-              decoration: buildInputDecoration(hintInput,
-                  helperText: widget.helperText),
+              decoration: buildInputDecoration(hintInput,context,
+                  helperText: helperText),
               style: TextStyle(
-                
-                fontSize: getIt<AppDimension>().isSmallScreen(context) ? 15 :
-                16,
+                fontSize:
+                    getIt<AppDimension>().isSmallScreen(context) ? 15 : 16,
                 color: themeMode.isLight
                     ? kTextColorLightMode
                     : kTextColorDarkMode,
               ),
             ),
           ),
-          widget.expanded == true
+          expanded == true
               ? Row(
-            children: [
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 10.0),
-                child: widget.valueUnderFormTextField ??
-                    const SizedBox(
-                      width: .1,
-                      height: .1,
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 10.0),
+                      child: valueUnderFormTextField ??
+                          const SizedBox(
+                            width: .1,
+                            height: .1,
+                          ),
                     ),
-              ),
-            ],
-          )
+                  ],
+                )
               : const SizedBox(
-            height: .1,
-            width: .1,
-          )
+                  height: .1,
+                  width: .1,
+                )
         ],
       ),
     );
   }
 
-  InputDecoration buildInputDecoration(String hintInput, {String? helperText}) {
+  InputDecoration buildInputDecoration(String hintInput, BuildContext
+  context,{String?
+  helperText}) {
     ChangeThemeMode themeMode = Get.find();
 
     return InputDecoration(
@@ -204,15 +186,14 @@ class _ContainerInputTextClassWidgetState
             fontFamily: "IBM"),
         helperText: helperText,
         contentPadding: EdgeInsets.symmetric(
-            vertical:
-            getIt<AppDimension>().isSmallScreen(context) ? 20 / 2 : 20,
+            vertical: getIt<AppDimension>().isSmallScreen(context) ? 20 / 2 : 20,
             horizontal: 12),
-        errorText: errorText.isEmpty ? null : errorText,
+        errorText: errorText,
 
         // hintTextDirection: TextDirection.rtl,
         hintText: hintInput,
         border: InputBorder.none,
-        hintMaxLines: widget.hintMaxLines,
+        hintMaxLines: hintMaxLines,
         hintStyle: const TextStyle(
           color: Colors.grey,
         ),
@@ -232,9 +213,6 @@ class _ContainerInputTextClassWidgetState
                   : kPrimaryColorDarkMode.withOpacity(.3),
             ),
             borderRadius: BorderRadius.circular(7)),
-
-        // ... your existing decoration properties ...
-
         errorBorder: const OutlineInputBorder(
           borderSide: BorderSide(color: Colors.red), // Set error border color
         ),
@@ -244,11 +222,10 @@ class _ContainerInputTextClassWidgetState
         ),
         errorStyle: const TextStyle(
           color: Colors.red,
-          
         ),
         helperMaxLines: 2
-      // Customize
-      // error text style
-    );
+        // Customize
+        // error text style
+        );
   }
 }

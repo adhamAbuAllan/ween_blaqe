@@ -120,6 +120,8 @@ class _ProfileOfOwnerState extends State<ProfileOfOwner> {
                                     ? kTextColorLightMode
                                     : kTextColorDarkMode,
                                 onPressed: () {
+                                  apartmentModelController.isLoading.value =
+                                  false;
                                   isPop = true;
                                   WidgetsBinding.instance
                                       .addPostFrameCallback((_) async {

@@ -7,7 +7,7 @@ import 'package:ween_blaqe/constants/coordination.dart';
 import 'package:ween_blaqe/constants/nums.dart';
 import 'package:ween_blaqe/constants/strings.dart';
 
-// import 'package:ween_blaqe/controller/get_controllers.dart';
+// import 'package:ween_blaqe/controller/auth_provider.dart';
 import 'package:ween_blaqe/core/utils/funcations/route_pages/push_routes.dart';
 import 'package:ween_blaqe/core/utils/styles/button.dart';
 
@@ -43,11 +43,6 @@ class AccountOfOwner extends StatefulWidget {
 
 class _AccountOfOwnerState extends State<AccountOfOwner> {
   bool notificationState = true;
-
-  @override
-  void initState() {
-    super.initState();
-  }
 
   // static const String rountName = "/accountOfOwner";
   @override

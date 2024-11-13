@@ -67,7 +67,7 @@ class _CarouselSliderWidgetState extends State<CarouselSliderWidget> {
               return Builder(
                 builder: (BuildContext context) {
                   return Container(
-                    margin: const EdgeInsets.all(5),
+                    margin: const EdgeInsets.symmetric(horizontal: 3),
                     child: ClipRRect(
                         borderRadius:
                             const BorderRadius.all(Radius.circular(7.0)),

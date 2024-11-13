@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:skeletons/skeletons.dart';
 import 'package:ween_blaqe/api/apartments_api/one_apartment.dart';
 
-// import '../../../../../controller/get_controllers.dart';
+// import '../../../../../controller/auth_provider.dart';
 import '../../show_more_classes_widget/image_slider/custom_slider.dart';
 import '../../show_more_classes_widget/image_slider/pointer.dart';
 // import '../../show_more_classes_widget/image_slider/zoom_of_image/image_details_scree.dart';
@@ -53,7 +53,7 @@ class ApartmentMainImage extends StatelessWidget {
         //       )),
 
         Padding(
-          padding: const EdgeInsets.only(bottom: 8.0, top: 10),
+          padding: const EdgeInsets.symmetric(vertical: 8,),
           child: PointerOfImage(
             imageList: apartmentsRes.data?[index].photos??[],
             oneApartment: apartmentsRes.data?[index]??DataOfOneApartment(),

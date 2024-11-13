@@ -1,6 +1,6 @@
 // import 'package:flutter/material.dart';
 // import 'package:ween_blaqe/constants/nums.dart';
-// import '../../../controller/get_controllers.dart';
+// import '../../../controller/auth_provider.dart';
 //
 // /// delete this file
 //

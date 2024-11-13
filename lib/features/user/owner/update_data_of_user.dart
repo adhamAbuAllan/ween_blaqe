@@ -8,7 +8,7 @@ import 'package:http/http.dart' as http;
 import 'dart:convert';
 
 import 'package:ween_blaqe/constants/strings.dart';
-// import 'package:ween_blaqe/controller/get_controllers.dart';
+// import 'package:ween_blaqe/controller/auth_provider.dart';
 
 // import 'package:ween_blaqe/core/utils/styles/button.dart';
 import 'package:ween_blaqe/core/widgets/apartments/create_apartment/container_classes_widget/input_text_class_widget/container_input_text_class_widget.dart';
@@ -21,7 +21,7 @@ import '../../../constants/get_it_controller.dart';
 import '../../../constants/localization.dart';
 import '../../../constants/nums.dart';
 
-// import '../controller/get_controllers.dart';
+// import '../controller/auth_provider.dart';
 import '../../../core/utils/funcations/go_url_launcher_methodes/go_to_whatsapp_method.dart';
 import '../../../core/widgets/registration/text_field_of_password_class_widget.dart';
 import '../../../core/widgets/registration/text_filed_class_widget.dart';
@@ -296,6 +296,7 @@ class _UpdateUserDataState extends State<UpdateUserData> {
                                             color: themeMode.isLight
                                                 ? kTextColorLightMode
                                                 : kTextColorDarkMode,
+                                            fontSize: 16,
                                           ),
                                         ),
                                       );
@@ -310,7 +311,7 @@ class _UpdateUserDataState extends State<UpdateUserData> {
                                           .isSmallScreen(context)
                                       ? 1
                                       : 2,
-                                  child: TextFieldClassWdiget(
+                                  child: TextFieldClassWidget(
                                       fontSize: 16,
                                       controller: _phoneController,
                                       labelName: SetLocalization.of(context)!

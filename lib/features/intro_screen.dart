@@ -2,7 +2,7 @@ import 'package:colorful_safe_area/colorful_safe_area.dart';
 import 'package:flutter/material.dart';
 import 'package:introduction_screen/introduction_screen.dart';
 
-// import 'package:ween_blaqe/controller/get_controllers.dart';
+// import 'package:ween_blaqe/controller/auth_provider.dart';
 import 'package:ween_blaqe/main.dart';
 // import 'package:ween_blaqe/sesstion/sesstion_of_user.dart';
 

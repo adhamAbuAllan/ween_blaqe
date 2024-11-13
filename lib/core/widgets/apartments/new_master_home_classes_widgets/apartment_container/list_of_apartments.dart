@@ -5,7 +5,7 @@ import 'package:ween_blaqe/api/apartments_api/one_apartment.dart';
 import 'package:ween_blaqe/controller/get_controllers.dart';
 import 'package:ween_blaqe/core/widgets/apartments/home_screen/bar_cities.dart';
 
-// import 'package:ween_blaqe/controller/get_controllers.dart';
+// import 'package:ween_blaqe/controller/auth_provider.dart';
 import 'package:ween_blaqe/core/widgets/apartments/new_master_home_classes_widgets/apartment_container/whole_widgets_class_widget.dart';
 
 class ApartmentsList extends StatefulWidget {
