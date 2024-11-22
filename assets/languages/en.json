@@ -195,11 +195,12 @@
   "your_email": "Your Email",
   "username": "Username",
   "whatsapp_number": "WhatsApp Number",
-  "passwords_do_not_match": "Old and new passwords cannot be the same.",
-  "incorrect_password": "Incorrect password.",
-  "password_too_short": "The new password is too short.",
-  "password_mismatch": "Passwords do not match.",
-  "changes_saved": "Changes have been saved.",
+  "passwords_do_not_match": "Old and new passwords cannot be the same",
+
+    "incorrect_password": "the old password is incorrect",
+  "password_too_short": "The new password is too short",
+  "password_mismatch": "Passwords do not match",
+  "changes_saved": "Changes have been saved",
   "saving_changes...": "Saving changes...",
   "reload": "reload data",
   "phone_number_should_start_with_country_code": "Phone Number should Starting with Country Code",
@@ -217,6 +218,7 @@
   "duplicate_data": "Duplicate data",
   "try_different_phone": "The phone number is already in use",
   "phone_valid_account_creation": "The phone number is correct, please go back and complete creating a new account",
+  "phone_valid": "The phone number is correct",
   "confirm_password": "Confirm Password",
   "identity_verification": "Make sure it matches the name on your ID card",
   "phoneOrPasswordIncorrect": "The phone number or password is incorrect",
@@ -232,6 +234,9 @@
   "housing_type_btn": " Housing Type ",
   "all_advantages" : "All Advantages",
   "weak_password" : "Weak Password",
-  "the_phone_number_is_not_suitable" : "The phone number is not suitable"
+  "the_phone_number_is_not_suitable" : "The phone number is not suitable",
+  "username_must_not_contain_special_characters" : "Username must not contain special characters",
+  "phone_number_must_not_contain_special_characters" : "phone number must not contain special characters",
+  "verifying": "Verifying..."
 }
 

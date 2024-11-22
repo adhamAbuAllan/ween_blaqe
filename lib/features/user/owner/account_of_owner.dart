@@ -32,6 +32,7 @@ import '../../../main.dart';
 import '../../../sesstion/new_session.dart';
 import '../../../sesstion/sesstion_of_user.dart';
 // import '../../../testing_code/update_data_of_user.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 //account screen
 class AccountOfOwner extends StatefulWidget {
@@ -42,7 +43,7 @@ class AccountOfOwner extends StatefulWidget {
 }
 
 class _AccountOfOwnerState extends State<AccountOfOwner> {
-  bool notificationState = true;
+
 
   // static const String rountName = "/accountOfOwner";
   @override
@@ -54,36 +55,32 @@ class _AccountOfOwnerState extends State<AccountOfOwner> {
           : kBackgroundAppColorDarkMode,
       body: SingleChildScrollView(
         child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            //title
-            Row(
-              children: [
-                Padding(
-                  padding: EdgeInsets.fromLTRB(
-                      20,
-                      getIt<AppDimension>().isSmallScreen(context)
-                          ? 50 / 1.6
-                          : 50,
-                      20,
-                      0),
-                  child: Text(
-                    SetLocalization.of(context)!
-                        .getTranslateValue("my_account"),
-                    style: TextStyle(
-                      fontSize:
-                      getIt<AppDimension>().isSmallScreen(context)
-                          ? 22
-                          : 26,
-                      inherit: true,
-                      fontWeight: FontWeight.w600,
-                      color: themeMode.isLight
-                          ? kTextColorLightMode
-                          : kTextColorDarkMode,
-                    ),
-                  ),
+            /// title
+            Padding(
+              padding: EdgeInsets.fromLTRB(
+                  20,
+                  getIt<AppDimension>().isSmallScreen(context)
+                      ? 50 / 1.6
+                      : 50,
+                  20,
+                  0),
+              child: Text(
+                SetLocalization.of(context)!
+                    .getTranslateValue("my_account"),
+                style: TextStyle(
+                  fontSize:
+                  getIt<AppDimension>().isSmallScreen(context)
+                      ? 22
+                      : 26,
+                  inherit: true,
+                  fontWeight: FontWeight.w600,
+                  color: themeMode.isLight
+                      ? kTextColorLightMode
+                      : kTextColorDarkMode,
                 ),
-                const Expanded(child: Text("")),
-              ],
+              ),
             ),
             SizedBox(
               height:
@@ -104,6 +101,8 @@ class _AccountOfOwnerState extends State<AccountOfOwner> {
             //     name: NewSession.get("name", ""),phoneNumber:  NewSession.get("phone", ""),
             //     // dateOfJoin: NewSession.get("createdAt", ""),
             //   ),
+
+           /// profile
             GestureDetector(
               onTap: () {
                 imagesModelController.loadProfileImage();
@@ -282,6 +281,8 @@ class _AccountOfOwnerState extends State<AccountOfOwner> {
               height:
                   getIt<AppDimension>().isSmallScreen(context) ? 60 / 2.5 : 60,
             ),
+
+            /// menu container
             Container(
               padding: const EdgeInsets.fromLTRB(0, 0, 0, 0),
               margin: const EdgeInsets.fromLTRB(10, 0, 10, 0),
@@ -291,11 +292,13 @@ class _AccountOfOwnerState extends State<AccountOfOwner> {
                     ? kContainerColorLightMode
                     : kContainerColorDarkMode,
               ),
+              /// menu items
               child: Column(
-                mainAxisSize: MainAxisSize.min,
+
                 children: [
                   // Switch(value:themeMode.isDark , onChanged:
                   // themeMode.onChanged),
+                  /// theme switcher
                   SwitchListTile(
                       inactiveThumbColor: kBackgroundAppColorLightMode,
                       activeColor: themeMode.isLight
@@ -341,6 +344,7 @@ class _AccountOfOwnerState extends State<AccountOfOwner> {
                         });
                       }),
                   aline,
+                  /// language switcher
                   const SwitchLanguageButtons(),
 
                   Padding(
@@ -348,7 +352,7 @@ class _AccountOfOwnerState extends State<AccountOfOwner> {
                     child: aline,
                   ),
                   aline,
-                  //apartments of owner
+                  /// apartments of owner
                   buttonAccount(() {
                     myPushName(context, MyPagesRoutes.apartmentsOwner);
                   },
@@ -356,8 +360,9 @@ class _AccountOfOwnerState extends State<AccountOfOwner> {
                       SetLocalization.of(context)!
                           .getTranslateValue("your_apartments"),
                       context: context),
-                  //ask for help
+                  /// ask for help
                   aline,
+                  /// ask for help
                   buttonAccount(() {
                     myPushName(context, MyPagesRoutes.askForHelp);
                   },
@@ -367,7 +372,7 @@ class _AccountOfOwnerState extends State<AccountOfOwner> {
                       context: context),
 
                   aline,
-                  //privacy policy
+                  /// privacy policy
                   buttonAccount(() {
                     myPushName(context, MyPagesRoutes.privacyPolicy);
                   },
@@ -375,20 +380,8 @@ class _AccountOfOwnerState extends State<AccountOfOwner> {
                       SetLocalization.of(context)!
                           .getTranslateValue("privacy_policy"),
                       context: context),
-                  // aline,
-                  //share app
-                  // ButtonAccount(
-                  //     () {},
-                  //          Icon(
-                  //       Icons.share_outlined,
-                  //       size: getIt<AppDimension>()
-                  //       .isSmallOrIsMediumScreen(context)
-                  // ?32-5:32,
-                  //       color: kTextColor,
-                  //     ),
-                  //     "شارك التطبيق"),
                   aline,
-                  //send feedback for us
+                  /// send feedback for us
                   buttonAccount(() {
                     // if (connectivityController.isConnection() == false) {
                     // } else {
@@ -402,6 +395,7 @@ class _AccountOfOwnerState extends State<AccountOfOwner> {
                           .getTranslateValue("send_notify_for_us"),
                       context: context),
                   aline,
+                  /// Sebha
                   buttonAccount(() {
                     myPushName(context, MyPagesRoutes.noInternet);
                   },
@@ -416,6 +410,7 @@ class _AccountOfOwnerState extends State<AccountOfOwner> {
                       SetLocalization.of(context)!.getTranslateValue("sebha"),
                       context: context),
                   aline,
+                  /// favorites
                   buttonAccount(() {
                     apartmentModelController.fetchApartments(
                         isOwnerApartments: false);
@@ -427,6 +422,7 @@ class _AccountOfOwnerState extends State<AccountOfOwner> {
                       icon: Icons.bookmark_border_outlined,
                       context: context),
                   aline,
+                  /// share app
                   buttonAccount(
                     () {
                       String url =
@@ -468,7 +464,7 @@ class _AccountOfOwnerState extends State<AccountOfOwner> {
                     onPressed: () {
                       cityModelController.cityId.value = 0;
                       removeUserInfo();
-                      // checkCurrentAuthState(context);
+                        // checkCurrentAuthState(context);
                       myPushAndRemoveUntilName(context, const Main(), "");
                     },
                     style: outlinedButton(themeMode: themeMode,context: context),
@@ -477,29 +473,32 @@ class _AccountOfOwnerState extends State<AccountOfOwner> {
               ),
             ),
             //Beta Version
-            Padding(
-              padding: const EdgeInsets.symmetric(vertical: 30),
-              child: FutureBuilder<String>(
-                future: getAppVersion(),
-                builder:
-                    (BuildContext context, AsyncSnapshot<String> snapshot) {
-                  if (snapshot.hasData) {
-                    return Text(
-                      "${SetLocalization.of(context)!.getTranslateValue("beta_version")}: ${snapshot.data} ",
-                      style: TextStyle(
-
-                          color: themeMode.isLight
-                              ? kTextColorLightMode.withOpacity(.5)
-                              : kTextColorDarkMode.withOpacity(.5)),
-                      // textDirection: TextDirection.rtl,
-                    );
-                  } else if (snapshot.hasError) {
-                    return Text(
-                        "${snapshot.error}${SetLocalization.of(context)!.getTranslateValue("error")}: ");
-                  } else {
-                    return const CircularProgressIndicator();
-                  }
-                },
+            Center(
+              child: Padding(
+                padding: const EdgeInsets.symmetric(vertical: 30),
+                child: FutureBuilder<String>(
+                  future: getAppVersion(),
+                  builder:
+                      (BuildContext context, AsyncSnapshot<String> snapshot) {
+                    if (snapshot.hasData) {
+                      return Text(
+              
+                        "${SetLocalization.of(context)!.getTranslateValue("beta_version")}: ${snapshot.data} ",
+                        style: TextStyle(
+              
+                            color: themeMode.isLight
+                                ? kTextColorLightMode.withOpacity(.5)
+                                : kTextColorDarkMode.withOpacity(.5)),
+                        // textDirection: TextDirection.rtl,
+                      );
+                    } else if (snapshot.hasError) {
+                      return Text(
+                          "${snapshot.error}${SetLocalization.of(context)!.getTranslateValue("error")}: ");
+                    } else {
+                      return const CircularProgressIndicator();
+                    }
+                  },
+                ),
               ),
             )
           ],

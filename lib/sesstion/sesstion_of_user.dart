@@ -11,7 +11,7 @@ saveUserInfo(User data,{DataOfOneApartment ? apartment } ) {
   //   debugPrint("the token of owner is ${apartmentModelController.ownerToken}");
   //
   // }
-  NewSession.save<int>("id", data.id);
+  NewSession.save<int>("id", data.id??-1);
   NewSession.save<String>("token", data.token??"null");
   // Session.save("profile", data.profile);
 

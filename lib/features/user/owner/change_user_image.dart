@@ -1,40 +1,38 @@
-import 'dart:io';
 
 import 'package:flutter/material.dart';
-import 'package:get/get_state_manager/src/rx_flutter/rx_obx_widget.dart';
-import 'package:image_picker/image_picker.dart';
-import 'package:ween_blaqe/constants/localization.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 // import 'package:skeletons/skeletons.dart';
 import 'package:ween_blaqe/constants/nums.dart';
 
-import 'package:ween_blaqe/controller/get_controllers.dart';
+import 'package:ween_blaqe/features/user/owner/pick_image_bottom_sheet_widget.dart';
+import 'package:ween_blaqe/features/user/owner/widgets/change_user_image_widgets/appbar_widget.dart';
+import 'package:ween_blaqe/features/user/owner/widgets/change_user_image_widgets/default_image_widget.dart';
+import 'package:ween_blaqe/features/user/owner/widgets/change_user_image_widgets/mobile_storage_image_widget.dart';
+import 'package:ween_blaqe/features/user/owner/widgets/change_user_image_widgets/server_image_widget.dart';
 import '../../../constants/coordination.dart';
 import '../../../constants/get_it_controller.dart';
 import '../../../sesstion/new_session.dart';
+import '../provider/auth_provider.dart';
 
-class ChangeUserImage extends StatefulWidget {
+class ChangeUserImage extends ConsumerStatefulWidget {
   const ChangeUserImage({super.key});
 
   @override
-  State<ChangeUserImage> createState() => _ChangeUserImageState();
+  ConsumerState createState() => _ChangeUserImageConsumerState();
 }
 
-class _ChangeUserImageState extends State<ChangeUserImage> {
-  // dynamic _pickImageError;
-  final ImagePicker _picker = ImagePicker();
+class _ChangeUserImageConsumerState extends ConsumerState<ChangeUserImage> {
   final TextEditingController maxWidthController = TextEditingController();
   final TextEditingController maxHeightController = TextEditingController();
   final TextEditingController qualityController = TextEditingController();
-  XFile? _profileImageFile;
 
   @override
   void initState() {
     super.initState();
+
     WidgetsBinding.instance.addPostFrameCallback((_) async {
-      setState(() {
-        imagesModelController.loadProfileImage();
-      });
+      ref.read(loadProfileImageNotifier.notifier).loadProfileImage(ref);
     });
   }
 
@@ -44,50 +42,7 @@ class _ChangeUserImageState extends State<ChangeUserImage> {
       backgroundColor: themeMode.isLight
           ? kBackgroundAppColorLightMode
           : kBackgroundAppColorDarkMode,
-      appBar: AppBar(
-        backgroundColor:
-            themeMode.isLight ? kPrimaryColorLightMode : kPrimaryColorDarkMode,
-        title: Text(
-          SetLocalization.of(context)!
-              .getTranslateValue("change_profile_picture"),
-          style: TextStyle(
-              
-              fontWeight: FontWeight.w600,
-              fontSize: getIt<AppDimension>().isSmallScreen(context) ? 16 :
-              null,
-              color:
-                  themeMode.isLight ? kTextColorLightMode : kTextColorDarkMode),
-        ),
-        actions: [
-          Padding(
-            padding: const EdgeInsets.only(left: 5.0),
-            child: Obx(() {
-              return IconButton(
-                  onPressed: () {
-                    WidgetsBinding.instance.addPostFrameCallback((_) async {
-                      if (_profileImageFile?.path != null) {
-                        imagesModelController
-                            .compressAndUploadProfileImage(_profileImageFile!);
-                        imagesModelController.isUpdateImageProfile.value = true;
-                        setState(() {});
-                      }
-                      Future.delayed(
-                        const Duration(seconds: 3),
-                        () {
-                          Navigator.pop(context);
-                        },
-                      );
-                    });
-                  },
-                  icon: imagesModelController.isLoadingProfile.value
-                      ? const CircularProgressIndicator(
-                          color: Colors.white,
-                        )
-                      : const Icon(Icons.check));
-            }),
-          ),
-        ],
-      ),
+      appBar: const AppBarChangeProfileWidget(),
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
@@ -97,112 +52,25 @@ class _ChangeUserImageState extends State<ChangeUserImage> {
                   showModalBottomSheet(
                     context: context,
                     builder: (context) {
-                      return SafeArea(
-                        child: Container(
-                          color: themeMode.isLight
-                              ? kContainerColorLightMode
-                              : kContainerColorDarkMode,
-                          child: Wrap(
-                            children: [
-                              ListTile(
-                                leading: Icon(
-                                  Icons.photo_library,
-                                  color: themeMode.isLight
-                                      ? kPrimaryColorLightMode
-                                      : kPrimaryColorDarkMode,
-                                ),
-                                title: Text(
-                                    SetLocalization.of(context)!
-                                        .getTranslateValue("from_gallery"),
-                                    style: TextStyle(
-                                        color: themeMode.isLight
-                                            ? kTextColorLightMode
-                                            : kTextColorDarkMode,
-                                        fontFamily: "IBM")),
-                                onTap: () {
-                                  Navigator.pop(context); // Close bottom sheet
-                                  _pickProfileImage(ImageSource.gallery);
-                                },
-                              ),
-                              ListTile(
-                                leading: Icon(Icons.camera_alt,
-                                    color: themeMode.isLight
-                                        ? kPrimaryColorLightMode
-                                        : kPrimaryColorDarkMode),
-                                title: Text(
-                                  SetLocalization.of(context)!
-                                      .getTranslateValue("from_camera"),
-                                  style: TextStyle(
-                                      color: themeMode.isLight
-                                          ? kTextColorLightMode
-                                          : kTextColorDarkMode,
-                                      fontFamily: "IBM"),
-                                ),
-                                onTap: () {
-                                  Navigator.pop(context); // Close bottom sheet
-                                  _pickProfileImage(ImageSource.camera);
-                                },
-                              ),
-                            ],
-                          ),
-                        ),
-                      );
+                      return const PickImageBottomSheetWidget();
                     },
                   );
                 },
-                child: _profileImageFile?.path == null &&
+                child: ref.watch(profileImageFile)?.path == null &&
                         NewSession.get("profile", "def") ==
                             "images/profile/user.png"
-                    ? CircleAvatar(
-                        radius: getIt<AppDimension>().isSmallScreen(context)
-                            ? 40 * 2
-                            : (40 * 4),
-                        //put a normal person Icon
-                        backgroundColor: Colors.grey.shade700,
-                        child: Icon(
-                          Icons.person,
-                          size: getIt<AppDimension>().isSmallScreen(context)
-                              ? 40 * 2
-                              : (40 * 4),
-                          color: Colors.white,
-                        ),
-                      )
-                    : (_profileImageFile?.path != null
-                        ? CircleAvatar(
+                    ?  DefaultImageWidget(radius: getIt<AppDimension>().isSmallScreen(context) ? 40 * 2 : (40 * 4),)
+                    : (ref.watch(profileImageFile)?.path != null
+                        ? MobileStorageImageWidget(
                             radius: getIt<AppDimension>().isSmallScreen(context)
                                 ? 40 * 2
                                 : (40 * 4),
-                            // backgroundImage: NetworkImage(NewSession.get("profile","def")),
-                            // Adjust the radius as needed
-                            backgroundColor: Colors.grey.shade700,
-                            // Set the background color of the avatar
-                            backgroundImage:
-                                FileImage(File(_profileImageFile?.path ?? "")))
-                        : CircleAvatar(
-                            radius: getIt<AppDimension>().isSmallScreen(context)
-                                ? 40 * 2
-                                : (40 * 4),
-                            // backgroundImage: NetworkImage(NewSession.get("profile","def")),
-                            // Adjust the radius as needed
-                            // Set the background color of the avatar
-                            backgroundColor: Colors.grey.shade700,
-                            backgroundImage: NetworkImage("https://weenbalaqee"
-                                ".com/${NewSession.get("profile", "def")}"),
-                            // child: SkeletonAvatar(
-                            //     style: SkeletonAvatarStyle(
-                            //         width: 65 * 5,
-                            //         height: 65 * 5,
-                            //         borderRadius: BorderRadius.circular(65 * 5))),
-                          ))),
+                          )
+                        :  ServerImageWidget(radius: getIt<AppDimension>().isSmallScreen(context) ? 40 * 2 : (40 * 4),))),
             const SizedBox(height: 20),
           ],
         ),
       ),
     );
-  }
-
-  Future<void> _pickProfileImage(ImageSource source) async {
-    _profileImageFile = await _picker.pickImage(source: source);
-    setState(() {});
   }
 }

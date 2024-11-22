@@ -181,19 +181,6 @@ class ImagesModelController extends GetxController {
     }
   }
 
-  Future<void> requestPhotoPermission() async {
-    final status = await Permission.photos.request();
-
-    if (status.isGranted) {
-      // Permission granted, proceed with image picking
-    } else if (status.isDenied) {
-      // Permission denied, handle accordingly (e.g., show a dialog)
-    } else if (status.isPermanentlyDenied) {
-      // Permission permanently denied, guide the user to app settings
-      // openAppSettings();
-    }
-  }
-
   Future<String> loadProfileImage() async {
     isLoadingProfile.value = true;
     final url = Uri.parse(ServerWeenBalaqee.loadProfileImage);
@@ -224,6 +211,18 @@ class ImagesModelController extends GetxController {
     }
   }
 
+  Future<void> requestPhotoPermission() async {
+    final status = await Permission.photos.request();
+
+    if (status.isGranted) {
+      // Permission granted, proceed with image picking
+    } else if (status.isDenied) {
+      // Permission denied, handle accordingly (e.g., show a dialog)
+    } else if (status.isPermanentlyDenied) {
+      // Permission permanently denied, guide the user to app settings
+      // openAppSettings();
+    }
+  }
 //////////////////// for testing /////////////////////
 // Future<void> uploadImages() async {
 //   if (imageFiles == null ||

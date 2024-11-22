@@ -13,14 +13,14 @@ class UserNameWidget extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context,WidgetRef ref) {
-    return TextFieldClassWidget(
+    return  TextFieldClassWidget(
       fontSize: getIt<AppDimension>().isSmallScreen(context) ? 15 : 16,
       labelName: SetLocalization.of(context)!
           .getTranslateValue("full_name"),
       autoFocus: true,
-      errorText: ref.watch(formFieldsProvider)['username']?.error,
+      errorText: ref.watch(formFieldsNotifier)['username']?.error,
       onChanged: (value) {
-        ref.read(formFieldsProvider.notifier).updateValue('username', value);
+        ref.read(formFieldsNotifier.notifier).updateValue('username', value);
       },      controller: ref.read(userNameController),
       textInputType: TextInputType.name,);
   }

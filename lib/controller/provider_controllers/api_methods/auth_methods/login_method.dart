@@ -7,7 +7,7 @@ import 'package:ween_blaqe/constants/localization.dart';
 import '../../../../api/users.dart';
 import '../../../../constants/strings.dart';
 import '../../../../core/utils/funcations/route_pages/push_routes.dart';
-import '../../../../features/statuses/load_button_state.dart';
+import '../../../../features/statuses/auth_state.dart';
 import 'package:http/http.dart' as http;
 
 import '../../../../features/user/provider/auth_provider.dart';
@@ -32,14 +32,19 @@ class LoginNotifier extends StateNotifier<AuthState> {
       var res = UserRes.fromJson(jsonDecode(response.body));
       apartmentModelController.ownerToken = res.data.token;
       saveUserInfo(res.data);
+      ref
+          .read(refreshUserDataNotifier.notifier)
+          .refreshUserData(userId: res.data.id??-1, ref: ref);
       state = state.copyWith(isLoading: false);
 
       await myPushReplacementNamedFuture(MyPagesRoutes.main, context);
     } else {
 // Update form fields state with error messages
-      ref.read(formFieldsProvider.notifier).updateErrors({
-        'phone': SetLocalization.of(context)!.getTranslateValue("phoneOrPasswordIncorrect"),
-        'password': SetLocalization.of(context)!.getTranslateValue("phoneOrPasswordIncorrect"),
+      ref.read(formFieldsNotifier.notifier).updateErrors({
+        'phone': SetLocalization.of(context)!
+            .getTranslateValue("phoneOrPasswordIncorrect"),
+        'password': SetLocalization.of(context)!
+            .getTranslateValue("phoneOrPasswordIncorrect"),
       });
       state = state.copyWith(isLoading: false);
       return;

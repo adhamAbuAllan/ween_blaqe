@@ -6,7 +6,7 @@ import '../../../../core/widgets/apartments/create_apartment/container_classes_w
 import '../../../user/provider/auth_provider.dart';
 
 class PhoneLoginCompletedWidget extends ConsumerWidget {
-   const PhoneLoginCompletedWidget({super.key});
+  const PhoneLoginCompletedWidget({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -18,9 +18,7 @@ class PhoneLoginCompletedWidget extends ConsumerWidget {
           autoFocus: true,
           // errorText: ref.watch(formFieldsProvider)['phone']?.error,
           validator: (value) {
-
-
-            return ref.read(formFieldsProvider)['phone']?.error;
+            return ref.read(formFieldsNotifier)['phone']?.error;
           },
           // onChanged: (value){
           //
@@ -30,7 +28,7 @@ class PhoneLoginCompletedWidget extends ConsumerWidget {
           // },
           hintMaxLines: 1,
           title: SetLocalization.of(context)!.getTranslateValue("phone_number"),
-          controller: ref.read(phoneController),
+          controller: ref.read(phoneLoginController),
           hintInput: SetLocalization.of(context)!
               .getTranslateValue("enter_number_with_country_code"),
           inputType: TextInputType.phone,

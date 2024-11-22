@@ -36,6 +36,7 @@ class ServerWeenBalaqee {
   static String changePassword = "${server}user/change_password";
   static String createProfileImage = "${server}user/create_profile_image";
   static String loadProfileImage = "${server}user/load_profile";
+  static String refreshData = "${server}user/refresh_data";
   static String apartmentOwner = "${server}apartment/owner";
   static String apartmentAll = "${server}apartment/all";
   static String apartmentOne = "${server}apartment/one";

@@ -15,7 +15,7 @@ class PasswordLoginCompletedWidget extends ConsumerWidget {
       child: PasswordContainerClassWidget(
         inputType: TextInputType.visiblePassword,
         validator: (value){
-          return ref.watch(formFieldsProvider)['password']?.error;
+          return ref.watch(formFieldsNotifier)['password']?.error;
         },
 
 
@@ -32,8 +32,8 @@ class PasswordLoginCompletedWidget extends ConsumerWidget {
             SetLocalization.of(context)!.getTranslateValue("your_password"),
         title: SetLocalization.of(context)!.getTranslateValue("password"),
 
-        controller: ref.read(passwordController),
-        errorText: ref.watch(formFieldsProvider)['password']?.error,
+        controller: ref.read(passwordLoginController),
+        errorText: ref.watch(formFieldsNotifier)['password']?.error,
       ),
     );
   }

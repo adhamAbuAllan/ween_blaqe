@@ -290,7 +290,7 @@ class WhatsAppButton extends StatelessWidget {
       onPressed: () async {
         // sendMessageToMessenger("https://www.facebook.com/adhm.alaan"," السلام عليكم، ممكن أستفسر عن الإعلان الخاص بـ${widget.oneApartment?.title}");
         sendMessageToWhatsApp(
-            widget.oneApartment!.owner!.phone,
+            widget.oneApartment!.owner!.phone!,
             "  السلام عليكم، ممكن أستفسر عن الإعلان الخاص بـ${widget.oneApartment?.title} ",
             image:
             widget.oneApartment?.photos?[0].url);

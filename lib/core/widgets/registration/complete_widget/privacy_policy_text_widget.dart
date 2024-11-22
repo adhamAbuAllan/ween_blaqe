@@ -1,15 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../../../constants/coordination.dart';
 import '../../../../constants/get_it_controller.dart';
 import '../../../../constants/localization.dart';
 import '../../../../constants/strings.dart';
 import '../../../utils/funcations/route_pages/push_routes.dart';
-class PrivacyPolicyTextWidget extends StatelessWidget {
-  const PrivacyPolicyTextWidget({super.key});
+class PrivacyPolicyTextWidget extends ConsumerWidget {
+  const   PrivacyPolicyTextWidget({super.key});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context,WidgetRef ref) {
     return                 Padding(
       padding: EdgeInsets.only(
           top: getIt<AppDimension>()

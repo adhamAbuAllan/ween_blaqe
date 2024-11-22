@@ -27,25 +27,25 @@ class UserRes {
 
 class User {
   User({
-    required this.id,
-    required this.name,
-    required this.phone,
+     this.id,
+     this.name,
+     this.phone,
     this.profile,
     // required this.typeId,
    // required this.countryPhoneNumberId,
-    required this.timeAgoCreated,
+     this.timeAgoCreated,
      this.token,
   });
-  late final int id;
-  late final String name;
-  late final String phone;
+  late final int ? id;
+  late final String ? name;
+  late final String ? phone;
   late final String ? profile;
   late final String ? facebook;
   late final String ? email;
   // late final TypeOfUser typeId;
  // late final CountryPhoneNumberId countryPhoneNumberId;
  //  late final String countryPhoneNumberId;
-  late final String timeAgoCreated;
+  late final String ? timeAgoCreated;
   late final String ? token;
 
 

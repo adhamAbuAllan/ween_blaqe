@@ -23,6 +23,7 @@ class TextFieldOfPasswordClassWidget extends StatefulWidget {
   final void Function(bool) onObscureChanged;
   final TextEditingController? controller;
   final String ? helperText;
+  final String ? errorText;
 
    TextFieldOfPasswordClassWidget(
       {super.key,
@@ -38,7 +39,7 @@ class TextFieldOfPasswordClassWidget extends StatefulWidget {
       this.controller,
       required this.isObscure,
       required this.onObscureChanged,
-      this.validator,  this.helperText});
+      this.validator,  this.helperText, this.errorText});
 
   @override
   State<TextFieldOfPasswordClassWidget> createState() =>
@@ -78,6 +79,7 @@ class _TextFieldOfPasswordClassWidgetState
                   themeMode.isLight ? kTextColorLightMode : kTextColorDarkMode),
           keyboardType: widget.inputType,
           decoration: InputDecoration(
+            errorText: widget.errorText,
             contentPadding: EdgeInsets.symmetric(
                 vertical:
                     getIt<AppDimension>().isSmallScreen(context) ? 20 / 2 : 20,

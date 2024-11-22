@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:get/get_state_manager/src/rx_flutter/rx_obx_widget.dart';
 import 'package:ween_blaqe/controller/get_controllers.dart';
 
@@ -102,11 +103,11 @@ class _PhoneNumberWidgetState extends State<PhoneNumberWidget> {
     //hint under number phone filed
 
 
-class HintUnderPhoneNumberField extends StatelessWidget {
+class HintUnderPhoneNumberField extends ConsumerWidget {
   const HintUnderPhoneNumberField({super.key});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context,WidgetRef ref) {
     return Row(
       children: [
         Text(

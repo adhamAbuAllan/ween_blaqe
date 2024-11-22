@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../controller/provider_controllers/local_methods/validator.dart';
@@ -19,7 +20,7 @@ class FormFieldsNotifier extends StateNotifier<Map<String, TextFieldState>> {
       fieldKey: TextFieldState(value: state[fieldKey]?.value ?? '', error: error),
     };
   }
-    void updateValue(String fieldKey, String value) {
+    void updateValue(String fieldKey, String value,{BuildContext? context, WidgetRef? ref}) {
       String? error = Validator.validateField(fieldKey, value);
 
       state = {

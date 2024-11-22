@@ -1,45 +1,46 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:get/get.dart';
 import 'package:ween_blaqe/constants/localization.dart';
+import 'package:ween_blaqe/features/user/provider/auth_provider.dart';
 
-import '../../../../controller/get_controllers.dart';
 import '../../../../core/utils/funcations/go_url_launcher_methodes/go_to_whatsapp_method.dart';
-import '../../../../core/widgets/buttons/social_media_connection_button.dart';
-import '../../../../sesstion/new_session.dart';
+import '../widgets/profile_widgets/social_media_connection_button_widgets/social_media_connection_button.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class WhatsAppSocialButton extends StatelessWidget {
-  const WhatsAppSocialButton({
-    super.key,
-  });
+class WhatsAppSocialButton extends ConsumerWidget {
+  const WhatsAppSocialButton({super.key});
 
   @override
-  Widget build(BuildContext context) {
-    return Obx(() {
-      return IntrinsicWidth(
-        child: SocialMediaConnectionButton(
-          check: () {
-            sendMessageToWhatsApp(
-                createSocialConnectionController
-                    .whatsappController.text,
-                "رقم الواتس صحيح"
-            );
-          },
-          labelUserName: SetLocalization.of(context)!.getTranslateValue("whatsapp_number"),
-          socialDialogName: SetLocalization.of(context)!.getTranslateValue("whatsapp"),
-          controller:
-          createSocialConnectionController
-              .whatsappController,
-          userName:
-          NewSession.get("phone", "def"),
-          isActive:
-          createSocialConnectionController
-              .whatsAppIsActive.value,
-          socialName: SetLocalization.of(context)!.getTranslateValue("whatsapp"),
-          socialIcon:
-          FontAwesomeIcons.whatsapp,
-        ),
-      );
-    });
+  Widget build(BuildContext context, WidgetRef ref) {
+    // final whatsappIsActivate = ref.watch(whatsAppIsActive);
+
+    return IntrinsicWidth(
+      child: SocialMediaConnectionButton(
+
+        onPressedOutlinedButton: () {
+          if(ref.watch(whatsappController).text != ref.watch(userData)?.phone){
+              ref.watch(whatsappController.notifier).state.text =
+                ref.watch(userData)?.phone ?? "97000000000";
+          }
+                  // ?? NewSession.get("phone", "");
+          Navigator.pop(context);
+        },
+
+        check: () {
+          sendMessageToWhatsApp(
+              ref.watch(whatsappController).text,
+              ref.watch(whatsappController.notifier).state.text.length != 12
+                  ? " ${SetLocalization.of(context)!.getTranslateValue("validw_whatsapp_number")}"
+                  : " ${SetLocalization.of(context)!.getTranslateValue("phone_valid")}");
+        },
+        labelUserName:
+            SetLocalization.of(context)!.getTranslateValue("whatsapp_number"),
+        socialDialogName:
+            SetLocalization.of(context)!.getTranslateValue("whatsapp"),
+        controller: ref.watch(whatsappController),
+        socialName: "whatsapp",
+        socialIcon: FontAwesomeIcons.whatsapp,
+      ),
+    );
   }
 }

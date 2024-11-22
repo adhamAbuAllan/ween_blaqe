@@ -205,7 +205,7 @@
   "username": "اسم المستخدم",
   "whatsapp_number": "رقم الواتس اب",
   "passwords_do_not_match": "لا يمكن ان تتشابه كلمة المرور القديمة و الجديدة",
-  "incorrect_password": "كلمة المرور خاطئة",
+  "incorrect_password": "كلمة المرور الفديمة خاطئة",
   "password_too_short": "كلمة المرور الجديدة قصيرة",
   "password_mismatch": "كلمة المرور غير متطابقة",
   "changes_saved": "تم حفظ التغييرات.",
@@ -226,6 +226,7 @@
   "duplicate_data": "بيانات مشابهة",
   "try_different_phone": "رقم الهاتف موجود مسبقا",
   "phone_valid_account_creation": "رقم الهاتف صحيح ، يرجى الرجوع و إتمام عملية إنشاء حساب جديد",
+  "phone_valid": "رقم الهاتف صحيح",
   "confirm_password": "تأكيد كلمة المرور",
   "identity_verification": "تأكد من مطابقته للاسم الموجود في بطاقة هويتك",
   "phoneOrPasswordIncorrect": "رقم الهاتف أو كلمة المرور خاطئة",
@@ -242,6 +243,8 @@
   "housing_type_btn": " صنف السكن ",
  "all_advantages" : "جميع المزايا",
   "weak_password" : "كلمة مرور ضعيفة",
-  "the_phone_number_is_not_suitable": "رقم الهاتف غير مناسب"
-
+  "the_phone_number_is_not_suitable": "رقم الهاتف غير مناسب",
+"username_must_not_contain_special_characters": "اسم المستخدم لا يمكن ان يحتوي على احرف خاصة",
+  "phone_number_must_not_contain_special_characters": "رقم الهاتف لا يمكن ان يحتوي على احرف خاصة",
+  "verifying": "جاري التحقق..."
 }

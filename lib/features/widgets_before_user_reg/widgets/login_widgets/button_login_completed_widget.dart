@@ -29,7 +29,7 @@ class ButtonLoginCompletedWidget extends ConsumerWidget {
 
 
             },
-            child: ref.watch(loginProvider).isLoading == false
+            child: ref.watch(loginNotifier).isLoading == false
                 ? Text(SetLocalization.of(context)!.getTranslateValue("login"))
                 : const CircularProgressIndicator(
                     color: Colors.white,

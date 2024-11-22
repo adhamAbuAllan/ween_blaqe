@@ -1,65 +1,92 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:get/get.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:ween_blaqe/constants/localization.dart';
-import 'package:ween_blaqe/sesstion/new_session.dart';
 
-import '../../../../controller/get_controllers.dart';
-import '../../../../core/widgets/buttons/social_media_connection_button.dart';
+import '../../../../constants/nums.dart';
+import '../widgets/profile_widgets/social_media_connection_button_widgets/social_media_connection_button.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class FacebookSocialButton extends StatelessWidget {
-  const FacebookSocialButton({
-    super.key,
-  });
+import '../../provider/auth_provider.dart';
+
+class FacebookSocialButton extends ConsumerWidget {
+  const FacebookSocialButton({super.key});
 
   @override
-  Widget build(BuildContext context) {
-    return Obx(() {
-      createSocialConnectionController.facebookIsActive.value;
-      return IntrinsicWidth(
-        child: SocialMediaConnectionButton(
-            isActive: NewSession.get("facebook", "user_name") != "user_name"
-                ? true
-                : false,
-            labelUserName:
-                SetLocalization.of(context)!.getTranslateValue("username"),
-            socialDialogName:
-                SetLocalization.of(context)!.getTranslateValue("facebook"),
-            socialName:
-                SetLocalization.of(context)!.getTranslateValue("facebook"),
-            check: createSocialConnectionController.facebookController.text !=
-                    "user_name"
-                ? () async {
-                    final Uri url = Uri.parse('https://m'
-                        '.me/${createSocialConnectionController.facebookController.text}');
-                    if (!await launchUrl(url)) {
-                      throw Exception('Could not launch $url');
-                    }
-                  }
-                : null,
-            userName: createSocialConnectionController.facebookController.text,
-            controller: createSocialConnectionController.facebookController,
-            socialIcon: FontAwesomeIcons.facebook,
-            onChanged: (value) {
-              createSocialConnectionController.facebookController.text = value;
-            },
-            onSaved: () {
-              if (createSocialConnectionController.facebookController.text ==
-                  "") {
-                createSocialConnectionController.facebookController.text =
-                    "user_name";
-                NewSession.save("facebook", "user_name");
+  Widget build(BuildContext context, WidgetRef ref) {
+    final facebookIsActivate = ref.watch(facebookIsActive);
 
-                createSocialConnectionController.facebookIsActive.value = false;
-              }
-              createSocialConnectionController.updateSocialConnectionData();
-              debugPrint("the facebook is : ${NewSession.get("facebook", "use"
-                  "r_name")}");
+    return IntrinsicWidth(
 
-              Navigator.pop(context);
-            }),
-      );
-    });
+      child: SocialMediaConnectionButton(
+        onPressedOutlinedButton: () {
+          if (ref.watch(facebookController).text.isNotEmpty && ref.watch
+            (facebookController).text != ref.read(userData)?.facebook) {
+            ref.read(facebookController.notifier).state.text =
+                ref.read(userData)?.facebook ?? "";
+
+          }
+          if(ref.read(userData)?.facebook != "user_name"&& ref.watch
+            (facebookController).text.isEmpty){
+            ref.read(facebookController.notifier).state.text = ref.read(userData)?.facebook ?? "";
+          }
+          Navigator.pop(context);
+        },
+        onPressed: () async {
+
+
+          if (ref.read(socialConnectionDataUpdaterNotifier).isLoading) {
+            return;
+          }
+          await ref
+              .read(socialConnectionDataUpdaterNotifier.notifier)
+              .socialConnectionDataUpdater(
+            ref,
+            context,
+          );
+          if (ref.read(facebookController).text ==
+                  ref.read(userData)?.facebook &&
+              ref.read(userData)?.facebook != "user_name") {
+            return;
+          }
+          if (ref.read(facebookController).text.isNotEmpty) {
+            ref.read(facebookIsActive.notifier).state = true;
+          } else {
+            ref.read(facebookIsActive.notifier).state = false;
+          }
+
+        },
+        contentColor: facebookIsActivate
+            ? (themeMode.isLight ? kTextColorLightMode : kTextColorDarkMode)
+            : Colors.grey,
+        borderColor: facebookIsActivate
+            ? (themeMode.isLight
+                ? kPrimaryColorLightMode
+                : kPrimaryColorDarkMode)
+            : (themeMode.isLight
+                ? kPrimaryColor300LightMode
+                : kPrimaryColor300DarkMode),
+        fontWeight: facebookIsActivate ? FontWeight.w500 : FontWeight.w400,
+        controller: ref.read(facebookController),
+        socialIcon: FontAwesomeIcons.facebook,
+        labelUserName:
+            SetLocalization.of(context)!.getTranslateValue("username"),
+        socialDialogName:
+            SetLocalization.of(context)!.getTranslateValue("facebook"),
+        socialName: SetLocalization.of(context)!.getTranslateValue("facebook"),
+        check: () async {
+          final Uri url = Uri.parse('https://m'
+              '.me/${ref.read(facebookController).text}');
+          if (!await launchUrl(url)) {
+            throw Exception('Could not launch $url');
+          }
+        },
+        onChanged: (value) {
+          if (value.isNotEmpty) {
+            ref.read(facebookController.notifier).state.text = value;
+          }
+        },
+      ),
+    );
   }
 }

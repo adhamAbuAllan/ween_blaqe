@@ -10,29 +10,30 @@ void validateAndLogin(WidgetRef ref, BuildContext context) async {
   // bool isValid = ref.read(formFieldsProvider.notifier).validateAllFields();
   // final phone = ref.read(formFieldsProvider)['phone']?.value ?? "";
 
-  ref.refresh(formFieldsProvider)['phone']?.error ??
+  ref.refresh(formFieldsNotifier)['phone']?.error ??
       "no error"; // this check phone
   // value then make refresh , that to check have error
-  ref.refresh(formFieldsProvider)['password']?.error ??
+
+  ref.refresh(formFieldsNotifier)['password']?.error ??
       "no error"; //// this check
 // password
   // value then make refresh , that to check have error
 
-  String phoneControllerValue = ref.read(phoneController).text;
-  String passwordControllerValue = ref.read(passwordController).text;
+  String phoneControllerValue = ref.read(phoneLoginController).text;
+  String passwordControllerValue = ref.read(passwordLoginController).text;
 
   bool? formPhoneState = formLoginPhoneKey.currentState?.validate();
   bool? formPasswordState = formLoginPasswordKey.currentState?.validate();
   ref
-      .read(formFieldsProvider.notifier)
+      .read(formFieldsNotifier.notifier)
       .updateValue("phone", phoneControllerValue);
   ref
-      .read(formFieldsProvider.notifier)
+      .read(formFieldsNotifier.notifier)
       .updateValue("password", passwordControllerValue);
   // debugPrint("error phone value ")
   String errorPhone =
-      ref.read(formFieldsProvider)["phone"]?.error ?? "no error have";
-  String errorPassword = ref.read(formFieldsProvider)["password"]?.error ??
+      ref.read(formFieldsNotifier)["phone"]?.error ?? "no error have";
+  String errorPassword = ref.read(formFieldsNotifier)["password"]?.error ??
      "no error have";
   if (errorPhone != "no error have") {
     debugPrint("formPhoneState is $formPhoneState");
@@ -46,7 +47,7 @@ void validateAndLogin(WidgetRef ref, BuildContext context) async {
   }
   debugPrint("no error validate from local you have ");
   await ref
-      .read(loginProvider.notifier)
+      .read(loginNotifier.notifier)
       .login(phoneControllerValue, passwordControllerValue, ref,context);
   if (errorPhone != "no error have" || errorPassword != "no error have") {
     return;

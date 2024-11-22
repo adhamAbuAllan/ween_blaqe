@@ -217,6 +217,7 @@ class _OwnMaterialAppState extends State<OwnMaterialApp> {
 
   @override
   Widget build(BuildContext context) {
+    /// here should put this :  final isLightMode = ref.watch(themeModeProvider);
     return GetMaterialApp(
       debugShowCheckedModeBanner: false,
 

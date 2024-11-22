@@ -1,37 +1,38 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:get/get.dart';
 import 'package:ween_blaqe/constants/localization.dart';
 
-import '../../../../controller/get_controllers.dart';
-import '../../../../core/widgets/buttons/social_media_connection_button.dart';
-class PhoneSocialButton extends StatelessWidget {
+import '../widgets/profile_widgets/social_media_connection_button_widgets/social_media_connection_button.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+
+import '../../provider/auth_provider.dart';
+
+class PhoneSocialButton extends ConsumerWidget {
   const PhoneSocialButton({
     super.key,
-    required this.formattedPhone,
   });
 
-  final String formattedPhone;
-
   @override
-  Widget build(BuildContext context) {
-    return Obx(() {
-      return IntrinsicWidth(
-        child: SocialMediaConnectionButton(
-          isActive:
-          createSocialConnectionController
-              .phoneIsActive.value,
-          socialName: SetLocalization.of(context)!.getTranslateValue("phone"),
-          labelUserName: "رق"
-              "م الهاتف",
-          socialDialogName: " الهاتف",
-          socialIcon: FontAwesomeIcons.phone,
-          userName: formattedPhone,
-          controller:
-          createSocialConnectionController
-              .phoneController,
-        ),
-      );
-    });
+  Widget build(BuildContext context, WidgetRef ref) {
+    // final phoneIsActivate = ref.watch(phoneIsActive);
+
+    return IntrinsicWidth(
+      child: SocialMediaConnectionButton(
+        onPressedOutlinedButton: () {
+          ref.watch(phoneLoginController.notifier).state.text =
+          ref.watch(userData)?.phone?.substring(3) ?? "97000000000";
+              // ??
+              // NewSession.get
+              //   ("phone", "").substring(3);
+          Navigator.pop(context);
+        },
+        socialName: SetLocalization.of(context)!.getTranslateValue("phone"),
+        labelUserName: "رق"
+            "م الهاتف",
+        socialDialogName: " الهاتف",
+        socialIcon: FontAwesomeIcons.phone,
+        controller: ref.watch(phoneLoginController),
+      ),
+    );
   }
 }
