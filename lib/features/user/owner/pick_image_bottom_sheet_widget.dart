@@ -4,7 +4,7 @@ import 'package:image_picker/image_picker.dart';
 
 import '../../../constants/localization.dart';
 import '../../../constants/nums.dart';
-import '../provider/auth_provider.dart';
+import '../../../controller/provider_controllers/providers/auth_provider.dart';
 
 class PickImageBottomSheetWidget extends ConsumerWidget {
   const PickImageBottomSheetWidget({super.key});

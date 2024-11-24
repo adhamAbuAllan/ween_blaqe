@@ -5,7 +5,7 @@ import 'package:ween_blaqe/constants/nums.dart';
 import 'package:ween_blaqe/controller/function_controller/change_theme_mode.dart';
 
 import '../../../../../constants/get_it_controller.dart';
-import '../../../../../sesstion/new_session.dart';
+import '../../../../../session/new_session.dart';
 
 class ApartmentShowTypesTextButton extends StatefulWidget {
   final String textType;

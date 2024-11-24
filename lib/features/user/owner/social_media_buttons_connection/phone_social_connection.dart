@@ -5,7 +5,7 @@ import 'package:ween_blaqe/constants/localization.dart';
 import '../widgets/profile_widgets/social_media_connection_button_widgets/social_media_connection_button.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import '../../provider/auth_provider.dart';
+import '../../../../controller/provider_controllers/providers/auth_provider.dart';
 
 class PhoneSocialButton extends ConsumerWidget {
   const PhoneSocialButton({

@@ -5,7 +5,7 @@ import '../../../../../constants/coordination.dart';
 import '../../../../../constants/get_it_controller.dart';
 import '../../../../../constants/localization.dart';
 import '../../../../../constants/nums.dart';
-import '../../../provider/auth_provider.dart';
+import '../../../../../controller/provider_controllers/providers/auth_provider.dart';
 
 class AppBarChangeProfileWidget extends ConsumerWidget implements PreferredSizeWidget {
   const AppBarChangeProfileWidget({super.key});

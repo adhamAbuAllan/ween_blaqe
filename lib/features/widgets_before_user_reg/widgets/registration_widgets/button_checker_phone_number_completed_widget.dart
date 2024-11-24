@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:ween_blaqe/core/utils/funcations/go_url_launcher_methodes/go_to_whatsapp_method.dart';
-import 'package:ween_blaqe/features/user/provider/auth_provider.dart';
+import 'package:ween_blaqe/controller/provider_controllers/providers/auth_provider.dart';
 
 import '../../../../constants/coordination.dart';
 import '../../../../constants/get_it_controller.dart';
 import '../../../../constants/localization.dart';
 import '../../../../constants/nums.dart';
-import '../../../../sesstion/new_session.dart';
+import '../../../../session/new_session.dart';
 
   class ButtonCheckerPhoneNumberCompletedWidget extends ConsumerWidget {
   const ButtonCheckerPhoneNumberCompletedWidget({super.key});

@@ -34,8 +34,8 @@ class _BookmarkApartmentState extends State<BookmarkApartment> {
   //
   //   return result;
   // }
-  OneApartment getApartmentsFromBookmarks(List<int> bookmarks) {
-    OneApartment result = OneApartment(data: []);
+  Apartments getApartmentsFromBookmarks(List<int> bookmarks) {
+    Apartments result = Apartments(data: []);
     final List<DataOfOneApartment> apartments =
         apartmentModelController.apartmentsList.data ?? [];
 
@@ -49,7 +49,7 @@ class _BookmarkApartmentState extends State<BookmarkApartment> {
     return result;
   }
 
-  late OneApartment apartmentsBookmarked;
+  late Apartments apartmentsBookmarked;
 
   @override
   void initState() {

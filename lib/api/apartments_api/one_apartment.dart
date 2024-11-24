@@ -6,24 +6,21 @@ import '../cities.dart';
 import '../photos.dart';
 import '../users.dart';
 
-class OneApartment {
-  OneApartment({
+class Apartments {
+  Apartments({
     this.status,
     this.msg,
     this.data,
   });
 
-  late final bool? status;
-  late final String? msg;
-  late final List<DataOfOneApartment>? data;
+  final bool? status;
+  final String? msg;
+  final List<DataOfOneApartment>? data;
 
-  OneApartment.fromJson(Map<String, dynamic> json) {
-    status = json['status'];
-    msg = json['msg'];
-    data = List.from(json['data'])
-        .map((e) => DataOfOneApartment.fromJson(e))
-        .toList();
-  }
+  Apartments.fromJson(Map<String, dynamic> json)
+      : status = json['status'],
+        msg = json['msg'],
+        data = List.from(json['data']).map((e) => DataOfOneApartment.fromJson(e)).toList();
 
   Map<String, dynamic> toJson() {
     final _data = <String, dynamic>{};
@@ -32,8 +29,20 @@ class OneApartment {
     _data['data'] = data?.map((e) => e.toJson()).toList();
     return _data;
   }
-}
 
+  // Add the copyWith method here
+  Apartments copyWith({
+    bool? status,
+    String? msg,
+    List<DataOfOneApartment>? data,
+  }) {
+    return Apartments(
+      status: status ?? this.status,
+      msg: msg ?? this.msg,
+      data: data ?? this.data,
+    );
+  }
+}
 class DataOfOneApartment {
   DataOfOneApartment(
       {this.id,

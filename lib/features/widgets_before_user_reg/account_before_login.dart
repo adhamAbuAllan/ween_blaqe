@@ -5,6 +5,7 @@ import 'package:colorful_safe_area/colorful_safe_area.dart';
 // import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:get/get.dart';
 import 'package:share_plus/share_plus.dart';
 import 'package:ween_blaqe/core/utils/funcations/route_pages/push_routes.dart';
@@ -14,7 +15,7 @@ import 'package:ween_blaqe/core/utils/styles/button.dart';
 import 'package:ween_blaqe/core/utils/styles/text_style/aline_style.dart';
 import 'package:ween_blaqe/core/widgets/buttons/lines_buttons/switch_language_buttons.dart';
 import 'package:ween_blaqe/testing_code/find_the_fastest_way_in_state_managment/riverpod/login_and_register_section/login_ui_test.dart';
-// import 'package:ween_blaqe/sesstion/new_session.dart';
+// import 'package:ween_blaqe/session/new_session.dart';
 
 import '../../constants/coordination.dart';
 import '../../constants/get_it_controller.dart';
@@ -29,50 +30,6 @@ import '../../core/widgets/buttons/lines_buttons/line_buttons.dart';
 
 import '../../controller/main_controller.dart';
 import '../../controller/student_controller/student_controller.dart';
-// import '../bookmark.dart';
-
-// import '../../main.dart';
-// import 'login_method.dart';
-main() {
-  runApp(MaterialApp(
-    debugShowCheckedModeBanner: false,
-
-    darkTheme: ThemeData(
-      useMaterial3: false,
-
-      colorScheme: ColorScheme.fromSwatch().copyWith(secondary: Colors.grey),
-
-      // brightness: Brightness.darkf
-    ),
-
-    // themeMode: ThemeMode.system,
-
-    theme: ThemeData(
-        useMaterial3: false,
-        
-
-        // brightness: Brightness.,
-
-        // scaffoldBackgroundColor: Colors.grey.shade200,
-        switchTheme: const SwitchThemeData(),
-        colorSchemeSeed: const Color(0xffff9800),
-        bottomNavigationBarTheme: const BottomNavigationBarThemeData(
-            selectedIconTheme: IconThemeData(size: 26))),
-    //make screen rtl
-    localizationsDelegates: const [
-      GlobalCupertinoLocalizations.delegate,
-      GlobalMaterialLocalizations.delegate,
-      GlobalWidgetsLocalizations.delegate,
-    ],
-    supportedLocales: const [
-      Locale("en", "US"),
-      Locale("ar", "SA"), // OR Locale('ar', 'AE') OR Other RTL locales
-    ],
-    locale: const Locale("ar", "SA"),
-
-    home: const AccountBeforeLoginInStudent(),
-  ));
-}
 
 //Account before login Screen
 @immutable

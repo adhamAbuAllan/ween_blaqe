@@ -22,9 +22,9 @@ import '../../../../constants/nums.dart';
 TextEditingController priceController = TextEditingController();
 TextEditingController countOfStudentController = TextEditingController();
 TextEditingController squareMetersController = TextEditingController();
-var price = AddAdDataContainer.price;
-var countOfStudent = AddAdDataContainer.countOfStudent;
-var squareMeters = AddAdDataContainer.squareMeters;
+var price = AddApartmentData.price;
+var countOfStudent = AddApartmentData.countOfStudent;
+var squareMeters = AddApartmentData.squareMeters;
 
 // var typeOfApartment = AddAdDataContainer.type;
 
@@ -140,12 +140,12 @@ class _ThirdStepState extends State<ThirdStep> {
                           setState(() {
                             try {
                               setState(() {
-                                AddAdDataContainer.price =
+                                AddApartmentData.price =
                                     int.parse(priceController.text);
                                 setState(() {
-                                  AddAdDataContainer.countOfStudent =
+                                  AddApartmentData.countOfStudent =
                                       int.parse(countOfStudentController.text);
-                                  AddAdDataContainer.squareMeters =
+                                  AddApartmentData.squareMeters =
                                       int.parse(squareMetersController.text);
                                 });
                                 setState(() {
@@ -176,11 +176,11 @@ class _ThirdStepState extends State<ThirdStep> {
                                 //     "type of apartment after add on class "
                                 //     "--$typeOfApartment");
                                 debugPrint(
-                                    "prince  --${AddAdDataContainer.price}");
+                                    "prince  --${AddApartmentData.price}");
                                 debugPrint("count Of student  "
-                                    "--${AddAdDataContainer.countOfStudent}");
+                                    "--${AddApartmentData.countOfStudent}");
                                 debugPrint("square meteres "
-                                    " --${AddAdDataContainer.squareMeters}");
+                                    " --${AddApartmentData.squareMeters}");
                                 myPushName(context, MyPagesRoutes.step4);
                               }
                             } catch (c) {

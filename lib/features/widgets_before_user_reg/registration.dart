@@ -12,7 +12,7 @@ import 'package:ween_blaqe/features/widgets_before_user_reg/widgets/registration
 import 'package:ween_blaqe/features/widgets_before_user_reg/widgets/registration_widgets/user_name_reg_completed_widget.dart';
 import '../../constants/coordination.dart';
 import '../../constants/get_it_controller.dart';
-import '../user/provider/auth_provider.dart';
+import '../../controller/provider_controllers/providers/auth_provider.dart';
 
 class Register extends ConsumerWidget {
   const Register({

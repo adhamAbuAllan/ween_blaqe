@@ -2,7 +2,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:flutter/material.dart';
 import 'package:ween_blaqe/constants/localization.dart';
-import 'package:ween_blaqe/features/user/provider/auth_provider.dart';
+import 'package:ween_blaqe/controller/provider_controllers/providers/auth_provider.dart';
 import '../../../../constants/nums.dart';
 import '../widgets/profile_widgets/social_media_connection_button_widgets/social_media_connection_button.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';

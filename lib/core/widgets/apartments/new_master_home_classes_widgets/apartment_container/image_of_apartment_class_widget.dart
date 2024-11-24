@@ -11,7 +11,7 @@ import '../../show_more_classes_widget/image_slider/pointer.dart';
 // import '../../show_more_classes_widget/image_slider/zoom_of_image/image_details_scree.dart';
 
 class ApartmentMainImage extends StatelessWidget {
-  final OneApartment apartmentsRes;
+  final Apartments apartmentsRes;
   final int index;
 
   const ApartmentMainImage(
@@ -69,7 +69,7 @@ class TimeAgoWidget extends StatefulWidget {
   const TimeAgoWidget(
       {super.key, required this.apartmentsRes, required this.index});
 
-  final OneApartment apartmentsRes;
+  final Apartments apartmentsRes;
   final int index;
 
   @override

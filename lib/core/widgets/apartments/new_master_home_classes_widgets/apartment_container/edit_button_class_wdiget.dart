@@ -14,7 +14,7 @@ class EditButtonClassWdiget extends StatelessWidget {
     required this.apartmentId,
   });
 
-  final OneApartment apartmentsRes;
+  final Apartments apartmentsRes;
   final int apartmentId;
 
 

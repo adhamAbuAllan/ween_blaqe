@@ -7,7 +7,7 @@ import '../../../../constants/coordination.dart';
 import '../../../../constants/get_it_controller.dart';
 import '../../../../constants/localization.dart';
 import '../../../../constants/nums.dart';
-import '../../../../sesstion/new_session.dart';
+import '../../../../session/new_session.dart';
 import '../../../utils/funcations/go_url_launcher_methodes/go_to_whatsapp_method.dart';
 import '../text_filed_class_widget.dart';
 

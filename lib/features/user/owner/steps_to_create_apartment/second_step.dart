@@ -109,10 +109,10 @@ class _SecondStepState extends State<SecondStep> {
                                 'a numbers you chosen that in api ${advantagesModelController.chosen}');
                           });
 
-                          debugPrint("${AddAdDataContainer.address}");
+                          debugPrint("${AddApartmentData.address}");
                           // print(AddAdDataContainer.currentCity?.name);
-                          debugPrint("${AddAdDataContainer.rooms}");
-                          debugPrint("${AddAdDataContainer.bathRooms}");
+                          debugPrint("${AddApartmentData.rooms}");
+                          debugPrint("${AddApartmentData.bathRooms}");
                           if (advantagesModelController.chosen.length < 5) {
                             NormalAlert.show(
                                 context,

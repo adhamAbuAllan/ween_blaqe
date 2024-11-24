@@ -3,7 +3,7 @@ import 'package:ween_blaqe/api/apartments_api/one_apartment.dart';
 import 'package:ween_blaqe/constants/nums.dart';
 
 class ApartmentTitleText extends StatelessWidget {
-  final OneApartment apartmentsRes;
+  final Apartments apartmentsRes;
   final int index;
 
   const ApartmentTitleText(

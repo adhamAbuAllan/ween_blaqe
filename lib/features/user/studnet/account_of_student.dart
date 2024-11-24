@@ -15,8 +15,8 @@
 // import '../../../controller/main_controller.dart';
 // import '../../../main.dart';
 //
-// import '../../../sesstion/new_session.dart';
-// import '../../../sesstion/sesstion_of_user.dart';
+// import '../../../session/new_session.dart';
+// import '../../../session/sesstion_of_user.dart';
 //
 // import 'package:ween_blaqe/constants/nums.dart';
 //

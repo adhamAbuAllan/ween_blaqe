@@ -54,9 +54,9 @@ import 'package:ween_blaqe/features/user/studnet/from_master_home_to_show_more/n
 import 'package:ween_blaqe/features/user/studnet/from_master_home_to_show_more/new_show_more.dart';
 import 'package:ween_blaqe/features/user/studnet/main_student.dart';
 
-import 'package:ween_blaqe/sesstion/new_session.dart';
 import 'package:ween_blaqe/features/splach_screen.dart';
 import 'package:ween_blaqe/features/user/owner/update_data_of_user.dart';
+import 'package:ween_blaqe/session/new_session.dart';
 
 // import 'package:ween_blaqe/testing_code/bookmark_test.dart';
 import 'constants/get_it_controller.dart';
@@ -179,6 +179,26 @@ void main() async {
 //   await Get.find<Apartment>().title;
 // }
 //ownMaterialApp that could play any screen in this class from admin
+class OwnMaterialAppConsumer extends ConsumerStatefulWidget {
+  const OwnMaterialAppConsumer({super.key});
+
+  static void setLocale(BuildContext context, Locale locale) {
+    _OwnMaterialAppState? state =
+    context.findAncestorStateOfType<_OwnMaterialAppState>();
+    state!.setLocale(locale);
+  }
+  @override
+  ConsumerState createState() => _OwnMaterialAppConsumerState();
+}
+
+class _OwnMaterialAppConsumerState
+    extends ConsumerState<OwnMaterialAppConsumer> {
+  @override
+  Widget build(BuildContext context) {
+    return Container();
+  }
+}
+
 class OwnMaterialApp extends StatefulWidget {
 
   const OwnMaterialApp({
@@ -199,7 +219,6 @@ class OwnMaterialApp extends StatefulWidget {
 }
 
 class _OwnMaterialAppState extends State<OwnMaterialApp> {
-  String newestApartmentId = '-1';
   Locale? _local = NewSession.get("isFirstTime", "") != "OK"
       ? const Locale("ar", "JO")
       : null;
@@ -343,10 +362,6 @@ class _OwnMaterialAppState extends State<OwnMaterialApp> {
     );
   }
 
-  void putValue(String value) async {
-    newestApartmentId = value;
-    debugPrint(value);
-  }
 }
 
 /*

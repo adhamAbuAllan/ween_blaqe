@@ -29,7 +29,7 @@ class _BottomNavigationBarOfStudentState
     extends State<BottomNavigationBarOfStudent> {
   NewMasterHome newMasterHome = const NewMasterHome();
   String errorMessage = "";
-  late OneApartment apartmentsRes;
+  late Apartments apartmentsRes;
   bool isDataLoaded = false; //data load from server
 
   @override

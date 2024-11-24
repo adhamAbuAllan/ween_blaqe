@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 
 import '../../../../constants/localization.dart';
 import '../../../../core/widgets/apartments/create_apartment/container_classes_widget/input_text_class_widget/container_input_text_class_widget.dart';
-import '../../../user/provider/auth_provider.dart';
+import '../../../../controller/provider_controllers/providers/auth_provider.dart';
 
 class PhoneLoginCompletedWidget extends ConsumerWidget {
   const PhoneLoginCompletedWidget({super.key});

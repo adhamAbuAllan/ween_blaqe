@@ -5,7 +5,7 @@ import '../../../../../constants/coordination.dart';
 import '../../../../../constants/get_it_controller.dart';
 import '../../../../../constants/localization.dart';
 import '../../../../../constants/nums.dart';
-import '../../../../../sesstion/new_session.dart';
+import '../../../../../session/new_session.dart';
 import '../../social_media_buttons_connection/email_social_button.dart';
 import '../../social_media_buttons_connection/facebook_social_button.dart';
 import '../../social_media_buttons_connection/phone_social_connection.dart';

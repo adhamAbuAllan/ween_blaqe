@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:ween_blaqe/constants/localization.dart';
-import 'package:ween_blaqe/features/user/provider/auth_provider.dart';
+import 'package:ween_blaqe/controller/provider_controllers/providers/auth_provider.dart';
 
 import '../../../../core/utils/funcations/go_url_launcher_methodes/go_to_whatsapp_method.dart';
 import '../widgets/profile_widgets/social_media_connection_button_widgets/social_media_connection_button.dart';

@@ -63,7 +63,7 @@ var city = AddAdDataContainer.cityId ;
 
 */
 
-var squareMeters = AddAdDataContainer.squareMeters;
+var squareMeters = AddApartmentData.squareMeters;
 
 class FourthStep extends StatefulWidget {
   const FourthStep({
@@ -170,8 +170,8 @@ class _FourthStepState extends State<FourthStep> {
                             // });
                             // setState(() {
                             try {
-                              AddAdDataContainer.title = titleController.text;
-                              AddAdDataContainer.description =
+                              AddApartmentData.title = titleController.text;
+                              AddApartmentData.description =
                                   descriptionController.text;
                               // if (
                               // title != null && description != null
@@ -454,12 +454,12 @@ class _FourthStepState extends State<FourthStep> {
       debugPrint("the token is : $token");
 
       var body = jsonEncode({
-        "location": AddAdDataContainer.address ?? "",
-        "bathrooms": "${AddAdDataContainer.bathRooms ?? -1}",
+        "location": AddApartmentData.address ?? "",
+        "bathrooms": "${AddApartmentData.bathRooms ?? -1}",
         // bathRooms.toString(),
-        "rooms": "${AddAdDataContainer.rooms ?? -1}",
+        "rooms": "${AddApartmentData.rooms ?? -1}",
         // rooms.toString(),
-        "price": "${AddAdDataContainer.price ?? -1}",
+        "price": "${AddApartmentData.price ?? -1}",
         // price.toString(),
         //be careful don't delete it!!!
         //-------------------
@@ -472,12 +472,12 @@ class _FourthStepState extends State<FourthStep> {
         // "type": type,
         // "city": city,
         // "email": email,
-        "square_meters": "${AddAdDataContainer.squareMeters ?? -1}",
+        "square_meters": "${AddApartmentData.squareMeters ?? -1}",
         // squareMeters.toString(),
-        "title": AddAdDataContainer.title ?? "",
-        "description": AddAdDataContainer.description ?? "",
+        "title": AddApartmentData.title ?? "",
+        "description": AddApartmentData.description ?? "",
         // description.toString(),
-        "count_of_student": "${AddAdDataContainer.countOfStudent ?? -1}",
+        "count_of_student": "${AddApartmentData.countOfStudent ?? -1}",
         "type_id": "${readyCityAndTypeOfApartmentApi.indexApartmentType}",
         "city_id": "${readyCityAndTypeOfApartmentApi.indexOfCity}",
         // countOfStudent.toString(),
@@ -495,10 +495,10 @@ class _FourthStepState extends State<FourthStep> {
         var apartmentId = json['data']['id'];
         // setState(() {
         //   apartmentIdPram = apartmentId;
-        AddAdDataContainer.id = await apartmentId;
+        AddApartmentData.apartmentId = await apartmentId;
         // apartmentModelController.apartmentId = await apartmentId;
         debugPrint(
-            "the apartment from AddAdDataContainer is : ${AddAdDataContainer.id}");
+            "the apartment from AddAdDataContainer is : ${AddApartmentData.apartmentId}");
         // });
         debugPrint("the new apartment Id is : $apartmentId");
 

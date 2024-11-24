@@ -19,7 +19,7 @@ class WholeWidgetOfApartment extends StatefulWidget {
     this.onPressed,
   });
 
-  final OneApartment apartmentsRes;
+  final Apartments apartmentsRes;
   final int index;
   final bool isDarkMode;
   final void Function()? onPressed;

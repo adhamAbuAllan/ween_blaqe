@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import '../../../features/user/provider/auth_provider.dart';
+import '../../../controller/provider_controllers/providers/auth_provider.dart';
 
 String newRemovePlusSymbol(WidgetRef ref, String codeCountry, String phoneNumber) {
   // Remove the '+' if present at the start of codeCountry

@@ -17,7 +17,7 @@ import 'package:ween_blaqe/controller/get_controllers.dart';
 import 'package:ween_blaqe/core/utils/styles/button.dart';
 import 'package:ween_blaqe/core/widgets/alirt_class_widget.dart';
 import 'package:ween_blaqe/features/user/owner/steps_to_create_apartment/fourth_step.dart';
-import 'package:ween_blaqe/sesstion/new_session.dart';
+import 'package:ween_blaqe/session/new_session.dart';
 
 import '../../../../../../constants/coordination.dart';
 import '../../../../../../constants/get_it_controller.dart';

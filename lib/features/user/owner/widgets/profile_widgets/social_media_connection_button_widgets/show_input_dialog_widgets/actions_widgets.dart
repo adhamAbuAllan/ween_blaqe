@@ -5,7 +5,7 @@ import '../../../../../../../constants/coordination.dart';
 import '../../../../../../../constants/get_it_controller.dart';
 import '../../../../../../../constants/localization.dart';
 import '../../../../../../../core/utils/styles/button.dart';
-import '../../../../../provider/auth_provider.dart';
+import '../../../../../../../controller/provider_controllers/providers/auth_provider.dart';
 
 class ShowDialogElevatedButtonWidget extends ConsumerWidget {
   const ShowDialogElevatedButtonWidget({super.key, this.onPressed});

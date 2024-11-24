@@ -1,4 +1,4 @@
-{
+  {
   "favorites": "المفضلة",
   "reset": "تصفير",
   "not_available": "غير متوفر",
@@ -246,5 +246,7 @@
   "the_phone_number_is_not_suitable": "رقم الهاتف غير مناسب",
 "username_must_not_contain_special_characters": "اسم المستخدم لا يمكن ان يحتوي على احرف خاصة",
   "phone_number_must_not_contain_special_characters": "رقم الهاتف لا يمكن ان يحتوي على احرف خاصة",
-  "verifying": "جاري التحقق..."
+  "verifying": "جاري التحقق...",
+    "cutInternet": "إنقطع الإنترنت",
+    "reconnected": "تمت إعادة الإتصال"
 }

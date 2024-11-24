@@ -7,7 +7,7 @@ class TimeAgoWidget extends StatefulWidget {
   const TimeAgoWidget(
       {super.key, required this.apartmentsRes, required this.index});
 
-  final OneApartment apartmentsRes;
+  final Apartments apartmentsRes;
   final int index;
 
   @override

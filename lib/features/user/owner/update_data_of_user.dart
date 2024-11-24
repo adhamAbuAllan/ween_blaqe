@@ -4,7 +4,7 @@ import 'package:ween_blaqe/core/widgets/apartments/create_apartment/container_cl
 import 'package:ween_blaqe/features/user/owner/widgets/update_user_data_widgets/appbar_update_user_data_widget.dart';
 import 'package:ween_blaqe/features/user/owner/widgets/update_user_data_widgets/title_update_user_data_widget.dart';
 import 'package:ween_blaqe/features/user/owner/widgets/update_user_data_widgets/update_user_password_container_widget.dart';
-import 'package:ween_blaqe/features/user/provider/auth_provider.dart';
+import 'package:ween_blaqe/controller/provider_controllers/providers/auth_provider.dart';
 import 'package:ween_blaqe/features/widgets_before_user_reg/widgets/registration_widgets/phone_completed_widget.dart';
 import '../../../constants/coordination.dart';
 import '../../../constants/get_it_controller.dart';

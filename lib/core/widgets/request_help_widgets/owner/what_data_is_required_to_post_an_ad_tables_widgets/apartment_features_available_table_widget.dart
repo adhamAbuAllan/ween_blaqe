@@ -12,7 +12,7 @@ class ApartmentFeaturesAvailableTable extends StatelessWidget {
   });
 
 
-  final OneApartment? apartmentRes;
+  final Apartments? apartmentRes;
 
   @override
   Widget build(BuildContext context) {

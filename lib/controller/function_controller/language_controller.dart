@@ -1,6 +1,7 @@
 import 'package:get/get.dart';
 import 'package:flutter/material.dart';
-import 'package:ween_blaqe/sesstion/new_session.dart'; // Import your NewSession class
+
+import '../../session/new_session.dart';
 
 class LanguageController extends GetxController {
   // ... (other code) ...

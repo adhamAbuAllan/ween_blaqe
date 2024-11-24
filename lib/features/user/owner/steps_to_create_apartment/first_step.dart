@@ -129,11 +129,11 @@ class _FirstStepState extends State<FirstStep> {
                         onPressed: () {
                           setState(() {
                             try {
-                              AddAdDataContainer.address =
+                              AddApartmentData.address =
                                   addressController.text;
-                              AddAdDataContainer.rooms =
+                              AddApartmentData.rooms =
                                   int.parse(countOfRoomsController.text);
-                              AddAdDataContainer.bathRooms =
+                              AddApartmentData.bathRooms =
                                   int.parse(countOfBathRoomsController.text);
                               // AddAdDataContainer.city?.name =
                               //     oneCityName;
@@ -151,9 +151,9 @@ class _FirstStepState extends State<FirstStep> {
 
                                 * */
 
-                              if (AddAdDataContainer.address != null &&
-                                  AddAdDataContainer.bathRooms != null &&
-                                  AddAdDataContainer.rooms != null) {
+                              if (AddApartmentData.address != null &&
+                                  AddApartmentData.bathRooms != null &&
+                                  AddApartmentData.rooms != null) {
                                 // debugPrint(
                                 //     "type of apartment after add on class "
                                 //     "--${AddAdDataContainer.city}");
@@ -193,7 +193,7 @@ class _FirstStepState extends State<FirstStep> {
                             // currentCity?.id??0;
                             // currentCity?.id = 0;
                             // print(currentCity?.id);
-                            debugPrint("${AddAdDataContainer.rooms}");
+                            debugPrint("${AddApartmentData.rooms}");
                           });
                         },
                         style: fullButton(),

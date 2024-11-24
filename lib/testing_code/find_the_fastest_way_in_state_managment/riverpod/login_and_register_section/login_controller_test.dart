@@ -9,7 +9,7 @@ import '../../../../controller/get_controllers.dart';
 import '../../../../core/utils/funcations/route_pages/push_routes.dart';
 import 'package:http/http.dart'as http;
 
-import '../../../../sesstion/sesstion_of_user.dart';
+import '../../../../session/sesstion_of_user.dart';
 
 
 class LoginState {

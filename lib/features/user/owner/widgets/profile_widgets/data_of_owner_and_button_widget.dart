@@ -9,8 +9,8 @@ import '../../../../../constants/nums.dart';
 import '../../../../../constants/strings.dart';
 import '../../../../../core/utils/funcations/route_pages/push_routes.dart';
 import '../../../../../core/utils/styles/button.dart';
-import '../../../../../sesstion/new_session.dart';
-import '../../../provider/auth_provider.dart';
+import '../../../../../session/new_session.dart';
+import '../../../../../controller/provider_controllers/providers/auth_provider.dart';
 import '../../update_data_of_user.dart';
 
 class DataOfOwnerAndButtonWidget extends ConsumerWidget {

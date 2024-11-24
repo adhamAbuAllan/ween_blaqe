@@ -2,7 +2,7 @@
 // import 'package:flutter/material.dart';
 // import 'package:ween_blaqe/core/utils/function_that_effect_widgets/visable_invsable.dart';
 // import 'package:ween_blaqe/core/utils/styles/text_style/aline_style.dart';
-// import 'package:ween_blaqe/sesstion/new_session.dart';
+// import 'package:ween_blaqe/session/new_session.dart';
 //
 // import 'package:ween_blaqe/constants/nums.dart';
 //

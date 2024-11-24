@@ -3,7 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../../../constants/localization.dart';
 import '../../../../core/widgets/login/password_container_class_widget.dart';
-import '../../../user/provider/auth_provider.dart';
+import '../../../../controller/provider_controllers/providers/auth_provider.dart';
 
 class PasswordLoginCompletedWidget extends ConsumerWidget {
   const PasswordLoginCompletedWidget({super.key});

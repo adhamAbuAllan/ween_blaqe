@@ -7,7 +7,7 @@ import 'package:ween_blaqe/constants/localization.dart';
 import 'package:ween_blaqe/constants/nums.dart';
 import 'package:ween_blaqe/controller/get_controllers.dart';
 import 'package:ween_blaqe/core/utils/styles/button.dart';
-import 'package:ween_blaqe/sesstion/new_session.dart';
+import 'package:ween_blaqe/session/new_session.dart';
 
 class AboutApartmentContainerWidget extends StatefulWidget {
   const AboutApartmentContainerWidget({super.key,

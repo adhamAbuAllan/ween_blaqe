@@ -22,7 +22,7 @@ import 'package:ween_blaqe/core/utils/styles/button.dart';
 import '../../../../constants/coordination.dart';
 import '../../../../constants/get_it_controller.dart';
 import '../../../../constants/localization.dart';
-import '../../../../sesstion/new_session.dart';
+import '../../../../session/new_session.dart';
 
 // import '../../../../constants/coordination.dart';
 

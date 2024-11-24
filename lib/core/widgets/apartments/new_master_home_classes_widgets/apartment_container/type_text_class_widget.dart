@@ -16,7 +16,7 @@ class ApartmentTypeText extends StatelessWidget {
       this.onPressed,
       });
 
-  final OneApartment apartmentsRes;
+  final Apartments apartmentsRes;
   final int index;
   final bool isDeleteMode;
   final void Function()? onPressed;

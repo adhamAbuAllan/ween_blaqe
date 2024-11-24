@@ -3,7 +3,7 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import '../../../provider/auth_provider.dart';
+import '../../../../../controller/provider_controllers/providers/auth_provider.dart';
 
 class MobileStorageImageWidget extends ConsumerWidget {
   const MobileStorageImageWidget({super.key,this.radius});

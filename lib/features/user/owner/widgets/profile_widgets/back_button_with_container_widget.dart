@@ -3,7 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../../../../constants/nums.dart';
 import '../../../../common_widgets/back_button_widget.dart';
-import '../../../provider/auth_provider.dart';
+import '../../../../../controller/provider_controllers/providers/auth_provider.dart';
 
 class BackButtonWithContainerWidget extends ConsumerWidget {
   const BackButtonWithContainerWidget({super.key});

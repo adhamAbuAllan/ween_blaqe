@@ -8,7 +8,7 @@ import '../../../../../constants/nums.dart';
 import '../../../../../core/utils/funcations/route_pages/push_routes.dart';
 import '../../../../../core/utils/styles/button.dart';
 import '../../../../../main.dart';
-import '../../../../../sesstion/sesstion_of_user.dart';
+import '../../../../../session/sesstion_of_user.dart';
 
 class LogoutButtonWidget extends ConsumerWidget {
   const LogoutButtonWidget({super.key});

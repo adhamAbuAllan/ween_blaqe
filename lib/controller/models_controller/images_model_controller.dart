@@ -17,20 +17,21 @@ import 'package:ween_blaqe/data_containers/add_ad_data_container.dart';
 import 'package:image/image.dart' as img;
 
 import 'package:path_provider/path_provider.dart';
-import 'package:ween_blaqe/sesstion/new_session.dart';
+import 'package:ween_blaqe/session/new_session.dart';
 import 'dart:io';
 
 // import '../../api/photos.dart';
 import '../../main.dart';
 
 class ImagesModelController extends GetxController {
+  RxBool isLoadingProfile = false.obs;
+RxBool isUpdateImageProfile = false.obs;
   List<String> images = [];
   List<XFile>? imageFiles;
   bool isImagesUploaded = false;
   RxBool isLoading = false.obs;
   List<int> photoWillDeleteIds = [];
-  RxBool isLoadingProfile = false.obs;
-  RxBool isUpdateImageProfile = false.obs;
+
 
   Future<void> deleteImages(int apartmentId, List<int> photoIds) async {
     isLoading.value = true;
@@ -66,7 +67,7 @@ class ImagesModelController extends GetxController {
   Future<void> compressAndUploadImages() async {
     Uri url = Uri.parse(ServerWeenBalaqee.uploadImages);
     var request = http.MultipartRequest('POST', url);
-    request.fields['apartment_id'] = "${AddAdDataContainer.id}";
+    request.fields['apartment_id'] = "${AddApartmentData.apartmentId}";
     if (imageFiles == null ||
         imageFiles!.isEmpty && apartmentModelController.apartmentId == null ||
         apartmentModelController.apartmentId!.isEmpty) {
@@ -144,6 +145,20 @@ class ImagesModelController extends GetxController {
     }
   }
 
+
+
+  Future<void> requestPhotoPermission() async {
+    final status = await Permission.photos.request();
+
+    if (status.isGranted) {
+      // Permission granted, proceed with image picking
+    } else if (status.isDenied) {
+      // Permission denied, handle accordingly (e.g., show a dialog)
+    } else if (status.isPermanentlyDenied) {
+      // Permission permanently denied, guide the user to app settings
+      // openAppSettings();
+    }
+  }
   Future<void> compressAndUploadProfileImage(XFile imageFile) async {
     Uri url = Uri.parse(
         ServerWeenBalaqee.createProfileImage); // Your profile image endpoint
@@ -211,18 +226,7 @@ class ImagesModelController extends GetxController {
     }
   }
 
-  Future<void> requestPhotoPermission() async {
-    final status = await Permission.photos.request();
 
-    if (status.isGranted) {
-      // Permission granted, proceed with image picking
-    } else if (status.isDenied) {
-      // Permission denied, handle accordingly (e.g., show a dialog)
-    } else if (status.isPermanentlyDenied) {
-      // Permission permanently denied, guide the user to app settings
-      // openAppSettings();
-    }
-  }
 //////////////////// for testing /////////////////////
 // Future<void> uploadImages() async {
 //   if (imageFiles == null ||

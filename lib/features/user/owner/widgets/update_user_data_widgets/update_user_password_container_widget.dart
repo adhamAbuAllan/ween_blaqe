@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:ween_blaqe/features/user/provider/auth_provider.dart';
+import 'package:ween_blaqe/controller/provider_controllers/providers/auth_provider.dart';
 
 import '../../../../../constants/localization.dart';
 import '../../../../../constants/nums.dart';

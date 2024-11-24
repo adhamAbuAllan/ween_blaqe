@@ -16,7 +16,7 @@ import 'package:ween_blaqe/features/user/owner/widgets/profile_widgets/count_of_
 import 'package:ween_blaqe/features/user/owner/widgets/profile_widgets/data_of_owner_and_button_widget.dart';
 import 'package:ween_blaqe/features/user/owner/widgets/profile_widgets/join_date_widget.dart';
 import 'package:ween_blaqe/features/user/owner/widgets/profile_widgets/social_media_widget.dart';
-import 'package:ween_blaqe/sesstion/new_session.dart';
+import 'package:ween_blaqe/session/new_session.dart';
 // import 'package:ween_blaqe/testing_code/find_the_fastest_way_in_state_managment/riverpod/login_and_register_section/get_providers_test.dart';
 
 // import 'package:ween_blaqe/core/utils/styles/show_more_widget/about_apartment_style.dart';
@@ -29,7 +29,7 @@ import 'package:ween_blaqe/constants/nums.dart';
 
 // import '../../../main.dart';
 import '../../../main.dart';
-import '../provider/auth_provider.dart';
+import '../../../controller/provider_controllers/providers/auth_provider.dart';
 // import '../../../main.dart';
 
 // import '../../../core/widgets/profile_classs_widget/profile_image.dart';

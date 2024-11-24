@@ -16,7 +16,7 @@ import 'package:ween_blaqe/constants/strings.dart';
 import 'package:ween_blaqe/core/utils/funcations/route_pages/push_routes.dart';
 import 'package:ween_blaqe/core/utils/styles/text_style/aline_style.dart';
 import 'package:ween_blaqe/constants/nums.dart';
-import 'package:ween_blaqe/sesstion/new_session.dart';
+import 'package:ween_blaqe/session/new_session.dart';
 import '../../constants/get_it_controller.dart';
 import '../../controller/get_controllers.dart';
 import '../../core/utils/styles/button.dart';

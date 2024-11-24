@@ -12,8 +12,8 @@ import 'package:ween_blaqe/features/user/owner/widgets/change_user_image_widgets
 import 'package:ween_blaqe/features/user/owner/widgets/change_user_image_widgets/server_image_widget.dart';
 import '../../../constants/coordination.dart';
 import '../../../constants/get_it_controller.dart';
-import '../../../sesstion/new_session.dart';
-import '../provider/auth_provider.dart';
+import '../../../session/new_session.dart';
+import '../../../controller/provider_controllers/providers/auth_provider.dart';
 
 class ChangeUserImage extends ConsumerStatefulWidget {
   const ChangeUserImage({super.key});

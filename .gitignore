@@ -42,3 +42,5 @@ app.*.map.json
 /android/app/debug
 /android/app/profile
 /android/app/release
+/test/testing_code/make_reload_when_click_home_button/
+/assets/images/intro_images/

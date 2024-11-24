@@ -8,7 +8,7 @@ import 'dart:convert';
 import '../../api/users.dart';
 import '../../constants/strings.dart';
 import '../../core/utils/funcations/route_pages/push_routes.dart';
-import '../../sesstion/sesstion_of_user.dart';
+import '../../session/sesstion_of_user.dart';
 import '../get_controllers.dart';
 
 class UserModelController extends GetxController {

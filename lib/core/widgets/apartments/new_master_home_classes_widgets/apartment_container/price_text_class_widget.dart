@@ -9,7 +9,7 @@ class ApartmentPriceText extends StatefulWidget {
   const ApartmentPriceText(
       {super.key, required this.index, required this.apartmentsRes});
 
-  final OneApartment apartmentsRes;
+  final Apartments apartmentsRes;
   final int index;
 
   @override

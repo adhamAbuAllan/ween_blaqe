@@ -26,13 +26,13 @@ import '../../../core/utils/funcations/get_app_version.dart';
 import '../../../core/widgets/buttons/lines_buttons/line_buttons.dart';
 import '../../../core/widgets/buttons/lines_buttons/switch_language_buttons.dart';
 import '../../../main.dart';
+import '../../../session/new_session.dart';
+import '../../../session/sesstion_of_user.dart';
 
 // import '../../bookmark.dart';
 // import 'apartment_of_owner.dart';
-import '../../../sesstion/new_session.dart';
-import '../../../sesstion/sesstion_of_user.dart';
 // import '../../../testing_code/update_data_of_user.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
+// import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 //account screen
 class AccountOfOwner extends StatefulWidget {

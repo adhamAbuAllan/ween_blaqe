@@ -12,8 +12,8 @@ import '../get_controllers.dart';
 
 class ApartmentModelController extends GetxController{
 
-  OneApartment apartmentsList = OneApartment();
-  var apartmentsOfOwner = OneApartment(data: []).obs;
+  Apartments apartmentsList = Apartments();
+  var apartmentsOfOwner = Apartments(data: []).obs;
   late dynamic apartmentId = '-1';
   late String? ownerToken = apartmentModelController.apartmentsList.data?[1].owner?.token;
   RxString apartmentType = 'طلاب'.obs; //first type
@@ -38,7 +38,7 @@ class ApartmentModelController extends GetxController{
   RxBool isListOfTypes = false.obs; //the types on the list
 
 
-  Future<OneApartment> fetchApartments({
+  Future<Apartments> fetchApartments({
     String? type,
     int? cityId,
     bool ? isAll,
@@ -83,7 +83,7 @@ class ApartmentModelController extends GetxController{
 
         var responseBody = response.body;
         var json = jsonDecode(responseBody);
-        OneApartment apartmentsRes = OneApartment.fromJson(json);
+        Apartments apartmentsRes = Apartments.fromJson(json);
         apartmentsList= apartmentsRes;
         debugPrint("a json of apartment is: -- $json");
         // setState(() {
@@ -100,14 +100,14 @@ class ApartmentModelController extends GetxController{
         var errorMessage =
             ' a messsage of response of apartment is : ${response.statusCode}: ${response.body} ';
         debugPrint(errorMessage);
-        return OneApartment(data: []);
+        return Apartments(data: []);
       }
     }
 
-    return OneApartment(data: []);
+    return Apartments(data: []);
   }
 
-  Future<OneApartment> getApartmentsByOwner() async {
+  Future<Apartments> getApartmentsByOwner() async {
     final url = Uri.parse(ServerWeenBalaqee.apartmentOwner);
 
     var token = (await sp).get("token");
@@ -127,7 +127,7 @@ class ApartmentModelController extends GetxController{
       var responseBody = response.body;
       var json = jsonDecode(responseBody);
 
-      OneApartment apartmentsRes = OneApartment.fromJson(json);
+      Apartments apartmentsRes = Apartments.fromJson(json);
       apartmentsRes.data?.sort((a, b) =>
           b.updatedAt!.compareTo(a.updatedAt!)); //to get the newest data
       return apartmentsRes;

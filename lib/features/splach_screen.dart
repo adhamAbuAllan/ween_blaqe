@@ -3,11 +3,12 @@ import 'dart:async';
 import 'package:colorful_safe_area/colorful_safe_area.dart';
 import 'package:flutter/material.dart';
 import 'package:ween_blaqe/controller/get_controllers.dart';
-import 'package:ween_blaqe/sesstion/new_session.dart';
 
 import '../constants/nums.dart';
 import '../constants/strings.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+
+import '../session/new_session.dart';
 
 
 class SplashScreen extends ConsumerStatefulWidget {

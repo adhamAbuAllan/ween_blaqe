@@ -78,37 +78,4 @@ class AdvantagesModelController extends GetxController {
     // Return both the list of advantages and the first advantage using a Record
     return advantages;}
 
-
-//   callApiAndAssignData() async {
-// advantages = (await getAdvantages.readApi(ServerWeenBalaqee.advantagesAll, dataStatus, ));
-// update();
-//     // advantages = (await getAdvantages.readApi(
-//     //     ServerWeenBalaqee.advantagesAll, dataStatus, ));
-//     debugPrint("data: $advantages");
-//   }
-//   goInsert(int apartment_id) async {
-//     var url = Uri.parse(ServerWeenBalaqee.advantagesAdd);
-//
-//     var response = await http.post(url, body: {
-//       // "apartment_id": name,
-//     });
-//     var json = jsonDecode(response.body);
-//     var data = json["data"] as List<dynamic>;
-//     for (var value in data) {
-//       advantages.add(Advantages(
-//         id: value['id'],
-//         advName: value['adv_name'],
-//         icon: value['icon'],
-//         // checkedId: value['checked_id']
-//       ));
-//       setState(() {
-//         advantages.first;
-//         // advantages = chosen;
-//         // if (checked == false) {
-//         //   // data[4] = 0;
-//         // } else {}
-//       });
-//     }
-//   }
-
 }

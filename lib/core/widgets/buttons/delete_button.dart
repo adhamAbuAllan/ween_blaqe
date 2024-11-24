@@ -14,7 +14,7 @@ import '../../../constants/localization.dart';
 class DeleteButton extends StatelessWidget {
   final void Function()? onPressed;
   final int apartmentId;
-  final OneApartment apartmentsRes;
+  final Apartments apartmentsRes;
   final int index;
 
   const DeleteButton({

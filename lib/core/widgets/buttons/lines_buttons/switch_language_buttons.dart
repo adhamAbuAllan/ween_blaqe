@@ -5,7 +5,7 @@ import '../../../../constants/get_it_controller.dart';
 import '../../../../constants/localization.dart';
 import '../../../../constants/nums.dart';
 import '../../../../controller/get_controllers.dart';
-import '../../../../sesstion/new_session.dart';
+import '../../../../session/new_session.dart';
 import '../../../utils/funcations/route_pages/push_routes.dart';
 
 class SwitchLanguageButtons extends StatefulWidget {
@@ -42,7 +42,7 @@ class _SwitchLanguageButtonsState extends State<SwitchLanguageButtons> {
                 SetLocalization.of(context)!.getTranslateValue("language"),
                 style: TextStyle(
                     fontSize: 18,
-                    
+
                     color: themeMode.isLight
                         ? kTextColorLightMode
                         : kTextColorDarkMode)),
@@ -50,8 +50,12 @@ class _SwitchLanguageButtonsState extends State<SwitchLanguageButtons> {
           const Expanded(child: Text("")),
 
           SizedBox(
-            width:  getIt<AppDimension>().isSmallScreen(context) ? 50 : null,
-            height:getIt<AppDimension>().isSmallScreen(context) ?  30: null,
+            width:  getIt<AppDimension>().isSmallScreen(context) ?
+            (NewSession.get("language", "ar") != "ar" ?50 : 48 ) : (NewSession
+                .get("language", "ar") != "ar"? 64:62),
+            height:getIt<AppDimension>().isSmallScreen(context) ?
+            (NewSession.get("language", "ar") != "ar" ?30 : 28 ) : (NewSession
+                .get("language", "ar") != "ar" ?36:34),
             child: ElevatedButton(
               onPressed: () async {
                 if (NewSession.get("language", "ar") == "ar") {
@@ -87,8 +91,12 @@ class _SwitchLanguageButtonsState extends State<SwitchLanguageButtons> {
           const SizedBox(width: 10),
           // Spacing between buttons
           SizedBox(
-            width:getIt<AppDimension>().isSmallScreen(context) ?  50:null,
-            height: getIt<AppDimension>().isSmallScreen(context)?30:null,
+            width:  getIt<AppDimension>().isSmallScreen(context) ?
+            (NewSession.get("language", "en") != "en" ?50 : 48 ) : (NewSession
+                .get("language", "en") != "en"? 64:62),
+            height:getIt<AppDimension>().isSmallScreen(context) ?
+            (NewSession.get("language", "en") != "en" ?30 : 28 ) : (NewSession
+                .get("language", "en") != "en" ?36:34),
             child: ElevatedButton(
               onPressed: () async {
                 if (NewSession.get("language", "en") == "en") {

@@ -4,14 +4,14 @@ import 'package:introduction_screen/introduction_screen.dart';
 
 // import 'package:ween_blaqe/controller/auth_provider.dart';
 import 'package:ween_blaqe/main.dart';
-// import 'package:ween_blaqe/sesstion/sesstion_of_user.dart';
+// import 'package:ween_blaqe/session/sesstion_of_user.dart';
 
 import '../constants/localization.dart';
 import '../constants/nums.dart';
 
 // import '../constants/strings.dart';
 // import '../core/utils/funcations/route_pages/push_routes.dart';
-// import '../sesstion/new_session.dart';
+// import '../session/new_session.dart';
 
 class IntroScreen extends StatefulWidget {
   const IntroScreen({super.key});

@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:ween_blaqe/constants/nums.dart';
 
-import '../../../../../sesstion/new_session.dart';
+import '../../../../../session/new_session.dart';
 
 class ServerImageWidget extends ConsumerWidget {
   const ServerImageWidget({super.key,this.radius});

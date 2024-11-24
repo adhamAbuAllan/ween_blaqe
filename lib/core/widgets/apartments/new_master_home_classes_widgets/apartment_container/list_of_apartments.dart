@@ -19,7 +19,7 @@ class ApartmentsList extends StatefulWidget {
       required this.haveCitiesBar,
       });
 
-  final OneApartment apartmentsRes;
+  final Apartments apartmentsRes;
   final ScrollController? scrollController;
   final bool isDeleteMode;
   final Function()? onClick;

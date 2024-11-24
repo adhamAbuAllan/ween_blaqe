@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:ween_blaqe/controller/provider_controllers/hybrid_methods/validator_and_registratoin.dart';
+import 'package:ween_blaqe/controller/provider_controllers/methods/hybrid_methods/validator_and_registratoin.dart';
 
 import '../../../../constants/coordination.dart';
 import '../../../../constants/get_it_controller.dart';
 import '../../../../constants/localization.dart';
 import '../../../../core/utils/styles/button.dart';
-import '../../../user/provider/auth_provider.dart';
+import '../../../../controller/provider_controllers/providers/auth_provider.dart';
 
 class ButtonRegCompletedWidget extends ConsumerWidget {
   const   ButtonRegCompletedWidget({super.key});

@@ -6,7 +6,7 @@ import '../../../../constants/get_it_controller.dart';
 import '../../../../constants/localization.dart';
 import '../../../../constants/nums.dart';
 import '../../../../core/widgets/registration/text_filed_class_widget.dart';
-import '../../../user/provider/auth_provider.dart';
+import '../../../../controller/provider_controllers/providers/auth_provider.dart';
 
 class UserNameRegCompletedWidget extends ConsumerWidget {
   const UserNameRegCompletedWidget({super.key});

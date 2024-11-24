@@ -14,7 +14,7 @@ import '../../../controller/student_controller/student_controller.dart';
 import '../../../core/widgets/alirt_class_widget.dart';
 import '../../../core/widgets/bottom_nav_bar/bottom_nav_of_student.dart';
 import 'package:ween_blaqe/constants/nums.dart';
-import '../../../sesstion/new_session.dart';
+import '../../../session/new_session.dart';
 
 // import '../../../testing_code/upgrader_package_test.dart';
 import '../../widgets_before_user_reg/account_before_login.dart';

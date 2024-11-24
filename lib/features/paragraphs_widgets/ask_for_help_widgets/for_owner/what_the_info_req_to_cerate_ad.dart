@@ -33,7 +33,7 @@ class WhatTheInfoReqToCreateAd extends StatefulWidget {
 class _WhatTheInfoReqToCreateAdState extends State<WhatTheInfoReqToCreateAd> {
   bool isDataLoaded = false; //data load from server
   String errorMessage = ''; // message of error server
-  late OneApartment? apartmentRes;
+  late Apartments? apartmentRes;
   ChangeThemeMode themeMode = Get.find();
 
   @override
@@ -378,7 +378,7 @@ class _WhatTheInfoReqToCreateAdState extends State<WhatTheInfoReqToCreateAd> {
   }
 
   // API Call
-  Future<OneApartment?> getDataFromAPI() async {
+  Future<Apartments?> getDataFromAPI() async {
     Uri uri = Uri.parse(ServerWeenBalaqee.apartmentAll);
     uri = Uri.parse(ServerWeenBalaqee.apartmentAll);
     debugPrint("uri --$uri");
@@ -388,7 +388,7 @@ class _WhatTheInfoReqToCreateAdState extends State<WhatTheInfoReqToCreateAd> {
       // All ok
       var responseBody = response.body;
       var json = jsonDecode(responseBody);
-      OneApartment apartmentRes = OneApartment.fromJson(json);
+      Apartments apartmentRes = Apartments.fromJson(json);
       setState(() {
         isDataLoaded = true;
       });
@@ -400,7 +400,7 @@ class _WhatTheInfoReqToCreateAdState extends State<WhatTheInfoReqToCreateAd> {
     } else if (apartmentRes?.msg?.isNotEmpty ?? false) {
       errorMessage = '${response.statusCode}: ${response.body} ';
       debugPrint(errorMessage);
-      return OneApartment(data: null, status: false, msg: '');
+      return Apartments(data: null, status: false, msg: '');
     }
     return apartmentRes;
   }

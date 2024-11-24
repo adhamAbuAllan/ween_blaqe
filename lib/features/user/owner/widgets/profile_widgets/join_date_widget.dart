@@ -3,7 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../../../../constants/localization.dart';
 import '../../../../../constants/nums.dart';
-import '../../../../../sesstion/new_session.dart';
+import '../../../../../session/new_session.dart';
 
 class JoinDateWidget extends ConsumerWidget {
   const JoinDateWidget({super.key});
