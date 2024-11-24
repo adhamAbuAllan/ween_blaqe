@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:ween_blaqe/api/apartments_api/one_apartment.dart';
+import 'package:ween_blaqe/api/apartments_api/apartments.dart';
 import 'package:ween_blaqe/constants/nums.dart';
 
 class ApartmentTitleText extends StatelessWidget {

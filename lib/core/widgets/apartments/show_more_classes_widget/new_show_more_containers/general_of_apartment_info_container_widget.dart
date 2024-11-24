@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../../../../api/apartments_api/one_apartment.dart';
+import '../../../../../api/apartments_api/apartments.dart';
 import '../../../../../constants/coordination.dart';
 import '../../../../../constants/get_it_controller.dart';
 import '../../../../../constants/localization.dart';

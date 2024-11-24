@@ -338,7 +338,7 @@ import 'package:ween_blaqe/constants/localization.dart';
 import 'package:ween_blaqe/core/widgets/empty_screen_class_widget.dart';
 import 'package:ween_blaqe/core/widgets/skeletons/student_widgets/home_skeleton_widget.dart';
 
-// import '../../../api/apartments_api/one_apartment.dart';
+// import '../../../api/apartments_api/apartments.dart';
 import '../../../constants/coordination.dart';
 import '../../../constants/get_it_controller.dart';
 import '../../../constants/nums.dart';

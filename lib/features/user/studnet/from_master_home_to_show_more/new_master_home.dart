@@ -8,6 +8,7 @@ import 'package:ween_blaqe/constants/strings.dart';
 import 'package:ween_blaqe/controller/provider_controllers/providers/apartment_provider.dart';
 import 'package:ween_blaqe/controller/provider_controllers/providers/connectivity_provider.dart';
 import 'package:ween_blaqe/controller/provider_controllers/statuses/city_state.dart';
+// import 'package:ween_blaqe/controller/provider_controllers/statuses/connectivity_state.dart';
 import 'package:ween_blaqe/core/utils/funcations/route_pages/push_routes.dart';
 import 'package:ween_blaqe/core/widgets/apartments/new_master_home_classes_widgets/apartment_container/list_of_apartments.dart';
 import 'package:ween_blaqe/core/widgets/apartments/new_master_home_classes_widgets/types_of_apartments_list/container_types.dart';
@@ -22,7 +23,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../../../controller/provider_controllers/statuses/apartment_state.dart';
 
-class NewMasterHome extends ConsumerStatefulWidget  {
+class NewMasterHome extends ConsumerStatefulWidget {
   const NewMasterHome({super.key, this.scrollController});
 
   final ScrollController? scrollController;
@@ -38,6 +39,8 @@ class _NewMasterHomeConsumerState extends ConsumerState<NewMasterHome> {
   @override
   void initState() {
     super.initState();
+    debugPrint("isLoading status ${apartmentState.isLoading}");
+
     // ref.read(connectivityNotifier).isSnackBarShown = true;
 
     widget.scrollController?.addListener(() {
@@ -45,33 +48,40 @@ class _NewMasterHomeConsumerState extends ConsumerState<NewMasterHome> {
         if (widget.scrollController?.position.userScrollDirection ==
             ScrollDirection.forward) {
           if (!apartmentState.isLoading) {
-            ref.read(isSebhaVisibleNotifier.notifier).state = true;
+            ref.watch(isSebhaVisibleNotifier.notifier).state = true;
           }
-          ref.read(isVisibleNotifier.notifier).state = true;
+          ref.watch(isVisibleNotifier.notifier).state = true;
         } else if (widget.scrollController?.position.userScrollDirection ==
             ScrollDirection.reverse) {
           if (!apartmentState.isLoading) {
-            ref.read(isSebhaVisibleNotifier.notifier).state = false;
+            ref.watch(isSebhaVisibleNotifier.notifier).state = false;
           }
-          ref.read(isSebhaVisibleNotifier.notifier).state = false;
+          ref.watch(isSebhaVisibleNotifier.notifier).state = false;
         }
       });
     });
 
     // Fetch apartments initially
     // ref.read(isAllTypesOfApartmentNotifier.notifier).state = true;
-    ref.read(fetchApartmentNotifier).fetchApartments(
-        isOwnerApartments: false,
-        ref: ref,
-        type: ref.read(apartmentTypeNotifier),
-        isAll: true,
-        cityId: 0);
-// ref.read(apartmentsListNotifier.notifier).state = apartmentState.apartmentsList;
-debugPrint("the apartment in ref list is ${ref.read(apartmentsListNotifier
-    .notifier).state.data}");
-debugPrint("the list of apartment state list is ${apartmentState
-    .apartmentsList.data}");
-    cityState.copyWith(cityId: 0);
+
+    super.initState();
+    WidgetsBinding.instance.addPostFrameCallback((_) async {
+      await ref.read(fetchApartmentNotifier.notifier).fetchApartments(
+          isOwnerApartments: false,
+          ref: ref,
+          type: ref.read(apartmentTypeNotifier),
+          isAll: true,
+          cityId: 0);
+      debugPrint("isLoading status ${apartmentState.isLoading}");
+    });
+
+    // ref.read(fetchApartmentNotifier)?.fetchApartments(
+    //     isOwnerApartments: false,
+    //     ref: ref,
+    //     type: ref.read(apartmentTypeNotifier),
+    //     isAll: true,
+    //     cityId: 0);
+    // debugPrint("isLoading status ${apartmentState.isLoading}");
   }
 
   @override
@@ -80,172 +90,347 @@ debugPrint("the list of apartment state list is ${apartmentState
     var isAll = ref.read(isAllTypesOfApartmentNotifier);
     var cityId = cityState.cityId;
     var errorMessage = apartmentState.errorMessage;
-    var apartmentList = apartmentState.apartmentsList;
+    var apartmentList = ref.watch(apartmentsListNotifier);
+
     var apartmentType = ref.watch(apartmentTypeNotifier);
     // var isSnackBarShow = ref.watch(isSn);
-    var isSebhaVisible = ref.watch(isSebhaVisibleNotifier);
+    var isBoxVisible = ref.watch(isSebhaVisibleNotifier);
     var connectivity = ref.watch(connectivityNotifier);
     var isAllTypesOfApartment = ref.watch(isAllTypesOfApartmentNotifier);
     var isListOfTypes = ref.watch(isListOfTypesNotifier);
     return RefreshIndicator(
-      triggerMode: RefreshIndicatorTriggerMode.anywhere,
-      backgroundColor: themeMode.isLight
-          ? kContainerColorLightMode
-          : kContainerColorDarkMode,
-      displacement: 100 * 3,
-      semanticsValue: const Text("refresh").toString(),
-      color: themeMode.isLight ? kPrimaryColorLightMode : kPrimaryColorDarkMode,
-      onRefresh: () async {
-        apartmentState.copyWith(isLoading: true);
-        ref.read(fetchApartmentNotifier).fetchApartments(
-            isOwnerApartments: false,
-            ref: ref,
-            type: type,
-            isAll: isAll,
-            cityId: cityId);
-      },
-      child: apartmentState.isLoading
-          ? (errorMessage?.isNotEmpty ?? true
-              ? Text(errorMessage ?? "")
-              : (apartmentList.data?.isEmpty ?? true)
-                  ? TypeNotFound(type: apartmentType)
-                  : FutureBuilder(
-                      future: Connectivity().checkConnectivity(),
-                      builder: (context, snapshot) {
-                        if (!connectivity.isSnackBarShown) {
-                          ref
-                              .watch(connectivityNotifier.notifier)
-                              .handleConnectivityChange(context, ref);
-                        }
-                        if (!connectivity.isResponseOk) {
-                          return const NoInternet();
-                        }
-
-                        return GestureDetector(
-                          onTap: () {
-                            ref.read(isSebhaVisibleNotifier.notifier).state =
-                                !ref.read(isSebhaVisibleNotifier);
-                          },
-                          child: Stack(
-                              alignment: NewSession.get("language", "ar") ==
-                                      "en"
-                                          ""
-                                  ? Alignment.topLeft
-                                  : Alignment.topRight,
-                              children: [
-                                ApartmentsList(
-                                  haveCitiesBar: true,
-                                  onClick: () async {
-                                    if (isAllTypesOfApartment) {
-                                      ref
-                                          .watch(fetchApartmentNotifier)
-                                          .fetchApartments(
-                                            isOwnerApartments: false,
-                                            ref: ref,
-                                            isAll: true,
-                                            cityId: cityId,
-                                          );
-                                    } else {
-                                      ref
-                                          .read(isAllTypesOfApartmentNotifier
-                                              .notifier)
-                                          .state = true;
-                                      ref
-                                          .watch(fetchApartmentNotifier)
-                                          .fetchApartments(
-                                            isOwnerApartments: false,
-                                            ref: ref,
-                                            isAll: isAllTypesOfApartment,
-                                            type: type,
-                                            cityId: cityId,
-                                          );
-                                    }
-                                  },
-                                  apartmentsRes: apartmentState.apartmentsList ,
-                                  scrollController: widget.scrollController,
-                                ),
-                                Padding(
-                                    padding: const EdgeInsets.only(
-                                        top: 70, right: 8, left: 8),
-                                    child: AnimatedOpacity(
-                                      opacity: isSebhaVisible ? 1.0 : 0.0,
-                                      duration:
-                                          const Duration(milliseconds: 300),
-                                      child: isSebhaVisible
-                                          ? ApartmentShowTypesButton(
-                                              onPressed: () {
-                                                ref
-                                                        .watch(
-                                                            isListOfTypesNotifier
-                                                                .notifier)
-                                                        .state !=
-                                                    ref.watch(
-                                                        isListOfTypesNotifier);
-                                              },
-                                            )
-                                          : const SizedBox(),
-                                    )),
-                                Padding(
-                                    padding: const EdgeInsets.only(
-                                        top: 70, left: 8, right: 8),
-                                    child: isListOfTypes
-                                        ? AnimatedOpacity(
-                                            opacity: isSebhaVisible ? 1.0 : 0.0,
-                                            duration: const Duration(
-                                                milliseconds: 350),
-                                            child:
-                                                const ApartmentShowTypesContainer(
-                                              child: Column(
-                                                children: [
-                                                  TypeRowOfBoyStudent(),
-                                                  TypeRowOfGirlStudent(),
-                                                  TypeRowOfFamilies(),
-                                                  TypeRowOfAllTypes(),
-                                                ],
-                                              ),
-                                            ))
-                                        : const SizedBox()),
-                              ]),
-                        );
-                      }))
-          : Stack(
-              children: [
-                GestureDetector(
-                  child: HomeSkeletonWidget(
-                    hasCitiesBar: true,
-                    scrollController:
-                        widget.scrollController ?? ScrollController(),
+        triggerMode: RefreshIndicatorTriggerMode.anywhere,
+        backgroundColor: themeMode.isLight
+            ? kContainerColorLightMode
+            : kContainerColorDarkMode,
+        displacement: 100 * 3,
+        semanticsValue: const Text("refresh").toString(),
+        color:
+            themeMode.isLight ? kPrimaryColorLightMode : kPrimaryColorDarkMode,
+        onRefresh: () async {
+          ref.read(fetchApartmentNotifier.notifier).fetchApartments(
+              isOwnerApartments: false,
+              ref: ref,
+              type: type,
+              isAll: isAll,
+              cityId: cityId);
+        },
+        child: ref.watch(fetchApartmentNotifier).isLoading
+            ? Stack(
+                children: [
+                  GestureDetector(
+                    child: HomeSkeletonWidget(
+                      hasCitiesBar: true,
+                      scrollController:
+                          widget.scrollController ?? ScrollController(),
+                    ),
+                    onDoubleTap: () {
+                      WidgetsBinding.instance.addPostFrameCallback((_) async {
+                        await ref
+                            .read(fetchApartmentNotifier.notifier)
+                            .fetchApartments(
+                                isOwnerApartments: false,
+                                ref: ref,
+                                type: ref.read(apartmentTypeNotifier),
+                                isAll: true,
+                                cityId: 0);
+                        debugPrint(
+                            "isLoading status ${apartmentState.isLoading}");
+                      });
+                      ref.read(isSebhaVisibleNotifier.notifier).state !=
+                          ref.read(isSebhaVisibleNotifier.notifier).state;
+                      debugPrint("");
+                    },
                   ),
-                  onDoubleTap: () {
-                    debugPrint("isSebhaVisible");
-                    ref.read(isSebhaVisibleNotifier.notifier).state !=
-                        ref.read(isSebhaVisibleNotifier.notifier).state;
-                    debugPrint("");
-                  },
-                ),
-                apartmentList.data?.isNotEmpty ?? false
-                    ? const SizedBox()
-                    : Padding(
-                        padding:
-                            const EdgeInsets.only(top: 70, right: 8, left: 8),
-                        child: AnimatedOpacity(
-                          opacity: isSebhaVisible ? 1.0 : 0.0,
-                          duration: const Duration(milliseconds: 300),
-                          child: isSebhaVisible
-                              ? ApartmentShowTypesButton(
-                                  onPressed: () {
-                                    myPushName(
-                                        context, MyPagesRoutes.noInternet);
-                                  },
-                                  text: SetLocalization.of(context)!
-                                      .getTranslateValue("tasbih"),
-                                )
-                              : const SizedBox(),
+                  apartmentList.data?.isNotEmpty ?? false
+                      ? const SizedBox()
+                      : Padding(
+                          padding:
+                              const EdgeInsets.only(top: 70, right: 8, left: 8),
+                          child: AnimatedOpacity(
+                            opacity: isBoxVisible ? 1.0 : 0.0,
+                            duration: const Duration(milliseconds: 300),
+                            child: isBoxVisible
+                                ? ApartmentShowTypesButton(
+                                    onPressed: () {
+                                      myPushName(
+                                          context, MyPagesRoutes.noInternet);
+                                    },
+                                    text: SetLocalization.of(context)!
+                                        .getTranslateValue("tasbih"),
+                                  )
+                                : const SizedBox(),
+                          ),
                         ),
-                      ),
-              ],
-            ),
-    );
+                ],
+              )
+            : (
+            apartmentList.data?.isEmpty??false ?
+                TypeNotFound(type: type,)
+                :
+            (GestureDetector(
+                onTap: () {
+                  ref.read(isSebhaVisibleNotifier.notifier).state =
+                      !ref.read(isSebhaVisibleNotifier);
+                },
+                child: FutureBuilder(
+                    future: Connectivity().checkConnectivity(),
+                    builder: (context, snapshot) {
+                      if (ref.watch(connectivityNotifier).isSnackBarShown) {
+                        ref
+                            .read(connectivityNotifier.notifier)
+                            .handleConnectivityChange(context, ref);
+                      }
+                      if (ref
+                          .watch(connectivityNotifier.notifier)
+                          .isConnected) {
+                        return const NoInternet();
+                      }
+
+                      return Stack(
+                          alignment: NewSession.get("language", "ar") ==
+                                  "en"
+                                      ""
+                              ? Alignment.topLeft
+                              : Alignment.topRight,
+                          children: [
+                            // const ApartmentsListConsumer(),
+
+                            ApartmentsList(
+                              haveCitiesBar: true,
+                              onClick: () async {
+                                if (isAllTypesOfApartment) {
+                                  ref
+                                      .watch(fetchApartmentNotifier.notifier)
+                                      .fetchApartments(
+                                        isOwnerApartments: false,
+                                        ref: ref,
+                                        isAll: true,
+                                        cityId: cityId,
+                                      );
+                                } else {
+                                  ref
+                                      .read(isAllTypesOfApartmentNotifier
+                                          .notifier)
+                                      .state = true;
+                                  ref
+                                      .watch(fetchApartmentNotifier.notifier)
+                                      .fetchApartments(
+                                        isOwnerApartments: false,
+                                        ref: ref,
+                                        isAll: isAllTypesOfApartment,
+                                        type: type,
+                                        cityId: cityId,
+                                      );
+                                }
+                              },
+                              apartmentsRes: apartmentList,
+                              // ref.watch
+                              //   (fetchApartmentNotifier).apartmentsList,
+                              scrollController: widget.scrollController,
+                            ),
+                            Padding(
+                                padding: const EdgeInsets.only(
+                                    top: 70, right: 8, left: 8),
+                                child: AnimatedOpacity(
+                                  opacity: isBoxVisible ? 1.0 : 0.0,
+                                  duration: const Duration(milliseconds: 300),
+                                  child: isBoxVisible
+                                      ? ApartmentShowTypesButton(
+                                          onPressed: () {
+                                            ref
+                                                    .read(isListOfTypesNotifier
+                                                        .notifier)
+                                                    .state =
+                                                !ref
+                                                    .read(isListOfTypesNotifier
+                                                        .notifier)
+                                                    .state;
+                                          },
+                                        )
+                                      : const SizedBox(),
+                                )),
+                            Padding(
+                                padding: const EdgeInsets.only(
+                                    top: 70, left: 8, right: 8),
+                                child: isListOfTypes
+                                    ? AnimatedOpacity(
+                                        opacity: isBoxVisible ? 1.0 : 0.0,
+                                        duration:
+                                            const Duration(milliseconds: 350),
+                                        child:
+                                            const ApartmentShowTypesContainer(
+                                          child: Column(
+                                            children: [
+                                              TypeRowOfBoyStudent(),
+                                              TypeRowOfGirlStudent(),
+                                              TypeRowOfFamilies(),
+                                              TypeRowOfAllTypes(),
+                                            ],
+                                          ),
+                                        ))
+                                    : const SizedBox()),
+                          ]);
+                    }))))
+        // !ref.watch(fetchApartmentNotifier).isLoading
+        //     ? (errorMessage?.isNotEmpty ?? true
+        //         ? Text(errorMessage ?? "")
+        //         : (apartmentList.data?.isEmpty ?? false)
+        //             ? TypeNotFound(type: apartmentType)
+        //             : FutureBuilder(
+        //                 future: Connectivity().checkConnectivity(),
+        //                 builder: (context, snapshot) {
+        //                   if (!connectivity.isSnackBarShown) {
+        //                     ref
+        //                         .watch(connectivityNotifier.notifier)
+        //                         .handleConnectivityChange(context, ref);
+        //                   }
+        //                   if (!connectivity.isResponseOk) {
+        //                     return const NoInternet();
+        //                   }
+        //
+        //                   return GestureDetector(
+        //                     onTap: () {
+        //                       ref.read(isSebhaVisibleNotifier.notifier).state =
+        //                           !ref.read(isSebhaVisibleNotifier);
+        //                     },
+        //                     child: Stack(
+        //                         alignment: NewSession.get("language", "ar") ==
+        //                                 "en"
+        //                                     ""
+        //                             ? Alignment.topLeft
+        //                             : Alignment.topRight,
+        //                         children: [
+        //                           // const ApartmentsListConsumer(),
+        //
+        //                           ApartmentsList(
+        //                             haveCitiesBar: true,
+        //                             onClick: () async {
+        //                               if (isAllTypesOfApartment) {
+        //                                 ref
+        //                                     .watch(
+        //                                         fetchApartmentNotifier.notifier)
+        //                                     .fetchApartments(
+        //                                       isOwnerApartments: false,
+        //                                       ref: ref,
+        //                                       isAll: true,
+        //                                       cityId: cityId,
+        //                                     );
+        //                               } else {
+        //                                 ref
+        //                                     .read(isAllTypesOfApartmentNotifier
+        //                                         .notifier)
+        //                                     .state = true;
+        //                                 ref
+        //                                     .watch(
+        //                                         fetchApartmentNotifier.notifier)
+        //                                     .fetchApartments(
+        //                                       isOwnerApartments: false,
+        //                                       ref: ref,
+        //                                       isAll: isAllTypesOfApartment,
+        //                                       type: type,
+        //                                       cityId: cityId,
+        //                                     );
+        //                               }
+        //                             },
+        //                             apartmentsRes: apartmentList,
+        //                             // ref.watch
+        //                             //   (fetchApartmentNotifier).apartmentsList,
+        //                             scrollController: widget.scrollController,
+        //                           ),
+        //                           Padding(
+        //                               padding: const EdgeInsets.only(
+        //                                   top: 70, right: 8, left: 8),
+        //                               child: AnimatedOpacity(
+        //                                 opacity: isBoxVisible ? 1.0 : 0.0,
+        //                                 duration:
+        //                                     const Duration(milliseconds: 300),
+        //                                 child: isBoxVisible
+        //                                     ? ApartmentShowTypesButton(
+        //                                         onPressed: () {
+        //                                           ref
+        //                                                   .watch(
+        //                                                       isListOfTypesNotifier
+        //                                                           .notifier)
+        //                                                   .state !=
+        //                                               ref.watch(
+        //                                                   isListOfTypesNotifier);
+        //                                         },
+        //                                       )
+        //                                     : const SizedBox(),
+        //                               )),
+        //                           Padding(
+        //                               padding: const EdgeInsets.only(
+        //                                   top: 70, left: 8, right: 8),
+        //                               child: isListOfTypes
+        //                                   ? AnimatedOpacity(
+        //                                       opacity: isBoxVisible ? 1.0 : 0.0,
+        //                                       duration: const Duration(
+        //                                           milliseconds: 350),
+        //                                       child:
+        //                                           const ApartmentShowTypesContainer(
+        //                                         child: Column(
+        //                                           children: [
+        //                                             TypeRowOfBoyStudent(),
+        //                                             TypeRowOfGirlStudent(),
+        //                                             TypeRowOfFamilies(),
+        //                                             TypeRowOfAllTypes(),
+        //                                           ],
+        //                                         ),
+        //                                       ))
+        //                                   : const SizedBox()),
+        //                         ]),
+        //                   );
+        //                 }))
+        //     : Stack(
+        //         children: [
+        //           GestureDetector(
+        //             child: HomeSkeletonWidget(
+        //               hasCitiesBar: true,
+        //               scrollController:
+        //                   widget.scrollController ?? ScrollController(),
+        //             ),
+        //             onDoubleTap: () {
+        //               WidgetsBinding.instance.addPostFrameCallback((_) async {
+        //                 await ref
+        //                     .read(fetchApartmentNotifier.notifier)
+        //                     .fetchApartments(
+        //                         isOwnerApartments: false,
+        //                         ref: ref,
+        //                         type: ref.read(apartmentTypeNotifier),
+        //                         isAll: true,
+        //                         cityId: 0);
+        //                 debugPrint(
+        //                     "isLoading status ${apartmentState.isLoading}");
+        //               });
+        //               ref.read(isSebhaVisibleNotifier.notifier).state !=
+        //                   ref.read(isSebhaVisibleNotifier.notifier).state;
+        //               debugPrint("");
+        //             },
+        //           ),
+        //           apartmentList.data?.isNotEmpty ?? false
+        //               ? const SizedBox()
+        //               : Padding(
+        //                   padding:
+        //                       const EdgeInsets.only(top: 70, right: 8, left: 8),
+        //                   child: AnimatedOpacity(
+        //                     opacity: isBoxVisible ? 1.0 : 0.0,
+        //                     duration: const Duration(milliseconds: 300),
+        //                     child: isBoxVisible
+        //                         ? ApartmentShowTypesButton(
+        //                             onPressed: () {
+        //                               myPushName(
+        //                                   context, MyPagesRoutes.noInternet);
+        //                             },
+        //                             text: SetLocalization.of(context)!
+        //                                 .getTranslateValue("tasbih"),
+        //                           )
+        //                         : const SizedBox(),
+        //                   ),
+        //                 ),
+        //         ],
+        //       ),
+        );
   }
 }
 //

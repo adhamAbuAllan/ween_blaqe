@@ -8,7 +8,7 @@
 //
 // import '../../../../../../../api/advantages.dart';
 // import '../../../../../../../constants/nums.dart';
-// import '../../api/apartments_api/one_apartment.dart';
+// import '../../api/apartments_api/apartments.dart';
 // import '../../core/widgets/apartments/create_apartment/container_classes_widget'
 //     '/check_boxs/advatnages_check_box/feature_of_advatnages.dart';
 //

@@ -3,7 +3,7 @@ import 'dart:convert';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter/material.dart';
 import 'package:ween_blaqe/controller/provider_controllers/providers/apartment_provider.dart';
-import '../../../../../api/apartments_api/one_apartment.dart';
+import '../../../../../api/apartments_api/apartments.dart';
 import '../../../../../api/cities.dart';
 import '../../../../../api/type_of_apartment.dart';
 import '../../../../../constants/strings.dart';
@@ -70,7 +70,7 @@ class CreateApartmentNotifier extends StateNotifier<ApartmentState> {
               apartmentId: await apartmentId,
               advantageIds: ref.read(advantagesNotifier).chosen,
             );
-        await ref.read(imageManagerProvider.notifier).compressAndUploadImages();
+        await ref.read(imageManagerNotifier.notifier).compressAndUploadImages();
 
         state = state.copyWith(isLoading: false);
 

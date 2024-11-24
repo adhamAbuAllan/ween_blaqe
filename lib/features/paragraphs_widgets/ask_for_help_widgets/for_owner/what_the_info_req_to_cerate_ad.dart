@@ -11,7 +11,7 @@ import 'package:ween_blaqe/constants/localization.dart';
 // import 'package:ween_blaqe/core/utils/styles/text_style/aline_style.dart';
 import 'package:ween_blaqe/core/widgets/skeletons/general_skeleton_ready_widgets/paragraph_ready_skeleton.dart';
 
-import '../../../../api/apartments_api/one_apartment.dart';
+import '../../../../api/apartments_api/apartments.dart';
 import '../../../../constants/get_it_controller.dart';
 import '../../../../constants/nums.dart';
 import '../../../../constants/strings.dart';

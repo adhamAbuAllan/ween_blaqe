@@ -4,7 +4,7 @@
 // import 'package:colorful_safe_area/colorful_safe_area.dart';
 // import 'package:flutter/material.dart';
 // import 'package:get/get.dart';
-// import 'package:ween_blaqe/api/apartments_api/one_apartment.dart';
+// import 'package:ween_blaqe/api/apartments_api/apartments.dart';
 // import 'package:ween_blaqe/constants/strings.dart';
 // import 'package:ween_blaqe/core/utils/funcations/route_pages/push_routes.dart';
 // import 'package:ween_blaqe/core/utils/styles/button.dart';

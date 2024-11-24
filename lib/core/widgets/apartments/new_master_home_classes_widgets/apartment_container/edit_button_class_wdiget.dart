@@ -3,7 +3,7 @@ import 'package:ween_blaqe/controller/get_controllers.dart';
 // import 'package:ween_blaqe/constants/strings.dart';
 // import 'package:ween_blaqe/core/utils/funcations/route_pages/push_routes.dart';
 
-import '../../../../../api/apartments_api/one_apartment.dart';
+import '../../../../../api/apartments_api/apartments.dart';
 import '../../../../../constants/nums.dart';
 import '../../../../../features/user/owner/refactor_apartment.dart';
 

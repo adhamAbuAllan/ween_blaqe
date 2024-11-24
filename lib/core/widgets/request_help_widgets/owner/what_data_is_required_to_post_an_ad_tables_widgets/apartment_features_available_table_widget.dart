@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 
-import '../../../../../api/apartments_api/one_apartment.dart';
+import '../../../../../api/apartments_api/apartments.dart';
 import '../../../../../constants/localization.dart';
 import '../../../../../constants/nums.dart';
 class ApartmentFeaturesAvailableTable extends StatelessWidget {

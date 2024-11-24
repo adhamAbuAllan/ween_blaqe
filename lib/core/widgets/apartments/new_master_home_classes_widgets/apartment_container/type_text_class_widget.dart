@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:ween_blaqe/api/apartments_api/one_apartment.dart';
+import 'package:ween_blaqe/api/apartments_api/apartments.dart';
 import 'package:ween_blaqe/constants/nums.dart';
 import 'package:ween_blaqe/controller/get_controllers.dart';
 import 'package:ween_blaqe/core/widgets/apartments/new_master_home_classes_widgets/apartment_container/edit_button_class_wdiget.dart';

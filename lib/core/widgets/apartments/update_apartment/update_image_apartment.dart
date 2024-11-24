@@ -12,7 +12,7 @@ import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:skeletons/skeletons.dart';
-import 'package:ween_blaqe/api/apartments_api/one_apartment.dart';
+import 'package:ween_blaqe/api/apartments_api/apartments.dart';
 
 // import 'package:ween_blaqe/constants/get_it_controller.dart';
 import 'package:ween_blaqe/constants/nums.dart';

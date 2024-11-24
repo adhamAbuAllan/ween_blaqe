@@ -6,7 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:skeletons/skeletons.dart';
 import 'package:carousel_slider_plus/carousel_slider_plus.dart';
 
-import 'package:ween_blaqe/api/apartments_api/one_apartment.dart';
+import 'package:ween_blaqe/api/apartments_api/apartments.dart';
 
 import 'package:ween_blaqe/controller/pointer_of_images_controller.dart';
 import 'package:ween_blaqe/core/utils/funcations/snakbar.dart';

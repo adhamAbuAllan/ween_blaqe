@@ -2,7 +2,7 @@ import 'dart:ui';
 
 import 'package:flutter/material.dart';
 
-import '../../../../../api/apartments_api/one_apartment.dart';
+import '../../../../../api/apartments_api/apartments.dart';
 class TimeAgoWidget extends StatefulWidget {
   const TimeAgoWidget(
       {super.key, required this.apartmentsRes, required this.index});

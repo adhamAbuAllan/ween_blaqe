@@ -21,7 +21,7 @@ import 'package:ween_blaqe/session/new_session.dart';
 
 // import 'package:ween_blaqe/core/utils/styles/show_more_widget/about_apartment_style.dart';
 // ignore: duplicate_import
-import '../../../api/apartments_api/one_apartment.dart';
+import '../../../api/apartments_api/apartments.dart';
 import '../../../api/users.dart';
 import 'package:ween_blaqe/constants/nums.dart';
 

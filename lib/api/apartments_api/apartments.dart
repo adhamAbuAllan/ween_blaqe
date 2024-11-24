@@ -42,6 +42,10 @@ class Apartments {
       data: data ?? this.data,
     );
   }
+  @override
+  String toString() {
+    return 'Apartments(status: $status, msg: $msg, data: ${data?.map((e) => e.toString()).toList()})';
+  }
 }
 class DataOfOneApartment {
   DataOfOneApartment(
@@ -123,5 +127,9 @@ currentPhotoIndex = 0.obs;
     _data['updated_at'] = updatedAt;
     _data['time_ago'] = timeAgo;
     return _data;
+  }
+  @override
+  String toString() {
+    return 'DataOfOneApartment(id: $id, title: $title, location: $location, price: $price, rooms: $rooms, bathrooms: $bathrooms, squareMeters: $squareMeters, city: ${city?.toString()}, type: ${type?.toString()})';
   }
 }

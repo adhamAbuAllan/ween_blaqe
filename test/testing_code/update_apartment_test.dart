@@ -1,6 +1,6 @@
 // import 'dart:convert';
 // import 'package:http/http.dart' as http;
-// import 'package:ween_blaqe/api/apartments_api/one_apartment.dart';
+// import 'package:ween_blaqe/api/apartments_api/apartments.dart';
 // import 'package:flutter/material.dart';
 // // import 'package:ween_blaqe/core/utils/styles/button.dart';
 // // import 'package:ween_blaqe/core/widgets/apartments/create_apartment/container_classes_widget/containers_choose_items_class_widget/container_choose_items_class_widget.dart';

@@ -1,7 +1,7 @@
 // // import 'dart:ffi';
 //
 //
-// import 'apartments_api/one_apartment.dart';
+// import 'apartments_api/apartments.dart';
 //
 //
 // // class Booking{

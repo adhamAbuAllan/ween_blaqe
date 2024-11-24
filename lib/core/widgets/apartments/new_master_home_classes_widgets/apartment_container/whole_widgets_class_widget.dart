@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:ween_blaqe/api/apartments_api/one_apartment.dart';
+import 'package:ween_blaqe/api/apartments_api/apartments.dart';
 import 'package:ween_blaqe/core/widgets/apartments/new_master_home_classes_widgets/apartment_container/image_of_apartment_class_widget.dart';
 import 'package:ween_blaqe/core/widgets/apartments/new_master_home_classes_widgets/apartment_container/locatoin_text_class_widget.dart';
 import 'package:ween_blaqe/core/widgets/apartments/new_master_home_classes_widgets/apartment_container/price_text_class_widget.dart';

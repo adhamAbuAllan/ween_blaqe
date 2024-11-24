@@ -4,6 +4,7 @@ import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:ween_blaqe/constants/localization.dart';
+import 'package:ween_blaqe/controller/provider_controllers/providers/connectivity_provider.dart';
 
 import '../../statuses/connectivity_state.dart';
 class ConnectivityNotifier extends StateNotifier<ConnectivityState> {
@@ -36,8 +37,8 @@ class ConnectivityNotifier extends StateNotifier<ConnectivityState> {
   }
   Future<void> handleConnectivityChange(
       BuildContext context, WidgetRef ref) async {
-    final notifier = ref.read(connectivityProvider.notifier);
-    final connectivityState = ref.watch(connectivityProvider);
+    final notifier = ref.read(connectivityNotifier.notifier);
+    final connectivityState = ref.watch(connectivityNotifier);
 
     if (!notifier.isConnected) {
       // Show no internet snackbar

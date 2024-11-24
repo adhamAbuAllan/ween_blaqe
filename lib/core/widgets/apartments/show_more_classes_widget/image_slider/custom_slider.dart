@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get_rx/src/rx_types/rx_types.dart';
 import 'package:get/get_state_manager/src/rx_flutter/rx_obx_widget.dart';
 import 'package:skeletons/skeletons.dart';
-import 'package:ween_blaqe/api/apartments_api/one_apartment.dart';
+import 'package:ween_blaqe/api/apartments_api/apartments.dart';
 import 'package:ween_blaqe/constants/coordination.dart';
 import 'package:ween_blaqe/controller/get_controllers.dart';
 import 'package:carousel_slider_plus/carousel_slider_plus.dart';

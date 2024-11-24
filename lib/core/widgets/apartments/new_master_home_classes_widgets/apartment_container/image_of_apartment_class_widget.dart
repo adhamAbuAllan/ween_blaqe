@@ -3,7 +3,7 @@ import 'dart:ui';
 // import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:skeletons/skeletons.dart';
-import 'package:ween_blaqe/api/apartments_api/one_apartment.dart';
+import 'package:ween_blaqe/api/apartments_api/apartments.dart';
 
 // import '../../../../../controller/auth_provider.dart';
 import '../../show_more_classes_widget/image_slider/custom_slider.dart';

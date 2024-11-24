@@ -13,7 +13,7 @@ import 'package:ween_blaqe/core/utils/styles/button.dart';
 import 'package:ween_blaqe/constants/nums.dart';
 import 'package:ween_blaqe/core/widgets/alirt_class_widget.dart';
 import '../../../api/advantages.dart';
-import '../../../api/apartments_api/one_apartment.dart';
+import '../../../api/apartments_api/apartments.dart';
 import '../../../api/cities.dart';
 import '../../../constants/coordination.dart';
 import '../../../constants/get_it_controller.dart';

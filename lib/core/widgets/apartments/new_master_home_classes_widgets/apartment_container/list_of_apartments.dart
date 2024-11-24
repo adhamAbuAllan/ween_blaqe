@@ -1,12 +1,16 @@
 import 'package:flutter/material.dart';
 
 // import 'package:get/get_state_manager/src/rx_flutter/rx_obx_widget.dart';
-import 'package:ween_blaqe/api/apartments_api/one_apartment.dart';
+import 'package:ween_blaqe/api/apartments_api/apartments.dart';
+// import 'package:ween_blaqe/constants/nums.dart';
 import 'package:ween_blaqe/controller/get_controllers.dart';
+// import 'package:ween_blaqe/controller/provider_controllers/providers/apartment_provider.dart';
 import 'package:ween_blaqe/core/widgets/apartments/home_screen/bar_cities.dart';
 
 // import 'package:ween_blaqe/controller/auth_provider.dart';
 import 'package:ween_blaqe/core/widgets/apartments/new_master_home_classes_widgets/apartment_container/whole_widgets_class_widget.dart';
+// import 'package:flutter_riverpod/flutter_riverpod.dart';
+
 
 class ApartmentsList extends StatefulWidget {
   const ApartmentsList(

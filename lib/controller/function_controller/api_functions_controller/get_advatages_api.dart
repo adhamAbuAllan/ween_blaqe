@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 // import 'package:ween_blaqe/api/advantages.dart';
 import 'package:http/http.dart' as http;
-// import 'package:ween_blaqe/api/apartments_api/one_apartment.dart';
+// import 'package:ween_blaqe/api/apartments_api/apartments.dart';
 
 // import '../../auth_provider.dart';
 

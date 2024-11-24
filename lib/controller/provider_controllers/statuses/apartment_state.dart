@@ -1,5 +1,5 @@
 
-import '../../../api/apartments_api/one_apartment.dart';
+import '../../../api/apartments_api/apartments.dart';
 
 class ApartmentState {
   final bool isLoading;

@@ -33,7 +33,7 @@ final loginNotifier = StateNotifierProvider<LoginNotifier, AuthState>((ref) {
 });
 final loadProfileImageNotifier =
     StateNotifierProvider<LoadProfileImageNotifier, AuthState>(
-        (ref) => LoadProfileImageNotifier());
+        (ref) => LoadProfileImageNotifier ());
 final compressAndUploadImageNotifier =
     StateNotifierProvider<CompressAndUploadProfileImageNotifier, AuthState>(
         (ref) => CompressAndUploadProfileImageNotifier());

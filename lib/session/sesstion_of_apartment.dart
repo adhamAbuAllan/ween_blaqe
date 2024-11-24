@@ -1,4 +1,4 @@
-// import 'package:ween_blaqe/api/apartments_api/one_apartment.dart';
+// import 'package:ween_blaqe/api/apartments_api/apartments.dart';
 //
 // import 'new_session.dart';
 //

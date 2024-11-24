@@ -8,7 +8,7 @@ import 'package:ween_blaqe/constants/localization.dart';
 import 'package:ween_blaqe/core/widgets/apartments/show_more_classes_widget/show_all_advantages_class_widget.dart';
 
 import '../../../../api/advantages.dart';
-import '../../../../api/apartments_api/one_apartment.dart';
+import '../../../../api/apartments_api/apartments.dart';
 import '../../../../constants/nums.dart';
 import '../../../utils/styles/button.dart';
 

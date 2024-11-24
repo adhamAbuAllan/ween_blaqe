@@ -1,12 +1,9 @@
 
 import 'package:connectivity_plus/connectivity_plus.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
+// import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import '../methods/local_methods/connectivity_notifier.dart';
+// import '../methods/local_methods/connectivity_notifier.dart';
 
-final connectivityProvider =
-StateNotifierProvider<ConnectivityNotifier, ConnectivityState>(
-        (ref) => ConnectivityNotifier());
 
 /// State class to hold connectivity-related values
 class ConnectivityState {
