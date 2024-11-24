@@ -594,8 +594,8 @@ class _FourthStepState extends State<FourthStep> {
   }
 
   Future<void> pushToMainPage() async {
-    studentController.index = 0;
     await myPushName(context, MyPagesRoutes.main);
+    studentController.index = 0;
     // await  Navigator.of(context).push(MaterialPageRoute(
     //       builder: (BuildContext context) => const HomeBeforeAddData())
     // );

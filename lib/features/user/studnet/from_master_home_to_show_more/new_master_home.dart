@@ -220,33 +220,28 @@ class _NewMasterHomeConsumerState extends ConsumerState<NewMasterHome> {
                   ),
                   onDoubleTap: () {
                     debugPrint("isSebhaVisible");
-                    ref.read(isSebhaVisibleNotifier.notifier).state
-                        !=
+                    ref.read(isSebhaVisibleNotifier.notifier).state !=
                         ref.read(isSebhaVisibleNotifier.notifier).state;
                     debugPrint("");
                   },
                 ),
-                apartmentList.data?.isNotEmpty ??
-                        false
+                apartmentList.data?.isNotEmpty ?? false
                     ? const SizedBox()
                     : Padding(
                         padding:
                             const EdgeInsets.only(top: 70, right: 8, left: 8),
                         child: AnimatedOpacity(
-                          opacity:
-                          isSebhaVisible
-                              ? 1.0
-                              : 0.0,
+                          opacity: isSebhaVisible ? 1.0 : 0.0,
                           duration: const Duration(milliseconds: 300),
-                          child:isSebhaVisible
+                          child: isSebhaVisible
                               ? ApartmentShowTypesButton(
-                            onPressed: () {
-                              myPushName(
-                                  context, MyPagesRoutes.noInternet);
-                            },
-                            text: SetLocalization.of(context)!
-                                .getTranslateValue("tasbih"),
-                          )
+                                  onPressed: () {
+                                    myPushName(
+                                        context, MyPagesRoutes.noInternet);
+                                  },
+                                  text: SetLocalization.of(context)!
+                                      .getTranslateValue("tasbih"),
+                                )
                               : const SizedBox(),
                         ),
                       ),
