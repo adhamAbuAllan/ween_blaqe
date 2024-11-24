@@ -56,7 +56,7 @@ class GeneralApartmentInfoDataRequiredTable extends StatelessWidget {
               .getTranslateValue("required_info_name"),
         ),
         DataColumn(
-          headingRowAlignment: MainAxisAlignment.center,
+          // headingRowAlignment: MainAxisAlignment.center,
           label: Text(SetLocalization.of(context)!.getTranslateValue("example"),
               style: TextStyle(
                   fontSize: 16,

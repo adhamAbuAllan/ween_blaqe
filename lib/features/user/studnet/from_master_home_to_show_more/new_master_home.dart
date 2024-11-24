@@ -3,15 +3,11 @@ import 'package:connectivity_plus/connectivity_plus.dart';
 // import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
-import 'package:get/get.dart';
 import 'package:ween_blaqe/constants/nums.dart';
 import 'package:ween_blaqe/constants/strings.dart';
-import 'package:ween_blaqe/controller/get_controllers.dart';
-import 'package:ween_blaqe/controller/models_controller/apartment_model_controller.dart';
 import 'package:ween_blaqe/controller/provider_controllers/providers/apartment_provider.dart';
 import 'package:ween_blaqe/controller/provider_controllers/providers/connectivity_provider.dart';
 import 'package:ween_blaqe/controller/provider_controllers/statuses/city_state.dart';
-import 'package:ween_blaqe/controller/provider_controllers/statuses/connectivity_state.dart';
 import 'package:ween_blaqe/core/utils/funcations/route_pages/push_routes.dart';
 import 'package:ween_blaqe/core/widgets/apartments/new_master_home_classes_widgets/apartment_container/list_of_apartments.dart';
 import 'package:ween_blaqe/core/widgets/apartments/new_master_home_classes_widgets/types_of_apartments_list/container_types.dart';
@@ -79,8 +75,6 @@ class _NewMasterHomeConsumerState extends ConsumerState<NewMasterHome> {
     var type = ref.read(apartmentTypeNotifier);
     var isAll = ref.read(isAllTypesOfApartmentNotifier);
     var cityId = cityState.cityId;
-    var cities = cityState.cities;
-    var apartmentIsloading = apartmentState.isLoading;
     var errorMessage = apartmentState.errorMessage;
     var apartmentList = apartmentState.apartmentsList;
     var apartmentType = ref.watch(apartmentTypeNotifier);
@@ -106,10 +100,10 @@ class _NewMasterHomeConsumerState extends ConsumerState<NewMasterHome> {
             isAll: isAll,
             cityId: cityId);
       },
-      child: apartmentIsloading
-          ? errorMessage?.isNotEmpty ?? false
+      child: !apartmentState.isLoading
+          ? (errorMessage?.isNotEmpty ?? false
               ? Text(errorMessage ?? "")
-              : (apartmentList.data?.isEmpty ?? false)
+              : (apartmentList.data?.isEmpty ?? true)
                   ? TypeNotFound(type: apartmentType)
                   : FutureBuilder(
                       future: Connectivity().checkConnectivity(),
@@ -209,7 +203,7 @@ class _NewMasterHomeConsumerState extends ConsumerState<NewMasterHome> {
                                         : const SizedBox()),
                               ]),
                         );
-                      })
+                      }))
           : Stack(
               children: [
                 GestureDetector(
