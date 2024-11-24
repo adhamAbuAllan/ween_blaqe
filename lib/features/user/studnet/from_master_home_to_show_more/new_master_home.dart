@@ -22,7 +22,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../../../controller/provider_controllers/statuses/apartment_state.dart';
 
-class NewMasterHome extends ConsumerStatefulWidget {
+class NewMasterHome extends ConsumerStatefulWidget  {
   const NewMasterHome({super.key, this.scrollController});
 
   final ScrollController? scrollController;
@@ -59,20 +59,24 @@ class _NewMasterHomeConsumerState extends ConsumerState<NewMasterHome> {
     });
 
     // Fetch apartments initially
-    ref.read(isAllTypesOfApartmentNotifier.notifier).state = true;
+    // ref.read(isAllTypesOfApartmentNotifier.notifier).state = true;
     ref.read(fetchApartmentNotifier).fetchApartments(
         isOwnerApartments: false,
         ref: ref,
         type: ref.read(apartmentTypeNotifier),
         isAll: true,
         cityId: 0);
-
+// ref.read(apartmentsListNotifier.notifier).state = apartmentState.apartmentsList;
+debugPrint("the apartment in ref list is ${ref.read(apartmentsListNotifier
+    .notifier).state.data}");
+debugPrint("the list of apartment state list is ${apartmentState
+    .apartmentsList.data}");
     cityState.copyWith(cityId: 0);
   }
 
   @override
   Widget build(BuildContext context) {
-    var type = ref.read(apartmentTypeNotifier);
+    var type = ref.watch(apartmentTypeNotifier.notifier).state;
     var isAll = ref.read(isAllTypesOfApartmentNotifier);
     var cityId = cityState.cityId;
     var errorMessage = apartmentState.errorMessage;
@@ -100,8 +104,8 @@ class _NewMasterHomeConsumerState extends ConsumerState<NewMasterHome> {
             isAll: isAll,
             cityId: cityId);
       },
-      child: !apartmentState.isLoading
-          ? (errorMessage?.isNotEmpty ?? false
+      child: apartmentState.isLoading
+          ? (errorMessage?.isNotEmpty ?? true
               ? Text(errorMessage ?? "")
               : (apartmentList.data?.isEmpty ?? true)
                   ? TypeNotFound(type: apartmentType)
@@ -157,7 +161,7 @@ class _NewMasterHomeConsumerState extends ConsumerState<NewMasterHome> {
                                           );
                                     }
                                   },
-                                  apartmentsRes: apartmentList,
+                                  apartmentsRes: apartmentState.apartmentsList ,
                                   scrollController: widget.scrollController,
                                 ),
                                 Padding(
