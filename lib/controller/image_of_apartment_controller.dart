@@ -4,14 +4,13 @@ import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 import 'package:ween_blaqe/controller/pointer_of_images_controller.dart';
 
-import '../api/photos.dart';
 
 class ImageOfApartmentController extends GetxController {
   CarouselSliderController carouselSliderController = CarouselSliderController();
-  List<Photos> itemsPhotos = [];
+
   // Map to store the photo index for each apartment by its ID
   Map<int, RxInt> currentPhotoIndexMap = {};
-  RxInt currentPhotoIndex = 0.obs;
+
 
   // Function to get or initialize the current photo index for an apartment
   RxInt getCurrentPhotoIndex(int apartmentId) {

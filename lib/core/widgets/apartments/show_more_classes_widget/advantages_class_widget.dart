@@ -77,7 +77,7 @@ class _GetAdvantagesState extends State<GetAdvantages> {
                       onPressed: () {
                         Navigator.of(context).push(
                           MaterialPageRoute(builder: (context) {
-                            return ShowAllAdvantages(features: advantages!);
+                            return  ShowAllAdvantages(features: advantages??[],);
                           }),
                         );
                       },

@@ -44,7 +44,7 @@ class Apartments {
   }
   @override
   String toString() {
-    return 'Apartments(status: $status, msg: $msg, data: ${data?.map((e) => e.toString()).toList()})';
+    return toJson().toString();
   }
 }
 class DataOfOneApartment {
@@ -130,6 +130,6 @@ currentPhotoIndex = 0.obs;
   }
   @override
   String toString() {
-    return 'DataOfOneApartment(id: $id, title: $title, location: $location, price: $price, rooms: $rooms, bathrooms: $bathrooms, squareMeters: $squareMeters, city: ${city?.toString()}, type: ${type?.toString()})';
+    return toJson().toString();
   }
 }

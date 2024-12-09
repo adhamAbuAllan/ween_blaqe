@@ -3,7 +3,7 @@
 // import 'package:flutter_svg/svg.dart';
 // import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 //
-// import '../../core/widgets/apartments/show_more_classes_widget/image_slider/pointer.dart';
+// import '../../core/widgets/apartments/show_more_classes_widget/image_slider/pointer_of_image_widget.dart';
 //
 //
 // main()  {

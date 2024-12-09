@@ -20,7 +20,8 @@ class UserNameWidget extends ConsumerWidget {
       autoFocus: true,
       errorText: ref.watch(formFieldsNotifier)['username']?.error,
       onChanged: (value) {
-        ref.read(formFieldsNotifier.notifier).updateValue('username', value);
+        ref.read(formFieldsNotifier.notifier).updateValue('username', value,
+            context: context);
       },      controller: ref.read(userNameController),
       textInputType: TextInputType.name,);
   }

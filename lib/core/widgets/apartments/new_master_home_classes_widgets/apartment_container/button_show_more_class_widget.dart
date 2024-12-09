@@ -2,7 +2,7 @@
 // import 'package:ween_blaqe/api/apartments_api/apartments.dart';
 // // import 'package:ween_blaqe/controller/auth_provider.dart';
 // import 'package:ween_blaqe/core/utils/styles/button.dart';
-// import 'package:ween_blaqe/features/user/studnet/from_master_home_to_show_more/new_show_more.dart';
+// import 'package:ween_blaqe/view/user/studnet/from_master_home_to_show_more/new_show_more.dart';
 //
 // import '../../../../../constants/nums.dart';
 

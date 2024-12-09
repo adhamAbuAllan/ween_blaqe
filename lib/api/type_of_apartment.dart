@@ -1,8 +1,3 @@
-
-
-
-
-
 class TypeOfApartmentRes {
   TypeOfApartmentRes({
     required this.status,
@@ -13,7 +8,7 @@ class TypeOfApartmentRes {
   late final String msg;
   late final TypeOfApartment data;
 
-  TypeOfApartmentRes.fromJson(Map<String, dynamic> json){
+  TypeOfApartmentRes.fromJson(Map<String, dynamic> json) {
     status = json['status'];
     msg = json['msg'];
     data = TypeOfApartment.fromJson(json['data']);
@@ -26,21 +21,27 @@ class TypeOfApartmentRes {
     _data['data'] = data.toJson();
     return _data;
   }
+
+  @override
+  String toString() {
+    return toJson().toString();
+  }
+
 }
 
 class TypeOfApartment {
   TypeOfApartment({
-     this.name,
+    this.name,
     this.updatedAt,
     this.createdAt,
-     this.id,
+    this.id,
   });
-  late final String ?name;
-  late final String ?updatedAt;
-  late final String ?createdAt;
-  late final int ?id;
+  late final String? name;
+  late final String? updatedAt;
+  late final String? createdAt;
+  late final int? id;
 
-  TypeOfApartment.fromJson(Map<String, dynamic> json){
+  TypeOfApartment.fromJson(Map<String, dynamic> json) {
     name = json['name'];
     updatedAt = json['updated_at'];
     createdAt = json['created_at'];
@@ -55,4 +56,10 @@ class TypeOfApartment {
     _data['id'] = id;
     return _data;
   }
+
+  @override
+  String toString() {
+    return toJson().toString();
+  }
+
 }

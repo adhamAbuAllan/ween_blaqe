@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import '../methods/local_methods/validator.dart';
+import '../methods/hybrid_methods/validator.dart';
 
 class TextFieldState {
   final String value;
@@ -23,7 +23,7 @@ class FormFieldsNotifier extends StateNotifier<Map<String, TextFieldState>> {
 
   void updateValue(String fieldKey, String value,
       {BuildContext? context, WidgetRef? ref}) {
-    String? error = Validator.validateField(fieldKey, value);
+    String? error = Validator.validateField(fieldKey, value,context!);
 
     state = {
       ...state,
@@ -31,11 +31,11 @@ class FormFieldsNotifier extends StateNotifier<Map<String, TextFieldState>> {
     };
   }
 
-  bool validateAllFields() {
+  bool validateAllFields(BuildContext context) {
     bool isValid = true;
     // Validate each field
     state.forEach((key, textFieldState) {
-      final error = Validator.validateField(key, textFieldState.value);
+      final error = Validator.validateField(key, textFieldState.value,context);
       if (error != null) {
         isValid = false;
         state = {

@@ -27,9 +27,92 @@ import '../../../../session/new_session.dart';
 // import '../../../../constants/coordination.dart';
 
 // import 'package:ween_blaqe/core/widgets/alirt_class_widget.dart';
-// import 'package:ween_blaqe/features/user/owner/steps_to_create_apartment/fourth_step.dart';
+// import 'package:ween_blaqe/view/user/owner/steps_to_create_apartment/fourth_step.dart';
 
 // import 'package:video_player/video_player.dart';
+
+
+//
+// class UpdateImages extends ConsumerWidget {
+//   final int apartmentId;
+//   final List<Photos>? existingPhotos;
+//
+//   const UpdateImages({
+//     super.key,
+//     required this.apartmentId,
+//     this.existingPhotos,
+//   });
+//
+//   @override
+//   Widget build(BuildContext context, WidgetRef ref) {
+//     final imageState = ref.watch(imageManagerNotifier);
+//     final imageNotifier = ref.read(imageManagerNotifier.notifier);
+//
+//     return Scaffold(
+//       appBar: AppBar(
+//         title: const Text('Update Images'),
+//       ),
+//       body: Column(
+//         children: [
+//           if (imageState.isLoading) ...[
+//             const CircularProgressIndicator(),
+//           ] else ...[
+//             Expanded(
+//               child: GridView.builder(
+//                 itemCount: imageState.imageFiles?.length ?? 0,
+//                 gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+//                   crossAxisCount: 3,
+//                   crossAxisSpacing: 8,
+//                   mainAxisSpacing: 8,
+//                 ),
+//                 itemBuilder: (context, index) {
+//                   final image = imageState.imageFiles![index];
+//                   return Stack(
+//                     children: [
+//                       Image.file(
+//                         File(image.path),
+//                         fit: BoxFit.cover,
+//                       ),
+//                       Positioned(
+//                         top: 0,
+//                         right: 0,
+//                         child: IconButton(
+//                           icon: const Icon(Icons.cancel, color: Colors.red),
+//                           onPressed: () => imageNotifier.removeImage(image),
+//                         ),
+//                       ),
+//                     ],
+//                   );
+//                 },
+//               ),
+//             ),
+//             ElevatedButton(
+//               onPressed: () async {
+//                 final pickedImages = await ImagePicker().pickMultiImage();
+//                 if (pickedImages != null) {
+//                   imageNotifier.addImages(pickedImages);
+//                 }
+//               },
+//               child: const Text('Add Images'),
+//             ),
+//           ],
+//           ElevatedButton(
+//             onPressed: () {
+//               imageNotifier.updateImages(
+//                 apartmentId: apartmentId,
+//              ref: ref,
+//               );
+//             },
+//             child: const Text('Save Changes'),
+//           ),
+//         ],
+//       ),
+//     );
+//   }
+// }
+//
+
+
 class UpdateImages extends StatefulWidget {
   const UpdateImages(
       {super.key, this.title, required this.oneApartmentId, this.oneApartment});

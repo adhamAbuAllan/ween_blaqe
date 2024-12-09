@@ -105,9 +105,14 @@ class TextFieldClassWidget extends ConsumerWidget {
               fontSize: 12.0,
             ),
             error: isPhoneRegTextField ?? false
-                ? (validateTextValue != null ? const SizedBox() : null)
+                ? (validateTextValue != null && validateTextValue != "no "
+                "error have" ?
+            const
+            SizedBox() : null)
                 : (errorText != null
-                    ? Text(
+                    ?
+
+            Text(
                         errorText!,
                         style: const TextStyle(
                           color: Colors.redAccent,

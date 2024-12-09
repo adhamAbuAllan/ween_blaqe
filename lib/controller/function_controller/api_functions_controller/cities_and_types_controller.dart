@@ -1,4 +1,5 @@
 import 'dart:convert';
+
 // import 'package:flutter/material.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -17,7 +18,7 @@ class ReadyCityAndApartmentTypeApi extends GetxController {
   List<int> cityIds = [];
 
   //type
- List<TypeOfApartment?> itemsTypeOfApartment = [];
+  List<TypeOfApartment?> itemsTypeOfApartment = [];
   int indexApartmentType = 1;
 
   //for cities
@@ -28,12 +29,12 @@ class ReadyCityAndApartmentTypeApi extends GetxController {
     var res = await http.get(url);
 
     if (res.statusCode == 200) {
-cityIds.clear();
+      cityIds.clear();
       var jsonData = jsonDecode(res.body);
       var getData = jsonData['data'];
       cityItems.clear();
       // items = [];
-      for(var i  = 0 ; i < getData.length ; i++){
+      for (var i = 0; i < getData.length; i++) {
         cityIds.add(getData[i]['id']);
       }
       for (var item in getData) {
@@ -46,12 +47,11 @@ cityIds.clear();
       throw res.statusCode;
     }
   }
+
   //for type
-  Future<List?>getDataTypeApiToEdit(
+  Future<List?> getDataTypeApiToEdit(
       List<dynamic> typeItems, String uri) async {
-
     isDataTypeLoading.value = true;
-
 
     var url = Uri.parse(uri);
     var res = await http.get(url);

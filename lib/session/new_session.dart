@@ -17,7 +17,7 @@ class NewSession {
     } else if (value is bool) {
       sp.setBool(key, value);
     } else if (value is List<String>) {
-      sp.setStringList(key, value);
+      sp.setStringList(key, value); // This already handles List<String>
     } else {
       throw ArgumentError('Unsupported type');
     }

@@ -11,7 +11,6 @@ import '../../../constants/localization.dart';
 
 class DropdownButtonClassWidget extends StatefulWidget {
   final String firstItem;
-
   final int itemIdNotIndex;
   final Function(dynamic) onSelected;
 
@@ -24,7 +23,8 @@ class DropdownButtonClassWidget extends StatefulWidget {
     required this.firstItem,
     required this.onSelected,
     required this.wholeListApi,
-    this.itemIdNotIndex = 1, this.forCity,
+    this.itemIdNotIndex = 1,
+   this.forCity,
   });
 
   @override

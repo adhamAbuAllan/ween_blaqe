@@ -1,12 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:ween_blaqe/features/common_widgets/back_button_widget.dart';
-import 'package:ween_blaqe/features/widgets_before_user_reg/widgets/login_widgets/button_login_completed_widget.dart';
-import 'package:ween_blaqe/features/widgets_before_user_reg/widgets/login_widgets/password_login_completed_widget.dart';
-import 'package:ween_blaqe/features/widgets_before_user_reg/widgets/login_widgets/phone_login_completed_widget.dart';
-import 'package:ween_blaqe/features/widgets_before_user_reg/widgets/login_widgets/title_login_completed_widget.dart';
+import 'package:ween_blaqe/view/common_widgets/back_button_widget.dart';
+import 'package:ween_blaqe/view/widgets_before_user_reg/widgets/login_widgets'
+    '/button_login_completed_widget.dart';
+import 'package:ween_blaqe/view/widgets_before_user_reg/widgets/login_widgets'
+    '/password_login_completed_widget.dart';
+import 'package:ween_blaqe/view/widgets_before_user_reg/widgets/login_widgets'
+    '/phone_login_completed_widget.dart';
+import 'package:ween_blaqe/view/widgets_before_user_reg/widgets/login_widgets'
+    '/title_login_completed_widget.dart';
 import '../../../../constants/nums.dart';
-import '../../../../features/widgets_before_user_reg/widgets/login_widgets/button_nav_to_reg_completed_widget.dart';
+import '../../../../view/widgets_before_user_reg/widgets/login_widgets'
+    '/button_nav_to_reg_completed_widget.dart';
 
 class LoginUiTest extends ConsumerWidget {
   const LoginUiTest({super.key});

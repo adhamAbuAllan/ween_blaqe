@@ -46,6 +46,7 @@ ButtonStyle outlinedButton(
         : kContainerColorDarkMode
         : null,
     textStyle: TextStyle(
+
       fontSize: getIt<AppDimension>().isSmallScreen(context) ? 15 : 16,
       color: themeMode?.isLight ?? false
           ? kPrimaryColorLightMode
@@ -58,7 +59,8 @@ ButtonStyle outlinedButton(
         color: themeMode?.isLight ?? false
             ? kPrimaryColorLightMode
             : kPrimaryColorDarkMode),
-    padding: const EdgeInsets.all(1),
+
+    padding: const EdgeInsets.symmetric(horizontal: 10),
     alignment: Alignment.center,
   );
 }

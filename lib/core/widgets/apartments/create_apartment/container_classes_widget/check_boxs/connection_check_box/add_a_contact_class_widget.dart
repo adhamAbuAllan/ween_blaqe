@@ -7,6 +7,7 @@ import 'package:ween_blaqe/constants/strings.dart';
 import 'package:ween_blaqe/controller/function_controller/change_theme_mode.dart';
 import 'package:ween_blaqe/core/utils/funcations/route_pages/push_routes.dart';
 import 'package:ween_blaqe/core/utils/funcations/snakbar.dart';
+import 'package:ween_blaqe/view/common_widgets/containers_widgets/container_widget.dart';
 
 import '../../../../../../../api/users.dart';
 import '../../../../../../../constants/nums.dart';
@@ -107,76 +108,66 @@ class _AddAcontactState extends State<AddAcontact> {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      margin: const EdgeInsets.fromLTRB(10, 2, 10, 10),
-      width: double.infinity,
-      // height: 140,
-      padding: const EdgeInsets.fromLTRB(0, 0, 0, 10),
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(7),
-        color: themeMode.isLight ? kContainerColorLightMode : kContainerColorDarkMode,
-      ),
-      child: Column(
-        children: features.map((feature) {
-          return Row(
-            children: [
-              Checkbox(
-                  shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(2.6)),
-                  focusColor: themeMode.isLight ? kPrimaryColorLightMode : kPrimaryColorDarkMode,
-                  checkColor: Colors.white,
-                  // hoverColor: kPrimaryColor,
-                  activeColor: themeMode.isLight ? kPrimaryColorLightMode : kPrimaryColorDarkMode,
-                  side:  BorderSide(color: themeMode.isLight ? kPrimaryColor300LightMode : kPrimaryColor300DarkMode),
-                  splashRadius: 20,
-                  // autofocus: false,
-                  // tristate: true,
-                  overlayColor: WidgetStateProperty.all(themeMode.isLight ? kPrimaryColorLightMode : kPrimaryColorDarkMode),
-                  value: feature.checked,
-                  onChanged: (a) {
-                    if (a != null) {
-                      setState(() {
-                        feature.checked = a;
-                        // _isTapped = feature.checked;
-                        // feature.checked = _isTapped;
-                      });
-                      if (feature.checked == true) {
-                        if (features[1].data.isNotEmpty &&
-                            features[1].data.isNotEmpty &&
-                            features[1].data != "") {
-                          chosen.add(features[1].id);
-                        } else {
-                          showSnakBar(context, "الرجاء إضافة الايميل الخاص بك");
-                          myPushName(context, MyPagesRoutes.profile);
-                        }
-                        chosen.add(feature.id);
+    return ContainerWidget(child: Column(
+      children: features.map((feature) {
+        return Row(
+          children: [
+            Checkbox(
+                shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(2.6)),
+                focusColor: themeMode.isLight ? kPrimaryColorLightMode : kPrimaryColorDarkMode,
+                checkColor: Colors.white,
+                // hoverColor: kPrimaryColor,
+                activeColor: themeMode.isLight ? kPrimaryColorLightMode : kPrimaryColorDarkMode,
+                side:  BorderSide(color: themeMode.isLight ? kPrimaryColor300LightMode : kPrimaryColor300DarkMode),
+                splashRadius: 20,
+                // autofocus: false,
+                // tristate: true,
+                overlayColor: WidgetStateProperty.all(themeMode.isLight ? kPrimaryColorLightMode : kPrimaryColorDarkMode),
+                value: feature.checked,
+                onChanged: (a) {
+                  if (a != null) {
+                    setState(() {
+                      feature.checked = a;
+                      // _isTapped = feature.checked;
+                      // feature.checked = _isTapped;
+                    });
+                    if (feature.checked == true) {
+                      if (features[1].data.isNotEmpty &&
+                          features[1].data.isNotEmpty &&
+                          features[1].data != "") {
+                        chosen.add(features[1].id);
                       } else {
-                        var index = chosen.indexOf(feature.id);
-                        chosen.removeAt(index);
+                        showSnakBar(context, "الرجاء إضافة الايميل الخاص بك");
+                        myPushName(context, MyPagesRoutes.profile);
                       }
-                      debugPrint("$chosen");
+                      chosen.add(feature.id);
+                    } else {
+                      var index = chosen.indexOf(feature.id);
+                      chosen.removeAt(index);
                     }
-                  }),
-              Text(
-                feature.name,
-                style: TextStyle(
-                    
-                    fontSize: 16,
-                    color: Colors.grey.shade800),
+                    debugPrint("$chosen");
+                  }
+                }),
+            Text(
+              feature.name,
+              style: TextStyle(
+
+                  fontSize: 16,
+                  color: Colors.grey.shade800),
+            ),
+            const Expanded(child: Text("")),
+            Padding(
+              padding: const EdgeInsets.fromLTRB(10, 0, 0, 0),
+              child: Image(
+                image: AssetImage(feature.icon),
+                width: 30,
+                height: 30,
               ),
-              const Expanded(child: Text("")),
-              Padding(
-                padding: const EdgeInsets.fromLTRB(10, 0, 0, 0),
-                child: Image(
-                  image: AssetImage(feature.icon),
-                  width: 30,
-                  height: 30,
-                ),
-              )
-            ],
-          );
-        }).toList(),
-      ),
-    );
+            )
+          ],
+        );
+      }).toList(),
+    ));
   }
 }

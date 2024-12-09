@@ -37,25 +37,22 @@ import 'package:ween_blaqe/controller/student_controller/student_controller.dart
 import 'package:ween_blaqe/core/utils/funcations/route_pages/push_routes.dart';
 import 'package:ween_blaqe/core/widgets/skeletons/general_skeleton_ready_widgets/paragraph_ready_skeleton.dart';
 import 'package:ween_blaqe/core/widgets/skeletons/student_widgets/show_more_skeleton_widget.dart';
-import 'package:ween_blaqe/features/bookmark.dart';
-import 'package:ween_blaqe/features/error_widgets/no_internet.dart';
-import 'package:ween_blaqe/features/paragraphs_widgets/ask_for_help_widgets/another_asks.dart';
-import 'package:ween_blaqe/features/paragraphs_widgets/ask_for_help_widgets/ask_for_help.dart';
-import 'package:ween_blaqe/features/paragraphs_widgets/ask_for_help_widgets/for_owner/how_create_ad.dart';
-import 'package:ween_blaqe/features/paragraphs_widgets/ask_for_help_widgets/for_owner/the_ad_is_free_or_not.dart';
-import 'package:ween_blaqe/features/paragraphs_widgets/ask_for_help_widgets/for_owner/what_the_info_req_to_cerate_ad.dart';
-import 'package:ween_blaqe/features/paragraphs_widgets/ask_for_help_widgets/for_student/system_booking.dart';
-import 'package:ween_blaqe/features/paragraphs_widgets/ask_for_help_widgets/for_student/system_paying.dart';
-import 'package:ween_blaqe/features/paragraphs_widgets/privacy_policy.dart';
-import 'package:ween_blaqe/features/user/owner/apartment_of_owner.dart';
-import 'package:ween_blaqe/features/user/owner/profile_of_owner.dart';
+import 'package:ween_blaqe/view/apartment/apartment_of_owner/apartments_of_owner_ui.dart';
+import 'package:ween_blaqe/view/apartment/home_ui.dart';
+import 'package:ween_blaqe/view/error_widgets/no_internet.dart';
+import 'package:ween_blaqe/view/paragraphs_widgets/ask_for_help_widgets/another_asks.dart';
+import 'package:ween_blaqe/view/paragraphs_widgets/ask_for_help_widgets/ask_for_help.dart';
+import 'package:ween_blaqe/view/paragraphs_widgets/ask_for_help_widgets/for_owner/how_create_ad.dart';
+import 'package:ween_blaqe/view/paragraphs_widgets/ask_for_help_widgets/for_owner/the_ad_is_free_or_not.dart';
+import 'package:ween_blaqe/view/paragraphs_widgets/ask_for_help_widgets/for_owner/what_the_info_req_to_cerate_ad.dart';
+import 'package:ween_blaqe/view/paragraphs_widgets/ask_for_help_widgets/for_student/system_booking.dart';
+import 'package:ween_blaqe/view/paragraphs_widgets/ask_for_help_widgets/for_student/system_paying.dart';
+import 'package:ween_blaqe/view/paragraphs_widgets/privacy_policy.dart';
+import 'package:ween_blaqe/view/user/owner/profile_ui.dart';
 
-import 'package:ween_blaqe/features/user/studnet/from_master_home_to_show_more/new_master_home.dart';
-import 'package:ween_blaqe/features/user/studnet/from_master_home_to_show_more/new_show_more.dart';
-import 'package:ween_blaqe/features/user/studnet/main_student.dart';
 
-import 'package:ween_blaqe/features/splach_screen.dart';
-import 'package:ween_blaqe/features/user/owner/update_data_of_user.dart';
+import 'package:ween_blaqe/view/splach_screen.dart';
+import 'package:ween_blaqe/view/user/owner/update_data_of_user_ui.dart';
 import 'package:ween_blaqe/session/new_session.dart';
 
 // import 'package:ween_blaqe/testing_code/bookmark_test.dart';
@@ -74,18 +71,21 @@ import 'controller/image_of_apartment_controller.dart';
 import 'controller/models_controller/images_model_controller.dart';
 import 'controller/models_controller/type_of_apartment_models_controller.dart';
 
-// import 'features/bookmark.dart';
+// import 'view/bookmark.dart';
 import 'controller/models_controller/user_model_controller.dart';
 import 'controller/scroll_controller.dart';
-import 'features/intro_screen.dart';
-import 'features/send_notice_for_us.dart';
-import 'features/user/owner/refactor_apartment.dart';
-import 'features/user/owner/steps_to_create_apartment/first_step.dart';
-import 'features/user/owner/steps_to_create_apartment/fourth_step.dart';
-import 'features/user/owner/steps_to_create_apartment/second_step.dart';
-import 'features/user/owner/steps_to_create_apartment/third_step.dart';
-import 'features/widgets_before_user_reg/login.dart';
-import 'features/widgets_before_user_reg/registration.dart';
+import 'view/apartment/apartment_of_owner/update_apartment_ui.dart';
+import 'view/apartment/bookmark_ui.dart';
+import 'view/apartment/show_deitals_of_apartment/show_deitals_of_apartment_ui.dart';
+import 'view/intro_screen.dart';
+import 'view/main_screen_ui.dart';
+import 'view/send_notice_for_us.dart';
+import 'view/user/owner/steps_to_create_apartment/first_step.dart';
+import 'view/user/owner/steps_to_create_apartment/fourth_step.dart';
+import 'view/user/owner/steps_to_create_apartment/second_step.dart';
+import 'view/user/owner/steps_to_create_apartment/third_step.dart';
+import 'view/widgets_before_user_reg/login.dart';
+import 'view/widgets_before_user_reg/registration_ui.dart';
 
 /*
 **كيف ممكن ننشئ مشاريع في الفريق تاعنا و الكل يوخذ حقه**
@@ -279,7 +279,7 @@ class _OwnMaterialAppState extends State<OwnMaterialApp> {
       routes: {
         MyPagesRoutes.main: (context) => const Main(),
         // MyPagesRoutes.mainOwner: (context) => const MainOwner(),
-        MyPagesRoutes.mainStudent: (context) => const MainStudent(),
+        MyPagesRoutes.mainUi: (context) => const MainUi(),
         MyPagesRoutes.step1: (context) => const FirstStep(),
         MyPagesRoutes.step2: (context) => const SecondStep(),
         MyPagesRoutes.step3: (context) => const ThirdStep(),
@@ -287,7 +287,7 @@ class _OwnMaterialAppState extends State<OwnMaterialApp> {
               oneApartmentId: apartmentModelController.apartmentsList.data?.first,
             ),
         MyPagesRoutes.login: (context) => const Login(),
-        MyPagesRoutes.register: (context) => const Register(),
+        MyPagesRoutes.register: (context) => const RegistrationUi(),
         // MyPagesRoutes.masterHome: (context) => const MasterHome(),
         // MyPagesRoutes.showMore: (context) => const ShowMore(),
         // MyPagesRoutes.accountBeforeLoginInStudent: (context) =>
@@ -299,9 +299,9 @@ class _OwnMaterialAppState extends State<OwnMaterialApp> {
         // MyPagesRoutes.bookingNow: (context) => const BookingNow(),
         // MyPagesRoutes.getStarted: (context) => const GetStarted(),
         // MyPagesRoutes.searchFilter: (context) => const SearchFilter(),
-        MyPagesRoutes.profileOfOwner: (context) => const ProfileOfOwner(),
+        MyPagesRoutes.profileOfOwner: (context) => const ProfileUi(),
         // MyPagesRoutes.ordersOfStudent: (context) => const OrdersOfStudent(),
-        MyPagesRoutes.bookmarkApartment: (context) => const BookmarkApartment(),
+        MyPagesRoutes.bookmarkUi: (context) => const BookmarkApartmentUi(),
         // MyPagesRoutes.orders: (context) => const Orders(),
         // MyPagesRoutes.notificationOfStudent: (context) =>
         //     const NotificationOfStudentWithNotifi(),
@@ -311,10 +311,11 @@ class _OwnMaterialAppState extends State<OwnMaterialApp> {
         //     const ApartmentsOfOwnerAfterAdd(),
         // MyPagesRoutes.apartmentOfOwnerBeforeAdd: (context) =>
         //     const ApartmentOfOwnerBeforeAdd(),
-        MyPagesRoutes.apartmentsOwner: (context) =>  const ApartmentsOwner(),
+        MyPagesRoutes.apartmentsOwner: (context) =>  const ApartmentsOfOwnerUi(),
 
         MyPagesRoutes.splashScreen: (context) => const SplashScreen(),
-        MyPagesRoutes.refactorApartment: (context) => const RefactorApartment(),
+        MyPagesRoutes.updateApartment: (context) => const
+        UpdateApartmentUi(),
         MyPagesRoutes.privacyPolicy: (context) => const PrivacyPolicy(),
         MyPagesRoutes.askForHelp: (context) => const AskForHelp(),
         MyPagesRoutes.systemPaying: (context) => const SystemPaying(),
@@ -345,12 +346,12 @@ class _OwnMaterialAppState extends State<OwnMaterialApp> {
         //     const BookingNowSkeletonWidget(),
         MyPagesRoutes.skeletonParagraph: (context) =>
             const LongParagraphReadySkeleton(),
-        MyPagesRoutes.newMasterHome: (context) => const NewMasterHome(),
-        MyPagesRoutes.newShowMore: (context) => const NewShowMore(),
+        MyPagesRoutes.homeUi: (context) => const HomeUi(),
+        MyPagesRoutes.showDeitalsOfApartmentUi: (context) => const  ShowDeitalsOfApartmentUi(),
         MyPagesRoutes.whatTheInfoReqToCreateAd: (context) =>
             const WhatTheInfoReqToCreateAd(),
         MyPagesRoutes.introScreen: (context) => const IntroScreen(),
-        MyPagesRoutes.updateUserInfo: (context) => const UpdateUserData(),
+        MyPagesRoutes.updateUserInfo: (context) => const UpdateUserDataUi(),
 
         //testing routes..
         // MyPagesRoutes.citiesTest:(context)=> CitiesTest(),
@@ -460,7 +461,7 @@ class _MainState extends State<Main> {
                 return IndexedStack(
                   index: mainController.index,
                   children: const [
-                    MainStudent(),
+                    MainUi(),
                     //for Owner
                     // MainOwner(),
                   ],

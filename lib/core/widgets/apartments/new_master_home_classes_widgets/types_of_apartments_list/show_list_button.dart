@@ -58,7 +58,7 @@ class _BtnShowTypesOfApartmentsState extends State<BtnShowTypesOfApartments> {
         onPressed: widget.onPressed,
         //                              Container(height: 50,width: 100,color: Colors.white,),
         child: widget.text?.isNotEmpty ?? false
-            ? Text(" ${widget.text} ")
+            ? Text("${widget.text}")
             :  Text(SetLocalization.of(context)!.getTranslateValue("housing_type_btn")));
   }
 }

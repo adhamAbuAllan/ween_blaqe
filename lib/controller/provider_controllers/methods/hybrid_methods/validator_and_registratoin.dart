@@ -33,13 +33,13 @@ void validateAndRegistration(WidgetRef ref, BuildContext context) async {
 
   ref
       .read(formFieldsNotifier.notifier)
-      .updateValue("phoneNumberRegistration", phoneControllerValue);
+      .updateValue("phoneNumberRegistration", phoneControllerValue,context: context);
   ref
       .read(formFieldsNotifier.notifier)
-      .updateValue("passwordRegistration", passwordControllerValue);
+      .updateValue("passwordRegistration", passwordControllerValue,context: context);
   ref
       .read(formFieldsNotifier.notifier)
-      .updateValue("username", userNameControllerValue);
+      .updateValue("username", userNameControllerValue,context: context);
   String errorPhone =
       ref.read(formFieldsNotifier)["phoneNumberRegistration"]?.error ??
           "no error have";

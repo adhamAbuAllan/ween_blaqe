@@ -24,10 +24,10 @@ import 'package:upgrader/upgrader.dart';
 
 ///Server Part///
 ///
+///
 //weenbalaqee server host
 //Loclhost for physical Divise
-class ServerWeenBalaqee {
-  static String server = "https://weenbalaqee.com/api/";
+class ServerWeenBalaqee {static String server = "http://192.168.1.40:8000/api/";
   // static String postAll = "${server}post/all";
   static String userLogin = "${server}user/login";
   static String userUpdate = "${server}user/update";
@@ -62,6 +62,8 @@ class ServerWeenBalaqee {
   static String commentAdd = "${server}comment/add";
   static String uploadImages = "${server}photo/add";
   static String deleteImage = "${server}photo/delete";
+static String showApartmentImages = "${server}photo/show";
+
 }
 
 class ServerLocalhost {
@@ -145,7 +147,7 @@ class ServerLocalhostEm {
   static String bookingAll = "${server}booking/all";
   static String commentAdd = "${server}comment/add";
   static String uploadImages = "${server}photo/uploadImages";
-  static String showImages = "${server}photo/photo";
+  static String showApartmentImages = "${server}photo/show";
 
   //for test
   static String playerAll = "${server}player/all";
@@ -164,7 +166,7 @@ class ServerLocalhostEm {
 ///pages routes
 class MyPagesRoutes {
   static const main = "/main";
-  static const mainStudent = "/main_student";
+  static const mainUi = "/main_ui";
   static const mainOwner = "/main_owner";
   static const step1 = "/step1";
   static const step2 = "/step2";
@@ -184,9 +186,9 @@ class MyPagesRoutes {
   static const notificationOfStudent = "/notification_of_student";
   static const orders = "/orders";
   static const profileOfOwner = "/profile_of_owner";
-  static const refactorApartment = "/refactor_apartment";
+  static const updateApartment = "/update_apartment";
   static const showProfileOfStudent = "/show_profile_of_studnet";
-  static const bookmarkApartment = "/bookmark_apartment";
+  static const bookmarkUi = "/bookmark_ui";
   static const ordersOfStudent = "/order_of_student";
   static const profile = "/profile";
   static const searchFilter = "/search_filter";
@@ -220,8 +222,8 @@ class MyPagesRoutes {
   static const searchNotFound = "/search_not_found";
   static const skeletonBookingNow = "/skeleton_booking_now";
   static const skeletonParagraph = "/skeleton_paragraph_ready";
-  static const newMasterHome = "/new_master_home";
-  static const newShowMore = "/new_show_more";
+  static const homeUi = "/home_ui";
+  static const showDeitalsOfApartmentUi = "/show_deitals_of_apartment_ui";
   static const whatTheInfoReqToCreateAd = "/what_the_info_req_to_create_ad";
   static const introScreen = "/intro_screen";
   static const updateUserInfo = "/update_user_info";

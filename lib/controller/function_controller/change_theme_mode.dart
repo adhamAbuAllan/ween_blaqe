@@ -6,7 +6,10 @@ import 'package:shared_preferences/shared_preferences.dart';
 class ChangeThemeMode extends GetxController {
    bool isLight = false;
  void onChanged(bool onChange )async{
-   // SharedPreferences prefs = await SharedPreferences.getInstance();
+   // SharedPrefer// Assuming ChangeThemeMode is a provider that holds theme data
+   // final themeModeProvider = Provider<ChangeThemeMode>((ref) {
+   //   return ChangeThemeMode();
+   // });ences prefs = await SharedPreferences.getInstance();
    debugPrint("the isDark value before change value is $isLight -> in onChange method");
 
    isLight =onChange;

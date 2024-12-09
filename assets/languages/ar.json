@@ -1,4 +1,4 @@
-  {
+{
   "favorites": "المفضلة",
   "reset": "تصفير",
   "not_available": "غير متوفر",
@@ -212,7 +212,7 @@
   "saving_changes...": "جاري حفظ التغييرات...",
   "reload": "إعادة التحميل",
   "phone_number_should_start_with_country_code": "رقم الهاتف يجب ان يبدا برمز الدولة",
-  "empty_field" : "حقل فارغ",
+  "empty_field": "حقل فارغ",
   "please_entry_the_phone_number_field": "يرجى تعبئة حقل رقم الهاتف",
   "please_entry_the_password_field": "يرجى تعبئة حقل كلمة المرور",
   "min_chars_warning": "يرجى كتابة 35 حرف على الاقل",
@@ -233,20 +233,21 @@
   "owner_name": "اسم المالك",
   "loading...": "جاري التحميل...",
   "apartmentDeletedSuccess": "تم حذف الشقة بنجاح",
-    "deleteApartment": "حذف شقة",
+  "deleteApartment": "حذف شقة",
+  "delete": "حذف",
   "pleaseWait": "يرجى الإنتظار",
   "deletingAd": "جاري حذف الإعلان...",
-
   "female_students": "طالبات",
   "families": "عائلات",
   "all_types": "الكل",
-  "housing_type_btn": " صنف السكن ",
- "all_advantages" : "جميع المزايا",
-  "weak_password" : "كلمة مرور ضعيفة",
+  "housing_type_btn": "صنف السكن",
+  "all_advantages": "جميع المزايا",
+  "weak_password": "كلمة مرور ضعيفة",
   "the_phone_number_is_not_suitable": "رقم الهاتف غير مناسب",
-"username_must_not_contain_special_characters": "اسم المستخدم لا يمكن ان يحتوي على احرف خاصة",
+  "username_must_not_contain_special_characters": "اسم المستخدم لا يمكن ان يحتوي على احرف خاصة",
   "phone_number_must_not_contain_special_characters": "رقم الهاتف لا يمكن ان يحتوي على احرف خاصة",
   "verifying": "جاري التحقق...",
-    "cutInternet": "إنقطع الإنترنت",
-    "reconnected": "تمت إعادة الإتصال"
+  "cutInternet": "إنقطع الإنترنت",
+  "reconnected": "تمت إعادة الإتصال",
+  "please_wait_while_saving_changes": "يرجى الإنتظار ، جاري حفظ التغييرات"
 }

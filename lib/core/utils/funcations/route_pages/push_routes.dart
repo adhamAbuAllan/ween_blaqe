@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:ween_blaqe/features/splach_screen.dart'; //push to another page
+import 'package:ween_blaqe/view/splach_screen.dart'; //push to another page
 
 myPush(BuildContext context, Widget page, String routeName) {
   Navigator.of(context).push(MaterialPageRoute(

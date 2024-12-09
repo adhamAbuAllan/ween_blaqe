@@ -1,11 +1,4 @@
-
 import 'package:connectivity_plus/connectivity_plus.dart';
-// import 'package:flutter_riverpod/flutter_riverpod.dart';
-
-// import '../methods/local_methods/connectivity_notifier.dart';
-
-
-/// State class to hold connectivity-related values
 class ConnectivityState {
   final ConnectivityResult connectivity;
   late final bool isSnackBarShown;

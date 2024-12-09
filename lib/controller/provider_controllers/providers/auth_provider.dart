@@ -1,30 +1,31 @@
-/*
-isSureObscure
-
- */
 import 'dart:async';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:ween_blaqe/controller/provider_controllers/methods/api_methods/auth_methods/refresh_user_data.dart';
+import 'package:ween_blaqe/controller/provider_controllers/methods/api_methods/auth_methods/refresh_user_data_notifier.dart';
 
-  import '../../../api/users.dart';
-  import '../methods/api_methods/auth_methods/register.dart';
-  import '../methods/api_methods/auth_methods/update_user_methods/change_data_of_user_method.dart';
-import '../methods/api_methods/auth_methods/update_user_methods/change_password_method.dart';
-import '../methods/api_methods/auth_methods/update_user_methods/compress_and_upload_profile_image.dart';
-import '../methods/api_methods/auth_methods/load_profile_image.dart';
-import '../methods/api_methods/auth_methods/update_user_methods/social_connection_data_updater.dart';
-import '../methods/api_methods/auth_methods/update_user_methods/updater_data_user_method.dart';
+import '../../../api/users.dart';
+import '../methods/api_methods/auth_methods/register_notifier.dart';
+import '../methods/api_methods/auth_methods/update_user_methods/change_data_of_user_notifier.dart';
+import '../methods/api_methods/auth_methods/update_user_methods/change_password_notifier.dart';
+import '../methods/api_methods/auth_methods/update_user_methods/compress_and_upload_profile_image_notifier.dart';
+import '../methods/api_methods/auth_methods/load_profile_image_notifier.dart';
+import '../methods/api_methods/auth_methods/update_user_methods/social_connection_data_updater_notifier.dart';
+import '../methods/api_methods/auth_methods/update_user_methods/updater_data_user_notifier.dart';
 import '../methods/hybrid_methods/refresh_and_set_social_data.dart';
 import '../methods/hybrid_methods/validator_and_update_data_of_user.dart';
-import '../methods/local_methods/image_profile_picker.dart';
+
 // import '../../../controller/provider_controllers/local_methods/switcher_theme_mode.dart';
-import '../methods/api_methods/auth_methods/login_method.dart';
+import '../methods/api_methods/auth_methods/login_notifier.dart';
+import '../methods/local_methods/bottom_navigation_bar_notifier.dart';
 import '../statuses/auth_state.dart';
 import '../statuses/validate_text_form_field_state.dart';
 
+final btmNavBarIndexNotifier =
+    StateNotifierProvider<BtmNavBarIndexNotifier, int>(
+  (ref) => BtmNavBarIndexNotifier(),
+);
 final registerNotifier = StateNotifierProvider<RegisterNotifier, AuthState>(
     (ref) => RegisterNotifier());
 
@@ -33,7 +34,7 @@ final loginNotifier = StateNotifierProvider<LoginNotifier, AuthState>((ref) {
 });
 final loadProfileImageNotifier =
     StateNotifierProvider<LoadProfileImageNotifier, AuthState>(
-        (ref) => LoadProfileImageNotifier ());
+        (ref) => LoadProfileImageNotifier());
 final compressAndUploadImageNotifier =
     StateNotifierProvider<CompressAndUploadProfileImageNotifier, AuthState>(
         (ref) => CompressAndUploadProfileImageNotifier());
@@ -42,9 +43,7 @@ final formFieldsNotifier =
     StateNotifierProvider<FormFieldsNotifier, Map<String, TextFieldState>>(
         (ref) => FormFieldsNotifier());
 
-final imageProfilePickerNotifier =
-    StateNotifierProvider<ImageProfilePickerNotifier, AuthState>(
-        (ref) => ImageProfilePickerNotifier());
+
 
 final socialConnectionDataUpdaterNotifier =
     StateNotifierProvider<SocialConnectionDataUpdaterNotifier, AuthState>(
@@ -60,12 +59,12 @@ final refreshAndSetSocialDataNotifier =
 );
 
 final changeDataOfUserMethodNotifier =
-    StateNotifierProvider<ChangeDataOfUserMethodNotifier, AuthState>(
-  (ref) => ChangeDataOfUserMethodNotifier(),
+    StateNotifierProvider<ChangeDataOfUserNotifier, AuthState>(
+  (ref) => ChangeDataOfUserNotifier(),
 );
 final changePasswordMethodNotifier =
-    StateNotifierProvider<ChangePasswordMethodNotifier, AuthState>(
-  (ref) => ChangePasswordMethodNotifier(),
+    StateNotifierProvider<ChangePasswordNotifier, AuthState>(
+  (ref) => ChangePasswordNotifier(),
 );
 final updaterDataUserNotifier =
     StateNotifierProvider<UpdaterDataUserNotifier, AuthState>(
@@ -75,7 +74,6 @@ final validatorAndUpdateDataOfUserNotifier =
     StateNotifierProvider<ValidatorAndUpdateDataOfUserNotifier, AuthState>(
   (ref) => ValidatorAndUpdateDataOfUserNotifier(),
 );
-
 
 final phoneLoginController = StateProvider<TextEditingController>((ref) {
   final controller = TextEditingController();
@@ -179,7 +177,6 @@ final userNameController = StateProvider<TextEditingController>((ref) {
   return controller;
 });
 
-
 final isObscure = StateProvider<bool>((ref) => true);
 final hasCheckedPhone = StateProvider<bool>((ref) => false);
 final isPhoneNumberIsAlreadyTaken = StateProvider<bool>((ref) => false);
@@ -206,16 +203,14 @@ final sureNewPasswordValidate = StateProvider<String?>((ref) => null);
 final updatePhoneValidate = StateProvider<String?>((ref) => null);
 
 final countriesCodes = StateProvider<List<String>>((ref) => [
-  "+970",
-  "+972",
-]);
-
+      "+970",
+      "+972",
+    ]);
 
 final errorStatusCode = StateProvider<int>((ref) => 0);
 
 final profileImageFile = StateProvider<XFile?>((ref) => null);
 
-final imagePicker = StateProvider<ImagePicker?>((ref) => ImagePicker());
 
 final userData = StateProvider<User?>((ref) => User());
 

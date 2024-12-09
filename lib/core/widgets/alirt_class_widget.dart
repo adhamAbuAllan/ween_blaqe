@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 import 'package:ween_blaqe/constants/coordination.dart';
 import 'package:ween_blaqe/core/utils/styles/button.dart';
 import '../../constants/get_it_controller.dart';
@@ -19,7 +18,9 @@ class AlertWithTwoBtn {
     showDialog(
         context: context,
         builder: (context) {
+
           return AlertDialog(
+            actionsAlignment: MainAxisAlignment.spaceEvenly,
             backgroundColor: themeMode.isLight
                 ? kContainerColorLightMode
                 : kContainerColorDarkMode,
@@ -31,16 +32,15 @@ class AlertWithTwoBtn {
                         : kPrimaryColorDarkMode,
                     strokeAlign: 0,
                     width: 0.5)),
-            actionsPadding: const EdgeInsets.fromLTRB(120, 0, 10, 0),
             title: Text(
               title,
               style: TextStyle(
                   color: themeMode.isLight
                       ? kTextColorLightMode
                       : kTextColorDarkMode,
-                  
-                      fontSize: getIt<AppDimension>().isSmallScreen(context)
-                  ?16:18),
+
+                  fontSize: getIt<AppDimension>().isSmallScreen(context)
+                      ?18:20,fontWeight:FontWeight.w800 ),
             ),
             content: Text(
               message,
@@ -48,34 +48,43 @@ class AlertWithTwoBtn {
                   color: themeMode.isLight
                       ? kTextColorLightMode
                       : kTextColorDarkMode,
-                  
-               fontSize: getIt<AppDimension>().isSmallScreen(context)
-                  ?16:18),
+
+
+                  fontSize: getIt<AppDimension>().isSmallScreen(context)
+                      ?15:17,fontWeight: FontWeight.w400),
             ),
             actions: [
               OutlinedButton(
                   onPressed: () {
-                    onClicked();
-                  },
-                  style: outlinedButton(themeMode: themeMode,context: context),
+                    Navigator.pop(context);},
+                  style: outlinedButton(themeMode: themeMode,context:
+                  context).copyWith(textStyle: WidgetStateProperty.all(
+                      TextStyle(
+                        fontSize: getIt<AppDimension>().isSmallScreen(context)
+                            ? 16
+                            : 18,
+                      )
+                  )),
                   child: Text(
-                    textOfOkButton,
-                    style:  TextStyle(
-                                fontSize: getIt<AppDimension>().isSmallScreen(context)
-          ?14:16,
-                      
-                      color:
-                          kPrimaryColorLightMode, //for delete apartment button
-                    ),
+                    textOfCancelButton,
+
                   )),
               // SizedBox(width: 1,),
 
               ElevatedButton(
                   onPressed: () {
-                    Get.back();
+                    onClicked();
+
+
                   },
-                  style: fullButton(),
-                  child: Text(textOfCancelButton)),
+                  style: fullButton().copyWith(textStyle: WidgetStateProperty.all(
+          TextStyle(
+          fontSize: getIt<AppDimension>().isSmallScreen(context)
+          ? 16
+              : 18,
+          )
+          )),
+                  child: Text(textOfOkButton,))
             ],
           );
         });
@@ -84,11 +93,13 @@ class AlertWithTwoBtn {
 
 class NormalAlert {
   static show(
-      BuildContext context, String title, String message, String textOfButton) {
+      BuildContext context, String title, String message, String
+      textOfOkButton) {
     showDialog(
         context: context,
         builder: (context) {
           return AlertDialog(
+            actionsAlignment: MainAxisAlignment.center,
             backgroundColor: themeMode.isLight
                 ? kContainerColorLightMode
                 : kContainerColorDarkMode,
@@ -100,16 +111,16 @@ class NormalAlert {
                         : kPrimaryColorDarkMode,
                     strokeAlign: 0,
                     width: 0.5)),
-            actionsPadding: const EdgeInsets.fromLTRB(120, 0, 10, 0),
             title: Text(
               title,
               style: TextStyle(
                   color: themeMode.isLight
                       ? kTextColorLightMode
                       : kTextColorDarkMode,
+
                   
                   fontSize: getIt<AppDimension>().isSmallScreen(context)
-                      ?15:16),
+                      ?18:20,fontWeight:FontWeight.w800 ),
             ),
             content: Text(
               message,
@@ -119,20 +130,22 @@ class NormalAlert {
                       : kTextColorDarkMode,
                   
                   fontSize: getIt<AppDimension>().isSmallScreen(context)
-                      ?14:16, ),
+                      ?15:17,fontWeight: FontWeight.w400 ),
             ),
             actions: [
               ElevatedButton(
                   onPressed: () {
-                    Get.back();
-                  },
-                  style: fullButton(),
-                  child: Text(
-                    textOfButton,
-                    style: TextStyle(
+                    Navigator.pop(context);},
+                  style: fullButton().copyWith(textStyle: WidgetStateProperty.all(
+                      TextStyle(
                         fontSize: getIt<AppDimension>().isSmallScreen(context)
-                            ? 13
-                            : 15,fontWeight: FontWeight.w100,fontFamily: "IBM",),
+                            ? 16
+                            : 18,
+                      )
+                  )),
+                  child: Text(
+                    textOfOkButton,
+
                   )),
             ],
           );

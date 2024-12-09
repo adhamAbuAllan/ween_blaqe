@@ -26,10 +26,10 @@ void validateAndLogin(WidgetRef ref, BuildContext context) async {
   bool? formPasswordState = formLoginPasswordKey.currentState?.validate();
   ref
       .read(formFieldsNotifier.notifier)
-      .updateValue("phone", phoneControllerValue);
+      .updateValue("phone", phoneControllerValue,context: context);
   ref
       .read(formFieldsNotifier.notifier)
-      .updateValue("password", passwordControllerValue);
+      .updateValue("password", passwordControllerValue,context: context);
   // debugPrint("error phone value ")
   String errorPhone =
       ref.read(formFieldsNotifier)["phone"]?.error ?? "no error have";

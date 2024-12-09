@@ -1,4 +1,5 @@
 
+
 import '../../../api/apartments_api/apartments.dart';
 
 class ApartmentState {
@@ -8,8 +9,10 @@ class ApartmentState {
   final String? errorMessage;
   final Apartments apartmentsList;
   final Apartments apartmentsOfOwner;
+  final int ?currentIndex;
 
   ApartmentState({
+   this.currentIndex,
     this.isLoading = false,
     this.isUpdating = false,
     this.isOwnerHaveApartments = false,
@@ -22,6 +25,7 @@ class ApartmentState {
   ApartmentState copyWith({
     bool? isLoading,
     bool? isUpdating,
+    int? currentIndex,
     bool? isOwnerHaveApartments,
     String? errorMessage,
     Apartments? apartmentsList,
@@ -34,6 +38,8 @@ class ApartmentState {
       errorMessage: errorMessage ?? this.errorMessage,
       apartmentsList: apartmentsList ?? this.apartmentsList,
       apartmentsOfOwner: apartmentsOfOwner ?? this.apartmentsOfOwner,
+      currentIndex: currentIndex ?? this.currentIndex,
     );
   }
 }
+

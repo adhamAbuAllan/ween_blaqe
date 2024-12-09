@@ -1,12 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:ween_blaqe/controller/get_controllers.dart';
 import 'package:ween_blaqe/core/utils/styles/button.dart';
 import 'package:ween_blaqe/core/widgets/skeletons/student_widgets/home_skeleton_widget.dart';
 
 // import '../../../../constants/nums.dart';
 import '../../../../constants/nums.dart';
+import '../../../../controller/get_controllers.dart';
 import '../../cities/cities_class_widget.dart';
+
+
 
 class CitiesBar extends StatefulWidget {
   const CitiesBar({
@@ -21,7 +23,6 @@ class CitiesBar extends StatefulWidget {
 }
 
 class _CitiesBarState extends State<CitiesBar> {
-
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
@@ -40,7 +41,7 @@ class _CitiesBarState extends State<CitiesBar> {
               ? const CitiesBarSkeleton()
               : Row(
                   children: cityModelController.cities
-                      .map((c) => cityButton(context: context,c, () async {
+                      .map((c) => cityButton(context: context, c, () async {
                             setState(() {
                               cityModelController.isLoading.value = true;
                             });
@@ -61,9 +62,12 @@ class _CitiesBarState extends State<CitiesBar> {
                               style: c.id == cityModelController.cityId.value &&
                                       cityModelController.cityId.value != 0
                                   ? fullButton().copyWith(
-                                foregroundColor: WidgetStateProperty.all<Color>(Colors.white),
-                              )
-                      : outlinedButton(themeMode:themeMode,context: context)))
+                                      foregroundColor:
+                                          WidgetStateProperty.all<Color>(
+                                              Colors.white),
+                                    )
+                                  : outlinedButton(
+                                      themeMode: themeMode, context: context)))
                       .toList()),
         );
       }),

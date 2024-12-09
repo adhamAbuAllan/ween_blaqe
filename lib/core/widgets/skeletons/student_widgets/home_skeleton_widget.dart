@@ -214,6 +214,7 @@ class CitiesBarSkeleton extends StatelessWidget {
       child: SkeletonItem(
           child: Row(
             children: [
+              SizedBox(width: 10,),
   ButtonOfCitySkeleton(),
   ButtonOfCitySkeleton(),
   ButtonOfCitySkeleton(),
