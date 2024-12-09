@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:image/image.dart';
 import 'package:ween_blaqe/controller/provider_controllers/providers/language_proivder.dart';
 
 import '../../../../../constants/coordination.dart';
