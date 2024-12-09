@@ -29,7 +29,11 @@ class ImageLocalNotifier extends StateNotifier<ImageState> {
 
     }
   }
-
+void setListStringTest(List<String> localList){
+state = state.copyWith(isLoading: true);
+     state = state.copyWith(apiImagesString: localList);
+     state = state.copyWith(isLoading: false);
+  }
   void initializeImageFileList(
       {required WidgetRef ref,
 

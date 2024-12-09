@@ -22,6 +22,7 @@ class ImageState {
   final List<XFile> newImages;
   final List<XFile>? imageFiles;
   final List<String> newImagesString;
+  final List<String> apiImagesString;
   final List<int>  ?imagesIds;
   final XFile? pickedFile;
   final bool isLoading;
@@ -34,6 +35,7 @@ class ImageState {
     this.imagesIds = const [],
     this.pickedFile,
     this.isLoading = false,
+    this.apiImagesString = const [],
 
   });
 
@@ -41,6 +43,7 @@ class ImageState {
     List<XFile>? newImages,
     List<XFile>? imageFiles,
     List<String>? newImagesString,
+    List<String>? apiImagesString,
     List<int>? imagesIds = const [],
     XFile? pickedFile,
     bool? isLoading,
@@ -50,6 +53,7 @@ class ImageState {
       newImages: newImages ?? this.newImages,
       imageFiles: imageFiles ?? this.imageFiles,
       newImagesString: newImagesString ?? this.newImagesString,
+      apiImagesString: apiImagesString ?? this.apiImagesString,
       imagesIds: imagesIds ?? this.imagesIds,
       pickedFile: pickedFile ?? this.pickedFile,
       isLoading: isLoading ?? this.isLoading,

@@ -60,10 +60,10 @@ class _UpdateApartmentUiState extends ConsumerState<UpdateApartmentUi> {
       if(ref.read(imageLocalNotifier).newImages.isNotEmpty ){
         ref.read(imageLocalNotifier).newImages.clear();
       }
-      if( ref.read
-        (imageApiNotifier).imageFiles?.isNotEmpty??false){
-        ref.read(imageApiNotifier).imageFiles?.clear();
-      }
+      // if( ref.read
+      //   (imageApiNotifier).imageFiles?.isNotEmpty??false){
+      //   ref.read(imageApiNotifier).imageFiles?.clear();
+      // }
 
 
         debugPrint("isSavedImages = ${ref.read(isSavedImages.notifier).state}");

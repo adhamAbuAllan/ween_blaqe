@@ -6,6 +6,7 @@ import 'package:ween_blaqe/controller/provider_controllers/providers/snack_bar_p
 import 'package:ween_blaqe/view/apartment/apartment_of_owner/widgets'
     '/update_apartment_ui_widgets/update_images_ui_widgets'
     '/floating_buttons_add_images_widgets.dart';
+import 'package:ween_blaqe/view/apartment/apartment_of_owner/widgets/update_apartment_ui_widgets/update_images_ui_widgets/gird_view_images_widget.dart';
 import 'package:ween_blaqe/view/apartment/apartment_of_owner/widgets'
     '/update_apartment_ui_widgets/update_images_ui_widgets'
     '/skeleton_image_widget'
@@ -32,6 +33,7 @@ class _UpdateImagesUiState extends ConsumerState<UpdateImagesUi> {
   @override
   void initState() {
     super.initState();
+
     var apartmentsOfOwnerNotifer = ref
         .read(fetchApartmentNotifier)
         .apartmentsList
@@ -40,22 +42,32 @@ class _UpdateImagesUiState extends ConsumerState<UpdateImagesUi> {
     var imagesApi = apartmentsOfOwnerNotifer?.first.photos;
 
     WidgetsBinding.instance.addPostFrameCallback((_) async {
+      for (var image in imagesApi!) {
+        apiImagesList.add(image.url ?? "");
+        // apiImagesString.add(image.url ?? "");
+      }
+      ref.read(imageLocalNotifier.notifier).setListStringTest(apiImagesList);
       ref.read(imageLocalNotifier.notifier).initializeImageFileList(
           ref: ref, photosOfCurrentApartment: imagesApi);
-
-     debugPrint("imageFiles = ${ref.read(imageApiNotifier).imageFiles}");
+      debugPrint(
+          "apiImagesString = ${ref.read(imageLocalNotifier).apiImagesString}");
+      debugPrint("imageFiles = ${ref.read(imageApiNotifier).imageFiles}");
       debugPrint("new images = ${ref.read(imageLocalNotifier).newImages}");
       debugPrint("ids photos will delted = $_photoWillDeleteIds");
     });
   }
- // late final List<XFile> _apiList;
+
+  // late final List<XFile> _apiList;
   final List<int> _photoWillDeleteIds = [];
   final ImagePicker _picker = ImagePicker();
+  final List<String> apiImagesList = [];
 
   @override
   Widget build(BuildContext context) {
-    var imageFileList = ref.watch(imageApiNotifier).imageFiles;
+    // var imageFileList = ref.watch(imageApiNotifier).imageFiles;
     var pickedFile = ref.watch(imageLocalNotifier).pickedFile;
+    // var apiImagesString = ref.read(imageApiNotifier).apiImagesString;
+
     return Scaffold(
       backgroundColor: themeMode.isLight
           ? kBackgroundAppColorLightMode
@@ -95,19 +107,14 @@ class _UpdateImagesUiState extends ConsumerState<UpdateImagesUi> {
                 horizontal:
                     getIt<AppDimension>().isSmallScreen(context) ? 10 : 8),
             child: ElevatedButton(
-              onPressed:
-              ref.watch(imageLocalNotifier).imagesIds?.isNotEmpty??false
+              onPressed: ref.watch(imageLocalNotifier).newImages.isNotEmpty || ref.watch
+    (imageLocalNotifier).imagesIds!.isNotEmpty
+
+
                   ? () {
-                if(   ref.watch(imageLocalNotifier).newImages.isNotEmpty){
-                  ref
-                      .read(showSnackBarNotifier.notifier)
-                      .showNormalSnackBar(
-                      context: context,
-                      message: SetLocalization.of(context)!
-                          .getTranslateValue("no_changes_made_yet"));
-                  return;
-                }
-                      if (imageFileList?.isEmpty ?? false) {
+
+                      if (ref.read(imageLocalNotifier).imageFiles?.isEmpty ??
+                          false) {
                         ref
                             .read(showSnackBarNotifier.notifier)
                             .showNormalSnackBar(
@@ -118,7 +125,8 @@ class _UpdateImagesUiState extends ConsumerState<UpdateImagesUi> {
                       }
                       WidgetsBinding.instance.addPostFrameCallback((_) async {
                         ref.read(imageLocalNotifier.notifier).checkArray(
-                            imageFileList: imageFileList,
+                            imageFileList:
+                                ref.read(imageLocalNotifier).imageFiles,
                             context: context,
                             imagesIds: _photoWillDeleteIds,
                             ref: ref);
@@ -146,18 +154,13 @@ class _UpdateImagesUiState extends ConsumerState<UpdateImagesUi> {
           padding: const EdgeInsets.fromLTRB(10, 10, 10, 0),
           child: ref.watch(imageHybridNotifer).isLoading
               ? const SkeletonImageWidget()
-              : Center(
-                child: Text("[${imageFileList}]",style: TextStyle(color: Colors
-                .white,fontSize: 28),),
-              )),
-
-          // GridViewImagesWidget(
-          //         oneApartment: widget.oneApartment ?? DataOfOneApartment(),
-          //         imageFileList: imageFileList,
-          //         photosIds: _photoWillDeleteIds,
-          //       )),
+              : GridViewImagesWidget(
+                  oneApartment: widget.oneApartment ?? DataOfOneApartment(),
+                  imageFileList: ref.watch(imageLocalNotifier).imageFiles,
+                  photosIds: _photoWillDeleteIds,
+                )),
       floatingActionButton: FloatingButtonsAddImagesWidgets(
-        imageFileList: imageFileList,
+        imageFileList: ref.watch(imageLocalNotifier).imageFiles,
         picker: _picker,
         pickedFile: pickedFile,
       ),
