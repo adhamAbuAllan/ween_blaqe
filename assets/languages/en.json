@@ -241,6 +241,7 @@
   "verifying": "Verifying...",
   "cutInternet": "Cut Internet",
   "reconnected": "Reconnected",
-  "please_wait_while_saving_changes": "Please wait while saving changes"
+  "please_wait_while_saving_changes": "Please wait while saving changes",
+  "should_be_at_least_three_photos": "Should be at least three photos"
 }
 

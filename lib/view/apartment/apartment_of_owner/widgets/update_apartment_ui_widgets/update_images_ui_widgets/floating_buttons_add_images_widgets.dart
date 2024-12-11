@@ -7,31 +7,16 @@ import '../../../../../../constants/nums.dart';
 import '../../../../../../controller/provider_controllers/providers/image_provider.dart';
 
 class FloatingButtonsAddImagesWidgets extends ConsumerWidget {
-  const FloatingButtonsAddImagesWidgets({super.key, this.imageFileList,
-  required this.picker,this.pickedFile});
-  final List<XFile>? imageFileList;
-  final ImagePicker picker;
-final XFile? pickedFile;
+  const FloatingButtonsAddImagesWidgets({super.key});
+
+
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    return  Column(
+    return  const Column(
       mainAxisAlignment: MainAxisAlignment.end,
-      children: <Widget>[
-        // Semantics(
-        //   label: 'image_picker_example_from_gallery',
-        //   child: FloatingActionButton(
-        //     onPressed: () {
-        //       _onImageButtonPressed(ImageSource.gallery, context: context);
-        //     },
-        //     heroTag: 'image0',
-        //     tooltip: 'Pick Image from gallery',
-        //     child: const Icon(Icons.photo),
-        //   ),
-        // ),
-        FloatingButtonAddMultiImagesWidget(imageFileList:imageFileList,
-          picker: picker,),
-        FloatingButtonAddImageWidget(imageFileList: imageFileList,pickedFile:
-        pickedFile,),
+      children: [
+        FloatingButtonAddMultiImagesWidget(),
+        FloatingButtonAddImageWidget(),
       ],
     );
   }
@@ -40,10 +25,9 @@ final XFile? pickedFile;
 
 class FloatingButtonAddMultiImagesWidget<FloatingActionButtonWidget>
     extends ConsumerWidget {
-  const FloatingButtonAddMultiImagesWidget({super.key,required this
-      .imageFileList,required this.picker});
-final List<XFile>? imageFileList;
-final  ImagePicker picker;
+  const FloatingButtonAddMultiImagesWidget({super.key});
+
+
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     return Padding(
@@ -52,10 +36,8 @@ final  ImagePicker picker;
         onPressed: () {
 
       WidgetsBinding.instance.addPostFrameCallback((_) async {
-debugPrint("isLoading = ${ref.read(imageApiNotifier).isLoading}");
-        await   ref.watch(imageLocalNotifier.notifier).onImageButtonPressed(
-            ImageSource.gallery, ref,
-            isMultiImage: true,imageFileList: imageFileList,picker:picker );
+        await   ref.watch(imageLocalNotifier.notifier).addImagesState(
+          ref: ref );
       });
 
         },
@@ -71,10 +53,8 @@ debugPrint("isLoading = ${ref.read(imageApiNotifier).isLoading}");
 }
 
 class FloatingButtonAddImageWidget extends ConsumerWidget {
-  const FloatingButtonAddImageWidget({super.key, required this.imageFileList,
-    required this.pickedFile});
-  final List<XFile>? imageFileList;
-  final XFile ? pickedFile;
+  const FloatingButtonAddImageWidget({super.key});
+
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -83,11 +63,9 @@ class FloatingButtonAddImageWidget extends ConsumerWidget {
       child: FloatingActionButton(
         onPressed: () {
       WidgetsBinding.instance.addPostFrameCallback((_) async {
-
         await ref
             .watch(imageLocalNotifier.notifier)
-            .onImageButtonPressed(ImageSource.camera, ref,
-            imageFileList:imageFileList,pickedFile:pickedFile);
+          .addImagesState(ref: ref, source: ImageSource.camera);
       });
 
         },

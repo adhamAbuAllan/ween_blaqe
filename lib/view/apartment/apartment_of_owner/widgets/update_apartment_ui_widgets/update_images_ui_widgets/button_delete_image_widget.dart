@@ -1,6 +1,5 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter/material.dart';
-import 'package:image_picker/image_picker.dart';
 
 import '../../../../../../api/apartments_api/apartments.dart';
 import '../../../../../../constants/coordination.dart';
@@ -11,17 +10,10 @@ class ButtonDeleteImageWidget extends ConsumerStatefulWidget {
   const ButtonDeleteImageWidget(
       {super.key,
       required this.oneApartment,
-      required this.index,
-      this.imageFileList,
-      this.photosIds,
         this.onTap
       });
 
   final DataOfOneApartment oneApartment;
-  final int index;
-  final List<XFile>? imageFileList;
-  final List<int>? photosIds;
-  // function on tap
  final void Function()? onTap;
 
   @override

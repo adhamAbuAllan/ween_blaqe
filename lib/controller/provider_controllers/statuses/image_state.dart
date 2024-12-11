@@ -1,63 +1,29 @@
-import 'package:image_picker/image_picker.dart';
-
-/// that we have 2 Lists of XFile and 1 String list.
-/// first , [imageFileList] that is the main list , it show the items in UI.
-/// second , [newImages] that is the images from Gallery that if
-/// [newImages] is not empty , automatically add it to [imageFileList].
-/// thrid, [newImagesString] , that when click on save button to update
-/// apartment UI , that when run update apartment images method api the
-/// list of images should be a String list , the [newImagesString] is
-/// automatically save the [imageFileList] items paths to could api to
-/// update the images of apartment.
-
-/// that the [pickedFile] is only from Camera and the same [newImage] it add to
-/// [imageFileList] automatically.
-
-/// the [imagesIds] list to saved the ids of images to delete
-/// them by api method.
-
-/// the [isLoading] to update the UI.
+import 'package:file_selector/file_selector.dart';
 
 class ImageState {
-  final List<XFile> newImages;
-  final List<XFile>? imageFiles;
-  final List<String> newImagesString;
-  final List<String> apiImagesString;
-  final List<int>  ?imagesIds;
-  final XFile? pickedFile;
+  final List<XFile> images;
+  final List<String> newImages;
+  final List<int>? photosIds;
   final bool isLoading;
-
 
   ImageState({
     this.newImages = const [],
-    this.imageFiles,
-    this.newImagesString = const [],
-    this.imagesIds = const [],
-    this.pickedFile,
+    this.photosIds = const [],
     this.isLoading = false,
-    this.apiImagesString = const [],
-
+    this.images = const [],
   });
 
   ImageState copyWith({
-    List<XFile>? newImages,
-    List<XFile>? imageFiles,
-    List<String>? newImagesString,
-    List<String>? apiImagesString,
-    List<int>? imagesIds = const [],
-    XFile? pickedFile,
+    List<String>? newImages,
+    List<int>? photosIds = const [],
     bool? isLoading,
-
+    List<XFile>? images,
   }) {
     return ImageState(
       newImages: newImages ?? this.newImages,
-      imageFiles: imageFiles ?? this.imageFiles,
-      newImagesString: newImagesString ?? this.newImagesString,
-      apiImagesString: apiImagesString ?? this.apiImagesString,
-      imagesIds: imagesIds ?? this.imagesIds,
-      pickedFile: pickedFile ?? this.pickedFile,
+      photosIds: photosIds ?? this.photosIds,
       isLoading: isLoading ?? this.isLoading,
-
+      images: images ?? this.images,
     );
   }
 }

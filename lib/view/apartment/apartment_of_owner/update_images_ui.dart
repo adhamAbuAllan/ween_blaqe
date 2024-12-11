@@ -7,10 +7,6 @@ import 'package:ween_blaqe/view/apartment/apartment_of_owner/widgets'
     '/update_apartment_ui_widgets/update_images_ui_widgets'
     '/floating_buttons_add_images_widgets.dart';
 import 'package:ween_blaqe/view/apartment/apartment_of_owner/widgets/update_apartment_ui_widgets/update_images_ui_widgets/gird_view_images_widget.dart';
-import 'package:ween_blaqe/view/apartment/apartment_of_owner/widgets'
-    '/update_apartment_ui_widgets/update_images_ui_widgets'
-    '/skeleton_image_widget'
-    '.dart';
 
 import '../../../api/apartments_api/apartments.dart';
 import '../../../constants/coordination.dart';
@@ -34,40 +30,36 @@ class _UpdateImagesUiState extends ConsumerState<UpdateImagesUi> {
   void initState() {
     super.initState();
 
-    var apartmentsOfOwnerNotifer = ref
-        .read(fetchApartmentNotifier)
-        .apartmentsList
-        .data
-        ?.where((e) => e.id == widget.oneApartment?.id);
-    var imagesApi = apartmentsOfOwnerNotifer?.first.photos;
-
     WidgetsBinding.instance.addPostFrameCallback((_) async {
-      for (var image in imagesApi!) {
-        apiImagesList.add(image.url ?? "");
-        // apiImagesString.add(image.url ?? "");
-      }
-      ref.read(imageLocalNotifier.notifier).setListStringTest(apiImagesList);
-      ref.read(imageLocalNotifier.notifier).initializeImageFileList(
-          ref: ref, photosOfCurrentApartment: imagesApi);
-      debugPrint(
-          "apiImagesString = ${ref.read(imageLocalNotifier).apiImagesString}");
-      debugPrint("imageFiles = ${ref.read(imageApiNotifier).imageFiles}");
-      debugPrint("new images = ${ref.read(imageLocalNotifier).newImages}");
-      debugPrint("ids photos will delted = $_photoWillDeleteIds");
+
+      ref.read(fetchApartmentNotifier.notifier).fetchApartments(
+        isOwnerApartments: false,
+      );
+
+      var apartmentsOfOwnerNotifer = ref
+          .read(fetchApartmentNotifier)
+          .apartmentsList
+          .data
+          ?.where((e) => e.id == widget.oneApartment?.id);
+      var imagesApi = apartmentsOfOwnerNotifer?.first.photos;
+
+
+
+      ref
+          .read(imageLocalNotifier.notifier)
+          .initState(ref: ref, apiPhotos: imagesApi);
     });
   }
 
   // late final List<XFile> _apiList;
-  final List<int> _photoWillDeleteIds = [];
-  final ImagePicker _picker = ImagePicker();
-  final List<String> apiImagesList = [];
+
+  // final ImagePicker _picker = ImagePicker();
+
+  // final List<String> apiImagesList = [];
 
   @override
   Widget build(BuildContext context) {
-    // var imageFileList = ref.watch(imageApiNotifier).imageFiles;
-    var pickedFile = ref.watch(imageLocalNotifier).pickedFile;
-    // var apiImagesString = ref.read(imageApiNotifier).apiImagesString;
-
+    final List<String> cancelImages = [];
     return Scaffold(
       backgroundColor: themeMode.isLight
           ? kBackgroundAppColorLightMode
@@ -94,6 +86,9 @@ class _UpdateImagesUiState extends ConsumerState<UpdateImagesUi> {
             child: OutlinedButton(
               onPressed: () {
                 Navigator.pop(context);
+
+                ref.read(photosIds.notifier).state.clear();
+                debugPrint('photosIds = ${ref.read(photosIds)}');
               },
               style: outlinedButton(themeMode: themeMode, context: context),
               child: Text(
@@ -107,41 +102,56 @@ class _UpdateImagesUiState extends ConsumerState<UpdateImagesUi> {
                 horizontal:
                     getIt<AppDimension>().isSmallScreen(context) ? 10 : 8),
             child: ElevatedButton(
-              onPressed: ref.watch(imageLocalNotifier).newImages.isNotEmpty || ref.watch
-    (imageLocalNotifier).imagesIds!.isNotEmpty
-
-
+              onPressed: cancelImages.isNotEmpty ||
+                      ref.watch(imageLocalNotifier).newImages.isNotEmpty
                   ? () {
-
-                      if (ref.read(imageLocalNotifier).imageFiles?.isEmpty ??
-                          false) {
+                      if (ref.watch(imageLocalNotifier).images.length < 3) {
                         ref
                             .read(showSnackBarNotifier.notifier)
                             .showNormalSnackBar(
                                 context: context,
-                                message: "a list should not be empty");
-
+                                message: SetLocalization.of(context)!
+                                    .getTranslateValue(
+                                        "should_be_at_least_three_photos"));
                         return;
                       }
+
                       WidgetsBinding.instance.addPostFrameCallback((_) async {
-                        ref.read(imageLocalNotifier.notifier).checkArray(
-                            imageFileList:
-                                ref.read(imageLocalNotifier).imageFiles,
-                            context: context,
-                            imagesIds: _photoWillDeleteIds,
-                            ref: ref);
+                        ref.read(imageLocalNotifier.notifier).doneState(
+                            ref: ref,
+                            apiPhotos: widget.oneApartment?.photos ?? [],
+                            cancelImages: cancelImages);
                       });
+                      debugPrint("cancelImages = $cancelImages");
+                      debugPrint("photosIds prodiver = ${ref.read(photosIds)}");
+                      debugPrint("newImages provider = ${ref.read(newImages)}");
+                      debugPrint("newImages Notifier = ${ref.read
+                        (imageLocalNotifier).newImages}");
+                      debugPrint("photosIds notifier = ${ref.read
+                        (imageLocalNotifier).photosIds}");
+
+
+                      Navigator.pop(context);
                     }
                   : () {
-                      debugPrint("photoWillDeleteIds = $_photoWillDeleteIds");
-                      debugPrint(
-                          "newImages = ${ref.read(imageLocalNotifier).newImages}");
-                      ref
+
+
+                debugPrint("cancelImages = $cancelImages");
+                debugPrint("photosIds prodiver = ${ref.read(photosIds)}");
+                debugPrint("newImages provider = ${ref.read(newImages)}");
+                debugPrint("newImages Notifier = ${ref.read
+                  (imageLocalNotifier).newImages}");
+                debugPrint("photosIds notifier = ${ref.read
+                  (imageLocalNotifier).photosIds}");
+
+
+                ref
                           .read(showSnackBarNotifier.notifier)
                           .showNormalSnackBar(
                               context: context,
                               message: SetLocalization.of(context)!
                                   .getTranslateValue("no_changes_made_yet"));
+                      return;
                     },
               style: fullButton(),
               child:
@@ -152,18 +162,21 @@ class _UpdateImagesUiState extends ConsumerState<UpdateImagesUi> {
       ),
       body: Padding(
           padding: const EdgeInsets.fromLTRB(10, 10, 10, 0),
-          child: ref.watch(imageHybridNotifer).isLoading
-              ? const SkeletonImageWidget()
-              : GridViewImagesWidget(
-                  oneApartment: widget.oneApartment ?? DataOfOneApartment(),
-                  imageFileList: ref.watch(imageLocalNotifier).imageFiles,
-                  photosIds: _photoWillDeleteIds,
-                )),
-      floatingActionButton: FloatingButtonsAddImagesWidgets(
-        imageFileList: ref.watch(imageLocalNotifier).imageFiles,
-        picker: _picker,
-        pickedFile: pickedFile,
-      ),
+          child: Stack(
+            children: [
+              ref.read(imageLocalNotifier).isLoading
+                  ? const Center(
+                      child: CircularProgressIndicator(),
+                    )
+                  : const SizedBox(),
+              GridViewImagesWidget(
+                oneApartment: widget.oneApartment ?? DataOfOneApartment(),
+                canselImages: cancelImages,
+                images: ref.watch(imageLocalNotifier).images
+              )
+            ],
+          )),
+      floatingActionButton: const FloatingButtonsAddImagesWidgets(),
     );
   }
 }

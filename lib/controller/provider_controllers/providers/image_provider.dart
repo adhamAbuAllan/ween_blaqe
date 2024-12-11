@@ -19,6 +19,7 @@ final imageLocalNotifier = StateNotifierProvider<ImageLocalNotifier,
 );
 
 final imagePicker = StateProvider<ImagePicker?>((ref) => ImagePicker());
-final isSavedImages = StateProvider<bool>((ref) => true);
-final hiddenImageIndices = StateProvider<Set<int>>((ref) => {});
-
+final photosIds = StateProvider<List<int>>((ref) => []);
+final images = StateProvider<List<XFile>>((ref) => []);
+final newImages = StateProvider<List<String>>((ref) => []);
+final newImagesCanceled = StateProvider<List<String>>((ref) => []);

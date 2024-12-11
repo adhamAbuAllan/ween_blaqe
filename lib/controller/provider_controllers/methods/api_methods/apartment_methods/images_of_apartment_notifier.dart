@@ -8,13 +8,15 @@ import 'package:mime/mime.dart';
 
 import '../../../../../constants/strings.dart';
 import '../../../../../main.dart';
-import '../../../providers/apartment_provider.dart';
 import '../../../providers/image_provider.dart';
 import '../../../statuses/image_state.dart';
 import 'package:http/http.dart' as http;
 
 class ImageApiNotifier extends StateNotifier<ImageState> {
   ImageApiNotifier() : super(ImageState());
+
+
+
   Future<List<String>> fetchApartmentImages(String apartmentId) async {
     String apiUrl = ServerWeenBalaqee.showApartmentImages;
 
@@ -38,7 +40,7 @@ class ImageApiNotifier extends StateNotifier<ImageState> {
   Future<void> compressAndUploadImages({required WidgetRef ref,int apartmentIdToUpdate =
   -1})
   async {
-    if (state.imageFiles == null || state.imageFiles!.isEmpty) {
+    if (state.images.isEmpty) {
       debugPrint("No images selected.");
       return;
     }
@@ -48,7 +50,7 @@ class ImageApiNotifier extends StateNotifier<ImageState> {
     final request = http.MultipartRequest('POST', url);
     request.fields['apartment_id'] = "$apartmentIdToUpdate";
 
-    for (XFile imageFile in state.imageFiles!) {
+    for (XFile imageFile in state.images) {
 
       final compressedFile = await ref.read(imageHybridNotifer.notifier)
           .compressImage(imageFile);
@@ -104,13 +106,13 @@ class ImageApiNotifier extends StateNotifier<ImageState> {
   Future<void> updateImages(
       {required int apartmentId, required WidgetRef ref}) async {
     deleteImages(
-        apartmentId: apartmentId, photoIds: ref.read(photoWillDeleteIds));
+        apartmentId: apartmentId, photoIds:ref.read(photosIds));
 
     ///delete images that already uploaded
     compressAndUploadImages(apartmentIdToUpdate: apartmentId, ref: ref);
 
     /// upload new images
-    state.copyWith(imageFiles: null);
+    
   }
 
 }

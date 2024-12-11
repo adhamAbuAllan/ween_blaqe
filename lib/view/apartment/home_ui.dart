@@ -56,7 +56,7 @@ class _HomeUiState extends ConsumerState<HomeUi> {
     });
     WidgetsBinding.instance.addPostFrameCallback((_) async {
       ref.read(isAllTypesOfApartmentNotifier.notifier).state = true;
-      await ref.read(fetchApartmentNotifier.notifier).fetchApartments(
+        await ref.read(fetchApartmentNotifier.notifier).fetchApartments(
             isOwnerApartments: false,
 
             isAll: true,

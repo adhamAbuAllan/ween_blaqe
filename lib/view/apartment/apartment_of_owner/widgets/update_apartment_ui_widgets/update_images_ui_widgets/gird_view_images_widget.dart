@@ -9,15 +9,16 @@ import 'button_delete_image_widget.dart';
 import 'image_prview_widget.dart';
 
 class GridViewImagesWidget extends ConsumerStatefulWidget {
-  const GridViewImagesWidget(
-      {super.key,
-      required this.oneApartment,
-      this.imageFileList,
-      this.photosIds});
+  const GridViewImagesWidget({
+    super.key,
+    required this.oneApartment,
+    required this.canselImages,
+    required this.images,
+  });
 
   final DataOfOneApartment oneApartment;
-  final List<XFile>? imageFileList;
-  final List<int>? photosIds;
+  final List<String> canselImages;
+  final List<XFile> images;
 
   @override
   ConsumerState createState() => _PrviewImagesWidgetState();
@@ -37,36 +38,26 @@ class _PrviewImagesWidgetState extends ConsumerState<GridViewImagesWidget> {
               : Stack(children: [
                   Builder(builder: (context) {
                     return ImagePrviewWidget(
-                        imageFileList: widget.imageFileList ?? [],
+                        imageFileList: widget.images,
                         oneApartment: widget.oneApartment,
                         index: index);
                   }),
                   ButtonDeleteImageWidget(
-                      index: index,
                       oneApartment: widget.oneApartment,
-                      imageFileList: widget.imageFileList,
-                      photosIds: widget.photosIds,
                       onTap: () {
-                        setState(() {
-                          widget.oneApartment.photos?.removeWhere((photo) {
-                            if (photo.url ==
-                                widget.imageFileList![index].path) {
-                              if (photo.id != null) {
-                                widget.photosIds?.add(photo.id!);
-                                debugPrint("photosIds -- ${widget.photosIds}");
+                        if (index >= 0 && index < widget.images.length) {
+                          widget.images.removeAt(index);
+                          setState(() {
 
-                              }
-                              return true;
-                            }
-                            return false;
                           });
-                          widget.imageFileList?.removeAt(index);
-
-                        });
-                      })
+                        }
+                        widget.canselImages.add(widget.images[index].path);
+                        debugPrint(
+                            "widget.canselImages : ${widget.canselImages}");
+                      }),
                 ]);
         },
-        itemCount: widget.imageFileList?.length,
+        itemCount: widget.images.length,
         gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
           crossAxisCount: 3,
           mainAxisSpacing: 5,

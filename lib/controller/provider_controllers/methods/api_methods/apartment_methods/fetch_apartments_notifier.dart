@@ -36,7 +36,9 @@ class FetchApartmentsNotifier extends StateNotifier<ApartmentState> {
         late Uri uri;
         if ( isAll??false) {
           if(type == null){
-            uri = Uri.parse("${ServerWeenBalaqee.apartmentAll}?city_id=$cityId");
+            uri = Uri.parse("${ServerWeenBalaqee.apartmentAll}"
+                // "?city_id=$cityId"
+            );
           }
 
         } else {

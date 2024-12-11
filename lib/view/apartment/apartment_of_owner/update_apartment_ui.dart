@@ -1,7 +1,6 @@
 import 'package:colorful_safe_area/colorful_safe_area.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:image_picker/image_picker.dart';
 import 'package:ween_blaqe/controller/provider_controllers/providers/apartment_provider.dart';
 import 'package:ween_blaqe/constants/nums.dart';
 import 'package:ween_blaqe/view/apartment/apartment_of_owner/widgets'
@@ -56,26 +55,28 @@ class _UpdateApartmentUiState extends ConsumerState<UpdateApartmentUi> {
   void initState() {
     super.initState();
     WidgetsBinding.instance.addPostFrameCallback((_) async {
-      ref.read(isSavedImages.notifier).state = false;
-      if(ref.read(imageLocalNotifier).newImages.isNotEmpty ){
+      // ref.read(isSavedImages.notifier).state = false;
         ref.read(imageLocalNotifier).newImages.clear();
-      }
+        ref.read(imageLocalNotifier).photosIds?.clear();
+        ref.read(imageLocalNotifier).images.clear();
+
+
       // if( ref.read
       //   (imageApiNotifier).imageFiles?.isNotEmpty??false){
       //   ref.read(imageApiNotifier).imageFiles?.clear();
       // }
 
 
-        debugPrint("isSavedImages = ${ref.read(isSavedImages.notifier).state}");
+        // debugPrint("isSavedImages = ${ref.read(isSavedImages.notifier).state}");
 
 
-      if (widget.oneApartment?.photos != null) {
-
-        ref.read(imageApiNotifier).copyWith(
-            imageFiles: widget.oneApartment?.photos
-                ?.map((photo) => XFile(photo.url ?? ""))
-                .toList());
-      }
+      // if (widget.oneApartment?.photos != null) {
+      //
+      //   ref.read(imageApiNotifier).copyWith(
+      //       imageFiles: widget.oneApartment?.photos
+      //           ?.map((photo) => XFile(photo.url ?? ""))
+      //           .toList());
+      // }
 
 
       ref.read(cityNotifier.notifier).fetchCities();
