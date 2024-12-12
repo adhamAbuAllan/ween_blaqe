@@ -30,60 +30,64 @@ class ImageLocalNotifier extends StateNotifier<ImageState> {
     }
   }
 
-  List<XFile> initState(
+ initState(
       {required WidgetRef ref,
       List<Photos>? apiPhotos,
-      required List<XFile> images,
-      required List<String> newImages}) {
+}) {
     state = state.copyWith(isLoading: true);
-    ref.read(photosIds.notifier).state = [];
-    ref.read(newImagesNotifier.notifier).state = [];
-    ref.read(newImagesCanceled.notifier).state = [];
 
-    if (state.newImages.isEmpty) {
+    if (ref.read(newImagesNotifier.notifier).state.isEmpty) {
       // state.images = apiPhotos?.map((e) => XFile(e.url ?? ""))?.toList();
       // ref.read(images.notifier).state =
       //apiPhotos!.map((e) => XFile(e.url ?? "")).toList();
       state = state.copyWith(
           images: apiPhotos?.map((e) => XFile(e.url ?? "")).toList());
-      images = state.images;
-      debugPrint("images = $images");
+      // debugPrint("images = $images");
 
       debugPrint("state images = ${state.images}");
     } else {
-      for (var image in state.newImages) {
+      for (var image in ref.read(newImagesNotifier.notifier).state) {
         state.images.add(XFile(image));
-        images.add(XFile(image));
         // ref.read(images.notifier).state.add(XFile(image));
       }
     }
     state = state.copyWith(isLoading: false);
 
-    return images;
   }
 
   void doneState(
       {required WidgetRef ref,
       required List<String> cancelImages,
-      required List<Photos> apiPhotos}) {
+      required List<Photos> apiPhotos,
+      required List<XFile> images
+      }) {
+    debugPrint("cancelImages.isNotEmpty ${cancelImages.isNotEmpty}");
+ref.read(imagesFileList.notifier).state = images;
     if (cancelImages.isNotEmpty) {
+      for (var newImage in ref.read(newImagesNotifier.notifier).state) {
+      state.newImages.add(newImage);
+    }
+    for(var image in images){
+      state.images.add(image);
+    }
+return;
+
       for (var cancelImage in cancelImages) {
         for (var newImage in state.newImages) {
           if (newImage == cancelImage) {
             state.newImages.remove(newImage);
           }
         }
-
         for (var apiUrl in apiPhotos) {
+
           if (apiUrl.url == cancelImage) {
             ref.read(photosIds.notifier).state.add(apiUrl.id ?? -1);
           }
         }
       }
     }
-    for (var newImage in ref.read(newImagesNotifier.notifier).state) {
-      state.newImages.add(newImage);
-    }
+
+
   } // when click on done button
 
   Future<void> addImagesState({

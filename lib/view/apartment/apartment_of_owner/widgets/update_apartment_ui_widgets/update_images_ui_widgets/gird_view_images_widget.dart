@@ -40,6 +40,12 @@ class _PrviewImagesWidgetState extends ConsumerState<GridViewImagesWidget> {
                       oneApartment: widget.oneApartment,
                       onTap: () {
                         if (index >= 0 && index < widget.images.length) {
+                          widget.oneApartment.photos?.removeWhere((photo){
+                            if(photo.url == widget.images[index].path){
+                              return true;
+                            }
+                            return false;
+                          });
                           widget.images.removeAt(index);
                           setState(() {
                             widget.canselImages.add(widget.images[index].path);

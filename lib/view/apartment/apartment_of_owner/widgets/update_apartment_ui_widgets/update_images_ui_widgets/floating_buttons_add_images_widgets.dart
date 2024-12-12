@@ -101,6 +101,7 @@ class FloatingButtonAddImageWidget extends ConsumerWidget {
                 // newImages: newImages,
                 images: images);
           });
+
         },
         heroTag: 'image1',
         tooltip: SetLocalization.of(context)!.getTranslateValue("take_photo"),

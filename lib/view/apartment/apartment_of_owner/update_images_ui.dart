@@ -1,20 +1,16 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:ween_blaqe/controller/provider_controllers/providers/apartment_provider.dart';
-import 'package:ween_blaqe/controller/provider_controllers/providers/snack_bar_provider.dart';
 import 'package:ween_blaqe/view/apartment/apartment_of_owner/widgets'
     '/update_apartment_ui_widgets/update_images_ui_widgets'
     '/floating_buttons_add_images_widgets.dart';
 import 'package:ween_blaqe/view/apartment/apartment_of_owner/widgets/update_apartment_ui_widgets/update_images_ui_widgets/gird_view_images_widget.dart';
 
 import '../../../api/apartments_api/apartments.dart';
-import '../../../constants/coordination.dart';
-import '../../../constants/get_it_controller.dart';
-import '../../../constants/localization.dart';
+
 import '../../../constants/nums.dart';
 import '../../../controller/provider_controllers/providers/image_provider.dart';
-import '../../../core/utils/styles/button.dart';
+import 'widgets/update_apartment_ui_widgets/update_images_ui_widgets/appbar_widget.dart';
 
 class UpdateImagesUi extends ConsumerStatefulWidget {
   const UpdateImagesUi({super.key, this.oneApartment});
@@ -26,144 +22,95 @@ class UpdateImagesUi extends ConsumerStatefulWidget {
 }
 
 class _UpdateImagesUiState extends ConsumerState<UpdateImagesUi> {
+  late List<XFile> images;
   @override
   void initState() {
     super.initState();
 
     WidgetsBinding.instance.addPostFrameCallback((_) async {
+      //you should to know taht if you that to make the images as a list that
+      // after save or after click on ok button that you should to check the
+      //ids of cansel images and then you should to make the images , add the
+      // images from api that is not in the list of ids Or cansel images !
 
       setState(() {});
-
-      ref.read(fetchApartmentNotifier.notifier).fetchApartments(
-            isOwnerApartments: false,
-          );
+      // ref.read(imageLocalNotifier.notifier).initState(
+      //       ref: ref,
+      //     );
+      // if(ref.read(imageLocalNotifier).images.isNotEmpty){
+      //   images = ref.watch(imageLocalNotifier).images;
+      //
+      // }
 
       var imagesApi = widget.oneApartment?.photos;
-
-      if (ref.read(newImagesNotifier.notifier).state.isEmpty) {
+      // if(ref.read(imageLocalNotifier).images.isNotEmpty){
+      //   images = ref.watch(imageLocalNotifier).images;
+      //   debugPrint("images = $images");
+      // }
+      debugPrint("images notfier = ${ref.watch(imageLocalNotifier).images}");
+      if(ref.read(imagesFileList.notifier).state.isNotEmpty){
+        images = ref.watch(imagesFileList.notifier).state;
+      }else{
         images = imagesApi?.map((e) => XFile(e.url ?? "")).toList() ?? [];
 
-      } else {
-        for (var image in ref.read(newImagesNotifier.notifier).state) {
-          images.add(XFile(image));
-        }
       }
+      // if(ref.read(newImagesNotifier.notifier).state.isNotEmpty){
+      //   for(var image in ref.read(newImagesNotifier.notifier).state){
+      //    newImagesLocal.add(image);
+      //   }
+      //
+      //   // images = ref.read(newImagesNotifier.notifier).state;
+      //
+      // }
+
+      // if (ref.watch(newImagesNotifier.notifier).state.isEmpty) {
+      //   debugPrint("true");
+      //   images = imagesApi?.map((e) => XFile(e.url ?? "")).toList() ?? [];
+      // } else {
+      //   for (var image in ref.read(imageLocalNotifier).images) {
+      //     debugPrint("false");
+      //     // images.add(image);
+      //     images = imagesApi?.map((e) => XFile(e.url ?? "")).toList() ?? [];
+      //
+      //     // images = ref.watch(imageLocalNotifier).images;
+      //
+      //
+      //     // debugPrint("imagesNotifier ${ref.read(images)}");
+      //   }
+      // }
     });
   }
 
-  late List<XFile> images;
-
   final ImagePicker imagePicker = ImagePicker();
-  final List<String> newImages = [];
 
   @override
   Widget build(BuildContext context) {
+
     final List<String> cancelImages = [];
 
     return Scaffold(
       backgroundColor: themeMode.isLight
           ? kBackgroundAppColorLightMode
           : kBackgroundAppColorDarkMode,
-      appBar: AppBar(
-        automaticallyImplyLeading: false,
-        backgroundColor: themeMode.isLight
-            ? kContainerColorLightMode
-            : kContainerColorDarkMode,
-        title: Text(
-          "Testing Code",
-          style: TextStyle(
-              color: themeMode.isLight
-                  ? kPrimaryColorLightMode
-                  : kPrimaryColorDarkMode,
-              fontSize: 18),
-        ),
-        actions: [
-          Padding(
-            padding: EdgeInsets.symmetric(
-                vertical: getIt<AppDimension>().isSmallScreen(context) ? 10 : 8,
-                horizontal:
-                    getIt<AppDimension>().isSmallScreen(context) ? 10 : 8),
-            child: OutlinedButton(
-              onPressed: () {
-                Navigator.pop(context);
-
-                ref.read(photosIds.notifier).state.clear();
-                debugPrint('photosIds = ${ref.read(photosIds)}');
-              },
-              style: outlinedButton(themeMode: themeMode, context: context),
-              child: Text(
-                  SetLocalization.of(context)!.getTranslateValue("cancel")),
-            ),
-          ),
-          const Expanded(child: Text("")),
-          Padding(
-            padding: EdgeInsets.symmetric(
-                vertical: getIt<AppDimension>().isSmallScreen(context) ? 10 : 8,
-                horizontal:
-                    getIt<AppDimension>().isSmallScreen(context) ? 10 : 8),
-            child: ElevatedButton(
-              onPressed: cancelImages.isNotEmpty || newImages.isNotEmpty
-                  ? () {
-                      if (ref.watch(imageLocalNotifier).images.length < 3) {
-                        ref
-                            .read(showSnackBarNotifier.notifier)
-                            .showNormalSnackBar(
-                                context: context,
-                                message: SetLocalization.of(context)!
-                                    .getTranslateValue(
-                                        "should_be_at_least_three_photos"));
-                        return;
-                      }
-
-                      WidgetsBinding.instance.addPostFrameCallback((_) async {
-                        ref.read(imageLocalNotifier.notifier).doneState(
-                            ref: ref,
-                            apiPhotos: widget.oneApartment?.photos ?? [],
-                            cancelImages: cancelImages,
-                            );
-                      });
-                      debugPrint("cancelImages = $cancelImages");
-                      debugPrint("photosIds prodiver = ${ref.read(photosIds)}");
-                      debugPrint(
-                          "photosIds notifier = ${ref.read(imageLocalNotifier).photosIds}");
-
-                      Navigator.pop(context);
-                    }
-                  : () {
-                      debugPrint("cancelImages = $cancelImages");
-                      debugPrint("photosIds prodiver = ${ref.read(photosIds)}");
-                      debugPrint(
-                          "photosIds notifier = ${ref.read(imageLocalNotifier).photosIds}");
-
-                      ref
-                          .read(showSnackBarNotifier.notifier)
-                          .showNormalSnackBar(
-                              context: context,
-                              message: SetLocalization.of(context)!
-                                  .getTranslateValue("no_changes_made_yet"));
-                      return;
-                    },
-              style: fullButton(),
-              child:
-                  Text(SetLocalization.of(context)!.getTranslateValue("done")),
-            ),
-          ),
-        ],
+      appBar: AppBarGridWidget(
+        oneApartment: widget.oneApartment,
+        cancelImages: cancelImages,
+        newImages: ref.watch(newImagesNotifier.notifier).state,
+        images: images,
       ),
       body: Padding(
-          padding: const EdgeInsets.fromLTRB(10, 10, 10, 0),
+          padding: const EdgeInsets.all(10),
           child: Stack(
             children: [
               ref.watch(imageLocalNotifier).isLoading
                   ? const Center(
                       child: CircularProgressIndicator(),
                     )
-                  :const SizedBox(),
-
+                  : const SizedBox(),
               GridViewImagesWidget(
-                      oneApartment: widget.oneApartment ?? DataOfOneApartment(),
-                      canselImages: cancelImages,
-                      images: images)
+                  oneApartment: widget.oneApartment ?? DataOfOneApartment(),
+                  canselImages: cancelImages,
+                  images: images)
             ],
           )),
       floatingActionButton: FloatingButtonsAddImagesWidgets(
