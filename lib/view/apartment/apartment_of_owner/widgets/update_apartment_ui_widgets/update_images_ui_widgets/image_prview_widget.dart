@@ -27,37 +27,33 @@ class _ImagePrviewWidgetState extends ConsumerState<ImagePrviewWidget> {
   Widget build(BuildContext context) {
     return ClipRRect(
         borderRadius: BorderRadius.circular(7),
-        child: Column(
-          children: [
-            widget.oneApartment.photos != null &&
-                    widget.imageFileList.isNotEmpty &&
-                    widget.oneApartment.photos!.length > widget.index &&
-                    widget.imageFileList.length > widget.index
-                ? Image.network(
-                    key: ValueKey(widget.imageFileList[widget.index].path),
-                    widget.imageFileList[widget.index].path,
-                    height: 110,
-                    width: 110,
-                    fit: BoxFit.cover,
-                    errorBuilder: (BuildContext context, Object error,
-                        StackTrace? stackTrace) {
-                      return const SkeletonImageWidget();
-                    },
-                  )
-                : Image.file(
-                    File(
-                      widget.imageFileList[widget.index].path,
-                    ),
-                    height: 110,
-                    width: 110,
-                    fit: BoxFit.cover,
-                    errorBuilder: (BuildContext context, Object error,
-                        StackTrace? stackTrace) {
-                      return const SkeletonImageWidget();
-                    },
-                  )
-          ],
-        ));
+        child: widget.oneApartment.photos != null &&
+                widget.imageFileList.isNotEmpty &&
+                widget.oneApartment.photos!.length > widget.index &&
+                widget.imageFileList.length > widget.index
+            ? Image.network(
+                key: ValueKey(widget.imageFileList[widget.index].path),
+                widget.imageFileList[widget.index].path,
+                height: 110,
+                width: 110,
+                fit: BoxFit.cover,
+                errorBuilder: (BuildContext context, Object error,
+                    StackTrace? stackTrace) {
+                  return const SkeletonImageWidget();
+                },
+              )
+            : Image.file(
+                File(
+                  widget.imageFileList[widget.index].path,
+                ),
+                height: 110,
+                width: 110,
+                fit: BoxFit.cover,
+                errorBuilder: (BuildContext context, Object error,
+                    StackTrace? stackTrace) {
+                  return const SkeletonImageWidget();
+                },
+              ));
   }
 }
 //
