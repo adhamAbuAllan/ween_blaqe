@@ -24,41 +24,54 @@ class _ButtonCanselImageWidgetState
     extends ConsumerState<ButtonDeleteImageWidget> {
   @override
   Widget build(BuildContext context) {
-    return Positioned(
-        left: ( //check if the language is english
-            NewSession.get("language", "ar") == "en"
-                ? null // is not english give me default value
-                : ( // is english , check if the screen is small
+    return  Padding(
+      padding: const EdgeInsets.all(2),
+      child: GestureDetector(
 
-                    getIt<AppDimension>().isSmallScreen(context)
-                        ? // if screen is small give me 5 only
-                        5
-                        : ( // if screen is not small check if screen is medium
+          onTap: widget.onTap,
+          child: const Icon(
 
-                            MediaQuery.sizeOf(context).width <= 413 &&
-                                    MediaQuery.sizeOf(context).width >= 390
-                                ? // if screen is medium give me 10 only
-                                10.0
-                                : // then screen is not medium give me 20 only
-                                20.0))),
-        right: ( // is the same of left position but the difference
-            // check is
-            // not english language
+            Icons.cancel,
+            color: Color(0xf0e09000),
 
-            NewSession.get("language", "ar") != "en"
-                ? null
-                : (getIt<AppDimension>().isSmallScreen(context)
-                    ? 5
-                    : (MediaQuery.sizeOf(context).width <= 413 &&
-                            MediaQuery.sizeOf(context).width >= 390
-                        ? 10.0
-                        : 30.0))),
-        top: 2,
-        child: GestureDetector(
-            onTap: widget.onTap,
-            child: const Icon(
-              Icons.cancel,
-              color: Color(0xf0e09000),
-            )));
+          )),
+    );
+
+      // Positioned(
+      //   left: ( //check if the language is english
+      //       NewSession.get("language", "ar") == "en"
+      //           ? null // is not english give me default value
+      //           : ( // is english , check if the screen is small
+      //
+      //               getIt<AppDimension>().isSmallScreen(context)
+      //                   ? // if screen is small give me 5 only
+      //                   5
+      //                   : ( // if screen is not small check if screen is medium
+      //
+      //                       MediaQuery.sizeOf(context).width <= 413 &&
+      //                               MediaQuery.sizeOf(context).width >= 390
+      //                           ? // if screen is medium give me 10 only
+      //                           10.0
+      //                           : // then screen is not medium give me 20 only
+      //                           20.0))),
+      //   right: ( // is the same of left position but the difference
+      //       // check is
+      //       // not english language
+      //
+      //       NewSession.get("language", "ar") != "en"
+      //           ? null
+      //           : (getIt<AppDimension>().isSmallScreen(context)
+      //               ? 5
+      //               : (MediaQuery.sizeOf(context).width <= 413 &&
+      //                       MediaQuery.sizeOf(context).width >= 390
+      //                   ? 10.0
+      //                   : 30.0))),
+      //   top: 2,
+      //   child: GestureDetector(
+      //       onTap: widget.onTap,
+      //       child: const Icon(
+      //         Icons.cancel,
+      //         color: Color(0xf0e09000),
+      //       )));
   }
 }
