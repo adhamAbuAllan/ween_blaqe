@@ -10,8 +10,13 @@ import '../../providers/image_provider.dart';
 class ImageLocalNotifier extends StateNotifier<ImageState> {
   ImageLocalNotifier() : super(ImageState());
 
-  Future<void> pickImage(ImageSource source, WidgetRef ref,
-      {XFile? pickedFile, List<XFile>? imageFileList, bool? forAuth}) async {
+  Future<void> pickImage(
+    ImageSource source,
+    WidgetRef ref, {
+    XFile? pickedFile,
+    List<XFile>? imageFileList,
+    bool? forAuth,
+  }) async {
     if (forAuth ?? false) {
       ref.watch(profileImageFile.notifier).state =
           await ref.watch(imagePicker)?.pickImage(source: source);
@@ -25,79 +30,95 @@ class ImageLocalNotifier extends StateNotifier<ImageState> {
     }
   }
 
-  void initState({
-    required WidgetRef ref,
-    List<Photos>? apiPhotos,
-  }) {
+  List<XFile> initState(
+      {required WidgetRef ref,
+      List<Photos>? apiPhotos,
+      required List<XFile> images,
+      required List<String> newImages}) {
+    state = state.copyWith(isLoading: true);
     ref.read(photosIds.notifier).state = [];
-    ref.read(newImages.notifier).state = [];
+    ref.read(newImagesNotifier.notifier).state = [];
     ref.read(newImagesCanceled.notifier).state = [];
 
     if (state.newImages.isEmpty) {
       // state.images = apiPhotos?.map((e) => XFile(e.url ?? ""))?.toList();
       // ref.read(images.notifier).state =
-      //     apiPhotos!.map((e) => XFile(e.url ?? "")).toList();
-        state = state.copyWith(images:apiPhotos?.map((e) => XFile(e.url ?? "")).toList());
-   debugPrint("state images = ${state.images}");
+      //apiPhotos!.map((e) => XFile(e.url ?? "")).toList();
+      state = state.copyWith(
+          images: apiPhotos?.map((e) => XFile(e.url ?? "")).toList());
+      images = state.images;
+      debugPrint("images = $images");
+
+      debugPrint("state images = ${state.images}");
     } else {
       for (var image in state.newImages) {
         state.images.add(XFile(image));
+        images.add(XFile(image));
         // ref.read(images.notifier).state.add(XFile(image));
       }
     }
+    state = state.copyWith(isLoading: false);
+
+    return images;
   }
 
-  void doneState({required WidgetRef ref,required List<String> cancelImages,
-    required List<Photos> apiPhotos}) {
-    // for(var photoId in ref.read(photosIds.notifier).state){
-    //   state.photosIds?.add(photoId);
-    // }
-if(cancelImages.isNotEmpty){
-  for(var cancelImage in cancelImages){
-    for(var newImage in state.newImages){
-      if(newImage == cancelImage){
-        state.newImages.remove(newImage);
+  void doneState(
+      {required WidgetRef ref,
+      required List<String> cancelImages,
+      required List<Photos> apiPhotos}) {
+    if (cancelImages.isNotEmpty) {
+      for (var cancelImage in cancelImages) {
+        for (var newImage in state.newImages) {
+          if (newImage == cancelImage) {
+            state.newImages.remove(newImage);
+          }
+        }
+
+        for (var apiUrl in apiPhotos) {
+          if (apiUrl.url == cancelImage) {
+            ref.read(photosIds.notifier).state.add(apiUrl.id ?? -1);
+          }
+        }
       }
     }
-
-for(var apiUrl in apiPhotos){
-  if(apiUrl.url == cancelImage){
-    ref.read(photosIds.notifier).state.add(apiUrl.id??-1);
-  }
-}
-  }
-
-}
-    for(var newImage in ref.read(newImages.notifier).state){
+    for (var newImage in ref.read(newImagesNotifier.notifier).state) {
       state.newImages.add(newImage);
     }
   } // when click on done button
-  Future<void> addImagesState(
-      {required WidgetRef ref, ImageSource? source}) async {
+
+  Future<void> addImagesState({
+    required WidgetRef ref,
+    ImageSource? source,
+    required List<XFile> images,
+    required ImagePicker imagePicker,
+  }) async {
     state = state.copyWith(isLoading: true);
+    debugPrint("isLaoding = ${state.isLoading}");
 
     if (source != null) {
-      final XFile? pickedFile =
-      await ref.watch(imagePicker)?.pickImage(source: source);
-      state.images.add(pickedFile ?? XFile(""));
-      if(pickedFile == null){
+      final XFile? pickedFile = await imagePicker.pickImage(source: source);
+      images.add(pickedFile ?? XFile(""));
+      if (pickedFile == null) {
         return;
       }
-      ref.read(newImages.notifier).state.add(pickedFile.path );
-    }else{
-      final List<XFile>? pickedFileList =
-      await ref.watch(imagePicker)?.pickMultiImage();
-      if(pickedFileList == null){
+      state.newImages.add(pickedFile.path);
+    } else {
+      final List<XFile> pickedFileList = await imagePicker.pickMultiImage();
+      debugPrint("pickedFileList = $pickedFileList");
+      if (pickedFileList.isEmpty) {
         return;
       }
-      for (var image in pickedFileList ) {
-        state.images.add(image);
-        ref.read(newImages.notifier).state.add(image.path);
-      }
+      for (var image in pickedFileList) {
+        images.add(image);
+        WidgetsBinding.instance.addPostFrameCallback((_) async {
+          ref.read(newImagesNotifier.notifier).state.add(image.path);
 
+        });
+      }
     }
-    debugPrint("newImages in provider = ${ref.read(newImages.notifier).state}");
 
+    debugPrint(
+        "ref.read(newImagesNotifier.notifier).state; = ${ref.read(newImagesNotifier.notifier).state}");
     state = state.copyWith(isLoading: false);
   }
 

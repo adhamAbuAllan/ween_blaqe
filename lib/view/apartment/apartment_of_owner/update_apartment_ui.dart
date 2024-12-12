@@ -56,7 +56,6 @@ class _UpdateApartmentUiState extends ConsumerState<UpdateApartmentUi> {
     super.initState();
     WidgetsBinding.instance.addPostFrameCallback((_) async {
       // ref.read(isSavedImages.notifier).state = false;
-        ref.read(imageLocalNotifier).newImages.clear();
         ref.read(imageLocalNotifier).photosIds?.clear();
         ref.read(imageLocalNotifier).images.clear();
 

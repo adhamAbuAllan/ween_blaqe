@@ -2,7 +2,7 @@ import 'package:file_selector/file_selector.dart';
 
 class ImageState {
   final List<XFile> images;
-  final List<String> newImages;
+  final List<String> newImages;//
   final List<int>? photosIds;
   final bool isLoading;
 

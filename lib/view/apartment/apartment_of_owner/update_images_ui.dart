@@ -32,34 +32,34 @@ class _UpdateImagesUiState extends ConsumerState<UpdateImagesUi> {
 
     WidgetsBinding.instance.addPostFrameCallback((_) async {
 
+      setState(() {});
+
       ref.read(fetchApartmentNotifier.notifier).fetchApartments(
-        isOwnerApartments: false,
-      );
+            isOwnerApartments: false,
+          );
 
-      var apartmentsOfOwnerNotifer = ref
-          .read(fetchApartmentNotifier)
-          .apartmentsList
-          .data
-          ?.where((e) => e.id == widget.oneApartment?.id);
-      var imagesApi = apartmentsOfOwnerNotifer?.first.photos;
+      var imagesApi = widget.oneApartment?.photos;
 
+      if (ref.read(newImagesNotifier.notifier).state.isEmpty) {
+        images = imagesApi?.map((e) => XFile(e.url ?? "")).toList() ?? [];
 
-
-      ref
-          .read(imageLocalNotifier.notifier)
-          .initState(ref: ref, apiPhotos: imagesApi);
+      } else {
+        for (var image in ref.read(newImagesNotifier.notifier).state) {
+          images.add(XFile(image));
+        }
+      }
     });
   }
 
-  // late final List<XFile> _apiList;
+  late List<XFile> images;
 
-  // final ImagePicker _picker = ImagePicker();
-
-  // final List<String> apiImagesList = [];
+  final ImagePicker imagePicker = ImagePicker();
+  final List<String> newImages = [];
 
   @override
   Widget build(BuildContext context) {
     final List<String> cancelImages = [];
+
     return Scaffold(
       backgroundColor: themeMode.isLight
           ? kBackgroundAppColorLightMode
@@ -102,8 +102,7 @@ class _UpdateImagesUiState extends ConsumerState<UpdateImagesUi> {
                 horizontal:
                     getIt<AppDimension>().isSmallScreen(context) ? 10 : 8),
             child: ElevatedButton(
-              onPressed: cancelImages.isNotEmpty ||
-                      ref.watch(imageLocalNotifier).newImages.isNotEmpty
+              onPressed: cancelImages.isNotEmpty || newImages.isNotEmpty
                   ? () {
                       if (ref.watch(imageLocalNotifier).images.length < 3) {
                         ref
@@ -120,32 +119,23 @@ class _UpdateImagesUiState extends ConsumerState<UpdateImagesUi> {
                         ref.read(imageLocalNotifier.notifier).doneState(
                             ref: ref,
                             apiPhotos: widget.oneApartment?.photos ?? [],
-                            cancelImages: cancelImages);
+                            cancelImages: cancelImages,
+                            );
                       });
                       debugPrint("cancelImages = $cancelImages");
                       debugPrint("photosIds prodiver = ${ref.read(photosIds)}");
-                      debugPrint("newImages provider = ${ref.read(newImages)}");
-                      debugPrint("newImages Notifier = ${ref.read
-                        (imageLocalNotifier).newImages}");
-                      debugPrint("photosIds notifier = ${ref.read
-                        (imageLocalNotifier).photosIds}");
-
+                      debugPrint(
+                          "photosIds notifier = ${ref.read(imageLocalNotifier).photosIds}");
 
                       Navigator.pop(context);
                     }
                   : () {
+                      debugPrint("cancelImages = $cancelImages");
+                      debugPrint("photosIds prodiver = ${ref.read(photosIds)}");
+                      debugPrint(
+                          "photosIds notifier = ${ref.read(imageLocalNotifier).photosIds}");
 
-
-                debugPrint("cancelImages = $cancelImages");
-                debugPrint("photosIds prodiver = ${ref.read(photosIds)}");
-                debugPrint("newImages provider = ${ref.read(newImages)}");
-                debugPrint("newImages Notifier = ${ref.read
-                  (imageLocalNotifier).newImages}");
-                debugPrint("photosIds notifier = ${ref.read
-                  (imageLocalNotifier).photosIds}");
-
-
-                ref
+                      ref
                           .read(showSnackBarNotifier.notifier)
                           .showNormalSnackBar(
                               context: context,
@@ -164,19 +154,22 @@ class _UpdateImagesUiState extends ConsumerState<UpdateImagesUi> {
           padding: const EdgeInsets.fromLTRB(10, 10, 10, 0),
           child: Stack(
             children: [
-              ref.read(imageLocalNotifier).isLoading
+              ref.watch(imageLocalNotifier).isLoading
                   ? const Center(
                       child: CircularProgressIndicator(),
                     )
-                  : const SizedBox(),
+                  :const SizedBox(),
+
               GridViewImagesWidget(
-                oneApartment: widget.oneApartment ?? DataOfOneApartment(),
-                canselImages: cancelImages,
-                images: ref.watch(imageLocalNotifier).images
-              )
+                      oneApartment: widget.oneApartment ?? DataOfOneApartment(),
+                      canselImages: cancelImages,
+                      images: images)
             ],
           )),
-      floatingActionButton: const FloatingButtonsAddImagesWidgets(),
+      floatingActionButton: FloatingButtonsAddImagesWidgets(
+        imagePicker: imagePicker,
+        images: images,
+      ),
     );
   }
 }

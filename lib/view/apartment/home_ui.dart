@@ -54,6 +54,7 @@ class _HomeUiState extends ConsumerState<HomeUi> {
         }
       });
     });
+    /// تواصل مع ابو النظارات عشان تسأله عن نظارة ضد البخار لمحمد
     WidgetsBinding.instance.addPostFrameCallback((_) async {
       ref.read(isAllTypesOfApartmentNotifier.notifier).state = true;
         await ref.read(fetchApartmentNotifier.notifier).fetchApartments(
