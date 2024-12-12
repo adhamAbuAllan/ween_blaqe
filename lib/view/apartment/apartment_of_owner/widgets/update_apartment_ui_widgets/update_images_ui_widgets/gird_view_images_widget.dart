@@ -25,37 +25,50 @@ class _PrviewImagesWidgetState extends ConsumerState<GridViewImagesWidget> {
   @override
   Widget build(BuildContext context) {
     return Semantics(
+
       child: GridView.builder(
-        padding: const EdgeInsets.only(right: 10),
         key: UniqueKey(),
         itemBuilder: (BuildContext context, int index) {
-          return Stack(children: [
-                  Builder(builder: (context) {
-                    return ImagePrviewWidget(
-                        imageFileList: widget.images,
-                        oneApartment: widget.oneApartment,
-                        index: index);
-                  }),
-                  ButtonDeleteImageWidget(
-                      oneApartment: widget.oneApartment,
-                      onTap: () {
-                        if (index >= 0 && index < widget.images.length) {
-                          widget.oneApartment.photos?.removeWhere((photo){
-                            if(photo.url == widget.images[index].path){
-                              return true;
-                            }
-                            return false;
-                          });
-                          widget.images.removeAt(index);
-                          setState(() {
-                            widget.canselImages.add(widget.images[index].path);
-                          });
-                        }
+          // Calculate the reversed index
+          final reversedIndex = widget.images.length - 1 - index;
 
-                        debugPrint(
-                            "widget.canselImages : ${widget.canselImages}");
-                      }),
-                ]);
+          return Stack(
+            alignment:Alignment.center,
+            children: [
+              Builder(
+                builder: (context) {
+                  return ImagePrviewWidget(
+                    imageFileList: widget.images,
+                    oneApartment: widget.oneApartment,
+                    index: reversedIndex,
+                  );
+                },
+              ),
+              Align(
+                alignment: AlignmentDirectional.topStart,
+                child: ButtonDeleteImageWidget(
+                  oneApartment: widget.oneApartment,
+                  onTap: () {
+                    if (reversedIndex >= 0 && reversedIndex < widget.images.length) {
+                      widget.oneApartment.photos?.removeWhere((photo) {
+                        return photo.url == widget.images[reversedIndex].path;
+                      });
+                      final removedPath = widget.images[reversedIndex].path;
+                      widget.images.removeAt(reversedIndex);
+
+                      setState(() {
+                        widget.canselImages.add(removedPath);
+                      });
+                    }
+
+                    debugPrint(
+                      "widget.canselImages : ${widget.canselImages}",
+                    );
+                  },
+                ),
+              ),
+            ],
+          );
         },
         itemCount: widget.images.length,
         gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
@@ -63,7 +76,8 @@ class _PrviewImagesWidgetState extends ConsumerState<GridViewImagesWidget> {
           mainAxisSpacing: 5,
           crossAxisSpacing: 5,
         ),
-      ),
+      )
+      ,
     );
   }
 }

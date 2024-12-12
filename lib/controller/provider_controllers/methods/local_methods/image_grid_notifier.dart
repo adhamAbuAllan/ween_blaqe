@@ -101,15 +101,19 @@ return;
 
     if (source != null) {
       final XFile? pickedFile = await imagePicker.pickImage(source: source);
-      images.add(pickedFile ?? XFile(""));
       if (pickedFile == null) {
+        state = state.copyWith(isLoading: false);
         return;
       }
-      state.newImages.add(pickedFile.path);
+      ref.read(newImagesNotifier.notifier).state.add(pickedFile.path);
+
+      images.add(pickedFile);
+
     } else {
       final List<XFile> pickedFileList = await imagePicker.pickMultiImage();
       debugPrint("pickedFileList = $pickedFileList");
       if (pickedFileList.isEmpty) {
+        state = state.copyWith(isLoading: false);
         return;
       }
       for (var image in pickedFileList) {
