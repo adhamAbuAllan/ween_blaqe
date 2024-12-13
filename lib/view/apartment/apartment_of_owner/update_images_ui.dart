@@ -22,62 +22,21 @@ class UpdateImagesUi extends ConsumerStatefulWidget {
 }
 
 class _UpdateImagesUiState extends ConsumerState<UpdateImagesUi> {
-  late List<XFile> images;
+  late List<XFile> images = [];
   @override
   void initState() {
     super.initState();
 
     WidgetsBinding.instance.addPostFrameCallback((_) async {
-      //you should to know taht if you that to make the images as a list that
-      // after save or after click on ok button that you should to check the
-      //ids of cansel images and then you should to make the images , add the
-      // images from api that is not in the list of ids Or cansel images !
-
       setState(() {});
-      // ref.read(imageLocalNotifier.notifier).initState(
-      //       ref: ref,
-      //     );
-      // if(ref.read(imageLocalNotifier).images.isNotEmpty){
-      //   images = ref.watch(imageLocalNotifier).images;
-      //
-      // }
-
+      ref.read(newImagesNotifier.notifier).state = [];
       var imagesApi = widget.oneApartment?.photos;
-      // if(ref.read(imageLocalNotifier).images.isNotEmpty){
-      //   images = ref.watch(imageLocalNotifier).images;
-      //   debugPrint("images = $images");
-      // }
-      debugPrint("images notfier = ${ref.watch(imageLocalNotifier).images}");
       if(ref.read(imagesFileList.notifier).state.isNotEmpty){
         images = ref.watch(imagesFileList.notifier).state;
       }else{
         images = imagesApi?.map((e) => XFile(e.url ?? "")).toList() ?? [];
 
       }
-      // if(ref.read(newImagesNotifier.notifier).state.isNotEmpty){
-      //   for(var image in ref.read(newImagesNotifier.notifier).state){
-      //    newImagesLocal.add(image);
-      //   }
-      //
-      //   // images = ref.read(newImagesNotifier.notifier).state;
-      //
-      // }
-
-      // if (ref.watch(newImagesNotifier.notifier).state.isEmpty) {
-      //   debugPrint("true");
-      //   images = imagesApi?.map((e) => XFile(e.url ?? "")).toList() ?? [];
-      // } else {
-      //   for (var image in ref.read(imageLocalNotifier).images) {
-      //     debugPrint("false");
-      //     // images.add(image);
-      //     images = imagesApi?.map((e) => XFile(e.url ?? "")).toList() ?? [];
-      //
-      //     // images = ref.watch(imageLocalNotifier).images;
-      //
-      //
-      //     // debugPrint("imagesNotifier ${ref.read(images)}");
-      //   }
-      // }
     });
   }
 

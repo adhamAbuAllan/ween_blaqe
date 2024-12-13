@@ -80,7 +80,8 @@ class CreateApartmentNotifier extends StateNotifier<ApartmentState> {
               apartmentId: await apartmentId,
               advantageIds: ref.read(advantagesNotifer).chosen,
             );
-        await ref.read(imageApiNotifier.notifier).compressAndUploadImages();
+        await ref.read(imageApiNotifier.notifier).compressAndUploadImages
+          (ref: ref,apartmentIdToUpdate: apartmentId,newImages: );
 
         state = state.copyWith(isLoading: false);
 

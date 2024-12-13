@@ -61,9 +61,6 @@ class _PrviewImagesWidgetState extends ConsumerState<GridViewImagesWidget> {
                       });
                     }
 
-                    debugPrint(
-                      "widget.canselImages : ${widget.canselImages}",
-                    );
                   },
                 ),
               ),

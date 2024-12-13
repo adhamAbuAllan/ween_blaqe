@@ -56,32 +56,3 @@ class _ImagePrviewWidgetState extends ConsumerState<ImagePrviewWidget> {
               ));
   }
 }
-//
-// class _ImagePrviewWidgetState extends ConsumerState<ImagePrviewWidget> {
-//   @override
-//   Widget build(BuildContext context) {
-//     var images = ref.watch(imageManagerNotifier).imageFiles;
-//     return ClipRRect(
-//       borderRadius: BorderRadius.circular(7),
-//       child: widget.oneApartment.photos != null &&
-//           images != null &&
-//           widget.oneApartment.photos!.length > widget.index &&
-//           images.length > widget.index
-//           ? Image.network(
-//         key: ValueKey(images[widget.index].path),
-//         images[widget.index].path,
-//         height: 110,
-//         width: 110,
-//         fit: BoxFit.cover,
-//       )
-//           : Image.file(
-//         File(
-//           images?[widget.index].path ?? "",
-//         ),
-//         height: 110,
-//         width: 110,
-//         fit: BoxFit.cover,
-//       ),
-//     );
-//   }
-// }

@@ -49,8 +49,7 @@ class _AppBarGridWidgetState extends ConsumerState<AppBarGridWidget>   {
               });
               Navigator.pop(context);
 
-              ref.read(photosIds.notifier).state.clear();
-              debugPrint('photosIds = ${ref.read(photosIds)}');
+
             },
             style: outlinedButton(themeMode: themeMode, context: context),
             child: Text(
