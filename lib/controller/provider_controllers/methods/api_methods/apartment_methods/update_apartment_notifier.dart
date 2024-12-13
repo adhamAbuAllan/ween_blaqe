@@ -5,6 +5,7 @@ import 'package:http/http.dart' as http;
 import 'package:ween_blaqe/controller/provider_controllers/providers/apartment_provider.dart';
 import 'package:ween_blaqe/controller/provider_controllers/statuses/apartment_state.dart';
 
+import '../../../../../api/photos.dart';
 import '../../../../../constants/strings.dart';
 import '../../../../../main.dart';
 import '../../../providers/image_provider.dart';
@@ -59,7 +60,8 @@ class UpdateApartmentNotifier extends StateNotifier<ApartmentState> {
   /// under metohds that to upate all tables that related to apartment
 
   ///update only fields of apartment table
-  updateApartment({required WidgetRef ref, required int apartmentId}) async {
+  updateApartment({required WidgetRef ref, required int apartmentId,List<Photos>? imagesApi})
+  async {
     state = state.copyWith(isUpdating: true);
  await   updateFieldsOfApartment(ref, apartmentId);
 
@@ -71,7 +73,7 @@ class UpdateApartmentNotifier extends StateNotifier<ApartmentState> {
     /// update images
 await    ref
         .read(imageApiNotifier.notifier)
-        .updateImages(apartmentId: apartmentId, ref: ref);
+        .updateImages(apartmentId: apartmentId, ref: ref,imagesApi: imagesApi);
     state = state.copyWith(isUpdating: false);
 
   }

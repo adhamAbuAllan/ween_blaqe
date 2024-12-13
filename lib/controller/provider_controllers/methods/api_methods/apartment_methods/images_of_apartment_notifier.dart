@@ -6,6 +6,7 @@ import 'package:http_parser/http_parser.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:mime/mime.dart';
 
+import '../../../../../api/photos.dart';
 import '../../../../../constants/strings.dart';
 import '../../../../../main.dart';
 import '../../../providers/image_provider.dart';
@@ -14,8 +15,6 @@ import 'package:http/http.dart' as http;
 
 class ImageApiNotifier extends StateNotifier<ImageState> {
   ImageApiNotifier() : super(ImageState());
-
-
 
   Future<List<String>> fetchApartmentImages(String apartmentId) async {
     String apiUrl = ServerWeenBalaqee.showApartmentImages;
@@ -37,10 +36,11 @@ class ImageApiNotifier extends StateNotifier<ImageState> {
     }
   }
 
-  Future<void> compressAndUploadImages({required WidgetRef ref,int apartmentIdToUpdate =
-  -1})
-  async {
-    if (state.images.isEmpty) {
+  Future<void> compressAndUploadImages(
+      {required WidgetRef ref,
+      int apartmentIdToUpdate = -1,
+      List<XFile>? newImages}) async {
+    if (newImages?.isEmpty ?? true) {
       debugPrint("No images selected.");
       return;
     }
@@ -50,10 +50,9 @@ class ImageApiNotifier extends StateNotifier<ImageState> {
     final request = http.MultipartRequest('POST', url);
     request.fields['apartment_id'] = "$apartmentIdToUpdate";
 
-    for (XFile imageFile in state.images) {
-
-      final compressedFile = await ref.read(imageHybridNotifer.notifier)
-          .compressImage(imageFile);
+    for (XFile imageFile in newImages!) {
+      final compressedFile =
+          await ref.read(imageHybridNotifer.notifier).compressImage(imageFile);
       request.files.add(
         await http.MultipartFile.fromPath(
           'images[]',
@@ -73,7 +72,6 @@ class ImageApiNotifier extends StateNotifier<ImageState> {
 
     state = state.copyWith(isLoading: false);
   }
-
 
   Future<void> deleteImages(
       {required int apartmentId, required List<int> photoIds}) async {
@@ -104,15 +102,33 @@ class ImageApiNotifier extends StateNotifier<ImageState> {
   }
 
   Future<void> updateImages(
-      {required int apartmentId, required WidgetRef ref}) async {
-    deleteImages(
-        apartmentId: apartmentId, photoIds:ref.read(photosIds));
+      {required int apartmentId,
+      required WidgetRef ref,
+      List<Photos>? imagesApi}) async {
+    List<int> photosWillDelteIds = [];
+    List<XFile> newImages = [];
+    /// get the ids of the images that will be deleted
+    (imagesApi ?? [])
+        .where((photo) => !ref
+            .read(imagesFileList.notifier)
+            .state
+            .any((image) => image.path == photo.url))
+        .forEach((photo) {
+      photosWillDelteIds.add(photo.id ?? -1);
 
-    ///delete images that already uploaded
-    compressAndUploadImages(apartmentIdToUpdate: apartmentId, ref: ref);
-
-    /// upload new images
-    
+    });
+/// get the images that will be added
+    ref
+        .read(imagesFileList.notifier)
+        .state
+        .where((image) =>
+            !(imagesApi ?? []).any((photo) => photo.url == image.path))
+        .forEach((image) {
+      newImages.add(image);
+    });
+debugPrint("new images : $newImages");
+debugPrint("images will deleted : $photosWillDelteIds");
+    deleteImages(apartmentId: apartmentId, photoIds: photosWillDelteIds);
+    compressAndUploadImages(apartmentIdToUpdate: apartmentId, ref: ref, newImages: newImages);
   }
-
 }

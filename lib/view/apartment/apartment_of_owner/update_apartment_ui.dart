@@ -121,66 +121,61 @@ class _UpdateApartmentUiState extends ConsumerState<UpdateApartmentUi> {
   @override
   Widget build(BuildContext context) {
     return ColorfulSafeArea(
-      color: themeMode.isLight
-          ? kContainerColorLightMode
-          : kContainerColorDarkMode,
-      child: GestureDetector(
-        onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
-        child: SafeArea(
-          child: Scaffold(
-            backgroundColor: themeMode.isLight
-                ? kBackgroundAppColorLightMode
-                : kBackgroundAppColorDarkMode,
-            appBar: AppbarUpdateApartmentWidget(
-              oneApartment: widget.oneApartment!,
-            ),
-            body: SingleChildScrollView(
-              child: Column(children: [
-                Column(
-                  children: [
-                    const SizedBox(
-                      height: 10,
-                    ),
-                    DropdownCitiesWidget(
-                      alreadyExistingValue:
-                      widget.oneApartment ?? DataOfOneApartment(),
-                    ),
-                    SizedBox(
-                      height:
-                      getIt<AppDimension>().isSmallScreen(context) ? 0 : 10,
-                    ),
-                    const AddressFieldWidget(),
-                    const RoomsFieldWidget(),
-                    const BathRoomsFieldWidget(),
-
-                    AdvantagesUpdateWidget(alreadyAdv: widget.oneApartment?.advantages ?? [],),
-                    SizedBox(
-                      height:
-                      getIt<AppDimension>().isSmallScreen(context) ? 0 : 10,
-                    ),
-                    const PriceWidget(),
-
-
-                    DropdownTypesWidget(
-                      alreadyExistingValue:
-                      widget.oneApartment ?? DataOfOneApartment(),
-                    ),
-
-                    SizedBox(height: getIt<AppDimension>().isSmallScreen(context) ? 0 : 10,),
-
-                    const StudentCountFieldWidget(),
-                    const SquareMetersFieldWidget(),
-                    const AddTitleFieldWidget(),
-                    const DescriptionFieldWidget(),
-                    const SizedBox(height: 60),
-                  ],
+     color: themeMode.isLight ? kContainerColorLightMode : kContainerColorDarkMode,
+      child: Scaffold(
+        backgroundColor: themeMode.isLight
+            ? kBackgroundAppColorLightMode
+            : kBackgroundAppColorDarkMode,
+        appBar: AppbarUpdateApartmentWidget(
+          oneApartment: widget.oneApartment!,
+        ),
+        body: SingleChildScrollView(
+          child: GestureDetector(
+            onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
+      
+            child: Column(
+              children: [
+                const SizedBox(
+                  height: 10,
                 ),
-              ]),
-            ),
-            floatingActionButton: FloatingButtonAddDeleteImageWidget(
-              oneApartment: widget.oneApartment,
+                DropdownCitiesWidget(
+                  alreadyExistingValue:
+                  widget.oneApartment ?? DataOfOneApartment(),
+                ),
+                SizedBox(
+                  height:
+                  getIt<AppDimension>().isSmallScreen(context) ? 0 : 10,
+                ),
+                const AddressFieldWidget(),
+                const RoomsFieldWidget(),
+                const BathRoomsFieldWidget(),
+      
+                AdvantagesUpdateWidget(alreadyAdv: widget.oneApartment?.advantages ?? [],),
+                SizedBox(
+                  height:
+                  getIt<AppDimension>().isSmallScreen(context) ? 0 : 10,
+                ),
+                const PriceWidget(),
+      
+      
+                DropdownTypesWidget(
+                  alreadyExistingValue:
+                  widget.oneApartment ?? DataOfOneApartment(),
+                ),
+      
+                SizedBox(height: getIt<AppDimension>().isSmallScreen(context) ? 0 : 10,),
+      
+                const StudentCountFieldWidget(),
+                const SquareMetersFieldWidget(),
+                const AddTitleFieldWidget(),
+                const DescriptionFieldWidget(),
+                const SizedBox(height: 60),
+              ],
             ),
           ),
+        ),
+        floatingActionButton: FloatingButtonAddDeleteImageWidget(
+          oneApartment: widget.oneApartment,
         ),
       ),
     );
