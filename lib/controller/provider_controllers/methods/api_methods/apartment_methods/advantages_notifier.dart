@@ -12,6 +12,13 @@ import '../../../statuses/advantage_state.dart';
 class AdvantagesNotifier extends StateNotifier<AdvantageState> {
   AdvantagesNotifier() : super(AdvantageState());
 
+  initChosenValues({required List<Advantages> advantages }
+      ) {
+    for(var advantage in advantages){
+      state.chosen.add(advantage.id??0);
+    }
+    return state.chosen;
+}
   Future<void> insertAdvInApartment(
       {required String apartmentId, required List<int> advantageIds}) async {
     var token = (await sp).get("token"); // Replace with your token

@@ -56,6 +56,12 @@ class _UpdateApartmentUiState extends ConsumerState<UpdateApartmentUi> {
     super.initState();
     WidgetsBinding.instance.addPostFrameCallback((_) async {
       ref.read(imagesFileList.notifier).state.clear();
+      ref.read(advantagesNotifer).chosen.clear();
+
+      ref.read(advantagesNotifer.notifier).initChosenValues(advantages:
+      widget.oneApartment?.advantages ?? []);
+debugPrint("advantages = ${widget.oneApartment?.advantages}");
+debugPrint("chosen = ${ref.read(advantagesNotifer).chosen}");
       // ref.read(isSavedImages.notifier).state = false;
 
 

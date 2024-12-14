@@ -92,7 +92,8 @@ class _AppbarEditApartmentWidgetState
 
 
 
-              if(ref.watch(hasChanged.notifier).state ||  listEquals(advantagesApi, ref.read(advantagesNotifer).chosen)){
+              if(ref.watch(hasChanged.notifier).state ||  !listEquals
+                (advantagesApi, ref.read(advantagesNotifer).chosen)){
                 ref.read(showSnackBarNotifier.notifier).showNormalSnackBar(
                       context: context,
                       message:
@@ -109,7 +110,7 @@ class _AppbarEditApartmentWidgetState
               }
               debugPrint("advantagesApi : $advantagesApi");
               debugPrint("ref.read(advantagesNotifer).chosen : ${ref.read(advantagesNotifer).chosen}");
-      debugPrint("isListEquals : ${ listEquals(advantagesApi,
+      debugPrint("isListEquals : ${ !listEquals(advantagesApi,
           ref.read(advantagesNotifer).chosen)}");
 
 
