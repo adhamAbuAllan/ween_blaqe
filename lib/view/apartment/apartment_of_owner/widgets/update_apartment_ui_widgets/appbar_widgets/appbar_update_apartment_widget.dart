@@ -115,7 +115,7 @@ class _AppbarEditApartmentWidgetState
 
       debugPrint("hasChanged : ${ref.read(hasChanged)}");
 return;
-              debugPrint("hasChanged : ${ref.read(hasChanged)}");
+
 
               if (ref.read(updateApartmentNotifier).isUpdating) {
                 ref.read(showSnackBarNotifier.notifier).showNormalSnackBar(
