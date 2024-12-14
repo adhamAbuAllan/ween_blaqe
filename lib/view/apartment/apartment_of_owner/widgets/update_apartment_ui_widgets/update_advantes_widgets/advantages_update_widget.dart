@@ -31,8 +31,10 @@ class _AdvantagesUpdateWidgetState extends ConsumerState<AdvantagesUpdateWidget>
         childWidget:  Container(
           margin: const EdgeInsets.all(10),
           child: Column(
-            children: advantageState.advantages.map((advantage) {
-              return ListTile(
+            children:
+            advantageState.advantages.map((advantage) {
+              return
+                ListTile(
                 horizontalTitleGap: 2.5,
                 dense: false,
                 onTap: () {
