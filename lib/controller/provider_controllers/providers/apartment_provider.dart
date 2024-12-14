@@ -64,7 +64,6 @@ StateNotifierProvider<UpdateApartmentNotifier,  ApartmentState>(
       (ref) => UpdateApartmentNotifier(),
 );
 
-
 // Provider for the CarouselSliderController
 final carouselSliderControllerNotifier =
     Provider<CarouselSliderController>((ref) {
@@ -167,3 +166,4 @@ final roomSizeChangeProvider = StateProvider<bool>((ref) => false);
 final bathSizeChangeProvider = StateProvider<bool>((ref) => false);
 final areaSizeChangeProvider = StateProvider<bool>((ref) => false);
 final isApartmentsListEmpty = StateProvider<bool>((ref) => false);
+final hasChanged = StateProvider<bool>((ref) => false);

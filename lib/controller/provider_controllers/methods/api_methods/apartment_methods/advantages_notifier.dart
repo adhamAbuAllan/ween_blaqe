@@ -125,6 +125,7 @@ class AdvantagesNotifier extends StateNotifier<AdvantageState> {
 
   updateAdvantages({required String apartmentId}) async {
     state.advantages.clear();
+    debugPrint("advantages after clear : ${state.advantages.length}");
     await deleteAdvInApartment(apartmentId: apartmentId);
 
     // in a list of [advantages]

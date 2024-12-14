@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:ween_blaqe/constants/nums.dart';
 
 import '../../../../../../api/apartments_api/apartments.dart';
+import '../../../../../../constants/coordination.dart';
+import '../../../../../../constants/get_it_controller.dart';
 
 class ButtonDeleteImageWidget extends ConsumerStatefulWidget {
   const ButtonDeleteImageWidget(
@@ -23,7 +25,7 @@ class _ButtonCanselImageWidgetState
   @override
   Widget build(BuildContext context) {
     return  Padding(
-      padding: const EdgeInsets.all(12),
+      padding: const EdgeInsets.all(13),
       child: GestureDetector(
 
           onTap: widget.onTap,

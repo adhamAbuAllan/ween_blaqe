@@ -8,8 +8,8 @@ import '../../../../../../controller/provider_controllers/providers/apartment_pr
 import '../../../../../common_widgets/containers_widgets/container_field_widget.dart';
 
 class SquareMetersFieldWidget extends ConsumerWidget {
-  const SquareMetersFieldWidget({super.key});
-
+  const SquareMetersFieldWidget({super.key, this.originalSquareMeters});
+  final String? originalSquareMeters;
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     return Padding(
@@ -24,6 +24,7 @@ class SquareMetersFieldWidget extends ConsumerWidget {
         hintInput: '0',
         controller: ref.read(squareMetersController),
         inputType: TextInputType.number,
+        originalValue: originalSquareMeters,
       ),
     );
   }

@@ -5,8 +5,8 @@ import '../../../../../../constants/localization.dart';
 import '../../../../../../controller/provider_controllers/providers/apartment_provider.dart';
 import '../../../../../common_widgets/containers_widgets/container_field_widget.dart';
 class DescriptionFieldWidget extends ConsumerWidget {
-  const DescriptionFieldWidget({super.key});
-
+  const DescriptionFieldWidget({super.key,  this.originalDescription});
+  final String? originalDescription;
   @override
   Widget build(BuildContext context, WidgetRef ref) => ContainerFieldWidget(
       title: SetLocalization.of(context)!
@@ -17,5 +17,7 @@ class DescriptionFieldWidget extends ConsumerWidget {
       inputType: TextInputType.text,
       maxLength: 255,
       hintMaxLines: 7,
+    originalValue: originalDescription,
+
     );
 }

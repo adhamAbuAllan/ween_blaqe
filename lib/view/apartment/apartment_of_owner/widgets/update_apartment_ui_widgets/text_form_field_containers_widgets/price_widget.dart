@@ -8,8 +8,8 @@ import '../../../../../../controller/provider_controllers/providers/apartment_pr
 import '../../../../../common_widgets/containers_widgets/container_field_widget.dart';
 
 class PriceWidget extends ConsumerWidget {
-  const PriceWidget({super.key});
-
+  const PriceWidget({super.key, this.originalPrice});
+  final String? originalPrice;
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     return                     Padding(
@@ -24,6 +24,7 @@ class PriceWidget extends ConsumerWidget {
             .getTranslateValue("enter_monthly_rent"),
         controller: ref.read(priceController),
         inputType: TextInputType.number,
+        originalValue: originalPrice,
       ),
     );
   }

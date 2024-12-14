@@ -43,6 +43,12 @@ final defaultValue = widget.selectedItem; // Default selected item
             ref.read(cityNotifier.notifier).setSelectedCity(items);
             debugPrint(
                 "selectedCity : ${ref.read(cityNotifier).selectedCity?.id}");
+            if (widget.alreadyExistingValue.type?.id != items.id) {
+              ref.read(hasChanged.notifier).state = true;
+            } else {
+              ref.read(hasChanged.notifier).state = false;
+            }
+
           });
         });
       }, itmes: ref

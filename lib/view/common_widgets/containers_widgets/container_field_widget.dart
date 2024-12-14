@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:get/get.dart';
 import 'package:ween_blaqe/controller/function_controller/change_theme_mode.dart';
+import 'package:ween_blaqe/controller/provider_controllers/providers/apartment_provider.dart';
 import 'package:ween_blaqe/view/common_widgets/containers_widgets/container_widget.dart';
 
 import '../../../constants/coordination.dart';
@@ -25,23 +26,24 @@ class ContainerFieldWidget extends ConsumerWidget {
   final String? helperText;
   final bool? autoFocus;
   final TextEditingController? controller;
+  final String? originalValue;
 
-  const ContainerFieldWidget({
-    super.key,
-    required this.title,
-    required this.hintInput,
-    required this.inputType,
-    this.focusNode,
-    this.maxLines,
-    this.hintMaxLines,
-    this.maxLength,
-    this.onFieldSubmitted,
-    this.autoFocus,
-    this.controller,
-    this.errorText,
-    this.validator,
-    this.helperText,
-  });
+  const ContainerFieldWidget(
+      {super.key,
+      required this.title,
+      required this.hintInput,
+      required this.inputType,
+      this.focusNode,
+      this.maxLines,
+      this.hintMaxLines,
+      this.maxLength,
+      this.onFieldSubmitted,
+      this.autoFocus,
+      this.controller,
+      this.errorText,
+      this.validator,
+      this.helperText,
+      this.originalValue});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -69,6 +71,20 @@ class ContainerFieldWidget extends ConsumerWidget {
         Padding(
           padding: const EdgeInsets.fromLTRB(20, 0, 20, 10),
           child: TextFormField(
+            onChanged: (value) {
+              bool hasChange = originalValue != controller?.text;
+                if (value.isNotEmpty) {
+                  if (hasChange) {
+                    ref.read(hasChanged.notifier).state = true;
+                  }else{
+                    ref.read(hasChanged.notifier).state = false;
+                  }
+                } else {
+                  ///should show the validate message when the field is empty
+                }
+
+
+            },
             validator: validator,
             cursorColor: themeMode.isLight
                 ? kPrimaryColorLightMode

@@ -34,7 +34,7 @@ import '../../apartment/apartment_of_owner/widgets/update_apartment_ui_widgets'
 import '../../apartment/apartment_of_owner/widgets/update_apartment_ui_widgets'
     '/dropdown_fields_widgets/types_drop_down_widget.dart';
 import '../../apartment/apartment_of_owner/widgets/update_apartment_ui_widgets'
-    '/update_advantes_widgets/advantages_edit_widget.dart';
+    '/update_advantes_widgets/advantages_update_widget.dart';
 import '../../apartment/apartment_of_owner/widgets/update_apartment_ui_widgets'
     '/text_form_field_containers_widgets/description_widget.dart';
 import '../../apartment/apartment_of_owner/widgets/update_apartment_ui_widgets'
@@ -76,7 +76,7 @@ class _UpdateApartmentUiState extends ConsumerState<UpdateApartmentUi> {
       //           .toList());
       // }
 
-
+ref.read(hasChanged.notifier).state = false;
       ref.read(cityNotifier.notifier).fetchCities();
 
       ref.read(typesNotifier.notifier).fetchTypes();
@@ -85,37 +85,38 @@ class _UpdateApartmentUiState extends ConsumerState<UpdateApartmentUi> {
       ref
           .read(typesNotifier.notifier)
           .setSelectedType(widget.oneApartment!.type!);
+
       ref
           .read(cityNotifier.notifier)
           .setSelectedCity(widget.oneApartment!.city!);
-
+ref.read(cityNotifier).selectedCity?.name != widget.oneApartment?.city?.name;
       ref.read(advantagesNotifer.notifier).fetchAdvantages(widget
           .oneApartment!.advantages!);
-
+// ref.read(advantagesNotifer).chosen
 
       ref.read(addressController).text = widget.oneApartment?.location ?? "";
-
+ref.read(addressController).text != widget.oneApartment?.location;
       ref.read(countOfRoomsController.notifier).state.text =
           widget.oneApartment?.rooms.toString() ?? "-1";
-
+ref.read(countOfRoomsController.notifier).state.text != widget.oneApartment?.rooms.toString();
       ref.read(countOfBathRoomsController.notifier).state.text =
           widget.oneApartment?.bathrooms.toString() ?? "-1";
-
+ref.read(countOfBathRoomsController.notifier).state.text != widget.oneApartment?.bathrooms.toString();
       ref.read(priceController.notifier).state.text =
           widget.oneApartment?.price.toString() ?? "-1";
-
+ref.read(priceController.notifier).state.text != widget.oneApartment?.price.toString();
       ref.read(countOfStudentController.notifier).state.text =
           widget.oneApartment?.countOfStudnet.toString() ?? "-1";
-
+ref.read(countOfBathRoomsController.notifier).state.text != widget.oneApartment?.countOfStudnet.toString();
       ref.read(squareMetersController.notifier).state.text =
           widget.oneApartment?.squareMeters.toString() ?? "-1";
-
+ref.read(squareMetersController.notifier).state.text != widget.oneApartment?.squareMeters.toString();
       ref.read(titleController.notifier).state.text =
           widget.oneApartment?.title ?? "";
-
+ref.read(titleController.notifier).state.text != widget.oneApartment?.title;
       ref.read(descriptionController.notifier).state.text =
           widget.oneApartment?.description ?? "";
-
+ref.read(descriptionController.notifier).state.text != widget.oneApartment?.description;
     });
   }
   @override
@@ -146,16 +147,19 @@ class _UpdateApartmentUiState extends ConsumerState<UpdateApartmentUi> {
                   height:
                   getIt<AppDimension>().isSmallScreen(context) ? 0 : 10,
                 ),
-                const AddressFieldWidget(),
-                const RoomsFieldWidget(),
-                const BathRoomsFieldWidget(),
+                 AddressFieldWidget(originalAddress: widget
+                     .oneApartment?.location,),
+                 RoomsFieldWidget(originalRoomsCount:widget.oneApartment?.rooms.toString()
+                   ,),
+                 BathRoomsFieldWidget(originalBathRoomsCount:widget
+                     .oneApartment?.bathrooms.toString() ,),
       
                 AdvantagesUpdateWidget(alreadyAdv: widget.oneApartment?.advantages ?? [],),
                 SizedBox(
                   height:
                   getIt<AppDimension>().isSmallScreen(context) ? 0 : 10,
                 ),
-                const PriceWidget(),
+                 PriceWidget(originalPrice: widget.oneApartment?.price.toString()),
       
       
                 DropdownTypesWidget(
@@ -165,10 +169,13 @@ class _UpdateApartmentUiState extends ConsumerState<UpdateApartmentUi> {
       
                 SizedBox(height: getIt<AppDimension>().isSmallScreen(context) ? 0 : 10,),
       
-                const StudentCountFieldWidget(),
-                const SquareMetersFieldWidget(),
-                const AddTitleFieldWidget(),
-                const DescriptionFieldWidget(),
+                 StudentCountFieldWidget(originalStudentCount: widget
+                     .oneApartment?.countOfStudnet.toString()),
+                 SquareMetersFieldWidget(originalSquareMeters: widget
+                     .oneApartment?.squareMeters.toString(),),
+                 AddTitleFieldWidget(originalTitle: widget.oneApartment?.title,),
+                 DescriptionFieldWidget(originalDescription: widget
+                    .oneApartment?.description,),
                 const SizedBox(height: 60),
               ],
             ),

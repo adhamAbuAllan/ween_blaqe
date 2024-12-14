@@ -29,7 +29,7 @@ class TypeNotifier extends StateNotifier<TypeState> {
       state = state.copyWith(types:state.types, isLoading: false);
       return state.types;
     }else{
-      debugPrint("your data is null !!!!");
+      debugPrint("data is null");
       return null;
     }
   }

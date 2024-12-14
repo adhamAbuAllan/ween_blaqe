@@ -8,8 +8,8 @@ import '../../../../../../controller/provider_controllers/providers/apartment_pr
 import '../../../../../common_widgets/containers_widgets/container_field_widget.dart';
 
 class AddTitleFieldWidget extends ConsumerWidget {
-  const AddTitleFieldWidget({super.key});
-
+  const AddTitleFieldWidget({super.key, this.originalTitle});
+  final String? originalTitle;
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     return                     Padding(
@@ -27,6 +27,7 @@ class AddTitleFieldWidget extends ConsumerWidget {
         hintInput: SetLocalization.of(context)!
             .getTranslateValue("furnished_student_housing"),
         inputType: TextInputType.text,
+        originalValue: originalTitle,
       ),
     );
   }

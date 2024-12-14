@@ -8,8 +8,8 @@ import '../../../../../../controller/provider_controllers/providers/apartment_pr
 import '../../../../../common_widgets/containers_widgets/container_field_widget.dart';
 
 class AddressFieldWidget extends ConsumerWidget {
-  const AddressFieldWidget({super.key});
-
+  const AddressFieldWidget({super.key, this.originalAddress});
+final String ? originalAddress;
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     return Padding(
@@ -21,6 +21,7 @@ class AddressFieldWidget extends ConsumerWidget {
             .getTranslateValue("example_apartment_address"),
         inputType: TextInputType.text,
         controller: ref.read(addressController),
+        originalValue: originalAddress,
       ),
     );
   }

@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:ween_blaqe/api/apartments_api/apartments.dart';
@@ -24,8 +25,10 @@ class AppbarUpdateApartmentWidget extends ConsumerStatefulWidget
   Size get preferredSize => const Size.fromHeight(kToolbarHeight);
 }
 
+
 class _AppbarEditApartmentWidgetState
     extends ConsumerState<AppbarUpdateApartmentWidget> {
+
   @override
   Widget build(BuildContext context) {
     return AppBar(
@@ -57,14 +60,9 @@ class _AppbarEditApartmentWidgetState
                 return;
               }
 
-              // ref.read(photoWillDeleteIds).clear();
-              WidgetsBinding.instance.addPostFrameCallback((_) async {
-                // ref.read(imageManagerNotifier).newImages.clear();
-                // ref.read(imageManagerNotifier).photosIds?.clear();
-                ref.read(fetchApartmentNotifier.notifier).fetchApartments(
-                      isOwnerApartments: true,
-                    );
-              });
+              ref.read(fetchApartmentNotifier.notifier).fetchApartments(
+                    isOwnerApartments: true,
+                  );
             });
 
             Navigator.pop(context);
@@ -77,9 +75,48 @@ class _AppbarEditApartmentWidgetState
               vertical: getIt<AppDimension>().isSmallScreen(context) ? 10 : 8,
               horizontal: 8),
           child: ElevatedButton(
-            onPressed: () {
-              List<int> photosWillDelteIds = [];
-              List<String> newImages = [];
+            onPressed: () async {
+
+
+      List<int> advantagesApi = [];
+
+
+      for (var i in widget.oneApartment.advantages ?? []) {
+        advantagesApi.add(i.id ?? -1);
+      }
+
+
+
+
+
+
+
+
+              if(ref.watch(hasChanged.notifier).state ||  listEquals(advantagesApi, ref.read(advantagesNotifer).chosen)){
+                ref.read(showSnackBarNotifier.notifier).showNormalSnackBar(
+                      context: context,
+                      message:
+                          SetLocalization.of(context)!.getTranslateValue
+                            ("changes_saved"),
+                    );
+              }else{
+                ref.read(showSnackBarNotifier.notifier).showNormalSnackBar(
+                      context: context,
+                      message:
+                          SetLocalization.of(context)!.getTranslateValue
+                            ("no_changes_made_yet"),
+                    );
+              }
+              debugPrint("advantagesApi : $advantagesApi");
+              debugPrint("ref.read(advantagesNotifer).chosen : ${ref.read(advantagesNotifer).chosen}");
+      debugPrint("isListEquals : ${ listEquals(advantagesApi,
+          ref.read(advantagesNotifer).chosen)}");
+
+
+      debugPrint("hasChanged : ${ref.read(hasChanged)}");
+return;
+              debugPrint("hasChanged : ${ref.read(hasChanged)}");
+
               if (ref.read(updateApartmentNotifier).isUpdating) {
                 ref.read(showSnackBarNotifier.notifier).showNormalSnackBar(
                       context: context,
@@ -88,6 +125,7 @@ class _AppbarEditApartmentWidgetState
                     );
                 return;
               }
+
               var apartmentsOfOwnerNotifer = ref
                   .read(fetchApartmentNotifier)
                   .apartmentsList
@@ -95,45 +133,17 @@ class _AppbarEditApartmentWidgetState
                   ?.where((e) => e.id == widget.oneApartment.id);
               var imagesApi = apartmentsOfOwnerNotifer?.first.photos;
 
-              debugPrint("photo length = ${imagesApi?.length}");
-
-              if (ref.read(imagesFileList.notifier).state.isNotEmpty) {
-                (imagesApi ?? [])
-                    .where((photo) => !ref
-                        .read(imagesFileList.notifier)
-                        .state
-                        .any((image) => image.path == photo.url))
-                    .forEach((photo) {
-                  photosWillDelteIds.add(photo.id ?? -1);
-                  debugPrint('Photo ID not in imagesFileList: ${photo.id}');
-                  debugPrint('Photo url not in imagesFileList: ${photo.url}');
-                });
-                  ref
-                      .read(imagesFileList.notifier)
-                      .state
-                      .where((image) => !(imagesApi ?? [])
-                          .any((photo) => photo.url == image.path))
-                      .forEach((image) {
-                    newImages.add(image.path);
-                    debugPrint('Image path not in photosApi: ${image.path}');
-                  });
-                  debugPrint("id will deleted = $photosWillDelteIds");
-                  debugPrint("images will added = $newImages");
-              }
-
-              if (ref.read(imagesFileList.notifier).state.isNotEmpty) {
-                for (var photo in imagesApi ?? []) {
-                  for (var image in ref.read(imagesFileList.notifier).state) {
-                    if (photo.url != image.path) {
-                      debugPrint("photo.id= ${photo.id}");
-                      debugPrint("photo.url= ${photo.url}");
-                    }
-                  }
-                }
+              if (ref.read(advantagesNotifer).chosen.length < 5) {
+                ref.read(showSnackBarNotifier.notifier).showNormalSnackBar(
+                    context: context,
+                    message: SetLocalization.of(context)!.getTranslateValue(
+                        "should_be_at_least_five_advantages"));
+                return;
               }
 
               ref.read(updateApartmentNotifier.notifier).updateApartment(
-                  ref: ref, apartmentId: widget.oneApartment.id ?? -1,
+                  ref: ref,
+                  apartmentId: widget.oneApartment.id ?? -1,
                   imagesApi: imagesApi);
             },
             style: fullButton(),

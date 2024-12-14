@@ -53,7 +53,7 @@ class CityNotifier extends StateNotifier<CityState> {
       state = state.copyWith(cities:state.cities, isLoading: false);
       return state.cities;
     }else{
-      debugPrint("your data is null !!!!");
+      debugPrint("data is null");
       return null;
     }
   }

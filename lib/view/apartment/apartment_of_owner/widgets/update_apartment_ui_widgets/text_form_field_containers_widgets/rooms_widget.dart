@@ -8,8 +8,8 @@ import '../../../../../../controller/provider_controllers/providers/apartment_pr
 import '../../../../../common_widgets/containers_widgets/container_field_widget.dart';
 
 class RoomsFieldWidget extends ConsumerWidget {
-  const RoomsFieldWidget({super.key});
-
+  const RoomsFieldWidget({super.key, this.originalRoomsCount});
+  final String? originalRoomsCount;
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     return Padding(
@@ -21,6 +21,7 @@ class RoomsFieldWidget extends ConsumerWidget {
         hintInput: "0",
         inputType: TextInputType.number,
         controller: ref.read(countOfRoomsController),
+        originalValue: originalRoomsCount,
       ),
     );
   }

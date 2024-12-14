@@ -107,6 +107,7 @@ class ImageApiNotifier extends StateNotifier<ImageState> {
       List<Photos>? imagesApi}) async {
     List<int> photosWillDelteIds = [];
     List<XFile> newImages = [];
+
     /// get the ids of the images that will be deleted
     (imagesApi ?? [])
         .where((photo) => !ref
@@ -115,9 +116,9 @@ class ImageApiNotifier extends StateNotifier<ImageState> {
             .any((image) => image.path == photo.url))
         .forEach((photo) {
       photosWillDelteIds.add(photo.id ?? -1);
-
     });
-/// get the images that will be added
+
+    /// get the images that will be added
     ref
         .read(imagesFileList.notifier)
         .state
@@ -126,9 +127,21 @@ class ImageApiNotifier extends StateNotifier<ImageState> {
         .forEach((image) {
       newImages.add(image);
     });
-debugPrint("new images : $newImages");
-debugPrint("images will deleted : $photosWillDelteIds");
-    deleteImages(apartmentId: apartmentId, photoIds: photosWillDelteIds);
-    compressAndUploadImages(apartmentIdToUpdate: apartmentId, ref: ref, newImages: newImages);
+    debugPrint("new images : $newImages");
+    debugPrint("images will deleted : $photosWillDelteIds");
+    if (ref.read(imagesFileList.notifier).state.isEmpty) {
+      null;
+    } else {
+      debugPrint(
+          "ref.read(imagesFileList.notifier).state.length = ${ref.read(imagesFileList.notifier).state.length}");
+      debugPrint("photosWillDelteIds.length = ${photosWillDelteIds.length}");
+      deleteImages(apartmentId: apartmentId, photoIds: photosWillDelteIds);
+      debugPrint("photos deleted");
+    }
+
+    if (newImages.isNotEmpty) {
+      compressAndUploadImages(
+          apartmentIdToUpdate: apartmentId, ref: ref, newImages: newImages);
+    }
   }
 }
