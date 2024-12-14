@@ -77,10 +77,10 @@ class _AppbarEditApartmentWidgetState
             onPressed: () async {
               debugPrint("advantages = ${widget.oneApartment.advantages}");
               debugPrint("chosen = ${ref.read(advantagesNotifer).chosen}");
-              return;
               List<int> advantagesApi = [];
 
-              for (Advantages advantage in widget.oneApartment.advantages ?? []) {
+              for (Advantages advantage in
+              widget.oneApartment.advantages ?? []) {
                 advantagesApi.add(advantage.id ?? -1);
               }
 
