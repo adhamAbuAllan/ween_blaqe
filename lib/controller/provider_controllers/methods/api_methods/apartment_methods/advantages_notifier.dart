@@ -1,12 +1,15 @@
 import 'dart:convert';
 
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:http/http.dart' as http;
 
 import '../../../../../api/advantages.dart';
 import '../../../../../constants/strings.dart';
 import '../../../../../main.dart';
+import '../../../providers/apartment_provider.dart';
+import '../../../providers/image_provider.dart';
 import '../../../statuses/advantage_state.dart';
 
 class AdvantagesNotifier extends StateNotifier<AdvantageState> {
@@ -20,7 +23,11 @@ class AdvantagesNotifier extends StateNotifier<AdvantageState> {
     return state.chosen;
 }
   Future<void> insertAdvInApartment(
-      {required String apartmentId, required List<int> advantageIds}) async {
+      {required String apartmentId, required List<int> advantageIds
+      ,required WidgetRef ref,required BuildContext context}) async {
+    var advantagesApiNotifier =
+        ref.read(advantagesApi.notifier).state;
+    var advantageChosen = ref.read(advantagesNotifer).chosen;
     var token = (await sp).get("token"); // Replace with your token
     // fetching logic
     debugPrint("loading...");
@@ -43,6 +50,15 @@ class AdvantagesNotifier extends StateNotifier<AdvantageState> {
     if (response.statusCode == 200) {
       debugPrint("inserting...");
       final Map<String, dynamic> responseData = jsonDecode(response.body);
+      if( !ref.read(hasChanged)
+          &&
+          ref.watch(isApartmentImagesUpdated
+              .notifier)
+              .state == false &&  !listEquals(advantagesApiNotifier,
+          advantageChosen)){
+        Navigator.pop(context);
+      }
+
       debugPrint('Success: ${responseData['data']}');
     } else {
       debugPrint('Error: ${response.body}');
@@ -54,7 +70,7 @@ class AdvantagesNotifier extends StateNotifier<AdvantageState> {
     // Set loading state
     state = state.copyWith(isDataLoading: true);
 
-    try {
+
       // Replace with your API call logic
       var url = Uri.parse(ServerWeenBalaqee.advantagesAll);
       var response = await http.get(url);
@@ -66,6 +82,7 @@ class AdvantagesNotifier extends StateNotifier<AdvantageState> {
         // Map data to Advantages objects
         List<Advantages> advantagesList = data.map<Advantages>((item) {
           bool isChecked = alreadyAdv.any((adv) => adv.id == item['id']);
+
           return Advantages(
             id: item['id'],
             advName: item['adv_name'],
@@ -74,14 +91,14 @@ class AdvantagesNotifier extends StateNotifier<AdvantageState> {
           );
         }).toList();
 
-        state = state.copyWith(advantages: advantagesList, isDataLoading: false);
+        state = state.copyWith(advantages: advantagesList, isDataLoading:
+        false,chosen: alreadyAdv.map((adv) => adv.id??0).toList());
       } else {
         throw Exception("Failed to fetch advantages");
       }
-    } catch (e) {
+
       state = state.copyWith(isDataLoading: false, dataStatus: false);
-      debugPrint("Error fetching advantages: $e");
-    }
+
   }
 
   void toggleChecked(int id) {
@@ -130,8 +147,10 @@ class AdvantagesNotifier extends StateNotifier<AdvantageState> {
     }
   }
 
-  updateAdvantages({required String apartmentId}) async {
-    state.advantages.clear();
+  updateAdvantages({required String apartmentId,required BuildContext
+  context,required WidgetRef ref}) async {
+    // state.advantages.clear();
+    state.chosen.clear();
     debugPrint("advantages after clear : ${state.advantages.length}");
     await deleteAdvInApartment(apartmentId: apartmentId);
 
@@ -145,7 +164,8 @@ class AdvantagesNotifier extends StateNotifier<AdvantageState> {
       }
     }
     await insertAdvInApartment(
-        apartmentId: apartmentId, advantageIds: state.chosen);
+        apartmentId: apartmentId, advantageIds: state.chosen,context:
+    context,ref: ref);
     // isUpdating = false;
   }
 }

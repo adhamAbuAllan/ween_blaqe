@@ -29,19 +29,14 @@ class ImageLocalNotifier extends StateNotifier<ImageState> {
     }
   }
 
-
-
   void doneState(
       {required WidgetRef ref,
       required List<String> cancelImages,
       required List<Photos> apiPhotos,
-      required List<XFile> images
-      }) {
-    debugPrint("cancelImages.isNotEmpty ${cancelImages.isNotEmpty}");
-ref.read(imagesFileList.notifier).state = images;
-
-    }
-
+      required List<XFile> images}) {
+ref.read(cancelImagesNotifier.notifier).state = cancelImages;
+    ref.read(imagesFileList.notifier).state = images;
+  }
 
   // when click on done button
 
@@ -53,10 +48,10 @@ ref.read(imagesFileList.notifier).state = images;
   }) async {
     state = state.copyWith(isLoading: true);
     debugPrint("isLaoding = ${state.isLoading}");
-if (source != null) {
-  ref.read(permissionNotifier).cameraGranted;
+    if (source != null) {
+      ref.read(permissionNotifier).cameraGranted;
 
-  final XFile? pickedFile = await imagePicker.pickImage(source: source);
+      final XFile? pickedFile = await imagePicker.pickImage(source: source);
       if (pickedFile == null) {
         state = state.copyWith(isLoading: false);
         return;
@@ -64,9 +59,8 @@ if (source != null) {
       ref.read(newImagesNotifier.notifier).state.add(pickedFile.path);
 
       images.add(pickedFile);
-
     } else {
-  ref.read(permissionNotifier).photosGranted;
+      ref.read(permissionNotifier).photosGranted;
       final List<XFile> pickedFileList = await imagePicker.pickMultiImage();
       debugPrint("pickedFileList = $pickedFileList");
       if (pickedFileList.isEmpty) {
@@ -77,16 +71,9 @@ if (source != null) {
         images.add(image);
         WidgetsBinding.instance.addPostFrameCallback((_) async {
           ref.read(newImagesNotifier.notifier).state.add(image.path);
-
         });
       }
     }
- state = state.copyWith(isLoading: false);
+    state = state.copyWith(isLoading: false);
   }
-
-
-
-
-
-
 }

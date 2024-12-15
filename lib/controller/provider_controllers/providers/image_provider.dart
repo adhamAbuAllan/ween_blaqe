@@ -23,7 +23,9 @@ final imageLocalNotifier = StateNotifierProvider<ImageLocalNotifier,
 final imagePicker = StateProvider<ImagePicker?>((ref) => ImagePicker());
 final imagesFileList = StateProvider<List<XFile>>((ref) => []);
 final newImagesNotifier = StateProvider<List<String>>((ref) => []);
+final cancelImagesNotifier = StateProvider<List<String>>((ref) => []);
 final permissionNotifier = StateNotifierProvider<PermissionNotifier,
     PermissionState>((ref) {
   return PermissionNotifier();
 });
+final isApartmentImagesUpdated = StateProvider<bool>((ref) => false);

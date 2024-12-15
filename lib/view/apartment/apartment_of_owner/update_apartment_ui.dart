@@ -1,6 +1,7 @@
 import 'package:colorful_safe_area/colorful_safe_area.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:ween_blaqe/api/advantages.dart';
 import 'package:ween_blaqe/controller/provider_controllers/providers/apartment_provider.dart';
 import 'package:ween_blaqe/constants/nums.dart';
 import 'package:ween_blaqe/view/apartment/apartment_of_owner/widgets'
@@ -55,38 +56,32 @@ class _UpdateApartmentUiState extends ConsumerState<UpdateApartmentUi> {
   void initState() {
     super.initState();
     WidgetsBinding.instance.addPostFrameCallback((_) async {
-      ref.read(imagesFileList.notifier).state.clear();
-      ref.read(advantagesNotifer).chosen.clear();
+      if(ref.read(photoWillDeleteIds.notifier).state.isNotEmpty){
+        ref.read(photoWillDeleteIds.notifier).state.clear();
+      }
+      if(ref.read(cancelImagesNotifier.notifier).state.isNotEmpty){
+        ref.read(cancelImagesNotifier.notifier).state.clear();
+      }
+      if (ref.read(imagesFileList.notifier).state.isNotEmpty) {
+        ref.read(imagesFileList.notifier).state.clear();
 
-      ref.read(advantagesNotifer.notifier).initChosenValues(advantages:
-      widget.oneApartment?.advantages ?? []);
-debugPrint("advantages = ${widget.oneApartment?.advantages}");
-debugPrint("chosen = ${ref.read(advantagesNotifer).chosen}");
-      // ref.read(isSavedImages.notifier).state = false;
+      }
+      if (ref.read(advantagesNotifer).chosen.isNotEmpty) {
+        ref.read(advantagesNotifer).chosen.clear();
+        debugPrint("chosen init ${ref.read(advantagesNotifer).chosen}");
+      }
+      if(ref.read(isApartmentImagesUpdated)){
+        ref.read(isApartmentImagesUpdated.notifier).state = false;
+      }
+if(ref.read(advantagesApi.notifier).state.isNotEmpty){
+  ref.read(advantagesApi.notifier).state.clear();
+}
 
 
-      // if( ref.read
-      //   (imageApiNotifier).imageFiles?.isNotEmpty??false){
-      //   ref.read(imageApiNotifier).imageFiles?.clear();
-      // }
-
-
-        // debugPrint("isSavedImages = ${ref.read(isSavedImages.notifier).state}");
-
-
-      // if (widget.oneApartment?.photos != null) {
-      //
-      //   ref.read(imageApiNotifier).copyWith(
-      //       imageFiles: widget.oneApartment?.photos
-      //           ?.map((photo) => XFile(photo.url ?? ""))
-      //           .toList());
-      // }
-
-ref.read(hasChanged.notifier).state = false;
+      ref.read(hasChanged.notifier).state = false;
       ref.read(cityNotifier.notifier).fetchCities();
 
       ref.read(typesNotifier.notifier).fetchTypes();
-
 
       ref
           .read(typesNotifier.notifier)
@@ -95,40 +90,50 @@ ref.read(hasChanged.notifier).state = false;
       ref
           .read(cityNotifier.notifier)
           .setSelectedCity(widget.oneApartment!.city!);
-ref.read(cityNotifier).selectedCity?.name != widget.oneApartment?.city?.name;
-      ref.read(advantagesNotifer.notifier).fetchAdvantages(widget
-          .oneApartment!.advantages!);
-// ref.read(advantagesNotifer).chosen
+      ref.read(cityNotifier).selectedCity?.name !=
+          widget.oneApartment?.city?.name;
+      ref
+          .read(advantagesNotifer.notifier)
+          .fetchAdvantages(widget.oneApartment!.advantages!);
 
       ref.read(addressController).text = widget.oneApartment?.location ?? "";
-ref.read(addressController).text != widget.oneApartment?.location;
+      ref.read(addressController).text != widget.oneApartment?.location;
       ref.read(countOfRoomsController.notifier).state.text =
           widget.oneApartment?.rooms.toString() ?? "-1";
-ref.read(countOfRoomsController.notifier).state.text != widget.oneApartment?.rooms.toString();
+      ref.read(countOfRoomsController.notifier).state.text !=
+          widget.oneApartment?.rooms.toString();
       ref.read(countOfBathRoomsController.notifier).state.text =
           widget.oneApartment?.bathrooms.toString() ?? "-1";
-ref.read(countOfBathRoomsController.notifier).state.text != widget.oneApartment?.bathrooms.toString();
+      ref.read(countOfBathRoomsController.notifier).state.text !=
+          widget.oneApartment?.bathrooms.toString();
       ref.read(priceController.notifier).state.text =
           widget.oneApartment?.price.toString() ?? "-1";
-ref.read(priceController.notifier).state.text != widget.oneApartment?.price.toString();
+      ref.read(priceController.notifier).state.text !=
+          widget.oneApartment?.price.toString();
       ref.read(countOfStudentController.notifier).state.text =
           widget.oneApartment?.countOfStudnet.toString() ?? "-1";
-ref.read(countOfBathRoomsController.notifier).state.text != widget.oneApartment?.countOfStudnet.toString();
+      ref.read(countOfBathRoomsController.notifier).state.text !=
+          widget.oneApartment?.countOfStudnet.toString();
       ref.read(squareMetersController.notifier).state.text =
           widget.oneApartment?.squareMeters.toString() ?? "-1";
-ref.read(squareMetersController.notifier).state.text != widget.oneApartment?.squareMeters.toString();
+      ref.read(squareMetersController.notifier).state.text !=
+          widget.oneApartment?.squareMeters.toString();
       ref.read(titleController.notifier).state.text =
           widget.oneApartment?.title ?? "";
-ref.read(titleController.notifier).state.text != widget.oneApartment?.title;
+      ref.read(titleController.notifier).state.text !=
+          widget.oneApartment?.title;
       ref.read(descriptionController.notifier).state.text =
           widget.oneApartment?.description ?? "";
-ref.read(descriptionController.notifier).state.text != widget.oneApartment?.description;
+      ref.read(descriptionController.notifier).state.text !=
+          widget.oneApartment?.description;
     });
   }
   @override
   Widget build(BuildContext context) {
     return ColorfulSafeArea(
-     color: themeMode.isLight ? kContainerColorLightMode : kContainerColorDarkMode,
+      color: themeMode.isLight
+          ? kContainerColorLightMode
+          : kContainerColorDarkMode,
       child: Scaffold(
         backgroundColor: themeMode.isLight
             ? kBackgroundAppColorLightMode
@@ -139,7 +144,6 @@ ref.read(descriptionController.notifier).state.text != widget.oneApartment?.desc
         body: SingleChildScrollView(
           child: GestureDetector(
             onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
-      
             child: Column(
               children: [
                 const SizedBox(
@@ -147,41 +151,47 @@ ref.read(descriptionController.notifier).state.text != widget.oneApartment?.desc
                 ),
                 DropdownCitiesWidget(
                   alreadyExistingValue:
-                  widget.oneApartment ?? DataOfOneApartment(),
+                      widget.oneApartment ?? DataOfOneApartment(),
                 ),
                 SizedBox(
-                  height:
-                  getIt<AppDimension>().isSmallScreen(context) ? 0 : 10,
+                  height: getIt<AppDimension>().isSmallScreen(context) ? 0 : 10,
                 ),
-                 AddressFieldWidget(originalAddress: widget
-                     .oneApartment?.location,),
-                 RoomsFieldWidget(originalRoomsCount:widget.oneApartment?.rooms.toString()
-                   ,),
-                 BathRoomsFieldWidget(originalBathRoomsCount:widget
-                     .oneApartment?.bathrooms.toString() ,),
-      
-                AdvantagesUpdateWidget(alreadyAdv: widget.oneApartment?.advantages ?? [],),
+                AddressFieldWidget(
+                  originalAddress: widget.oneApartment?.location,
+                ),
+                RoomsFieldWidget(
+                  originalRoomsCount: widget.oneApartment?.rooms.toString(),
+                ),
+                BathRoomsFieldWidget(
+                  originalBathRoomsCount:
+                      widget.oneApartment?.bathrooms.toString(),
+                ),
+              const AdvantagesUpdateWidget(),
                 SizedBox(
-                  height:
-                  getIt<AppDimension>().isSmallScreen(context) ? 0 : 10,
+                  height: getIt<AppDimension>().isSmallScreen(context) ? 0 : 10,
                 ),
-                 PriceWidget(originalPrice: widget.oneApartment?.price.toString()),
-      
-      
+                PriceWidget(
+                    originalPrice: widget.oneApartment?.price.toString()),
                 DropdownTypesWidget(
                   alreadyExistingValue:
-                  widget.oneApartment ?? DataOfOneApartment(),
+                      widget.oneApartment ?? DataOfOneApartment(),
                 ),
-      
-                SizedBox(height: getIt<AppDimension>().isSmallScreen(context) ? 0 : 10,),
-      
-                 StudentCountFieldWidget(originalStudentCount: widget
-                     .oneApartment?.countOfStudnet.toString()),
-                 SquareMetersFieldWidget(originalSquareMeters: widget
-                     .oneApartment?.squareMeters.toString(),),
-                 AddTitleFieldWidget(originalTitle: widget.oneApartment?.title,),
-                 DescriptionFieldWidget(originalDescription: widget
-                    .oneApartment?.description,),
+                SizedBox(
+                  height: getIt<AppDimension>().isSmallScreen(context) ? 0 : 10,
+                ),
+                StudentCountFieldWidget(
+                    originalStudentCount:
+                        widget.oneApartment?.countOfStudnet.toString()),
+                SquareMetersFieldWidget(
+                  originalSquareMeters:
+                      widget.oneApartment?.squareMeters.toString(),
+                ),
+                AddTitleFieldWidget(
+                  originalTitle: widget.oneApartment?.title,
+                ),
+                DescriptionFieldWidget(
+                  originalDescription: widget.oneApartment?.description,
+                ),
                 const SizedBox(height: 60),
               ],
             ),

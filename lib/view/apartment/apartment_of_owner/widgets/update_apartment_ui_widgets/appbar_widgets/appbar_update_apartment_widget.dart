@@ -75,23 +75,25 @@ class _AppbarEditApartmentWidgetState
               horizontal: 8),
           child: ElevatedButton(
             onPressed: () async {
-              debugPrint("advantages = ${widget.oneApartment.advantages}");
-              debugPrint("chosen = ${ref.read(advantagesNotifer).chosen}");
-              List<int> advantagesApi = [];
+              var advantagesApiNotifier =
+                  ref.read(advantagesApi.notifier).state;
+              advantagesApiNotifier.clear();
 
-              for (Advantages advantage in
-              widget.oneApartment.advantages ?? []) {
-                advantagesApi.add(advantage.id ?? -1);
+              for (Advantages advantage
+                  in widget.oneApartment.advantages ?? []) {
+                ref.read(advantagesApi).add(advantage.id ?? -1);
               }
 
-              if (ref.watch(hasChanged.notifier).state ||
-                  !listEquals(
-                      advantagesApi, ref.read(advantagesNotifer).chosen)) {
+         debugPrint("isApartmentImagesUpdated : ${ref.watch(isApartmentImagesUpdated.notifier).state}");
+           if (ref.watch(isApartmentImagesUpdated.notifier).state ||
+                  ref.watch(hasChanged.notifier).state ||
+                  !listEquals(advantagesApiNotifier,
+                      ref.read(advantagesNotifer).chosen)) {
                 if (ref.watch(updateApartmentNotifier).isUpdating) {
                   ref.watch(showSnackBarNotifier.notifier).showNormalSnackBar(
                         context: context,
-                        message:
-                            SetLocalization.of(context)!.getTranslateValue(""),
+                        message: SetLocalization.of(context)!.getTranslateValue(
+                            "please_wait_while_saving_changes"),
                       );
                   return;
                 }
@@ -109,35 +111,35 @@ class _AppbarEditApartmentWidgetState
                           "should_be_at_least_five_advantages"));
                   return;
                 }
-                ref.watch(updateApartmentNotifier.notifier).updateApartment(
-                    ref: ref,
-                    apartmentId: widget.oneApartment.id ?? -1,
-                    imagesApi: imagesApi);
-
-                if (ref.watch(updateApartmentNotifier).isLoading) {
+                if (ref.watch(updateApartmentNotifier).isUpdating) {
                   ref.watch(showSnackBarNotifier.notifier).showNormalSnackBar(
                       context: context,
                       message: SetLocalization.of(context)!
                           .getTranslateValue("saving_changes"));
                 }
+                ref.watch(updateApartmentNotifier.notifier).updateApartment(
+                    ref: ref,
+                    apartmentId: widget.oneApartment.id ?? -1,
+                    imagesApi: imagesApi,
+                    context: context);
+
 
                 ref.watch(showSnackBarNotifier.notifier).showNormalSnackBar(
                       context: context,
                       message: SetLocalization.of(context)!
                           .getTranslateValue("changes_saved"),
                     );
-               // listEquals(
-                 //   advantagesApi, ref.read(advantagesNotifer).chosen);
-                ref.read(fetchApartmentNotifier.notifier).fetchApartments(
-                      isOwnerApartments: true,
-                );
-                ref.read(hasChanged.notifier).state = false;
-                ref.read(advantagesNotifer).chosen.clear();
-                for(Advantages advantageId in widget.oneApartment.advantages ??
-                    []){
-                  ref.read(advantagesNotifer).chosen.add(advantageId.id ?? -1);
-                }
               } else {
+                if(advantagesApiNotifier.isNotEmpty){
+                  advantagesApiNotifier.clear();
+                }
+                if(ref.read(isApartmentImagesUpdated)){
+                  ref.read(isApartmentImagesUpdated.notifier).state = false;
+                }
+                if(ref.read(hasChanged)){
+                  ref.read(hasChanged.notifier).state = false;
+                }
+
                 ref.read(showSnackBarNotifier.notifier).showNormalSnackBar(
                       context: context,
                       message: SetLocalization.of(context)!

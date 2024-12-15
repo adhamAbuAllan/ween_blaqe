@@ -47,7 +47,7 @@ class CircleImageWidget extends ConsumerWidget {
       child: GestureDetector(
         onTap: () {
           Navigator.of(context).push(
-              MaterialPageRoute(builder: (context) => const ChangeUserImage()));
+              MaterialPageRoute(builder: (context) => const UpdateUserImage()));
         },
         child:
 

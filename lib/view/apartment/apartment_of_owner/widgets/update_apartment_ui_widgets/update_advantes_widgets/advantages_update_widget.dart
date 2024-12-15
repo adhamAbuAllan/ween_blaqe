@@ -12,8 +12,8 @@ import '../../../../../../constants/nums.dart';
 import '../../../../../common_widgets/containers_widgets/container_load_widget.dart';
 
 class AdvantagesUpdateWidget extends ConsumerStatefulWidget {
-  const AdvantagesUpdateWidget({super.key, required this.alreadyAdv});
-  final List<Advantages> alreadyAdv;
+  const AdvantagesUpdateWidget({super.key,});
+
   @override
   ConsumerState createState() => _AdvantagesUpdateWidgetState();
 }
@@ -32,76 +32,76 @@ class _AdvantagesUpdateWidgetState extends ConsumerState<AdvantagesUpdateWidget>
           margin: const EdgeInsets.all(10),
           child: Column(
             children:
-            advantageState.advantages.map((advantage) {
-              return
-                ListTile(
-                horizontalTitleGap: 2.5,
-                dense: false,
-                onTap: () {
-                  setState(() {
-                    advantageNotifier.toggleChecked(advantage.id!);
-                    advantageNotifier.chooseAdvantage(advantage.id!);
-                  });
+                [     ...advantageState.advantages.map((advantage) {
+                  return
+                    ListTile(
+                      horizontalTitleGap: 2.5,
+                      dense: false,
+                      onTap: () {
+                        setState(() {
+                          advantageNotifier.toggleChecked(advantage.id??0);
+                          advantageNotifier.chooseAdvantage(advantage.id??0);
+                        });
 
-                },
-                leading: Checkbox(
-                  shape: RoundedRectangleBorder(
-                      borderRadius:
-                      BorderRadius.circular(2.6)),
-                  focusColor: themeMode.isLight
-                      ? kPrimaryColorLightMode
-                      : kPrimaryColorDarkMode,
-                  checkColor: Colors.white,
-                  hoverColor: themeMode.isLight
-                      ? kPrimaryColorLightMode
-                      : kPrimaryColorDarkMode,
-                  activeColor: themeMode.isLight
-                      ? kPrimaryColorLightMode
-                      : kPrimaryColorDarkMode,
-                  side: BorderSide(
-                      color: themeMode.isLight
-                          ? kPrimaryColor300LightMode
-                          : kPrimaryColor300DarkMode),
-                  splashRadius: 20,
-                  value: advantage.checked,
-                  onChanged: (value) {
-                    setState(() {
-                      advantageNotifier.toggleChecked(advantage.id!);
-                      advantageNotifier.chooseAdvantage(advantage.id!);
-                    });
+                      },
+                      leading: Checkbox(
+                        shape: RoundedRectangleBorder(
+                            borderRadius:
+                            BorderRadius.circular(2.6)),
+                        focusColor: themeMode.isLight
+                            ? kPrimaryColorLightMode
+                            : kPrimaryColorDarkMode,
+                        checkColor: Colors.white,
+                        hoverColor: themeMode.isLight
+                            ? kPrimaryColorLightMode
+                            : kPrimaryColorDarkMode,
+                        activeColor: themeMode.isLight
+                            ? kPrimaryColorLightMode
+                            : kPrimaryColorDarkMode,
+                        side: BorderSide(
+                            color: themeMode.isLight
+                                ? kPrimaryColor300LightMode
+                                : kPrimaryColor300DarkMode),
+                        splashRadius: 20,
+                        value: advantage.checked,
+                        onChanged: (value) {
+                          setState(() {
+                            advantageNotifier.toggleChecked(advantage.id??0);
+                            advantageNotifier.chooseAdvantage(advantage.id??0);
+                          });
 
-                  },
-                ),
-                title: Text(advantage.advName ?? "",
-                  style: TextStyle(fontSize: getIt<AppDimension>().isSmallScreen(context) ? 14 :
-                  16, color: themeMode.isLight ? kTextColorLightMode : kTextColorDarkMode),
-                ),
-                trailing: advantage.icon?.isEmpty ?? true
-                    ? const SizedBox(
-                    child: SkeletonAvatar(
-                        style: SkeletonAvatarStyle(width: 28, height: 28)))
-                    : Image.network(
-                  advantage.icon!,
-                  height: getIt<AppDimension>().isSmallScreen(context)
-                      ? 26
-                      : 30,
-                  width: getIt<AppDimension>().isSmallScreen(context)
-                      ? 26
-                      : 30,
-                  errorBuilder: (context, error, stackTrace) {
-                    return const SizedBox(
-                        child: SkeletonAvatar(
-                            style: SkeletonAvatarStyle(
-                              width: 28,
-                              height: 28,
-                            )));
-                  },
-                  color: themeMode.isLight
-                      ? kTextColorLightMode
-                      : kTextColorDarkMode,
-                ),
-              );
-            }).toList(),
+                        },
+                      ),
+                      title: Text(advantage.advName ?? "",
+                        style: TextStyle(fontSize: getIt<AppDimension>().isSmallScreen(context) ? 14 :
+                        16, color: themeMode.isLight ? kTextColorLightMode : kTextColorDarkMode),
+                      ),
+                      trailing: advantage.icon?.isEmpty ?? true
+                          ? const SizedBox(
+                          child: SkeletonAvatar(
+                              style: SkeletonAvatarStyle(width: 28, height: 28)))
+                          : Image.network(
+                        advantage.icon!,
+                        height: getIt<AppDimension>().isSmallScreen(context)
+                            ? 26
+                            : 30,
+                        width: getIt<AppDimension>().isSmallScreen(context)
+                            ? 26
+                            : 30,
+                        errorBuilder: (context, error, stackTrace) {
+                          return const SizedBox(
+                              child: SkeletonAvatar(
+                                  style: SkeletonAvatarStyle(
+                                    width: 28,
+                                    height: 28,
+                                  )));
+                        },
+                        color: themeMode.isLight
+                            ? kTextColorLightMode
+                            : kTextColorDarkMode,
+                      ),
+                    );
+                }),]
           ),
         ));
   }

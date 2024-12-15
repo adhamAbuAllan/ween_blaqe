@@ -18,14 +18,14 @@ import '../../../constants/get_it_controller.dart';
 import '../../../session/new_session.dart';
 import '../../../controller/provider_controllers/providers/auth_provider.dart';
 
-class ChangeUserImage extends ConsumerStatefulWidget {
-  const ChangeUserImage({super.key});
+class UpdateUserImage extends ConsumerStatefulWidget {
+  const UpdateUserImage({super.key});
 
   @override
   ConsumerState createState() => _ChangeUserImageConsumerState();
 }
 
-class _ChangeUserImageConsumerState extends ConsumerState<ChangeUserImage> {
+class _ChangeUserImageConsumerState extends ConsumerState<UpdateUserImage> {
   final TextEditingController maxWidthController = TextEditingController();
   final TextEditingController maxHeightController = TextEditingController();
   final TextEditingController qualityController = TextEditingController();
@@ -45,7 +45,7 @@ class _ChangeUserImageConsumerState extends ConsumerState<ChangeUserImage> {
       backgroundColor: themeMode.isLight
           ? kBackgroundAppColorLightMode
           : kBackgroundAppColorDarkMode,
-      appBar: const AppBarChangeProfileWidget(),
+      appBar: const AppBarUpdateProfileWidget(),
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,

@@ -82,7 +82,7 @@ class _AppBarGridWidgetState extends ConsumerState<AppBarGridWidget> {
                         cancelImages: widget.cancelImages,
                         images: widget.images,
                       );
-                  ref.read(hasChanged.notifier).state = true;
+                  ref.read(isApartmentImagesUpdated.notifier).state = true;
                 });
                 Navigator.pop(context);
               } else {

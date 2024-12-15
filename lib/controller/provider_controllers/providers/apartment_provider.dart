@@ -150,7 +150,9 @@ final isEditModeNotifier = StateProvider<bool>((ref) => false);
 final isVisibleNotifier = StateProvider<bool>((ref) => false);
 final isSebhaVisibleNotifier = StateProvider<bool>((ref) => false);
 final photoWillDeleteIds = StateProvider<List<int>>((ref) => []);
+final advantagesApi = StateProvider<List<int>>((ref) => []);
 final cityList = StateProvider<List<City>>((ref) => []);
+final lastChosenAdvantagesIds = StateProvider<List<int>>((ref) => []);
 // Apartment type toggles
 final isGirlStudentNotifier = StateProvider<bool>((ref) => false);
 final isBoyStudentNotifier = StateProvider<bool>((ref) => false);

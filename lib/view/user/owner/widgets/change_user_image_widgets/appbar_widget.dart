@@ -7,8 +7,8 @@ import '../../../../../constants/localization.dart';
 import '../../../../../constants/nums.dart';
 import '../../../../../controller/provider_controllers/providers/auth_provider.dart';
 
-class AppBarChangeProfileWidget extends ConsumerWidget implements PreferredSizeWidget {
-  const AppBarChangeProfileWidget({super.key});
+class AppBarUpdateProfileWidget extends ConsumerWidget implements PreferredSizeWidget {
+  const AppBarUpdateProfileWidget({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {

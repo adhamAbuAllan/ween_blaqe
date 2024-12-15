@@ -39,7 +39,8 @@ class ImageApiNotifier extends StateNotifier<ImageState> {
   Future<void> compressAndUploadImages(
       {required WidgetRef ref,
       int apartmentIdToUpdate = -1,
-      List<XFile>? newImages}) async {
+      List<XFile>? newImages,
+      required BuildContext context}) async {
     if (newImages?.isEmpty ?? true) {
       debugPrint("No images selected.");
       return;
@@ -51,8 +52,8 @@ class ImageApiNotifier extends StateNotifier<ImageState> {
     request.fields['apartment_id'] = "$apartmentIdToUpdate";
 
     for (XFile imageFile in newImages!) {
-      final compressedFile =
-          await ref.read(imageHybridNotifer.notifier).compressImage(imageFile);
+      debugPrint("newImages : $newImages");
+      final compressedFile = await ref.read(imageHybridNotifer.notifier).compressImage(imageFile);
       request.files.add(
         await http.MultipartFile.fromPath(
           'images[]',
@@ -65,6 +66,7 @@ class ImageApiNotifier extends StateNotifier<ImageState> {
 
     final response = await request.send();
     if (response.statusCode == 200) {
+      Navigator.pop(context);
       debugPrint('Upload successful');
     } else {
       debugPrint('Upload failed');
@@ -104,27 +106,36 @@ class ImageApiNotifier extends StateNotifier<ImageState> {
   Future<void> updateImages(
       {required int apartmentId,
       required WidgetRef ref,
-      List<Photos>? imagesApi}) async {
+      List<Photos>? imagesApi,
+      required BuildContext context}) async {
     List<int> photosWillDelteIds = [];
     List<XFile> newImages = [];
+    var cancelImages = ref.read(cancelImagesNotifier.notifier).state;
 
     /// get the ids of the images that will be deleted
     (imagesApi ?? [])
-        .where((photo) => !ref
-            .read(imagesFileList.notifier)
-            .state
-            .any((image) => image.path == photo.url))
+        .where((photo) {
+      // Check if photo.url matches image.path and is also in cancelImages
+      return ref.read(imagesFileList.notifier).state.any((image) {
+        if (image.path == photo.url) {
+          if (cancelImages.contains(photo.url)) {
+            debugPrint("Match found: ${photo.url} in cancelImages");
+            return true;
+          }
+        }
+        return false;
+      });
+    })
         .forEach((photo) {
+      // Add the photo's ID to photosWillDelteIds
       photosWillDelteIds.add(photo.id ?? -1);
     });
 
     /// get the images that will be added
-    ref
-        .read(imagesFileList.notifier)
-        .state
-        .where((image) =>
-            !(imagesApi ?? []).any((photo) => photo.url == image.path))
-        .forEach((image) {
+    debugPrint("imageFileList : ${ref.read(imagesFileList.notifier).state}");
+    ref.read(imagesFileList.notifier).state.where((image) {
+      return !(imagesApi ?? []).any((photo) => photo.url == image.path);
+    }).forEach((image) {
       newImages.add(image);
     });
     debugPrint("new images : $newImages");
@@ -135,13 +146,20 @@ class ImageApiNotifier extends StateNotifier<ImageState> {
       debugPrint(
           "ref.read(imagesFileList.notifier).state.length = ${ref.read(imagesFileList.notifier).state.length}");
       debugPrint("photosWillDelteIds.length = ${photosWillDelteIds.length}");
-      deleteImages(apartmentId: apartmentId, photoIds: photosWillDelteIds);
+      if (photosWillDelteIds.isNotEmpty) {
+        debugPrint("photos will deleted : $photosWillDelteIds");
+        deleteImages(apartmentId: apartmentId, photoIds: photosWillDelteIds);
+      }
       debugPrint("photos deleted");
     }
 
     if (newImages.isNotEmpty) {
       compressAndUploadImages(
-          apartmentIdToUpdate: apartmentId, ref: ref, newImages: newImages);
+          apartmentIdToUpdate: apartmentId,
+          ref: ref,
+          newImages: newImages,
+          context: context);
     }
+    ref.read(isApartmentImagesUpdated.notifier).state = false;
   }
 }
