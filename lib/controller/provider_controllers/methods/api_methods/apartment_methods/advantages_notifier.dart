@@ -47,7 +47,9 @@ class AdvantagesNotifier extends StateNotifier<AdvantageState> {
       body: jsonEncode(requestBody),
     );
 
-    if (response.statusCode == 200) {      ref.read(badResponse.notifier).state = false;
+    if (response.statusCode == 200) {
+      ref.read(isApartmentUpdatedNotifier.notifier).state = true;
+      ref.read(badResponse.notifier).state = false;
       debugPrint("inserting...");
       final Map<String, dynamic> responseData = jsonDecode(response.body);
       if( !ref.read(hasChanged)
@@ -139,6 +141,8 @@ class AdvantagesNotifier extends StateNotifier<AdvantageState> {
       body: jsonEncode({'apartment_id': apartmentId}),
     );
     if (response.statusCode == 200) {
+      ref.read(isApartmentUpdatedNotifier.notifier).state = true;
+
       // Success
             ref.read(badResponse.notifier).state = false;
       debugPrint('Advantages deleted successfully');

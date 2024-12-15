@@ -9,11 +9,11 @@ import '../../../../core/utils/styles/button.dart';
 
 // Assuming ChangeThemeMode is a provider that holds theme data
 
-class ShowTypesButtonWidgetWidget extends ConsumerWidget {
+class ShowTypesButtonWidget extends ConsumerWidget {
   final void Function()? onPressed;
   final String? text;
 
-  const ShowTypesButtonWidgetWidget({super.key, this.onPressed, this.text});
+  const ShowTypesButtonWidget({super.key, this.onPressed, this.text});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -55,7 +55,7 @@ class BtnShowTypesOfApartments extends ConsumerWidget {
         context: context,
         isFloatingOutlinedButton: true,
       ),
-      onPressed: (){
+      onPressed: onPressed??(){
         ref.watch(isListOfTypesNotifier.notifier).state = !ref.watch
           (isListOfTypesNotifier);
       },

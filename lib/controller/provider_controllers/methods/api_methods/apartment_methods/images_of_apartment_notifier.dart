@@ -67,9 +67,11 @@ class ImageApiNotifier extends StateNotifier<ImageState> {
 
     final response = await request.send();
     if (response.statusCode == 200) {
-      Navigator.pop(context);
+      ref.read(isApartmentUpdatedNotifier.notifier).state = true;
+
       ref.read(badResponse.notifier).state = false;
       debugPrint('Upload successful');
+      Navigator.pop(context);
     } else {
       ref.read(badResponse.notifier).state = true;
       debugPrint('Upload failed');

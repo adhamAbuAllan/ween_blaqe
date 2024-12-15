@@ -4,6 +4,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:ween_blaqe/controller/provider_controllers/methods/api_methods/apartment_methods/fetch_apartments_notifier.dart';
 import 'package:ween_blaqe/controller/provider_controllers/methods/api_methods/apartment_methods/cities_notifier.dart';
 import 'package:ween_blaqe/controller/provider_controllers/methods/api_methods/apartment_methods/type_notifier.dart';
+import 'package:ween_blaqe/controller/provider_controllers/methods/local_methods/check_update_apartment_notifier.dart';
 import 'package:ween_blaqe/controller/provider_controllers/statuses/city_state.dart';
 import 'package:ween_blaqe/controller/provider_controllers/statuses/type_state.dart';
 import '../../../api/apartments_api/apartments.dart';
@@ -53,8 +54,9 @@ final typesNotifier = StateNotifierProvider<TypeNotifier, TypeState>((ref) =>
 final bookmarkNotifier = StateNotifierProvider<BookmarkNotifier, BookmarkState>((ref) {
   return BookmarkNotifier();
 });
-
-
+final isApartmentDataChangedNotifier =
+    StateNotifierProvider<ApartmentDataChangedCheckerNotifier,bool>((ref)
+=>ApartmentDataChangedCheckerNotifier());
 // Provider for the ApartmentStateNotifier
 final imageSliderNotifier =
 StateNotifierProvider<ImageSliderNotifier, Map<int, ApartmentState>>(
@@ -147,7 +149,6 @@ final selectedTypeId = StateProvider<int>((ref) => 1);
 final cityList = StateProvider<List<City>>((ref) => []);
 final photoWillDeleteIds = StateProvider<List<int>>((ref) => []);
 final advantagesApi = StateProvider<List<int>>((ref) => []);
-final lastChosenAdvantagesIds = StateProvider<List<int>>((ref) => []);
 
 final isLoadingNotifier = StateProvider<bool>((ref) => false);
 final isUpdatingNotifier = StateProvider<bool>((ref) => false);
@@ -163,6 +164,7 @@ final bathSizeChangeProvider = StateProvider<bool>((ref) => false);
 final areaSizeChangeProvider = StateProvider<bool>((ref) => false);
 final isApartmentsListEmpty = StateProvider<bool>((ref) => false);
 final hasChanged = StateProvider<bool>((ref) => false);
+final isApartmentUpdatedNotifier = StateProvider<bool>((ref) => false);
 final badResponse = StateProvider<bool>((ref) => false);
 final isAllTypesOfApartmentNotifier = StateProvider<bool>((ref) => false);
 

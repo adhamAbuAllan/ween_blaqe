@@ -12,7 +12,7 @@ import 'package:ween_blaqe/core/widgets/skeletons/student_widgets/home_skeleton_
 import 'package:ween_blaqe/view/apartment/type_not_found_ui.dart';
 import 'package:ween_blaqe/view/apartment/widgets/sebha_button_widget.dart';
 import 'package:ween_blaqe/view/apartment/widgets/types_of_apartments_widgets'
-    '/show_tpies_button_widget.dart';
+    '/show_types_button_widget.dart';
 import 'package:ween_blaqe/view/apartment/widgets/types_of_apartments_widgets'
     '/types_of_apartment_box_widget.dart';
 import 'package:ween_blaqe/session/new_session.dart';
@@ -56,9 +56,8 @@ class _HomeUiState extends ConsumerState<HomeUi> {
     });
     WidgetsBinding.instance.addPostFrameCallback((_) async {
       ref.read(isAllTypesOfApartmentNotifier.notifier).state = true;
-        await ref.read(fetchApartmentNotifier.notifier).fetchApartments(
+      await ref.read(fetchApartmentNotifier.notifier).fetchApartments(
             isOwnerApartments: false,
-
             isAll: true,
             cityId: 0,
           );
@@ -100,7 +99,6 @@ class _HomeUiState extends ConsumerState<HomeUi> {
                               .read(fetchApartmentNotifier.notifier)
                               .fetchApartments(
                                   isOwnerApartments: false,
-                            
                                   type: ref.read(apartmentTypeNotifier),
                                   isAll: true,
                                   cityId: 0);
@@ -140,7 +138,6 @@ class _HomeUiState extends ConsumerState<HomeUi> {
                               .read(fetchApartmentNotifier.notifier)
                               .fetchApartments(
                                   isOwnerApartments: false,
-                            
                                   isAll: true,
                                   cityId: 0);
                         });
@@ -171,7 +168,6 @@ class _HomeUiState extends ConsumerState<HomeUi> {
                                               fetchApartmentNotifier.notifier)
                                           .fetchApartments(
                                             isOwnerApartments: false,
-                                      
                                             isAll: true,
                                             cityId: cityId,
                                           );
@@ -185,7 +181,6 @@ class _HomeUiState extends ConsumerState<HomeUi> {
                                               fetchApartmentNotifier.notifier)
                                           .fetchApartments(
                                             isOwnerApartments: false,
-                                      
                                             isAll: isAllTypesOfApartment,
                                             type: type,
                                             cityId: cityId,
@@ -199,10 +194,10 @@ class _HomeUiState extends ConsumerState<HomeUi> {
                                 ), // list of apartments
                                 if (!ref
                                     .watch(connectivityNotifier.notifier)
-                                    .isConnected )
+                                    .isConnected)
                                   const SebhaButtonWidget()
                                 else
-                                  const ShowTypesButtonWidgetWidget(),
+                                  const ShowTypesButtonWidget(),
                                 const ShowApartmentTypesBoxWidget() // list of types
                               ]))));
         });

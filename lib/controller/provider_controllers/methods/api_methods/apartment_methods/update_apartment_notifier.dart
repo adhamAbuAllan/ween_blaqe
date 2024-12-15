@@ -63,7 +63,8 @@ if(response.statusCode == 200 && ref.read(hasChanged)
     .notifier)
     .state == false &&  listEquals(advantagesApiNotifier,
     advantageChosen)){
-        ref.read(badResponse.notifier).state = false;
+  ref.read(isApartmentUpdatedNotifier.notifier).state = true;
+  ref.read(badResponse.notifier).state = false;
   Navigator.pop(context);
 }
     if (response.statusCode != 200) {
@@ -91,7 +92,6 @@ if(response.statusCode == 200 && ref.read(hasChanged)
     }
 
     ///update advantages
-    debugPrint("chosen before update ${ref.read(advantagesNotifer).chosen}");
     if (!listEquals(
         advantagesApiNotifier, ref.read(advantagesNotifer).chosen)) {
       await ref
@@ -99,7 +99,6 @@ if(response.statusCode == 200 && ref.read(hasChanged)
           .updateAdvantages(apartmentId: apartmentId.toString(),ref: ref,
           context: context);
     }
-    debugPrint("chosen after update ${ref.read(advantagesNotifer).chosen}");
 
     /// update images
     if (ref.read(isApartmentImagesUpdated)) {
@@ -107,7 +106,11 @@ if(response.statusCode == 200 && ref.read(hasChanged)
           apartmentId: apartmentId, ref: ref, imagesApi: imagesApi,context: context);
     }
 
-
+debugPrint("is apartment updated -- ${ ref.read
+  (isApartmentUpdatedNotifier.notifier).state }");
+    ref.read(fetchApartmentNotifier.notifier).fetchApartments(
+      isOwnerApartments: true
+    );
     state = state.copyWith(isUpdating: false);
   }
 }

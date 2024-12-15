@@ -1,4 +1,3 @@
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:ween_blaqe/api/advantages.dart';
@@ -58,10 +57,6 @@ class _AppbarEditApartmentWidgetState
                     );
                 return;
               }
-
-              ref.read(fetchApartmentNotifier.notifier).fetchApartments(
-                    isOwnerApartments: true,
-                  );
             });
 
             Navigator.pop(context);
@@ -78,6 +73,8 @@ class _AppbarEditApartmentWidgetState
               var advantagesApiNotifier =
                   ref.read(advantagesApi.notifier).state;
               advantagesApiNotifier.clear();
+              var hasApartmentDataChanged =
+                  ref.watch(isApartmentDataChangedNotifier.notifier);
 
               for (Advantages advantage
                   in widget.oneApartment.advantages ?? []) {
@@ -86,10 +83,7 @@ class _AppbarEditApartmentWidgetState
 
               debugPrint(
                   "isApartmentImagesUpdated : ${ref.watch(isApartmentImagesUpdated.notifier).state}");
-              if (ref.watch(isApartmentImagesUpdated.notifier).state ||
-                  ref.watch(hasChanged.notifier).state ||
-                  !listEquals(advantagesApiNotifier,
-                      ref.read(advantagesNotifer).chosen)) {
+              if (hasApartmentDataChanged.hasAnyChange(ref)) {
                 if (ref.watch(updateApartmentNotifier).isUpdating) {
                   ref.watch(showSnackBarNotifier.notifier).showNormalSnackBar(
                         context: context,
@@ -131,19 +125,12 @@ class _AppbarEditApartmentWidgetState
                       );
                   return;
                 }
-                debugPrint("ref.read(badResponse) : ${ref.read(badResponse)}");
                 ref.watch(showSnackBarNotifier.notifier).showNormalSnackBar(
                       context: context,
                       message: SetLocalization.of(context)!
                           .getTranslateValue("changes_saved"),
                     );
-                WidgetsBinding.instance.addPostFrameCallback((_) async {
-                  await ref
-                      .read(fetchApartmentNotifier.notifier)
-                      .fetchApartments(
-                        isOwnerApartments: true,
-                      );
-                });
+
               } else {
                 if (advantagesApiNotifier.isNotEmpty) {
                   advantagesApiNotifier.clear();

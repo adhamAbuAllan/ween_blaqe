@@ -1,7 +1,6 @@
 import 'package:colorful_safe_area/colorful_safe_area.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:ween_blaqe/api/advantages.dart';
 import 'package:ween_blaqe/controller/provider_controllers/providers/apartment_provider.dart';
 import 'package:ween_blaqe/constants/nums.dart';
 import 'package:ween_blaqe/view/apartment/apartment_of_owner/widgets'
@@ -51,34 +50,35 @@ class UpdateApartmentUi extends ConsumerStatefulWidget {
   @override
   ConsumerState createState() => _UpdateApartmentUiState();
 }
+
 class _UpdateApartmentUiState extends ConsumerState<UpdateApartmentUi> {
   @override
   void initState() {
     super.initState();
     WidgetsBinding.instance.addPostFrameCallback((_) async {
-      if(ref.read(photoWillDeleteIds.notifier).state.isNotEmpty){
+      if (ref.read(photoWillDeleteIds.notifier).state.isNotEmpty) {
         ref.read(photoWillDeleteIds.notifier).state.clear();
       }
-      if(ref.read(cancelImagesNotifier.notifier).state.isNotEmpty){
+      if (ref.read(cancelImagesNotifier.notifier).state.isNotEmpty) {
         ref.read(cancelImagesNotifier.notifier).state.clear();
       }
       if (ref.read(imagesFileList.notifier).state.isNotEmpty) {
         ref.read(imagesFileList.notifier).state.clear();
-
       }
       if (ref.read(advantagesNotifer).chosen.isNotEmpty) {
         ref.read(advantagesNotifer).chosen.clear();
         debugPrint("chosen init ${ref.read(advantagesNotifer).chosen}");
       }
-      if(ref.read(isApartmentImagesUpdated)){
+      if (ref.read(isApartmentImagesUpdated)) {
         ref.read(isApartmentImagesUpdated.notifier).state = false;
       }
-if(ref.read(advantagesApi.notifier).state.isNotEmpty){
-  ref.read(advantagesApi.notifier).state.clear();
-}
-
+      if (ref.read(advantagesApi.notifier).state.isNotEmpty) {
+        ref.read(advantagesApi.notifier).state.clear();
+      }
 
       ref.read(hasChanged.notifier).state = false;
+      ref.read(isApartmentUpdatedNotifier.notifier).state = false;
+
       ref.read(cityNotifier.notifier).fetchCities();
 
       ref.read(typesNotifier.notifier).fetchTypes();
@@ -128,6 +128,7 @@ if(ref.read(advantagesApi.notifier).state.isNotEmpty){
           widget.oneApartment?.description;
     });
   }
+
   @override
   Widget build(BuildContext context) {
     return ColorfulSafeArea(
@@ -166,7 +167,7 @@ if(ref.read(advantagesApi.notifier).state.isNotEmpty){
                   originalBathRoomsCount:
                       widget.oneApartment?.bathrooms.toString(),
                 ),
-              const AdvantagesUpdateWidget(),
+                const AdvantagesUpdateWidget(),
                 SizedBox(
                   height: getIt<AppDimension>().isSmallScreen(context) ? 0 : 10,
                 ),
