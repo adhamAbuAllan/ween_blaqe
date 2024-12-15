@@ -47,7 +47,7 @@ class AdvantagesNotifier extends StateNotifier<AdvantageState> {
       body: jsonEncode(requestBody),
     );
 
-    if (response.statusCode == 200) {
+    if (response.statusCode == 200) {      ref.read(badResponse.notifier).state = false;
       debugPrint("inserting...");
       final Map<String, dynamic> responseData = jsonDecode(response.body);
       if( !ref.read(hasChanged)
@@ -60,7 +60,7 @@ class AdvantagesNotifier extends StateNotifier<AdvantageState> {
       }
 
       debugPrint('Success: ${responseData['data']}');
-    } else {
+    } else {      ref.read(badResponse.notifier).state = true;
       debugPrint('Error: ${response.body}');
     }
   }
@@ -124,7 +124,8 @@ class AdvantagesNotifier extends StateNotifier<AdvantageState> {
 
     state = state.copyWith(chosen: updatedChosen);
   }
-  Future<void> deleteAdvInApartment({required String apartmentId}) async {
+  Future<void> deleteAdvInApartment({required String apartmentId,required WidgetRef ref})
+  async {
     var token = (await sp).get("token");
 
     final url = Uri.parse(ServerWeenBalaqee.apartmentAdvantagesDelete);
@@ -139,8 +140,10 @@ class AdvantagesNotifier extends StateNotifier<AdvantageState> {
     );
     if (response.statusCode == 200) {
       // Success
+            ref.read(badResponse.notifier).state = false;
       debugPrint('Advantages deleted successfully');
     } else {
+            ref.read(badResponse.notifier).state = true;
       // Error
       debugPrint('Failed to delete advantages: ${response.body}');
       // You might want to throw an exception or handle the error in a more appropriate way
@@ -152,7 +155,7 @@ class AdvantagesNotifier extends StateNotifier<AdvantageState> {
     // state.advantages.clear();
     state.chosen.clear();
     debugPrint("advantages after clear : ${state.advantages.length}");
-    await deleteAdvInApartment(apartmentId: apartmentId);
+    await deleteAdvInApartment(apartmentId: apartmentId,ref: ref);
 
     // in a list of [advantages]
     for (var index in state.advantages) {

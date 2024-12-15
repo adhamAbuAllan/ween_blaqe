@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:http_parser/http_parser.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:mime/mime.dart';
+import 'package:ween_blaqe/controller/provider_controllers/providers/apartment_provider.dart';
 
 import '../../../../../api/photos.dart';
 import '../../../../../constants/strings.dart';
@@ -67,8 +68,10 @@ class ImageApiNotifier extends StateNotifier<ImageState> {
     final response = await request.send();
     if (response.statusCode == 200) {
       Navigator.pop(context);
+      ref.read(badResponse.notifier).state = false;
       debugPrint('Upload successful');
     } else {
+      ref.read(badResponse.notifier).state = true;
       debugPrint('Upload failed');
     }
 

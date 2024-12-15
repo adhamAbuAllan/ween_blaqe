@@ -84,8 +84,9 @@ class _AppbarEditApartmentWidgetState
                 ref.read(advantagesApi).add(advantage.id ?? -1);
               }
 
-         debugPrint("isApartmentImagesUpdated : ${ref.watch(isApartmentImagesUpdated.notifier).state}");
-           if (ref.watch(isApartmentImagesUpdated.notifier).state ||
+              debugPrint(
+                  "isApartmentImagesUpdated : ${ref.watch(isApartmentImagesUpdated.notifier).state}");
+              if (ref.watch(isApartmentImagesUpdated.notifier).state ||
                   ref.watch(hasChanged.notifier).state ||
                   !listEquals(advantagesApiNotifier,
                       ref.read(advantagesNotifer).chosen)) {
@@ -122,21 +123,35 @@ class _AppbarEditApartmentWidgetState
                     apartmentId: widget.oneApartment.id ?? -1,
                     imagesApi: imagesApi,
                     context: context);
-
-
+                if (ref.read(badResponse)) {
+                  ref.read(showSnackBarNotifier.notifier).showNormalSnackBar(
+                        context: context,
+                        message: SetLocalization.of(context)!
+                            .getTranslateValue("error"),
+                      );
+                  return;
+                }
+                debugPrint("ref.read(badResponse) : ${ref.read(badResponse)}");
                 ref.watch(showSnackBarNotifier.notifier).showNormalSnackBar(
                       context: context,
                       message: SetLocalization.of(context)!
                           .getTranslateValue("changes_saved"),
                     );
+                WidgetsBinding.instance.addPostFrameCallback((_) async {
+                  await ref
+                      .read(fetchApartmentNotifier.notifier)
+                      .fetchApartments(
+                        isOwnerApartments: true,
+                      );
+                });
               } else {
-                if(advantagesApiNotifier.isNotEmpty){
+                if (advantagesApiNotifier.isNotEmpty) {
                   advantagesApiNotifier.clear();
                 }
-                if(ref.read(isApartmentImagesUpdated)){
+                if (ref.read(isApartmentImagesUpdated)) {
                   ref.read(isApartmentImagesUpdated.notifier).state = false;
                 }
-                if(ref.read(hasChanged)){
+                if (ref.read(hasChanged)) {
                   ref.read(hasChanged.notifier).state = false;
                 }
 

@@ -6,7 +6,6 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:http/http.dart' as http;
 import 'package:ween_blaqe/controller/provider_controllers/providers/apartment_provider.dart';
 import 'package:ween_blaqe/controller/provider_controllers/statuses/apartment_state.dart';
-import 'package:ween_blaqe/core/utils/funcations/route_pages/push_routes.dart';
 
 import '../../../../../api/photos.dart';
 import '../../../../../constants/strings.dart';
@@ -64,10 +63,11 @@ if(response.statusCode == 200 && ref.read(hasChanged)
     .notifier)
     .state == false &&  listEquals(advantagesApiNotifier,
     advantageChosen)){
+        ref.read(badResponse.notifier).state = false;
   Navigator.pop(context);
 }
     if (response.statusCode != 200) {
-
+      ref.read(badResponse.notifier).state = true;
     }
   }
 
@@ -82,8 +82,6 @@ if(response.statusCode == 200 && ref.read(hasChanged)
   }) async {
     
     state = state.copyWith(isUpdating: true);
-   await ref.read(fetchApartmentNotifier.notifier).fetchApartments
-      (isOwnerApartments: true);
     var advantagesApiNotifier = ref.watch(advantagesApi.notifier).state;
 
     ///update fields of apartment

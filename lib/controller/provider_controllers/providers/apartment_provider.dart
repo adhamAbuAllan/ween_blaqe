@@ -134,38 +134,39 @@ var  apartmentBookmarkedNotifier = StateProvider<Apartments>((ref) =>
     Apartments(data: []));
 final apartmentsOfOwnerNotifier =
     StateProvider<Apartments>((ref) => Apartments(data: []));
-final apartmentTypeNotifier = StateProvider<String>((ref) => 'طلاب'); //
-// Default
 
-final errorMessageNotifier = StateProvider<String>((ref) => ''); // Error
-
+final apartmentTypeNotifier = StateProvider<String>((ref) => 'طلاب');
+final errorMessageNotifier = StateProvider<String>((ref) => '');
 final apartmentIdNotifier = StateProvider<dynamic>((ref) => '-1');
+
 final apartmentLengthOfOwnerProvider = StateProvider<int>((ref) => 0);
 final currentPhotoIndex = StateProvider<int>((ref) => 0);
 final selectedCityId = StateProvider<int>((ref) => 1);
 final selectedTypeId = StateProvider<int>((ref) => 1);
+
+final cityList = StateProvider<List<City>>((ref) => []);
+final photoWillDeleteIds = StateProvider<List<int>>((ref) => []);
+final advantagesApi = StateProvider<List<int>>((ref) => []);
+final lastChosenAdvantagesIds = StateProvider<List<int>>((ref) => []);
+
 final isLoadingNotifier = StateProvider<bool>((ref) => false);
 final isUpdatingNotifier = StateProvider<bool>((ref) => false);
 final isEditModeNotifier = StateProvider<bool>((ref) => false);
 final isVisibleNotifier = StateProvider<bool>((ref) => false);
 final isSebhaVisibleNotifier = StateProvider<bool>((ref) => false);
-final photoWillDeleteIds = StateProvider<List<int>>((ref) => []);
-final advantagesApi = StateProvider<List<int>>((ref) => []);
-final cityList = StateProvider<List<City>>((ref) => []);
-final lastChosenAdvantagesIds = StateProvider<List<int>>((ref) => []);
-// Apartment type toggles
 final isGirlStudentNotifier = StateProvider<bool>((ref) => false);
 final isBoyStudentNotifier = StateProvider<bool>((ref) => false);
 final isFamiliesNotifier = StateProvider<bool>((ref) => false);
-final isAllTypesOfApartmentNotifier = StateProvider<bool>((ref) => false);
-
-final currentPhotoIndexNotifier = StateProvider.family<int, int>((ref,
-    apartmentId) {
-  return 0; // Default value
-});
 final isListOfTypesNotifier = StateProvider<bool>((ref) => false);
 final roomSizeChangeProvider = StateProvider<bool>((ref) => false);
 final bathSizeChangeProvider = StateProvider<bool>((ref) => false);
 final areaSizeChangeProvider = StateProvider<bool>((ref) => false);
 final isApartmentsListEmpty = StateProvider<bool>((ref) => false);
 final hasChanged = StateProvider<bool>((ref) => false);
+final badResponse = StateProvider<bool>((ref) => false);
+final isAllTypesOfApartmentNotifier = StateProvider<bool>((ref) => false);
+
+final currentPhotoIndexNotifier = StateProvider.family<int, int>((ref,
+    apartmentId) {
+  return 0; // Default value
+});
