@@ -63,7 +63,13 @@ if(response.statusCode == 200 && ref.read(hasChanged)
     .notifier)
     .state == false &&  listEquals(advantagesApiNotifier,
     advantageChosen)){
-  ref.read(isApartmentUpdatedNotifier.notifier).state = true;
+  // Delay showing the button by 2 seconds
+    WidgetsBinding.instance.addPostFrameCallback((_) async {
+      ref.read(isApartmentUpdatedNotifier.notifier).state = true;
+
+    });
+
+
   ref.read(badResponse.notifier).state = false;
   Navigator.pop(context);
 }

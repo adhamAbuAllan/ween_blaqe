@@ -84,8 +84,8 @@ class _ApartmentsOfOwnerUiState extends ConsumerState<ApartmentsOfOwnerUi>
 
   @override
   Widget build(BuildContext context) {
-    var isApartmentUpdated = ref.watch(isApartmentUpdatedNotifier.notifier)
-        .state;
+    var isApartmentUpdated =
+        ref.read(isApartmentUpdatedNotifier);
     return Scaffold(
         backgroundColor: themeMode.isLight
             ? kBackgroundAppColorLightMode
@@ -101,19 +101,24 @@ class _ApartmentsOfOwnerUiState extends ConsumerState<ApartmentsOfOwnerUi>
                     ListOwnerApartmentsWidget(
                       scrollController: scrollController,
                     ),
-                    isApartmentUpdated
-                        ? ShowTypesButtonWidget(
+                    if (isApartmentUpdated) ShowTypesButtonWidget(
                             onPressed: () {
-                            ref
-                                  .read(fetchApartmentNotifier.notifier)
-                                  .fetchApartments(
+                              WidgetsBinding.instance
+                                  .addPostFrameCallback((_) async {
+
+                              await    ref
+                                      .read(fetchApartmentNotifier.notifier)
+                                      .fetchApartments(
                                     isOwnerApartments: true,
+                                    ref: ref
                                   );
+
+                              });
+
                             },
                             text: SetLocalization.of(context)!
                                 .getTranslateValue("latest_updates"),
-                          )
-                        : const SizedBox(child: Text("hi"),)
+                          ) else const SizedBox(),
                   ]),
         floatingActionButton: const FloatingActionButtonWidget());
   }

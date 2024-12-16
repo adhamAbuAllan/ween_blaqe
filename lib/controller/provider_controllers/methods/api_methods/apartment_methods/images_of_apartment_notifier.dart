@@ -67,8 +67,9 @@ class ImageApiNotifier extends StateNotifier<ImageState> {
 
     final response = await request.send();
     if (response.statusCode == 200) {
-      ref.read(isApartmentUpdatedNotifier.notifier).state = true;
-
+        WidgetsBinding.instance.addPostFrameCallback((_) async {
+          ref.read(isApartmentUpdatedNotifier.notifier).state = true;
+      });
       ref.read(badResponse.notifier).state = false;
       debugPrint('Upload successful');
       Navigator.pop(context);
@@ -81,7 +82,8 @@ class ImageApiNotifier extends StateNotifier<ImageState> {
   }
 
   Future<void> deleteImages(
-      {required int apartmentId, required List<int> photoIds}) async {
+      {required int apartmentId, required List<int> photoIds,required WidgetRef
+      ref}) async {
     state = state.copyWith(isLoading: true);
 
     for (int photoId in photoIds) {
@@ -99,7 +101,10 @@ class ImageApiNotifier extends StateNotifier<ImageState> {
 
       final response = await http.post(url, headers: headers, body: body);
       if (response.statusCode == 200) {
-        debugPrint('Image deleted successfully');
+        WidgetsBinding.instance.addPostFrameCallback((_) async {
+
+          ref.read(isApartmentUpdatedNotifier.notifier).state = true;
+        });
       } else {
         debugPrint('Failed to delete image: ${response.body}');
       }
@@ -120,11 +125,9 @@ class ImageApiNotifier extends StateNotifier<ImageState> {
     /// get the ids of the images that will be deleted
     (imagesApi ?? [])
         .where((photo) {
-      // Check if photo.url matches image.path and is also in cancelImages
       return ref.read(imagesFileList.notifier).state.any((image) {
         if (image.path == photo.url) {
           if (cancelImages.contains(photo.url)) {
-            debugPrint("Match found: ${photo.url} in cancelImages");
             return true;
           }
         }
@@ -137,23 +140,17 @@ class ImageApiNotifier extends StateNotifier<ImageState> {
     });
 
     /// get the images that will be added
-    debugPrint("imageFileList : ${ref.read(imagesFileList.notifier).state}");
-    ref.read(imagesFileList.notifier).state.where((image) {
+   ref.read(imagesFileList.notifier).state.where((image) {
       return !(imagesApi ?? []).any((photo) => photo.url == image.path);
     }).forEach((image) {
       newImages.add(image);
     });
-    debugPrint("new images : $newImages");
-    debugPrint("images will deleted : $photosWillDelteIds");
     if (ref.read(imagesFileList.notifier).state.isEmpty) {
       null;
     } else {
-      debugPrint(
-          "ref.read(imagesFileList.notifier).state.length = ${ref.read(imagesFileList.notifier).state.length}");
-      debugPrint("photosWillDelteIds.length = ${photosWillDelteIds.length}");
       if (photosWillDelteIds.isNotEmpty) {
-        debugPrint("photos will deleted : $photosWillDelteIds");
-        deleteImages(apartmentId: apartmentId, photoIds: photosWillDelteIds);
+       deleteImages(apartmentId: apartmentId, photoIds: photosWillDelteIds,
+           ref: ref);
       }
       debugPrint("photos deleted");
     }

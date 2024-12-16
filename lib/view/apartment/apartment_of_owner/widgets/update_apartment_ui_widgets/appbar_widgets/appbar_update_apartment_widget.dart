@@ -130,6 +130,9 @@ class _AppbarEditApartmentWidgetState
                       message: SetLocalization.of(context)!
                           .getTranslateValue("changes_saved"),
                     );
+                setState(() {
+
+                });
 
               } else {
                 if (advantagesApiNotifier.isNotEmpty) {
