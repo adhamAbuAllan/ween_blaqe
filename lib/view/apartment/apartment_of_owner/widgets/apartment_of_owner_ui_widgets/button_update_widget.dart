@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:ween_blaqe/view/testing_code/solve_hide_advantage_update.dart';
 
 // import 'package:ween_blaqe/constants/strings.dart';
 // import 'package:ween_blaqe/core/utils/funcations/route_pages/push_routes.dart';
@@ -40,8 +39,8 @@ class _UpdateButtonClassWidgetConsumerState
 
         Navigator.of(context).push(MaterialPageRoute(
             builder: (BuildContext context) => UpdateApartmentUi(
-              oneApartment: widget.apartmentsRes.data?[widget.apartmentId],
-            )));
+                  oneApartment: widget.apartmentsRes.data?[widget.apartmentId],
+                )));
         debugPrint("apartment id is : --$widget.apartmentId");
       },
     );
