@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import '../../../../../../constants/localization.dart';
-import '../../../../../../constants/nums.dart';
+import '../../../../../constants/localization.dart';
+import '../../../../../constants/nums.dart';
 class NoImageSelectedWidget extends ConsumerWidget {
   const NoImageSelectedWidget({super.key});
 

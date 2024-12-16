@@ -2,15 +2,14 @@ import 'package:file_selector/file_selector.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter/material.dart';
 import 'package:ween_blaqe/api/apartments_api/apartments.dart';
-import 'package:ween_blaqe/controller/provider_controllers/providers/apartment_provider.dart';
 
-import '../../../../../../constants/coordination.dart';
-import '../../../../../../constants/get_it_controller.dart';
-import '../../../../../../constants/localization.dart';
-import '../../../../../../constants/nums.dart';
-import '../../../../../../controller/provider_controllers/providers/image_provider.dart';
-import '../../../../../../controller/provider_controllers/providers/snack_bar_provider.dart';
-import '../../../../../../core/utils/styles/button.dart';
+import '../../../../../constants/coordination.dart';
+import '../../../../../constants/get_it_controller.dart';
+import '../../../../../constants/localization.dart';
+import '../../../../../constants/nums.dart';
+import '../../../../../controller/provider_controllers/providers/image_provider.dart';
+import '../../../../../controller/provider_controllers/providers/snack_bar_provider.dart';
+import '../../../../../core/utils/styles/button.dart';
 
 class AppBarGridWidget extends ConsumerStatefulWidget
     implements PreferredSizeWidget {

@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import '../../../../../../constants/coordination.dart';
-import '../../../../../../constants/get_it_controller.dart';
-import '../../../../../../constants/localization.dart';
-import '../../../../../../controller/provider_controllers/providers/apartment_provider.dart';
-import '../../../../../common_widgets/containers_widgets/container_field_widget.dart';
+import '../../../../../constants/coordination.dart';
+import '../../../../../constants/get_it_controller.dart';
+import '../../../../../constants/localization.dart';
+import '../../../../../controller/provider_controllers/providers/apartment_provider.dart';
+import '../../../../common_widgets/containers_widgets/container_field_widget.dart';
 
 class BathRoomsFieldWidget extends ConsumerWidget {
   const BathRoomsFieldWidget({super.key, this.originalBathRoomsCount});

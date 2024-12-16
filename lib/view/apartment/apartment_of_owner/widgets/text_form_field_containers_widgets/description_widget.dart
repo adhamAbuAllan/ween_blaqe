@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import '../../../../../../constants/localization.dart';
-import '../../../../../../controller/provider_controllers/providers/apartment_provider.dart';
-import '../../../../../common_widgets/containers_widgets/container_field_widget.dart';
+import '../../../../../constants/localization.dart';
+import '../../../../../controller/provider_controllers/providers/apartment_provider.dart';
+import '../../../../common_widgets/containers_widgets/container_field_widget.dart';
 class DescriptionFieldWidget extends ConsumerWidget {
   const DescriptionFieldWidget({super.key,  this.originalDescription});
   final String? originalDescription;

@@ -2,9 +2,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter/material.dart';
 import 'package:ween_blaqe/constants/nums.dart';
 
-import '../../../../../../api/apartments_api/apartments.dart';
-import '../../../../../../constants/coordination.dart';
-import '../../../../../../constants/get_it_controller.dart';
+import '../../../../../api/apartments_api/apartments.dart';
 
 class ButtonDeleteImageWidget extends ConsumerStatefulWidget {
   const ButtonDeleteImageWidget(

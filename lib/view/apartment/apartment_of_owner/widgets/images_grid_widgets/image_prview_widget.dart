@@ -3,9 +3,9 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:ween_blaqe/view/apartment/apartment_of_owner/widgets/update_apartment_ui_widgets/update_images_ui_widgets/skeleton_image_widget.dart';
+import 'package:ween_blaqe/view/apartment/apartment_of_owner/widgets/images_grid_widgets/skeleton_image_widget.dart';
 
-import '../../../../../../api/apartments_api/apartments.dart';
+import '../../../../../api/apartments_api/apartments.dart';
 
 class ImagePrviewWidget extends ConsumerStatefulWidget {
   const ImagePrviewWidget(

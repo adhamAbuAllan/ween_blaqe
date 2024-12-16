@@ -79,6 +79,7 @@ class CreateApartmentNotifier extends StateNotifier<ApartmentState> {
         await ref.read(advantagesNotifer.notifier).insertAdvInApartment(
               apartmentId: await apartmentId,
               advantageIds: ref.read(advantagesNotifer).chosen,
+          
             );
         await ref.read(imageApiNotifier.notifier).compressAndUploadImages
           (ref: ref,apartmentIdToUpdate: apartmentId,newImages: );

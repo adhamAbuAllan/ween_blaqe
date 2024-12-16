@@ -3,44 +3,24 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:ween_blaqe/controller/provider_controllers/providers/apartment_provider.dart';
 import 'package:ween_blaqe/constants/nums.dart';
-import 'package:ween_blaqe/view/apartment/apartment_of_owner/widgets'
-    '/update_apartment_ui_widgets/floating_button_add_delete_image_widget'
-    '.dart';
-import 'package:ween_blaqe/view/apartment/apartment_of_owner/widgets'
-    '/update_apartment_ui_widgets/text_form_field_containers_widgets'
-    '/add_title_widget.dart';
-import 'package:ween_blaqe/view/apartment/apartment_of_owner/widgets'
-    '/update_apartment_ui_widgets/text_form_field_containers_widgets'
-    '/address_widget.dart';
-import 'package:ween_blaqe/view/apartment/apartment_of_owner/widgets'
-    '/update_apartment_ui_widgets/text_form_field_containers_widgets'
-    '/bath_rooms_widget.dart';
-import 'package:ween_blaqe/view/apartment/apartment_of_owner/widgets'
-    '/update_apartment_ui_widgets/text_form_field_containers_widgets'
-    '/price_widget'
-    '.dart';
-import 'package:ween_blaqe/view/apartment/apartment_of_owner/widgets'
-    '/update_apartment_ui_widgets/text_form_field_containers_widgets'
-    '/square_meters_widget.dart';
-import 'package:ween_blaqe/view/apartment/apartment_of_owner/widgets'
-    '/update_apartment_ui_widgets/text_form_field_containers_widgets'
-    '/student_count_widget.dart';
+import 'package:ween_blaqe/view/apartment/apartment_of_owner/widgets/dropdown_fields_widgets/cities_drop_down_widget.dart';
+import 'package:ween_blaqe/view/apartment/apartment_of_owner/widgets/dropdown_fields_widgets/types_drop_down_widget.dart';
+import 'package:ween_blaqe/view/apartment/apartment_of_owner/widgets/floating_button_add_delete_image_widget.dart';
+import 'package:ween_blaqe/view/apartment/apartment_of_owner/widgets/text_form_field_containers_widgets/add_title_widget.dart';
+import 'package:ween_blaqe/view/apartment/apartment_of_owner/widgets/text_form_field_containers_widgets/address_widget.dart';
+import 'package:ween_blaqe/view/apartment/apartment_of_owner/widgets/text_form_field_containers_widgets/bath_rooms_widget.dart';
+import 'package:ween_blaqe/view/apartment/apartment_of_owner/widgets/text_form_field_containers_widgets/price_widget.dart';
+import 'package:ween_blaqe/view/apartment/apartment_of_owner/widgets/text_form_field_containers_widgets/square_meters_widget.dart';
+import 'package:ween_blaqe/view/apartment/apartment_of_owner/widgets/text_form_field_containers_widgets/student_count_widget.dart';
 import '../../../api/apartments_api/apartments.dart';
 import '../../../constants/coordination.dart';
 import '../../../constants/get_it_controller.dart';
 import '../../../controller/provider_controllers/providers/image_provider.dart';
 import '../../apartment/apartment_of_owner/widgets/update_apartment_ui_widgets'
     '/appbar_widgets/appbar_update_apartment_widget.dart';
-import '../../apartment/apartment_of_owner/widgets/update_apartment_ui_widgets'
-    '/dropdown_fields_widgets/types_drop_down_widget.dart';
-import '../../apartment/apartment_of_owner/widgets/update_apartment_ui_widgets'
-    '/update_advantes_widgets/advantages_update_widget.dart';
-import '../../apartment/apartment_of_owner/widgets/update_apartment_ui_widgets'
-    '/text_form_field_containers_widgets/description_widget.dart';
-import '../../apartment/apartment_of_owner/widgets/update_apartment_ui_widgets'
-    '/text_form_field_containers_widgets/rooms_widget.dart';
-import '../../apartment/apartment_of_owner/widgets/update_apartment_ui_widgets'
-    '/dropdown_fields_widgets/cities_drop_down_widget.dart';
+import 'widgets/advantages_checkbox_widget.dart';
+import 'widgets/text_form_field_containers_widgets/description_widget.dart';
+import 'widgets/text_form_field_containers_widgets/rooms_widget.dart';
 
 class UpdateApartmentUi extends ConsumerStatefulWidget {
   const UpdateApartmentUi({super.key, this.oneApartment});
@@ -167,7 +147,7 @@ class _UpdateApartmentUiState extends ConsumerState<UpdateApartmentUi> {
                   originalBathRoomsCount:
                       widget.oneApartment?.bathrooms.toString(),
                 ),
-                const AdvantagesUpdateWidget(),
+                const AdvantagesCheckBoxWidget(),
                 SizedBox(
                   height: getIt<AppDimension>().isSmallScreen(context) ? 0 : 10,
                 ),

@@ -1,16 +1,14 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:ween_blaqe/view/apartment/apartment_of_owner/widgets'
-    '/update_apartment_ui_widgets/update_images_ui_widgets'
-    '/floating_buttons_add_images_widgets.dart';
-import 'package:ween_blaqe/view/apartment/apartment_of_owner/widgets/update_apartment_ui_widgets/update_images_ui_widgets/gird_view_images_widget.dart';
+import 'package:ween_blaqe/view/apartment/apartment_of_owner/widgets/images_grid_widgets/floating_buttons_add_images_widgets.dart';
+import 'package:ween_blaqe/view/apartment/apartment_of_owner/widgets/images_grid_widgets/gird_view_images_widget.dart';
 
 import '../../../api/apartments_api/apartments.dart';
 
 import '../../../constants/nums.dart';
 import '../../../controller/provider_controllers/providers/image_provider.dart';
-import 'widgets/update_apartment_ui_widgets/update_images_ui_widgets/appbar_widget.dart';
+import 'widgets/images_grid_widgets/appbar_widget.dart';
 
 class UpdateImagesUi extends ConsumerStatefulWidget {
   const UpdateImagesUi({super.key, this.oneApartment});

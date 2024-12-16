@@ -4,8 +4,8 @@ import 'package:ween_blaqe/api/apartments_api/apartments.dart';
 import 'package:ween_blaqe/controller/provider_controllers/providers/apartment_provider.dart';
 
 import '../../../../../../constants/localization.dart';
-import '../../../../../common_widgets/containers_widgets/container_load_widget.dart';
-import '../../../../../common_widgets/drop_down_widget.dart';
+import '../../../../common_widgets/containers_widgets/container_load_widget.dart';
+import '../../../../common_widgets/drop_down_widget.dart';
 
 class DropdownTypesWidget extends ConsumerStatefulWidget {
   const DropdownTypesWidget({super.key, required this.alreadyExistingValue});

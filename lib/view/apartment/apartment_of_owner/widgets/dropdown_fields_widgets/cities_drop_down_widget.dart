@@ -4,12 +4,12 @@ import 'package:ween_blaqe/api/apartments_api/apartments.dart';
 import 'package:ween_blaqe/controller/provider_controllers/providers/apartment_provider.dart';
 
 import '../../../../../../constants/localization.dart';
-import '../../../../../common_widgets/containers_widgets/container_load_widget.dart';
-import '../../../../../common_widgets/drop_down_widget.dart';
+import '../../../../common_widgets/containers_widgets/container_load_widget.dart';
+import '../../../../common_widgets/drop_down_widget.dart';
 
 class DropdownCitiesWidget extends ConsumerStatefulWidget {
-  const DropdownCitiesWidget({super.key,required this.alreadyExistingValue});
-final DataOfOneApartment alreadyExistingValue;
+  const DropdownCitiesWidget({super.key, this.alreadyExistingValue});
+final DataOfOneApartment ?alreadyExistingValue;
   @override
   ConsumerState createState() => _DropdownCitiesWidgetState();
 }
@@ -43,7 +43,7 @@ final defaultValue = widget.selectedItem; // Default selected item
             ref.read(cityNotifier.notifier).setSelectedCity(items);
             debugPrint(
                 "selectedCity : ${ref.read(cityNotifier).selectedCity?.id}");
-            if (widget.alreadyExistingValue.type?.id != items.id) {
+            if (widget.alreadyExistingValue?.type?.id != items.id) {
               ref.read(hasChanged.notifier).state = true;
             } else {
               ref.read(hasChanged.notifier).state = false;

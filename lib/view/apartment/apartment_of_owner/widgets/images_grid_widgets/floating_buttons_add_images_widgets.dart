@@ -1,9 +1,9 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
-import '../../../../../../constants/localization.dart';
-import '../../../../../../constants/nums.dart';
-import '../../../../../../controller/provider_controllers/providers/image_provider.dart';
+import '../../../../../constants/localization.dart';
+import '../../../../../constants/nums.dart';
+import '../../../../../controller/provider_controllers/providers/image_provider.dart';
 
 class FloatingButtonsAddImagesWidgets extends ConsumerWidget {
   const FloatingButtonsAddImagesWidgets(
