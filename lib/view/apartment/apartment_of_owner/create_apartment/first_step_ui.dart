@@ -1,6 +1,15 @@
 import 'package:colorful_safe_area/colorful_safe_area.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:ween_blaqe/view/apartment/apartment_of_owner/create_apartment/widgets/create_apartment_buttons_widgets.dart';
+import 'package:ween_blaqe/view/apartment/apartment_of_owner/create_apartment/widgets/images_create_apartment_stpes_widgets.dart';
+import 'package:ween_blaqe/view/apartment/apartment_of_owner/widgets/text_form_field_containers_widgets/bath_rooms_widget.dart';
+import 'package:ween_blaqe/view/apartment/apartment_of_owner/widgets/text_form_field_containers_widgets/rooms_widget.dart';
+import 'package:ween_blaqe/view/common_widgets/text_widgets/create_apartment_title_widget.dart';
+
+import '../../../../constants/localization.dart';
+import '../widgets/dropdown_fields_widgets/cities_drop_down_widget.dart';
+import '../widgets/text_form_field_containers_widgets/address_widget.dart';
 
 class FirstStepCreateApartmentUi extends ConsumerStatefulWidget {
   const FirstStepCreateApartmentUi({super.key});
@@ -16,17 +25,19 @@ class _FirstStepCreateApartmentUiState
     return ColorfulSafeArea(
         child: GestureDetector(
       onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
-      child: const Scaffold(
+      child: Scaffold(
         body: SingleChildScrollView(
           child: Column(
             children: [
-              //two buttons,
-              //text,
-              //circle steps,
-              //city container,
-              //location container,
-              //count of rooms container,
-              //count of bath rooms container,
+CreateApartmentButtonsWidgets(onPressed: (){
+
+}),
+              CreateApartmentTitleWidget(title: SetLocalization.of(context)!.getTranslateValue("first_step"),),
+              const FirstStepImageWidget(),
+              const DropdownCitiesWidget(),
+              const AddressFieldWidget(),
+              const RoomsFieldWidget(),
+              const BathRoomsFieldWidget()
             ],
           ),
         ),

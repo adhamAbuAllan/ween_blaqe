@@ -6,7 +6,7 @@
 // // import 'package:ween_blaqe/core/widgets/apartments/create_apartment/container_classes_widget/containers_choose_items_class_widget/container_choose_items_class_widget.dart';
 // import 'package:ween_blaqe/core/widgets/apartments/create_apartment/container_classes_widget/input_text_class_widget/container_field_widget.dart';
 // // import 'package:ween_blaqe/view/user/owner/steps_to_create_apartment/first_step.dart';
-// // import 'package:ween_blaqe/view/user/owner/steps_to_create_apartment/fourth_step.dart';
+// // import 'package:ween_blaqe/view/user/owner/steps_to_create_apartment/fourth_step_ui.dart';
 //
 // import '../constants/strings.dart';
 // import '../main.dart';

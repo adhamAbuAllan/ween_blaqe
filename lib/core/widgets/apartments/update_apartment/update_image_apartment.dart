@@ -27,7 +27,7 @@ import '../../../../session/new_session.dart';
 // import '../../../../constants/coordination.dart';
 
 // import 'package:ween_blaqe/core/widgets/alirt_class_widget.dart';
-// import 'package:ween_blaqe/view/user/owner/steps_to_create_apartment/fourth_step.dart';
+// import 'package:ween_blaqe/view/user/owner/steps_to_create_apartment/fourth_step_ui.dart';
 
 // import 'package:video_player/video_player.dart';
 
