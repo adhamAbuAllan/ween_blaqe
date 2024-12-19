@@ -3,7 +3,7 @@
 //
 //
 // import 'package:ween_blaqe/constants/nums.dart';
-// import '../registration/text_filed_class_widget.dart';
+// import '../registration/text_form_filed_widget.dart';
 //
 // class PriceOfSearchFilterClassWidget extends StatefulWidget {
 //   final String title;

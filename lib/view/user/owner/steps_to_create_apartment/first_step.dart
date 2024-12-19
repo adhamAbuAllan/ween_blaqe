@@ -285,8 +285,7 @@ class _FirstStepState extends State<FirstStep> {
                         hintInput: SetLocalization.of(context)!.getTranslateValue("example_apartment_address"),
                         inputType: text,
                         controller: addressController,
-                        focusNode: addressFocusnose,
-                        onFieldSubmitted: (value) {}),
+                        ),
                   ),
                   //rooms box
                   Padding(
@@ -296,8 +295,7 @@ class _FirstStepState extends State<FirstStep> {
                         hintInput: hintCountRooms,
                         inputType: number,
                         controller: countOfRoomsController,
-                        focusNode: countRoomsfocusnode,
-                        onFieldSubmitted: (value) {}),
+                       ),
                   ),
                   //bathrooms box
                   Padding(
@@ -308,10 +306,7 @@ class _FirstStepState extends State<FirstStep> {
                         hintInput: hintCountBathrooms,
                         inputType: number,
                         controller: countOfBathRoomsController,
-                        focusNode: countBathroomsfocusnode,
-                        onFieldSubmitted: (value) {
-                          debugPrint("value is $value in bath room text field");
-                        }),
+                    ),
                   ),
                 ]),
               ])))),

@@ -95,8 +95,6 @@ class _FourthStepState extends State<FourthStep> {
     // Ad box
     // var addSuitableTitleForAdText = "أضف عنوان";
     // var addSuitableTitleForAdHnit = "سكن طلاب مفروش";
-    var adFocusNode = FocusNode();
-    var discrptionFocusedNode = FocusNode();
     //discription box
     // var discrptionApartmentText = "صف الشقة";
     // var discrptionApartmentHint = " شقة خاصة"
@@ -371,8 +369,7 @@ class _FourthStepState extends State<FourthStep> {
                         hintInput: SetLocalization.of(context)!
                             .getTranslateValue("furnished_student_housing"),
                         inputType: TextInputType.text,
-                        focusNode: adFocusNode,
-                        onFieldSubmitted: (value) {}),
+),
                   ),
                   // discriptopin the apartment
                   ContainerFieldWidget(
@@ -386,7 +383,7 @@ class _FourthStepState extends State<FourthStep> {
 
                       maxLength: 255,
                       hintMaxLines: 7,
-                      focusNode: discrptionFocusedNode),
+                     ),
                   // AddAcontact(
                   //   userInfo: widget.userInfo,
                   // )

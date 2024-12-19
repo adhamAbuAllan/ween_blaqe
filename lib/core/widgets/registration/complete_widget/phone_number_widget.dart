@@ -9,7 +9,7 @@ import '../../../../constants/localization.dart';
 import '../../../../constants/nums.dart';
 import '../../../../session/new_session.dart';
 import '../../../utils/funcations/go_url_launcher_methodes/go_to_whatsapp_method.dart';
-import '../text_filed_class_widget.dart';
+import '../../../../view/common_widgets/text_form_field_widgets/text_form_filed_widget.dart';
 
 class PhoneNumberWidget extends StatefulWidget {
   const   PhoneNumberWidget({super.key});
@@ -85,13 +85,13 @@ class _PhoneNumberWidgetState extends State<PhoneNumberWidget> {
             flex: 2,
             child: Obx(() {
               userModelController.selectedCountryCode.value;
-              return TextFieldClassWidget(
+              return TextFormFieldWidget(
 
                 fontSize: getIt<AppDimension>().isSmallScreen(context) ? 15 : 16,
                 controller: userModelController.phoneController,
                 labelName: SetLocalization.of(context)!
                     .getTranslateValue("phone_number"),
-                textInputType: TextInputType.phone,
+                keyboardType: TextInputType.phone,
               );
             }),
           ),

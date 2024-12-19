@@ -10,14 +10,13 @@ import 'package:ween_blaqe/view/common_widgets/containers_widgets/container_widg
 import '../../../constants/coordination.dart';
 import '../../../constants/get_it_controller.dart';
 import '../../../constants/nums.dart';
+import '../text_form_field_widgets/text_form_filed_widget.dart';
 
 //container input text class widget
 class ContainerFieldWidget extends ConsumerWidget {
   final String title;
   final String hintInput;
   final TextInputType inputType;
-  final FocusNode? focusNode;
-  final Function? onFieldSubmitted;
   final String? errorText;
   final int? hintMaxLines;
   final int? maxLines;
@@ -33,11 +32,9 @@ class ContainerFieldWidget extends ConsumerWidget {
       required this.title,
       required this.hintInput,
       required this.inputType,
-      this.focusNode,
       this.maxLines,
       this.hintMaxLines,
       this.maxLength,
-      this.onFieldSubmitted,
       this.autoFocus,
       this.controller,
       this.errorText,
@@ -70,7 +67,7 @@ class ContainerFieldWidget extends ConsumerWidget {
         ),
         Padding(
           padding: const EdgeInsets.fromLTRB(20, 0, 20, 10),
-          child: TextFormField(
+          child: TextFormFieldWidget(
             onChanged: (value) {
               bool hasChange = originalValue != controller?.text;
                 if (value.isNotEmpty) {
@@ -82,8 +79,6 @@ class ContainerFieldWidget extends ConsumerWidget {
                 } else {
                   ///should show the validate message when the field is empty
                 }
-
-
             },
             validator: validator,
             cursorColor: themeMode.isLight
@@ -92,14 +87,10 @@ class ContainerFieldWidget extends ConsumerWidget {
             textInputAction: TextInputAction.next,
             controller: controller,
             maxLines: maxLines,
-            // maxLengthEnforcement: MaxLengthEnforcement.truncateAfterCompositionEnds,
             maxLength: maxLength,
-            // textDirection: TextDirection.rtl,
             keyboardType: inputType,
             autofocus: autoFocus ?? false,
-
-            // focusNode: focusNode,
-            decoration: buildInputDecoration(hintInput, context,
+            decoration: containerInputDecoration(hintInput, context,
                 helperText: helperText),
             style: TextStyle(
               fontSize: getIt<AppDimension>().isSmallScreen(context) ? 15 : 16,
@@ -112,7 +103,7 @@ class ContainerFieldWidget extends ConsumerWidget {
     ));
   }
 
-  InputDecoration buildInputDecoration(String hintInput, BuildContext context,
+  InputDecoration containerInputDecoration(String hintInput, BuildContext context,
       {String? helperText}) {
     ChangeThemeMode themeMode = Get.find();
 
@@ -126,8 +117,6 @@ class ContainerFieldWidget extends ConsumerWidget {
                 getIt<AppDimension>().isSmallScreen(context) ? 20 / 2 : 20,
             horizontal: 12),
         errorText: errorText,
-
-        // hintTextDirection: TextDirection.rtl,
         hintText: hintInput,
         border: InputBorder.none,
         hintMaxLines: hintMaxLines,
@@ -161,8 +150,6 @@ class ContainerFieldWidget extends ConsumerWidget {
           color: Colors.red,
         ),
         helperMaxLines: 2
-        // Customize
-        // error text style
         );
   }
 }

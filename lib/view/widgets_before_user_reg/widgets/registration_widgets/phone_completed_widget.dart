@@ -6,7 +6,7 @@ import '../../../../constants/coordination.dart';
 import '../../../../constants/get_it_controller.dart';
 import '../../../../constants/localization.dart';
 import '../../../../constants/nums.dart';
-import '../../../../core/widgets/registration/text_filed_class_widget.dart';
+import '../../../common_widgets/text_form_field_widgets/text_form_filed_widget.dart';
 import 'button_checker_phone_number_completed_widget.dart';
 
 class PhoneCompletedWidget extends ConsumerWidget {
@@ -163,13 +163,13 @@ class PhoneNumberWidget extends ConsumerWidget {
     BuildContext context,
     WidgetRef ref,
   ) {
-    return TextFieldClassWidget(
+    return TextFormFieldWidget(
       validateTextValue: validateTextValue,
       isPhoneRegTextField: isPhoneRegTextField ?? true,
       fontSize: getIt<AppDimension>().isSmallScreen(context) ? 15 : 16,
       controller: controller,
       labelName: SetLocalization.of(context)!.getTranslateValue("phone_number"),
-      textInputType: TextInputType.phone,
+      keyboardType: TextInputType.phone,
     );
   }
 }

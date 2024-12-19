@@ -257,7 +257,6 @@ class _ThirdStepState extends State<ThirdStep> {
                     hintInput: SetLocalization.of(context)!.getTranslateValue("enter_monthly_rent"),
                     controller: priceController,
                     inputType: TextInputType.number,
-                    focusNode: priceFocusNode,
                   ),
                 ),
                 //countStudent padding
@@ -292,7 +291,6 @@ class _ThirdStepState extends State<ThirdStep> {
                     hintInput: countStudentHint,
                     controller: countOfStudentController,
                     inputType: TextInputType.number,
-                    focusNode: countStudentFocusNode,
                   ),
                 ),
                 //square padding
@@ -305,7 +303,6 @@ class _ThirdStepState extends State<ThirdStep> {
                     hintInput: SetLocalization.of(context)!.getTranslateValue("enter_apartment_size"),
                     controller: squareMetersController,
                     inputType: TextInputType.number,
-                    focusNode: squareFocusNode,
                   ),
                 ),
                 /*

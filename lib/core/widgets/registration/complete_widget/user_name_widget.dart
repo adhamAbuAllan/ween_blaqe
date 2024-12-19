@@ -6,14 +6,14 @@ import '../../../../constants/coordination.dart';
 import '../../../../constants/get_it_controller.dart';
 import '../../../../constants/localization.dart';
 import '../../../../constants/nums.dart';
-import '../text_filed_class_widget.dart';
+import '../../../../view/common_widgets/text_form_field_widgets/text_form_filed_widget.dart';
 
 class UserNameWidget extends ConsumerWidget {
   const UserNameWidget({super.key});
 
   @override
   Widget build(BuildContext context,WidgetRef ref) {
-    return  TextFieldClassWidget(
+    return  TextFormFieldWidget(
       fontSize: getIt<AppDimension>().isSmallScreen(context) ? 15 : 16,
       labelName: SetLocalization.of(context)!
           .getTranslateValue("full_name"),
@@ -23,7 +23,7 @@ class UserNameWidget extends ConsumerWidget {
         ref.read(formFieldsNotifier.notifier).updateValue('username', value,
             context: context);
       },      controller: ref.read(userNameController),
-      textInputType: TextInputType.name,);
+      keyboardType: TextInputType.name,);
   }
 }
 

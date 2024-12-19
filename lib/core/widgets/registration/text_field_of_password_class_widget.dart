@@ -13,7 +13,6 @@ class TextFieldOfPasswordClassWidget extends StatefulWidget {
   final String? labelInput;
   final FocusNode? focusNode;
   final bool? autoFocus;
-  late  bool? hide;
   late  String? displayText;
   final Function(String)? checkPass;
   late  double? strength;
@@ -33,7 +32,6 @@ class TextFieldOfPasswordClassWidget extends StatefulWidget {
       this.displayText,
       this.strength,
       this.focusNode,
-      this.hide,
       this.autoFocus,
       this.checkPass,
       this.controller,
@@ -134,7 +132,12 @@ class _TextFieldOfPasswordClassWidgetState
           ),
         ));
   }
+/*
+try to make those as a notifier:
+widget.strength
+widget.displayText
 
+ */
   void checkPassword(String value) {
     widget.controller?.text = value.trim();
 

@@ -29,10 +29,11 @@ class _FirstStepCreateApartmentUiState
         body: SingleChildScrollView(
           child: Column(
             children: [
-CreateApartmentButtonsWidgets(onPressed: (){
-
-}),
-              CreateApartmentTitleWidget(title: SetLocalization.of(context)!.getTranslateValue("first_step"),),
+              CreateApartmentButtonsWidgets(onPressed: () {}),
+              CreateApartmentTitleWidget(
+                title: SetLocalization.of(context)!
+                    .getTranslateValue("first_step"),
+              ),
               const FirstStepImageWidget(),
               const DropdownCitiesWidget(),
               const AddressFieldWidget(),

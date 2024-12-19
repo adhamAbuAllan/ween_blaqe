@@ -5,7 +5,7 @@ import '../../../../constants/coordination.dart';
 import '../../../../constants/get_it_controller.dart';
 import '../../../../constants/localization.dart';
 import '../../../../constants/nums.dart';
-import '../../../../core/widgets/registration/text_filed_class_widget.dart';
+import '../../../common_widgets/text_form_field_widgets/text_form_filed_widget.dart';
 import '../../../../controller/provider_controllers/providers/auth_provider.dart';
 
 class UserNameRegCompletedWidget extends ConsumerWidget {
@@ -16,13 +16,13 @@ class UserNameRegCompletedWidget extends ConsumerWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        TextFieldClassWidget(
+        TextFormFieldWidget(
           fontSize: getIt<AppDimension>().isSmallScreen(context) ? 15 : 16,
           labelName: SetLocalization.of(context)!.getTranslateValue("full_name"),
           autoFocus: true,
           errorText: ref.watch(formFieldsNotifier)['username']?.error,
           controller: ref.read(userNameController),
-          textInputType: TextInputType.name,
+          keyboardType: TextInputType.name,
           validator: (value) {
             return ref.watch(formFieldsNotifier)['username']?.error;
           },
