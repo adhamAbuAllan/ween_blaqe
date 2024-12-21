@@ -9,6 +9,7 @@ import '../../../../constants/localization.dart';
 import '../widgets/floating_button_add_delete_image_widget.dart';
 import '../widgets/text_form_field_containers_widgets/add_title_widget.dart';
 import '../widgets/text_form_field_containers_widgets/description_widget.dart';
+import 'add_image_ui.dart';
 
 class FourthStepUi extends ConsumerStatefulWidget {
   const FourthStepUi({super.key});
@@ -44,7 +45,10 @@ class _FourthStepUiState extends ConsumerState<FourthStepUi> {
         ),
       ),
       floatingActionButton: ImageGridFloatingButtonWidget(
-        onPressed: () {},
+        onPressed: () {
+          Navigator.push(context,
+              MaterialPageRoute(builder: (context) => const AddImageUi()));
+        },
         title: SetLocalization.of(context)?.getTranslateValue("add_photos"),
       ),
     );
