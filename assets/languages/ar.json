@@ -253,5 +253,6 @@
   "should_be_at_least_three_photos": "يجب ان يكون على الاقل ثلاث صور",
   "should_be_at_least_five_advantages": "برجاء إضافة ما لا يقل عن 5 مزايا",
   "latest_updates": "آخر التحديثات",
-  "the_address_should_be_true": "يجب أن يكون العنوان صحيحًا"
+  "the_address_should_be_true": "يجب أن يكون العنوان صحيحًا",
+  "error_has_been_while_creating_apartment": "حدث خطأ أثناء إنشاء الشقة"
 }

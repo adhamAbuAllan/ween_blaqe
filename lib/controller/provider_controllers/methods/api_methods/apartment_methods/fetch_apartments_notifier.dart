@@ -41,6 +41,7 @@ class FetchApartmentsNotifier extends StateNotifier<ApartmentState> {
               );
         }
       } else {
+        debugPrint("cityId is $cityId");
         uri = Uri.parse(
             "${ServerWeenBalaqee.apartmentAll}?type=$type&&city_id=$cityId");
       }

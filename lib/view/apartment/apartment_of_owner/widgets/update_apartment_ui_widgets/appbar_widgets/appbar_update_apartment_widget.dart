@@ -115,9 +115,10 @@ class _AppbarEditApartmentWidgetState
                 ref.watch(updateApartmentNotifier.notifier).updateApartment(
                     ref: ref,
                     apartmentId: widget.oneApartment.id ?? -1,
-                    imagesApi: imagesApi,
+                    imagesApi: imagesApi??[],
                     context: context);
                 if (ref.read(badResponse)) {
+                  debugPrint("response bad");
                   ref.read(showSnackBarNotifier.notifier).showNormalSnackBar(
                         context: context,
                         message: SetLocalization.of(context)!

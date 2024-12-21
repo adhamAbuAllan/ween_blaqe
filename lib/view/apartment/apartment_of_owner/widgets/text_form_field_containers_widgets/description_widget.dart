@@ -13,15 +13,15 @@ class DescriptionFieldWidget extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     return Form(
-      key: ref.watch(priceValidate.notifier).state != null
-          ? formPriceValidateKey
+      key: ref.watch(apartmentDescriptionValidate.notifier).state != null
+          ? formApartmentDescriptionValidateKey
           : null,
       child: ContainerFieldWidget(
         validator: (value) {
-          if (ref.watch(priceValidate.notifier).state == null) {
+          if (ref.watch(apartmentDescriptionValidate.notifier).state == null) {
             return null;
           }
-          return ref.watch(priceValidate);
+          return ref.watch(apartmentDescriptionValidate);
         },
         title: SetLocalization.of(context)!
             .getTranslateValue("apartment_overview"),

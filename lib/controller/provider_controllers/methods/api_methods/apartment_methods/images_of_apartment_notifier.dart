@@ -54,7 +54,8 @@ class ImageApiNotifier extends StateNotifier<ImageState> {
 
     for (XFile imageFile in newImages!) {
       debugPrint("newImages : $newImages");
-      final compressedFile = await ref.read(imageHybridNotifer.notifier).compressImage(imageFile);
+      final compressedFile =
+          await ref.read(imageHybridNotifer.notifier).compressImage(imageFile);
       request.files.add(
         await http.MultipartFile.fromPath(
           'images[]',
@@ -67,8 +68,8 @@ class ImageApiNotifier extends StateNotifier<ImageState> {
 
     final response = await request.send();
     if (response.statusCode == 200) {
-        WidgetsBinding.instance.addPostFrameCallback((_) async {
-          ref.read(isApartmentUpdatedNotifier.notifier).state = true;
+      WidgetsBinding.instance.addPostFrameCallback((_) async {
+        ref.read(isApartmentUpdatedNotifier.notifier).state = true;
       });
       ref.read(badResponse.notifier).state = false;
       debugPrint('Upload successful');
@@ -82,8 +83,9 @@ class ImageApiNotifier extends StateNotifier<ImageState> {
   }
 
   Future<void> deleteImages(
-      {required int apartmentId, required List<int> photoIds,required WidgetRef
-      ref}) async {
+      {required int apartmentId,
+      required List<int> photoIds,
+      required WidgetRef ref}) async {
     state = state.copyWith(isLoading: true);
 
     for (int photoId in photoIds) {
@@ -102,7 +104,6 @@ class ImageApiNotifier extends StateNotifier<ImageState> {
       final response = await http.post(url, headers: headers, body: body);
       if (response.statusCode == 200) {
         WidgetsBinding.instance.addPostFrameCallback((_) async {
-
           ref.read(isApartmentUpdatedNotifier.notifier).state = true;
         });
       } else {
@@ -121,26 +122,22 @@ class ImageApiNotifier extends StateNotifier<ImageState> {
     List<int> photosWillDelteIds = [];
     List<XFile> newImages = [];
     var cancelImages = ref.read(cancelImagesNotifier.notifier).state;
+    debugPrint(
+        "images will deleted notifier ${ref.read(cancelImagesNotifier.notifier).state}");
+    debugPrint(" the canelImages is $cancelImages");
 
     /// get the ids of the images that will be deleted
-    (imagesApi ?? [])
-        .where((photo) {
-      return ref.read(imagesFileList.notifier).state.any((image) {
-        if (image.path == photo.url) {
-          if (cancelImages.contains(photo.url)) {
-            return true;
-          }
+    debugPrint("imageApi : $imagesApi");
+    if (imagesApi?.isNotEmpty ?? false) {
+      for(Photos photo in imagesApi!){
+        if(cancelImages.contains(photo.url)){
+          photosWillDelteIds.add(photo.id!);
         }
-        return false;
-      });
-    })
-        .forEach((photo) {
-      // Add the photo's ID to photosWillDelteIds
-      photosWillDelteIds.add(photo.id ?? -1);
-    });
+      }
+    }
 
     /// get the images that will be added
-   ref.read(imagesFileList.notifier).state.where((image) {
+    ref.read(imagesFileList.notifier).state.where((image) {
       return !(imagesApi ?? []).any((photo) => photo.url == image.path);
     }).forEach((image) {
       newImages.add(image);
@@ -149,9 +146,10 @@ class ImageApiNotifier extends StateNotifier<ImageState> {
       null;
     } else {
       if (photosWillDelteIds.isNotEmpty) {
-       deleteImages(apartmentId: apartmentId, photoIds: photosWillDelteIds,
-           ref: ref);
+        deleteImages(
+            apartmentId: apartmentId, photoIds: photosWillDelteIds, ref: ref);
       }
+      debugPrint("photos will be deleted : $photosWillDelteIds");
       debugPrint("photos deleted");
     }
 

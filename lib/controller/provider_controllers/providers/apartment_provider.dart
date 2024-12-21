@@ -9,6 +9,7 @@ import 'package:ween_blaqe/controller/provider_controllers/statuses/city_state.d
 import 'package:ween_blaqe/controller/provider_controllers/statuses/type_state.dart';
 import '../../../api/apartments_api/apartments.dart';
 import '../../../api/cities.dart';
+import '../methods/api_methods/apartment_methods/create_apartment_notifier.dart';
 import '../methods/api_methods/apartment_methods/delete_apartment_notifier.dart';
 import '../methods/api_methods/apartment_methods/advantages_notifier.dart';
 import '../methods/api_methods/apartment_methods/update_apartment_notifier.dart';
@@ -67,7 +68,9 @@ final updateApartmentNotifier =
     StateNotifierProvider<UpdateApartmentNotifier, ApartmentState>(
   (ref) => UpdateApartmentNotifier(),
 );
-
+final createApartmentNotifier = StateNotifierProvider<CreateApartmentNotifier
+, ApartmentState>((ref)
+=>CreateApartmentNotifier());
 final validatorCreateApartmentNotifier =
     StateNotifierProvider<ValidatorCreateApartmentNotifier,ApartmentState>((ref)
 =>ValidatorCreateApartmentNotifier());
@@ -145,6 +148,7 @@ final apartmentIdNotifier = StateProvider<dynamic>((ref) => '-1');
 final apartmentLengthOfOwnerProvider = StateProvider<int>((ref) => 0);
 final currentPhotoIndex = StateProvider<int>((ref) => 0);
 final selectedCityId = StateProvider<int>((ref) => 1);
+final selectedCityIdToFilter = StateProvider<int>((ref) => 0);
 final selectedTypeId = StateProvider<int>((ref) => 1);
 
 final cityList = StateProvider<List<City>>((ref) => []);

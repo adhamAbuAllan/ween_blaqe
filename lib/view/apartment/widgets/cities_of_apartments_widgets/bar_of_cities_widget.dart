@@ -21,7 +21,6 @@ class CitiesBarWidget extends ConsumerStatefulWidget {
 class _CitiesBarWidgetState extends ConsumerState<CitiesBarWidget> {
   @override
   Widget build(BuildContext context) {
-
     return SingleChildScrollView(
       keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior.onDrag,
       scrollDirection: Axis.horizontal,
@@ -29,38 +28,58 @@ class _CitiesBarWidgetState extends ConsumerState<CitiesBarWidget> {
         color: Colors.transparent,
         elevation: 0,
         child: Row(
-            children: ref.watch(cityNotifier).cities
-
+            children: ref
+                .watch(cityNotifier)
+                .cities
                 .map((c) => CityButtonWidget(
-              context: context,
+                      context: context,
+                      onClick: () async {
+                        debugPrint(
+                            "city id : ${ref.read(selectedCityIdToFilter.notifier)
+                                .state}");
+                        debugPrint("c.id : ${c.id}");
+                        if (widget.onClick != null) {
+                          WidgetsBinding.instance
+                              .addPostFrameCallback((_) async {
 
-           onClick:   () async {
-                if (widget.onClick != null) {
-                  ref.read(cityNotifier).cityId
-                      == c.id
-                      ? ref.read(cityNotifier).cityId = 0
-                      :
-                  ref.read(cityNotifier).cityId =
-                      c.id ?? 0;
-                await ref.read(fetchApartmentNotifier.notifier).fetchApartments(
-                    isOwnerApartments: false,
-                     type: ref.read(isAllTypesOfApartmentNotifier)? null: ref
-                         .read(apartmentTypeNotifier.notifier)
-                    .state,
-                    isAll:ref.read(isAllTypesOfApartmentNotifier),
-                    cityId: ref.read(cityNotifier).cityId);
-              }
 
-            },
-                style: c.id == ref.read(cityNotifier).cityId &&
-                    ref.read(cityNotifier).cityId != 0
-                    ? fullButton().copyWith(
-                  foregroundColor:
-                  WidgetStateProperty.all<Color>(
-                      Colors.white),
-                )
-                    : outlinedButton(
-                    themeMode: themeMode, context: context), city: c,))
+                            ref.read(selectedCityIdToFilter.notifier)
+                                .state == c.id
+                                ? ref.read(selectedCityIdToFilter.notifier)
+                                .state =  0
+                                : ref.read(selectedCityIdToFilter.notifier)
+                                .state = c.id ?? 0;
+                            await ref
+                                .read(fetchApartmentNotifier.notifier)
+                                .fetchApartments(
+                                isOwnerApartments: false,
+                                type: ref.read(isAllTypesOfApartmentNotifier)
+                                    ? null
+                                    : ref
+                                    .read(apartmentTypeNotifier.notifier)
+                                    .state,
+                                isAll:
+                                ref.read(isAllTypesOfApartmentNotifier),
+                                cityId: ref.read(selectedCityIdToFilter.notifier)
+                                .state);
+
+                              });
+
+
+                        }
+                      },
+                      style: c.id == ref.read(selectedCityIdToFilter.notifier)
+                          .state &&
+                          ref.read(selectedCityIdToFilter.notifier)
+                              .state != 0
+                          ? fullButton().copyWith(
+                              foregroundColor:
+                                  WidgetStateProperty.all<Color>(Colors.white),
+                            )
+                          : outlinedButton(
+                              themeMode: themeMode, context: context),
+                      city: c,
+                    ))
                 .toList()),
       ),
     );

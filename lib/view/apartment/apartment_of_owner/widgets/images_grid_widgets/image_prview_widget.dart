@@ -27,7 +27,8 @@ class _ImagePreviewWidgetState extends ConsumerState<ImagePreviewWidget> {
   Widget build(BuildContext context) {
     return ClipRRect(
         borderRadius: BorderRadius.circular(7),
-        child: widget.imageFileList.isNotEmpty
+        child: widget.imageFileList[widget.index].path.contains('http') ||
+            widget.imageFileList[widget.index].path.contains('https')
             ? Image.network(
                 key: ValueKey(widget.imageFileList[widget.index].path),
                 widget.imageFileList[widget.index].path,

@@ -71,7 +71,8 @@ class _HomeUiState extends ConsumerState<HomeUi> {
   Widget build(BuildContext context) {
     var type = ref.watch(apartmentTypeNotifier.notifier).state;
     // var isAll = ref.read(isAllTypesOfApartmentNotifier);
-    var cityId = ref.watch(cityNotifier).cityId;
+    var cityId = ref.read(selectedCityIdToFilter.notifier)
+        .state;
     final apartmentsState = ref.watch(fetchApartmentNotifier);
 
     final apartmentsList = apartmentsState.apartmentsList;
@@ -132,9 +133,11 @@ class _HomeUiState extends ConsumerState<HomeUi> {
                           ? kPrimaryColorLightMode
                           : kPrimaryColorDarkMode,
                       onRefresh: () async {
+
                         ref.read(isAllTypesOfApartmentNotifier.notifier).state =
                             true;
-                        ref.watch(cityNotifier).cityId = 0;
+                        ref.read(selectedCityIdToFilter.notifier)
+                            .state = 0;
                         WidgetsBinding.instance.addPostFrameCallback((_) async {
                           await ref
                               .read(fetchApartmentNotifier.notifier)
@@ -164,15 +167,19 @@ class _HomeUiState extends ConsumerState<HomeUi> {
                                 ApartmentsListWidget(
                                   haveCitiesBar: true,
                                   onClick: () async {
+
                                     if (isAllTypesOfApartment) {
-                                      ref
-                                          .watch(
-                                              fetchApartmentNotifier.notifier)
-                                          .fetchApartments(
-                                            isOwnerApartments: false,
-                                            isAll: true,
-                                            cityId: cityId,
-                                          );
+                                      WidgetsBinding.instance
+                                          .addPostFrameCallback((_) async {
+                                        await ref
+                                            .watch(
+                                                fetchApartmentNotifier.notifier)
+                                            .fetchApartments(
+                                              isOwnerApartments: false,
+                                              isAll: true,
+                                              cityId: cityId,
+                                            );
+                                      });
                                     } else {
                                       ref
                                           .read(isAllTypesOfApartmentNotifier

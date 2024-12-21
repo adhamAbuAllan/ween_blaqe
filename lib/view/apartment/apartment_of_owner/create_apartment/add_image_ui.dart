@@ -35,6 +35,8 @@ class _AddImageUiState extends ConsumerState<AddImageUi> {
 
   @override
   Widget build(BuildContext context) {
+    final List<String> cancelImages = [];
+
     return Scaffold(
       backgroundColor: themeMode.isLight
           ? kBackgroundAppColorLightMode
@@ -42,17 +44,22 @@ class _AddImageUiState extends ConsumerState<AddImageUi> {
       appBar: AppBarGridWidget(
         newImages: ref.watch(newImagesNotifier.notifier).state,
         images: images,
+        cancelImages: cancelImages,
       ),
       body: Padding(
           padding: const EdgeInsets.all(10),
           child: Stack(
             children: [
               ref.watch(imageLocalNotifier).isLoading
-                  ? const Center(
-                      child: CircularProgressIndicator(),
+                  ?  Center(
+                      child: CircularProgressIndicator(color: themeMode
+                          .isLight ? kPrimaryColorLightMode :  kPrimaryColorDarkMode,),
                     )
                   : const SizedBox(),
-              GridViewImagesWidget(images: images)
+              GridViewImagesWidget(
+                images: images,
+                canselImages: cancelImages,
+              )
             ],
           )),
       floatingActionButton: FloatingButtonsAddImagesWidgets(

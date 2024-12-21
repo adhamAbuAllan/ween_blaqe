@@ -60,8 +60,9 @@ class _UpdateImagesUiState extends ConsumerState<UpdateImagesUi> {
           child: Stack(
             children: [
               ref.watch(imageLocalNotifier).isLoading
-                  ? const Center(
-                      child: CircularProgressIndicator(),
+                  ?  Center(
+                      child: CircularProgressIndicator(color: themeMode
+                          .isLight ? kPrimaryColorLightMode :  kPrimaryColorDarkMode,),
                     )
                   : const SizedBox(),
               GridViewImagesWidget(

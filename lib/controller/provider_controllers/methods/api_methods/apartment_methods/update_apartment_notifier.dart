@@ -84,7 +84,7 @@ if(response.statusCode == 200 && ref.read(hasChanged)
   updateApartment({
     required WidgetRef ref,
     required int apartmentId,
-    List<Photos>? imagesApi,
+  required   List<Photos> imagesApi,
     required BuildContext context,
   }) async {
     
@@ -93,6 +93,7 @@ if(response.statusCode == 200 && ref.read(hasChanged)
 
     ///update fields of apartment
     if (ref.watch(hasChanged.notifier).state) {
+      debugPrint("fields updating...");
       await updateFieldsOfApartment(ref:ref,apartmentId:  apartmentId,
           context: context);
     }
@@ -100,6 +101,7 @@ if(response.statusCode == 200 && ref.read(hasChanged)
     ///update advantages
     if (!listEquals(
         advantagesApiNotifier, ref.read(advantagesNotifer).chosen)) {
+      debugPrint("advantages updating...");
       await ref
           .read(advantagesNotifer.notifier)
           .updateAdvantages(apartmentId: apartmentId.toString(),ref: ref,
@@ -108,6 +110,7 @@ if(response.statusCode == 200 && ref.read(hasChanged)
 
     /// update images
     if (ref.read(isApartmentImagesUpdated)) {
+      debugPrint("images updating...");
       await ref.read(imageApiNotifier.notifier).updateImages(
           apartmentId: apartmentId, ref: ref, imagesApi: imagesApi,context: context);
     }

@@ -58,19 +58,16 @@ class _AdvantagesUpdateWidgetState
 
 class AdvantageNameWidget extends ConsumerWidget {
   const AdvantageNameWidget({super.key, required this.advantage});
+
   final Advantages advantage;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     return Text(
-    advantage.advName ?? "",
+      advantage.advName ?? "",
       style: TextStyle(
-          fontSize: getIt<AppDimension>().isSmallScreen(context)
-              ? 14
-              : 16,
-          color: themeMode.isLight
-              ? kTextColorLightMode
-              : kTextColorDarkMode),
+          fontSize: getIt<AppDimension>().isSmallScreen(context) ? 14 : 16,
+          color: themeMode.isLight ? kTextColorLightMode : kTextColorDarkMode),
     );
   }
 }

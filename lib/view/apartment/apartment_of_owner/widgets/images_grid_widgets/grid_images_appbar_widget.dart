@@ -15,13 +15,13 @@ class AppBarGridWidget extends ConsumerStatefulWidget
     implements PreferredSizeWidget {
   const AppBarGridWidget({
     super.key,
-     this.cancelImages,
+    required this.cancelImages,
     required this.newImages,
     required this.images,
     this.oneApartment,
   });
 
-  final List<String>? cancelImages;
+  final List<String> cancelImages;
   final List<String> newImages;
   final List<XFile> images;
   final DataOfOneApartment? oneApartment;
@@ -65,7 +65,7 @@ class _AppBarGridWidgetState extends ConsumerState<AppBarGridWidget> {
                   getIt<AppDimension>().isSmallScreen(context) ? 10 : 8),
           child: ElevatedButton(
             onPressed: () {
-              if (widget.cancelImages?.isNotEmpty??false ||
+              if (widget.cancelImages.isNotEmpty ||
                   widget.newImages.isNotEmpty) {
                 if (widget.images.length < 3) {
                   ref.read(showSnackBarNotifier.notifier).showNormalSnackBar(

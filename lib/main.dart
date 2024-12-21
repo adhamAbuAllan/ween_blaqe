@@ -16,6 +16,8 @@ flutter clean واعمل بيلد تاني وارفعه وكل ما تيجي ت�
  change the passwrod if he is foregt it. 8. update the app that could to run
  it on 34 sdk or lower.
  */
+//مصطلح التفكير التصميمي
+
 import 'package:colorful_safe_area/colorful_safe_area.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter/material.dart';
@@ -279,10 +281,10 @@ class _OwnMaterialAppState extends State<OwnMaterialApp> {
         MyPagesRoutes.main: (context) => const Main(),
         // MyPagesRoutes.mainOwner: (context) => const MainOwner(),
         MyPagesRoutes.mainUi: (context) => const MainUi(),
-        MyPagesRoutes.step1: (context) => const FirstStepCreateApartmentUi(),
+        MyPagesRoutes.step1: (context) => const FirstStepUi(),
         MyPagesRoutes.step2: (context) => const SecondStepUi(),
         MyPagesRoutes.step3: (context) => const ThirdStepUi(),
-        MyPagesRoutes.step4: (context) => const FourthStepUi(  ),
+        MyPagesRoutes.step4: (context) => const FourthStepUi( ),
         MyPagesRoutes.login: (context) => const LoginUi(),
         MyPagesRoutes.register: (context) => const RegistrationUi(),
         // MyPagesRoutes.masterHome: (context) => const MasterHome(),

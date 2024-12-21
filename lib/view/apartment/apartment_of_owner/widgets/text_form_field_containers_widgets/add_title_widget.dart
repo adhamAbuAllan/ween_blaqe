@@ -18,15 +18,15 @@ class AddTitleFieldWidget extends ConsumerWidget {
       padding: EdgeInsets.fromLTRB(
           0, 0, 0, getIt<AppDimension>().isSmallScreen(context) ? 0 : 10),
       child: Form(
-          key: ref.watch(priceValidate.notifier).state != null
-              ? formPriceValidateKey
+          key: ref.watch(titleValidate.notifier).state != null
+              ? formTitleValidateKey
               : null,
         child: ContainerFieldWidget(
           validator: (value){
-            if (ref.watch(priceValidate.notifier).state == null) {
+            if (ref.watch(titleValidate.notifier).state == null) {
               return null;
             }
-            return ref.watch(priceValidate);
+            return ref.watch(titleValidate);
 
           },
           title: SetLocalization.of(context)!.getTranslateValue("add_address"),

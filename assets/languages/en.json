@@ -245,6 +245,7 @@
   "should_be_at_least_three_photos": "Should be at least three photos",
   "should_be_at_least_five_advantages": "Should be at least 5 advantages",
   "latest_updates": "Latest Updates",
-  "the_address_should_be_true" : "the address should be true"
+  "the_address_should_be_true" : "the address should be true",
+  "error_has_been_while_creating_apartment" : "Error has been while creating apartment"
 }
 

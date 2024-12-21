@@ -18,13 +18,24 @@ class SquareMetersFieldWidget extends ConsumerWidget {
           getIt<AppDimension>().isSmallScreen(context)
               ? 0
               : 10),
-      child: ContainerFieldWidget(
-        title: SetLocalization.of(context)!
-            .getTranslateValue("apartment_size"),
-        hintInput: '0',
-        controller: ref.read(squareMetersController),
-        inputType: TextInputType.number,
-        originalValue: originalSquareMeters,
+      child: Form(
+        key: ref.read(apartmentSquareMeterValidate.notifier).state != null
+            ? formApartmentSquareMeterValidateKey
+            : null,
+        child: ContainerFieldWidget(
+          validator: (value){
+            if (ref.read(apartmentSquareMeterValidate.notifier).state == null) {
+              return null;
+            }
+            return ref.watch(apartmentSquareMeterValidate);
+          },
+          title: SetLocalization.of(context)!
+              .getTranslateValue("apartment_size"),
+          hintInput: '0',
+          controller: ref.read(squareMetersController),
+          inputType: TextInputType.number,
+          originalValue: originalSquareMeters,
+        ),
       ),
     );
   }

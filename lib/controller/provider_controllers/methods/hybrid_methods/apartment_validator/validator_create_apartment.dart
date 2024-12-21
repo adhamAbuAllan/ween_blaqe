@@ -1,5 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:ween_blaqe/controller/provider_controllers/providers/image_provider.dart';
+import 'package:ween_blaqe/controller/provider_controllers/providers/snack_bar_provider.dart';
 import 'package:ween_blaqe/core/utils/funcations/route_pages/pop_routes.dart';
 import '../../../../../constants/localization.dart';
 import '../../../../../constants/strings.dart';
@@ -35,19 +37,21 @@ class ValidatorCreateApartmentNotifier extends StateNotifier<ApartmentState> {
       debugPrint("addressControllerValue ->$addressControllerValue");
       formAddressKey.currentState?.validate();
       ref.watch(addressValidate.notifier).state = addressShouldBeTrue;
-      debugPrint("addressValidateText -> addressShouldBeTrue");
+      return;
     } else {
       ref.watch(addressValidate.notifier).state = "";
       formAddressKey.currentState?.reset();
     }
-    if (countOfRoomsControllerValue == "") {
+    if (countOfRoomsControllerValue == "" ||
+        countOfRoomsControllerValue == "0") {
       formRoomsCountValidateKey.currentState?.validate();
       ref.watch(roomsCountValidate.notifier).state = fillField;
       return;
     } else {
       formRoomsCountValidateKey.currentState?.reset();
     }
-    if (countOfBathRoomsControllerValue == "") {
+    if (countOfBathRoomsControllerValue == ""||
+        countOfBathRoomsControllerValue == "0") {
       formBathRoomsCountValidateKey.currentState?.validate();
       ref.watch(bathRoomsCountValidate.notifier).state = fillField;
       return;
@@ -71,7 +75,8 @@ class ValidatorCreateApartmentNotifier extends StateNotifier<ApartmentState> {
         ref.watch(squareMetersController.notifier).state.text;
     String? fillField =
         SetLocalization.of(context)?.getTranslateValue("fill_field");
-    if (priceControllerValue == "") {
+    if (priceControllerValue == ""||
+        priceControllerValue == "0") {
       formPriceValidateKey.currentState?.validate();
       ref.watch(priceValidate.notifier).state = fillField;
       debugPrint("price validate -> ${ref.read(priceValidate)}");
@@ -80,7 +85,8 @@ class ValidatorCreateApartmentNotifier extends StateNotifier<ApartmentState> {
       ref.watch(priceValidate.notifier).state = "";
       formPriceValidateKey.currentState?.reset();
     }
-    if (countOfStudentControllerValue == "") {
+    if (countOfStudentControllerValue == ""||
+        countOfStudentControllerValue == "0") {
       formStudentCountValidateKey.currentState?.validate();
       ref.watch(studentCountValidate.notifier).state = fillField;
       debugPrint("count student validate -> ${ref.read(studentCountValidate)}");
@@ -107,6 +113,15 @@ class ValidatorCreateApartmentNotifier extends StateNotifier<ApartmentState> {
         ref.watch(descriptionController.notifier).state.text;
     String? fillField =
         SetLocalization.of(context)?.getTranslateValue("fill_field");
+    debugPrint(
+        "images length -> ${ref.read(imagesFileList.notifier).state.length}");
+    if (ref.read(imagesFileList.notifier).state.length < 3) {
+      ref.read(showSnackBarNotifier.notifier).showNormalSnackBar(
+          context: context,
+          message: SetLocalization.of(context)!
+              .getTranslateValue("should_be_at_least_three_photos"));
+      return;
+    }
     if (titleControllerValue == "") {
       formTitleValidateKey.currentState?.validate();
       ref.watch(titleValidate.notifier).state = fillField;
@@ -122,6 +137,12 @@ class ValidatorCreateApartmentNotifier extends StateNotifier<ApartmentState> {
     } else {
       formApartmentDescriptionValidateKey.currentState?.reset();
     }
-myPopUntilRouteName(context, MyPagesRoutes.step1);
+    debugPrint("city -> ${ref.read(cityNotifier).selectedCity}");
+    debugPrint("type -> ${ref.read(typesNotifier).selectedType}");
+    await ref.read(createApartmentNotifier.notifier).createApartment(
+          ref: ref,
+          context: context,
+        );
+    myPopUntilRouteName(context, MyPagesRoutes.main);
   }
 }
