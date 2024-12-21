@@ -8,20 +8,20 @@ import 'image_prview_widget.dart';
 class GridViewImagesWidget extends ConsumerStatefulWidget {
   const GridViewImagesWidget({
     super.key,
-    required this.oneApartment,
-    required this.canselImages,
+     this.oneApartment,
+     this.canselImages,
     required this.images,
   });
 
-  final DataOfOneApartment oneApartment;
-  final List<String> canselImages;
+  final DataOfOneApartment? oneApartment;
+  final List<String>? canselImages;
   final List<XFile> images;
 
   @override
-  ConsumerState createState() => _PrviewImagesWidgetState();
+  ConsumerState createState() => _PreviewImagesWidgetState();
 }
 
-class _PrviewImagesWidgetState extends ConsumerState<GridViewImagesWidget> {
+class _PreviewImagesWidgetState extends ConsumerState<GridViewImagesWidget> {
   @override
   Widget build(BuildContext context) {
     return Semantics(
@@ -37,7 +37,7 @@ class _PrviewImagesWidgetState extends ConsumerState<GridViewImagesWidget> {
             children: [
               Builder(
                 builder: (context) {
-                  return ImagePrviewWidget(
+                  return ImagePreviewWidget(
                     imageFileList: widget.images,
                     oneApartment: widget.oneApartment,
                     index: reversedIndex,
@@ -50,14 +50,14 @@ class _PrviewImagesWidgetState extends ConsumerState<GridViewImagesWidget> {
                   oneApartment: widget.oneApartment,
                   onTap: () {
                     if (reversedIndex >= 0 && reversedIndex < widget.images.length) {
-                      widget.oneApartment.photos?.removeWhere((photo) {
+                      widget.oneApartment?.photos?.removeWhere((photo) {
                         return photo.url == widget.images[reversedIndex].path;
                       });
                       final removedPath = widget.images[reversedIndex].path;
                       widget.images.removeAt(reversedIndex);
 
                       setState(() {
-                        widget.canselImages.add(removedPath);
+                        widget.canselImages?.add(removedPath);
                       });
                     }
 

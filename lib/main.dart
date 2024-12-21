@@ -26,7 +26,6 @@ import 'package:ween_blaqe/controller/function_controller/animation_about_apartm
 import 'package:ween_blaqe/controller/function_controller/api_functions_controller/get_advatages_api.dart';
 import 'package:ween_blaqe/controller/function_controller/change_theme_mode.dart';
 import 'package:ween_blaqe/controller/function_controller/intro_controller.dart';
-import 'package:ween_blaqe/controller/get_controllers.dart';
 import 'package:ween_blaqe/controller/main_controller.dart';
 import 'package:flutter/services.dart';
 import 'package:ween_blaqe/controller/models_controller/advantages_model_controller.dart';
@@ -38,6 +37,10 @@ import 'package:ween_blaqe/core/utils/funcations/route_pages/push_routes.dart';
 import 'package:ween_blaqe/core/widgets/skeletons/general_skeleton_ready_widgets/paragraph_ready_skeleton.dart';
 import 'package:ween_blaqe/core/widgets/skeletons/student_widgets/show_more_skeleton_widget.dart';
 import 'package:ween_blaqe/view/apartment/apartment_of_owner/apartments_of_owner_ui.dart';
+import 'package:ween_blaqe/view/apartment/apartment_of_owner/create_apartment/first_step_ui.dart';
+import 'package:ween_blaqe/view/apartment/apartment_of_owner/create_apartment/fourth_step_ui.dart';
+import 'package:ween_blaqe/view/apartment/apartment_of_owner/create_apartment/second_step_ui.dart';
+import 'package:ween_blaqe/view/apartment/apartment_of_owner/create_apartment/third_step_ui.dart';
 import 'package:ween_blaqe/view/apartment/home_ui.dart';
 import 'package:ween_blaqe/view/error_widgets/no_internet.dart';
 import 'package:ween_blaqe/view/paragraphs_widgets/ask_for_help_widgets/another_asks.dart';
@@ -80,11 +83,7 @@ import 'view/apartment/show_deitals_of_apartment/show_deitals_of_apartment_ui.da
 import 'view/intro_screen.dart';
 import 'view/main_screen_ui.dart';
 import 'view/send_notice_for_us.dart';
-import 'view/user/owner/steps_to_create_apartment/first_step.dart';
-import 'view/user/owner/steps_to_create_apartment/fourth_step.dart';
-import 'view/user/owner/steps_to_create_apartment/second_step.dart';
-import 'view/user/owner/steps_to_create_apartment/third_step.dart';
-import 'view/widgets_before_user_reg/login.dart';
+import 'view/widgets_before_user_reg/login_ui.dart';
 import 'view/widgets_before_user_reg/registration_ui.dart';
 
 /*
@@ -280,13 +279,11 @@ class _OwnMaterialAppState extends State<OwnMaterialApp> {
         MyPagesRoutes.main: (context) => const Main(),
         // MyPagesRoutes.mainOwner: (context) => const MainOwner(),
         MyPagesRoutes.mainUi: (context) => const MainUi(),
-        MyPagesRoutes.step1: (context) => const FirstStep(),
-        MyPagesRoutes.step2: (context) => const SecondStep(),
-        MyPagesRoutes.step3: (context) => const ThirdStep(),
-        MyPagesRoutes.step4: (context) => FourthStep(
-              oneApartmentId: apartmentModelController.apartmentsList.data?.first,
-            ),
-        MyPagesRoutes.login: (context) => const Login(),
+        MyPagesRoutes.step1: (context) => const FirstStepCreateApartmentUi(),
+        MyPagesRoutes.step2: (context) => const SecondStepUi(),
+        MyPagesRoutes.step3: (context) => const ThirdStepUi(),
+        MyPagesRoutes.step4: (context) => const FourthStepUi(  ),
+        MyPagesRoutes.login: (context) => const LoginUi(),
         MyPagesRoutes.register: (context) => const RegistrationUi(),
         // MyPagesRoutes.masterHome: (context) => const MasterHome(),
         // MyPagesRoutes.showMore: (context) => const ShowMore(),

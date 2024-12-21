@@ -12,7 +12,6 @@ import 'package:ween_blaqe/core/utils/funcations/route_pages/push_routes.dart';
 import 'package:ween_blaqe/core/utils/styles/button.dart';
 import 'package:ween_blaqe/core/utils/styles/text_style/aline_style.dart';
 import 'package:ween_blaqe/core/widgets/buttons/lines_buttons/switch_language_buttons.dart';
-import 'package:ween_blaqe/testing_code/find_the_fastest_way_in_state_managment/riverpod/login_and_register_section/login_ui_test.dart';
 // import 'package:ween_blaqe/session/new_session.dart';
 
 import '../../constants/coordination.dart';
@@ -28,6 +27,7 @@ import '../../core/widgets/buttons/lines_buttons/line_buttons.dart';
 
 import '../../controller/main_controller.dart';
 import '../../controller/student_controller/student_controller.dart';
+import 'login_ui.dart';
 
 //Account before login Screen
 @immutable
@@ -385,7 +385,7 @@ class _AccountBeforeLoginInStudentState
                           if (connectivityController.isConnection()) {
                             Navigator.push(context, MaterialPageRoute(
                               builder: (context) {
-                                return const LoginUiTest();
+                                return const LoginUi();
                               },
                             ));
                             // myPushName(context, MyPagesRoutes.login);

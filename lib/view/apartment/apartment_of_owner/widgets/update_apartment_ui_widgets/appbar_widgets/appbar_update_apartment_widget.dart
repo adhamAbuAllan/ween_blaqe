@@ -92,12 +92,12 @@ class _AppbarEditApartmentWidgetState
                       );
                   return;
                 }
-                var apartmentsOfOwnerNotifer = ref
+                var apartmentsOfOwnerNotifier = ref
                     .read(fetchApartmentNotifier)
                     .apartmentsList
                     .data
                     ?.where((e) => e.id == widget.oneApartment.id);
-                var imagesApi = apartmentsOfOwnerNotifer?.first.photos;
+                var imagesApi = apartmentsOfOwnerNotifier?.first.photos;
 
                 if (ref.read(advantagesNotifer).chosen.length < 5) {
                   ref.read(showSnackBarNotifier.notifier).showNormalSnackBar(

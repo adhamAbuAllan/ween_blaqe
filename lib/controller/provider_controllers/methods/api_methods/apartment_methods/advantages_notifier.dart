@@ -4,6 +4,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:http/http.dart' as http;
+import 'package:ween_blaqe/view/apartment/apartment_of_owner/update_apartment_ui.dart';
 
 import '../../../../../api/advantages.dart';
 import '../../../../../constants/strings.dart';
@@ -50,7 +51,6 @@ class AdvantagesNotifier extends StateNotifier<AdvantageState> {
 // Future.delayed(const Duration(seconds: 2), () {
     if (response.statusCode == 200) {
       WidgetsBinding.instance.addPostFrameCallback((_) async {
-
         ref.read(isApartmentUpdatedNotifier.notifier).state = true;
       });
       ref.read(badResponse.notifier).state = false;
@@ -68,12 +68,14 @@ class AdvantagesNotifier extends StateNotifier<AdvantageState> {
       debugPrint('Error: ${response.body}');
     }
   }
-
-  Future<void> fetchAdvantages(List<Advantages> alreadyAdv) async {
+/// [fetchAdvantages] that to get advantages ,and set isChecked 'if-exists'
+  /// that have tow parameters, [alreadyAdv] for [UpdateApartmentUi] screen
+  /// and the [chosen] for [SecondStepUi] screen
+  Future<void> fetchAdvantages(
+      {List<Advantages>? alreadyAdv, List<int>? chosen}) async {
     // Set loading state
+    late bool? isChecked;
     state = state.copyWith(isDataLoading: true);
-
-    // Replace with your API call logic
     var url = Uri.parse(ServerWeenBalaqee.advantagesAll);
     var response = await http.get(url);
 
@@ -81,22 +83,34 @@ class AdvantagesNotifier extends StateNotifier<AdvantageState> {
       var json = jsonDecode(response.body);
       var data = json["data"];
 
-      // Map data to Advantages objects
       List<Advantages> advantagesList = data.map<Advantages>((item) {
-        bool isChecked = alreadyAdv.any((adv) => adv.id == item['id']);
+        if (alreadyAdv?.isNotEmpty ?? false) {
+          isChecked = alreadyAdv?.any((adv) => adv.id == item['id']);
+        } else {
+          isChecked = false;
+        }
+        if (chosen?.isNotEmpty ?? false) {
+          for (int chose in chosen!) {
+            if (chose == item['id']) {
+              isChecked = true;
+            }
+          }
+        }
 
         return Advantages(
           id: item['id'],
           advName: item['adv_name'],
           icon: item['icon'],
-          checked: isChecked,
+          checked: isChecked ?? false,
         );
       }).toList();
 
       state = state.copyWith(
           advantages: advantagesList,
           isDataLoading: false,
-          chosen: alreadyAdv.map((adv) => adv.id ?? 0).toList());
+          chosen: alreadyAdv?.isNotEmpty ?? false
+              ? alreadyAdv?.map((adv) => adv.id ?? 0).toList()
+              : chosen);
     } else {
       throw Exception("Failed to fetch advantages");
     }
@@ -144,8 +158,7 @@ class AdvantagesNotifier extends StateNotifier<AdvantageState> {
     );
     if (response.statusCode == 200) {
       WidgetsBinding.instance.addPostFrameCallback((_) async {
-
-          ref.read(isApartmentUpdatedNotifier.notifier).state = true;
+        ref.read(isApartmentUpdatedNotifier.notifier).state = true;
       });
       // Success
       ref.read(badResponse.notifier).state = false;

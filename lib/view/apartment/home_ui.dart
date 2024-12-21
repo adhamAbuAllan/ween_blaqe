@@ -55,6 +55,8 @@ class _HomeUiState extends ConsumerState<HomeUi> {
       });
     });
     WidgetsBinding.instance.addPostFrameCallback((_) async {
+      //that should make update when fetchApartment of owner is run from api
+      // you should to handel that from api
       ref.read(isAllTypesOfApartmentNotifier.notifier).state = true;
       await ref.read(fetchApartmentNotifier.notifier).fetchApartments(
             isOwnerApartments: false,

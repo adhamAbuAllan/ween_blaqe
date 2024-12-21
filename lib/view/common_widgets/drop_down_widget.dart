@@ -10,13 +10,15 @@ class DropdownFieldWidget extends ConsumerStatefulWidget {
   const DropdownFieldWidget({
     super.key,
     required this.onChanged,
-    required this.itmes,
+    required this.items,
     this.alreadyExistingValue,
+    this.autofocus
   });
 
-  final List<dynamic> itmes;
+  final List<dynamic> items;
   final Function(dynamic)? onChanged;
   final dynamic  alreadyExistingValue;
+  final bool ?autofocus;
 
   @override
   ConsumerState createState() => _DropdownFieldWidgetState();
@@ -26,6 +28,7 @@ class _DropdownFieldWidgetState extends ConsumerState<DropdownFieldWidget> {
   @override
   Widget build(BuildContext context) {
     return DropdownButtonFormField(
+      autofocus: widget.autofocus??false,
         padding: const EdgeInsets.symmetric(vertical: 10,horizontal: 20),
         decoration: InputDecoration(
           contentPadding: EdgeInsets.symmetric(
@@ -52,8 +55,8 @@ class _DropdownFieldWidgetState extends ConsumerState<DropdownFieldWidget> {
         dropdownColor: themeMode.isLight
             ? kContainerColorLightMode
             : kContainerColorDarkMode,
-        value:widget.alreadyExistingValue??widget.itmes.first,
-        items: widget.itmes.map((item) {
+        value:widget.alreadyExistingValue??widget.items.first,
+        items: widget.items.map((item) {
           String? itemName = item.name;
           itemName = item.name ?? "";
           return DropdownMenuItem(

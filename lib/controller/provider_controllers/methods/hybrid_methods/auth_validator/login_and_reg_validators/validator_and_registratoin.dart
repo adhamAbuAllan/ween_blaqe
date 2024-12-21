@@ -2,8 +2,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 // import '../../../features/statuses/validate_text_form_field_state.dart';
-import '../../../../core/utils/function_that_effect_widgets/remove_plus_from_phone_number.dart';
-import '../../providers/auth_provider.dart';
+import '../../../../../../core/utils/function_that_effect_widgets/remove_plus_from_phone_number.dart';
+import '../../../../providers/auth_provider.dart';
 
 void validateAndRegistration(WidgetRef ref, BuildContext context) async {
     ref.refresh(formFieldsNotifier)['phoneNumberRegistration']?.error ??

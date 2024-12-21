@@ -2,9 +2,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import '../../../../constants/localization.dart';
-import '../../providers/auth_provider.dart';
-import '../../statuses/auth_state.dart';
+import '../../../../../../constants/localization.dart';
+import '../../../../providers/auth_provider.dart';
+import '../../../../statuses/auth_state.dart';
 
 class ValidatorAndUpdateDataOfUserNotifier extends StateNotifier<AuthState> {
   ValidatorAndUpdateDataOfUserNotifier() : super(AuthState());
@@ -20,6 +20,7 @@ class ValidatorAndUpdateDataOfUserNotifier extends StateNotifier<AuthState> {
         updatePhoneNumberFormKey.currentState?.validate != null ||
         updateUsernameFormKey.currentState?.validate != null)
     {
+
       ref.watch(streamUpdateUserDataController.notifier).state.add("");
     }
     if(ref.watch(oldPasswordValidate.notifier).state != null||

@@ -7,11 +7,11 @@ import '../../../../../api/apartments_api/apartments.dart';
 class ButtonDeleteImageWidget extends ConsumerStatefulWidget {
   const ButtonDeleteImageWidget(
       {super.key,
-      required this.oneApartment,
+       this.oneApartment,
         this.onTap
       });
 
-  final DataOfOneApartment oneApartment;
+  final DataOfOneApartment? oneApartment;
  final void Function()? onTap;
 
   @override

@@ -40,7 +40,7 @@ class LoginNotifier extends StateNotifier<AuthState> {
       await myPushReplacementNamedFuture(MyPagesRoutes.main, context);
     } else {
 // Update form fields state with error messages
-      ref.read(formFieldsNotifier.notifier).updateErrors({
+      ref.read(formFieldsNotifier.notifier).updateApiErrors({
         'phone': SetLocalization.of(context)!
             .getTranslateValue("phoneOrPasswordIncorrect"),
         'password': SetLocalization.of(context)!

@@ -31,10 +31,10 @@ class ImageLocalNotifier extends StateNotifier<ImageState> {
 
   void doneState(
       {required WidgetRef ref,
-      required List<String> cancelImages,
-      required List<Photos> apiPhotos,
+       List<String> ?cancelImages,
+       List<Photos> ?apiPhotos,
       required List<XFile> images}) {
-ref.read(cancelImagesNotifier.notifier).state = cancelImages;
+ref.read(cancelImagesNotifier.notifier).state = cancelImages??[];
     ref.read(imagesFileList.notifier).state = images;
   }
 

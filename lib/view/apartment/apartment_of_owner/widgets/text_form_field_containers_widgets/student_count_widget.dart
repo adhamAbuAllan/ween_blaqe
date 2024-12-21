@@ -17,13 +17,24 @@ class StudentCountFieldWidget extends ConsumerWidget {
           bottom: getIt<AppDimension>().isSmallScreen(context)
               ? 0
               : 10),
-      child: ContainerFieldWidget(
-        title: SetLocalization.of(context)!
-            .getTranslateValue("allowed_students"),
-        hintInput: '0',
-        controller: ref.read(countOfStudentController),
-        inputType: TextInputType.number,
-        originalValue: originalStudentCount,
+      child: Form(
+        key:ref.watch(studentCountValidate.notifier).state != null
+            ? formStudentCountValidateKey
+            : null,
+        child: ContainerFieldWidget(
+          title: SetLocalization.of(context)!
+              .getTranslateValue("allowed_students"),
+          hintInput: '0',
+          validator: (value){
+            if (ref.watch(studentCountValidate.notifier).state == null) {
+              return null;
+            }
+            return ref.watch(studentCountValidate);
+          },
+          controller: ref.read(countOfStudentController),
+          inputType: TextInputType.number,
+          originalValue: originalStudentCount,
+        ),
       ),
     );
   }

@@ -71,6 +71,9 @@ class _ApartmentsOfOwnerUiState extends ConsumerState<ApartmentsOfOwnerUi>
 
   @override
   void deactivate() {
+    if (ref.read(advantagesNotifer).chosen.isNotEmpty) {
+      ref.read(advantagesNotifer).chosen.clear();
+    }
     ref.read(toggleOwnerButtonsNotifier).isDelete = false;
     ref.read(toggleOwnerButtonsNotifier).isEdit = false;
     super.deactivate();
@@ -84,8 +87,7 @@ class _ApartmentsOfOwnerUiState extends ConsumerState<ApartmentsOfOwnerUi>
 
   @override
   Widget build(BuildContext context) {
-    var isApartmentUpdated =
-        ref.read(isApartmentUpdatedNotifier);
+    var isApartmentUpdated = ref.read(isApartmentUpdatedNotifier);
     return Scaffold(
         backgroundColor: themeMode.isLight
             ? kBackgroundAppColorLightMode
@@ -101,24 +103,22 @@ class _ApartmentsOfOwnerUiState extends ConsumerState<ApartmentsOfOwnerUi>
                     ListOwnerApartmentsWidget(
                       scrollController: scrollController,
                     ),
-                    if (isApartmentUpdated) ShowTypesButtonWidget(
-                            onPressed: () {
-                              WidgetsBinding.instance
-                                  .addPostFrameCallback((_) async {
-
-                              await    ref
-                                      .read(fetchApartmentNotifier.notifier)
-                                      .fetchApartments(
-                                    isOwnerApartments: true,
-                                    ref: ref
-                                  );
-
-                              });
-
-                            },
-                            text: SetLocalization.of(context)!
-                                .getTranslateValue("latest_updates"),
-                          ) else const SizedBox(),
+                    if (isApartmentUpdated)
+                      ShowTypesButtonWidget(
+                        onPressed: () {
+                          WidgetsBinding.instance
+                              .addPostFrameCallback((_) async {
+                            await ref
+                                .read(fetchApartmentNotifier.notifier)
+                                .fetchApartments(
+                                    isOwnerApartments: true, ref: ref);
+                          });
+                        },
+                        text: SetLocalization.of(context)!
+                            .getTranslateValue("latest_updates"),
+                      )
+                    else
+                      const SizedBox(),
                   ]),
         floatingActionButton: const FloatingActionButtonWidget());
   }

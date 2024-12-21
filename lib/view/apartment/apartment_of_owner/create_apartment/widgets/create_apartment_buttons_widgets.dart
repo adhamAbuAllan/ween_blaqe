@@ -6,17 +6,18 @@ import '../../../../../constants/nums.dart';
 import '../../../../../core/utils/styles/button.dart';
 
 class CreateApartmentButtonsWidgets extends ConsumerWidget {
-  const CreateApartmentButtonsWidgets({super.key,required this.onPressed});
+  const CreateApartmentButtonsWidgets({super.key, this.onPressed,this.title});
 final void Function()? onPressed;
+final String? title;
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     return Padding(
       padding: const EdgeInsets.all(8.0),
       child: Row(
         children: [
-          const BackButton(),
+          const OutlinedBackButtonWidget(),
           const Expanded(child: SizedBox()),
-          NextButtonWidget(onPressed: onPressed),
+          NextButtonWidget(onPressed: onPressed,title: title,),
         ],
       ),
     );
@@ -24,20 +25,22 @@ final void Function()? onPressed;
 }
 
 class NextButtonWidget extends ConsumerWidget {
-  const NextButtonWidget({super.key,required this.onPressed});
+  const NextButtonWidget({super.key,required this.onPressed,this.title});
 final void Function()? onPressed;
+final String? title;
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     return ElevatedButton(
       onPressed: onPressed,
       style: fullButton(),
-      child: Text(SetLocalization.of(context)!.getTranslateValue("next")),
+      child: Text(title??SetLocalization.of(context)!.getTranslateValue
+        ("next")),
     );
   }
 }
 
-class BackButton extends ConsumerWidget {
-  const BackButton({super.key});
+class OutlinedBackButtonWidget extends ConsumerWidget {
+  const OutlinedBackButtonWidget({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {

@@ -8,8 +8,8 @@ import 'package:ween_blaqe/view/widgets_before_user_reg/widgets/login_widgets/ti
 import '../../../../constants/nums.dart';
 import '../../../../view/widgets_before_user_reg/widgets/login_widgets/button_nav_to_reg_completed_widget.dart';
 
-class Login extends ConsumerWidget {
-  const Login({super.key});
+class LoginUi extends ConsumerWidget {
+  const LoginUi({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {

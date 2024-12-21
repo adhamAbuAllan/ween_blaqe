@@ -8,9 +8,9 @@ import '../../../../common_widgets/containers_widgets/container_load_widget.dart
 import '../../../../common_widgets/drop_down_widget.dart';
 
 class DropdownTypesWidget extends ConsumerStatefulWidget {
-  const DropdownTypesWidget({super.key, required this.alreadyExistingValue});
+  const DropdownTypesWidget({super.key,  this.alreadyExistingValue});
 
-  final DataOfOneApartment alreadyExistingValue;
+  final DataOfOneApartment? alreadyExistingValue;
 
   @override
   ConsumerState createState() => _TypesContainerWidgetState();
@@ -39,7 +39,7 @@ class _TypesContainerWidgetState extends ConsumerState<DropdownTypesWidget> {
                   ref.read(typesNotifier.notifier).setSelectedType(items);
                   debugPrint(
                       "selectedType : ${ref.read(typesNotifier).selectedType?.id}");
-                  if (widget.alreadyExistingValue.type?.id != items.id) {
+                  if (widget.alreadyExistingValue?.type?.id != items.id) {
                     ref.read(hasChanged.notifier).state = true;
                   } else {
                     ref.read(hasChanged.notifier).state = false;
@@ -47,7 +47,7 @@ class _TypesContainerWidgetState extends ConsumerState<DropdownTypesWidget> {
                 });
               });
             },
-            itmes: ref.watch(typesNotifier).types),
+            items: ref.watch(typesNotifier).types),
         isLoading: ref.watch(typesNotifier).isLoading!);
   }
 }

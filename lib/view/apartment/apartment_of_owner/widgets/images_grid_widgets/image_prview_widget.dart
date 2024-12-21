@@ -7,30 +7,27 @@ import 'package:ween_blaqe/view/apartment/apartment_of_owner/widgets/images_grid
 
 import '../../../../../api/apartments_api/apartments.dart';
 
-class ImagePrviewWidget extends ConsumerStatefulWidget {
-  const ImagePrviewWidget(
+class ImagePreviewWidget extends ConsumerStatefulWidget {
+  const ImagePreviewWidget(
       {super.key,
-      required this.oneApartment,
+      this.oneApartment,
       required this.index,
       required this.imageFileList});
 
-  final DataOfOneApartment oneApartment;
+  final DataOfOneApartment? oneApartment;
   final int index;
   final List<XFile> imageFileList;
 
   @override
-  ConsumerState createState() => _ImagePrviewWidgetState();
+  ConsumerState createState() => _ImagePreviewWidgetState();
 }
 
-class _ImagePrviewWidgetState extends ConsumerState<ImagePrviewWidget> {
+class _ImagePreviewWidgetState extends ConsumerState<ImagePreviewWidget> {
   @override
   Widget build(BuildContext context) {
     return ClipRRect(
         borderRadius: BorderRadius.circular(7),
-        child: widget.oneApartment.photos != null &&
-                widget.imageFileList.isNotEmpty &&
-                widget.oneApartment.photos!.length > widget.index &&
-                widget.imageFileList.length > widget.index
+        child: widget.imageFileList.isNotEmpty
             ? Image.network(
                 key: ValueKey(widget.imageFileList[widget.index].path),
                 widget.imageFileList[widget.index].path,

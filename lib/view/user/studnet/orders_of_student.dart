@@ -66,6 +66,7 @@ class _OrdersOfStudentState extends State<OrdersOfStudent> {
                     vertical:
                     getIt<AppDimension>().isSmallScreen(context) ? 0 : 25),
                 child: Image.asset(
+
                     "assets/images/mobile-development.png",
                     height: getIt<AppDimension>().isSmallScreen(context) ?
                     130 * 2 :

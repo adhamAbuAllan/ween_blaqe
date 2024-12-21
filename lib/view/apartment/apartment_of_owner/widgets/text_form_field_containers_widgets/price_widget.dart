@@ -9,22 +9,32 @@ import '../../../../common_widgets/containers_widgets/container_field_widget.dar
 
 class PriceWidget extends ConsumerWidget {
   const PriceWidget({super.key, this.originalPrice});
+
   final String? originalPrice;
+
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    return                     Padding(
+    return Padding(
       padding: EdgeInsets.only(
-          bottom: getIt<AppDimension>().isSmallScreen(context)
-              ? 0
-              : 10),
-      child: ContainerFieldWidget(
-        title: SetLocalization.of(context)!
-            .getTranslateValue("price"),
-        hintInput: SetLocalization.of(context)!
-            .getTranslateValue("enter_monthly_rent"),
-        controller: ref.read(priceController),
-        inputType: TextInputType.number,
-        originalValue: originalPrice,
+          bottom: getIt<AppDimension>().isSmallScreen(context) ? 0 : 10),
+      child: Form(
+        key: ref.watch(priceValidate.notifier).state != null
+            ? formPriceValidateKey
+            : null,
+        child: ContainerFieldWidget(
+          validator: (value) {
+            if (ref.watch(priceValidate.notifier).state == null) {
+              return null;
+            }
+            return ref.watch(priceValidate);
+          },
+          title: SetLocalization.of(context)!.getTranslateValue("price"),
+          hintInput: SetLocalization.of(context)!
+              .getTranslateValue("enter_monthly_rent"),
+          controller: ref.read(priceController),
+          inputType: TextInputType.number,
+          originalValue: originalPrice,
+        ),
       ),
     );
   }

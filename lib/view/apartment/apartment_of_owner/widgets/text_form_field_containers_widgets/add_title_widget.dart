@@ -9,25 +9,33 @@ import '../../../../common_widgets/containers_widgets/container_field_widget.dar
 
 class AddTitleFieldWidget extends ConsumerWidget {
   const AddTitleFieldWidget({super.key, this.originalTitle});
+
   final String? originalTitle;
+
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    return                     Padding(
+    return Padding(
       padding: EdgeInsets.fromLTRB(
-          0,
-          0,
-          0,
-          getIt<AppDimension>().isSmallScreen(context)
-              ? 0
-              : 10),
-      child: ContainerFieldWidget(
-        title: SetLocalization.of(context)!
-            .getTranslateValue("add_address"),
-        controller: ref.read(titleController),
-        hintInput: SetLocalization.of(context)!
-            .getTranslateValue("furnished_student_housing"),
-        inputType: TextInputType.text,
-        originalValue: originalTitle,
+          0, 0, 0, getIt<AppDimension>().isSmallScreen(context) ? 0 : 10),
+      child: Form(
+          key: ref.watch(priceValidate.notifier).state != null
+              ? formPriceValidateKey
+              : null,
+        child: ContainerFieldWidget(
+          validator: (value){
+            if (ref.watch(priceValidate.notifier).state == null) {
+              return null;
+            }
+            return ref.watch(priceValidate);
+
+          },
+          title: SetLocalization.of(context)!.getTranslateValue("add_address"),
+          controller: ref.read(titleController),
+          hintInput: SetLocalization.of(context)!
+              .getTranslateValue("furnished_student_housing"),
+          inputType: TextInputType.text,
+          originalValue: originalTitle,
+        ),
       ),
     );
   }

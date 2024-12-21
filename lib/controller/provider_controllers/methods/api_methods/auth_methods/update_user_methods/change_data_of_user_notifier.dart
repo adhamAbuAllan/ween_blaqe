@@ -12,10 +12,10 @@ import 'package:ween_blaqe/session/new_session.dart';
 import '../../../../../../constants/strings.dart';
 import '../../../../../../main.dart';
 
-class ChangeDataOfUserNotifier extends StateNotifier<AuthState> {
-  ChangeDataOfUserNotifier() : super(AuthState());
+class UpdateDataOfUserNotifier extends StateNotifier<AuthState> {
+  UpdateDataOfUserNotifier() : super(AuthState());
 
-  Future<void> changeDataOfUser(WidgetRef ref, BuildContext context) async {
+  Future<void> updateDataOfUser(WidgetRef ref, BuildContext context) async {
     String usernameControllerValue =
         ref
             .watch(updateUsernameController.notifier)

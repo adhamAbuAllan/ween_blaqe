@@ -9,8 +9,8 @@ import '../../../../constants/get_it_controller.dart';
 import '../../../../constants/localization.dart';
 import '../../../../constants/nums.dart';
 
-class FloatingButtonAddDeleteImageWidget<FloatingActionButtonWidget> extends ConsumerWidget {
-  const FloatingButtonAddDeleteImageWidget({
+class ImageGridFloatingButtonWidget<FloatingActionButtonWidget> extends ConsumerWidget {
+  const ImageGridFloatingButtonWidget({
     super.key,
      this.oneApartment, this.onPressed,
      this.title});

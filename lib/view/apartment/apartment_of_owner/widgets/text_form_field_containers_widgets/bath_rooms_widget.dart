@@ -9,19 +9,32 @@ import '../../../../common_widgets/containers_widgets/container_field_widget.dar
 
 class BathRoomsFieldWidget extends ConsumerWidget {
   const BathRoomsFieldWidget({super.key, this.originalBathRoomsCount});
+
   final String? originalBathRoomsCount;
+
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     return Padding(
       padding: EdgeInsets.only(
           bottom: getIt<AppDimension>().isSmallScreen(context) ? 0 : 10),
-      child: ContainerFieldWidget(
-        title: SetLocalization.of(context)!
-            .getTranslateValue("number_of_bathrooms"),
-        hintInput: "0",
-        inputType: TextInputType.number,
-        controller: ref.read(countOfBathRoomsController),
-        originalValue: originalBathRoomsCount,
+      child: Form(
+          key:  ref.watch(bathRoomsCountValidate.notifier).state != null
+              ? formBathRoomsCountValidateKey
+              : null,
+        child: ContainerFieldWidget(
+          validator: (value) {
+            if (ref.watch(bathRoomsCountValidate.notifier).state == null) {
+              return null;
+            }
+            return ref.watch(bathRoomsCountValidate);
+          },
+          title: SetLocalization.of(context)!
+              .getTranslateValue("number_of_bathrooms"),
+          hintInput: "0",
+          inputType: TextInputType.number,
+          controller: ref.read(countOfBathRoomsController),
+          originalValue: originalBathRoomsCount,
+        ),
       ),
     );
   }

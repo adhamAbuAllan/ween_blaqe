@@ -15,13 +15,25 @@ class RoomsFieldWidget extends ConsumerWidget {
     return Padding(
       padding: EdgeInsets.only(
           bottom: getIt<AppDimension>().isSmallScreen(context) ? 0 : 10),
-      child: ContainerFieldWidget(
-        title:
-            SetLocalization.of(context)!.getTranslateValue("number_of_rooms"),
-        hintInput: "0",
-        inputType: TextInputType.number,
-        controller: ref.read(countOfRoomsController),
-        originalValue: originalRoomsCount,
+      child: Form(
+         key:  ref.watch(roomsCountValidate.notifier).state != null
+              ? formRoomsCountValidateKey
+              : null,
+        child: ContainerFieldWidget(
+          validator: (value){
+            if (ref.watch(roomsCountValidate.notifier).state == null) {
+              return null;
+            }
+            return ref.watch(roomsCountValidate);
+
+          },
+          title:
+              SetLocalization.of(context)!.getTranslateValue("number_of_rooms"),
+          hintInput: "0",
+          inputType: TextInputType.number,
+          controller: ref.read(countOfRoomsController),
+          originalValue: originalRoomsCount,
+        ),
       ),
     );
   }

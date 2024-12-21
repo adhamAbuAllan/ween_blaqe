@@ -127,8 +127,8 @@ class _ThirdStepState extends State<ThirdStep> {
                         onPressed: () {
                           Navigator.pop(context);
                         },
-                        style: outlinedButton(context:context,themeMode:
-                        themeMode),
+                        style: outlinedButton(
+                            context: context, themeMode: themeMode),
                         child: Text(SetLocalization.of(context)!
                             .getTranslateValue("back")),
                       ),
@@ -185,7 +185,9 @@ class _ThirdStepState extends State<ThirdStep> {
                               NormalAlert.show(
                                   context,
                                   "",
-                                  SetLocalization.of(context)!.getTranslateValue("missing_data_message"),
+                                  SetLocalization.of(context)!
+                                      .getTranslateValue(
+                                          "missing_data_message"),
                                   SetLocalization.of(context)!
                                       .getTranslateValue("ok"));
                               return;
@@ -209,10 +211,9 @@ class _ThirdStepState extends State<ThirdStep> {
                       color: themeMode.isLight
                           ? kTextColorLightMode
                           : kTextColorDarkMode,
-                      fontSize: getIt<AppDimension>()
-                          .isSmallScreen(context)
-                          ? 18:20,
-                      
+                      fontSize: getIt<AppDimension>().isSmallScreen(context)
+                          ? 18
+                          : 20,
                       fontWeight: FontWeight.w500,
                     ),
                   ),
@@ -224,12 +225,12 @@ class _ThirdStepState extends State<ThirdStep> {
                       ? Image.asset(
                           'assets/images/apartments_images'
                           '/images_to_create_apartment/step_three.png',
-                    width:getIt<AppDimension>()
-                        .isSmallScreen(context)
-                        ? 65/1.1:  65,
-                    height: getIt<AppDimension>()
-                        .isSmallScreen(context)
-                        ? 65/1.1:  65,
+                          width: getIt<AppDimension>().isSmallScreen(context)
+                              ? 65 / 1.1
+                              : 65,
+                          height: getIt<AppDimension>().isSmallScreen(context)
+                              ? 65 / 1.1
+                              : 65,
                           fit: BoxFit.fill,
                         )
                       : Image.asset(
@@ -238,30 +239,36 @@ class _ThirdStepState extends State<ThirdStep> {
                           'apartments_images/'
                           'images_to_create_apartment/'
                           'thrid_setp_dark_mode.png',
-                    width:getIt<AppDimension>()
-                        .isSmallScreen(context)
-                        ? 65/1.1:  65,
-                    height: getIt<AppDimension>()
-                        .isSmallScreen(context)
-                        ? 65/1.1:  65,
+                          width: getIt<AppDimension>().isSmallScreen(context)
+                              ? 65 / 1.1
+                              : 65,
+                          height: getIt<AppDimension>().isSmallScreen(context)
+                              ? 65 / 1.1
+                              : 65,
                           fit: BoxFit.fill,
                         ),
                 ),
                 //price padding
                 Padding(
-                  padding:  EdgeInsets.only(bottom:  getIt<AppDimension> ()
-                      .isSmallScreen(context) ? 0:10),
+                  padding: EdgeInsets.only(
+                      bottom: getIt<AppDimension>().isSmallScreen(context)
+                          ? 0
+                          : 10),
                   child: ContainerFieldWidget(
                     title:
                         SetLocalization.of(context)!.getTranslateValue("price"),
-                    hintInput: SetLocalization.of(context)!.getTranslateValue("enter_monthly_rent"),
+                    hintInput: SetLocalization.of(context)!
+                        .getTranslateValue("enter_monthly_rent"),
                     controller: priceController,
                     inputType: TextInputType.number,
                   ),
                 ),
                 //countStudent padding
                 Padding(
-                  padding:  EdgeInsets.only(bottom: getIt<AppDimension> ().isSmallScreen(context) ? 0:10),
+                  padding: EdgeInsets.only(
+                      bottom: getIt<AppDimension>().isSmallScreen(context)
+                          ? 0
+                          : 10),
                   child: ContainerChooseItemsClassWidget(
                       wholeListApi: wholeListApi,
                       title: SetLocalization.of(context)!
@@ -282,7 +289,10 @@ class _ThirdStepState extends State<ThirdStep> {
                       }),
                 ),
                 Padding(
-                  padding:  EdgeInsets.only(bottom: getIt<AppDimension> ().isSmallScreen(context) ? 0:10),
+                  padding: EdgeInsets.only(
+                      bottom: getIt<AppDimension>().isSmallScreen(context)
+                          ? 0
+                          : 10),
                   child: ContainerFieldWidget(
                     title: indexOfTypeOfApartment == 1
                         ? countPersonText
@@ -295,12 +305,15 @@ class _ThirdStepState extends State<ThirdStep> {
                 ),
                 //square padding
                 Padding(
-                  padding:  EdgeInsets.only(top:  getIt<AppDimension> ()
-                      .isSmallScreen(context) ? 0:10),
+                  padding: EdgeInsets.only(
+                      top: getIt<AppDimension>().isSmallScreen(context)
+                          ? 0
+                          : 10),
                   child: ContainerFieldWidget(
-                    title: SetLocalization.of(context)!.getTranslateValue("apartment_size")
-                    ,
-                    hintInput: SetLocalization.of(context)!.getTranslateValue("enter_apartment_size"),
+                    title: SetLocalization.of(context)!
+                        .getTranslateValue("apartment_size"),
+                    hintInput: SetLocalization.of(context)!
+                        .getTranslateValue("enter_apartment_size"),
                     controller: squareMetersController,
                     inputType: TextInputType.number,
                   ),

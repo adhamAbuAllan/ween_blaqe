@@ -12,6 +12,7 @@ import 'package:ween_blaqe/constants/nums.dart';
 import '../../../session/new_session.dart';
 import '../controller/provider_controllers/providers/auth_provider.dart';
 import 'common_widgets/bottom_navigation_bar_widget.dart';
+
 class MainUi extends ConsumerStatefulWidget {
   const MainUi({super.key});
 
@@ -20,8 +21,6 @@ class MainUi extends ConsumerStatefulWidget {
 }
 
 class _MainScreenState extends ConsumerState<MainUi> {
-
-
   final ScrollController _scrollController = ScrollController();
 
   @override
@@ -30,7 +29,6 @@ class _MainScreenState extends ConsumerState<MainUi> {
 
     return ConnectivityListenWidget(
       child: Scaffold(
-
         backgroundColor: themeMode.isLight
             ? kBackgroundAppColorLightMode
             : kBackgroundAppColorDarkMode,
@@ -51,5 +49,4 @@ class _MainScreenState extends ConsumerState<MainUi> {
       ),
     );
   }
-
 }

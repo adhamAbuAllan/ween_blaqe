@@ -33,6 +33,8 @@ class BottomNavigationBarWidget extends ConsumerWidget {
       currentIndex: indexNotifier,
       onTap: (i) {
         if (i == 0 && indexNotifier == 0) {
+          debugPrint("hasApartmentChanged -- ${ref.watch
+            (isApartmentDataChangedNotifier.notifier).hasAnyChange(ref)}");
           debugPrint("scrollController offset is ${scrollController?.offset}");
           // Scroll to top when already on the home page
           if (scrollController != null && scrollController!.offset > 400) {

@@ -1,8 +1,9 @@
-import 'package:flutter/cupertino.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import '../methods/hybrid_methods/validator.dart';
 
+/***
+   this only usage for login and reg
+    the TextFi
+ ***/
 class TextFieldState {
   final String value;
   final String? error;
@@ -10,49 +11,3 @@ class TextFieldState {
   TextFieldState({this.value = '', this.error});
 }
 
-class FormFieldsNotifier extends StateNotifier<Map<String, TextFieldState>> {
-  FormFieldsNotifier() : super({});
-
-  void updateError(String fieldKey, String? error) {
-    state = {
-      ...state,
-      fieldKey:
-          TextFieldState(value: state[fieldKey]?.value ?? '', error: error),
-    };
-  }
-
-  void updateValue(String fieldKey, String value,
-      {BuildContext? context, WidgetRef? ref}) {
-    String? error = Validator.validateField(fieldKey, value,context!);
-
-    state = {
-      ...state,
-      fieldKey: TextFieldState(value: value, error: error),
-    };
-  }
-
-  bool validateAllFields(BuildContext context) {
-    bool isValid = true;
-    // Validate each field
-    state.forEach((key, textFieldState) {
-      final error = Validator.validateField(key, textFieldState.value,context);
-      if (error != null) {
-        isValid = false;
-        state = {
-          ...state,
-          key: TextFieldState(value: textFieldState.value, error: error),
-        };
-      }
-    });
-
-    return isValid;
-  }
-
-  void updateErrors(Map<String, String?> errors) {
-    state = {
-      ...state,
-      ...errors.map((key, value) => MapEntry(
-          key, TextFieldState(value: state[key]?.value ?? '', error: value))),
-    };
-  }
-}

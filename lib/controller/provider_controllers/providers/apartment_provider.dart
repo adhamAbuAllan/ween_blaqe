@@ -12,6 +12,7 @@ import '../../../api/cities.dart';
 import '../methods/api_methods/apartment_methods/delete_apartment_notifier.dart';
 import '../methods/api_methods/apartment_methods/advantages_notifier.dart';
 import '../methods/api_methods/apartment_methods/update_apartment_notifier.dart';
+import '../methods/hybrid_methods/apartment_validator/validator_create_apartment.dart';
 import '../methods/hybrid_methods/bookmarker.dart';
 import '../methods/local_methods/image_slider_notifier.dart';
 import '../methods/local_methods/toggle_owner_buttons_notifier.dart';
@@ -29,55 +30,55 @@ extension FirstWhereOrNull<E> on Iterable<E> {
     return null;
   }
 }
+
 final fetchApartmentNotifier =
     StateNotifierProvider<FetchApartmentsNotifier, ApartmentState>(
         (ref) => FetchApartmentsNotifier());
-final deleteApartmentNotifier=
+final deleteApartmentNotifier =
     StateNotifierProvider<DeleteApartmentNotifier, ApartmentState>(
         (ref) => DeleteApartmentNotifier());
-final toggleOwnerButtonsNotifier=
+final toggleOwnerButtonsNotifier =
     StateNotifierProvider<ToggleOwnerButtonsNotifier, UpdateApartmentState>(
-        (ref) =>ToggleOwnerButtonsNotifier());
-final advantagesNotifer = StateNotifierProvider<AdvantagesNotifier,
-    AdvantageState>(
-      (ref) => AdvantagesNotifier(),
+        (ref) => ToggleOwnerButtonsNotifier());
+final advantagesNotifer =
+    StateNotifierProvider<AdvantagesNotifier, AdvantageState>(
+  (ref) => AdvantagesNotifier(),
 );
 
 final cityNotifier = StateNotifierProvider<CityNotifier, CityState>(
   (ref) => CityNotifier(),
-
 );
-final typesNotifier = StateNotifierProvider<TypeNotifier, TypeState>((ref) =>
-    TypeNotifier());
+final typesNotifier =
+    StateNotifierProvider<TypeNotifier, TypeState>((ref) => TypeNotifier());
 
-
-final bookmarkNotifier = StateNotifierProvider<BookmarkNotifier, BookmarkState>((ref) {
+final bookmarkNotifier =
+    StateNotifierProvider<BookmarkNotifier, BookmarkState>((ref) {
   return BookmarkNotifier();
 });
 final isApartmentDataChangedNotifier =
-    StateNotifierProvider<ApartmentDataChangedCheckerNotifier,bool>((ref)
-=>ApartmentDataChangedCheckerNotifier());
+    StateNotifierProvider<ApartmentDataChangedCheckerNotifier, bool>(
+        (ref) => ApartmentDataChangedCheckerNotifier());
 // Provider for the ApartmentStateNotifier
 final imageSliderNotifier =
-StateNotifierProvider<ImageSliderNotifier, Map<int, ApartmentState>>(
-      (ref) => ImageSliderNotifier(),
-);final updateApartmentNotifier =
-StateNotifierProvider<UpdateApartmentNotifier,  ApartmentState>(
-      (ref) => UpdateApartmentNotifier(),
+    StateNotifierProvider<ImageSliderNotifier, Map<int, ApartmentState>>(
+  (ref) => ImageSliderNotifier(),
+);
+final updateApartmentNotifier =
+    StateNotifierProvider<UpdateApartmentNotifier, ApartmentState>(
+  (ref) => UpdateApartmentNotifier(),
 );
 
-// Provider for the CarouselSliderController
+final validatorCreateApartmentNotifier =
+    StateNotifierProvider<ValidatorCreateApartmentNotifier,ApartmentState>((ref)
+=>ValidatorCreateApartmentNotifier());
+// CarouselSliderController
 final carouselSliderControllerNotifier =
     Provider<CarouselSliderController>((ref) {
   return CarouselSliderController();
 });
-final pageControllerNotifier =
-    Provider<PageController>((ref) {
+final pageControllerNotifier = Provider<PageController>((ref) {
   return PageController();
 });
-
-
-
 
 final ownerTokenNotifier = Provider<String?>((ref) {
   final apartmentsList = ref.watch(apartmentsOfOwnerNotifier).data;
@@ -86,54 +87,54 @@ final ownerTokenNotifier = Provider<String?>((ref) {
 final addressController = StateProvider<TextEditingController>((ref) {
   final controller = TextEditingController();
   ref.onDispose(
-          () => controller.dispose()); // Dispose when the provider is disposed
+      () => controller.dispose()); // Dispose when the provider is disposed
   return controller;
 });
 final countOfRoomsController = StateProvider<TextEditingController>((ref) {
   final controller = TextEditingController();
   ref.onDispose(
-          () => controller.dispose()); // Dispose when the provider is disposed
+      () => controller.dispose()); // Dispose when the provider is disposed
   return controller;
 });
 final countOfBathRoomsController = StateProvider<TextEditingController>((ref) {
   final controller = TextEditingController();
   ref.onDispose(
-          () => controller.dispose()); // Dispose when the provider is disposed
+      () => controller.dispose()); // Dispose when the provider is disposed
   return controller;
 });
 final priceController = StateProvider<TextEditingController>((ref) {
   final controller = TextEditingController();
   ref.onDispose(
-          () => controller.dispose()); // Dispose when the provider is disposed
+      () => controller.dispose()); // Dispose when the provider is disposed
   return controller;
 });
-final  countOfStudentController = StateProvider<TextEditingController>((ref) {
+final countOfStudentController = StateProvider<TextEditingController>((ref) {
   final controller = TextEditingController();
   ref.onDispose(
-          () => controller.dispose()); // Dispose when the provider is disposed
+      () => controller.dispose()); // Dispose when the provider is disposed
   return controller;
 });
-final squareMetersController  = StateProvider<TextEditingController>((ref) {
+final squareMetersController = StateProvider<TextEditingController>((ref) {
   final controller = TextEditingController();
   ref.onDispose(
-          () => controller.dispose()); // Dispose when the provider is disposed
+      () => controller.dispose()); // Dispose when the provider is disposed
   return controller;
 });
-final titleController= StateProvider<TextEditingController>((ref) {
+final titleController = StateProvider<TextEditingController>((ref) {
   final controller = TextEditingController();
   ref.onDispose(
-          () => controller.dispose()); // Dispose when the provider is disposed
+      () => controller.dispose()); // Dispose when the provider is disposed
   return controller;
 });
-final  descriptionController = StateProvider<TextEditingController>((ref) {
+final descriptionController = StateProvider<TextEditingController>((ref) {
   final controller = TextEditingController();
   ref.onDispose(
-          () => controller.dispose()); // Dispose when the provider is disposed
+      () => controller.dispose()); // Dispose when the provider is disposed
   return controller;
 });
 final apartmentsListNotifier = StateProvider<Apartments>((ref) => Apartments());
-var  apartmentBookmarkedNotifier = StateProvider<Apartments>((ref) =>
-    Apartments(data: []));
+var apartmentBookmarkedNotifier =
+    StateProvider<Apartments>((ref) => Apartments(data: []));
 final apartmentsOfOwnerNotifier =
     StateProvider<Apartments>((ref) => Apartments(data: []));
 
@@ -168,7 +169,24 @@ final isApartmentUpdatedNotifier = StateProvider<bool>((ref) => false);
 final badResponse = StateProvider<bool>((ref) => false);
 final isAllTypesOfApartmentNotifier = StateProvider<bool>((ref) => false);
 
-final currentPhotoIndexNotifier = StateProvider.family<int, int>((ref,
-    apartmentId) {
+final currentPhotoIndexNotifier =
+    StateProvider.family<int, int>((ref, apartmentId) {
   return 0; // Default value
 });
+final addressValidate = StateProvider<String?>((ref) => null);
+final roomsCountValidate = StateProvider<String?>((ref) => null);
+final bathRoomsCountValidate = StateProvider<String?>((ref) => null);
+final priceValidate = StateProvider<String?>((ref) => null);
+final studentCountValidate = StateProvider<String?>((ref) => null);
+final apartmentSquareMeterValidate = StateProvider<String?>((ref) => null);
+final titleValidate = StateProvider<String?>((ref) => null);
+final apartmentDescriptionValidate = StateProvider<String?>((ref) => null);
+
+final formAddressKey = GlobalKey<FormState>();
+final formRoomsCountValidateKey = GlobalKey<FormState>();
+final formBathRoomsCountValidateKey = GlobalKey<FormState>();
+final formPriceValidateKey = GlobalKey<FormState>();
+final formStudentCountValidateKey = GlobalKey<FormState>();
+final formApartmentSquareMeterValidateKey = GlobalKey<FormState>();
+final formTitleValidateKey = GlobalKey<FormState>();
+final formApartmentDescriptionValidateKey = GlobalKey<FormState>();

@@ -29,7 +29,7 @@ class UpdaterDataUserNotifier extends StateNotifier<AuthState> {
         .notifier).state.text != (await sp).getString("phone")) {
       await ref
           .watch(changeDataOfUserMethodNotifier.notifier)
-          .changeDataOfUser(ref, context);
+          .updateDataOfUser(ref, context);
     }
     ref.watch(refreshUserDataNotifier.notifier).refreshUserData(
           ref: ref,

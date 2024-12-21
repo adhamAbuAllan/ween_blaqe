@@ -53,7 +53,7 @@ class RegisterNotifier extends StateNotifier<AuthState> {
 
     } else {
       if (response.statusCode == 404) {
-        ref.read(formFieldsNotifier.notifier).updateErrors({
+        ref.read(formFieldsNotifier.notifier).updateApiErrors({
           'phoneNumberRegistration': SetLocalization.of(context)!
               .getTranslateValue("try_different_phone"),
 

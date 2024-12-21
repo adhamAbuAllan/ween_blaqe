@@ -6,7 +6,7 @@ import '../../../../constants/coordination.dart';
 import '../../../../constants/get_it_controller.dart';
 import '../../../../constants/localization.dart';
 // import '../../../../constants/strings.dart';
-import '../../../../controller/provider_controllers/methods/hybrid_methods/validator_and_login.dart';
+import '../../../../controller/provider_controllers/methods/hybrid_methods/auth_validator/login_and_reg_validators/validator_and_login.dart';
 import '../../../../core/utils/styles/button.dart';
 import '../../../../controller/provider_controllers/providers/auth_provider.dart';
 

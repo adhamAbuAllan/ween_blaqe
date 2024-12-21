@@ -74,7 +74,7 @@ class _UpdateApartmentUiState extends ConsumerState<UpdateApartmentUi> {
           widget.oneApartment?.city?.name;
       ref
           .read(advantagesNotifer.notifier)
-          .fetchAdvantages(widget.oneApartment!.advantages!);
+          .fetchAdvantages(alreadyAdv: widget.oneApartment!.advantages!);
 
       ref.read(addressController).text = widget.oneApartment?.location ?? "";
       ref.read(addressController).text != widget.oneApartment?.location;
@@ -178,7 +178,7 @@ class _UpdateApartmentUiState extends ConsumerState<UpdateApartmentUi> {
             ),
           ),
         ),
-        floatingActionButton: FloatingButtonAddDeleteImageWidget(
+        floatingActionButton: ImageGridFloatingButtonWidget(
           oneApartment: widget.oneApartment,
         ),
       ),

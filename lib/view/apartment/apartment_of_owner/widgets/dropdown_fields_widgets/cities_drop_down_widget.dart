@@ -8,8 +8,9 @@ import '../../../../common_widgets/containers_widgets/container_load_widget.dart
 import '../../../../common_widgets/drop_down_widget.dart';
 
 class DropdownCitiesWidget extends ConsumerStatefulWidget {
-  const DropdownCitiesWidget({super.key, this.alreadyExistingValue});
+  const DropdownCitiesWidget({super.key, this.alreadyExistingValue,this.autofocus});
 final DataOfOneApartment ?alreadyExistingValue;
+final bool? autofocus;
   @override
   ConsumerState createState() => _DropdownCitiesWidgetState();
 }
@@ -24,6 +25,7 @@ final defaultValue = ref.watch(cityNotifier).selectedCity;
         title: SetLocalization.of(context)!.getTranslateValue("city")
         , isLoading: ref.watch(cityNotifier).isLoading
         , childWidget: DropdownFieldWidget(
+      autofocus: widget.autofocus,
 /*
 final dynamicItems = ref.watch(dynamicNotifier).items; // Example dynamic items
 final defaultValue = widget.selectedItem; // Default selected item
@@ -51,7 +53,7 @@ final defaultValue = widget.selectedItem; // Default selected item
 
           });
         });
-      }, itmes: ref
+      }, items: ref
         .watch(cityNotifier).cities,
     ));
   }

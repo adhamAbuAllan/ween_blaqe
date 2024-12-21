@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:ween_blaqe/controller/provider_controllers/methods/hybrid_methods/validator_and_registratoin.dart';
+import 'package:ween_blaqe/controller/provider_controllers/methods/hybrid_methods/auth_validator/login_and_reg_validators/validator_and_registratoin.dart';
 
 import '../../../../constants/coordination.dart';
 import '../../../../constants/get_it_controller.dart';

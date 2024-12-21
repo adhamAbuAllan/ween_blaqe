@@ -8,7 +8,7 @@ import '../../../api/apartments_api/apartments.dart';
 
 import '../../../constants/nums.dart';
 import '../../../controller/provider_controllers/providers/image_provider.dart';
-import 'widgets/images_grid_widgets/appbar_widget.dart';
+import 'widgets/images_grid_widgets/grid_images_appbar_widget.dart';
 
 class UpdateImagesUi extends ConsumerStatefulWidget {
   const UpdateImagesUi({super.key, this.oneApartment});
