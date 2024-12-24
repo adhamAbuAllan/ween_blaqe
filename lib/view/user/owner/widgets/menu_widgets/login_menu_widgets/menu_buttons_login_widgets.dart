@@ -11,8 +11,8 @@ import '../../../../../../core/utils/funcations/route_pages/push_routes.dart';
 import '../../../../../../core/utils/styles/text_style/aline_style.dart';
 import '../../../../../../core/widgets/buttons/lines_buttons/line_buttons.dart';
 
-class MenuButtonsUserWidgets extends ConsumerWidget {
-  const MenuButtonsUserWidgets({super.key});
+class MenuButtonsLoginWidgets extends ConsumerWidget {
+  const MenuButtonsLoginWidgets({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {

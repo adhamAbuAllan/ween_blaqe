@@ -44,6 +44,8 @@ import 'package:ween_blaqe/view/apartment/apartment_of_owner/create_apartment/fo
 import 'package:ween_blaqe/view/apartment/apartment_of_owner/create_apartment/second_step_ui.dart';
 import 'package:ween_blaqe/view/apartment/apartment_of_owner/create_apartment/third_step_ui.dart';
 import 'package:ween_blaqe/view/apartment/home_ui.dart';
+import 'package:ween_blaqe/view/authorization_ui/login_ui.dart';
+import 'package:ween_blaqe/view/authorization_ui/registration_ui.dart';
 import 'package:ween_blaqe/view/error_widgets/no_internet.dart';
 import 'package:ween_blaqe/view/paragraphs_widgets/ask_for_help_widgets/another_asks.dart';
 import 'package:ween_blaqe/view/paragraphs_widgets/ask_for_help_widgets/ask_for_help.dart';
@@ -54,7 +56,6 @@ import 'package:ween_blaqe/view/paragraphs_widgets/ask_for_help_widgets/for_stud
 import 'package:ween_blaqe/view/paragraphs_widgets/ask_for_help_widgets/for_student/system_paying.dart';
 import 'package:ween_blaqe/view/paragraphs_widgets/privacy_policy.dart';
 import 'package:ween_blaqe/view/user/owner/profile_ui.dart';
-
 
 import 'package:ween_blaqe/view/splach_screen.dart';
 import 'package:ween_blaqe/view/user/owner/update_data_of_user_ui.dart';
@@ -78,15 +79,14 @@ import 'controller/models_controller/type_of_apartment_models_controller.dart';
 
 // import 'view/bookmark.dart';
 import 'controller/models_controller/user_model_controller.dart';
+import 'controller/provider_controllers/methods/local_methods/language_notifier.dart';
 import 'controller/scroll_controller.dart';
 import 'view/apartment/apartment_of_owner/update_apartment_ui.dart';
 import 'view/apartment/bookmark_ui.dart';
 import 'view/apartment/show_deitals_of_apartment/show_deitals_of_apartment_ui.dart';
 import 'view/intro_screen.dart';
-import 'view/main_screen_ui.dart';
+import 'view/main_ui.dart';
 import 'view/send_notice_for_us.dart';
-import 'view/widgets_before_user_reg/login_ui.dart';
-import 'view/widgets_before_user_reg/registration_ui.dart';
 
 /*
 **كيف ممكن ننشئ مشاريع في الفريق تاعنا و الكل يوخذ حقه**
@@ -154,40 +154,38 @@ void main() async {
   Get.put(BookmarkController()); //for testing
   // Get.put(BookmarkApartment());//for testing
   //for get
-  String savedLanguage = Get.put(LanguageController()).getSavedLanguage();
+  // String savedLanguage = Get.put(LanguageController()).getSavedLanguage();
+  //
+  // // Set the initial locale
+  // Locale initialLocale;
+  // if (savedLanguage == 'ar') {
+  //   initialLocale = const Locale('ar', 'JO');
+  // } else {
+  //   initialLocale = const Locale('en', 'US');
+  // }
 
-  // Set the initial locale
-  Locale initialLocale;
-  if (savedLanguage == 'ar') {
-    initialLocale = const Locale('ar', 'JO');
-  } else {
-    initialLocale = const Locale('en', 'US');
-  }
   await configureInjection();
-  runApp(const ProviderScope(
-    child: OwnMaterialApp(
-        // logged: token != null,
-        ),
+  runApp(ProviderScope(
+    overrides: [
+      languageProvider.overrideWith(
+        (ref) => LanguageNotifier(initialLocale),
+      )
+    ],
+    child: const OwnMaterialAppConsumer(),
   ));
-  Get.updateLocale(initialLocale); // Update locale usingGetX
-
-  // await Firebase.initializeApp(
-  //   options: DefaultFirebaseOptions.currentPlatform,
-  // );
 }
 
-// Future<void>loaResources(bool reload)async{
-//   await Get.find<Apartment>().title;
-// }
-//ownMaterialApp that could play any screen in this class from admin
+final savedLanguage = NewSession.get('language', 'ar');
+final initialLocale = (savedLanguage == 'ar')
+    ? const Locale('ar', 'JO')
+    : const Locale('en', 'US');
+final languageProvider = StateNotifierProvider<LanguageNotifier, Locale>(
+  (ref) => LanguageNotifier(initialLocale),
+);
+
 class OwnMaterialAppConsumer extends ConsumerStatefulWidget {
   const OwnMaterialAppConsumer({super.key});
 
-  static void setLocale(BuildContext context, Locale locale) {
-    _OwnMaterialAppState? state =
-    context.findAncestorStateOfType<_OwnMaterialAppState>();
-    state!.setLocale(locale);
-  }
   @override
   ConsumerState createState() => _OwnMaterialAppConsumerState();
 }
@@ -195,86 +193,39 @@ class OwnMaterialAppConsumer extends ConsumerStatefulWidget {
 class _OwnMaterialAppConsumerState
     extends ConsumerState<OwnMaterialAppConsumer> {
   @override
-  Widget build(BuildContext context) {
-    return Container();
-  }
-}
-
-class OwnMaterialApp extends StatefulWidget {
-
-  const OwnMaterialApp({
-    super.key,
-    // required this.logged
-  });
-
-  static void setLocale(BuildContext context, Locale locale) {
-    _OwnMaterialAppState? state =
-        context.findAncestorStateOfType<_OwnMaterialAppState>();
-    state!.setLocale(locale);
-  }
-
-  // final bool logged = false;
-
-  @override
-  State<OwnMaterialApp> createState() => _OwnMaterialAppState();
-}
-
-class _OwnMaterialAppState extends State<OwnMaterialApp> {
-  Locale? _local = NewSession.get("isFirstTime", "") != "OK"
-      ? const Locale("ar", "JO")
-      : null;
-
-  void setLocale(Locale locale) {
-    setState(() {
-      _local = locale;
-    });
-  }
-
-  @override
   void initState() {
     super.initState();
+    NewSession.save("isFirstTime", "OK");
   }
-
   @override
   Widget build(BuildContext context) {
-    /// here should put this :  final isLightMode = ref.watch(themeModeProvider);
+    final locale = ref.watch(languageProvider);
+
     return GetMaterialApp(
       debugShowCheckedModeBanner: false,
-
       darkTheme: ThemeData(
         useMaterial3: false,
         fontFamily: 'IBM',
         colorScheme: ColorScheme.fromSwatch().copyWith(secondary: Colors.grey),
-
-        // brightness: Brightness.darkf
       ),
-
-      // themeMode: ThemeMode.system,
-
       theme: ThemeData(
           useMaterial3: false,
           fontFamily: 'IBM',
-          // brightness: Brightness.,
-
-          // scaffoldBackgroundColor: Colors.grey.shade200,
           switchTheme: const SwitchThemeData(),
           colorSchemeSeed: const Color(0xffff9800),
           bottomNavigationBarTheme: const BottomNavigationBarThemeData(
               selectedIconTheme: IconThemeData(size: 26))),
-      //make screen rtl
       localizationsDelegates: const [
         SetLocalization.localizationsDelegate,
         GlobalMaterialLocalizations.delegate,
         GlobalWidgetsLocalizations.delegate,
         GlobalCupertinoLocalizations.delegate,
       ],
+      locale: locale,
       supportedLocales: const [
-        Locale('ar'), // Arabic
-        Locale('en'), // English
+        Locale('en', 'US'),
+        Locale('ar', 'JO'),
       ],
-
-      locale: _local,
-
       initialRoute: MyPagesRoutes.splashScreen,
       //  initialRoute: MyPagesRoutes.newMasterHome,
       routes: {
@@ -284,7 +235,7 @@ class _OwnMaterialAppState extends State<OwnMaterialApp> {
         MyPagesRoutes.step1: (context) => const FirstStepUi(),
         MyPagesRoutes.step2: (context) => const SecondStepUi(),
         MyPagesRoutes.step3: (context) => const ThirdStepUi(),
-        MyPagesRoutes.step4: (context) => const FourthStepUi( ),
+        MyPagesRoutes.step4: (context) => const FourthStepUi(),
         MyPagesRoutes.login: (context) => const LoginUi(),
         MyPagesRoutes.register: (context) => const RegistrationUi(),
         // MyPagesRoutes.masterHome: (context) => const MasterHome(),
@@ -310,11 +261,10 @@ class _OwnMaterialAppState extends State<OwnMaterialApp> {
         //     const ApartmentsOfOwnerAfterAdd(),
         // MyPagesRoutes.apartmentOfOwnerBeforeAdd: (context) =>
         //     const ApartmentOfOwnerBeforeAdd(),
-        MyPagesRoutes.apartmentsOwner: (context) =>  const ApartmentsOfOwnerUi(),
+        MyPagesRoutes.apartmentsOwner: (context) => const ApartmentsOfOwnerUi(),
 
         MyPagesRoutes.splashScreen: (context) => const SplashScreen(),
-        MyPagesRoutes.updateApartment: (context) => const
-        UpdateApartmentUi(),
+        MyPagesRoutes.updateApartment: (context) => const UpdateApartmentUi(),
         MyPagesRoutes.privacyPolicy: (context) => const PrivacyPolicy(),
         MyPagesRoutes.askForHelp: (context) => const AskForHelp(),
         MyPagesRoutes.systemPaying: (context) => const SystemPaying(),
@@ -346,7 +296,8 @@ class _OwnMaterialAppState extends State<OwnMaterialApp> {
         MyPagesRoutes.skeletonParagraph: (context) =>
             const LongParagraphReadySkeleton(),
         MyPagesRoutes.homeUi: (context) => const HomeUi(),
-        MyPagesRoutes.showDeitalsOfApartmentUi: (context) => const  ShowDeitalsOfApartmentUi(),
+        MyPagesRoutes.showDeitalsOfApartmentUi: (context) =>
+            const ShowDeitalsOfApartmentUi(),
         MyPagesRoutes.whatTheInfoReqToCreateAd: (context) =>
             const WhatTheInfoReqToCreateAd(),
         MyPagesRoutes.introScreen: (context) => const IntroScreen(),
@@ -361,8 +312,170 @@ class _OwnMaterialAppState extends State<OwnMaterialApp> {
       //The ThemeData of ween blaqe application
     );
   }
-
 }
+
+// class OwnMaterialApp extends StatefulWidget {
+//
+//   const OwnMaterialApp({
+//     super.key,
+//     // required this.logged
+//   });
+//
+//   static void setLocale(BuildContext context, Locale locale) {
+//     _OwnMaterialAppState? state =
+//         context.findAncestorStateOfType<_OwnMaterialAppState>();
+//     state!.setLocale(locale);
+//   }
+//
+//   // final bool logged = false;
+//
+//   @override
+//   State<OwnMaterialApp> createState() => _OwnMaterialAppState();
+// }
+
+// class _OwnMaterialAppState extends State<OwnMaterialApp> {
+//   Locale? _local = NewSession.get("isFirstTime", "") != "OK"
+//       ? const Locale("ar", "JO")
+//       : null;
+//
+//   void setLocale(Locale locale) {
+//     setState(() {
+//       _local = locale;
+//     });
+//   }
+//
+//   @override
+//   void initState() {
+//     super.initState();
+//   }
+//
+//   @override
+//   Widget build(BuildContext context) {
+//     /// here should put this :  final isLightMode = ref.watch(themeModeProvider);
+//     return GetMaterialApp(
+//       debugShowCheckedModeBanner: false,
+//
+//       darkTheme: ThemeData(
+//         useMaterial3: false,
+//         fontFamily: 'IBM',
+//         colorScheme: ColorScheme.fromSwatch().copyWith(secondary: Colors.grey),
+//
+//         // brightness: Brightness.darkf
+//       ),
+//
+//       // themeMode: ThemeMode.system,
+//
+//       theme: ThemeData(
+//           useMaterial3: false,
+//           fontFamily: 'IBM',
+//           // brightness: Brightness.,
+//
+//           // scaffoldBackgroundColor: Colors.grey.shade200,
+//           switchTheme: const SwitchThemeData(),
+//           colorSchemeSeed: const Color(0xffff9800),
+//           bottomNavigationBarTheme: const BottomNavigationBarThemeData(
+//               selectedIconTheme: IconThemeData(size: 26))),
+//       //make screen rtl
+//       localizationsDelegates: const [
+//         SetLocalization.localizationsDelegate,
+//         GlobalMaterialLocalizations.delegate,
+//         GlobalWidgetsLocalizations.delegate,
+//         GlobalCupertinoLocalizations.delegate,
+//       ],
+//       supportedLocales: const [
+//         Locale('ar'), // Arabic
+//         Locale('en'), // English
+//       ],
+//
+//       locale: _local,
+//
+//       initialRoute: MyPagesRoutes.splashScreen,
+//       //  initialRoute: MyPagesRoutes.newMasterHome,
+//       routes: {
+//         MyPagesRoutes.main: (context) => const Main(),
+//         // MyPagesRoutes.mainOwner: (context) => const MainOwner(),
+//         MyPagesRoutes.mainUi: (context) => const MainUi(),
+//         MyPagesRoutes.step1: (context) => const FirstStepUi(),
+//         MyPagesRoutes.step2: (context) => const SecondStepUi(),
+//         MyPagesRoutes.step3: (context) => const ThirdStepUi(),
+//         MyPagesRoutes.step4: (context) => const FourthStepUi(),
+//         MyPagesRoutes.login: (context) => const LoginUi(),
+//         MyPagesRoutes.register: (context) => const RegistrationUi(),
+//         // MyPagesRoutes.masterHome: (context) => const MasterHome(),
+//         // MyPagesRoutes.showMore: (context) => const ShowMore(),
+//         // MyPagesRoutes.accountBeforeLoginInStudent: (context) =>
+//         //     const AccountBeforeLoginInStudent(),
+//         // MyPagesRoutes.accountBeforeLoginInOwner: (context) =>
+//         //     const AccountBeforeLoginInOwner(),
+//         // MyPagesRoutes.accountOfStudent: (context) => const AccountOfStudent(),
+//         // MyPagesRoutes.accountOfOwner: (context) => const AccountOfOwner(),
+//         // MyPagesRoutes.bookingNow: (context) => const BookingNow(),
+//         // MyPagesRoutes.getStarted: (context) => const GetStarted(),
+//         // MyPagesRoutes.searchFilter: (context) => const SearchFilter(),
+//         MyPagesRoutes.profileOfOwner: (context) => const ProfileUi(),
+//         // MyPagesRoutes.ordersOfStudent: (context) => const OrdersOfStudent(),
+//         MyPagesRoutes.bookmarkUi: (context) => const BookmarkApartmentUi(),
+//         // MyPagesRoutes.orders: (context) => const Orders(),
+//         // MyPagesRoutes.notificationOfStudent: (context) =>
+//         //     const NotificationOfStudentWithNotifi(),
+//         // MyPagesRoutes.notificationOfOwner: (context) =>
+//         //     const NotificationOfOwner(),
+//         // MyPagesRoutes.apartmentOfOwnerAfterAdd: (context) =>
+//         //     const ApartmentsOfOwnerAfterAdd(),
+//         // MyPagesRoutes.apartmentOfOwnerBeforeAdd: (context) =>
+//         //     const ApartmentOfOwnerBeforeAdd(),
+//         MyPagesRoutes.apartmentsOwner: (context) => const ApartmentsOfOwnerUi(),
+//
+//         MyPagesRoutes.splashScreen: (context) => const SplashScreen(),
+//         MyPagesRoutes.updateApartment: (context) => const UpdateApartmentUi(),
+//         MyPagesRoutes.privacyPolicy: (context) => const PrivacyPolicy(),
+//         MyPagesRoutes.askForHelp: (context) => const AskForHelp(),
+//         MyPagesRoutes.systemPaying: (context) => const SystemPaying(),
+//         MyPagesRoutes.whatIsSystemPayingAllow: (context) =>
+//             const WhatIsSystemPayingAllow(),
+//         MyPagesRoutes.couldIPayByDeposit: (context) =>
+//             const CouldIPayByDeposit(),
+//         MyPagesRoutes.whatIsMeanSS: (context) => const WhatIsMeanSS(),
+//         MyPagesRoutes.howCouldBookingApartment: (context) =>
+//             const HowCouldBookingApartment(),
+//         MyPagesRoutes.systemBooking: (context) => const SystemBooking(),
+//         MyPagesRoutes.couldICancelABooking: (context) =>
+//             const CouldICancelABooking(),
+//         MyPagesRoutes.howLongIsTheReservationAvailable: (context) =>
+//             const HowLongIsTheReservationAvailable(),
+//         MyPagesRoutes.howCreateAd: (context) => const HowCreateAd(),
+//         // MyPagesRoutes.couldBeOwnerAndStudentInOneTime: (context) =>
+//         //     const CouldBeOwnerAndStudentInOneTime(),
+//         MyPagesRoutes.sendNoticeForUs: (context) => const SendNoticeForUs(),
+//         MyPagesRoutes.theAdIsFreeOrNot: (context) => const TheAdIsFreeOrNot(),
+//         MyPagesRoutes.skeletonShowMoreWidget: (context) =>
+//             const SkeletonShowMoreWidget(),
+//         // MyPagesRoutes.screensWillAddFuture: (context) =>
+//         //     const ScreensWillAddFuture(),
+//         MyPagesRoutes.noInternet: (context) => const NoInternet(),
+//         // MyPagesRoutes.searchNotFound: (context) => const SearchNotFound(),
+//         // MyPagesRoutes.skeletonBookingNow: (context) =>
+//         //     const BookingNowSkeletonWidget(),
+//         MyPagesRoutes.skeletonParagraph: (context) =>
+//             const LongParagraphReadySkeleton(),
+//         MyPagesRoutes.homeUi: (context) => const HomeUi(),
+//         MyPagesRoutes.showDeitalsOfApartmentUi: (context) =>
+//             const ShowDeitalsOfApartmentUi(),
+//         MyPagesRoutes.whatTheInfoReqToCreateAd: (context) =>
+//             const WhatTheInfoReqToCreateAd(),
+//         MyPagesRoutes.introScreen: (context) => const IntroScreen(),
+//         MyPagesRoutes.updateUserInfo: (context) => const UpdateUserDataUi(),
+//
+//         //testing routes..
+//         // MyPagesRoutes.citiesTest:(context)=> CitiesTest(),
+//         // MyPagesRoutes.showAllAdvantages:(context)=>ShowAllAdvantages,
+//       },
+//
+//       // Main(),
+//       //The ThemeData of ween blaqe application
+//     );
+//   }
+// }
 
 /*
 Main Class that have 3 main item ...

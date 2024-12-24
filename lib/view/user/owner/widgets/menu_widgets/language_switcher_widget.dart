@@ -46,7 +46,7 @@ class LanguageSwitcherWidget extends ConsumerWidget {
 
           /// buttons
           const ArabicButton(),
-          const SizedBox(width: 10),
+          const SizedBox(width: 20),
 
           const EnglishButton(),
           // Spacing between buttons
@@ -67,15 +67,15 @@ class ArabicButton extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     ///  inActive width button
    var inActiveWidthButton =  ref.read
-     (widthSizeWithActiveArButtonInSmallScreen); // normal screen size
+     (widthSizeWithInActiveArButton); // normal screen size
    var activeWidthButton =  ref.read
      (widthSizeWithActiveArButtonInSmallScreen);//small screen size
 
    /// Active height button
    var inActiveHeightButton =  ref.read
-     (widthSizeWithInActiveArButton); // normal screen size
+     (heightSizeInActiveArButton); // normal screen size
    var activeHeightButton =  ref.read
-     (widthSizeWithInActiveArButton);//small screen size
+     (heightSizeActiveArButtonInSmallScreen);//small screen size
 
 
     return SizedBox(
@@ -87,6 +87,11 @@ class ArabicButton extends ConsumerWidget {
           : inActiveHeightButton,
       child: ElevatedButton(
         onPressed: () async {
+     WidgetsBinding.instance.addPostFrameCallback((_) async {
+
+       ref.read(languageNotifier.notifier).changeLanguage("ar", context);
+       ref.read(languageNotifier.notifier).saveLanguage("ar");
+     });
           if (NewSession.get("language", "ar") == "ar") {
             return;
           }
@@ -112,7 +117,7 @@ class ArabicButton extends ConsumerWidget {
                   : kPrimaryColorDarkMode)
               : Colors.grey, // Highlight selected language
         ),
-        child: Text('ar',
+        child: Text('ع',
             style: TextStyle(
                 fontSize:
                     getIt<AppDimension>().isSmallScreen(context) ? 14 : 16,
@@ -129,15 +134,15 @@ class EnglishButton extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     ///  inActive width button
     var inActiveWidthButton =  ref.read
-      (widthSizeWithActiveEnButtonInSmallScreen); // normal screen size
+      (widthSizeWithInActiveEnButton); // normal screen size
     var activeWidthButton =  ref.read
       (widthSizeWithActiveEnButtonInSmallScreen);//small screen size
 
     /// Active height button
     var inActiveHeightButton =  ref.read
-      (widthSizeWithInActiveEnButton); // normal screen size
+      (heightSizeInActiveEnButton); // normal screen size
     var activeHeightButton =  ref.read
-      (widthSizeWithInActiveEnButton);//small screen size
+      (heightSizeActiveEnButtonInSmallScreen);//small screen size
 
 
     return SizedBox(
@@ -149,16 +154,18 @@ class EnglishButton extends ConsumerWidget {
           : inActiveHeightButton,
       child: ElevatedButton(
         onPressed: () async {
+      WidgetsBinding.instance.addPostFrameCallback((_) async {
+        ref.read(languageNotifier.notifier).changeLanguage("en", context);
+        ref.read(languageNotifier.notifier).saveLanguage("en");
+
+      });
+
           if (NewSession.get("language", "en") == "en") {
             return;
           }
 
           await myPushNameAnimation(context);
           NewSession.save("language", "en");
-
-          /// languageController.changeLanguage("en", context);
-          // Call your language change function here
-          // e.g., changeLanguage('en', context);
         },
         style: ElevatedButton.styleFrom(
           elevation: NewSession.get("language", "en") == 'en' ? 0 : 3.5,
@@ -169,7 +176,7 @@ class EnglishButton extends ConsumerWidget {
               : Colors.grey, // Highlight selected
           // language
         ),
-        child: Text('en',
+        child: Text('EN',
             style: TextStyle(
                 fontSize:
                     getIt<AppDimension>().isSmallScreen(context) ? 14 : 16,

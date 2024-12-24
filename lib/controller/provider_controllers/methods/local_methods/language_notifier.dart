@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:get/get.dart';
 
 import '../../../../session/new_session.dart';
 
-
 class LanguageNotifier extends StateNotifier<Locale> {
-  LanguageNotifier() : super(const Locale('en', 'US'),);
+  LanguageNotifier([Locale? initialLocale])
+      : super(initialLocale ?? const Locale('ar', 'US'));
 
-  // Change the language and update state
   void changeLanguage(String langCode, BuildContext context) {
     Locale newLocale;
     switch (langCode) {
@@ -20,19 +20,14 @@ class LanguageNotifier extends StateNotifier<Locale> {
       default:
         return; // Return if the language code is invalid
     }
-    state = newLocale; // Update the state
-    saveLanguage(langCode); // Save language to persistent storage
+    state = newLocale;
+    Get.updateLocale(newLocale);
+    saveLanguage(langCode);
   }
 
-  // Save language to persistent storage
   Future<void> saveLanguage(String langCode) async {
-     NewSession.save('language', langCode);
+    await NewSession.save('language', langCode);
   }
 
-  // Load saved language from persistent storage
-  Future<void> loadSavedLanguage(BuildContext context) async {
-    final savedLanguage =  NewSession.get('language', "en");
-    changeLanguage(savedLanguage, context); // Update the state with the saved
-    // language
-  }
+
 }

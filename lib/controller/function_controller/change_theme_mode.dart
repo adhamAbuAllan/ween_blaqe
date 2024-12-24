@@ -9,7 +9,7 @@ class ChangeThemeMode extends GetxController {
    // SharedPrefer// Assuming ChangeThemeMode is a provider that holds theme data
    // final themeModeProvider = Provider<ChangeThemeMode>((ref) {
    //   return ChangeThemeMode();
-   // });ences prefs = await SharedPreferences.getInstance();
+   // });ences prefs! = await SharedPreferences.getInstance();
    debugPrint("the isDark value before change value is $isLight -> in onChange method");
 
    isLight =onChange;

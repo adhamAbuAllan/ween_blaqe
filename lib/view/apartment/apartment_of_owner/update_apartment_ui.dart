@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:ween_blaqe/controller/provider_controllers/providers/apartment_provider.dart';
 import 'package:ween_blaqe/constants/nums.dart';
+import 'package:ween_blaqe/controller/provider_controllers/providers/color_provider.dart';
 import 'package:ween_blaqe/view/apartment/apartment_of_owner/widgets/dropdown_fields_widgets/cities_drop_down_widget.dart';
 import 'package:ween_blaqe/view/apartment/apartment_of_owner/widgets/dropdown_fields_widgets/types_drop_down_widget.dart';
 import 'package:ween_blaqe/view/apartment/apartment_of_owner/widgets/floating_button_add_delete_image_widget.dart';
@@ -112,13 +113,9 @@ class _UpdateApartmentUiState extends ConsumerState<UpdateApartmentUi> {
   @override
   Widget build(BuildContext context) {
     return ColorfulSafeArea(
-      color: themeMode.isLight
-          ? kContainerColorLightMode
-          : kContainerColorDarkMode,
+      color: ref.read(themeModeNotifier.notifier).primaryTheme(ref: ref),
       child: Scaffold(
-        backgroundColor: themeMode.isLight
-            ? kBackgroundAppColorLightMode
-            : kBackgroundAppColorDarkMode,
+        backgroundColor: ref.read(themeModeNotifier.notifier).backgroundAppTheme(ref: ref),
         appBar: AppbarUpdateApartmentWidget(
           oneApartment: widget.oneApartment!,
         ),

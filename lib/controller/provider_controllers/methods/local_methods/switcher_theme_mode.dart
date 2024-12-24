@@ -4,53 +4,16 @@ import 'package:ween_blaqe/controller/provider_controllers/providers/color_provi
 
 import '../../../../main.dart';
 
-class ThemeModeNotifier extends StateNotifier<SwitcherThemeModeNotifier> {
-  ThemeModeNotifier() : super(SwitcherThemeModeNotifier());
-
-  bool get isLightMode => super.state.state;
-
-  Color containerTheme({required WidgetRef ref}) {
-
-      return isLightMode
-          ? ref.read(containerColorLight)
-          : ref.read(containerColorDark);
-
-  }
-  Color primaryTheme({required WidgetRef ref}) {
-
-      return isLightMode
-          ? ref.read(primaryColorLight)
-          : ref.read(primaryColorDark);
-  }
-  Color primary300Theme({required WidgetRef ref}) {
-
-      return isLightMode
-          ? ref.read(primaryColor300Light)
-          : ref.read(primaryColor300Dark);
-  }
-  Color textTheme({required WidgetRef ref}) {
-
-      return isLightMode
-          ? ref.read(textColorLight)
-          : ref.read(textColorDark);
-  }
-  Color backgroundAppTheme({required WidgetRef ref}) {
-
-      return isLightMode
-          ? ref.read(backgroundAppColorLight)
-          : ref.read(backgroundAppColorDark);
-  }
-}
-
-
-class SwitcherThemeModeNotifier extends StateNotifier<bool> {
-  SwitcherThemeModeNotifier() : super(false) {
+class ThemeModeNotifier extends StateNotifier<bool> {
+  ThemeModeNotifier() : super(false) {
     loadThemeMode();
   }
 
-  Future<void> toggleTheme(bool isLight) async {
-    state = isLight; // Update the state
-    await saveThemeMode(isLight);
+  bool get isLightMode => state;
+
+  void toggleThemeMode(value) {
+    state = value;
+    saveThemeMode(value);
     debugPrint("Theme mode updated to: ${state ? 'Light' : 'Dark'}");
   }
 
@@ -65,5 +28,37 @@ class SwitcherThemeModeNotifier extends StateNotifier<bool> {
     // mode)
     debugPrint(
         "Loaded theme mode from SharedPreferences: ${state ? 'Light' : 'Dark'}");
+  }
+
+  Color containerTheme({required WidgetRef ref}) {
+    return isLightMode
+        ? ref.read(containerColorLight)
+        : ref.read(containerColorDark);
+  }
+
+  Color primaryTheme({required WidgetRef ref, double? withOpacity}) {
+    return withOpacity == null
+        ? (isLightMode
+            ? ref.read(primaryColorLight)
+            : ref.read(primaryColorDark))
+        : (isLightMode
+            ? ref.read(primaryColorLight).withOpacity(withOpacity)
+            : ref.read(primaryColorDark).withOpacity(withOpacity));
+  }
+
+  Color primary300Theme({required WidgetRef ref}) {
+    return isLightMode
+        ? ref.read(primaryColor300Light)
+        : ref.read(primaryColor300Dark);
+  }
+
+  Color textTheme({required WidgetRef ref}) {
+    return isLightMode ? ref.read(textColorLight) : ref.read(textColorDark);
+  }
+
+  Color backgroundAppTheme({required WidgetRef ref}) {
+    return isLightMode
+        ? ref.read(backgroundAppColorLight)
+        : ref.read(backgroundAppColorDark);
   }
 }

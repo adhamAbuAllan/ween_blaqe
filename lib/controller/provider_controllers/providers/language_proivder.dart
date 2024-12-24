@@ -3,7 +3,7 @@ import 'dart:ui';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../../session/new_session.dart';
-import '../methods/local_methods/switcher_language.dart';
+import '../methods/local_methods/language_notifier.dart';
 //LanguageNotifier
 final languageNotifier = StateNotifierProvider<LanguageNotifier, Locale>(
         (ref) => LanguageNotifier());
@@ -54,3 +54,12 @@ final heightSizeInActiveArButton = StateProvider<double>((ref) =>  (NewSession
 ("language", "ar") == "ar" ? 34 : 36));// Arabic Button height for normal
 // screen
 // size
+/*
+        width:  getIt<AppDimension>().isSmallScreen(context) ?
+            (NewSession.get("language", "ar") != "ar" ?50 : 48 ) : (NewSession
+                .get("language", "ar") != "ar"? 64:62),
+
+            height:getIt<AppDimension>().isSmallScreen(context) ?
+            (NewSession.get("language", "ar") != "ar" ?30 : 28 ) : (NewSession
+                .get("language", "ar") != "ar" ?36:34),
+ */

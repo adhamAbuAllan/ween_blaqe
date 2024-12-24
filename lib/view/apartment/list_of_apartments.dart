@@ -12,6 +12,7 @@ import 'package:ween_blaqe/api/apartments_api/apartments.dart';
 
 // import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:ween_blaqe/controller/provider_controllers/providers/color_provider.dart';
 import 'package:ween_blaqe/view/apartment/show_deitals_of_apartment'
     '/show_deitals_of_apartment_ui.dart';
 import 'package:ween_blaqe/view/apartment/widgets/bookmark_button_widget.dart';
@@ -92,9 +93,7 @@ class _ApartmentsListConsumerState extends ConsumerState<ApartmentsListWidget> {
                   padding: const EdgeInsets.symmetric(horizontal: 10),
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(7),
-                    color: themeMode.isLight
-                        ? kContainerColorLightMode
-                        : kContainerColorDarkMode,
+                    color: ref.read(themeModeNotifier.notifier).containerTheme(ref: ref),
                   ),
                   child: Column(
                     children: [

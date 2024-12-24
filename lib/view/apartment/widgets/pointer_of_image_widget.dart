@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import '../../../api/photos.dart';
 import '../../../constants/nums.dart';
 import '../../../controller/provider_controllers/providers/apartment_provider.dart';
+import '../../../controller/provider_controllers/providers/color_provider.dart';
 
 class PointerOfImageWidget extends ConsumerWidget {
   const PointerOfImageWidget({
@@ -64,9 +65,9 @@ class PointerOfImageWidget extends ConsumerWidget {
             
                     ? [
                   BoxShadow(
-                    color: themeMode.isLight
-                        ? kPrimaryColorLightMode.withOpacity(0.1)
-                        : kPrimaryColorDarkMode.withOpacity(0.1),
+                    color: ref.read(themeModeNotifier.notifier).primaryTheme
+                      (ref: ref,withOpacity: 0.1),
+
                     spreadRadius: 7,
                     blurRadius: 7,
                     offset: const Offset(0, 2),

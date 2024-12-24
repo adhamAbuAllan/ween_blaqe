@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:ween_blaqe/view/common_widgets/back_button_widget.dart';
-import 'package:ween_blaqe/view/widgets_before_user_reg/widgets/login_widgets/button_login_completed_widget.dart';
-import 'package:ween_blaqe/view/widgets_before_user_reg/widgets/login_widgets/password_login_completed_widget.dart';
-import 'package:ween_blaqe/view/widgets_before_user_reg/widgets/login_widgets/phone_login_completed_widget.dart';
-import 'package:ween_blaqe/view/widgets_before_user_reg/widgets/login_widgets/title_login_completed_widget.dart';
 import '../../../../constants/nums.dart';
-import '../../../../view/widgets_before_user_reg/widgets/login_widgets/button_nav_to_reg_completed_widget.dart';
+import '../../controller/provider_controllers/providers/color_provider.dart';
+import 'widgets/login_widgets/button_login_completed_widget.dart';
+import 'widgets/login_widgets/button_nav_to_reg_completed_widget.dart';
+import 'widgets/login_widgets/password_login_completed_widget.dart';
+import 'widgets/login_widgets/phone_login_completed_widget.dart';
+import 'widgets/login_widgets/title_login_completed_widget.dart';
 
 class LoginUi extends ConsumerWidget {
   const LoginUi({super.key});
@@ -14,9 +15,7 @@ class LoginUi extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     return Scaffold(
-      backgroundColor: themeMode.isLight
-          ? kBackgroundAppColorLightMode
-          : kBackgroundAppColorDarkMode,
+      backgroundColor: ref.read(themeModeNotifier.notifier).backgroundAppTheme(ref: ref),
       body: GestureDetector(
         onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
         child: const SingleChildScrollView(

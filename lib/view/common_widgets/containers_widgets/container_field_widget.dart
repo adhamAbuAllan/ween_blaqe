@@ -5,6 +5,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:get/get.dart';
 import 'package:ween_blaqe/controller/function_controller/change_theme_mode.dart';
 import 'package:ween_blaqe/controller/provider_controllers/providers/apartment_provider.dart';
+import 'package:ween_blaqe/controller/provider_controllers/providers/color_provider.dart';
 import 'package:ween_blaqe/view/common_widgets/containers_widgets/container_widget.dart';
 
 import '../../../constants/coordination.dart';
@@ -54,9 +55,8 @@ class ContainerFieldWidget extends ConsumerWidget {
               child: Text(
                 title,
                 style: TextStyle(
-                  color: themeMode.isLight
-                      ? kTextColorLightMode
-                      : kTextColorDarkMode,
+                  color:
+                      ref.read(themeModeNotifier.notifier).textTheme(ref: ref),
                   fontSize:
                       getIt<AppDimension>().isSmallScreen(context) ? 16 : 18,
                   fontWeight: FontWeight.w500,
@@ -70,15 +70,15 @@ class ContainerFieldWidget extends ConsumerWidget {
           child: TextFormFieldWidget(
             onChanged: (value) {
               bool hasChange = originalValue != controller?.text;
-                if (value.isNotEmpty) {
-                  if (hasChange) {
-                    ref.read(hasChanged.notifier).state = true;
-                  }else{
-                    ref.read(hasChanged.notifier).state = false;
-                  }
+              if (value.isNotEmpty) {
+                if (hasChange) {
+                  ref.read(hasChanged.notifier).state = true;
                 } else {
-                  ///should show the validate message when the field is empty
+                  ref.read(hasChanged.notifier).state = false;
                 }
+              } else {
+                ///should show the validate message when the field is empty
+              }
             },
             validator: validator,
             cursorColor: themeMode.isLight
@@ -91,11 +91,17 @@ class ContainerFieldWidget extends ConsumerWidget {
             keyboardType: inputType,
             autofocus: autoFocus ?? false,
             decoration: containerInputDecoration(hintInput, context,
-                helperText: helperText),
+                helperText: helperText,
+                textColor:
+                    ref.read(themeModeNotifier.notifier).textTheme(ref: ref),
+                foucsBorderColor:
+                    ref.read(themeModeNotifier.notifier).primaryTheme(ref: ref),
+                unFoucsBorderColor: ref
+                    .read(themeModeNotifier.notifier)
+                    .primary300Theme(ref: ref)),
             style: TextStyle(
               fontSize: getIt<AppDimension>().isSmallScreen(context) ? 15 : 16,
-              color:
-                  themeMode.isLight ? kTextColorLightMode : kTextColorDarkMode,
+              color: ref.read(themeModeNotifier.notifier).textTheme(ref: ref),
             ),
           ),
         ),
@@ -103,14 +109,14 @@ class ContainerFieldWidget extends ConsumerWidget {
     ));
   }
 
-  InputDecoration containerInputDecoration(String hintInput, BuildContext context,
-      {String? helperText}) {
-    ChangeThemeMode themeMode = Get.find();
-
+  InputDecoration containerInputDecoration(
+      String hintInput, BuildContext context,
+      {String? helperText,
+      required Color textColor,
+      required Color foucsBorderColor,
+      required Color unFoucsBorderColor}) {
     return InputDecoration(
-        helperStyle: TextStyle(
-            color: themeMode.isLight ? kTextColorLightMode : kTextColorDarkMode,
-            fontFamily: "IBM"),
+        helperStyle: TextStyle(color: textColor, fontFamily: "IBM"),
         helperText: helperText,
         contentPadding: EdgeInsets.symmetric(
             vertical:
@@ -126,17 +132,13 @@ class ContainerFieldWidget extends ConsumerWidget {
         focusedBorder: OutlineInputBorder(
           borderSide: BorderSide(
             width: 1.5,
-            color: themeMode.isLight
-                ? kPrimaryColorLightMode
-                : kPrimaryColorDarkMode,
+            color: foucsBorderColor,
           ),
         ),
         enabledBorder: OutlineInputBorder(
             borderSide: BorderSide(
               width: 1,
-              color: themeMode.isLight
-                  ? kPrimaryColorLightMode.withOpacity(.3)
-                  : kPrimaryColorDarkMode.withOpacity(.3),
+              color: unFoucsBorderColor,
             ),
             borderRadius: BorderRadius.circular(7)),
         errorBorder: const OutlineInputBorder(
@@ -149,7 +151,6 @@ class ContainerFieldWidget extends ConsumerWidget {
         errorStyle: const TextStyle(
           color: Colors.red,
         ),
-        helperMaxLines: 2
-        );
+        helperMaxLines: 2);
   }
 }

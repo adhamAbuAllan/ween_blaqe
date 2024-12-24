@@ -24,6 +24,7 @@ import '../../../../constants/coordination.dart';
 import '../../../../constants/get_it_controller.dart';
 import '../../../../constants/nums.dart';
 import '../../../controller/provider_controllers/providers/apartment_provider.dart';
+import '../../../controller/provider_controllers/providers/color_provider.dart';
 
 class ShowDeitalsOfApartmentUi extends ConsumerStatefulWidget {
   const ShowDeitalsOfApartmentUi({
@@ -66,9 +67,8 @@ class _ShowDeitalsOfApartmentUiState
   Widget build(BuildContext context) {
 
     return Scaffold(
-      backgroundColor: themeMode.isLight
-          ? kBackgroundAppColorLightMode
-          : kBackgroundAppColorDarkMode,
+      backgroundColor: ref.read(themeModeNotifier.notifier)
+          .backgroundAppTheme(ref: ref),
       body: SingleChildScrollView(
         physics: const BouncingScrollPhysics(
             decelerationRate: ScrollDecelerationRate.fast),
@@ -95,9 +95,7 @@ class _ShowDeitalsOfApartmentUiState
                   child: Text(
                     "${widget.oneApartment?.timeAgo}",
                     style: TextStyle(
-                      color: themeMode.isLight
-                          ? kTextColorLightMode
-                          : kTextColorDarkMode,
+                      color: ref.read(themeModeNotifier.notifier).textTheme(ref: ref),
                       fontSize: 14,
                     ),
                   ),

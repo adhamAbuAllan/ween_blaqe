@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:ween_blaqe/constants/nums.dart';
 import 'package:ween_blaqe/controller/provider_controllers/providers/apartment_provider.dart';
+import 'package:ween_blaqe/controller/provider_controllers/providers/color_provider.dart';
 import 'package:ween_blaqe/controller/provider_controllers/providers/connectivity_provider.dart';
 
 // import 'package:ween_blaqe/controller/provider_controllers/statuses/connectivity_state.dart';
@@ -124,14 +125,10 @@ class _HomeUiState extends ConsumerState<HomeUi> {
                     )
                   : RefreshIndicator(
                       triggerMode: RefreshIndicatorTriggerMode.anywhere,
-                      backgroundColor: themeMode.isLight
-                          ? kContainerColorLightMode
-                          : kContainerColorDarkMode,
+                      backgroundColor: ref.read(themeModeNotifier.notifier).containerTheme(ref: ref),
                       displacement: 100 * 3,
                       semanticsValue: const Text("refresh").toString(),
-                      color: themeMode.isLight
-                          ? kPrimaryColorLightMode
-                          : kPrimaryColorDarkMode,
+                      color: ref.read(themeModeNotifier.notifier).primaryTheme(ref: ref),
                       onRefresh: () async {
 
                         ref.read(isAllTypesOfApartmentNotifier.notifier).state =

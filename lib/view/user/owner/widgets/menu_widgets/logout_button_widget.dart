@@ -10,8 +10,8 @@ import '../../../../../core/utils/styles/button.dart';
 import '../../../../../main.dart';
 import '../../../../../session/sesstion_of_user.dart';
 
-class LogoutButtonWidget extends ConsumerWidget {
-  const LogoutButtonWidget({super.key});
+class ButtonLogoutWidget extends ConsumerWidget {
+  const ButtonLogoutWidget({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {

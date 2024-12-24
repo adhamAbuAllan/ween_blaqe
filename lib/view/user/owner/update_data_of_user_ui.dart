@@ -9,13 +9,13 @@ import 'package:ween_blaqe/view/user/owner/widgets/update_user_data_widgets'
 import 'package:ween_blaqe/view/user/owner/widgets/update_user_data_widgets'
     '/update_user_password_container_widget.dart';
 import 'package:ween_blaqe/controller/provider_controllers/providers/auth_provider.dart';
-import 'package:ween_blaqe/view/widgets_before_user_reg/widgets'
-    '/registration_widgets/phone_completed_widget.dart';
 import '../../../constants/coordination.dart';
 import '../../../constants/get_it_controller.dart';
 import '../../../constants/localization.dart';
 import '../../../constants/nums.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+
+import '../../authorization_ui/widgets/registration_widgets/phone_completed_widget.dart';
 
 class UpdateUserDataUi extends ConsumerWidget {
   const UpdateUserDataUi({super.key});

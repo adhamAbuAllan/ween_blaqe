@@ -6,8 +6,11 @@ class NewSession {
   static Future<void> init() async {
     sp = await SharedPreferences.getInstance();
   }
-
-  static void save<T>(String key, T value) {
+// Hypothetical example:
+//   static Future<void> save(String key, String value) async {
+//     // Implementation
+//   }
+  static Future<void> save<T>(String key, T value) async {
     if (value is String) {
       sp.setString(key, value);
     } else if (value is int) {

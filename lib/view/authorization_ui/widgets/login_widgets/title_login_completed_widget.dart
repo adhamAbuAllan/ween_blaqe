@@ -5,6 +5,7 @@ import '../../../../constants/coordination.dart';
 import '../../../../constants/get_it_controller.dart';
 import '../../../../constants/localization.dart';
 import '../../../../constants/nums.dart';
+import '../../../../controller/provider_controllers/providers/color_provider.dart';
 
 class TitleLoginCompletedWidget extends ConsumerWidget {
   const TitleLoginCompletedWidget({super.key});
@@ -13,7 +14,6 @@ class TitleLoginCompletedWidget extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
-
       children: [
         Padding(
           padding: EdgeInsets.fromLTRB(20,
@@ -25,9 +25,8 @@ class TitleLoginCompletedWidget extends ConsumerWidget {
                     getIt<AppDimension>().isSmallScreen(context) ? 22 : 26,
                 fontWeight: FontWeight.w600,
                 inherit: true,
-                color: themeMode.isLight
-                    ? kTextColorLightMode
-                    : kTextColorDarkMode),
+                color:
+                    ref.read(themeModeNotifier.notifier).textTheme(ref: ref)),
           ),
         ),
         //nameApp
@@ -48,9 +47,9 @@ class TitleLoginCompletedWidget extends ConsumerWidget {
                             : 26,
                         inherit: true,
                         fontWeight: FontWeight.w600,
-                        color: themeMode.isLight
-                            ? kTextColorLightMode
-                            : kTextColorDarkMode),
+                        color: ref
+                            .read(themeModeNotifier.notifier)
+                            .textTheme(ref: ref)),
                   ),
                   Text(
                     SetLocalization.of(context)!
@@ -60,9 +59,9 @@ class TitleLoginCompletedWidget extends ConsumerWidget {
                           ? 22
                           : 26,
                       inherit: true,
-                      color: themeMode.isLight
-                          ? kPrimaryColorLightMode
-                          : kPrimaryColorDarkMode,
+                      color: ref
+                          .read(themeModeNotifier.notifier)
+                          .primaryTheme(ref: ref),
                       fontWeight: FontWeight.w600,
                     ),
                   ),

@@ -21,7 +21,7 @@ import '../../constants/get_it_controller.dart';
 import '../../controller/get_controllers.dart';
 import '../../core/utils/styles/button.dart';
 import '../../core/widgets/buttons/lines_buttons/line_buttons.dart';
-import '../widgets_before_user_reg/account_before_login.dart';
+import '../authorization_ui/account_before_login.dart';
 // import 'package:carousel_slider_plus/carousel_controller.dart';
 
 main() {

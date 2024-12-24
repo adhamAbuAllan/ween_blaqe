@@ -7,6 +7,7 @@ import 'package:ween_blaqe/core/utils/funcations/route_pages/push_routes.dart';
 import '../../../../constants/localization.dart';
 import '../../../../constants/nums.dart';
 import '../../../../controller/provider_controllers/providers/apartment_provider.dart';
+import '../../../../controller/provider_controllers/providers/color_provider.dart';
 import '../../../../controller/provider_controllers/providers/snack_bar_provider.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../../apartment/apartment_of_owner/widgets/advantages_checkbox_widget.dart';
@@ -33,11 +34,9 @@ class _SecondStepUiState extends ConsumerState<SecondStepUi> {
   @override
   Widget build(BuildContext context) {
     return ColorfulSafeArea(
-      color: themeMode.isLight ? kPrimaryColorLightMode : kPrimaryColorDarkMode,
+      color: ref.read(themeModeNotifier.notifier).primaryTheme(ref: ref),
       child: Scaffold(
-        backgroundColor: themeMode.isLight
-            ? kBackgroundAppColorLightMode
-            : kBackgroundAppColorDarkMode,
+        backgroundColor: ref.read(themeModeNotifier.notifier).backgroundAppTheme(ref: ref),
         body: SingleChildScrollView(
           child: Column(
             children: [

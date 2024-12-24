@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:ween_blaqe/controller/provider_controllers/providers/color_provider.dart';
 
 import '../../../api/apartments_api/apartments.dart';
 import '../../../constants/nums.dart';
@@ -20,7 +21,7 @@ final Apartments apartmentsRes;
             fontSize: 14,
             fontWeight: FontWeight.w600,
             color:
-                themeMode.isLight ? kTextColorLightMode : kTextColorDarkMode),
+                ref.read(themeModeNotifier.notifier).textTheme(ref: ref)),
       ),
     );
   }

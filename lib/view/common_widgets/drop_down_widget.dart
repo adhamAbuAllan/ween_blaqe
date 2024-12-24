@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:ween_blaqe/controller/provider_controllers/providers/color_provider.dart';
 
 import '../../constants/coordination.dart';
 import '../../constants/get_it_controller.dart';
@@ -38,23 +39,17 @@ class _DropdownFieldWidgetState extends ConsumerState<DropdownFieldWidget> {
           enabledBorder: OutlineInputBorder(
             borderSide: BorderSide(
               width: 1,
-              color: themeMode.isLight
-                  ? kPrimaryColorLightMode.withOpacity(.3)
-                  : kPrimaryColorDarkMode.withOpacity(.3),
+              color: ref.read(themeModeNotifier.notifier).primary300Theme(ref: ref),
             ),
           ),
           focusedBorder: OutlineInputBorder(
             borderSide: BorderSide(
-              color: themeMode.isLight
-                  ? kPrimaryColorLightMode
-                  : kPrimaryColorDarkMode,
+              color: ref.read(themeModeNotifier.notifier).primaryTheme(ref: ref),
               width: 1,
             ),
           ),
         ),
-        dropdownColor: themeMode.isLight
-            ? kContainerColorLightMode
-            : kContainerColorDarkMode,
+        dropdownColor: ref.read(themeModeNotifier.notifier).containerTheme(ref: ref),
         value:widget.alreadyExistingValue??widget.items.first,
         items: widget.items.map((item) {
           String? itemName = item.name;
@@ -68,9 +63,7 @@ class _DropdownFieldWidgetState extends ConsumerState<DropdownFieldWidget> {
                   style: TextStyle(
                     fontSize:
                     getIt<AppDimension>().isSmallScreen(context) ? 15 : 16,
-                    color: themeMode.isLight
-                        ? kTextColorLightMode
-                        : kTextColorDarkMode,
+                    color: ref.read(themeModeNotifier.notifier).textTheme(ref: ref),
                   ),
                 )),
           );

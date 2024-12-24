@@ -5,8 +5,6 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:ween_blaqe/controller/provider_controllers/methods/api_methods/auth_methods/refresh_user_data_notifier.dart';
 import 'package:ween_blaqe/controller/provider_controllers/methods/hybrid_methods/auth_validator/login_and_reg_validators/validator.dart';
-import 'package:ween_blaqe/view/widgets_before_user_reg/login_ui.dart';
-import 'package:ween_blaqe/view/widgets_before_user_reg/registration_ui.dart';
 
 import '../../../api/users.dart';
 import '../methods/api_methods/auth_methods/register_notifier.dart';

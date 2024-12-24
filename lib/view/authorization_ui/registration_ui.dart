@@ -5,14 +5,14 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:ween_blaqe/constants/nums.dart';
 import 'package:ween_blaqe/core/widgets/registration/complete_widget/privacy_policy_text_widget.dart';
 import 'package:ween_blaqe/view/common_widgets/back_button_widget.dart';
-import 'package:ween_blaqe/view/widgets_before_user_reg/widgets/registration_widgets/button_reg_completed_widget.dart';
-import 'package:ween_blaqe/view/widgets_before_user_reg/widgets/registration_widgets/password_reg_completed_widget.dart';
-import 'package:ween_blaqe/view/widgets_before_user_reg/widgets/registration_widgets/phone_completed_widget.dart';
-import 'package:ween_blaqe/view/widgets_before_user_reg/widgets/registration_widgets/title_reg_completed_widget.dart';
-import 'package:ween_blaqe/view/widgets_before_user_reg/widgets/registration_widgets/user_name_reg_completed_widget.dart';
 import '../../constants/coordination.dart';
 import '../../constants/get_it_controller.dart';
 import '../../controller/provider_controllers/providers/auth_provider.dart';
+import 'widgets/registration_widgets/button_reg_completed_widget.dart';
+import 'widgets/registration_widgets/password_reg_completed_widget.dart';
+import 'widgets/registration_widgets/phone_completed_widget.dart';
+import 'widgets/registration_widgets/title_reg_completed_widget.dart';
+import 'widgets/registration_widgets/user_name_reg_completed_widget.dart';
 
 class RegistrationUi extends ConsumerWidget {
   const RegistrationUi({

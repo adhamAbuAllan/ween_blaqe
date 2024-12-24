@@ -6,8 +6,8 @@ import '../../../../../../constants/get_it_controller.dart';
 import '../../../../../../constants/localization.dart';
 import '../../../../../../constants/nums.dart';
 
-class TitleScreenWidget extends ConsumerWidget {
-  const TitleScreenWidget({super.key});
+class TitleLoginWidget extends ConsumerWidget {
+  const TitleLoginWidget({super.key});
 
 
   @override

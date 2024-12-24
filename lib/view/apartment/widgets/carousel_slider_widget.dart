@@ -11,26 +11,23 @@ import '../../../../../constants/get_it_controller.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class CoursolSliderWidget extends ConsumerStatefulWidget {
-  const CoursolSliderWidget({
-    super.key,
-    required this.imageList,
-    required this.apartmentId,
-    required this.oneApartment,
-    this.marageBetweenImages
-  });
+  const CoursolSliderWidget(
+      {super.key,
+      required this.imageList,
+      required this.apartmentId,
+      required this.oneApartment,
+      this.marageBetweenImages});
 
   final List<Photos> imageList;
   final int apartmentId;
   final DataOfOneApartment oneApartment;
-  final double ? marageBetweenImages;
+  final double? marageBetweenImages;
 
   @override
   ConsumerState createState() => _CoursolSliderWidgetState();
 }
 
 class _CoursolSliderWidgetState extends ConsumerState<CoursolSliderWidget> {
-
-
   @override
   Widget build(BuildContext context) {
     final currentIndex =
@@ -61,13 +58,13 @@ class _CoursolSliderWidgetState extends ConsumerState<CoursolSliderWidget> {
                   );
                 },
                 errorWidget: (context, url, error) {
-return SkeletonAvatar(
-  style: SkeletonAvatarStyle(
-    width: double.infinity,
-    height: 240,
-    borderRadius: BorderRadius.circular(7),
-  ),
-);
+                  return SkeletonAvatar(
+                    style: SkeletonAvatarStyle(
+                      width: double.infinity,
+                      height: 240,
+                      borderRadius: BorderRadius.circular(7),
+                    ),
+                  );
                 },
               ),
             ),
@@ -79,7 +76,7 @@ return SkeletonAvatar(
           pauseAutoPlayInFiniteScroll: true,
           enableInfiniteScroll: false,
           disableCenter: false,
-          viewportFraction: widget.marageBetweenImages?? 0.98,
+          viewportFraction: widget.marageBetweenImages ?? 0.98,
           autoPlayCurve: Curves.fastLinearToSlowEaseIn,
           enlargeStrategy: CenterPageEnlargeStrategy.height,
           initialPage: currentIndex,

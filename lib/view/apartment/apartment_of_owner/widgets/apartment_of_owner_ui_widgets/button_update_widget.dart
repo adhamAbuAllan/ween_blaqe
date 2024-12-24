@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:ween_blaqe/controller/provider_controllers/providers/color_provider.dart';
 
 // import 'package:ween_blaqe/constants/strings.dart';
 // import 'package:ween_blaqe/core/utils/funcations/route_pages/push_routes.dart';
@@ -31,9 +32,7 @@ class _UpdateButtonClassWidgetConsumerState
       splashColor: Colors.transparent,
 
       icon: Icon(Icons.edit,
-          color: themeMode.isLight
-              ? kTextColorLightMode
-              : kTextColorDarkMode), // Adjust colors based on theme
+          color: ref.read(themeModeNotifier.notifier).textTheme(ref: ref)), // Adjust colors based on theme
       onPressed: () {
         // imagesModelController.imageFiles?.clear();
 

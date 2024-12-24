@@ -9,6 +9,7 @@ import '../../../../constants/coordination.dart';
 import '../../../../constants/get_it_controller.dart';
 import '../../../../constants/localization.dart';
 import '../../../../constants/nums.dart';
+import '../../../../controller/provider_controllers/providers/color_provider.dart';
 import '../../../common_widgets/containers_widgets/container_load_widget.dart';
 
 class AdvantagesCheckBoxWidget extends ConsumerStatefulWidget {
@@ -67,7 +68,7 @@ class AdvantageNameWidget extends ConsumerWidget {
       advantage.advName ?? "",
       style: TextStyle(
           fontSize: getIt<AppDimension>().isSmallScreen(context) ? 14 : 16,
-          color: themeMode.isLight ? kTextColorLightMode : kTextColorDarkMode),
+          color: ref.read(themeModeNotifier.notifier).textTheme(ref: ref)),
     );
   }
 }
@@ -89,16 +90,15 @@ class _CheckBoxWidgetState extends ConsumerState<CheckBoxWidget> {
     return Checkbox(
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(2.6)),
       focusColor:
-          themeMode.isLight ? kPrimaryColorLightMode : kPrimaryColorDarkMode,
+          ref.read(themeModeNotifier.notifier).primaryTheme(ref: ref),
       checkColor: Colors.white,
       hoverColor:
-          themeMode.isLight ? kPrimaryColorLightMode : kPrimaryColorDarkMode,
+      ref.read(themeModeNotifier.notifier).primaryTheme(ref: ref),
       activeColor:
-          themeMode.isLight ? kPrimaryColorLightMode : kPrimaryColorDarkMode,
+      ref.read(themeModeNotifier.notifier).primaryTheme(ref: ref),
       side: BorderSide(
-          color: themeMode.isLight
-              ? kPrimaryColor300LightMode
-              : kPrimaryColor300DarkMode),
+          color: ref.read(themeModeNotifier.notifier).primary300Theme(ref:
+          ref)),
       splashRadius: 20,
       value: widget.advantage.checked,
       onChanged: (value) {
@@ -139,7 +139,7 @@ class _AdvantageIconWidgetState extends ConsumerState<AdvantageIconWidget> {
                 height: 28,
               )));
             },
-            color: themeMode.isLight ? kTextColorLightMode : kTextColorDarkMode,
+            color: ref.read(themeModeNotifier.notifier).textTheme(ref: ref),
           );
   }
 }

@@ -3,13 +3,8 @@ import 'package:flutter/material.dart';
 
 import '../methods/local_methods/switcher_theme_mode.dart';
 
-final themeModeNotifier =
-    StateNotifierProvider<ThemeModeNotifier, SwitcherThemeModeNotifier>((ref) {
+final themeModeNotifier = StateNotifierProvider<ThemeModeNotifier, bool>((ref) {
   return ThemeModeNotifier();
-});
-final switcherThemeModeNotifier =
-    StateNotifierProvider<SwitcherThemeModeNotifier, bool>((ref) {
-  return SwitcherThemeModeNotifier();
 });
 
 // dark theme
