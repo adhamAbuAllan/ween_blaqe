@@ -353,7 +353,7 @@ import '../../../core/utils/funcations/snakbar.dart';
 import '../../../core/widgets/alirt_class_widget.dart';
 import '../../../session/new_session.dart';
 import '../../apartment/list_of_apartments.dart';
-import '../../error_widgets/no_internet.dart';
+import '../../error_widgets/no_internet_ui.dart';
 
 
 

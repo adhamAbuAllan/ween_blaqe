@@ -150,9 +150,8 @@ class _TypeNotFoundState extends State<TypeNotFound> {
       bottomColor: Colors.transparent,
       color: themeMode.isLight ? kPrimaryColorLightMode : kPrimaryColorDarkMode,
       child: Scaffold(
-        backgroundColor: themeMode.isLight
-            ? kBackgroundAppColorLightMode
-            : kBackgroundAppColorDarkMode,
+        backgroundColor:ref.read(themeModeNotifier.notifier).backgroundAppTheme(ref: ref)
+,
         body: SingleChildScrollView(
           child: Center(
             child: Column(

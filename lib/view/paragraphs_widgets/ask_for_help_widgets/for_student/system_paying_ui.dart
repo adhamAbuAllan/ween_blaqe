@@ -1,37 +1,36 @@
 import 'package:colorful_safe_area/colorful_safe_area.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:ween_blaqe/core/utils/styles/text_style/aline_style.dart';
+import 'package:ween_blaqe/view/common_widgets/button_widgets/button_list_tile_widget.dart';
 
 import '../../../../constants/localization.dart';
 import '../../../../constants/nums.dart';
+import '../../../../controller/provider_controllers/providers/color_provider.dart';
 import '../../../../core/widgets/buttons/lines_buttons/line_buttons.dart';
 import 'package:ween_blaqe/constants/strings.dart';
 import 'package:ween_blaqe/core/utils/funcations/route_pages/push_routes.dart';
 
-//this class have buttons that go to paragraphs
-class SystemPaying extends StatelessWidget {
-  const SystemPaying({super.key});
+import '../../../common_widgets/aline_widget.dart';
+
+class SystemPayingUi extends ConsumerWidget {
+  const SystemPayingUi({super.key});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     return ColorfulSafeArea(
       bottomColor: Colors.transparent,
-      color: themeMode.isLight ? kPrimaryColorLightMode : kPrimaryColorDarkMode,
+      color: ref.read(themeModeNotifier.notifier).primaryTheme(ref: ref),
       child: Scaffold(
-        backgroundColor: themeMode.isLight
-            ? kBackgroundAppColorLightMode
-            : kBackgroundAppColorDarkMode,
+        backgroundColor:
+            ref.read(themeModeNotifier.notifier).backgroundAppTheme(ref: ref),
         appBar: AppBar(
           title: Text(
             SetLocalization.of(context)!.getTranslateValue("payment"),
-            style:
-                const TextStyle(
-                    fontWeight: FontWeight.w600
-                ),
+            style: const TextStyle(fontWeight: FontWeight.w600),
           ),
-          backgroundColor: themeMode.isLight
-              ? kPrimaryColorLightMode
-              : kPrimaryColorDarkMode,
+          backgroundColor:
+              ref.read(themeModeNotifier.notifier).primaryTheme(ref: ref),
         ),
         body: Column(
           children: [
@@ -42,27 +41,28 @@ class SystemPaying extends StatelessWidget {
                   margin: const EdgeInsets.fromLTRB(10, 0, 10, 0),
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(7),
-                    color: themeMode.isLight
-                        ? kContainerColorLightMode
-                        : kContainerColorDarkMode,
+                    color: ref
+                        .read(themeModeNotifier.notifier)
+                        .containerTheme(ref: ref),
                   ),
                   child: Column(
                     //cancel
                     children: [
-                      askForHelpButton(() {
-                        myPushName(
-                            context, MyPagesRoutes.whatIsSystemPayingAllow);
-                      },
-                          SetLocalization.of(context)!
-                              .getTranslateValue("accepted_payment_methods"),
-                          context),
+                      ButtonListTileWidget(
+                          onTap: () {
+                            myPushName(
+                                context, MyPagesRoutes.whatIsSystemPayingAllow);
+                          },
+                          title: SetLocalization.of(context)!
+                              .getTranslateValue("accepted_payment_methods")),
                       aline,
-                      askForHelpButton(() {
-                        myPushName(context, MyPagesRoutes.couldIPayByDeposit);
-                      },
-                          SetLocalization.of(context)!
-                              .getTranslateValue("can_i_pay_deposit"),
-                          context),
+                      ButtonListTileWidget(
+                          onTap: () {
+                            myPushName(
+                                context, MyPagesRoutes.couldIPayByDeposit);
+                          },
+                          title: SetLocalization.of(context)!
+                              .getTranslateValue("can_i_pay_deposit"))
                     ],
                   )),
             ),
@@ -73,23 +73,23 @@ class SystemPaying extends StatelessWidget {
   }
 }
 
+//this class have buttons that go to paragraphs
+
 //what_is_system_paying_allow?
-class WhatIsSystemPayingAllow extends StatelessWidget {
-  const WhatIsSystemPayingAllow({super.key});
+class WhatIsSystemPayingAllowUi extends ConsumerWidget {
+  const WhatIsSystemPayingAllowUi({super.key});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     return ColorfulSafeArea(
       bottomColor: Colors.transparent,
-      color: themeMode.isLight ? kPrimaryColorLightMode : kPrimaryColorDarkMode,
+      color: ref.read(themeModeNotifier.notifier).primaryTheme(ref: ref),
       child: Scaffold(
-        backgroundColor: themeMode.isLight
-            ? kBackgroundAppColorLightMode
-            : kBackgroundAppColorDarkMode,
+        backgroundColor:
+            ref.read(themeModeNotifier.notifier).backgroundAppTheme(ref: ref),
         appBar: AppBar(
-          backgroundColor: themeMode.isLight
-              ? kPrimaryColorLightMode
-              : kPrimaryColorDarkMode,
+          backgroundColor:
+              ref.read(themeModeNotifier.notifier).primaryTheme(ref: ref),
         ),
         body: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -102,10 +102,8 @@ class WhatIsSystemPayingAllow extends StatelessWidget {
                     .getTranslateValue("accepted_payment_methods"),
                 style: TextStyle(
                   fontSize: 20.0,
-                  color: themeMode.isLight
-                      ? kTextColorLightMode
-                      : kTextColorDarkMode,
-                  
+                  color:
+                      ref.read(themeModeNotifier.notifier).textTheme(ref: ref),
                   fontWeight: FontWeight.w600,
                   inherit: false,
                 ),
@@ -121,10 +119,10 @@ class WhatIsSystemPayingAllow extends StatelessWidget {
                     .getTranslateValue("payment_by_agreement"),
                 style: TextStyle(
                   fontSize: 16.0,
-                  color: themeMode.isLight
-                      ? kTextColorLightMode
-                      : kTextColorDarkMode.withOpacity(.8),
-                  
+                  color: ref
+                      .read(themeModeNotifier.notifier)
+                      .textTheme(ref: ref)
+                      .withOpacity(.8),
                   fontWeight: FontWeight.w500,
                   inherit: true,
                 ),
@@ -138,7 +136,7 @@ class WhatIsSystemPayingAllow extends StatelessWidget {
             //     " البطاقات الإتمانية و غيرها من الطرق مسقبلاً بإذن الله",
             //     style: TextStyle(
             //         fontSize: 16.0,
-            //         
+            //
             //         inherit: true,
             //         color: themeMode.isLight
             //             ? kTextColorLightMode
@@ -152,22 +150,19 @@ class WhatIsSystemPayingAllow extends StatelessWidget {
   }
 }
 
-//could pay deposit?
-class CouldIPayByDeposit extends StatelessWidget {
-  const CouldIPayByDeposit({super.key});
+class CouldIPayByDepositUi extends ConsumerWidget {
+  const CouldIPayByDepositUi({super.key});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     return ColorfulSafeArea(
-      color: themeMode.isLight ? kPrimaryColorLightMode : kPrimaryColorDarkMode,
+      color: ref.read(themeModeNotifier.notifier).primaryTheme(ref: ref),
       child: Scaffold(
-        backgroundColor: themeMode.isLight
-            ? kBackgroundAppColorLightMode
-            : kBackgroundAppColorDarkMode,
+        backgroundColor:
+            ref.read(themeModeNotifier.notifier).backgroundAppTheme(ref: ref),
         appBar: AppBar(
-          backgroundColor: themeMode.isLight
-              ? kPrimaryColorLightMode
-              : kPrimaryColorDarkMode,
+          backgroundColor:
+              ref.read(themeModeNotifier.notifier).primaryTheme(ref: ref),
         ),
         body: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -180,11 +175,9 @@ class CouldIPayByDeposit extends StatelessWidget {
                     .getTranslateValue("can_i_pay_deposit"),
                 style: TextStyle(
                   fontSize: 20.0,
-                  color: themeMode.isLight
-                      ? kTextColorLightMode
-                      : kTextColorDarkMode,
+                  color:
+                      ref.read(themeModeNotifier.notifier).textTheme(ref: ref),
                   fontWeight: FontWeight.w600,
-                  
                   inherit: true,
                 ),
                 softWrap: true,
@@ -199,11 +192,11 @@ class CouldIPayByDeposit extends StatelessWidget {
                     .getTranslateValue("deposit_payment_agreement"),
                 style: TextStyle(
                   fontSize: 16.0,
-                  color: themeMode.isLight
-                      ? kTextColorLightMode
-                      : kTextColorDarkMode.withOpacity(.8),
+                  color: ref
+                      .read(themeModeNotifier.notifier)
+                      .textTheme(ref: ref)
+                      .withOpacity(.8),
                   fontWeight: FontWeight.w500,
-                  
                   inherit: true,
                 ),
               ),
@@ -214,3 +207,4 @@ class CouldIPayByDeposit extends StatelessWidget {
     );
   }
 }
+//could pay deposit?

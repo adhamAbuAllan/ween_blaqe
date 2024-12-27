@@ -4,6 +4,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart'; // Import Riverpod
 import 'package:ween_blaqe/constants/coordination.dart';
 import 'package:ween_blaqe/constants/get_it_controller.dart';
 import 'package:ween_blaqe/constants/localization.dart';
+import 'package:ween_blaqe/controller/provider_controllers/providers/color_provider.dart';
 
 import '../../../../api/advantages.dart';
 import '../../../../api/apartments_api/apartments.dart';
@@ -28,9 +29,7 @@ class AdvantagesWidget extends ConsumerWidget {
       margin: EdgeInsets.fromLTRB(
           10, getIt<AppDimension>().isSmallScreen(context) ? 15 : 20, 10, 0),
       decoration: BoxDecoration(
-        color: themeMode.isLight
-            ? kContainerColorLightMode
-            : kContainerColorDarkMode,
+        color: ref.read(themeModeNotifier.notifier).containerTheme(ref: ref),
         borderRadius: BorderRadius.circular(7),
       ),
       child: Column(
@@ -42,9 +41,7 @@ class AdvantagesWidget extends ConsumerWidget {
             child: Text(
               SetLocalization.of(context)!.getTranslateValue("advantages"),
               style: TextStyle(
-                color: themeMode.isLight
-                    ? kTextColorLightMode
-                    : kTextColorDarkMode,
+                color: ref.read(themeModeNotifier.notifier).textTheme(ref: ref),
                 fontSize:
                     getIt<AppDimension>().isSmallScreen(context) ? 18 : 20,
                 fontWeight: FontWeight.w600,
@@ -53,7 +50,8 @@ class AdvantagesWidget extends ConsumerWidget {
           ),
           Column(
             children:
-                _advantageItemsWidget(advantages: advantages, context: context)
+                _advantageItemsWidget(advantages: advantages, context:
+                context,ref: ref)
                     .toList()
                     .take(10)
                     .toList(),
@@ -71,7 +69,9 @@ class AdvantagesWidget extends ConsumerWidget {
   }
 
   Iterable<Padding> _advantageItemsWidget(
-      {List<Advantages>? advantages, required BuildContext context}) {
+      {List<Advantages>? advantages, required BuildContext context,required
+      WidgetRef
+      ref}) {
     return advantages?.map((entry) {
           return Padding(
             padding: const EdgeInsets.fromLTRB(12, 0, 12, 0),
@@ -82,9 +82,8 @@ class AdvantagesWidget extends ConsumerWidget {
                           fontSize: getIt<AppDimension>().isSmallScreen(context)
                               ? 15
                               : 16,
-                          color: themeMode.isLight
-                              ? kTextColorLightMode
-                              : kTextColorDarkMode))
+                          color: ref.read(themeModeNotifier.notifier)
+                              .textTheme(ref: ref),))
                   : const SizedBox(
                       child: SkeletonLine(
                           style: SkeletonLineStyle(width: 50, height: 10))),
@@ -108,9 +107,7 @@ class AdvantagesWidget extends ConsumerWidget {
                           height: 28,
                         )));
                       },
-                      color: themeMode.isLight
-                          ? kTextColorLightMode
-                          : kTextColorDarkMode,
+                      color: ref.read(themeModeNotifier.notifier).textTheme(ref: ref),
                     ),
             ),
           );

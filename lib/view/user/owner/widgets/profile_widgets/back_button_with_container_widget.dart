@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../../../../constants/nums.dart';
-import '../../../../common_widgets/back_button_widget.dart';
+import '../../../../common_widgets/button_widgets/back_button_widget.dart';
 import '../../../../../controller/provider_controllers/providers/auth_provider.dart';
 
 class BackButtonWithContainerWidget extends ConsumerWidget {

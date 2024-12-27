@@ -6,6 +6,7 @@ import '../../../../constants/coordination.dart';
 import '../../../../constants/get_it_controller.dart';
 import '../../../../constants/localization.dart';
 import '../../../../constants/nums.dart';
+import '../../../../controller/provider_controllers/providers/color_provider.dart';
 import '../../../common_widgets/text_form_field_widgets/text_form_filed_widget.dart';
 import 'button_checker_phone_number_completed_widget.dart';
 
@@ -26,18 +27,7 @@ class PhoneCompletedWidget extends ConsumerWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Padding(
-          padding: const EdgeInsets.symmetric(vertical: 10),
-          child: Text(
-            SetLocalization.of(context)!.getTranslateValue("phone_number"),
-            style: TextStyle(
-              color:
-                  themeMode.isLight ? kTextColorLightMode : kTextColorDarkMode,
-              fontSize: 18,
-              fontWeight: FontWeight.w500,
-            ),
-          ),
-        ),
+
         Row(
           children: [
             Expanded(
@@ -105,16 +95,13 @@ class DropDownMenuWidget extends ConsumerWidget {
             horizontal: 10),
         enabledBorder: OutlineInputBorder(
           borderSide: BorderSide(
-              color: themeMode.isLight
-                  ? kPrimaryColor300LightMode
-                  : kPrimaryColor300DarkMode,
+              color: ref.read(themeModeNotifier.notifier).primary300Theme(ref: ref),
               width: 0.5),
         ),
         focusedBorder: OutlineInputBorder(
           borderSide: BorderSide(
-              color: themeMode.isLight
-                  ? kPrimaryColorLightMode
-                  : kPrimaryColorDarkMode,
+              color: ref.read(themeModeNotifier.notifier).primaryTheme(ref: ref),
+
               width: 1),
         ),
       ),
@@ -122,9 +109,9 @@ class DropDownMenuWidget extends ConsumerWidget {
       onChanged: (newValue) {
         ref.read(selectedCountryCode.notifier).state = newValue!;
       },
-      dropdownColor: themeMode.isLight
-          ? kContainerColorLightMode
-          : kContainerColorDarkMode,
+      dropdownColor:
+      ref.read(themeModeNotifier.notifier)
+          .containerTheme(ref: ref),
       items: ref
           .watch(countriesCodes)
           .map<DropdownMenuItem<String>>((String value) {
@@ -135,7 +122,7 @@ class DropDownMenuWidget extends ConsumerWidget {
             value,
             style: TextStyle(
               color:
-                  themeMode.isLight ? kTextColorLightMode : kTextColorDarkMode,
+                  ref.read(themeModeNotifier.notifier).textTheme(ref: ref),
               fontSize: getIt<AppDimension>().isSmallScreen(context) ? 14 : 15,
             ),
           ),

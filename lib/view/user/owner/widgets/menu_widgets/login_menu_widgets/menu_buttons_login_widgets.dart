@@ -10,6 +10,7 @@ import '../../../../../../constants/strings.dart';
 import '../../../../../../core/utils/funcations/route_pages/push_routes.dart';
 import '../../../../../../core/utils/styles/text_style/aline_style.dart';
 import '../../../../../../core/widgets/buttons/lines_buttons/line_buttons.dart';
+import '../../../../../common_widgets/aline_widget.dart';
 
 class MenuButtonsLoginWidgets extends ConsumerWidget {
   const MenuButtonsLoginWidgets({super.key});

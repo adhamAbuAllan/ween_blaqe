@@ -15,7 +15,7 @@
 // import 'package:ween_blaqe/core/widgets/apartments/new_master_home_classes_widgets/types_of_apartments_list/container_types.dart';
 // import 'package:ween_blaqe/core/widgets/apartments/new_master_home_classes_widgets/types_of_apartments_list/show_list_button.dart';
 // import 'package:ween_blaqe/core/widgets/skeletons/student_widgets/home_skeleton_widget.dart';
-// import 'package:ween_blaqe/features/error_widgets/no_internet.dart';
+// import 'package:ween_blaqe/features/error_widgets/no_internet_ui.dart';
 // import 'package:ween_blaqe/features/error_widgets/search_not_found.dart';
 // import 'package:ween_blaqe/session/new_session.dart';
 //

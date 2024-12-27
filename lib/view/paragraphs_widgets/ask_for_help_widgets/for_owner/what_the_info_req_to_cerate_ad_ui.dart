@@ -1,62 +1,51 @@
-import 'dart:convert';
-
 import 'package:colorful_safe_area/colorful_safe_area.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
-import 'package:http/http.dart' as http;
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:ween_blaqe/constants/coordination.dart';
 import 'package:ween_blaqe/constants/localization.dart';
+import 'package:ween_blaqe/controller/provider_controllers/providers/apartment_provider.dart';
 
 // import 'package:ween_blaqe/core/utils/funcations/route_pages/push_routes.dart';
 // import 'package:ween_blaqe/core/utils/styles/text_style/aline_style.dart';
 import 'package:ween_blaqe/core/widgets/skeletons/general_skeleton_ready_widgets/paragraph_ready_skeleton.dart';
+import 'package:ween_blaqe/view/paragraphs_widgets/ask_for_help_widgets/for_owner/about_apartment_data_required_widget.dart';
+import 'package:ween_blaqe/view/paragraphs_widgets/ask_for_help_widgets/for_owner/owner_data_reqiured_table_widget.dart';
 
-import '../../../../api/apartments_api/apartments.dart';
 import '../../../../constants/get_it_controller.dart';
-import '../../../../constants/nums.dart';
-import '../../../../constants/strings.dart';
-import '../../../../controller/function_controller/change_theme_mode.dart';
-import '../../../../core/widgets/request_help_widgets/owner/what_data_is_required_to_post_an_ad_tables_widgets/about_apartment_data_required_table_widget.dart';
-import '../../../../core/widgets/request_help_widgets/owner/what_data_is_required_to_post_an_ad_tables_widgets/apartment_features_available_table_widget.dart';
+import '../../../../controller/provider_controllers/providers/color_provider.dart';
 import '../../../../core/widgets/request_help_widgets/owner/what_data_is_required_to_post_an_ad_tables_widgets/general_apartment_info_data_required_table.dart';
-import '../../../../core/widgets/request_help_widgets/owner/what_data_is_required_to_post_an_ad_tables_widgets/owner_data_required_table_widget.dart';
+import 'apartment_features_available_table_widget.dart';
 
-
-class WhatTheInfoReqToCreateAd extends StatefulWidget {
-  const WhatTheInfoReqToCreateAd({super.key});
+class WhatTheInfoReqToCreateAdUi extends ConsumerStatefulWidget {
+  const WhatTheInfoReqToCreateAdUi({super.key});
 
   @override
-  State<WhatTheInfoReqToCreateAd> createState() =>
-      _WhatTheInfoReqToCreateAdState();
+  ConsumerState createState() => _WhatTheInfoReqToCreateAdState();
 }
 
-class _WhatTheInfoReqToCreateAdState extends State<WhatTheInfoReqToCreateAd> {
-  bool isDataLoaded = false; //data load from server
-  String errorMessage = ''; // message of error server
-  late Apartments? apartmentRes;
-  ChangeThemeMode themeMode = Get.find();
-
+class _WhatTheInfoReqToCreateAdState
+    extends ConsumerState<WhatTheInfoReqToCreateAdUi> {
   @override
   void initState() {
     super.initState();
-    callAPIandAssignData();
+    WidgetsBinding.instance.addPostFrameCallback((_) async {
+      await ref.read(advantagesNotifer.notifier).fetchAdvantages();
+    });
   }
 
   @override
   Widget build(BuildContext context) {
     return ColorfulSafeArea(
       bottomColor: Colors.transparent,
-      color: themeMode.isLight ? kPrimaryColorLightMode : kPrimaryColorDarkMode,
+      color: ref.read(themeModeNotifier.notifier).primaryTheme(ref: ref),
       child: Scaffold(
-        backgroundColor: themeMode.isLight
-            ? kBackgroundAppColorLightMode
-            : kBackgroundAppColorDarkMode,
+        backgroundColor:
+            ref.read(themeModeNotifier.notifier).backgroundAppTheme(ref: ref),
         appBar: AppBar(
-          backgroundColor: themeMode.isLight
-              ? kPrimaryColorLightMode
-              : kPrimaryColorDarkMode,
+          backgroundColor:
+              ref.read(themeModeNotifier.notifier).primaryTheme(ref: ref),
         ),
-        body: !isDataLoaded
+        body: ref.watch(advantagesNotifer).isDataLoading
             ? const LongParagraphReadySkeleton()
             : SingleChildScrollView(
                 child: Column(
@@ -79,11 +68,10 @@ class _WhatTheInfoReqToCreateAdState extends State<WhatTheInfoReqToCreateAd> {
                                           .isSmallScreen(context)
                                       ? 22
                                       : 26,
-                                  
                                   fontWeight: FontWeight.w800,
-                                  color: themeMode.isLight
-                                      ? kTextColorLightMode
-                                      : kTextColorDarkMode,
+                                  color: ref
+                                      .read(themeModeNotifier.notifier)
+                                      .textTheme(ref: ref),
                                 ),
                                 softWrap: true,
                               ),
@@ -102,11 +90,10 @@ class _WhatTheInfoReqToCreateAdState extends State<WhatTheInfoReqToCreateAd> {
                           fontSize: getIt<AppDimension>().isSmallScreen(context)
                               ? 20
                               : 24,
-                          
                           fontWeight: FontWeight.w700,
-                          color: themeMode.isLight
-                              ? kTextColorLightMode
-                              : kTextColorDarkMode,
+                          color: ref
+                              .read(themeModeNotifier.notifier)
+                              .textTheme(ref: ref),
                         ),
                       ),
                     ),
@@ -124,11 +111,10 @@ class _WhatTheInfoReqToCreateAdState extends State<WhatTheInfoReqToCreateAd> {
                                   getIt<AppDimension>().isSmallScreen(context)
                                       ? 18
                                       : 20,
-                              
                               fontWeight: FontWeight.w600,
-                              color: themeMode.isLight
-                                  ? kTextColorLightMode
-                                  : kTextColorDarkMode,
+                              color: ref
+                                  .read(themeModeNotifier.notifier)
+                                  .textTheme(ref: ref),
                             ),
                           ),
                         ),
@@ -144,10 +130,9 @@ class _WhatTheInfoReqToCreateAdState extends State<WhatTheInfoReqToCreateAd> {
                         style: TextStyle(
                           fontSize: 16.0,
                           fontWeight: FontWeight.w500,
-                          
-                          color: themeMode.isLight
-                              ? kTextColorLightMode
-                              : kTextColorDarkMode,
+                          color: ref
+                              .read(themeModeNotifier.notifier)
+                              .textTheme(ref: ref),
                           letterSpacing: .5,
                           height: 1.35,
                         ),
@@ -174,11 +159,10 @@ class _WhatTheInfoReqToCreateAdState extends State<WhatTheInfoReqToCreateAd> {
                           fontSize: getIt<AppDimension>().isSmallScreen(context)
                               ? 18
                               : 20,
-                          
                           fontWeight: FontWeight.w600,
-                          color: themeMode.isLight
-                              ? kTextColorLightMode
-                              : kTextColorDarkMode,
+                          color: ref
+                              .read(themeModeNotifier.notifier)
+                              .textTheme(ref: ref),
                         ),
                       ),
                     ),
@@ -191,11 +175,10 @@ class _WhatTheInfoReqToCreateAdState extends State<WhatTheInfoReqToCreateAd> {
                             .getTranslateValue("apartment_details"),
                         style: TextStyle(
                           fontSize: 16.0,
-                          
                           fontWeight: FontWeight.w500,
-                          color: themeMode.isLight
-                              ? kTextColorLightMode
-                              : kTextColorDarkMode,
+                          color: ref
+                              .read(themeModeNotifier.notifier)
+                              .textTheme(ref: ref),
                           letterSpacing: .5,
                           height: 1.35,
                         ),
@@ -204,7 +187,7 @@ class _WhatTheInfoReqToCreateAdState extends State<WhatTheInfoReqToCreateAd> {
 
                     //about apartment data required table
                     const Center(
-                      child: AboutApartmentDataRequiredTable(),
+                      child: AboutApartmentDataRequiredWidget(),
                     ),
 
                     //advantages of apartment section
@@ -218,11 +201,10 @@ class _WhatTheInfoReqToCreateAdState extends State<WhatTheInfoReqToCreateAd> {
                           fontSize: getIt<AppDimension>().isSmallScreen(context)
                               ? 18
                               : 20,
-                          
                           fontWeight: FontWeight.w600,
-                          color: themeMode.isLight
-                              ? kTextColorLightMode
-                              : kTextColorDarkMode,
+                          color: ref
+                              .read(themeModeNotifier.notifier)
+                              .textTheme(ref: ref),
                         ),
                       ),
                     ),
@@ -235,21 +217,19 @@ class _WhatTheInfoReqToCreateAdState extends State<WhatTheInfoReqToCreateAd> {
                             .getTranslateValue("apartment_advantages_details"),
                         style: TextStyle(
                           fontSize: 16.0,
-                          
                           fontWeight: FontWeight.w500,
                           letterSpacing: .5,
                           height: 1.35,
-                          color: themeMode.isLight
-                              ? kTextColorLightMode
-                              : kTextColorDarkMode,
+                          color: ref
+                              .read(themeModeNotifier.notifier)
+                              .textTheme(ref: ref),
                         ),
                       ),
                     ),
 
                     //apartment advantages table
-                    Center(
-                      child: ApartmentFeaturesAvailableTable(
-                          apartmentRes: apartmentRes),
+                    const Center(
+                      child: ApartmentFeaturesAvailableTableWidget(),
                     ),
 
                     //apartment description title
@@ -263,10 +243,9 @@ class _WhatTheInfoReqToCreateAdState extends State<WhatTheInfoReqToCreateAd> {
                               ? 18
                               : 20,
                           fontWeight: FontWeight.w600,
-                          
-                          color: themeMode.isLight
-                              ? kTextColorLightMode
-                              : kTextColorDarkMode,
+                          color: ref
+                              .read(themeModeNotifier.notifier)
+                              .textTheme(ref: ref),
                         ),
                       ),
                     ),
@@ -279,13 +258,12 @@ class _WhatTheInfoReqToCreateAdState extends State<WhatTheInfoReqToCreateAd> {
                             .getTranslateValue("example_apartment_description"),
                         style: TextStyle(
                           fontSize: 16.0,
-                          
                           fontWeight: FontWeight.w500,
                           letterSpacing: .5,
                           height: 1.35,
-                          color: themeMode.isLight
-                              ? kTextColorLightMode
-                              : kTextColorDarkMode,
+                          color: ref
+                              .read(themeModeNotifier.notifier)
+                              .textTheme(ref: ref),
                         ),
                       ),
                     ),
@@ -300,11 +278,10 @@ class _WhatTheInfoReqToCreateAdState extends State<WhatTheInfoReqToCreateAd> {
                           fontSize: getIt<AppDimension>().isSmallScreen(context)
                               ? 20
                               : 24,
-                          
                           fontWeight: FontWeight.w700,
-                          color: themeMode.isLight
-                              ? kTextColorLightMode
-                              : kTextColorDarkMode,
+                          color: ref
+                              .read(themeModeNotifier.notifier)
+                              .textTheme(ref: ref),
                         ),
                       ),
                     ),
@@ -317,13 +294,12 @@ class _WhatTheInfoReqToCreateAdState extends State<WhatTheInfoReqToCreateAd> {
                             .getTranslateValue("owner_data_info"),
                         style: TextStyle(
                           fontSize: 16.0,
-                          
                           fontWeight: FontWeight.w500,
                           letterSpacing: .5,
                           height: 1.35,
-                          color: themeMode.isLight
-                              ? kTextColorLightMode
-                              : kTextColorDarkMode,
+                          color: ref
+                              .read(themeModeNotifier.notifier)
+                              .textTheme(ref: ref),
                         ),
                       ),
                     ),
@@ -332,7 +308,7 @@ class _WhatTheInfoReqToCreateAdState extends State<WhatTheInfoReqToCreateAd> {
                     const Padding(
                       padding: EdgeInsets.symmetric(horizontal: 15),
                       child: Center(
-                        child: OwnerDataRequiredTable(),
+                        child: OwnerDataReqiuredTableWidget(),
                       ),
                     ),
                     //   const SizedBox(
@@ -342,73 +318,10 @@ class _WhatTheInfoReqToCreateAdState extends State<WhatTheInfoReqToCreateAd> {
                     const SizedBox(
                       height: 30,
                     ),
-                    //   Text("إقرأ ايضًا",
-                    //     style: TextStyle(fontSize: 18, color: themeMode.isDark ? kTextColorLightMode : kTextColorDarkMode)),
-                    //   const SizedBox(
-                    //   height: 10,
-                    // ),
-                    // TextButton(
-                    //     onPressed: () {
-                    //       myPushName(context, MyPagesRoutes.theAdIsFreeOrNot);
-                    //     },
-                    //     child:   const Text(
-                    //         " كم تكلفة نشر إعلان على تطبيق 'وين بلاقي'",
-                    //         style: TextStyle(
-                    //             fontSize: 14,
-                    //             
-                    //             color: Colors.orange))),
-                    //   const SizedBox(
-                    //   height: 10,
-                    // ),
-                    // TextButton(
-                    //     onPressed: () {
-                    //       myPushName(context, MyPagesRoutes.howCreateAd);
-                    //     },
-                    //     child:   const Text(
-                    //         " كيف انشر إعلاني على تطبيق 'وين بلاقي'",
-                    //         style: TextStyle(
-                    //             fontSize: 14,
-                    //             
-                    //             color: Colors.orange)))
                   ],
                 ),
               ),
       ),
     );
   }
-
-  // API Call
-  Future<Apartments?> getDataFromAPI() async {
-    Uri uri = Uri.parse(ServerWeenBalaqee.apartmentAll);
-    uri = Uri.parse(ServerWeenBalaqee.apartmentAll);
-    debugPrint("uri --$uri");
-    var response = await http.get(uri);
-    debugPrint("response --$response");
-    if (response.statusCode == 200) {
-      // All ok
-      var responseBody = response.body;
-      var json = jsonDecode(responseBody);
-      Apartments apartmentRes = Apartments.fromJson(json);
-      setState(() {
-        isDataLoaded = true;
-      });
-      // debugPrint("the id is : ${apartmentsRes.data?.first.ownerId}");
-      debugPrint("data : ${apartmentRes.data}");
-      debugPrint("msg : ${apartmentRes.msg}");
-      debugPrint("the status is ${apartmentRes.status}");
-      return apartmentRes;
-    } else if (apartmentRes?.msg?.isNotEmpty ?? false) {
-      errorMessage = '${response.statusCode}: ${response.body} ';
-      debugPrint(errorMessage);
-      return Apartments(data: null, status: false, msg: '');
-    }
-    return apartmentRes;
-  }
-
-  callAPIandAssignData() async {
-    apartmentRes = (await getDataFromAPI());
-    // debugPrint("ths is the type_id of owner ${apartmentRes?.data?.first.owner?.typeId} and the type of value is string");
-    // debugPrint("ths is the country_phone_number_id of owner ${apartmentRes?.data?.first.owner?.countryPhoneNumberId} and the type of value is string");
-  }
 }
-

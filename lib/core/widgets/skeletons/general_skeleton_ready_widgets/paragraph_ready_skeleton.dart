@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:skeletons/skeletons.dart';
 import 'package:ween_blaqe/constants/nums.dart';
+
+import '../../../../controller/provider_controllers/providers/color_provider.dart';
 
 //
 // class SmallParagraphSkeletonReady extends StatefulWidget {
@@ -63,7 +66,6 @@ import 'package:ween_blaqe/constants/nums.dart';
 //     );
 //   }
 // }
-
 class LongParagraphReadySkeleton extends StatelessWidget {
   const LongParagraphReadySkeleton({super.key});
 
@@ -90,6 +92,7 @@ class LongParagraphReadySkeleton extends StatelessWidget {
     );
   }
 }
+
 
 class ParaSkeletonWidget extends StatelessWidget {
   const ParaSkeletonWidget({

@@ -8,6 +8,7 @@ import 'package:ween_blaqe/controller/provider_controllers/methods/hybrid_method
 
 import '../../../api/users.dart';
 import '../methods/api_methods/auth_methods/register_notifier.dart';
+import '../methods/api_methods/auth_methods/send_noice_for_us_notifier.dart';
 import '../methods/api_methods/auth_methods/update_user_methods/change_data_of_user_notifier.dart';
 import '../methods/api_methods/auth_methods/update_user_methods/change_password_notifier.dart';
 import '../methods/api_methods/auth_methods/update_user_methods/compress_and_upload_profile_image_notifier.dart';
@@ -76,6 +77,10 @@ final updaterDataUserNotifier =
 final validatorAndUpdateDataOfUserNotifier =
     StateNotifierProvider<ValidatorAndUpdateDataOfUserNotifier, AuthState>(
   (ref) => ValidatorAndUpdateDataOfUserNotifier(),
+);
+final sendNoticeForUsNotifier =
+    StateNotifierProvider<SendNoticeForUsNotifier, AuthState>(
+  (ref) => SendNoticeForUsNotifier(),
 );
 
 final phoneLoginController = StateProvider<TextEditingController>((ref) {
@@ -174,6 +179,13 @@ final emailController = StateProvider<TextEditingController>((ref) {
 });
 
 final userNameController = StateProvider<TextEditingController>((ref) {
+  final controller = TextEditingController();
+  ref.onDispose(
+      () => controller.dispose()); // Dispose when the provider is disposed
+  return controller;
+});
+final sendNoticeForUcController = StateProvider<TextEditingController>(
+        (ref) {
   final controller = TextEditingController();
   ref.onDispose(
       () => controller.dispose()); // Dispose when the provider is disposed

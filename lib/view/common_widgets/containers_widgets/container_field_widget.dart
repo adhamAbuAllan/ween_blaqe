@@ -81,9 +81,8 @@ class ContainerFieldWidget extends ConsumerWidget {
               }
             },
             validator: validator,
-            cursorColor: themeMode.isLight
-                ? kPrimaryColorLightMode
-                : kPrimaryColorDarkMode,
+            cursorColor:
+                ref.read(themeModeNotifier.notifier).primaryTheme(ref: ref),
             textInputAction: TextInputAction.next,
             controller: controller,
             maxLines: maxLines,

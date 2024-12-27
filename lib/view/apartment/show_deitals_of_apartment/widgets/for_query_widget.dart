@@ -6,8 +6,10 @@ import '../../../../../constants/coordination.dart';
 import '../../../../../constants/get_it_controller.dart';
 import '../../../../../constants/localization.dart';
 import '../../../../../constants/nums.dart';
+import '../../../../controller/provider_controllers/providers/color_provider.dart';
 import '../../../../core/utils/funcations/go_url_launcher_methodes/go_to_whatsapp_method.dart';
 import '../../../../core/utils/styles/button.dart';
+import '../../../common_widgets/button_widgets/outline_button_widget.dart';
 
 
 
@@ -23,7 +25,7 @@ final DataOfOneApartment apartment;
       margin: EdgeInsets.fromLTRB(10, getIt<AppDimension>().isSmallScreen(context) ? 15 : 20, 10, 0),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(7),
-        color: themeMode.isLight ? kContainerColorLightMode : kContainerColorDarkMode,
+        color: ref.read(themeModeNotifier.notifier).containerTheme(ref: ref),
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -34,7 +36,8 @@ final DataOfOneApartment apartment;
             child: Text(
               SetLocalization.of(context)!.getTranslateValue("inquiry"),
               style: TextStyle(
-                color: themeMode.isLight ? kTextColorLightMode : kTextColorDarkMode,
+                color: ref.read(themeModeNotifier.notifier).textTheme(ref: ref)
+                ,
                 fontSize: getIt<AppDimension>().isSmallScreen(context) ? 18 : 20,
                 fontWeight: FontWeight.w600,
               ),
@@ -81,7 +84,8 @@ class WhatsAppButton extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    return OutlinedButton(
+    return OutlineButtonWidget
+(
       onPressed: () async {
         sendMessageToWhatsApp(
           apartment.owner!.phone!,
@@ -89,7 +93,6 @@ class WhatsAppButton extends ConsumerWidget {
           image: apartment.photos?[0].url,
         );
       },
-      style: outlinedButton(themeMode: themeMode, context: context),
       child: Padding(
         padding: const EdgeInsets.all(8.0),
         child: Row(
@@ -102,7 +105,8 @@ class WhatsAppButton extends ConsumerWidget {
               child: Text(
                 SetLocalization.of(context)!.getTranslateValue("whatsapp"),
                 style: TextStyle(
-                  color: themeMode.isLight ? kTextColorLightMode : kTextColorDarkMode,
+                  color: ref.read(themeModeNotifier.notifier).textTheme(ref: ref)
+                  ,
                   fontWeight: FontWeight.w400,
                   fontSize: getIt<AppDimension>().isSmallScreen(context) ? 14 : 16,
                 ),
@@ -122,11 +126,13 @@ class PhoneButton extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    return OutlinedButton(
+    return OutlineButtonWidget
+(
       onPressed: () async {
         makePhoneCall(apartment.owner?.phone ?? "user_phone");
       },
-      style: outlinedButton(context: context),
+      
+
       child: Padding(
         padding: const EdgeInsets.all(8.0),
         child: Row(
@@ -137,7 +143,8 @@ class PhoneButton extends ConsumerWidget {
               child: Text(
                 SetLocalization.of(context)!.getTranslateValue("phone"),
                 style: TextStyle(
-                  color: themeMode.isLight ? kTextColorLightMode : kTextColorDarkMode,
+                  color: ref.read(themeModeNotifier.notifier).textTheme(ref: ref)
+                  ,
                   fontWeight: FontWeight.w400,
                   fontSize: getIt<AppDimension>().isSmallScreen(context) ? 14 : 16,
                 ),
@@ -157,7 +164,8 @@ class EmailButton extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    return OutlinedButton(
+    return OutlineButtonWidget
+(
       onPressed: () async {
         sendEmail(
           apartment.owner?.email ?? "user_email",
@@ -166,7 +174,8 @@ class EmailButton extends ConsumerWidget {
           image: apartment.photos?[0].url,
         );
       },
-      style: outlinedButton(context: context),
+      
+
       child: Padding(
         padding: const EdgeInsets.all(8.0),
         child: Row(
@@ -180,7 +189,8 @@ class EmailButton extends ConsumerWidget {
               child: Text(
                 SetLocalization.of(context)!.getTranslateValue("gmail"),
                 style: TextStyle(
-                  color: themeMode.isLight ? kTextColorLightMode : kTextColorDarkMode,
+                  color: ref.read(themeModeNotifier.notifier).textTheme(ref: ref)
+                  ,
                   fontWeight: FontWeight.w400,
                   fontSize: getIt<AppDimension>().isSmallScreen(context) ? 14 : 16,
                 ),
@@ -200,7 +210,8 @@ class FacebookButton extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    return OutlinedButton(
+    return OutlineButtonWidget
+(
       onPressed: () async {
         sendMessenger(
           userName: apartment.owner?.facebook ?? "user_name",
@@ -208,7 +219,8 @@ class FacebookButton extends ConsumerWidget {
           image: apartment.photos?[0].url,
         );
       },
-      style: outlinedButton(context: context),
+      
+
       child: Padding(
         padding: const EdgeInsets.all(8.0),
         child: Row(
@@ -220,7 +232,8 @@ class FacebookButton extends ConsumerWidget {
               child: Text(
                 SetLocalization.of(context)!.getTranslateValue("facebook"),
                 style: TextStyle(
-                  color: themeMode.isLight ? kTextColorLightMode : kTextColorDarkMode,
+                  color: ref.read(themeModeNotifier.notifier).textTheme(ref: ref)
+                  ,
                   fontWeight: FontWeight.w400,
                   fontSize: getIt<AppDimension>().isSmallScreen(context) ? 14 : 16,
                 ),

@@ -2,6 +2,7 @@ import 'package:colorful_safe_area/colorful_safe_area.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../constants/nums.dart';
+import '../../controller/provider_controllers/providers/color_provider.dart';
 import 'widgets/not_found_type_widgets/button_not_found_widget.dart';
 import 'widgets/not_found_type_widgets/image_not_found_widget.dart';
 import 'widgets/not_found_type_widgets/title_screen_wdiget.dart';
@@ -17,9 +18,8 @@ class TypeNotFoundUi extends ConsumerWidget {
       bottomColor: Colors.transparent,
       color: themeMode.isLight ? kPrimaryColorLightMode : kPrimaryColorDarkMode,
       child: Scaffold(
-        backgroundColor: themeMode.isLight
-            ? kBackgroundAppColorLightMode
-            : kBackgroundAppColorDarkMode,
+        backgroundColor:ref.read(themeModeNotifier.notifier).backgroundAppTheme(ref: ref)
+,
         body: const SingleChildScrollView(
           child: Center(
             child: Column(

@@ -1,5 +1,6 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter/material.dart';
+import 'package:ween_blaqe/controller/provider_controllers/providers/color_provider.dart';
 import '../../../../api/apartments_api/apartments.dart';
 import '../../../../constants/coordination.dart';
 import '../../../../constants/get_it_controller.dart';
@@ -28,9 +29,7 @@ class GeneralInfoWidget extends ConsumerWidget {
       padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 20),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(7),
-        color: themeMode.isLight
-            ? kContainerColorLightMode
-            : kContainerColorDarkMode,
+        color: ref.read(themeModeNotifier.notifier).containerTheme(ref: ref),
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -78,7 +77,7 @@ class _TitleGeneralInfoTextWidgetState
         fontSize: getIt<AppDimension>().isSmallScreen(context) ? 18 : 20,
         fontWeight: FontWeight.w600,
         color:
-        themeMode.isLight ? kTextColorLightMode : kTextColorDarkMode,
+        ref.read(themeModeNotifier.notifier).textTheme(ref: ref),
       ),
     );
   }
@@ -100,7 +99,7 @@ class _TitleTextWidgetState extends ConsumerState<TitleTextWidget> {
       widget.oneApartment?.title ?? "",
       softWrap: true,
       style: TextStyle(
-        color: themeMode.isLight ? kTextColorLightMode : kTextColorDarkMode,
+        color: ref.read(themeModeNotifier.notifier).textTheme(ref: ref),
         fontSize: getIt<AppDimension>().isSmallScreen(context) ? 17 : 18,
         fontWeight: FontWeight.w500,
       ),
@@ -125,7 +124,7 @@ class _LocationTextWidgetState extends ConsumerState<LocationTextWidget> {
       "${SetLocalization.of(context)!.getTranslateValue("location")}${widget.oneApartment?.city?.name ?? ""}-${widget.oneApartment?.location ?? ""}",
       softWrap: true,
       style: TextStyle(
-        color: themeMode.isLight ? kTextColorLightMode : kTextColorDarkMode,
+        color: ref.read(themeModeNotifier.notifier).textTheme(ref: ref),
       ),
     );
   }
@@ -161,7 +160,7 @@ class _AccountOfStudentTextWidgetState
           ? "عدد الطالبات المسموح به: ${widget.oneApartment?.countOfStudnet ?? 0}"
           : "${SetLocalization.of(context)!.getTranslateValue("allowed_people_count")}: ${widget.oneApartment?.countOfStudnet ?? 0}"),
       style: TextStyle(
-        color: themeMode.isLight ? kTextColorLightMode : kTextColorDarkMode,
+        color: ref.read(themeModeNotifier.notifier).textTheme(ref: ref),
         fontSize: 16,
       ),
     );
@@ -185,7 +184,7 @@ class _TypeOfApartmentTextWidgetState
     return Text(
       "${SetLocalization.of(context)!.getTranslateValue("housing_type_students")}:${widget.oneApartment?.type?.name ?? ""}",
       style: TextStyle(
-        color: themeMode.isLight ? kTextColorLightMode : kTextColorDarkMode,
+        color: ref.read(themeModeNotifier.notifier).textTheme(ref: ref),
         fontSize: 16,
       ),
     );
@@ -209,9 +208,7 @@ class _PriceTextWidgetState extends ConsumerState<PriceTextWidget> {
         Text(
           "${SetLocalization.of(context)!.getTranslateValue("rent")}: ${widget.oneApartment?.price ?? ""}",
           style: TextStyle(
-            color: themeMode.isLight
-                ? kPrimaryColorLightMode
-                : kPrimaryColorDarkMode,
+            color: ref.read(themeModeNotifier.notifier).primaryTheme(ref: ref),
             fontSize: 16,
             fontWeight: FontWeight.w600,
           ),
@@ -221,9 +218,7 @@ class _PriceTextWidgetState extends ConsumerState<PriceTextWidget> {
           SetLocalization.of(context)!
               .getTranslateValue("shekel_per_month"),
           style: TextStyle(
-            color: themeMode.isLight
-                ? kPrimaryColorLightMode
-                : kPrimaryColorDarkMode,
+            color: ref.read(themeModeNotifier.notifier).primaryTheme(ref: ref),
             fontSize: 14,
             fontWeight: FontWeight.w500,
           ),

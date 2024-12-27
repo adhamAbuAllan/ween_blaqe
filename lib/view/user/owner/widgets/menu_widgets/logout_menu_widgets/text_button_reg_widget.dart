@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:ween_blaqe/controller/provider_controllers/providers/color_provider.dart';
 import 'package:ween_blaqe/controller/provider_controllers/providers/snack_bar_provider.dart';
 
 import '../../../../../../constants/localization.dart';
@@ -23,7 +24,7 @@ class TextButtonRegWidget extends ConsumerWidget {
           SetLocalization.of(context)!.getTranslateValue("dont_have_account"),
           style: TextStyle(
               color:
-                  themeMode.isLight ? kTextColorLightMode : kTextColorDarkMode,
+                  ref.read(themeModeNotifier.notifier).textTheme(ref: ref),
               fontFamily: "IBM"),
         ),
         TextButton(

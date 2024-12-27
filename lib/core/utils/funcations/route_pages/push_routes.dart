@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:ween_blaqe/view/splach_screen.dart'; //push to another page
+import 'package:ween_blaqe/view/splach_screen_ui.dart'; //push to another page
 
 myPush(BuildContext context, Widget page, String routeName) {
   Navigator.of(context).push(MaterialPageRoute(
@@ -121,7 +121,7 @@ Future<void> myPushNameAnimation(BuildContext context) async {
   await Navigator.of(context).pushReplacement(
     PageRouteBuilder(
       pageBuilder: (context, animation, secondaryAnimation) {
-        return const SplashScreen(); // Replace YourDestinationScreen with your actual destination screen
+        return const SplashScreenUi(); // Replace YourDestinationScreen with your actual destination screen
       },
       transitionsBuilder: (context, animation, secondaryAnimation, child) {
         const begin = Offset(1.0, 0.0);

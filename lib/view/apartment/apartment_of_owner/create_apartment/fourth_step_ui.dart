@@ -8,6 +8,7 @@ import 'package:ween_blaqe/view/apartment/apartment_of_owner/create_apartment/wi
 import 'package:ween_blaqe/view/common_widgets/text_widgets/create_apartment_title_widget.dart';
 
 import '../../../../constants/localization.dart';
+import '../../../../controller/provider_controllers/providers/color_provider.dart';
 import '../widgets/floating_button_add_delete_image_widget.dart';
 import '../widgets/text_form_field_containers_widgets/add_title_widget.dart';
 import '../widgets/text_form_field_containers_widgets/description_widget.dart';
@@ -24,9 +25,11 @@ class _FourthStepUiState extends ConsumerState<FourthStepUi> {
   @override
   Widget build(BuildContext context) {
     return ColorfulSafeArea(
-      color: themeMode.isLight ? kPrimaryColorLightMode : kPrimaryColorDarkMode,
+      color: ref.read(themeModeNotifier.notifier).primaryTheme(ref: ref),
+
       child: Scaffold(
-        backgroundColor: themeMode.isLight ? kBackgroundAppColorLightMode : kBackgroundAppColorDarkMode,
+        backgroundColor: ref.read(themeModeNotifier.notifier).backgroundAppTheme(ref: ref),
+
         body: SingleChildScrollView(
           child: Column(
             children: [

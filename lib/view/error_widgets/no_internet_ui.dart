@@ -5,6 +5,7 @@ import 'package:carousel_slider_plus/carousel_slider_plus.dart';
 import 'package:colorful_safe_area/colorful_safe_area.dart';
 import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 // import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -17,32 +18,28 @@ import 'package:ween_blaqe/core/utils/funcations/route_pages/push_routes.dart';
 import 'package:ween_blaqe/core/utils/styles/text_style/aline_style.dart';
 import 'package:ween_blaqe/constants/nums.dart';
 import 'package:ween_blaqe/session/new_session.dart';
+import 'package:ween_blaqe/view/common_widgets/button_widgets/full_button_widget.dart';
+import 'package:ween_blaqe/view/common_widgets/button_widgets/outline_button_widget.dart';
 import '../../constants/get_it_controller.dart';
 import '../../controller/get_controllers.dart';
+import '../../controller/provider_controllers/providers/color_provider.dart';
 import '../../core/utils/styles/button.dart';
 import '../../core/widgets/buttons/lines_buttons/line_buttons.dart';
 import '../authorization_ui/account_before_login.dart';
+import '../common_widgets/aline_widget.dart';
 // import 'package:carousel_slider_plus/carousel_controller.dart';
 
-main() {
-  runApp(const MaterialApp(
-    home: NoInternet(),
-  ));
-}
-
-class NoInternet extends StatefulWidget {
-  const NoInternet({
-    super.key,
-    this.isHaveAppBar,
-  });
+class NoInternetUi extends ConsumerStatefulWidget {
+  const NoInternetUi({super.key, this.isHaveAppBar});
 
   final bool? isHaveAppBar;
 
   @override
-  State<NoInternet> createState() => _NoInternetState();
+  ConsumerState createState() => _NoInternetUiState();
 }
 
-class _NoInternetState extends State<NoInternet> with WidgetsBindingObserver {
+class _NoInternetUiState extends ConsumerState<NoInternetUi>
+    with WidgetsBindingObserver {
   bool isWantToSepha = false;
   bool isContExpanding = false;
   bool isSephaCountrEnd = false;
@@ -86,9 +83,7 @@ class _NoInternetState extends State<NoInternet> with WidgetsBindingObserver {
             "Astaghfirullah",
           ]
         : sephaText;
-
     connectivityController.isSnackBarShow.value = false;
-
     WidgetsBinding.instance.addObserver(this);
     loadTotal();
   }
@@ -114,55 +109,23 @@ class _NoInternetState extends State<NoInternet> with WidgetsBindingObserver {
     });
   }
 
-//   Container yourFirstChildWidget (){
-//     return Container();
-//   }
-//   Container yourSecondChildWidget (){
-//     return Container();
-//   }
-// AnimatedContainer yourChildrenWidgets (){
-//     return AnimatedContainer(
-//       duration: const Duration(milliseconds: 700),
-//       curve: Curves.linear,
-//       width: 373,
-//       height: isAnimate ? 80: 80*3, //Assume that 80 is the height of the
-//       // container, then 3 is the total number of containers,
-//       decoration: const BoxDecoration(color: Colors.transparent),
-//       child:  Column(children: [
-//         yourFirstChildWidget(),
-//         yourSecondChildWidget(),
-//       ],),
-//     );
-// }
-// GestureDetector yourPerantWidget (){
-//     return  // in your peran widget
-//       GestureDetector(
-//         onTap: () {
-//           setState(() {
-//             isAnimate != isAnimate;
-//           });
-//         },
-//       );
-// }
   @override
   Widget build(BuildContext context) {
     return ColorfulSafeArea(
       bottomColor: Colors.transparent,
-      color: themeMode.isLight ? kPrimaryColorLightMode : kPrimaryColorDarkMode,
+      color: ref.read(themeModeNotifier.notifier).primaryTheme(ref: ref),
       child: StreamBuilder<ConnectivityResult>(
           stream: Connectivity().onConnectivityChanged,
           builder: (context, snapshot) {
-            // debugPrint("snapshot data : ${snapshot.data}");
             return Scaffold(
               appBar: AppBar(
-                  backgroundColor: themeMode.isLight
-                      ? kPrimaryColorLightMode
-                      : kPrimaryColorDarkMode,
+                  backgroundColor: ref
+                      .read(themeModeNotifier.notifier)
+                      .primaryTheme(ref: ref),
                   title: Text(
                       SetLocalization.of(context)!.getTranslateValue("sebha"))),
-              backgroundColor: themeMode.isLight
-                  ? kBackgroundAppColorLightMode
-                  : kBackgroundAppColorDarkMode,
+              backgroundColor:ref.read(themeModeNotifier.notifier).backgroundAppTheme(ref: ref),
+
               body: SingleChildScrollView(
                 child: AnimatedAlign(
                   alignment:
@@ -190,19 +153,13 @@ class _NoInternetState extends State<NoInternet> with WidgetsBindingObserver {
                     padding: const EdgeInsets.fromLTRB(10, 0, 10, 0),
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(7),
-                      color: themeMode.isLight
-                          ? kContainerColorLightMode
-                          : kContainerColorDarkMode,
+                      color: ref
+                          .read(themeModeNotifier.notifier)
+                          .containerTheme(ref: ref),
                     ),
                     duration: const Duration(milliseconds: 800),
                     child: Column(
                       children: [
-                        //
-                        // isAnimate ? AnimatedAlign(duration: const Duration(milliseconds: 700),
-                        //     curve: Curves.linear,
-                        //     alignment: Alignment.bottomCenter,
-                        //     child: yourChildrenWidgets()) : yourPerantWidget(),
-                        //
                         connectivityController.isConnection()
                             ? SizedBox(
                                 height:
@@ -214,11 +171,6 @@ class _NoInternetState extends State<NoInternet> with WidgetsBindingObserver {
                         connectivityController.isConnection()
                             ? const SizedBox()
                             : aline,
-                        // !isContExpanding?const SizedBox() :  const AnimatedSize(
-                        //   duration: Duration(milliseconds: 2800),
-                        //   curve: Curves.linear,
-                        //   child: SizedBox(height: 80),
-                        // ),
                         isWantToSepha
                             ? AnimatedSize(
                                 duration: const Duration(milliseconds: 1000),
@@ -232,7 +184,6 @@ class _NoInternetState extends State<NoInternet> with WidgetsBindingObserver {
                                         : 0),
                               )
                             : const SizedBox(),
-
                         isContExpanding
                             ? const AnimatedSize(
                                 duration: Duration(milliseconds: 2900),
@@ -254,14 +205,15 @@ class _NoInternetState extends State<NoInternet> with WidgetsBindingObserver {
                                             )
                                           : Text("$total+",
                                               style: TextStyle(
-                                                  color: themeMode.isLight
-                                                      ? kPrimaryColorLightMode
-                                                      : kPrimaryColorDarkMode)),
+                                                color: ref
+                                                    .read(themeModeNotifier
+                                                        .notifier)
+                                                    .primaryTheme(ref: ref),
+                                              )),
                                     ],
                                   ),
                                 ),
                               ),
-
                         isWantToSepha
                             ? (!isContExpanding
                                 ? buildBorderSebhaContainer()
@@ -280,7 +232,6 @@ class _NoInternetState extends State<NoInternet> with WidgetsBindingObserver {
                                         : 80),
                               )
                             : const SizedBox(),
-
                         isWantToSepha
                             ? (!isContExpanding
                                 ? Column(
@@ -302,10 +253,8 @@ class _NoInternetState extends State<NoInternet> with WidgetsBindingObserver {
                                                 .isSmallScreen(context)
                                             ? 55 / 1.2
                                             : 55,
-                                        child: OutlinedButton(
-                                            style: outlinedButton(
-                                                themeMode: themeMode,
-                                                context: context),
+                                        child: OutlineButtonWidget(
+
                                             onPressed: () {
                                               setState(() {
                                                 total = 0;
@@ -337,29 +286,13 @@ class _NoInternetState extends State<NoInternet> with WidgetsBindingObserver {
                                           .getTranslateValue("start_tasbih"),
                                       image: Image.asset(
                                           "assets/images/tasbih.png",
-                                          color: themeMode.isLight
-                                              ? kTextColorLightMode
-                                              : kTextColorDarkMode,
+                                          color: ref.read(themeModeNotifier.notifier).textTheme(ref: ref),
+
                                           width: 35,
                                           height: isContExpanding ? 0 : 35),
                                       isIcon: false,
                                     ),
                                   ))
-                        // const Icon(
-                        //   // Icons.tasb,
-                        //   FontAwesomeIcons.tas
-                        //   color: Colors.black,
-                        //   size: 27,
-                        // )),
-                        // aline,
-                        // buttonHaveTitleAndIcon(
-                        //     () {},
-                        //     "تفعيل بيانات الهاتف",
-                        //     const Icon(
-                        //       Icons.cell_wifi_outlined,
-                        //       size: 27,
-                        //       color: Colors.black,
-                        //     ))
                       ],
                     ),
                   ),
@@ -375,10 +308,9 @@ class _NoInternetState extends State<NoInternet> with WidgetsBindingObserver {
                       },
                       shape: ContinuousRectangleBorder(
                           borderRadius: BorderRadius.circular(16 / 2)),
-                      backgroundColor: themeMode.isLight
-                          ? kPrimaryColorLightMode
-                          : kPrimaryColorDarkMode,
-                      child: const FaIcon(
+                      backgroundColor: ref.read(themeModeNotifier.notifier)
+                          .primaryTheme(ref: ref),
+                child: const FaIcon(
                         FontAwesomeIcons.rotateRight,
                       ),
                     )
@@ -388,11 +320,6 @@ class _NoInternetState extends State<NoInternet> with WidgetsBindingObserver {
     );
   }
 
-  ///////////////////////////////////
-  //////////////////////////////////
-  /////////////////////////////////
-//Widgets that usaged in build widget
-  //text counter , have two part
   Row buildCounterTextRow() {
     return Row(children: [
       Padding(
@@ -400,7 +327,8 @@ class _NoInternetState extends State<NoInternet> with WidgetsBindingObserver {
         child: Image(
           image: const AssetImage("assets/images/error_images/no network.png"),
           height: getIt<AppDimension>().isSmallScreen(context) ? 60 / 1.5 : 60,
-          color: themeMode.isLight ? kTextColorLightMode : kTextColorDarkMode,
+          color: ref.read(themeModeNotifier.notifier).textTheme(ref: ref),
+
           width: getIt<AppDimension>().isSmallScreen(context) ? 60 / 1.5 : 60,
         ),
       ),
@@ -418,9 +346,8 @@ class _NoInternetState extends State<NoInternet> with WidgetsBindingObserver {
                     style: TextStyle(
                         fontSize: 16.0,
                         inherit: true,
-                        color: themeMode.isLight
-                            ? kTextColorLightMode
-                            : kTextColorDarkMode),
+                        color:ref.read(themeModeNotifier.notifier).textTheme(ref: ref),
+                    ),
                   ),
                 ],
               ),
@@ -445,7 +372,6 @@ class _NoInternetState extends State<NoInternet> with WidgetsBindingObserver {
     ]);
   }
 
-// counter
   AnimatedTextKit buildAnimatedTextKit() {
     return AnimatedTextKit(
       totalRepeatCount: 3,
@@ -460,9 +386,8 @@ class _NoInternetState extends State<NoInternet> with WidgetsBindingObserver {
         FadeAnimatedText(
           "$total+",
           textStyle: TextStyle(
-              color: themeMode.isLight
-                  ? kPrimaryColorLightMode
-                  : kPrimaryColorDarkMode),
+              color: ref.read(themeModeNotifier.notifier).primaryTheme(ref: ref)
+          ),
           duration: const Duration(
             milliseconds: 100,
           ),
@@ -479,9 +404,8 @@ class _NoInternetState extends State<NoInternet> with WidgetsBindingObserver {
           borderRadius: const BorderRadius.all(Radius.circular(7)),
           border: Border.all(
             width: 1,
-            color: themeMode.isLight
-                ? kPrimaryColorLightMode
-                : kPrimaryColorDarkMode,
+            color: ref.read(themeModeNotifier.notifier).primaryTheme(ref: ref)
+            ,
           )),
       height: 100,
       child: buildSebhaCarouselSlider(),
@@ -495,64 +419,40 @@ class _NoInternetState extends State<NoInternet> with WidgetsBindingObserver {
         return Builder(builder: (BuildContext context) {
           index = entry.key;
           debugPrint(entry.value);
-
           return Align(
               alignment: Alignment.center,
               child: Text(
                 entry.value,
                 style: TextStyle(
                     fontSize: 24,
-                    color: themeMode.isLight
-                        ? kTextColorLightMode
-                        : kTextColorDarkMode),
+                    color:ref.read(themeModeNotifier.notifier).textTheme(ref: ref),
+                ),
               ));
         });
       }).toList(),
       controller: controller,
-      options: CarouselOptions(
-
-          // onPageChanged: (i, reason) {
-          //   setState(() {
-          //     index = i;
-          //   });
-          // },
-          scrollDirection: Axis.vertical,
-          height: 50),
+      options: CarouselOptions(scrollDirection: Axis.vertical, height: 50),
     );
   }
 
-//SebhaButton
-  ElevatedButton buildSebhaElevatedButton() {
-    return ElevatedButton(
-        style: fullButton(),
+  //SebhaButton
+  FullButtonWidget buildSebhaElevatedButton() {
+    return FullButtonWidget(
+
         onLongPress: () {
           setState(() {
             isLongPress = true;
-
             onLongPressCounter++;
-
-            // index = onLongPressCounter;
             controller.animateToPage(
                 duration: const Duration(milliseconds: 300),
                 curve: Curves.linear,
                 onLongPressCounter);
             debugPrint("longPressCounter = $onLongPressCounter");
           });
-
-          // setState(() {
-          // if(isLongPress){
-          //    debugPrint("isLongPress in ifStatment : $isLongPress");
-          //    // index = onLongPressCounter;
-          // }
           Duration(milliseconds: onLongPressCounter);
-          //
-          // });
-
           Vibration.vibrate(duration: onLongPressCounter);
           setState(() {
             sephaCounter++;
-
-            debugPrint("long prees is Finish");
           });
         },
         onPressed: () async {
@@ -566,8 +466,6 @@ class _NoInternetState extends State<NoInternet> with WidgetsBindingObserver {
               isAnimate = false;
               isFirstAnimate = false;
               isSecondAnimate = false;
-              debugPrint("sephaCounter++ : $sephaCounter++");
-              debugPrint("index++ : $index++");
               return setState(() {
                 controller.animateToPage(
                     duration: const Duration(milliseconds: 300),
@@ -583,17 +481,6 @@ class _NoInternetState extends State<NoInternet> with WidgetsBindingObserver {
                     : isSecondAnimate = false;
               });
             }
-            setState(() {
-              // index = 0;
-              // isSephaCountrEnd = !isSephaCountrEnd;
-
-              // if(isSephaCountrEnd = !isSephaCountrEnd){
-              //   setState(() {
-              //     sephaCounter+1;
-              //
-              //   });
-              // }
-            });
           });
         },
         child: Text(
@@ -605,7 +492,7 @@ class _NoInternetState extends State<NoInternet> with WidgetsBindingObserver {
   var loading = false;
 
   Future<void> pushToMainPage() async {
-    studentController.index = 0;
+    // studentController.index = 0;
     await myPushNameAndRemoveUntil(
         context,
         MyPagesRoutes.main,
@@ -613,11 +500,6 @@ class _NoInternetState extends State<NoInternet> with WidgetsBindingObserver {
         (NewSession.get("logged", "def") == "ok"
             ? MyPagesRoutes.accountOfOwner
             : MyPagesRoutes.accountBeforeLoginInStudent));
-    // await  Navigator.of(context).push(MaterialPageRoute(
-    //       builder: (BuildContext context) => const HomeBeforeAddData())
-    // );
-
-    // studentController.index = 0;
   }
 }
 
@@ -636,7 +518,7 @@ class InternetConnectivityChecker extends StatelessWidget {
     return Builder(
       builder: (context) {
         if (connectivityController.isConnection() == false) {
-          return const NoInternet(
+          return const NoInternetUi(
             isHaveAppBar: false,
           );
         } else if (connectivityController.isConnection()) {
@@ -649,40 +531,3 @@ class InternetConnectivityChecker extends StatelessWidget {
     );
   }
 }
-
-// void main() {
-//   runApp(MyApp());
-// }
-//
-// class MyApp extends StatelessWidget {
-//   @override
-//   Widget build(BuildContext context) {
-//     return MaterialApp(
-//       home: MyHomePage(),
-//     );
-//   }
-// }
-//
-// class MyHomePage extends StatelessWidget {
-//   void _restartApp(BuildContext context) {
-//     // Restart the entire application
-//     runApp(MyApp());
-//   }
-//
-//   @override
-//   Widget build(BuildContext context) {
-//     return Scaffold(
-//       appBar: AppBar(
-//         title: Text('Restart App Example'),
-//       ),
-//       body: Center(
-//         child: ElevatedButton(
-//           onPressed: () {
-//             _restartApp(context);
-//           },
-//           child: Text('Restart App'),
-//         ),
-//       ),
-//     );
-//   }
-// }

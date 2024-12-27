@@ -1,54 +1,50 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../../../../constants/coordination.dart';
 import '../../../../../constants/get_it_controller.dart';
 import '../../../../../constants/localization.dart';
 import '../../../../../constants/nums.dart';
-class GeneralApartmentInfoDataRequiredTable extends StatelessWidget {
-  const GeneralApartmentInfoDataRequiredTable({
-    super.key,
+import '../../../../../controller/provider_controllers/providers/color_provider.dart';
 
-  });
-
-
+class GeneralApartmentInfoDataRequiredTable extends ConsumerWidget {
+  const GeneralApartmentInfoDataRequiredTable({super.key});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     return DataTable(
       border: TableBorder(
         horizontalInside: BorderSide(
             width: .5,
             color: themeMode.isLight ? kTextColorLightMode : kTextColorDarkMode
-          // Change this to your desired color
-        ),
+            // Change this to your desired color
+            ),
       ),
-      dataRowColor: WidgetStatePropertyAll(themeMode.isLight
-          ? kContainerColorLightMode
-          : kContainerColorDarkMode),
-      headingRowColor: WidgetStatePropertyAll(themeMode.isLight
-          ? kContainerColorLightMode
-          : kContainerColorDarkMode),
+      dataRowColor: WidgetStatePropertyAll(
+          ref.read(themeModeNotifier.notifier).containerTheme(ref: ref)),
+      headingRowColor: WidgetStatePropertyAll(
+          ref.read(themeModeNotifier.notifier).containerTheme(ref: ref)),
       horizontalMargin: 20,
       // dataRowHeight: 3,
       headingTextStyle: const TextStyle(fontSize: 16),
       sortColumnIndex: 0,
       // dataRowMinHeight: 60,
-      dataRowMinHeight: 48,  // Minimum height for the row
-      dataRowMaxHeight: 65,  // Maximum height for the row
+      dataRowMinHeight: 48,
+      // Minimum height for the row
+      dataRowMaxHeight: 65,
+      // Maximum height for the row
       columns: [
         DataColumn(
           // headingRowAlignment:MainAxisAlignment.end ,
           numeric: false,
           label: Flexible(
             child: Text(
-                SetLocalization.of(context)!.getTranslateValue("name"),
-                style: TextStyle(
-                    fontSize:
+              SetLocalization.of(context)!.getTranslateValue("name"),
+              style: TextStyle(
+                fontSize:
                     getIt<AppDimension>().isSmallScreen(context) ? 14 : 16,
-                    
-                    color: themeMode.isLight
-                        ? kTextColorLightMode
-                        : kTextColorDarkMode,),
+                color: ref.read(themeModeNotifier.notifier).textTheme(ref: ref),
+              ),
               softWrap: true,
             ),
           ),
@@ -60,61 +56,50 @@ class GeneralApartmentInfoDataRequiredTable extends StatelessWidget {
           label: Text(SetLocalization.of(context)!.getTranslateValue("example"),
               style: TextStyle(
                   fontSize: 16,
-                  
-                  color: themeMode.isLight
-                      ? kTextColorLightMode
-                      : kTextColorDarkMode)),
+                  color: ref
+                      .read(themeModeNotifier.notifier)
+                      .textTheme(ref: ref))),
           tooltip: SetLocalization.of(context)!.getTranslateValue(
             "example_of_info_required",
           ),
         ),
       ],
       rows: [
-        DataRow(
-
-            cells: [
-              DataCell(
-
-                  Text(
-                      SetLocalization.of(context)!.getTranslateValue("ad_title"),
-                      style: TextStyle(
-                          fontSize: 14,
-                          
-                          color: themeMode.isLight
-                              ? kTextColorLightMode
-                              : kTextColorDarkMode))),
-              DataCell(Text(
-                SetLocalization.of(context)!
-                    .getTranslateValue("furnished_apartment_example"),
-                style: TextStyle(
-                    fontSize: 12,
-                    
-                    color: themeMode.isLight
-                        ? kTextColorLightMode
-                        : kTextColorDarkMode),
-              )),
-              // DataCell(Text("عنوان الإعلان الخاص بالشقة")),
-            ]),
+        DataRow(cells: [
+          DataCell(Text(
+              SetLocalization.of(context)!.getTranslateValue("ad_title"),
+              style: TextStyle(
+                  fontSize: 14,
+                  color: ref
+                      .read(themeModeNotifier.notifier)
+                      .textTheme(ref: ref)))),
+          DataCell(Text(
+            SetLocalization.of(context)!
+                .getTranslateValue("furnished_apartment_example"),
+            style: TextStyle(
+                fontSize: 12,
+                color:
+                    ref.read(themeModeNotifier.notifier).textTheme(ref: ref)),
+          )),
+          // DataCell(Text("عنوان الإعلان الخاص بالشقة")),
+        ]),
         DataRow(cells: [
           DataCell(
               showEditIcon: false,
               Text(
                   style: TextStyle(
                     fontSize: 14,
-                    
-                    color: themeMode.isLight
-                        ? kTextColorLightMode
-                        : kTextColorDarkMode,
+                    color: ref
+                        .read(themeModeNotifier.notifier)
+                        .textTheme(ref: ref),
                   ),
                   SetLocalization.of(context)!.getTranslateValue("location")),
               placeholder: false),
           DataCell(Text(
               style: TextStyle(
                   fontSize: 14,
-                  
-                  color: themeMode.isLight
-                      ? kTextColorLightMode
-                      : kTextColorDarkMode),
+                  color:
+                      ref.read(themeModeNotifier.notifier).textTheme(ref: ref)),
               SetLocalization.of(context)!
                   .getTranslateValue("example_of_location"))),
         ]),
@@ -124,10 +109,9 @@ class GeneralApartmentInfoDataRequiredTable extends StatelessWidget {
               Text(
                 style: TextStyle(
                     fontSize: 12,
-                    
-                    color: themeMode.isLight
-                        ? kTextColorLightMode
-                        : kTextColorDarkMode),
+                    color: ref
+                        .read(themeModeNotifier.notifier)
+                        .textTheme(ref: ref)),
                 SetLocalization.of(context)!
                     .getTranslateValue("allowed_students"),
               ),
@@ -135,10 +119,9 @@ class GeneralApartmentInfoDataRequiredTable extends StatelessWidget {
           DataCell(Text("3",
               style: TextStyle(
                   fontSize: 14,
-                  
-                  color: themeMode.isLight
-                      ? kTextColorLightMode
-                      : kTextColorDarkMode))),
+                  color: ref
+                      .read(themeModeNotifier.notifier)
+                      .textTheme(ref: ref)))),
         ]),
         DataRow(cells: [
           DataCell(
@@ -148,20 +131,18 @@ class GeneralApartmentInfoDataRequiredTable extends StatelessWidget {
                       .getTranslateValue("housing_type_students"),
                   style: TextStyle(
                     fontSize: 14,
-                    
-                    color: themeMode.isLight
-                        ? kTextColorLightMode
-                        : kTextColorDarkMode,
+                    color: ref
+                        .read(themeModeNotifier.notifier)
+                        .textTheme(ref: ref),
                   )),
               placeholder: false),
           DataCell(Text(
               SetLocalization.of(context)!.getTranslateValue("students"),
               style: TextStyle(
                   fontSize: 14,
-                  
-                  color: themeMode.isLight
-                      ? kTextColorLightMode
-                      : kTextColorDarkMode))),
+                  color: ref
+                      .read(themeModeNotifier.notifier)
+                      .textTheme(ref: ref)))),
         ]),
         DataRow(cells: [
           DataCell(
@@ -171,19 +152,17 @@ class GeneralApartmentInfoDataRequiredTable extends StatelessWidget {
                       .getTranslateValue("monthly_rent"),
                   style: TextStyle(
                     fontSize: 14,
-                    
-                    color: themeMode.isLight
-                        ? kTextColorLightMode
-                        : kTextColorDarkMode,
+                    color: ref
+                        .read(themeModeNotifier.notifier)
+                        .textTheme(ref: ref),
                   )),
               placeholder: false),
           DataCell(Text("800",
               style: TextStyle(
                   fontSize: 14,
-                  
-                  color: themeMode.isLight
-                      ? kTextColorLightMode
-                      : kTextColorDarkMode))),
+                  color: ref
+                      .read(themeModeNotifier.notifier)
+                      .textTheme(ref: ref)))),
         ]),
       ],
     );

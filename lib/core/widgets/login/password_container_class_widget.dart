@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import 'package:ween_blaqe/constants/nums.dart';
+import 'package:ween_blaqe/controller/provider_controllers/providers/color_provider.dart';
 import 'package:ween_blaqe/view/common_widgets/containers_widgets/container_widget.dart';
 
 import '../../../constants/coordination.dart';
@@ -54,9 +55,7 @@ class PasswordContainerClassWidget extends ConsumerWidget {
               child: Text(
                 title,
                 style: TextStyle(
-                  color: themeMode.isLight
-                      ? kTextColorLightMode
-                      : kTextColorDarkMode,
+                  color: ref.read(themeModeNotifier.notifier).textTheme(ref: ref),
                   fontSize:
                   getIt<AppDimension>().isSmallScreen(context) ? 16 : 18,
                 ),
@@ -98,9 +97,7 @@ class PasswordContainerClassWidget extends ConsumerWidget {
                 hintText: hintInput,
                 border: InputBorder.none,
                 suffixIcon: IconButton(
-                  color: themeMode.isLight
-                      ? kTextColorLightMode
-                      : kTextColorDarkMode,
+                  color: ref.read(themeModeNotifier.notifier).textTheme(ref: ref),
                   icon: isObscure
                       ? const Icon(Icons.visibility)
                       : const Icon(Icons.visibility_off),
@@ -114,26 +111,21 @@ class PasswordContainerClassWidget extends ConsumerWidget {
                 focusedBorder: OutlineInputBorder(
                   borderSide: BorderSide(
                     width: 1,
-                    color: themeMode.isLight
-                        ? kPrimaryColorLightMode
-                        : kPrimaryColorDarkMode,
+                    color: ref.read(themeModeNotifier.notifier).primaryTheme(ref: ref),
                   ),
                 ),
                 enabledBorder: OutlineInputBorder(
                     borderSide: BorderSide(
                       width: 1,
-                      color: themeMode.isLight
-                          ? kPrimaryColorLightMode.withOpacity(.3)
-                          : kPrimaryColorDarkMode.withOpacity(.3),
+                      color: ref.read(themeModeNotifier.notifier)
+                          .primaryTheme(ref: ref,withOpacity: .3),
                     ),
                     borderRadius: BorderRadius.circular(7)),
                 errorText: errorText),
             style: TextStyle(
                 fontSize:
                 getIt<AppDimension>().isSmallScreen(context) ? 15 : 16,
-                color: themeMode.isLight
-                    ? kTextColorLightMode
-                    : kTextColorDarkMode),
+                color: ref.read(themeModeNotifier.notifier).textTheme(ref: ref)),
           ),
         ),
       ],

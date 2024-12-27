@@ -28,6 +28,7 @@ import 'package:ween_blaqe/constants/nums.dart';
 // import '../../../core/utils/funcations/go_url_launcher_methodes/go_to_whatsapp_method.dart';
 
 // import '../../../main.dart';
+import '../../../controller/provider_controllers/providers/color_provider.dart';
 import '../../../main.dart';
 import '../../../controller/provider_controllers/providers/auth_provider.dart';
 // import '../../../main.dart';
@@ -87,11 +88,11 @@ class _ProfileOfOwnerConsumerState extends ConsumerState<ProfileUi> {
   Widget build(BuildContext context) {
     return ColorfulSafeArea(
       bottomColor: Colors.transparent,
-      color: themeMode.isLight ? kPrimaryColorLightMode : kPrimaryColorDarkMode,
+      color:ref.read(themeModeNotifier.notifier).primaryTheme(ref: ref),
+
       child: Scaffold(
-        backgroundColor: themeMode.isLight
-            ? kBackgroundAppColorLightMode
-            : kBackgroundAppColorDarkMode,
+        backgroundColor:ref.read(themeModeNotifier.notifier).backgroundAppTheme(ref: ref)
+,
         body: ref.watch(loadProfileImageNotifier).isLoading != false ||
                 ref.watch(compressAndUploadImageNotifier).isLoading
             // &&

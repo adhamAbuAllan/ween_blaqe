@@ -1,37 +1,41 @@
 import 'package:colorful_safe_area/colorful_safe_area.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import '../../../../constants/nums.dart';
+import '../../../../controller/provider_controllers/providers/color_provider.dart';
 
-class HowCreateAd extends StatelessWidget {
-  const HowCreateAd({super.key});
+class HowCreateAdUi extends ConsumerWidget {
+  const HowCreateAdUi({super.key});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     return ColorfulSafeArea(
       // bottomColor: Colors.transparent ,
-      color: themeMode.isLight ? kPrimaryColorLightMode : kPrimaryColorDarkMode,
-      child: Scaffold(
-        backgroundColor: themeMode.isLight ? kBackgroundAppColorLightMode : kBackgroundAppColorDarkMode,
+      color: ref.read(themeModeNotifier.notifier).primaryTheme(ref: ref),
 
+      child: Scaffold(
+        backgroundColor:
+            ref.read(themeModeNotifier.notifier).backgroundAppTheme(ref: ref),
         appBar: AppBar(
-          backgroundColor: themeMode.isLight ? kPrimaryColorLightMode : kPrimaryColorDarkMode,
+          backgroundColor:
+              ref.read(themeModeNotifier.notifier).primaryTheme(ref: ref),
         ),
         body: SingleChildScrollView(
           child: SizedBox(
             child: Column(
               children: [
                 //title of what is system paying is allowed
-                 Row(
+                Row(
                   children: [
                     Padding(
-                      padding: const EdgeInsets .fromLTRB(0, 50, 25, 10),
+                      padding: const EdgeInsets.fromLTRB(0, 50, 25, 10),
                       child: Text(
                         " كيف أنشئ إعلان؟",
                         style: TextStyle(
                           fontSize: 20.0,
-                          color: themeMode.isLight ? kTextColorLightMode : kTextColorDarkMode,
-                          
+                          color: ref
+                              .read(themeModeNotifier.notifier)
+                              .textTheme(ref: ref),
                           inherit: true,
                         ),
                       ),
@@ -47,16 +51,18 @@ class HowCreateAd extends StatelessWidget {
                     "لإنشاء إعلان خاص بك على تطبيق وين بلاقي ، إذهب إلى الصفحة الرئيسية",
                     style: TextStyle(
                       fontSize: 16.0,
-                      color: themeMode.isLight ? kTextColorLightMode : kTextColorDarkMode.withOpacity(.8),
-                      
+                      color: ref
+                          .read(themeModeNotifier.notifier)
+                          .textTheme(ref: ref, withOpacity: 0.8),
                       inherit: true,
                     ),
                   ),
                 ),
                 Image.asset(
-
-
-                  "assets/images/apartments_images/Simulator Screenshot - iPhone 15 Pro Max - 2023-12-05 at 14.48.13.png",width: 300,height: 400,),
+                  "assets/images/apartments_images/Simulator Screenshot - iPhone 15 Pro Max - 2023-12-05 at 14.48.13.png",
+                  width: 300,
+                  height: 400,
+                ),
                 Container(
                   width: double.infinity,
                   margin: const EdgeInsets.fromLTRB(25, 50, 30, 10),
@@ -64,16 +70,19 @@ class HowCreateAd extends StatelessWidget {
                     "إضعط على زر إضافة شقة المتواجد في اسفل الشاشة على اليمين",
                     style: TextStyle(
                       fontSize: 16.0,
-                      color: themeMode.isLight ? kTextColorLightMode : kTextColorDarkMode.withOpacity(.8),
-                      
+                      color: ref
+                          .read(themeModeNotifier.notifier)
+                          .textTheme(ref: ref, withOpacity: .8),
                       inherit: true,
                     ),
                   ),
                 ),
                 Image.asset(
-                    "assets/images/apartments_images/Simulator Screenshot - iPhone 15 Pro Max - 2023-12-05 at 14.32.35.png",width: 300,height: 400,),
+                  "assets/images/apartments_images/Simulator Screenshot - iPhone 15 Pro Max - 2023-12-05 at 14.32.35.png",
+                  width: 300,
+                  height: 400,
+                ),
                 Container(
-
                   width: double.infinity,
                   margin: const EdgeInsets.fromLTRB(25, 50, 30, 10),
                   child: Text(
@@ -83,16 +92,19 @@ class HowCreateAd extends StatelessWidget {
                     "ثم أضغط على زر 'اطلب الإشتراك عبر واتس أب'",
                     style: TextStyle(
                       fontSize: 16.0,
-                      color: themeMode.isLight ? kTextColorLightMode : kTextColorDarkMode.withOpacity(.8),
-                      
+                      color: ref
+                          .read(themeModeNotifier.notifier)
+                          .textTheme(ref: ref, withOpacity: .8),
                       inherit: true,
                     ),
                   ),
                 ),
-            
-                Image.asset(
 
-                    "assets/images/apartments_images/Simulator Screenshot - iPhone 15 Pro Max - 2023-12-05 at 14.27.36.png",width: 300,height: 400,),
+                Image.asset(
+                  "assets/images/apartments_images/Simulator Screenshot - iPhone 15 Pro Max - 2023-12-05 at 14.27.36.png",
+                  width: 300,
+                  height: 400,
+                ),
                 Container(
                   width: double.infinity,
                   margin: const EdgeInsets.fromLTRB(25, 5, 30, 10),
@@ -103,8 +115,9 @@ class HowCreateAd extends StatelessWidget {
                     "وسيتم الرد على رسالتك خلال بضع دقائق",
                     style: TextStyle(
                       fontSize: 16.0,
-                      color: themeMode.isLight ? kTextColorLightMode : kTextColorDarkMode.withOpacity(.8),
-                      
+                      color: ref
+                          .read(themeModeNotifier.notifier)
+                          .textTheme(ref: ref, withOpacity: .8),
                       inherit: true,
                     ),
                   ),
@@ -115,5 +128,6 @@ class HowCreateAd extends StatelessWidget {
         ),
       ),
     );
+
   }
 }

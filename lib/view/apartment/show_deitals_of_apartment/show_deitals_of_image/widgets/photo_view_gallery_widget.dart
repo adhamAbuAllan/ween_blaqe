@@ -5,6 +5,7 @@ import 'package:photo_view/photo_view_gallery.dart';
 
 import '../../../../../api/photos.dart';
 import '../../../../../constants/nums.dart';
+import '../../../../../controller/provider_controllers/providers/color_provider.dart';
 
 class PhotoViewGalleryWidget extends ConsumerStatefulWidget {
   const PhotoViewGalleryWidget({super.key,
@@ -55,9 +56,8 @@ late PageController _pageController;
       },
       scrollPhysics: const BouncingScrollPhysics(),
       backgroundDecoration: BoxDecoration(
-        color: themeMode.isLight
-            ? kBackgroundAppColorLightMode
-            : kBackgroundAppColorDarkMode,
+        color:ref.read(themeModeNotifier.notifier).backgroundAppTheme(ref: ref)
+,
       ),
     );
   }

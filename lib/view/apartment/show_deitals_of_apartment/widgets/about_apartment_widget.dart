@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:ween_blaqe/controller/provider_controllers/providers/color_provider.dart';
 
 import '../../../../api/apartments_api/apartments.dart';
 import '../../../../constants/coordination.dart';
@@ -26,9 +27,7 @@ class AboutApartmentWidget extends ConsumerWidget {
           10, getIt<AppDimension>().isSmallScreen(context) ? 15 : 20, 10, 0),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(7),
-        color: themeMode.isLight
-            ? kContainerColorLightMode
-            : kContainerColorDarkMode,
+        color: ref.read(themeModeNotifier.notifier).containerTheme(ref: ref),
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -41,9 +40,7 @@ class AboutApartmentWidget extends ConsumerWidget {
               style: TextStyle(
                 fontSize: getIt<AppDimension>().isSmallScreen(context) ? 18 : 20,
                 fontWeight: FontWeight.w600,
-                color: themeMode.isLight
-                    ? kTextColorLightMode
-                    : kTextColorDarkMode,
+                color: ref.read(themeModeNotifier.notifier).textTheme(ref: ref),
               ),
             ),
           ),
@@ -100,8 +97,8 @@ class AnimateRoomBox extends ConsumerWidget {
         decoration: BoxDecoration(
           border: Border.all(
             color: isRoomSizeChange
-                ? (themeMode.isLight ? kPrimaryColorLightMode : kPrimaryColorDarkMode)
-                : (themeMode.isLight ? kPrimaryColor300LightMode : kPrimaryColor300DarkMode),
+                ? (ref.read(themeModeNotifier.notifier).primaryTheme(ref: ref))
+                : (ref.read(themeModeNotifier.notifier).primary300Theme(ref: ref)),
             width: isRoomSizeChange? 1.5 : .5,
           ),
           borderRadius: BorderRadius.circular(8),
@@ -120,7 +117,7 @@ class AnimateRoomBox extends ConsumerWidget {
               Text(
                 SetLocalization.of(context)!.getTranslateValue("rooms"),
                 style: TextStyle(
-                  color: themeMode.isLight ? kTextColorLightMode : kTextColorDarkMode,
+                  color: ref.read(themeModeNotifier.notifier).textTheme(ref: ref),
                 ),
               ),
               Row(
@@ -142,14 +139,14 @@ class AnimateRoomBox extends ConsumerWidget {
                         key: const ValueKey('roomsCount'),
                         style: TextStyle(
                           fontWeight: FontWeight.bold,
-                          color: themeMode.isLight ? kPrimaryColorLightMode : kPrimaryColorDarkMode,
+                          color: ref.read(themeModeNotifier.notifier).primaryTheme(ref: ref),
                         ),
                       )
                           : Text(
                         "${oneApartment.rooms ?? 0}",
                         key: const ValueKey('roomsCountStatic'),
                         style: TextStyle(
-                          color: themeMode.isLight ? kTextColorLightMode : kTextColorDarkMode,
+                          color: ref.read(themeModeNotifier.notifier).textTheme(ref: ref),
                         ),
                       ),
                     ),
@@ -158,7 +155,7 @@ class AnimateRoomBox extends ConsumerWidget {
                     image: AssetImage(imageAboutApartmentRoom),
                     width: 32,
                     height: 32,
-                    color: themeMode.isLight ? kTextColorLightMode : kTextColorDarkMode,
+                    color: ref.read(themeModeNotifier.notifier).textTheme(ref: ref),
                   ),
                   const SizedBox(width: 10),
                 ],
@@ -191,8 +188,8 @@ class AnimateBathRoomBox extends ConsumerWidget {
         decoration: BoxDecoration(
           border: Border.all(
             color: isRoomBathSizeChange
-                ? (themeMode.isLight ? kPrimaryColorLightMode : kPrimaryColorDarkMode)
-                : (themeMode.isLight ? kPrimaryColor300LightMode : kPrimaryColor300DarkMode),
+                ? (ref.read(themeModeNotifier.notifier).primaryTheme(ref: ref))
+                : (ref.read(themeModeNotifier.notifier).primary300Theme(ref: ref)),
             width: isRoomBathSizeChange ? 1.5 : .5,
           ),
           borderRadius: BorderRadius.circular(8),
@@ -210,7 +207,7 @@ class AnimateBathRoomBox extends ConsumerWidget {
               Text(
                 SetLocalization.of(context)!.getTranslateValue("bathrooms"),
                 style: TextStyle(
-                  color: themeMode.isLight ? kTextColorLightMode : kTextColorDarkMode,
+                  color: ref.read(themeModeNotifier.notifier).textTheme(ref: ref),
                 ),
               ),
               Row(
@@ -231,14 +228,14 @@ class AnimateBathRoomBox extends ConsumerWidget {
                         key: const ValueKey('bathroomsCount'),
                         style: TextStyle(
                           fontWeight: FontWeight.bold,
-                          color: themeMode.isLight ? kPrimaryColorLightMode : kPrimaryColorDarkMode,
+                          color: ref.read(themeModeNotifier.notifier).primaryTheme(ref: ref),
                         ),
                       )
                           : Text(
                         "${oneApartment.bathrooms ?? 0}",
                         key: const ValueKey('bathroomsCountStatic'),
                         style: TextStyle(
-                          color: themeMode.isLight ? kTextColorLightMode : kTextColorDarkMode,
+                          color: ref.read(themeModeNotifier.notifier).textTheme(ref: ref),
                         ),
                       ),
                     ),
@@ -248,7 +245,7 @@ class AnimateBathRoomBox extends ConsumerWidget {
                         "assets/images/apartments_images/about_apartment/bathroom.png"),
                     width: 32,
                     height: 32,
-                    color: themeMode.isLight ? kTextColorLightMode : kTextColorDarkMode,
+                    color: ref.read(themeModeNotifier.notifier).textTheme(ref: ref),
                   ),
                   const SizedBox(width: 10),
                 ],
@@ -281,8 +278,8 @@ class AnimateAreaBox extends ConsumerWidget {
         decoration: BoxDecoration(
           border: Border.all(
             color: isAreaSizeChange
-                ? (themeMode.isLight ? kPrimaryColorLightMode : kPrimaryColorDarkMode)
-                : (themeMode.isLight ? kPrimaryColor300LightMode : kPrimaryColor300DarkMode),
+                ? (ref.read(themeModeNotifier.notifier).primaryTheme(ref: ref))
+                : (ref.read(themeModeNotifier.notifier).primary300Theme(ref: ref)),
             width: isAreaSizeChange ? 1.5 : .5,
           ),
           borderRadius: BorderRadius.circular(8),
@@ -300,7 +297,7 @@ class AnimateAreaBox extends ConsumerWidget {
               Text(
                 SetLocalization.of(context)!.getTranslateValue("area"),
                 style: TextStyle(
-                  color: themeMode.isLight ? kTextColorLightMode : kTextColorDarkMode,
+                  color: ref.read(themeModeNotifier.notifier).textTheme(ref: ref),
 
                 ),
               ),
@@ -323,14 +320,14 @@ class AnimateAreaBox extends ConsumerWidget {
                         key: const ValueKey('areaSize'),
                         style: TextStyle(
                           fontWeight: FontWeight.bold,
-                          color: themeMode.isLight ? kPrimaryColorLightMode : kPrimaryColorDarkMode,
+                          color: ref.read(themeModeNotifier.notifier).primaryTheme(ref: ref),
                         ),
                       )
                           : Text(
                         "${oneApartment.squareMeters ?? 0} ${SetLocalization.of(context)!.getTranslateValue("m2")}",
                         key: const ValueKey('areaSizeStatic'),
                         style: TextStyle(
-                          color: themeMode.isLight ? kTextColorLightMode : kTextColorDarkMode,
+                          color: ref.read(themeModeNotifier.notifier).textTheme(ref: ref),
                         ),
                       ),
                     ),
@@ -340,7 +337,7 @@ class AnimateAreaBox extends ConsumerWidget {
                         "assets/images/apartments_images/about_apartment/area.png"),
                     width: 32,
                     height: 32,
-                    color: themeMode.isLight ? kTextColorLightMode : kTextColorDarkMode,
+                    color: ref.read(themeModeNotifier.notifier).textTheme(ref: ref),
                   ),
                 ],
               ),

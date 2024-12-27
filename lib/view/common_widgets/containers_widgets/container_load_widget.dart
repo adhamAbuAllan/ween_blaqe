@@ -7,6 +7,7 @@ import '../../../constants/coordination.dart';
 import '../../../constants/get_it_controller.dart';
 import '../../../constants/localization.dart';
 import '../../../constants/nums.dart';
+import '../../../controller/provider_controllers/providers/color_provider.dart';
 
 class ContainerLoadWidget extends ConsumerStatefulWidget {
   const ContainerLoadWidget(
@@ -37,9 +38,8 @@ class _ContainerLoadWidgetState
               child: Text(
                 widget.title,
                 style: TextStyle(
-                  color: themeMode.isLight
-                      ? kTextColorLightMode
-                      : kTextColorDarkMode,
+                  color: ref.read(themeModeNotifier.notifier).textTheme(ref: ref),
+
                   fontSize:
                       getIt<AppDimension>().isSmallScreen(context) ? 16 : 18,
                 ),
@@ -49,8 +49,8 @@ class _ContainerLoadWidgetState
         ),
         widget.isLoading
             ? Text(SetLocalization.of(context)!.getTranslateValue("loading"
-            "..."),style: TextStyle(color: themeMode.isLight ?
-        kTextColorLightMode:kTextColorDarkMode),)
+            "..."),style: TextStyle(color: ref.read(themeModeNotifier.notifier).textTheme(ref: ref),
+        ),)
             :
         widget.childWidget
       ],

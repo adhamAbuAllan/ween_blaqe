@@ -4,6 +4,7 @@ import 'package:ween_blaqe/constants/nums.dart';
 import '../../../../../constants/coordination.dart';
 import '../../../../../constants/get_it_controller.dart';
 import '../../../../controller/provider_controllers/providers/apartment_provider.dart';
+import '../../../../controller/provider_controllers/providers/color_provider.dart';
 
 class PointerTypeWidget extends ConsumerWidget {
   const PointerTypeWidget({super.key});
@@ -21,12 +22,14 @@ class PointerTypeWidget extends ConsumerWidget {
       width: getIt<AppDimension>().isSmallScreen(context) ? (50 / 3) : (50 / 2.7),
       height: getIt<AppDimension>().isSmallScreen(context) ? (50 / 3) : (50 / 2.7),
       decoration: BoxDecoration(
-        color: themeMode.isLight ? kPrimaryColorLightMode : kPrimaryColorDarkMode,
+        color: ref.read(themeModeNotifier.notifier).primaryTheme(ref: ref),
+
         borderRadius: BorderRadiusDirectional.circular(
           getIt<AppDimension>().isSmallScreen(context) ? (7 / 2.5) : (7 / 2),
         ),
         border: Border.all(
-          color: themeMode.isLight ? kPrimaryColor300LightMode : kPrimaryColor300DarkMode,
+          color: ref.read(themeModeNotifier.notifier).primary300Theme(ref: ref),
+
           strokeAlign: BorderSide.strokeAlignOutside,
           width: getIt<AppDimension>().isSmallScreen(context) ? (7 / 2.5) : (7 / 2),
         ),

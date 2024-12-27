@@ -1,10 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:ween_blaqe/constants/strings.dart';
+import 'package:ween_blaqe/core/utils/funcations/route_pages/push_routes.dart';
+import 'package:ween_blaqe/view/common_widgets/button_widgets/full_button_widget.dart';
 // import 'package:ween_blaqe/testing_code/find_the_fastest_way_in_state_managment/riverpod/login_and_register_section/login_controller_test.dart';
 
 import '../../../../constants/coordination.dart';
 import '../../../../constants/get_it_controller.dart';
 import '../../../../constants/localization.dart';
+
 // import '../../../../constants/strings.dart';
 import '../../../../controller/provider_controllers/methods/hybrid_methods/auth_validator/login_and_reg_validators/validator_and_login.dart';
 import '../../../../core/utils/styles/button.dart';
@@ -21,12 +25,9 @@ class ButtonLoginCompletedWidget extends ConsumerWidget {
       child: SizedBox(
         width: double.infinity,
         height: getIt<AppDimension>().isSmallScreen(context) ? 55 / 1.2 : 55,
-        child: ElevatedButton(
-            style: fullButton(),
-            onPressed: () async{
-
+        child: FullButtonWidget(
+            onPressed: () {
               validateAndLogin(ref, context);
-
 
             },
             child: ref.watch(loginNotifier).isLoading == false

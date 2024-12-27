@@ -1,35 +1,30 @@
 import 'package:colorful_safe_area/colorful_safe_area.dart';
 import 'package:flutter/material.dart';
 import 'package:ween_blaqe/constants/localization.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import '../../controller/provider_controllers/providers/color_provider.dart';
 
-import '../../constants/nums.dart';
-
-class PrivacyPolicy extends StatefulWidget {
-  const PrivacyPolicy({super.key});
+class PrivacyPolicyUi extends ConsumerStatefulWidget {
+  const PrivacyPolicyUi({super.key});
 
   @override
-  State<PrivacyPolicy> createState() => _PrivacyPolicyState();
+  ConsumerState createState() => _PrivacyPolicyUiState();
 }
 
-class _PrivacyPolicyState extends State<PrivacyPolicy> {
-  @override
-  void initState() {
-    super.initState();
-  }
-
+class _PrivacyPolicyUiState extends ConsumerState<PrivacyPolicyUi> {
   @override
   Widget build(BuildContext context) {
     return ColorfulSafeArea(
       bottomColor: Colors.transparent,
-      color: themeMode.isLight ? kPrimaryColorLightMode : kPrimaryColorDarkMode,
+      color:
+      ref.read(themeModeNotifier.notifier).primaryTheme(ref: ref),
+
       child: Scaffold(
-        backgroundColor: themeMode.isLight
-            ? kBackgroundAppColorLightMode
-            : kBackgroundAppColorDarkMode,
+        backgroundColor: ref.read(themeModeNotifier.notifier).backgroundAppTheme(ref: ref),
+
         appBar: AppBar(
-          backgroundColor: themeMode.isLight
-              ? kPrimaryColorLightMode
-              : kPrimaryColorDarkMode,
+          backgroundColor: ref.read(themeModeNotifier.notifier).primaryTheme(ref: ref),
+
         ),
         body: SingleChildScrollView(
           child: Column(
@@ -43,13 +38,12 @@ class _PrivacyPolicyState extends State<PrivacyPolicy> {
                       .getTranslateValue("privacy_policy"),
                   style: TextStyle(
                     fontSize: 28.0,
-                    
+
                     fontWeight: FontWeight.w800,
 
                     inherit: true,
-                    color: themeMode.isLight
-                        ? kTextColorLightMode
-                        : kTextColorDarkMode,
+                    color:ref.read(themeModeNotifier.notifier).textTheme(ref: ref),
+
                   ),
                   softWrap: true,
                 ),
@@ -62,13 +56,12 @@ class _PrivacyPolicyState extends State<PrivacyPolicy> {
                       .getTranslateValue("collect_and_use_data"),
                   style: TextStyle(
                     fontSize: 22.0,
-                    
+
                     inherit: true,
                     fontWeight: FontWeight.w600,
 
-                    color: themeMode.isLight
-                        ? kTextColorLightMode
-                        : kTextColorDarkMode,
+                    color: ref.read(themeModeNotifier.notifier).textTheme(ref: ref),
+
                   ),
                   softWrap: true,
                 ),
@@ -82,11 +75,10 @@ class _PrivacyPolicyState extends State<PrivacyPolicy> {
                       .getTranslateValue("data_protection_policy"),
                   style: TextStyle(
                     fontSize: 16.0,
-                    
+
                     inherit: true,
-                    color: themeMode.isLight
-                        ? kTextColorLightMode
-                        : kTextColorDarkMode,
+                    color: ref.read(themeModeNotifier.notifier).textTheme(ref: ref),
+
                   ),
                 ),
               ),
@@ -99,13 +91,12 @@ class _PrivacyPolicyState extends State<PrivacyPolicy> {
                       .getTranslateValue("collected_information"),
                   style: TextStyle(
                     fontSize: 22.0,
-                    
+
                     fontWeight: FontWeight.w700,
 
                     inherit: true,
-                    color: themeMode.isLight
-                        ? kTextColorLightMode
-                        : kTextColorDarkMode,
+                    color: ref.read(themeModeNotifier.notifier).textTheme(ref: ref),
+
                   ),
                 ),
               ),
@@ -118,13 +109,12 @@ class _PrivacyPolicyState extends State<PrivacyPolicy> {
                   SetLocalization.of(context)!.getTranslateValue("owner_info"),
                   style: TextStyle(
                     fontSize: 16.0,
-                    
+
                     inherit: true,
                     fontWeight: FontWeight.w600,
 
-                    color: themeMode.isLight
-                        ? kTextColorLightMode
-                        : kTextColorDarkMode,
+                    color: ref.read(themeModeNotifier.notifier).textTheme(ref: ref),
+
                   ),
                 ),
               ),
@@ -136,13 +126,12 @@ class _PrivacyPolicyState extends State<PrivacyPolicy> {
                   SetLocalization.of(context)!.getTranslateValue("info_usage"),
                   style: TextStyle(
                     fontSize: 22.0,
-                    
+
                     fontWeight: FontWeight.w500,
 
                     inherit: true,
-                    color: themeMode.isLight
-                        ? kTextColorLightMode
-                        : kTextColorDarkMode,
+                    color: ref.read(themeModeNotifier.notifier).textTheme(ref: ref),
+
                   ),
                 ),
               ),
@@ -156,11 +145,10 @@ class _PrivacyPolicyState extends State<PrivacyPolicy> {
                       .getTranslateValue("owner_info_usage"),
                   style: TextStyle(
                     fontSize: 16.0,
-                    
+
                     inherit: true,
-                    color: themeMode.isLight
-                        ? kTextColorLightMode
-                        : kTextColorDarkMode,
+                    color: ref.read(themeModeNotifier.notifier).textTheme(ref: ref),
+
                   ),
                 ),
               ),
@@ -172,7 +160,7 @@ class _PrivacyPolicyState extends State<PrivacyPolicy> {
               //     "معلومات المالك ",
               //     style: TextStyle(
               //       fontSize: 22.0,
-              //       
+              //
               //       inherit: true,
 // color:kTextColor,
               //     ),
@@ -186,13 +174,12 @@ class _PrivacyPolicyState extends State<PrivacyPolicy> {
                   SetLocalization.of(context)!.getTranslateValue("the_phone"),
                   style: TextStyle(
                     fontSize: 18.0,
-                    
+
                     fontWeight: FontWeight.w600,
 
                     inherit: true,
-                    color: themeMode.isLight
-                        ? kTextColorLightMode
-                        : kTextColorDarkMode,
+                    color: ref.read(themeModeNotifier.notifier).textTheme(ref: ref),
+
                   ),
                 ),
               ),
@@ -204,11 +191,10 @@ class _PrivacyPolicyState extends State<PrivacyPolicy> {
                   SetLocalization.of(context)!.getTranslateValue("phone_usage"),
                   style: TextStyle(
                     fontSize: 16.0,
-                    
+
                     inherit: true,
-                    color: themeMode.isLight
-                        ? kTextColorLightMode
-                        : kTextColorDarkMode,
+                    color: ref.read(themeModeNotifier.notifier).textTheme(ref: ref),
+
                   ),
                 ),
               ),
@@ -220,11 +206,10 @@ class _PrivacyPolicyState extends State<PrivacyPolicy> {
                   SetLocalization.of(context)!.getTranslateValue("info_phone_usage_details"),
                   style: TextStyle(
                     fontSize: 16.0,
-                    
+
                     inherit: true,
-                    color: themeMode.isLight
-                        ? kTextColorLightMode
-                        : kTextColorDarkMode,
+                    color: ref.read(themeModeNotifier.notifier).textTheme(ref: ref),
+
                   ),
                 ),
               ),
@@ -237,7 +222,7 @@ class _PrivacyPolicyState extends State<PrivacyPolicy> {
               //     "معلومات الطالب ",
               //     style: TextStyle(
               //       fontSize: 22.0,
-              //       
+              //
               //       inherit: true,
 // color:kTextColor,
               //     ),
@@ -251,7 +236,7 @@ class _PrivacyPolicyState extends State<PrivacyPolicy> {
               //     "الهاتف",
               //     style: TextStyle(
               //       fontSize: 18.0,
-              //       
+              //
               //       inherit: true,
 // color:kTextColor,
               //     ),
@@ -266,7 +251,7 @@ class _PrivacyPolicyState extends State<PrivacyPolicy> {
               //     " في حال وجود بعض النشاطات الغير مرغوب فيها ",
               //     style: TextStyle(
               //       fontSize: 16.0,
-              //       
+              //
               //       inherit: true,
 // color:kTextColor,
               //     ),
@@ -280,7 +265,7 @@ class _PrivacyPolicyState extends State<PrivacyPolicy> {
               //     "الجامعة",
               //     style: TextStyle(
               //       fontSize: 18.0,
-              //       
+              //
               //       inherit: true,
 // color:kTextColor,
               //     ),
@@ -296,7 +281,7 @@ class _PrivacyPolicyState extends State<PrivacyPolicy> {
               //     "المتواجدة في المدينة التي تتواجد بها الجامعة ",
               //     style: TextStyle(
               //       fontSize: 16.0,
-              //       
+              //
               //       inherit: true,
 // color:kTextColor,
               //     ),
@@ -310,7 +295,7 @@ class _PrivacyPolicyState extends State<PrivacyPolicy> {
               //     "الجنس",
               //     style: TextStyle(
               //       fontSize: 18.0,
-              //       
+              //
               //       inherit: true,
 // color:kTextColor,
               //     ),
@@ -324,7 +309,7 @@ class _PrivacyPolicyState extends State<PrivacyPolicy> {
               //     "نقوم بعرض الشقق له/لها حسب جنس الطالب ",
               //     style: TextStyle(
               //       fontSize: 16.0,
-              //       
+              //
               //       inherit: true,
 // color:kTextColor,
               //     ),
@@ -339,13 +324,12 @@ class _PrivacyPolicyState extends State<PrivacyPolicy> {
                   SetLocalization.of(context)!.getTranslateValue("owner_apartment_info"),
                   style: TextStyle(
                     fontSize: 22.0,
-                    
+
                     fontWeight: FontWeight.w600,
 
                     inherit: true,
-                    color: themeMode.isLight
-                        ? kTextColorLightMode
-                        : kTextColorDarkMode,
+                    color: ref.read(themeModeNotifier.notifier).textTheme(ref: ref),
+
                   ),
                 ),
               ),
@@ -355,14 +339,13 @@ class _PrivacyPolicyState extends State<PrivacyPolicy> {
                 margin: const EdgeInsets.fromLTRB(30, 0, 30, 10),
                 child: Text(
                   SetLocalization.of(context)!.getTranslateValue("owner_apartment_info_usage")
-,
+                  ,
                   style: TextStyle(
                     fontSize: 16.0,
-                    
+
                     inherit: true,
-                    color: themeMode.isLight
-                        ? kTextColorLightMode
-                        : kTextColorDarkMode,
+                    color: ref.read(themeModeNotifier.notifier).textTheme(ref: ref),
+
                   ),
                 ),
               ),
@@ -375,7 +358,7 @@ class _PrivacyPolicyState extends State<PrivacyPolicy> {
               //     "البيانات التي نجمعها من التطبيق",
               //     style: TextStyle(
               //       fontSize: 22.0,
-              //       
+              //
               //       inherit: true,
 // color:kTextColor,
               //     ),
@@ -390,7 +373,7 @@ class _PrivacyPolicyState extends State<PrivacyPolicy> {
               //     "رقم هاتفك ، و اسمك و معرَّف الجهاز، وعنوان الIP",
               //     style: TextStyle(
               //       fontSize: 16.0,
-              //       
+              //
               //       inherit: true,
 // color:kTextColor,
               //     ),
@@ -403,3 +386,5 @@ class _PrivacyPolicyState extends State<PrivacyPolicy> {
     );
   }
 }
+
+

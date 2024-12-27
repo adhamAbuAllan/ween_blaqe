@@ -1,51 +1,65 @@
 import 'package:colorful_safe_area/colorful_safe_area.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import 'package:ween_blaqe/constants/nums.dart';
 
 import '../../../constants/localization.dart';
-class WhatIsMeanSS extends StatelessWidget {
-  const WhatIsMeanSS({super.key});
+import '../../../controller/provider_controllers/providers/color_provider.dart';
+
+class WhatIsMeanSSUi extends ConsumerWidget {
+  const WhatIsMeanSSUi({super.key});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     return ColorfulSafeArea(
-      bottomColor: Colors.transparent ,
-      color: themeMode.isLight ? kPrimaryColorLightMode : kPrimaryColorDarkMode,
+      bottomColor: Colors.transparent,
+      color:
+      ref.read(themeModeNotifier.notifier).primaryTheme(ref: ref),
+
+
       child: Scaffold(
-        backgroundColor: themeMode.isLight ? kBackgroundAppColorLightMode : kBackgroundAppColorDarkMode,
+        backgroundColor: ref.read(themeModeNotifier.notifier)
+            .backgroundAppTheme(ref: ref),
 
         appBar: AppBar(
-          backgroundColor: themeMode.isLight ? kPrimaryColorLightMode : kPrimaryColorDarkMode,
+          backgroundColor:
+          ref.read(themeModeNotifier.notifier).primaryTheme(ref: ref),
+
+
         ),
         body: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             //title of what is system paying is allowed
-             Padding(
-               padding: const EdgeInsets.fromLTRB(25, 50, 25, 10),
-               child: Text(
-                 SetLocalization.of(context)!.getTranslateValue("what_is_ss"),
-                 style: TextStyle(
-                   fontSize: 20.0,
-                   color: themeMode.isLight ? kTextColorLightMode : kTextColorDarkMode,
-                   
-                   fontWeight: FontWeight.w600 ,
-                   inherit: true,
-                 ),
-               softWrap: true,
-               ),
-             ),
+            Padding(
+              padding: const EdgeInsets.fromLTRB(25, 50, 25, 10),
+              child: Text(
+                SetLocalization.of(context)!.getTranslateValue("what_is_ss"),
+                style: TextStyle(
+                    fontSize: 20.0,
+                    color: ref.read(themeModeNotifier.notifier).textTheme(
+                        ref: ref),
+
+
+                    fontWeight: FontWeight.w600 ,
+                    inherit: true,
+                ),
+                softWrap: true,
+              ),
+            ),
             //paragraph of what is system paying is allowed
             Container(
               width: double.infinity,
               margin: const EdgeInsets.fromLTRB(30, 0, 30, 10),
-              child: Text(SetLocalization.of(context)!.getTranslateValue("shekel_per_month_note")
+              child: Text(SetLocalization.of(context)!.getTranslateValue(
+                  "shekel_per_month_note")
                 ,
                 style: TextStyle(
                   fontSize: 16.0,
-                  color: themeMode.isLight ? kTextColorLightMode : kTextColorDarkMode.withOpacity(.8),
-                  
+                  color: ref.read(themeModeNotifier.notifier).textTheme(
+                      ref: ref),
+
                   fontWeight: FontWeight.w500,
                   inherit: true,
                 ),

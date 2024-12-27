@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import '../../../../../api/apartments_api/apartments.dart';
 import '../../../../../constants/nums.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+
+import '../../../controller/provider_controllers/providers/color_provider.dart';
 class ApartmentLocatoinTextWidget extends ConsumerWidget {
   const ApartmentLocatoinTextWidget({super.key,required this.index, required
   this.apartmentsRes});
@@ -29,7 +31,8 @@ class ApartmentLocatoinTextWidget extends ConsumerWidget {
               style: TextStyle(
                 fontSize: 16,
                 color:
-                themeMode.isLight ? kTextColorLightMode : kTextColorDarkMode,
+                ref.read(themeModeNotifier.notifier).textTheme(ref: ref)
+                ,
                 wordSpacing: 1,
                 height: 1.7,
                 fontWeight: FontWeight.w300,

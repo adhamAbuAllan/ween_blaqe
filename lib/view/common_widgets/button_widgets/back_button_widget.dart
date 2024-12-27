@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:ween_blaqe/controller/provider_controllers/providers/color_provider.dart';
 
-import '../../constants/nums.dart';
+import '../../../constants/nums.dart';
 
 class BackButtonWidget extends ConsumerWidget {
  final void Function()? onPressed;
@@ -12,7 +13,7 @@ class BackButtonWidget extends ConsumerWidget {
   Widget build(BuildContext context,WidgetRef ref,) {
     return BackButton(
       style: style,
-      color: themeMode.isLight ? kTextColorLightMode : kTextColorDarkMode,
+      color: ref.read(themeModeNotifier.notifier).textTheme(ref: ref),
       onPressed: onPressed,
     );
   }

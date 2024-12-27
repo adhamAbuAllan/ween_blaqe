@@ -2,6 +2,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter/material.dart';
 
 import '../../../constants/nums.dart';
+import '../../../controller/provider_controllers/providers/color_provider.dart';
 
 class ContainerWidget extends ConsumerWidget {
   const ContainerWidget({super.key,required this.child,this.bottomMargin});
@@ -14,9 +15,7 @@ final double ? bottomMargin;
       padding: const EdgeInsets.fromLTRB(0, 0, 0, 10),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(7),
-        color: themeMode.isLight
-            ? kContainerColorLightMode
-            : kContainerColorDarkMode,
+        color: ref.read(themeModeNotifier.notifier).containerTheme(ref: ref),
 
       ),
       child: child,

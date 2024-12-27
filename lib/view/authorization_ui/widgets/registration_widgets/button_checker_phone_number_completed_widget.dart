@@ -7,6 +7,7 @@ import '../../../../constants/coordination.dart';
 import '../../../../constants/get_it_controller.dart';
 import '../../../../constants/localization.dart';
 import '../../../../constants/nums.dart';
+import '../../../../controller/provider_controllers/providers/color_provider.dart';
 import '../../../../session/new_session.dart';
 
   class ButtonCheckerPhoneNumberCompletedWidget extends ConsumerWidget {
@@ -19,7 +20,7 @@ import '../../../../session/new_session.dart';
         Text(
           SetLocalization.of(context)!.getTranslateValue("verify_via_whatsapp"),
           style: TextStyle(
-            color: themeMode.isLight ? kTextColorLightMode : kTextColorDarkMode,
+            color: ref.read(themeModeNotifier.notifier).textTheme(ref: ref),
             fontSize: getIt<AppDimension>().isSmallScreen(context) ? 14 : 16,
           ),
         ),

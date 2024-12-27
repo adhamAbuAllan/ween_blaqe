@@ -9,6 +9,7 @@ import '../../../../constants/coordination.dart';
 import '../../../../constants/get_it_controller.dart';
 import '../../../../constants/localization.dart';
 import '../../../../controller/provider_controllers/providers/apartment_provider.dart';
+import '../../../../controller/provider_controllers/providers/color_provider.dart';
 import '../../../common_widgets/text_widgets/create_apartment_title_widget.dart';
 import '../widgets/text_form_field_containers_widgets/square_meters_widget.dart';
 import '../widgets/text_form_field_containers_widgets/student_count_widget.dart';
@@ -34,13 +35,13 @@ class _ThirdStepUiState extends ConsumerState<ThirdStepUi> {
   @override
   Widget build(BuildContext context) {
     return ColorfulSafeArea(
-      color: themeMode.isLight ? kPrimaryColorLightMode : kPrimaryColorDarkMode,
+      color: ref.read(themeModeNotifier.notifier).primaryTheme(ref: ref),
+
       child: GestureDetector(
         onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
         child: Scaffold(
-          backgroundColor: themeMode.isLight
-              ? kContainerColorLightMode
-              : kBackgroundAppColorDarkMode,
+          backgroundColor: ref.read(themeModeNotifier.notifier).backgroundAppTheme(ref: ref),
+
           body: SingleChildScrollView(
             child: Column(
               children: [

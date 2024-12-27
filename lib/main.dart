@@ -46,18 +46,19 @@ import 'package:ween_blaqe/view/apartment/apartment_of_owner/create_apartment/th
 import 'package:ween_blaqe/view/apartment/home_ui.dart';
 import 'package:ween_blaqe/view/authorization_ui/login_ui.dart';
 import 'package:ween_blaqe/view/authorization_ui/registration_ui.dart';
-import 'package:ween_blaqe/view/error_widgets/no_internet.dart';
-import 'package:ween_blaqe/view/paragraphs_widgets/ask_for_help_widgets/another_asks.dart';
-import 'package:ween_blaqe/view/paragraphs_widgets/ask_for_help_widgets/ask_for_help.dart';
-import 'package:ween_blaqe/view/paragraphs_widgets/ask_for_help_widgets/for_owner/how_create_ad.dart';
+import 'package:ween_blaqe/view/common_widgets/skeleton_widgets/ask_to_help_skeleton_widgets/skeleton_long_paragraph_ready_ui.dart';
+import 'package:ween_blaqe/view/error_widgets/no_internet_ui.dart';
+import 'package:ween_blaqe/view/paragraphs_widgets/ask_for_help_widgets/another_asks_ui.dart';
+import 'package:ween_blaqe/view/paragraphs_widgets/ask_for_help_widgets/ask_for_help_ui.dart';
+import 'package:ween_blaqe/view/paragraphs_widgets/ask_for_help_widgets/for_owner/how_create_ad_ui.dart';
 import 'package:ween_blaqe/view/paragraphs_widgets/ask_for_help_widgets/for_owner/the_ad_is_free_or_not.dart';
-import 'package:ween_blaqe/view/paragraphs_widgets/ask_for_help_widgets/for_owner/what_the_info_req_to_cerate_ad.dart';
-import 'package:ween_blaqe/view/paragraphs_widgets/ask_for_help_widgets/for_student/system_booking.dart';
-import 'package:ween_blaqe/view/paragraphs_widgets/ask_for_help_widgets/for_student/system_paying.dart';
-import 'package:ween_blaqe/view/paragraphs_widgets/privacy_policy.dart';
+import 'package:ween_blaqe/view/paragraphs_widgets/ask_for_help_widgets/for_owner/what_the_info_req_to_cerate_ad_ui.dart';
+import 'package:ween_blaqe/view/paragraphs_widgets/ask_for_help_widgets/for_student/system_booking_ui.dart';
+import 'package:ween_blaqe/view/paragraphs_widgets/ask_for_help_widgets/for_student/system_paying_ui.dart';
+import 'package:ween_blaqe/view/paragraphs_widgets/privacy_policy_ui.dart';
 import 'package:ween_blaqe/view/user/owner/profile_ui.dart';
 
-import 'package:ween_blaqe/view/splach_screen.dart';
+import 'package:ween_blaqe/view/splach_screen_ui.dart';
 import 'package:ween_blaqe/view/user/owner/update_data_of_user_ui.dart';
 import 'package:ween_blaqe/session/new_session.dart';
 
@@ -86,7 +87,7 @@ import 'view/apartment/bookmark_ui.dart';
 import 'view/apartment/show_deitals_of_apartment/show_deitals_of_apartment_ui.dart';
 import 'view/intro_screen.dart';
 import 'view/main_ui.dart';
-import 'view/send_notice_for_us.dart';
+import 'view/send_notice_for_us_ui.dart';
 
 /*
 **كيف ممكن ننشئ مشاريع في الفريق تاعنا و الكل يوخذ حقه**
@@ -263,43 +264,43 @@ class _OwnMaterialAppConsumerState
         //     const ApartmentOfOwnerBeforeAdd(),
         MyPagesRoutes.apartmentsOwner: (context) => const ApartmentsOfOwnerUi(),
 
-        MyPagesRoutes.splashScreen: (context) => const SplashScreen(),
+        MyPagesRoutes.splashScreen: (context) => const SplashScreenUi(),
         MyPagesRoutes.updateApartment: (context) => const UpdateApartmentUi(),
-        MyPagesRoutes.privacyPolicy: (context) => const PrivacyPolicy(),
-        MyPagesRoutes.askForHelp: (context) => const AskForHelp(),
-        MyPagesRoutes.systemPaying: (context) => const SystemPaying(),
+        MyPagesRoutes.privacyPolicy: (context) => const PrivacyPolicyUi(),
+        MyPagesRoutes.askForHelp: (context) => const AskForHelpUi(),
+        MyPagesRoutes.systemPaying: (context) => const SystemPayingUi(),
         MyPagesRoutes.whatIsSystemPayingAllow: (context) =>
-            const WhatIsSystemPayingAllow(),
+            const WhatIsSystemPayingAllowUi(),
         MyPagesRoutes.couldIPayByDeposit: (context) =>
-            const CouldIPayByDeposit(),
-        MyPagesRoutes.whatIsMeanSS: (context) => const WhatIsMeanSS(),
+            const CouldIPayByDepositUi(),
+        MyPagesRoutes.whatIsMeanSS: (context) => const WhatIsMeanSSUi(),
         MyPagesRoutes.howCouldBookingApartment: (context) =>
-            const HowCouldBookingApartment(),
-        MyPagesRoutes.systemBooking: (context) => const SystemBooking(),
+            const HowCouldBookingApartmentUi(),
+        MyPagesRoutes.systemBooking: (context) => const SystemBookingUi(),
         MyPagesRoutes.couldICancelABooking: (context) =>
-            const CouldICancelABooking(),
+            const CouldICancelABookingUi(),
         MyPagesRoutes.howLongIsTheReservationAvailable: (context) =>
-            const HowLongIsTheReservationAvailable(),
-        MyPagesRoutes.howCreateAd: (context) => const HowCreateAd(),
+            const HowLongIsTheReservationAvailableUi(),
+        MyPagesRoutes.howCreateAd: (context) => const HowCreateAdUi(),
         // MyPagesRoutes.couldBeOwnerAndStudentInOneTime: (context) =>
         //     const CouldBeOwnerAndStudentInOneTime(),
-        MyPagesRoutes.sendNoticeForUs: (context) => const SendNoticeForUs(),
-        MyPagesRoutes.theAdIsFreeOrNot: (context) => const TheAdIsFreeOrNot(),
+        MyPagesRoutes.sendNoticeForUs: (context) => const SendNoticeForUsUi(),
+        // MyPagesRoutes.theAdIsFreeOrNot: (context) => const TheAdIsFreeOrNot(),
         MyPagesRoutes.skeletonShowMoreWidget: (context) =>
             const SkeletonShowMoreWidget(),
         // MyPagesRoutes.screensWillAddFuture: (context) =>
         //     const ScreensWillAddFuture(),
-        MyPagesRoutes.noInternet: (context) => const NoInternet(),
+        MyPagesRoutes.noInternet: (context) => const NoInternetUi(),
         // MyPagesRoutes.searchNotFound: (context) => const SearchNotFound(),
         // MyPagesRoutes.skeletonBookingNow: (context) =>
         //     const BookingNowSkeletonWidget(),
         MyPagesRoutes.skeletonParagraph: (context) =>
-            const LongParagraphReadySkeleton(),
+            const LongParagraphReadySkeletonUi(),
         MyPagesRoutes.homeUi: (context) => const HomeUi(),
         MyPagesRoutes.showDeitalsOfApartmentUi: (context) =>
             const ShowDeitalsOfApartmentUi(),
         MyPagesRoutes.whatTheInfoReqToCreateAd: (context) =>
-            const WhatTheInfoReqToCreateAd(),
+            const WhatTheInfoReqToCreateAdUi(),
         MyPagesRoutes.introScreen: (context) => const IntroScreen(),
         MyPagesRoutes.updateUserInfo: (context) => const UpdateUserDataUi(),
 
@@ -560,30 +561,7 @@ class _MainState extends State<Main> {
           currentFocus.unfocus();
         }
       },
-      child: ColorfulSafeArea(
-        // bottom: false,
-        // top
-        bottomColor: Colors.transparent,
-        color:
-            themeMode.isLight ? kPrimaryColorLightMode : kPrimaryColorDarkMode,
-        child: Scaffold(
-            backgroundColor: Colors.grey.shade200,
-            body: GetBuilder<MainController>(
-              builder: (c) {
-                return IndexedStack(
-                  index: mainController.index,
-                  children: const [
-                    MainUi(),
-                    //for Owner
-                    // MainOwner(),
-                  ],
-                );
-              },
-            )
-
-            //
-            ),
-      ),
+      child:   MainUi()
     );
   }
 }

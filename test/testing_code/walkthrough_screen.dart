@@ -2,7 +2,7 @@
 // // could technically be initialized during splash screen and added to a Provider or something similar after
 // import 'package:flutter/cupertino.dart';
 // import 'package:shared_preferences/shared_preferences.dart';
-// import 'package:ween_blaqe/splach_screen.dart';
+// import 'package:ween_blaqe/splach_screen_ui.dart';
 //
 // import '../widgets/widgets_before_user_reg/get_started.dart';
 // late SharedPreferences prefs ;

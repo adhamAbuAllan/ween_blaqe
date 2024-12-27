@@ -7,6 +7,7 @@ import 'package:ween_blaqe/view/apartment/apartment_of_owner/widgets/images_grid
 import '../../../api/apartments_api/apartments.dart';
 
 import '../../../constants/nums.dart';
+import '../../../controller/provider_controllers/providers/color_provider.dart';
 import '../../../controller/provider_controllers/providers/image_provider.dart';
 import 'widgets/images_grid_widgets/grid_images_appbar_widget.dart';
 
@@ -46,9 +47,8 @@ class _UpdateImagesUiState extends ConsumerState<UpdateImagesUi> {
     final List<String> cancelImages = [];
 
     return Scaffold(
-      backgroundColor: themeMode.isLight
-          ? kBackgroundAppColorLightMode
-          : kBackgroundAppColorDarkMode,
+      backgroundColor: ref.read(themeModeNotifier.notifier).backgroundAppTheme(ref: ref),
+
       appBar: AppBarGridWidget(
         oneApartment: widget.oneApartment,
         cancelImages: cancelImages,
@@ -61,8 +61,8 @@ class _UpdateImagesUiState extends ConsumerState<UpdateImagesUi> {
             children: [
               ref.watch(imageLocalNotifier).isLoading
                   ?  Center(
-                      child: CircularProgressIndicator(color: themeMode
-                          .isLight ? kPrimaryColorLightMode :  kPrimaryColorDarkMode,),
+                      child: CircularProgressIndicator(color: ref.read(themeModeNotifier.notifier).primaryTheme(ref: ref),
+                          ),
                     )
                   : const SizedBox(),
               GridViewImagesWidget(

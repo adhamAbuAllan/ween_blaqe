@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:ween_blaqe/constants/nums.dart';
+import 'package:ween_blaqe/view/common_widgets/button_widgets/button_list_tile_widget.dart';
 
 import '../../../../constants/coordination.dart';
 import '../../../../constants/get_it_controller.dart';
@@ -146,17 +147,21 @@ Widget askForHelpButton(Function onClick, String title,
 // }
 
 Widget buttonHaveTitleAndIcon(Function onClick, String title,
-    {Icon? icon, bool? isIcon, Image? image}) {
-  return ListTile(
+    {IconData? icon, bool? isIcon, Image? image,Color? color}) {
+  return ButtonListTileWidget(
+    title: title,
+    color: color,
+    icon: icon,
+    image: image,
     onTap: () => {onClick.call()},
-    contentPadding: const EdgeInsets.fromLTRB(10, 0, 10, 0),
-    title: Text(
-      title,
-      style: TextStyle(
-          fontSize: 16,
-          
-          color: themeMode.isLight ? kTextColorLightMode : kTextColorDarkMode),
-    ),
-    trailing: isIcon ?? false ? icon : image,
+    // contentPadding: const EdgeInsets.fromLTRB(10, 0, 10, 0),
+    // title: Text(
+    //   title,
+    //   style: TextStyle(
+    //       fontSize: 16,
+    //
+    //       color: color),
+    // ),
+    // trailing: isIcon ?? false ? icon : image,
   );
 }

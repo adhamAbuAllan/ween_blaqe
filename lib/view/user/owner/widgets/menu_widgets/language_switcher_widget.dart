@@ -6,6 +6,7 @@ import '../../../../../constants/coordination.dart';
 import '../../../../../constants/get_it_controller.dart';
 import '../../../../../constants/localization.dart';
 import '../../../../../constants/nums.dart';
+import '../../../../../controller/provider_controllers/providers/color_provider.dart';
 import '../../../../../core/utils/funcations/route_pages/push_routes.dart';
 import '../../../../../session/new_session.dart';
 
@@ -28,7 +29,8 @@ class LanguageSwitcherWidget extends ConsumerWidget {
               Icons.language_outlined,
               size: getIt<AppDimension>().isSmallScreen(context) ? 32 - 5 : 32,
               color:
-                  themeMode.isLight ? kTextColorLightMode : kTextColorDarkMode,
+              ref.read(themeModeNotifier.notifier).textTheme(ref: ref),
+
             ),
           ),
           const SizedBox(width: 25),
@@ -38,9 +40,8 @@ class LanguageSwitcherWidget extends ConsumerWidget {
                 SetLocalization.of(context)!.getTranslateValue("language"),
                 style: TextStyle(
                     fontSize: 18,
-                    color: themeMode.isLight
-                        ? kTextColorLightMode
-                        : kTextColorDarkMode)),
+                    color: ref.read(themeModeNotifier.notifier).textTheme(ref: ref),
+                )),
           ),
           const Expanded(child: Text("")),
 
@@ -112,9 +113,8 @@ class ArabicButton extends ConsumerWidget {
                       "ar"
                           "") ==
                   'ar'
-              ? (themeMode.isLight
-                  ? kPrimaryColorLightMode
-                  : kPrimaryColorDarkMode)
+              ? (ref.read(themeModeNotifier.notifier).primaryTheme(ref: ref)
+          )
               : Colors.grey, // Highlight selected language
         ),
         child: Text('ع',
@@ -170,9 +170,8 @@ class EnglishButton extends ConsumerWidget {
         style: ElevatedButton.styleFrom(
           elevation: NewSession.get("language", "en") == 'en' ? 0 : 3.5,
           backgroundColor: NewSession.get("language", "en") == 'en'
-              ? (themeMode.isLight
-                  ? kPrimaryColorLightMode
-                  : kPrimaryColorDarkMode)
+              ? (ref.read(themeModeNotifier.notifier).primaryTheme(ref: ref)
+          )
               : Colors.grey, // Highlight selected
           // language
         ),

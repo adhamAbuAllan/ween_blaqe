@@ -2,20 +2,25 @@ import 'package:flutter/material.dart';
 
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:ween_blaqe/controller/provider_controllers/providers/color_provider.dart';
+import 'package:ween_blaqe/view/common_widgets/button_widgets/button_list_tile_widget.dart';
 import 'package:ween_blaqe/view/user/owner/widgets/menu_widgets/language_switcher_widget.dart';
 import 'package:ween_blaqe/view/user/owner/widgets/menu_widgets/logout_menu_widgets/menu_buttons_logout_widget.dart';
 import 'package:ween_blaqe/view/user/owner/widgets/menu_widgets/theme_mode_switcher_widget.dart';
 
 import '../../../../../../core/utils/styles/text_style/aline_style.dart';
+import '../../../../../common_widgets/aline_widget.dart';
 
-class ContainerLogoutWidget extends ConsumerStatefulWidget {
-  const ContainerLogoutWidget({super.key,this.onChange});
-final Function(bool) ?onChange;
+class ContainerMenuWidget extends ConsumerStatefulWidget {
+  const ContainerMenuWidget(
+      {super.key, this.onChange, required this.isLogined});
+
+  final Function(bool)? onChange;
+final bool isLogined ;
   @override
   ConsumerState createState() => _ContainerLogoutWidgetState();
 }
 
-class _ContainerLogoutWidgetState extends ConsumerState<ContainerLogoutWidget> {
+class _ContainerLogoutWidgetState extends ConsumerState<ContainerMenuWidget> {
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -27,7 +32,9 @@ class _ContainerLogoutWidgetState extends ConsumerState<ContainerLogoutWidget> {
       ),
       child: Column(
         children: [
-           ThemeModeSwitcherWidget(onChange: widget.onChange,),
+          ThemeModeSwitcherWidget(
+            onChange: widget.onChange,
+          ),
           Padding(
             padding: const EdgeInsets.only(top: 0),
             child: aline,
@@ -37,11 +44,9 @@ class _ContainerLogoutWidgetState extends ConsumerState<ContainerLogoutWidget> {
             padding: const EdgeInsets.only(top: 4.0),
             child: aline,
           ),
-          const MenuButtonsLogoutWidgets(),
-
+           MenuButtonsWidgets(isLogined: widget.isLogined,),
         ],
       ),
     );
   }
 }
-

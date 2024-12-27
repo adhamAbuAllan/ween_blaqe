@@ -6,6 +6,7 @@ import 'package:ween_blaqe/controller/function_controller/change_theme_mode.dart
 import '../../../../constants/nums.dart';
 import '../../../../controller/provider_controllers/providers/apartment_provider.dart';
 import '../../../../core/utils/styles/button.dart';
+import '../../../common_widgets/button_widgets/outline_button_widget.dart';
 
 // Assuming ChangeThemeMode is a provider that holds theme data
 
@@ -29,7 +30,6 @@ class ShowTypesButtonWidget extends ConsumerWidget {
                 child: BtnShowTypesOfApartments(
                   onPressed: onPressed,
                   text: text,
-                  themeMode: themeMode,
                 ),
               ),
             )
@@ -39,26 +39,24 @@ class ShowTypesButtonWidget extends ConsumerWidget {
 }
 
 class BtnShowTypesOfApartments extends ConsumerWidget {
-  const BtnShowTypesOfApartments(
-      {super.key, required this.onPressed, this.text, required this.themeMode});
+  const BtnShowTypesOfApartments({
+    super.key,
+    required this.onPressed,
+    this.text,
+  });
 
   final void Function()? onPressed;
   final String? text;
-  final ChangeThemeMode themeMode;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-
-    return OutlinedButton(
-      style: outlinedButton(
-        themeMode: themeMode,
-        context: context,
-        isFloatingOutlinedButton: true,
-      ),
-      onPressed: onPressed??(){
-        ref.watch(isListOfTypesNotifier.notifier).state = !ref.watch
-          (isListOfTypesNotifier);
-      },
+    return OutlineButtonWidget(
+      isFloatingOutlinedButton: true,
+      onPressed: onPressed ??
+          () {
+            ref.watch(isListOfTypesNotifier.notifier).state =
+                !ref.watch(isListOfTypesNotifier);
+          },
       child: Text(
         text?.isNotEmpty ?? false
             ? text!

@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../../../../constants/localization.dart';
-import '../../../../../constants/nums.dart';
+import '../../../../../controller/provider_controllers/providers/color_provider.dart';
 import '../../../../../core/utils/funcations/get_app_version.dart';
 class VersionAppTextWidget extends ConsumerWidget {
   const VersionAppTextWidget({super.key});
@@ -21,9 +21,8 @@ class VersionAppTextWidget extends ConsumerWidget {
                 "${SetLocalization.of(context)!.getTranslateValue("beta_version")}: ${snapshot.data} ",
                 style: TextStyle(
       
-                    color: themeMode.isLight
-                        ? kTextColorLightMode.withOpacity(.5)
-                        : kTextColorDarkMode.withOpacity(.5)),
+                    color: ref.watch(themeModeNotifier.notifier).textTheme
+                      (ref: ref,withOpacity: .5)),
                 // textDirection: TextDirection.rtl,
               );
             } else if (snapshot.hasError) {

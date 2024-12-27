@@ -18,7 +18,7 @@ import 'package:ween_blaqe/view/apartment/show_deitals_of_apartment/widgets'
     '/general_info_widget.dart';
 import 'package:ween_blaqe/view/apartment/widgets/carousel_slider_widget.dart';
 import 'package:ween_blaqe/view/apartment/widgets/pointer_of_image_widget.dart';
-import 'package:ween_blaqe/view/common_widgets/back_button_widget.dart';
+import 'package:ween_blaqe/view/common_widgets/button_widgets/back_button_widget.dart';
 
 import '../../../../constants/coordination.dart';
 import '../../../../constants/get_it_controller.dart';

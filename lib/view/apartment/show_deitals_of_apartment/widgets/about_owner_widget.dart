@@ -7,6 +7,7 @@ import '../../../../../constants/coordination.dart';
 import '../../../../../constants/get_it_controller.dart';
 import '../../../../../constants/localization.dart';
 import '../../../../../constants/nums.dart';
+import '../../../../controller/provider_controllers/providers/color_provider.dart';
 
 class AboutOwnerWidget extends ConsumerStatefulWidget {
   const AboutOwnerWidget({super.key, required this.oneApartment});
@@ -26,9 +27,7 @@ class _AboutOwnerContainerWidgetState extends ConsumerState<AboutOwnerWidget> {
           10, getIt<AppDimension>().isSmallScreen(context) ? 15 : 20, 10, 0),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(7),
-        color: themeMode.isLight
-            ? kContainerColorLightMode
-            : kContainerColorDarkMode,
+        color: ref.read(themeModeNotifier.notifier).containerTheme(ref: ref),
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -38,9 +37,7 @@ class _AboutOwnerContainerWidgetState extends ConsumerState<AboutOwnerWidget> {
             child: Text(
               SetLocalization.of(context)!.getTranslateValue("about_owner"),
               style: TextStyle(
-                color: themeMode.isLight
-                    ? kTextColorLightMode
-                    : kTextColorDarkMode,
+                color: ref.read(themeModeNotifier.notifier).textTheme(ref: ref),
                 fontSize:
                     getIt<AppDimension>().isSmallScreen(context) ? 18 : 20,
                 fontWeight: FontWeight.w600,
@@ -69,12 +66,12 @@ class _AboutOwnerContainerWidgetState extends ConsumerState<AboutOwnerWidget> {
                         radius: getIt<AppDimension>().isSmallScreen(context)
                             ? 26
                             : 28,
-                        backgroundColor: themeMode.isLight
-                            ? kBackgroundAppColorLightMode
-                            : kBackgroundAppColorDarkMode,
+                        backgroundColor: ref
+                            .read(themeModeNotifier.notifier)
+                            .backgroundAppTheme(ref: ref),
                         backgroundImage: NetworkImage(
                             //for localhost
-                            "http://192.168.1.16:8000/${widget.oneApartment.owner?.profile ?? "images/profile/user.png"}"),
+                            "http://192.168.1.8:8000/${widget.oneApartment.owner?.profile ?? "images/profile/user.png"}"),
                         //for server
                         //   "https://weenbalaqee.com/${widget.oneApartment.owner?.profile ?? "images/profile/user.png"}"),
                         child: ref.watch(fetchApartmentNotifier).isLoading
@@ -90,9 +87,9 @@ class _AboutOwnerContainerWidgetState extends ConsumerState<AboutOwnerWidget> {
                       fontSize: getIt<AppDimension>().isSmallScreen(context)
                           ? 15
                           : 18,
-                      color: themeMode.isLight
-                          ? kTextColorLightMode
-                          : kTextColorDarkMode,
+                      color: ref
+                          .read(themeModeNotifier.notifier)
+                          .textTheme(ref: ref),
                     ),
                   ),
                   Text(
@@ -100,9 +97,9 @@ class _AboutOwnerContainerWidgetState extends ConsumerState<AboutOwnerWidget> {
                     style: TextStyle(
                       fontSize: 14,
                       fontWeight: FontWeight.w200,
-                      color: themeMode.isLight
-                          ? kTextColorLightMode
-                          : kTextColorDarkMode,
+                      color: ref
+                          .read(themeModeNotifier.notifier)
+                          .textTheme(ref: ref),
                     ),
                   ),
                 ],

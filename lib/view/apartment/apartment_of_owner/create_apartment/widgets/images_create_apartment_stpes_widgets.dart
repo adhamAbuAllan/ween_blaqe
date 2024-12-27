@@ -4,6 +4,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../../../../constants/coordination.dart';
 import '../../../../../constants/get_it_controller.dart';
 import '../../../../../constants/nums.dart';
+import '../../../../../controller/provider_controllers/providers/color_provider.dart';
 
 class ImageCreateApartmentStepsWidget extends ConsumerWidget {
   const ImageCreateApartmentStepsWidget(
@@ -16,7 +17,7 @@ class ImageCreateApartmentStepsWidget extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     return Padding(
       padding: const EdgeInsets.fromLTRB(25, 10, 25, 30),
-      child: themeMode.isLight
+      child: ref.read(themeModeNotifier.notifier).isLightMode
           ? Image.asset(lightModeImage)
           : Image.asset(
               darkModeImage,

@@ -9,6 +9,7 @@ import 'package:ween_blaqe/constants/coordination.dart';
 
 import '../../../../../constants/get_it_controller.dart';
 import '../../../../../session/new_session.dart';
+import '../../../../controller/provider_controllers/providers/color_provider.dart';
 
 class ShowApartmentTypesBoxWidget extends ConsumerWidget {
   const ShowApartmentTypesBoxWidget({super.key});
@@ -28,13 +29,11 @@ class ShowApartmentTypesBoxWidget extends ConsumerWidget {
                   decoration: BoxDecoration(
                     border: Border.all(
                         width: 7,
-                        color: themeMode.isLight
-                            ? kBackgroundAppColorLightMode
-                            : kBackgroundAppColorDarkMode,
+                        color: ref.read(themeModeNotifier.notifier).backgroundAppTheme(ref: ref)
+                        ,
                         strokeAlign: BorderSide.strokeAlignOutside),
-                    color: themeMode.isLight
-                        ? kContainerColorLightMode
-                        : kContainerColorDarkMode,
+                    color: ref.read(themeModeNotifier.notifier).containerTheme(ref: ref)
+                    ,
                     borderRadius: BorderRadiusDirectional.circular(7),
                   ),
                   height: 200,
@@ -77,14 +76,14 @@ class ApartmentShowTypesTextButtonWidget extends ConsumerWidget {
               ? Alignment.centerLeft
               : Alignment.centerRight,
           overlayColor: WidgetStatePropertyAll(
-            themeMode.isLight ? kPrimaryColorLightMode : kPrimaryColorDarkMode,
+            ref.read(themeModeNotifier.notifier).primaryTheme(ref: ref),
           ),
         ),
         onPressed: onPressed,
         child: Text(
           textType,
           style: TextStyle(
-            color: themeMode.isLight ? kTextColorLightMode : kTextColorDarkMode,
+            color: ref.read(themeModeNotifier.notifier).textTheme(ref: ref),
             fontSize: getIt<AppDimension>().isSmallScreen(context) ? 14 : 15,
             fontFamily: 'IBM',
           ),

@@ -93,7 +93,9 @@ class _ApartmentsListConsumerState extends ConsumerState<ApartmentsListWidget> {
                   padding: const EdgeInsets.symmetric(horizontal: 10),
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(7),
-                    color: ref.read(themeModeNotifier.notifier).containerTheme(ref: ref),
+                    color: ref
+                        .read(themeModeNotifier.notifier)
+                        .containerTheme(ref: ref),
                   ),
                   child: Column(
                     children: [
@@ -119,8 +121,12 @@ class _ApartmentsListConsumerState extends ConsumerState<ApartmentsListWidget> {
                               apartmentsRes: widget.apartmentsRes,
                               apartmentId: index,
                             )
-                          else if (ref.watch(toggleOwnerButtonsNotifier).isDelete == false &&
-                              ref.watch(toggleOwnerButtonsNotifier).isEdit == false)
+                          else if (ref
+                                      .watch(toggleOwnerButtonsNotifier)
+                                      .isDelete ==
+                                  false &&
+                              ref.watch(toggleOwnerButtonsNotifier).isEdit ==
+                                  false)
                             BookmarkButtonWidget(
                                 apartmentId:
                                     widget.apartmentsRes.data?[index].id ?? 0),
@@ -167,7 +173,7 @@ class _ApartmentsListConsumerState extends ConsumerState<ApartmentsListWidget> {
                         apartmentsRes: widget.apartmentsRes,
                       )
                     ],
-                ),
+                  ),
                 ),
               ));
             },

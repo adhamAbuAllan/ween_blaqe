@@ -5,6 +5,7 @@ import '../../../../constants/coordination.dart';
 import '../../../../constants/get_it_controller.dart';
 import '../../../../constants/localization.dart';
 import '../../../../constants/nums.dart';
+import '../../../../controller/provider_controllers/providers/color_provider.dart';
 import '../../../common_widgets/text_form_field_widgets/text_form_filed_widget.dart';
 import '../../../../controller/provider_controllers/providers/auth_provider.dart';
 
@@ -43,9 +44,8 @@ class HintUnderUserNameField extends ConsumerWidget {
         SetLocalization.of(context)!
             .getTranslateValue("identity_verification"),
         style: TextStyle(
-          color: themeMode.isLight
-              ? kTextColorLightMode
-              : kTextColorDarkMode,
+          color: ref.read(themeModeNotifier.notifier).textTheme(ref: ref),
+
           fontSize: 14,
         ),
         softWrap: true,

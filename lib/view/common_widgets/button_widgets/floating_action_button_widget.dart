@@ -3,13 +3,14 @@ import 'package:flutter/material.dart';
 import 'package:ween_blaqe/controller/provider_controllers/providers/alert_provider.dart';
 import 'package:ween_blaqe/controller/provider_controllers/providers/snack_bar_provider.dart';
 
-import '../../constants/localization.dart';
-import '../../constants/nums.dart';
-import '../../constants/strings.dart';
-import '../../controller/provider_controllers/providers/apartment_provider.dart';
-import '../../controller/provider_controllers/providers/connectivity_provider.dart';
-import '../../core/utils/funcations/route_pages/push_routes.dart';
-import '../../session/new_session.dart';
+import '../../../constants/localization.dart';
+import '../../../constants/nums.dart';
+import '../../../constants/strings.dart';
+import '../../../controller/provider_controllers/providers/apartment_provider.dart';
+import '../../../controller/provider_controllers/providers/color_provider.dart';
+import '../../../controller/provider_controllers/providers/connectivity_provider.dart';
+import '../../../core/utils/funcations/route_pages/push_routes.dart';
+import '../../../session/new_session.dart';
 
 class FloatingActionButtonWidget extends ConsumerStatefulWidget {
   const FloatingActionButtonWidget({super.key});
@@ -28,7 +29,7 @@ class FloatingActionButtonWidgetState
     return FloatingActionButton(
       tooltip: SetLocalization.of(context)!.getTranslateValue("add_ad"),
       backgroundColor:
-          themeMode.isLight ? kPrimaryColorLightMode : kPrimaryColorDarkMode,
+      ref.read(themeModeNotifier.notifier).primaryTheme(ref: ref),
       shape: ContinuousRectangleBorder(
         borderRadius: BorderRadius.circular(16),
       ),

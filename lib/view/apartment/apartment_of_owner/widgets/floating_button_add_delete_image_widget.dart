@@ -8,6 +8,7 @@ import '../../../../constants/coordination.dart';
 import '../../../../constants/get_it_controller.dart';
 import '../../../../constants/localization.dart';
 import '../../../../constants/nums.dart';
+import '../../../../controller/provider_controllers/providers/color_provider.dart';
 
 class ImageGridFloatingButtonWidget<FloatingActionButtonWidget> extends ConsumerWidget {
   const ImageGridFloatingButtonWidget({
@@ -36,9 +37,8 @@ final String ? title;
                 : null),
       ),
       icon: const Icon(Icons.photo),
-      backgroundColor: themeMode.isLight
-          ? kPrimaryColorLightMode
-          : kPrimaryColorDarkMode,
+      backgroundColor: ref.read(themeModeNotifier.notifier).primaryTheme(ref: ref),
+
     );
   }
 }

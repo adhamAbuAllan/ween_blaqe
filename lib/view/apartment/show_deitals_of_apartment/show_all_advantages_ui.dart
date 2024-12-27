@@ -9,6 +9,7 @@ import '../../../../constants/nums.dart';
 
 import 'package:flutter_riverpod/flutter_riverpod.dart'; // Import Riverpod
 
+import '../../../controller/provider_controllers/providers/color_provider.dart';
 import 'widgets/show_all_advantages_widget.dart';
 
 class ShowAllAdvantagesUi extends ConsumerWidget {
@@ -27,9 +28,8 @@ class ShowAllAdvantagesUi extends ConsumerWidget {
       bottomColor: Colors.transparent,
       color: themeMode.isLight ? kPrimaryColorLightMode : kPrimaryColorDarkMode,
       child: Scaffold(
-        backgroundColor: themeMode.isLight
-            ? kBackgroundAppColorLightMode
-            : kBackgroundAppColorDarkMode,
+        backgroundColor:ref.read(themeModeNotifier.notifier).backgroundAppTheme(ref: ref)
+,
         appBar: AppBar(
           title: Text(
               SetLocalization.of(context)!.getTranslateValue("all_advantages"),

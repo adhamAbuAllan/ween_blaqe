@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart'; // Import Riverpod
 import 'package:ween_blaqe/api/apartments_api/apartments.dart';
+import 'package:ween_blaqe/controller/provider_controllers/providers/color_provider.dart';
 
 import '../../../../../constants/coordination.dart';
 import '../../../../../constants/get_it_controller.dart';
@@ -24,9 +25,7 @@ class ApartmentDescriptionWidget extends ConsumerWidget {
           10, getIt<AppDimension>().isSmallScreen(context) ? 15 : 20, 10, 0),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(7),
-        color: themeMode.isLight
-            ? kContainerColorLightMode
-            : kContainerColorDarkMode,
+        color: ref.read(themeModeNotifier.notifier).containerTheme(ref: ref),
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -37,9 +36,7 @@ class ApartmentDescriptionWidget extends ConsumerWidget {
                 SetLocalization.of(context)!
                     .getTranslateValue("apartment_description"),
                 style: TextStyle(
-                  color: themeMode.isLight
-                      ? kTextColorLightMode
-                      : kTextColorDarkMode,
+                  color: ref.read(themeModeNotifier.notifier).textTheme(ref: ref),
                   fontSize: getIt<AppDimension>().isSmallScreen(context) ? 18 : 20,
                   fontWeight: FontWeight.w600,
                 )),
@@ -49,9 +46,7 @@ class ApartmentDescriptionWidget extends ConsumerWidget {
             padding: const EdgeInsets.fromLTRB(20, 0, 20, 10),
             child: Text(apartment.description ?? "",
                 style: TextStyle(
-                    color: themeMode.isLight
-                        ? kTextColorLightMode
-                        : kTextColorDarkMode,
+                    color: ref.read(themeModeNotifier.notifier).textTheme(ref: ref),
                     fontSize: getIt<AppDimension>().isSmallScreen(context) ? 15 : 16,
                     height: 1.6,
                     wordSpacing: 1.3)),

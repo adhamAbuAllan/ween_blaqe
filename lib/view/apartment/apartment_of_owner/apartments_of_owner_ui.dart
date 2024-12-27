@@ -6,10 +6,10 @@ import 'package:ween_blaqe/view/apartment/apartment_of_owner/widgets'
     '/apartment_of_owner_ui_widgets/appbar_owner_apartments_widget.dart';
 import 'package:ween_blaqe/view/apartment/apartment_of_owner/widgets'
     '/apartment_of_owner_ui_widgets/list_owner_apartments_widget.dart';
-import 'package:ween_blaqe/view/common_widgets/floating_action_button_widget'
-    '.dart';
+import 'package:ween_blaqe/view/common_widgets/button_widgets/floating_action_button_widget.dart';
 import '../../../constants/nums.dart';
 import '../../../controller/provider_controllers/providers/apartment_provider.dart';
+import '../../../controller/provider_controllers/providers/color_provider.dart';
 import '../../../controller/provider_controllers/statuses/apartment_state.dart';
 import '../widgets/types_of_apartments_widgets/show_types_button_widget.dart';
 import 'widgets/apartment_of_owner_ui_widgets/start_add_apartment_widget.dart';
@@ -89,9 +89,8 @@ class _ApartmentsOfOwnerUiState extends ConsumerState<ApartmentsOfOwnerUi>
   Widget build(BuildContext context) {
     var isApartmentUpdated = ref.read(isApartmentUpdatedNotifier);
     return Scaffold(
-        backgroundColor: themeMode.isLight
-            ? kBackgroundAppColorLightMode
-            : kBackgroundAppColorDarkMode,
+        backgroundColor:ref.read(themeModeNotifier.notifier).backgroundAppTheme(ref: ref)
+,
         appBar: AppBarOwnerApartmentsWidget(
             animationController: _animationController,
             iconColorAnimation: _iconColorAnimation),

@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:ween_blaqe/constants/nums.dart';
 
-
- Widget aline =  const Aline();
 class Aline extends StatelessWidget {
   const Aline({super.key});
 

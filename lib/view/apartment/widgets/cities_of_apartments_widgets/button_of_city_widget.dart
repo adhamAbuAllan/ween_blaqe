@@ -4,6 +4,7 @@ import 'package:ween_blaqe/constants/localization.dart';
 import 'package:ween_blaqe/constants/get_it_controller.dart';
 
 import 'package:ween_blaqe/constants/coordination.dart';
+import 'package:ween_blaqe/view/common_widgets/button_widgets/outline_button_widget.dart';
 
 import '../../../../api/cities.dart';
 
@@ -33,13 +34,12 @@ class CityButtonWidget extends ConsumerWidget {
       child: SizedBox(
         width: getIt<AppDimension>().isSmallScreen(context) ? 75 : 80,
         height: getIt<AppDimension>().isSmallScreen(context) ? 35 : 40,
-        child: OutlinedButton(
+        child: OutlineButtonWidget(
           onPressed: () {
 
             onClick.call();
 
           },
-          style: style,
           child: Text(
             city.name ??
                 SetLocalization.of(context)!.getTranslateValue("loading..."),

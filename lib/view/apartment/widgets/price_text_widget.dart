@@ -3,6 +3,7 @@ import 'package:ween_blaqe/api/apartments_api/apartments.dart';
 import 'package:ween_blaqe/constants/localization.dart';
 import 'package:ween_blaqe/constants/nums.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:ween_blaqe/controller/provider_controllers/providers/color_provider.dart';
 
 class ApartmentPriceTextWidget extends ConsumerWidget {
   const ApartmentPriceTextWidget({super.key,required this.index, required this.apartmentsRes});
@@ -21,9 +22,7 @@ class ApartmentPriceTextWidget extends ConsumerWidget {
 
             } ",
             style: TextStyle(
-              color: themeMode.isLight
-                  ? kPrimaryColorLightMode
-                  : kPrimaryColorDarkMode,
+              color: ref.read(themeModeNotifier.notifier).primaryTheme(ref: ref),
               fontWeight: FontWeight.w600,
 
             ),
@@ -33,9 +32,8 @@ class ApartmentPriceTextWidget extends ConsumerWidget {
           padding: const EdgeInsets.fromLTRB(0, 0, 3, 4),
           child: Text(SetLocalization.of(context)!.getTranslateValue("shekel_per_month"),
               style: TextStyle(
-                color: themeMode.isLight
-                    ? kPrimaryColorLightMode
-                    : kPrimaryColorDarkMode,
+                color: ref.read(themeModeNotifier.notifier).primaryTheme(ref: ref),
+
                 fontWeight: FontWeight.w300 ,
                 fontSize: 15,
 

@@ -1,96 +1,73 @@
-import 'dart:convert';
-
 // import 'dart:html';
 
 import 'package:colorful_safe_area/colorful_safe_area.dart';
 
 // import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:flutter/material.dart';
-import 'package:http/http.dart' as http;
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:ween_blaqe/constants/coordination.dart';
-import 'package:ween_blaqe/constants/strings.dart';
 import 'package:ween_blaqe/controller/get_controllers.dart';
 import 'package:ween_blaqe/core/utils/funcations/snakbar.dart';
 import 'package:ween_blaqe/core/utils/styles/button.dart';
-import '../api/comments.dart';
+import 'package:ween_blaqe/view/common_widgets/button_widgets/back_button_widget.dart';
+import 'package:ween_blaqe/view/common_widgets/button_widgets/full_button_widget.dart';
 import '../constants/get_it_controller.dart';
 import '../constants/localization.dart';
 import '../constants/nums.dart';
+import '../controller/provider_controllers/providers/auth_provider.dart';
+import '../controller/provider_controllers/providers/color_provider.dart';
 import 'common_widgets/containers_widgets/container_field_widget.dart';
 
-class SendNoticeForUs extends StatefulWidget {
-  const SendNoticeForUs({super.key});
+class SendNoticeForUsUi extends ConsumerStatefulWidget {
+  const SendNoticeForUsUi({super.key});
 
   @override
-  State<SendNoticeForUs> createState() => _SendNoticeForUsState();
+  ConsumerState createState() => _SendNoticeForUsUiState();
 }
 
-class _SendNoticeForUsState extends State<SendNoticeForUs> {
-  TextEditingController sendNoticeForUcController = TextEditingController();
-
-  // var sendNoticeForUsText = "ما هي ملاحظاتك؟";
-  // var sendNoticeForUsHint = "أضف ملاحظاتك هنا";
-
-  // "أقترح إضافة خاصية البحث عن شركاء حيث يستطيع الطالب البحث عن شريك له يشاركه في الشقة من خلال التطبيق";
-  // var messageOfToast = "شكراً لك لقد تم إرسال إقتراحك بنجاح";
-  bool darkModeTest = true;
-
-  @override
-  void initState() {
-    super.initState();
-    setState(() {});
-  }
-
+class _SendNoticeForUsUiState extends ConsumerState<SendNoticeForUsUi> {
   @override
   Widget build(BuildContext context) {
+    String sendNoticeForUsValue =
+        ref.read(sendNoticeForUcController.notifier).state.text;
     return ColorfulSafeArea(
         bottomColor: Colors.transparent,
-        color:
-            themeMode.isLight ? kPrimaryColorLightMode : kPrimaryColorDarkMode,
+        color: ref.read(themeModeNotifier.notifier).primaryTheme(ref: ref),
         child: GestureDetector(
           onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
           child: Scaffold(
-            backgroundColor: themeMode.isLight
-                ? kBackgroundAppColorLightMode
-                : kBackgroundAppColorDarkMode,
+            backgroundColor: ref
+                .read(themeModeNotifier.notifier)
+                .backgroundAppTheme(ref: ref),
 
             // Colors.grey.shade200,
             appBar: AppBar(
-              backgroundColor: themeMode.isLight
-                  ? kContainerColorLightMode
-                  : kContainerColorDarkMode,
+              backgroundColor:
+                  ref.read(themeModeNotifier.notifier).containerTheme(ref: ref),
               actions: [
                 Opacity(
-                  opacity: !themeMode.isLight ? 0 : 1,
+                  opacity:
+                      !ref.read(themeModeNotifier.notifier).isLightMode ? 0 : 1,
                   child: const Padding(
                       padding: EdgeInsets.only(
                         right: 6,
                         top: 1,
                       ),
-                      child: BackButton()
-                      // OutlinedButton(
-                      //   onPressed: () {
-                      //     Navigator.pop(context);
-                      //   },
-                      //   style: outlineButton,
-                      //   child: const Text("رجوع"),
-                      // ),
-                      ),
+                      child: BackButtonWidget()),
                 ),
                 const Expanded(child: Text("")),
                 Padding(
                   padding: EdgeInsets.symmetric(
-                    vertical:getIt<AppDimension>().isSmallScreen(context)
-                        ? 10
-                        : 8 ,
+                      vertical:
+                          getIt<AppDimension>().isSmallScreen(context) ? 10 : 8,
                       horizontal: getIt<AppDimension>().isSmallScreen(context)
                           ? 10
                           : 8),
-                  child: ElevatedButton(
+                  child: FullButtonWidget(
                     onPressed: () {
                       if (connectivityController.isConnection()) {
-                        if (sendNoticeForUcController.text == "" ||
-                            sendNoticeForUcController.text.length < 35) {
+                        if (sendNoticeForUsValue == "" ||
+                            sendNoticeForUsValue.length < 35) {
                           showSnakBar(
                               context,
                               SetLocalization.of(context)!
@@ -99,7 +76,9 @@ class _SendNoticeForUsState extends State<SendNoticeForUs> {
                           // toast("يرجى كتابة سطر واحد مكون من 35 حرف على الاقل");
                         } else {
                           // toast(messageOfToast);
-                          go(sendNoticeForUcController.text);
+                          ref
+                              .read(sendNoticeForUsNotifier.notifier)
+                              .sendNotice(sendNoticeForUsValue);
 
                           showSnakBar(
                               context,
@@ -115,7 +94,6 @@ class _SendNoticeForUsState extends State<SendNoticeForUs> {
                       }
                       // Get.to(ApartmentsOfOwnerAfterAdd());
                     },
-                    style: fullButton(),
                     child: Text(SetLocalization.of(context)!
                         .getTranslateValue("submit")),
                   ),
@@ -146,7 +124,7 @@ class _SendNoticeForUsState extends State<SendNoticeForUs> {
 
                     // hintMaxLines: 10,
                     inputType: TextInputType.text,
-                    controller: sendNoticeForUcController,
+                    controller: ref.read(sendNoticeForUcController),
                     // focusNode: discrptionFocusedNode
                   )
                 ],
@@ -154,20 +132,5 @@ class _SendNoticeForUsState extends State<SendNoticeForUs> {
             ),
           ),
         ));
-  }
-
-  go(String comment) async {
-    var uri = Uri.parse(ServerWeenBalaqee.commentAdd);
-    var request = await http.post(uri, body: {
-      "comment": comment,
-// "type_id":insetType,
-      // "type_id":typeOfUser.id
-    });
-    var json = await jsonDecode(request.body);
-    var response = Comment.fromJson(json);
-    setState(() {
-      // response = response.comment;
-      response.comment = comment;
-    });
   }
 }

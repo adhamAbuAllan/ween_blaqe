@@ -5,6 +5,7 @@ import '../../../constants/nums.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../../controller/provider_controllers/providers/auth_provider.dart';
+import '../../controller/provider_controllers/providers/color_provider.dart';
 
 class BottomNavigationBarWidget extends ConsumerWidget {
   final ScrollController? scrollController;
@@ -21,11 +22,10 @@ class BottomNavigationBarWidget extends ConsumerWidget {
     return BottomNavigationBar(
       selectedLabelStyle: const TextStyle(fontFamily: 'IBM'),
       unselectedLabelStyle: const TextStyle(),
-      backgroundColor: themeMode.isLight
-          ? kContainerColorLightMode
-          : kContainerColorDarkMode,
+      backgroundColor: ref.read(themeModeNotifier.notifier).containerTheme(ref: ref)
+,
       selectedItemColor:
-      themeMode.isLight ? kPrimaryColorLightMode : kPrimaryColorDarkMode,
+      ref.read(themeModeNotifier.notifier).primaryTheme(ref: ref),
       unselectedItemColor: Colors.grey,
       type: BottomNavigationBarType.fixed,
       iconSize: 30,

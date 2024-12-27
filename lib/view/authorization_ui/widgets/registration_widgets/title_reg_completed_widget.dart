@@ -5,6 +5,7 @@ import '../../../../constants/coordination.dart';
 import '../../../../constants/get_it_controller.dart';
 import '../../../../constants/localization.dart';
 import '../../../../constants/nums.dart';
+import '../../../../controller/provider_controllers/providers/color_provider.dart';
 
 class TitleRegCompletedWidget extends ConsumerWidget {
   const TitleRegCompletedWidget({super.key});
@@ -37,7 +38,8 @@ class TitleScreenWidget extends ConsumerWidget {
           fontSize: getIt<AppDimension>().isSmallScreen(context) ? 22 : 26,
           inherit: true,
           fontWeight: FontWeight.w600,
-          color: themeMode.isLight ? kTextColorLightMode : kTextColorDarkMode,
+          color:
+          ref.read(themeModeNotifier.notifier).textTheme(ref: ref),
         ),
       ),
     );
@@ -61,18 +63,17 @@ class NameOfApp extends ConsumerWidget {
                     getIt<AppDimension>().isSmallScreen(context) ? 22 : 26,
                 inherit: true,
                 fontWeight: FontWeight.w600,
-                color: themeMode.isLight
-                    ? kTextColorLightMode
-                    : kTextColorDarkMode),
+                color:
+                ref.read(themeModeNotifier.notifier).textTheme(ref: ref),
+),
           ),
           Text(
             SetLocalization.of(context)!.getTranslateValue("ween_balaqee"),
             style: TextStyle(
               fontSize: getIt<AppDimension>().isSmallScreen(context) ? 22 : 26,
               inherit: true,
-              color: themeMode.isLight
-                  ? kPrimaryColorLightMode
-                  : kPrimaryColorDarkMode,
+              color: ref.read(themeModeNotifier.notifier).primaryTheme(ref: ref),
+
               fontWeight: FontWeight.w600,
             ),
           ),

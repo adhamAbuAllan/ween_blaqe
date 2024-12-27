@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:ween_blaqe/constants/nums.dart';
 import '../../../constants/coordination.dart';
 import '../../../constants/get_it_controller.dart';
+import '../../../controller/provider_controllers/providers/color_provider.dart';
 
 class TextFormFieldWidget extends ConsumerWidget {
   final String? labelName;
@@ -62,7 +63,7 @@ class TextFormFieldWidget extends ConsumerWidget {
       padding: EdgeInsets.symmetric(
         vertical: decoration != null ? 0 : 5,
       ),
- child: TextFormField(
+      child: TextFormField(
           validator: validator,
           textInputAction: textInputAction,
           textDirection: isPhoneRegTextField ?? false
@@ -73,75 +74,81 @@ class TextFormFieldWidget extends ConsumerWidget {
           keyboardType: keyboardType,
           cursorColor: cursorColor,
           style: style ??
-              defultTextStyle(),
+              defultTextStyle(
+                ref.read(themeModeNotifier.notifier).textTheme(ref: ref),
+              ),
           decoration: decoration ??
-              defultInputDecoration(context),
+              defultInputDecoration(
+              context:   context,
+             enabledBorderColor:ref.
+             read(themeModeNotifier.notifier).primary300Theme(ref:
+              ref),
+                focusedBorderColor: ref.read(themeModeNotifier.notifier).primaryTheme(ref: ref),
+              ),
           onChanged: onChanged),
     );
   }
 
-  TextStyle defultTextStyle() {
+  TextStyle defultTextStyle(Color color) {
     return TextStyle(
-              color: themeMode.isLight
-                  ? kTextColorLightMode
-                  : kTextColorDarkMode,
-              fontSize: fontSize,
-            );
+      color: color,
+      fontSize: fontSize,
+    );
   }
 
-  InputDecoration defultInputDecoration(BuildContext context) {
+  InputDecoration defultInputDecoration({
+    required BuildContext context,
+    required Color enabledBorderColor,
+    required Color focusedBorderColor,
+  }) {
     return InputDecoration(
-              isDense: true,
-              contentPadding: EdgeInsets.symmetric(
-                  vertical: getIt<AppDimension>().isSmallScreen(context)
-                      ? 20 / 2
-                      : 20,
-                  horizontal: 10),
-              labelText: labelName,
-              labelStyle: TextStyle(
-                color: Colors.grey,
-                fontSize: fontSize,
-              ),
-              border: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(7),
-              ),
-              enabledBorder: OutlineInputBorder(
-                borderSide: BorderSide(
-                  color: themeMode.isLight
-                      ? kPrimaryColor300LightMode
-                      : kPrimaryColor300DarkMode,
-                  width: 0.5,
-                ),
-              ),
-              focusedBorder: OutlineInputBorder(
-                borderSide: BorderSide(
-                  color: themeMode.isLight
-                      ? kPrimaryColorLightMode
-                      : kPrimaryColorDarkMode,
-                  width: 1,
-                ),
-              ),
-              // errorText: errorText,
-              errorStyle: const TextStyle(
-                color: Colors.redAccent,
-                fontSize: 12.0,
-              ),
-              error: isPhoneRegTextField ?? false
-                  ? (validateTextValue != null &&
-                          validateTextValue !=
-                              "no "
-                                  "error have"
-                      ? const SizedBox()
-                      : null)
-                  : (errorText != null
-                      ? Text(
-                          errorText!,
-                          style: const TextStyle(
-                            color: Colors.redAccent,
-                            fontSize: 12.0,
-                          ),
-                        )
-                      : null),
-            );
+      isDense: true,
+      contentPadding: EdgeInsets.symmetric(
+          vertical: getIt<AppDimension>().isSmallScreen(context) ? 20 / 2 : 20,
+          horizontal: 10),
+      labelText: labelName,
+      labelStyle: TextStyle(
+        color: Colors.grey,
+        fontSize: fontSize,
+      ),
+      border: OutlineInputBorder(
+        borderRadius: BorderRadius.circular(7),
+      ),
+      enabledBorder: OutlineInputBorder(
+        borderSide: BorderSide(
+          color: enabledBorderColor,
+          width: 0.5,
+        ),
+      ),
+      focusedBorder: OutlineInputBorder(
+        borderSide: BorderSide(
+          color: themeMode.isLight
+              ? kPrimaryColorLightMode
+              : kPrimaryColorDarkMode,
+          width: 1,
+        ),
+      ),
+      // errorText: errorText,
+      errorStyle: const TextStyle(
+        color: Colors.redAccent,
+        fontSize: 12.0,
+      ),
+      error: isPhoneRegTextField ?? false
+          ? (validateTextValue != null &&
+                  validateTextValue !=
+                      "no "
+                          "error have"
+              ? const SizedBox()
+              : null)
+          : (errorText != null
+              ? Text(
+                  errorText!,
+                  style: const TextStyle(
+                    color: Colors.redAccent,
+                    fontSize: 12.0,
+                  ),
+                )
+              : null),
+    );
   }
 }

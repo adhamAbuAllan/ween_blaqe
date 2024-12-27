@@ -30,10 +30,10 @@ class ThemeModeNotifier extends StateNotifier<bool> {
         "Loaded theme mode from SharedPreferences: ${state ? 'Light' : 'Dark'}");
   }
 
-  Color containerTheme({required WidgetRef ref}) {
-    return isLightMode
+  Color containerTheme({required WidgetRef ref, double? withOpacity}) {
+    return (isLightMode
         ? ref.read(containerColorLight)
-        : ref.read(containerColorDark);
+        : ref.read(containerColorDark)).withOpacity(withOpacity ?? 1);
   }
 
   Color primaryTheme({required WidgetRef ref, double? withOpacity}) {
@@ -52,8 +52,12 @@ class ThemeModeNotifier extends StateNotifier<bool> {
         : ref.read(primaryColor300Dark);
   }
 
-  Color textTheme({required WidgetRef ref}) {
-    return isLightMode ? ref.read(textColorLight) : ref.read(textColorDark);
+  Color textTheme({required WidgetRef ref, double? withOpacity}) {
+    return withOpacity == null
+        ? (isLightMode ? ref.read(textColorLight) : ref.read(textColorDark))
+        : (isLightMode
+            ? ref.read(textColorLight).withOpacity(withOpacity)
+            : ref.read(textColorDark).withOpacity(withOpacity));
   }
 
   Color backgroundAppTheme({required WidgetRef ref}) {
@@ -62,3 +66,11 @@ class ThemeModeNotifier extends StateNotifier<bool> {
         : ref.read(backgroundAppColorDark);
   }
 }
+/*
+ref.read(themeModeNotifier.notifier).backgroundAppTheme(ref: ref),
+ref.read(themeModeNotifier.notifier).textTheme(ref: ref),
+ref.read(themeModeNotifier.notifier).containerTheme(ref: ref),
+ref.read(themeModeNotifier.notifier).primaryTheme(ref: ref)
+ref.read(themeModeNotifier.notifier).primary300Theme(ref: ref),
+
+ */
