@@ -23,7 +23,6 @@ class TimeAgoTextWidget extends ConsumerWidget {
                   :
                   Colors.white54
               ,
-              fontWeight: FontWeight.w200,
               fontSize: 14,
             ),
           ),

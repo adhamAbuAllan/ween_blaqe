@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:ween_blaqe/constants/nums.dart';
+import 'package:ween_blaqe/controller/provider_controllers/providers/color_provider.dart';
 
 import '../../../../../session/new_session.dart';
 
@@ -12,7 +13,7 @@ final double? radius ;
     return CircleAvatar(
       radius: radius,
       // Set the background color of the avatar
-      backgroundColor: themeMode.isLight ? kContainerColorLightMode:kContainerColorDarkMode,
+      backgroundColor: ref.read(themeModeNotifier.notifier).containerTheme(ref: ref),
       backgroundImage: NetworkImage("https://weenbalaqee"
           ".com/${NewSession.get("profile", "def")}"),
     );

@@ -39,9 +39,7 @@ class _AppBarGridWidgetState extends ConsumerState<AppBarGridWidget> {
   Widget build(BuildContext context) {
     return AppBar(
       automaticallyImplyLeading: false,
-      backgroundColor: themeMode.isLight
-          ? kContainerColorLightMode
-          : kContainerColorDarkMode,
+      backgroundColor: ref.read(themeModeNotifier.notifier).containerTheme(ref: ref),
       actions: [
         Padding(
           padding: EdgeInsets.symmetric(

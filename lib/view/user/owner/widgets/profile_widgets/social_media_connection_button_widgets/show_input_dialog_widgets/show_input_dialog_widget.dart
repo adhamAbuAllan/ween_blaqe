@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:ween_blaqe/controller/provider_controllers/providers/color_provider.dart';
 import 'package:ween_blaqe/view/user/owner/widgets/profile_widgets'
     '/social_media_connection_button_widgets/show_input_dialog_widgets/title_widget.dart';
 
@@ -37,15 +38,11 @@ class _ShowInputDialogState extends ConsumerState<ShowInputDialogWidget> {
   @override
   Widget build(BuildContext context) {
     return AlertDialog(
-      backgroundColor: themeMode.isLight
-          ? kContainerColorLightMode
-          : kContainerColorDarkMode,
+      backgroundColor: ref.read(themeModeNotifier.notifier).containerTheme(ref: ref),
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(7),
         side: BorderSide(
-          color: themeMode.isLight
-              ? kPrimaryColorLightMode
-              : kPrimaryColorDarkMode,
+          color: ref.read(themeModeNotifier.notifier).primaryTheme(ref: ref),
           strokeAlign: 0,
           width: 0.5,
         ),

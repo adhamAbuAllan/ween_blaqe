@@ -26,7 +26,7 @@ class ShowAllAdvantagesUi extends ConsumerWidget {
 
     return ColorfulSafeArea(
       bottomColor: Colors.transparent,
-      color: themeMode.isLight ? kPrimaryColorLightMode : kPrimaryColorDarkMode,
+      color: ref.read(themeModeNotifier.notifier).primaryTheme(ref: ref),
       child: Scaffold(
         backgroundColor:ref.read(themeModeNotifier.notifier).backgroundAppTheme(ref: ref)
 ,
@@ -39,9 +39,7 @@ class ShowAllAdvantagesUi extends ConsumerWidget {
                 getIt<AppDimension>().isSmallScreen(context) ? 18 : 20,
                 fontWeight: FontWeight.w600,
               )),
-          backgroundColor: themeMode.isLight
-              ? kPrimaryColorLightMode
-              : kPrimaryColorDarkMode,
+          backgroundColor: ref.read(themeModeNotifier.notifier).primaryTheme(ref: ref),
         ),
         body: ShowAllAdvantagesWidget(oneApartment: oneApartment),
       ),

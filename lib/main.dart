@@ -301,7 +301,7 @@ class _OwnMaterialAppConsumerState
             const ShowDeitalsOfApartmentUi(),
         MyPagesRoutes.whatTheInfoReqToCreateAd: (context) =>
             const WhatTheInfoReqToCreateAdUi(),
-        MyPagesRoutes.introScreen: (context) => const IntroScreen(),
+        MyPagesRoutes.introScreen: (context) => const IntroScreenUi(),
         MyPagesRoutes.updateUserInfo: (context) => const UpdateUserDataUi(),
 
         //testing routes..

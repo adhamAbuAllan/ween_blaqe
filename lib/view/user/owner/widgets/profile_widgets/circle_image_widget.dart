@@ -1,6 +1,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:ween_blaqe/controller/provider_controllers/providers/color_provider.dart';
 import 'package:ween_blaqe/view/user/owner/widgets/change_user_image_widgets'
     '/default_image_widget.dart';
 import 'package:ween_blaqe/view/user/owner/widgets/change_user_image_widgets'
@@ -31,12 +32,8 @@ class CircleImageWidget extends ConsumerWidget {
             (themeMode.isLight
                 ? kBackgroundAppColorLightMode
                 : kBackgroundAppColorDarkMode),
-            (themeMode.isLight
-                ? kBackgroundAppColorLightMode
-                : kBackgroundAppColorDarkMode),
-            (themeMode.isLight
-                ? kContainerColorLightMode
-                : kContainerColorDarkMode)
+            (ref.read(themeModeNotifier.notifier).backgroundAppTheme(ref: ref)),
+            (ref.read(themeModeNotifier.notifier).containerTheme(ref: ref))
           ],
           // Three colors
           begin: Alignment.bottomCenter, // Horizontal gradient

@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../../../../constants/localization.dart';
 import '../../../../../constants/nums.dart';
+import '../../../../../controller/provider_controllers/providers/color_provider.dart';
 
 class CountOfAdShownWidget extends ConsumerWidget {
   const CountOfAdShownWidget({super.key});
@@ -17,9 +18,7 @@ class CountOfAdShownWidget extends ConsumerWidget {
 
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(7),
-        color: themeMode.isLight
-            ? kContainerColorLightMode
-            : kContainerColorDarkMode,
+        color: ref.read(themeModeNotifier.notifier).containerTheme(ref: ref),
       ),
       child: Column(
         mainAxisSize: MainAxisSize.min,

@@ -1,5 +1,6 @@
 import 'package:colorful_safe_area/colorful_safe_area.dart';
 import 'package:flutter/material.dart';
+import 'package:ween_blaqe/controller/provider_controllers/providers/color_provider.dart';
 import 'package:ween_blaqe/view/common_widgets/containers_widgets'
     '/container_field_widget.dart';
 import 'package:ween_blaqe/view/user/owner/widgets/update_user_data_widgets'
@@ -27,11 +28,9 @@ class UpdateUserDataUi extends ConsumerWidget {
       child: ColorfulSafeArea(
         bottomColor: Colors.transparent,
         color:
-            themeMode.isLight ? kPrimaryColorLightMode : kPrimaryColorDarkMode,
+            ref.read(themeModeNotifier.notifier).primaryTheme(ref: ref),
         child: Scaffold(
-          backgroundColor: themeMode.isLight
-              ? kBackgroundAppColorLightMode
-              : kBackgroundAppColorDarkMode,
+          backgroundColor: ref.read(themeModeNotifier.notifier).backgroundAppTheme(ref: ref),
           appBar: const AppBarUpdateUserDataWidget(),
           body: Padding(
             padding: const EdgeInsets.symmetric(vertical: 0, horizontal: 8.0),
@@ -82,9 +81,7 @@ class UpdateUserDataUi extends ConsumerWidget {
 
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(7),
-                      color: themeMode.isLight
-                          ? kContainerColorLightMode
-                          : kContainerColorDarkMode,
+                      color: ref.read(themeModeNotifier.notifier).containerTheme(ref: ref),
                     ),
                     child: Form(
                       key:ref.watch(updatePhoneValidate.notifier).state !=

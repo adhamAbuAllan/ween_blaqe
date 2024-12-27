@@ -65,10 +65,9 @@ class _ShowDeitalsOfApartmentUiState
 
   @override
   Widget build(BuildContext context) {
-
     return Scaffold(
-      backgroundColor: ref.read(themeModeNotifier.notifier)
-          .backgroundAppTheme(ref: ref),
+      backgroundColor:
+          ref.read(themeModeNotifier.notifier).backgroundAppTheme(ref: ref),
       body: SingleChildScrollView(
         physics: const BouncingScrollPhysics(
             decelerationRate: ScrollDecelerationRate.fast),
@@ -82,10 +81,9 @@ class _ShowDeitalsOfApartmentUiState
               crossAxisAlignment: CrossAxisAlignment.center,
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                 const Padding(
+                const Padding(
                   padding: EdgeInsets.fromLTRB(8, 0, 8, 0),
                   child: BackButtonWidget(
-
                     style: ButtonStyle(
                         tapTargetSize: MaterialTapTargetSize.shrinkWrap),
                   ),
@@ -95,7 +93,9 @@ class _ShowDeitalsOfApartmentUiState
                   child: Text(
                     "${widget.oneApartment?.timeAgo}",
                     style: TextStyle(
-                      color: ref.read(themeModeNotifier.notifier).textTheme(ref: ref),
+                      color: ref
+                          .read(themeModeNotifier.notifier)
+                          .textTheme(ref: ref),
                       fontSize: 14,
                     ),
                   ),
@@ -109,16 +109,16 @@ class _ShowDeitalsOfApartmentUiState
               onTap: () async {
                 final currentIndex = ref
                     .read(imageSliderNotifier.notifier)
-                    .getCurrentIndex(widget.oneApartment?.id??-1);
+                    .getCurrentIndex(widget.oneApartment?.id ?? -1);
 
                 final newIndex = await Navigator.push<int>(
                   context,
                   MaterialPageRoute(
                     builder: (context) => ShowDetialsOfImageUi(
                       context: context,
-                      imageList: widget.oneApartment?.photos??[],
+                      imageList: widget.oneApartment?.photos ?? [],
                       initialIndex: currentIndex,
-                      oneApartment: widget.oneApartment??DataOfOneApartment(),
+                      oneApartment: widget.oneApartment ?? DataOfOneApartment(),
                     ),
                   ),
                 );
@@ -126,7 +126,7 @@ class _ShowDeitalsOfApartmentUiState
                 if (newIndex != null) {
                   ref
                       .read(imageSliderNotifier.notifier)
-                      .updateIndex(widget.oneApartment?.id??-1, newIndex);
+                      .updateIndex(widget.oneApartment?.id ?? -1, newIndex);
                 }
               },
               child: Column(
@@ -138,9 +138,8 @@ class _ShowDeitalsOfApartmentUiState
                   ),
                   const SizedBox(height: 10),
                   PointerOfImageWidget(
-                    imageList:widget.oneApartment?.photos??[],
-                    apartmentId: widget.oneApartment?.id??-1,
-
+                    imageList: widget.oneApartment?.photos ?? [],
+                    apartmentId: widget.oneApartment?.id ?? -1,
                   ),
                 ],
               ),

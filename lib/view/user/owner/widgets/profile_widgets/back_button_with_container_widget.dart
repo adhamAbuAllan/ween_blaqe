@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:ween_blaqe/controller/provider_controllers/providers/color_provider.dart';
 
 import '../../../../../constants/nums.dart';
 import '../../../../common_widgets/button_widgets/back_button_widget.dart';
@@ -14,9 +15,7 @@ class BackButtonWithContainerWidget extends ConsumerWidget {
     WidgetRef ref,
   ) {
     return Container(
-      color: themeMode.isLight
-          ? kContainerColorLightMode
-          : kContainerColorDarkMode,
+      color: ref.read(themeModeNotifier.notifier).containerTheme(ref: ref),
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:ween_blaqe/controller/provider_controllers/providers/color_provider.dart';
 
 import '../../../../../constants/coordination.dart';
 import '../../../../../constants/get_it_controller.dart';
@@ -19,7 +20,7 @@ class AppBarUpdateUserDataWidget extends ConsumerWidget
     return AppBar(
       // toolbarHeight: 77,
       backgroundColor:
-          themeMode.isLight ? kPrimaryColorLightMode : kPrimaryColorDarkMode,
+          ref.read(themeModeNotifier.notifier).primaryTheme(ref: ref),
       centerTitle: false,
       leading: BackButton(
         onPressed: () async {

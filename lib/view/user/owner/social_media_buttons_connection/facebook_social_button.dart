@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:ween_blaqe/constants/localization.dart';
+import 'package:ween_blaqe/controller/provider_controllers/providers/color_provider.dart';
 
 import '../../../../constants/nums.dart';
 import '../widgets/profile_widgets/social_media_connection_button_widgets/social_media_connection_button.dart';
@@ -57,15 +58,11 @@ class FacebookSocialButton extends ConsumerWidget {
 
         },
         contentColor: facebookIsActivate
-            ? (themeMode.isLight ? kTextColorLightMode : kTextColorDarkMode)
+            ? (ref.read(themeModeNotifier.notifier).textTheme(ref: ref))
             : Colors.grey,
         borderColor: facebookIsActivate
-            ? (themeMode.isLight
-                ? kPrimaryColorLightMode
-                : kPrimaryColorDarkMode)
-            : (themeMode.isLight
-                ? kPrimaryColor300LightMode
-                : kPrimaryColor300DarkMode),
+            ? (ref.read(themeModeNotifier.notifier).primaryTheme(ref: ref))
+            : (ref.read(themeModeNotifier.notifier).primary300Theme(ref: ref)),
         fontWeight: facebookIsActivate ? FontWeight.w500 : FontWeight.w400,
         controller: ref.read(facebookController),
         socialIcon: FontAwesomeIcons.facebook,

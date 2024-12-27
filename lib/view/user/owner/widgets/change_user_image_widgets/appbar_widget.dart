@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:ween_blaqe/controller/provider_controllers/providers/color_provider.dart';
 
 import '../../../../../constants/coordination.dart';
 import '../../../../../constants/get_it_controller.dart';
@@ -14,7 +15,7 @@ class AppBarUpdateProfileWidget extends ConsumerWidget implements PreferredSizeW
   Widget build(BuildContext context, WidgetRef ref) {
     return AppBar(
       backgroundColor:
-      themeMode.isLight ? kPrimaryColorLightMode : kPrimaryColorDarkMode,
+      ref.read(themeModeNotifier.notifier).primaryTheme(ref: ref),
       title: Text(
         SetLocalization.of(context)!
             .getTranslateValue("change_profile_picture"),

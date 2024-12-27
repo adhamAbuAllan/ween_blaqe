@@ -1,6 +1,7 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:ween_blaqe/controller/provider_controllers/providers/color_provider.dart';
 import '../../../../../constants/localization.dart';
 import '../../../../../constants/nums.dart';
 import '../../../../../controller/provider_controllers/providers/image_provider.dart';
@@ -66,7 +67,7 @@ class FloatingButtonAddMultiImagesWidget<FloatingActionButtonWidget>
         },
         heroTag: 'image0',
         backgroundColor:
-            themeMode.isLight ? kPrimaryColorLightMode : kPrimaryColorDarkMode,
+            ref.read(themeModeNotifier.notifier).primaryTheme(ref: ref),
         tooltip: SetLocalization.of(context)!
             .getTranslateValue("add_photos_from_gallery"),
         child: const Icon(Icons.photo_library),
@@ -106,7 +107,7 @@ class FloatingButtonAddImageWidget extends ConsumerWidget {
         heroTag: 'image1',
         tooltip: SetLocalization.of(context)!.getTranslateValue("take_photo"),
         backgroundColor:
-            themeMode.isLight ? kPrimaryColorLightMode : kPrimaryColorDarkMode,
+            ref.read(themeModeNotifier.notifier).primaryTheme(ref: ref),
         child: const Icon(Icons.camera_alt),
       ),
     );

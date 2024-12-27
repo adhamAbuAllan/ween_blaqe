@@ -3,7 +3,7 @@ import 'package:url_launcher/url_launcher.dart';
 import 'package:flutter/material.dart';
 import 'package:ween_blaqe/constants/localization.dart';
 import 'package:ween_blaqe/controller/provider_controllers/providers/auth_provider.dart';
-import '../../../../constants/nums.dart';
+import '../../../../controller/provider_controllers/providers/color_provider.dart';
 import '../widgets/profile_widgets/social_media_connection_button_widgets/social_media_connection_button.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -60,15 +60,12 @@ class EmailSocialButton extends ConsumerWidget {
         socialName: SetLocalization.of(context)!.getTranslateValue("gmail"),
         socialIcon: FontAwesomeIcons.envelope,
         contentColor: emailIsActivate
-            ? (themeMode.isLight ? kTextColorLightMode : kTextColorDarkMode)
+            ? (ref.read(themeModeNotifier.notifier).textTheme(ref: ref))
             : Colors.grey,
         borderColor: emailIsActivate
-            ? (themeMode.isLight
-                ? kPrimaryColorLightMode
-                : kPrimaryColorDarkMode)
-            : (themeMode.isLight
-                ? kPrimaryColor300LightMode
-                : kPrimaryColor300DarkMode),
+            ? (ref.read(themeModeNotifier.notifier).primaryTheme(ref: ref))
+
+            : (ref.read(themeModeNotifier.notifier).primary300Theme(ref: ref)),
         fontWeight: emailIsActivate ? FontWeight.w500 : FontWeight.w400,
         check: () async {
           final Uri emailUri =

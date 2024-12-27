@@ -63,8 +63,8 @@ class _ApartmentsOfOwnerUiState extends ConsumerState<ApartmentsOfOwnerUi>
       duration: const Duration(milliseconds: 300),
     );
     _iconColorAnimation = ColorTween(
-            begin: themeMode.isLight ? kTextColorLightMode : kTextColorDarkMode,
-            end: themeMode.isLight ? kTextColorLightMode : kTextColorDarkMode)
+            begin: ref.read(themeModeNotifier.notifier).textTheme(ref: ref),
+            end: ref.read(themeModeNotifier.notifier).textTheme(ref: ref))
         .animate(_animationController);
     _animationController.forward();
   }

@@ -4,6 +4,7 @@ import 'package:image_picker/image_picker.dart';
 
 import '../../../constants/localization.dart';
 import '../../../constants/nums.dart';
+import '../../../controller/provider_controllers/providers/color_provider.dart';
 import '../../../controller/provider_controllers/providers/image_provider.dart';
 
 class PickImageBottomSheetWidget extends ConsumerWidget {
@@ -13,9 +14,7 @@ class PickImageBottomSheetWidget extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     return SafeArea(
       child: Container(
-        color: themeMode.isLight
-            ? kContainerColorLightMode
-            : kContainerColorDarkMode,
+        color: ref.read(themeModeNotifier.notifier).containerTheme(ref: ref),
         child: const Wrap(
           children: [
             _PickFromGalleryWidget(),
@@ -36,13 +35,13 @@ class _PickFromGalleryWidget extends ConsumerWidget {
       leading: Icon(
         Icons.photo_library,
         color:
-            themeMode.isLight ? kPrimaryColorLightMode : kPrimaryColorDarkMode,
+            ref.read(themeModeNotifier.notifier).primaryTheme(ref: ref),
       ),
       title: Text(
           SetLocalization.of(context)!.getTranslateValue("from_gallery"),
           style: TextStyle(
               color:
-                  themeMode.isLight ? kTextColorLightMode : kTextColorDarkMode,
+                  ref.read(themeModeNotifier.notifier).textTheme(ref: ref),
               fontFamily: "IBM")),
       onTap: () {
         Navigator.pop(context); // Close bottom sheet
@@ -61,13 +60,11 @@ class _PickFromCameraWidget extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     return ListTile(
       leading: Icon(Icons.camera_alt,
-          color: themeMode.isLight
-              ? kPrimaryColorLightMode
-              : kPrimaryColorDarkMode),
+          color: ref.read(themeModeNotifier.notifier).primaryTheme(ref: ref)),
       title: Text(
         SetLocalization.of(context)!.getTranslateValue("from_camera"),
         style: TextStyle(
-            color: themeMode.isLight ? kTextColorLightMode : kTextColorDarkMode,
+            color: ref.read(themeModeNotifier.notifier).textTheme(ref: ref) ,
             fontFamily: "IBM"),
       ),
       onTap: () {

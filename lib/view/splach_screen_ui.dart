@@ -41,9 +41,7 @@ class _SplashScreenState extends ConsumerState<SplashScreenUi> {
         backgroundColor: const Color(0x2ef0f0fe),
         body: ColorfulSafeArea(
           bottomColor: Colors.transparent,
-          color: themeMode.isLight
-              ? kPrimaryColorLightMode
-              : kPrimaryColorDarkMode,
+          color: ref.read(themeModeNotifier.notifier).primaryTheme(ref: ref),
           child: const SingleChildScrollView(
               child: Center(
                   child: Column(

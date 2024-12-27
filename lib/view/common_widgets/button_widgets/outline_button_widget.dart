@@ -9,17 +9,22 @@ class OutlinedButtonWidget extends ConsumerWidget {
       {super.key,
       required this.child,
       this.onPressed,
-      this.isFloatingOutlinedButton});
+      this.isFloatingOutlinedButton,this.borderSide,this.overlayColor});
 
   final Widget child;
   final void Function()? onPressed;
   final bool? isFloatingOutlinedButton;
+  final Color ?overlayColor;
+  final BorderSide ?borderSide;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     return OutlinedButton(
       onPressed: onPressed,
       style: outlinedButton(
+        borderSide: borderSide,
+        overlayColor: overlayColor,
+
           isFloatingOutlinedButton: isFloatingOutlinedButton,
           forgroundColor:
               ref.read(themeModeNotifier.notifier).primaryTheme(ref: ref),
@@ -32,7 +37,9 @@ class OutlinedButtonWidget extends ConsumerWidget {
               ref.read(themeModeNotifier.notifier).primaryTheme(ref: ref),
           borderColor:
               ref.read(themeModeNotifier.notifier).primaryTheme(ref: ref),
-          context: context),
+          context: context,
+
+      ),
       child: child,
     );
   }
@@ -44,7 +51,10 @@ ButtonStyle outlinedButton(
     required Color primaryColor,
     required Color borderColor,
     required BuildContext context,
-    bool? isFloatingOutlinedButton}) {
+    bool? isFloatingOutlinedButton,
+Color ? overlayColor,
+      BorderSide ?borderSide,
+    }) {
   return OutlinedButton.styleFrom(
     foregroundColor: forgroundColor,
     backgroundColor: isFloatingOutlinedButton ?? false ? backgroundColor : null,
@@ -54,8 +64,10 @@ ButtonStyle outlinedButton(
       fontWeight: FontWeight.w500,
       fontFamily: 'IBM',
     ),
-    side: BorderSide(width: 1, color: borderColor),
+    side: borderSide??BorderSide(width: 1, color: borderColor),
     padding: const EdgeInsets.symmetric(horizontal: 10),
     alignment: Alignment.center,
+    overlayColor:overlayColor,
+
   );
 }

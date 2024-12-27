@@ -188,9 +188,7 @@ class _AppbarEditApartmentWidgetState
           width: 10,
         )
       ],
-      backgroundColor: themeMode.isLight
-          ? kContainerColorLightMode
-          : kContainerColorDarkMode,
+      backgroundColor: ref.read(themeModeNotifier.notifier).containerTheme(ref: ref),
     );
   }
 }
