@@ -6,7 +6,7 @@ import '../../../../../../constants/coordination.dart';
 import '../../../../../../constants/get_it_controller.dart';
 import '../../../../../../constants/localization.dart';
 import '../../../../../../constants/strings.dart';
-import '../../../../../common_widgets/button_widgets/full_button_widget.dart';
+import '../../../../../common_widgets/button_widgets/elevated_button_widget.dart';
 
 class LoginButtonWidget extends ConsumerWidget {
   const LoginButtonWidget({super.key});
@@ -18,7 +18,7 @@ class LoginButtonWidget extends ConsumerWidget {
       child: SizedBox(
         width: double.infinity,
         height: getIt<AppDimension>().isSmallScreen(context) ? 55 / 1.2 : 55,
-        child: FullButtonWidget(
+        child: ElevatedButtonWidget(
             onPressed: () {
               myPushName(context, MyPagesRoutes.login);
             },

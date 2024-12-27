@@ -29,13 +29,11 @@ class FloatingActionButtonWidgetState
     return FloatingActionButton(
       tooltip: SetLocalization.of(context)!.getTranslateValue("add_ad"),
       backgroundColor:
-      ref.read(themeModeNotifier.notifier).primaryTheme(ref: ref),
+          ref.read(themeModeNotifier.notifier).primaryTheme(ref: ref),
       shape: ContinuousRectangleBorder(
         borderRadius: BorderRadius.circular(16),
       ),
       onPressed: () {
-
-
         setState(() {
           isConnected;
         });
@@ -44,11 +42,20 @@ class FloatingActionButtonWidgetState
           if (NewSession.get("logged", "") == "") {
             /// this how show if user not logged
             ref.read(alertNotifier.notifier).alertWithTwoBtn(
+                  textColor:
+                      ref.read(themeModeNotifier.notifier).textTheme(ref: ref),
+                  borderColor: ref
+                      .read(themeModeNotifier.notifier)
+                      .primaryTheme(ref: ref),
+                  containerColor: ref
+                      .read(themeModeNotifier.notifier)
+                      .containerTheme(ref: ref),
                   onClickOkBtn: () {
                     Navigator.pop(context);
                     myPushName(context, MyPagesRoutes.register);
                   },
-                  textOfCancelButton: "إلغاء",
+                  textOfCancelButton:
+                      SetLocalization.of(context)!.getTranslateValue("cancel"),
                   context: context,
                   title: SetLocalization.of(context)!
                       .getTranslateValue("login_to_create_ad"),
@@ -63,6 +70,11 @@ class FloatingActionButtonWidgetState
         } else {
           /// this show if no internet have
           ref.watch(showSnackBarNotifier.notifier).showNormalSnackBar(
+                backgroundColor: ref
+                    .read(themeModeNotifier.notifier)
+                    .backgroundAppTheme(ref: ref),
+                textColor:
+                    ref.read(themeModeNotifier.notifier).textTheme(ref: ref),
                 context: context,
                 message: SetLocalization.of(context)!
                     .getTranslateValue("no_internet"),

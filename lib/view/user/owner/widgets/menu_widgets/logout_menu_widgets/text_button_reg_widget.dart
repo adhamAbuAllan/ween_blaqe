@@ -40,6 +40,8 @@ class TextButtonRegWidget extends ConsumerWidget {
               myPushName(context, MyPagesRoutes.register);
             } else {
               ref.read(showSnackBarNotifier.notifier).showNormalSnackBar(
+                  backgroundColor: ref.read(themeModeNotifier.notifier).backgroundAppTheme(ref: ref),
+                  textColor: ref.read(themeModeNotifier.notifier).textTheme(ref: ref),
                   context: context,
                   message: SetLocalization.of(context)!
                       .getTranslateValue("no_internet_connection"));

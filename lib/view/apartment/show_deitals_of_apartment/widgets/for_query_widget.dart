@@ -84,7 +84,7 @@ class WhatsAppButton extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    return OutlineButtonWidget
+    return OutlinedButtonWidget
 (
       onPressed: () async {
         sendMessageToWhatsApp(
@@ -126,7 +126,7 @@ class PhoneButton extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    return OutlineButtonWidget
+    return OutlinedButtonWidget
 (
       onPressed: () async {
         makePhoneCall(apartment.owner?.phone ?? "user_phone");
@@ -164,7 +164,7 @@ class EmailButton extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    return OutlineButtonWidget
+    return OutlinedButtonWidget
 (
       onPressed: () async {
         sendEmail(
@@ -210,7 +210,7 @@ class FacebookButton extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    return OutlineButtonWidget
+    return OutlinedButtonWidget
 (
       onPressed: () async {
         sendMessenger(

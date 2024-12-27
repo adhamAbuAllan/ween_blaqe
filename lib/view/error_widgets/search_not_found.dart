@@ -1,5 +1,6 @@
 import 'package:colorful_safe_area/colorful_safe_area.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:ween_blaqe/constants/coordination.dart';
 import 'package:ween_blaqe/constants/localization.dart';
 
@@ -7,6 +8,7 @@ import 'package:ween_blaqe/constants/nums.dart';
 
 // import 'package:ween_blaqe/constants/strings.dart';
 import 'package:ween_blaqe/controller/get_controllers.dart';
+import 'package:ween_blaqe/controller/provider_controllers/providers/color_provider.dart';
 // import 'package:ween_blaqe/core/utils/funcations/route_pages/push_routes.dart';
 
 import '../../constants/get_it_controller.dart';

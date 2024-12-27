@@ -41,7 +41,7 @@ class ApartmentsListWidget extends ConsumerStatefulWidget {
       this.isDeleteMode = false,
       required this.haveCitiesBar,
       required this.apartmentsRes,
-      this.marageBetweenImages});
+      this.margeBetweenImages});
 
   final Apartments apartmentsRes;
   final ScrollController? scrollController;
@@ -49,7 +49,7 @@ class ApartmentsListWidget extends ConsumerStatefulWidget {
   final Function()? onClick;
   final void Function()? onPressed;
   final bool haveCitiesBar;
-  final double? marageBetweenImages;
+  final double? margeBetweenImages;
 
   @override
   ConsumerState createState() => _ApartmentsListConsumerState();

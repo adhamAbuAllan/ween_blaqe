@@ -12,6 +12,7 @@ import '../../../../../api/apartments_api/apartments.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../../../../constants/localization.dart';
+import '../../../../../controller/provider_controllers/providers/color_provider.dart';
 
 // import '../../../features/user/owner/apartment_of_owner.dart';
 class DeleteButtonWidget extends ConsumerStatefulWidget {
@@ -50,6 +51,14 @@ class _DeleteButtonConsumerState extends ConsumerState<DeleteButtonWidget> {
         // });
 // title , message , two buttons -> cancel btn , and delete button
         ref.read(alertNotifier.notifier).alertWithTwoBtn(
+            textColor:
+            ref.read(themeModeNotifier.notifier).textTheme(ref: ref),
+            borderColor: ref
+                .read(themeModeNotifier.notifier)
+                .primaryTheme(ref: ref),
+            containerColor: ref
+                .read(themeModeNotifier.notifier)
+                .containerTheme(ref: ref),
             context: context,
             title: SetLocalization.of(context)!.getTranslateValue("delete"),
             message:

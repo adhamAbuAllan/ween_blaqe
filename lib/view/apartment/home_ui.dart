@@ -19,6 +19,7 @@ import 'package:ween_blaqe/view/apartment/widgets/types_of_apartments_widgets'
 import 'package:ween_blaqe/session/new_session.dart';
 
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:ween_blaqe/view/common_widgets/skeleton_widgets/apartment_skeleton_widgets/skeleton_home_ui.dart';
 
 import '../../../../controller/provider_controllers/statuses/apartment_state.dart';
 import 'list_of_apartments.dart';
@@ -92,7 +93,7 @@ class _HomeUiState extends ConsumerState<HomeUi> {
               ? Stack(
                   children: [
                     GestureDetector(
-                      child: HomeSkeletonWidget(
+                      child: SkeletonHomeUi(
                         hasCitiesBar: true,
                         scrollController:
                             widget.scrollController ?? ScrollController(),

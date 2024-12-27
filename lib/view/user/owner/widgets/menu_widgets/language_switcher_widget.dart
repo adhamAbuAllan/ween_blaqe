@@ -176,7 +176,9 @@ class EnglishButton extends ConsumerWidget {
           // language
         ),
         child: Text('EN',
+            softWrap: false,
             style: TextStyle(
+
                 fontSize:
                     getIt<AppDimension>().isSmallScreen(context) ? 14 : 16,
                 color: Colors.white)),

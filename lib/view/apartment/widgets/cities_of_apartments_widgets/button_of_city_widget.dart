@@ -34,7 +34,7 @@ class CityButtonWidget extends ConsumerWidget {
       child: SizedBox(
         width: getIt<AppDimension>().isSmallScreen(context) ? 75 : 80,
         height: getIt<AppDimension>().isSmallScreen(context) ? 35 : 40,
-        child: OutlineButtonWidget(
+        child: OutlinedButtonWidget(
           onPressed: () {
 
             onClick.call();

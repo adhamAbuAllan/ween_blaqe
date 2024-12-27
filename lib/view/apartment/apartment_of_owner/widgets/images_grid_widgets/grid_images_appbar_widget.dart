@@ -7,6 +7,7 @@ import '../../../../../constants/coordination.dart';
 import '../../../../../constants/get_it_controller.dart';
 import '../../../../../constants/localization.dart';
 import '../../../../../constants/nums.dart';
+import '../../../../../controller/provider_controllers/providers/color_provider.dart';
 import '../../../../../controller/provider_controllers/providers/image_provider.dart';
 import '../../../../../controller/provider_controllers/providers/snack_bar_provider.dart';
 import '../../../../../core/utils/styles/button.dart';
@@ -69,6 +70,9 @@ class _AppBarGridWidgetState extends ConsumerState<AppBarGridWidget> {
                   widget.newImages.isNotEmpty) {
                 if (widget.images.length < 3) {
                   ref.read(showSnackBarNotifier.notifier).showNormalSnackBar(
+                      backgroundColor: ref.read(themeModeNotifier.notifier).backgroundAppTheme(ref: ref),
+                      textColor: ref.read(themeModeNotifier.notifier).textTheme(ref: ref),
+
                       context: context,
                       message: SetLocalization.of(context)!.getTranslateValue(
                           "should_be_at_least_three_photos"));
@@ -86,6 +90,9 @@ class _AppBarGridWidgetState extends ConsumerState<AppBarGridWidget> {
                 Navigator.pop(context);
               } else {
                 ref.read(showSnackBarNotifier.notifier).showNormalSnackBar(
+                    backgroundColor: ref.read(themeModeNotifier.notifier).backgroundAppTheme(ref: ref),
+                    textColor: ref.read(themeModeNotifier.notifier).textTheme(ref: ref),
+
                     context: context,
                     message: SetLocalization.of(context)!
                         .getTranslateValue("no_changes_made_yet"));

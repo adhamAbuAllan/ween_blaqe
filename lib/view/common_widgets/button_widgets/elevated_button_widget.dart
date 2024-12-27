@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../../controller/provider_controllers/providers/color_provider.dart';
-class FullButtonWidget extends ConsumerWidget {
-  const FullButtonWidget({super.key, required this.child, required this
+class ElevatedButtonWidget extends ConsumerWidget {
+  const ElevatedButtonWidget({super.key, required this.child, required this
       .onPressed,this.color,this.onLongPress});
   final void Function()? onPressed;
   final Widget child;

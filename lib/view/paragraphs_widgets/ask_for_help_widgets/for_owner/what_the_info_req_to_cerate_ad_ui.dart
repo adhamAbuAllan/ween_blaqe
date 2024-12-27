@@ -8,6 +8,7 @@ import 'package:ween_blaqe/controller/provider_controllers/providers/apartment_p
 // import 'package:ween_blaqe/core/utils/funcations/route_pages/push_routes.dart';
 // import 'package:ween_blaqe/core/utils/styles/text_style/aline_style.dart';
 import 'package:ween_blaqe/core/widgets/skeletons/general_skeleton_ready_widgets/paragraph_ready_skeleton.dart';
+import 'package:ween_blaqe/view/common_widgets/skeleton_widgets/ask_to_help_skeleton_widgets/skeleton_long_paragraph_ready_ui.dart';
 import 'package:ween_blaqe/view/paragraphs_widgets/ask_for_help_widgets/for_owner/about_apartment_data_required_widget.dart';
 import 'package:ween_blaqe/view/paragraphs_widgets/ask_for_help_widgets/for_owner/owner_data_reqiured_table_widget.dart';
 
@@ -46,7 +47,7 @@ class _WhatTheInfoReqToCreateAdState
               ref.read(themeModeNotifier.notifier).primaryTheme(ref: ref),
         ),
         body: ref.watch(advantagesNotifer).isDataLoading
-            ? const LongParagraphReadySkeleton()
+            ? const LongParagraphReadySkeletonUi()
             : SingleChildScrollView(
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,

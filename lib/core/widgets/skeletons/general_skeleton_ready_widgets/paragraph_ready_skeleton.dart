@@ -66,6 +66,7 @@ import '../../../../controller/provider_controllers/providers/color_provider.dar
 //     );
 //   }
 // }
+
 class LongParagraphReadySkeleton extends StatelessWidget {
   const LongParagraphReadySkeleton({super.key});
 

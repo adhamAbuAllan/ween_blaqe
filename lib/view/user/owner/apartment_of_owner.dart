@@ -353,6 +353,7 @@ import '../../../core/utils/funcations/snakbar.dart';
 import '../../../core/widgets/alirt_class_widget.dart';
 import '../../../session/new_session.dart';
 import '../../apartment/list_of_apartments.dart';
+import '../../common_widgets/empty_screen_widget.dart';
 import '../../error_widgets/no_internet_ui.dart';
 
 
@@ -490,7 +491,7 @@ class _ApartmentsOwnerState extends State<ApartmentsOwner>
           } else {
             return InternetConnectivityChecker(
               child: apartmentModelController.isOwnerHaveApartments.value
-                  ? EmptyScreenClassWidget(
+                  ? EmptyScreenWidget(
                       centerIcon: Icons.apartment,
                       centerText: SetLocalization.of(context)!
                           .getTranslateValue("your_ads_displayed_here"),

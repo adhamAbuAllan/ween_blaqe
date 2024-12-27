@@ -1,5 +1,6 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter/material.dart';
+import 'package:ween_blaqe/controller/provider_controllers/providers/color_provider.dart';
 
 import '../../../../constants/localization.dart';
 import '../../../../constants/nums.dart';
@@ -29,9 +30,7 @@ class TitleNotFoundWidget extends ConsumerWidget {
                 style: TextStyle(
                   fontSize: 18.0,
                   inherit: true,
-                  color: themeMode.isLight
-                      ? kTextColorLightMode
-                      : kTextColorDarkMode.withOpacity(.6),
+                  color: ref.read(themeModeNotifier.notifier).textTheme(ref: ref,withOpacity: .6),
                 )),
           ),
           Padding(
@@ -43,9 +42,7 @@ class TitleNotFoundWidget extends ConsumerWidget {
                 style: TextStyle(
                   fontSize: 16.0,
                   inherit: true,
-                  color: themeMode.isLight
-                      ? kTextColorLightMode
-                      : kTextColorDarkMode.withOpacity(.8),
+                  color: ref.read(themeModeNotifier.notifier).textTheme(ref: ref,withOpacity: .8),
                 )),
           ),
         ]),

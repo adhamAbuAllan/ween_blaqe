@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:ween_blaqe/constants/strings.dart';
 import 'package:ween_blaqe/core/utils/funcations/route_pages/push_routes.dart';
-import 'package:ween_blaqe/view/common_widgets/button_widgets/full_button_widget.dart';
+import 'package:ween_blaqe/view/common_widgets/button_widgets/elevated_button_widget.dart';
 // import 'package:ween_blaqe/testing_code/find_the_fastest_way_in_state_managment/riverpod/login_and_register_section/login_controller_test.dart';
 
 import '../../../../constants/coordination.dart';
@@ -25,7 +25,7 @@ class ButtonLoginCompletedWidget extends ConsumerWidget {
       child: SizedBox(
         width: double.infinity,
         height: getIt<AppDimension>().isSmallScreen(context) ? 55 / 1.2 : 55,
-        child: FullButtonWidget(
+        child: ElevatedButtonWidget(
             onPressed: () {
               validateAndLogin(ref, context);
 

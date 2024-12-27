@@ -2,11 +2,13 @@ import 'dart:ui';
 
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+import '../../../main.dart';
 import '../../../session/new_session.dart';
 import '../methods/local_methods/language_notifier.dart';
 //LanguageNotifier
 final languageNotifier = StateNotifierProvider<LanguageNotifier, Locale>(
         (ref) => LanguageNotifier());
+
 
 // English Size Button
 final widthSizeWithActiveEnButtonInSmallScreen = StateProvider<double>((ref) =>

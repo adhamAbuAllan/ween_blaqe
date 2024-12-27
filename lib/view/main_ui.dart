@@ -6,7 +6,7 @@ import 'package:ween_blaqe/view/common_widgets/connectivity_listen_widget.dart';
 import 'package:ween_blaqe/view/common_widgets/button_widgets/floating_action_button_widget.dart';
 import 'package:ween_blaqe/view/user/owner/account_of_owner.dart';
 import 'package:ween_blaqe/view/user/owner/menu_ui.dart';
-import 'package:ween_blaqe/view/user/studnet/orders_of_student.dart';
+import 'package:ween_blaqe/view/user/studnet/orders_of_student_ui.dart';
 import 'package:ween_blaqe/constants/nums.dart';
 import '../../../session/new_session.dart';
 import '../controller/provider_controllers/providers/apartment_provider.dart';
@@ -41,7 +41,7 @@ class _MainScreenState extends ConsumerState<MainUi> {
             index: index,
             children: [
               HomeUi(scrollController: _scrollController),
-              const OrdersOfStudent(),
+              const OrdersOfStudentUi(),
               MenuUi(
                 onChange: (value) {
                     WidgetsBinding.instance.addPostFrameCallback((_) async {

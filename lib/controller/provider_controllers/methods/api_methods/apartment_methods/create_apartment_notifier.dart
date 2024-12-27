@@ -5,6 +5,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter/material.dart';
 import 'package:ween_blaqe/constants/localization.dart';
 import 'package:ween_blaqe/controller/provider_controllers/providers/apartment_provider.dart';
+import 'package:ween_blaqe/controller/provider_controllers/providers/color_provider.dart';
 import 'package:ween_blaqe/controller/provider_controllers/providers/snack_bar_provider.dart';
 import '../../../../../api/apartments_api/apartments.dart';
 import '../../../../../constants/strings.dart';
@@ -147,6 +148,8 @@ class CreateApartmentNotifier extends StateNotifier<ApartmentState> {
 
 
         ref.read(showSnackBarNotifier.notifier).showNormalSnackBar(
+           backgroundColor: ref.read(themeModeNotifier.notifier).backgroundAppTheme(ref: ref),
+            textColor: ref.read(themeModeNotifier.notifier).textTheme(ref: ref),
             context: context,
             message: SetLocalization.of(context)
                 ?.getTranslateValue("error_has_been_while_creating_apartment"));

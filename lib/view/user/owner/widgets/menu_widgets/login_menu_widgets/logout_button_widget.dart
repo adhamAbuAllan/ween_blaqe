@@ -22,7 +22,7 @@ class LogoutButtonWidget extends ConsumerWidget {
       child: SizedBox(
         width: double.infinity,
         height: getIt<AppDimension>().isSmallScreen(context) ? 55 / 1.2 : 55,
-        child: OutlineButtonWidget(
+        child: OutlinedButtonWidget(
             onPressed: () {
               /// cityModelController.cityId.value = 0;
               removeUserInfo();

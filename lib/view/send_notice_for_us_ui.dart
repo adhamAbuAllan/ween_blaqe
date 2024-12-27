@@ -10,7 +10,7 @@ import 'package:ween_blaqe/controller/get_controllers.dart';
 import 'package:ween_blaqe/core/utils/funcations/snakbar.dart';
 import 'package:ween_blaqe/core/utils/styles/button.dart';
 import 'package:ween_blaqe/view/common_widgets/button_widgets/back_button_widget.dart';
-import 'package:ween_blaqe/view/common_widgets/button_widgets/full_button_widget.dart';
+import 'package:ween_blaqe/view/common_widgets/button_widgets/elevated_button_widget.dart';
 import '../constants/get_it_controller.dart';
 import '../constants/localization.dart';
 import '../constants/nums.dart';
@@ -63,7 +63,7 @@ class _SendNoticeForUsUiState extends ConsumerState<SendNoticeForUsUi> {
                       horizontal: getIt<AppDimension>().isSmallScreen(context)
                           ? 10
                           : 8),
-                  child: FullButtonWidget(
+                  child: ElevatedButtonWidget(
                     onPressed: () {
                       if (connectivityController.isConnection()) {
                         if (sendNoticeForUsValue == "" ||

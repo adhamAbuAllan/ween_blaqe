@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:ween_blaqe/controller/provider_controllers/methods/hybrid_methods/auth_validator/login_and_reg_validators/validator_and_registratoin.dart';
+import 'package:ween_blaqe/view/common_widgets/button_widgets/elevated_button_widget.dart';
 
 import '../../../../constants/coordination.dart';
 import '../../../../constants/get_it_controller.dart';
@@ -18,13 +19,12 @@ class ButtonRegCompletedWidget extends ConsumerWidget {
       child: SizedBox(
         width: double.infinity,
         height: getIt<AppDimension>().isSmallScreen(context) ? 55 / 1.2 : 55,
-        child: ElevatedButton(
+        child: ElevatedButtonWidget(
             onPressed: () async{
 
               validateAndRegistration(ref, context);
 
             },
-            style: fullButton(),
             child: ref.watch(registerNotifier).isLoading == false
                 ? Text(SetLocalization.of(context)!.getTranslateValue
               ("create_account"))

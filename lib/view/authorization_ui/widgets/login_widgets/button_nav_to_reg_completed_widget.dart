@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:ween_blaqe/view/common_widgets/button_widgets/outline_button_widget.dart';
 
 import '../../../../constants/coordination.dart';
 import '../../../../constants/get_it_controller.dart';
@@ -17,10 +18,8 @@ class ButtonNavToRegCompletedWidget extends ConsumerWidget {
       padding: const EdgeInsets.fromLTRB(20, 10, 20, 10),
       child: SizedBox(
         width: double.infinity,
-        height: getIt<AppDimension>().isSmallScreen(context)
-            ? 55 / 1.2
-            : 55,
-        child: OutlinedButton(
+        height: getIt<AppDimension>().isSmallScreen(context) ? 55 / 1.2 : 55,
+        child: OutlinedButtonWidget(
             onPressed: () {
               hideKeyboard(context);
 
@@ -30,8 +29,6 @@ class ButtonNavToRegCompletedWidget extends ConsumerWidget {
                 }),
               );
             },
-            style: outlinedButton(
-                context: context),
             child: Text(SetLocalization.of(context)!
                 .getTranslateValue("register_new_account"))),
       ),

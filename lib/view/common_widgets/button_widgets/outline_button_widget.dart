@@ -4,8 +4,8 @@ import 'package:ween_blaqe/controller/provider_controllers/providers/color_provi
 import '../../../constants/coordination.dart';
 import '../../../constants/get_it_controller.dart';
 
-class OutlineButtonWidget extends ConsumerWidget {
-  const OutlineButtonWidget(
+class OutlinedButtonWidget extends ConsumerWidget {
+  const OutlinedButtonWidget(
       {super.key,
       required this.child,
       this.onPressed,

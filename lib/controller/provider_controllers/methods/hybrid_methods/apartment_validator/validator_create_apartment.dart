@@ -7,6 +7,7 @@ import '../../../../../constants/localization.dart';
 import '../../../../../constants/strings.dart';
 import '../../../../../core/utils/funcations/route_pages/push_routes.dart';
 import '../../../providers/apartment_provider.dart';
+import '../../../providers/color_provider.dart';
 import '../../../statuses/apartment_state.dart';
 
 class ValidatorCreateApartmentNotifier extends StateNotifier<ApartmentState> {
@@ -117,6 +118,9 @@ class ValidatorCreateApartmentNotifier extends StateNotifier<ApartmentState> {
         "images length -> ${ref.read(imagesFileList.notifier).state.length}");
     if (ref.read(imagesFileList.notifier).state.length < 3) {
       ref.read(showSnackBarNotifier.notifier).showNormalSnackBar(
+          backgroundColor: ref.read(themeModeNotifier.notifier).backgroundAppTheme(ref: ref),
+          textColor: ref.read(themeModeNotifier.notifier).textTheme(ref: ref),
+
           context: context,
           message: SetLocalization.of(context)!
               .getTranslateValue("should_be_at_least_three_photos"));

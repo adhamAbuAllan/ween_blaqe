@@ -1,11 +1,13 @@
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:skeletons/skeletons.dart';
 import 'package:flutter/material.dart';
 import 'package:ween_blaqe/constants/coordination.dart';
 import 'package:ween_blaqe/constants/nums.dart';
+import 'package:ween_blaqe/controller/provider_controllers/providers/color_provider.dart';
 
 import '../../../../constants/get_it_controller.dart';
 
-class HomeSkeletonWidget extends StatefulWidget {
+class HomeSkeletonWidget extends ConsumerStatefulWidget {
   const HomeSkeletonWidget(
       {super.key, this.hasCitiesBar, this.scrollController});
 
@@ -13,42 +15,16 @@ class HomeSkeletonWidget extends StatefulWidget {
   final ScrollController? scrollController;
 
   @override
-  State<HomeSkeletonWidget> createState() => _HomeSkeletonWidgetState();
+  ConsumerState createState() => _HomeSkeletonWidgetState();
 }
 
-class _HomeSkeletonWidgetState extends State<HomeSkeletonWidget> {
+class _HomeSkeletonWidgetState extends ConsumerState<HomeSkeletonWidget> {
   @override
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        //app bar skeleton
-        // appBar: AppBar(
-        //   elevation: 10,
-        //   backgroundColor: Colors.white,
-        //   toolbarHeight: 80,
-        //   actions: const [
-        //     Padding(
-        //       padding: EdgeInsets.fromLTRB(0, 10, 20, 10),
-        //       child: Skeleton(
-        //         isLoading: true,
-        //         skeleton: SkeletonAvatar(
-        //             style: SkeletonAvatarStyle(width: 290, height: 80)),
-        //         child: Text(""),
-        //       ),
-        //     ),
-        //     Padding(
-        //       padding: EdgeInsets.fromLTRB(10, 20, 20, 20),
-        //       child: SkeletonAvatar(
-        //           style: SkeletonAvatarStyle(width: 38, height: 28)),
-        //     ),
-        //     Expanded(
-        //       child: Text(""),
-        //     )
-        //   ],
-        // ),
-        backgroundColor: themeMode.isLight
-            ? kBackgroundAppColorLightMode
-            : kBackgroundAppColorDarkMode,
+        backgroundColor:
+            ref.read(themeModeNotifier.notifier).backgroundAppTheme(ref: ref),
         body: SingleChildScrollView(
           controller: widget.scrollController,
           // physics: const NeverScrollableScrollPhysics(),
@@ -57,18 +33,18 @@ class _HomeSkeletonWidgetState extends State<HomeSkeletonWidget> {
             children: [
               widget.hasCitiesBar ?? false
                   ? const Column(
-                children: [
-                  SizedBox(
-                    height: 10,
-                  ),
-                  //cities skeleton
-                  CitiesBarSkeleton(),
+                      children: [
+                        SizedBox(
+                          height: 10,
+                        ),
+                        //cities skeleton
+                        CitiesBarSkeleton(),
 
-                  SizedBox(
-                    height: 10,
-                  ),
-                ],
-              )
+                        SizedBox(
+                          height: 10,
+                        ),
+                      ],
+                    )
                   : const SizedBox(),
 
               //a list of apartments skeleton
@@ -86,123 +62,238 @@ class _HomeSkeletonWidgetState extends State<HomeSkeletonWidget> {
   }
 }
 
-class ApartmentSkeleton extends StatelessWidget {
+class ApartmentSkeleton extends ConsumerWidget {
   const ApartmentSkeleton({super.key});
 
   @override
-  Widget build(BuildContext context) {
-    // final themeMode = Provider.of<ThemeProvider>(context).themeMode;
+  Widget build(BuildContext context, WidgetRef ref) {
     return Padding(
       padding: const EdgeInsets.all(10),
       child: Container(
         padding: const EdgeInsets.all(10.0),
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(7),
-          color: themeMode.isLight
-              ? kContainerColorLightMode
-              : kContainerColorDarkMode,
+          color: ref.read(themeModeNotifier.notifier).containerTheme(ref: ref),
         ),
         child: SkeletonItem(
             child: Column(
-              mainAxisAlignment: MainAxisAlignment.start,
-              crossAxisAlignment: CrossAxisAlignment.start,
+          mainAxisAlignment: MainAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Row(
               children: [
-                Row(
-                  children: [
-                    SkeletonLine(
-                      style: SkeletonLineStyle(
-                          height: 18,
-                          width: 100,
-                          borderRadius: BorderRadius.circular(4)),
-                    ),
-                    const Expanded(child: Text("")),
-                    const Padding(
-                      padding: EdgeInsets.fromLTRB(10, 5, 0, 5),
-                      child: SkeletonAvatar(
-                          style: SkeletonAvatarStyle(width: 28, height: 28)),
-                    ),
-                  ],
-                ),
-                const SizedBox(height: 10),
-                SkeletonAvatar(
-                  style: SkeletonAvatarStyle(
-                      width: double.infinity,
-                      height: 240,
-                      borderRadius: BorderRadius.circular(7)),
-                ),
-                const SizedBox(height: 10),
-                Align(
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      SkeletonLine(
-                        style: SkeletonLineStyle(
-                            height: 18 / 1.3,
-                            width: 18 / 1.3,
-                            borderRadius: BorderRadius.circular(4)),
-                      ),
-                      const SizedBox(
-                        width: 10,
-                      ),
-                      SkeletonLine(
-                        style: SkeletonLineStyle(
-                            height: 18 / 1.3,
-                            width: 18 / 1.3,
-                            borderRadius: BorderRadius.circular(4)),
-                      ),
-                      const SizedBox(
-                        width: 10,
-                      ),
-                      SkeletonLine(
-                        style: SkeletonLineStyle(
-                            height: 18 / 1.3,
-                            width: 18 / 1.3,
-                            borderRadius: BorderRadius.circular(4)),
-                      ),
-                      const SizedBox(
-                        width: 10,
-                      ),
-                      SkeletonLine(
-                        style: SkeletonLineStyle(
-                            height: 18 / 1.3,
-                            width: 18 / 1.3,
-                            borderRadius: BorderRadius.circular(4)),
-                      ),
-                    ],
-                  ),
-                ),
-                const SizedBox(
-                  height: 15,
-                ),
                 SkeletonLine(
                   style: SkeletonLineStyle(
-                      height: 18 / 1.3,
-                      width: 200,
-                      borderRadius: BorderRadius.circular(4)),
-                ),
-                const SizedBox(height: 10),
-                SkeletonLine(
-                  style: SkeletonLineStyle(
-                      height: 18 / 1.3,
+                      height: 18,
                       width: 100,
                       borderRadius: BorderRadius.circular(4)),
                 ),
-                const SizedBox(height: 10),
-                const SkeletonAvatar(
-                    style: SkeletonAvatarStyle(width: 180, height: 18 / 1.3)),
-                const SizedBox(height: 10),
-                SkeletonLine(
-                  style: SkeletonLineStyle(
-                      height: 18 / 1.3,
-                      width: 80,
-                      borderRadius: BorderRadius.circular(4)),
-                )
+                const Expanded(child: Text("")),
+                const Padding(
+                  padding: EdgeInsets.fromLTRB(10, 5, 0, 5),
+                  child: SkeletonAvatar(
+                      style: SkeletonAvatarStyle(width: 28, height: 28)),
+                ),
               ],
-            )),
+            ),
+            const SizedBox(height: 10),
+            SkeletonAvatar(
+              style: SkeletonAvatarStyle(
+                  width: double.infinity,
+                  height: 240,
+                  borderRadius: BorderRadius.circular(7)),
+            ),
+            const SizedBox(height: 10),
+            Align(
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  SkeletonLine(
+                    style: SkeletonLineStyle(
+                        height: 18 / 1.3,
+                        width: 18 / 1.3,
+                        borderRadius: BorderRadius.circular(4)),
+                  ),
+                  const SizedBox(
+                    width: 10,
+                  ),
+                  SkeletonLine(
+                    style: SkeletonLineStyle(
+                        height: 18 / 1.3,
+                        width: 18 / 1.3,
+                        borderRadius: BorderRadius.circular(4)),
+                  ),
+                  const SizedBox(
+                    width: 10,
+                  ),
+                  SkeletonLine(
+                    style: SkeletonLineStyle(
+                        height: 18 / 1.3,
+                        width: 18 / 1.3,
+                        borderRadius: BorderRadius.circular(4)),
+                  ),
+                  const SizedBox(
+                    width: 10,
+                  ),
+                  SkeletonLine(
+                    style: SkeletonLineStyle(
+                        height: 18 / 1.3,
+                        width: 18 / 1.3,
+                        borderRadius: BorderRadius.circular(4)),
+                  ),
+                ],
+              ),
+            ),
+            const SizedBox(
+              height: 15,
+            ),
+            SkeletonLine(
+              style: SkeletonLineStyle(
+                  height: 18 / 1.3,
+                  width: 200,
+                  borderRadius: BorderRadius.circular(4)),
+            ),
+            const SizedBox(height: 10),
+            SkeletonLine(
+              style: SkeletonLineStyle(
+                  height: 18 / 1.3,
+                  width: 100,
+                  borderRadius: BorderRadius.circular(4)),
+            ),
+            const SizedBox(height: 10),
+            const SkeletonAvatar(
+                style: SkeletonAvatarStyle(width: 180, height: 18 / 1.3)),
+            const SizedBox(height: 10),
+            SkeletonLine(
+              style: SkeletonLineStyle(
+                  height: 18 / 1.3,
+                  width: 80,
+                  borderRadius: BorderRadius.circular(4)),
+            )
+          ],
+        )),
       ),
     );
   }
 }
+
+// class ApartmentSkeleton extends StatelessWidget {
+//   const ApartmentSkeleton({super.key});
+//
+//   @override
+//   Widget build(BuildContext context) {
+//     // final themeMode = Provider.of<ThemeProvider>(context).themeMode;
+//     return Padding(
+//       padding: const EdgeInsets.all(10),
+//       child: Container(
+//         padding: const EdgeInsets.all(10.0),
+//         decoration: BoxDecoration(
+//           borderRadius: BorderRadius.circular(7),
+//           color: themeMode.isLight
+//               ? kContainerColorLightMode
+//               : kContainerColorDarkMode,
+//         ),
+//         child: SkeletonItem(
+//             child: Column(
+//               mainAxisAlignment: MainAxisAlignment.start,
+//               crossAxisAlignment: CrossAxisAlignment.start,
+//               children: [
+//                 Row(
+//                   children: [
+//                     SkeletonLine(
+//                       style: SkeletonLineStyle(
+//                           height: 18,
+//                           width: 100,
+//                           borderRadius: BorderRadius.circular(4)),
+//                     ),
+//                     const Expanded(child: Text("")),
+//                     const Padding(
+//                       padding: EdgeInsets.fromLTRB(10, 5, 0, 5),
+//                       child: SkeletonAvatar(
+//                           style: SkeletonAvatarStyle(width: 28, height: 28)),
+//                     ),
+//                   ],
+//                 ),
+//                 const SizedBox(height: 10),
+//                 SkeletonAvatar(
+//                   style: SkeletonAvatarStyle(
+//                       width: double.infinity,
+//                       height: 240,
+//                       borderRadius: BorderRadius.circular(7)),
+//                 ),
+//                 const SizedBox(height: 10),
+//                 Align(
+//                   child: Row(
+//                     mainAxisAlignment: MainAxisAlignment.center,
+//                     children: [
+//                       SkeletonLine(
+//                         style: SkeletonLineStyle(
+//                             height: 18 / 1.3,
+//                             width: 18 / 1.3,
+//                             borderRadius: BorderRadius.circular(4)),
+//                       ),
+//                       const SizedBox(
+//                         width: 10,
+//                       ),
+//                       SkeletonLine(
+//                         style: SkeletonLineStyle(
+//                             height: 18 / 1.3,
+//                             width: 18 / 1.3,
+//                             borderRadius: BorderRadius.circular(4)),
+//                       ),
+//                       const SizedBox(
+//                         width: 10,
+//                       ),
+//                       SkeletonLine(
+//                         style: SkeletonLineStyle(
+//                             height: 18 / 1.3,
+//                             width: 18 / 1.3,
+//                             borderRadius: BorderRadius.circular(4)),
+//                       ),
+//                       const SizedBox(
+//                         width: 10,
+//                       ),
+//                       SkeletonLine(
+//                         style: SkeletonLineStyle(
+//                             height: 18 / 1.3,
+//                             width: 18 / 1.3,
+//                             borderRadius: BorderRadius.circular(4)),
+//                       ),
+//                     ],
+//                   ),
+//                 ),
+//                 const SizedBox(
+//                   height: 15,
+//                 ),
+//                 SkeletonLine(
+//                   style: SkeletonLineStyle(
+//                       height: 18 / 1.3,
+//                       width: 200,
+//                       borderRadius: BorderRadius.circular(4)),
+//                 ),
+//                 const SizedBox(height: 10),
+//                 SkeletonLine(
+//                   style: SkeletonLineStyle(
+//                       height: 18 / 1.3,
+//                       width: 100,
+//                       borderRadius: BorderRadius.circular(4)),
+//                 ),
+//                 const SizedBox(height: 10),
+//                 const SkeletonAvatar(
+//                     style: SkeletonAvatarStyle(width: 180, height: 18 / 1.3)),
+//                 const SizedBox(height: 10),
+//                 SkeletonLine(
+//                   style: SkeletonLineStyle(
+//                       height: 18 / 1.3,
+//                       width: 80,
+//                       borderRadius: BorderRadius.circular(4)),
+//                 )
+//               ],
+//             )),
+//       ),
+//     );
+//   }
+// }
 
 class CitiesBarSkeleton extends StatelessWidget {
   const CitiesBarSkeleton({super.key});
@@ -213,15 +304,17 @@ class CitiesBarSkeleton extends StatelessWidget {
       scrollDirection: Axis.horizontal,
       child: SkeletonItem(
           child: Row(
-            children: [
-              SizedBox(width: 10,),
-  ButtonOfCitySkeleton(),
-  ButtonOfCitySkeleton(),
-  ButtonOfCitySkeleton(),
-  ButtonOfCitySkeleton(),
-  ButtonOfCitySkeleton(),
-            ],
-          )),
+        children: [
+          SizedBox(
+            width: 10,
+          ),
+          ButtonOfCitySkeleton(),
+          ButtonOfCitySkeleton(),
+          ButtonOfCitySkeleton(),
+          ButtonOfCitySkeleton(),
+          ButtonOfCitySkeleton(),
+        ],
+      )),
     );
   }
 }
@@ -234,12 +327,12 @@ class ButtonOfCitySkeleton extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.fromLTRB(10, 5, 0, 5),
       child: SkeletonAvatar(
-          style: SkeletonAvatarStyle(width: getIt<AppDimension>()
-              .isSmallScreen(context) ? 90/1.3: 90,
-              height:
-              getIt<AppDimension>()
-                  .isSmallScreen(context) ? 40/1.3: 40)),
+          style: SkeletonAvatarStyle(
+              width:
+                  getIt<AppDimension>().isSmallScreen(context) ? 90 / 1.3 : 90,
+              height: getIt<AppDimension>().isSmallScreen(context)
+                  ? 40 / 1.3
+                  : 40)),
     );
   }
 }
-

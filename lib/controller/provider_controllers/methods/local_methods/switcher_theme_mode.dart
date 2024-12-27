@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:ween_blaqe/controller/provider_controllers/providers/color_provider.dart';
 
+import '../../../../constants/nums.dart';
 import '../../../../main.dart';
 
 class ThemeModeNotifier extends StateNotifier<bool> {
@@ -13,6 +14,7 @@ class ThemeModeNotifier extends StateNotifier<bool> {
 
   void toggleThemeMode(value) {
     state = value;
+    themeMode.onChanged(value);
     saveThemeMode(value);
     debugPrint("Theme mode updated to: ${state ? 'Light' : 'Dark'}");
   }

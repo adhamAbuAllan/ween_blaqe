@@ -44,6 +44,9 @@ class _SecondStepUiState extends ConsumerState<SecondStepUi> {
                 onPressed: () {
                   if (ref.read(advantagesNotifer).chosen.length < 5) {
                     ref.read(showSnackBarNotifier.notifier).showNormalSnackBar(
+                        backgroundColor: ref.read(themeModeNotifier.notifier).backgroundAppTheme(ref: ref),
+                        textColor: ref.read(themeModeNotifier.notifier).textTheme(ref: ref),
+
                         context: context,
                         message: SetLocalization.of(context)!.getTranslateValue(
                             "should_be_at_least_five_advantages"));

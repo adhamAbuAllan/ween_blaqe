@@ -3,7 +3,6 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:skeletons/skeletons.dart';
 import 'package:ween_blaqe/controller/provider_controllers/providers/color_provider.dart';
 
-
 class SkeletonApartmentListWidget extends ConsumerWidget {
   const SkeletonApartmentListWidget({super.key});
 
@@ -36,9 +35,9 @@ class SkeletonApartmentContainerWidget extends ConsumerWidget {
       child: Container(
         padding: const EdgeInsets.all(10.0),
         decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(7),
-          color: ref.read(themeModeNotifier.notifier).containerTheme(ref: ref)
-        ),
+            borderRadius: BorderRadius.circular(7),
+            color:
+                ref.read(themeModeNotifier.notifier).containerTheme(ref: ref)),
         child: SkeletonItem(
             child: Column(
           mainAxisAlignment: MainAxisAlignment.start,
@@ -68,46 +67,6 @@ class SkeletonApartmentContainerWidget extends ConsumerWidget {
                   borderRadius: BorderRadius.circular(7)),
             ),
             const SizedBox(height: 10),
-            Align(
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  SkeletonLine(
-                    style: SkeletonLineStyle(
-                        height: 18 / 1.3,
-                        width: 18 / 1.3,
-                        borderRadius: BorderRadius.circular(4)),
-                  ),
-                  const SizedBox(
-                    width: 10,
-                  ),
-                  SkeletonLine(
-                    style: SkeletonLineStyle(
-                        height: 18 / 1.3,
-                        width: 18 / 1.3,
-                        borderRadius: BorderRadius.circular(4)),
-                  ),
-                  const SizedBox(
-                    width: 10,
-                  ),
-                  SkeletonLine(
-                    style: SkeletonLineStyle(
-                        height: 18 / 1.3,
-                        width: 18 / 1.3,
-                        borderRadius: BorderRadius.circular(4)),
-                  ),
-                  const SizedBox(
-                    width: 10,
-                  ),
-                  SkeletonLine(
-                    style: SkeletonLineStyle(
-                        height: 18 / 1.3,
-                        width: 18 / 1.3,
-                        borderRadius: BorderRadius.circular(4)),
-                  ),
-                ],
-              ),
-            ),
             const SizedBox(
               height: 15,
             ),

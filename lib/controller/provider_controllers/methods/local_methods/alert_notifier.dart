@@ -10,20 +10,33 @@ class AlertNotifier extends StateNotifier<AlertState> {
       {required BuildContext context,
       required String title,
       required String message,
-      required String textOfOkButton}) {
+      required String textOfOkButton,
+        Color? borderColor,
+        Color? containerColor,
+        Color? textColor,
+      }) {
     state = state.copyWith(
         title: title, message: message, textOfOkButton: textOfOkButton);
-    NormalAlert.show(context, state.title ?? "", state.message ?? "",
-        state.textOfOkButton ?? "");
+    NormalAlert.show(
+        context: context,
+        title: state.title ?? "",
+        message: state.message ?? "",
+        textOfOkButton: state.textOfOkButton ?? "",
+        textColor: textColor,containerColor: containerColor,borderColor: borderColor
+    );
   }
 
-  void alertWithTwoBtn(
-      {required BuildContext context,
-      required String title,
-      required String message,
-      required String textOfOkButton,
-      required String textOfCancelButton,
-      required Function onClickOkBtn}) {
+  void alertWithTwoBtn({
+    required BuildContext context,
+    required String title,
+    required String message,
+    required String textOfOkButton,
+    required String textOfCancelButton,
+    required Function onClickOkBtn,
+    Color? borderColor,
+    Color? containerColor,
+    Color? textColor,
+  }) {
     state = state.copyWith(
         title: title,
         message: message,
@@ -31,11 +44,14 @@ class AlertNotifier extends StateNotifier<AlertState> {
         textOfCancelButton: textOfCancelButton,
         onClicked: onClickOkBtn);
     AlertWithTwoBtn.show(
-        context,
-        state.title ?? "",
-        state.message ?? "",
-        state.textOfOkButton ?? "",
-        state.textOfCancelButton ?? "",
-        state.onClickOkBtn ?? () {});
+        context: context,
+        title: state.title ?? "",
+        message: state.message ?? "",
+        textOfOkButton: state.textOfOkButton ?? "",
+        textOfCancelButton: state.textOfCancelButton ?? "",
+        onClicked: state.onClickOkBtn ?? () {},
+        borderColor: borderColor,
+        containerColor: containerColor,
+        textColor: textColor);
   }
 }

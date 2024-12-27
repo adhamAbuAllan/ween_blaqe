@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:ween_blaqe/controller/provider_controllers/providers/color_provider.dart';
 
 import '../../../../constants/localization.dart';
 import '../../../../constants/nums.dart';
@@ -23,9 +24,7 @@ class ButtonNotFoundWidget extends ConsumerWidget {
             SetLocalization.of(context)!
                 .getTranslateValue("reorder"),
             style: TextStyle(
-                color: themeMode.isLight
-                    ? kPrimaryColorLightMode
-                    : kPrimaryColorDarkMode,
+                color: ref.read(themeModeNotifier.notifier).primaryTheme(ref: ref),
                 fontWeight: FontWeight.bold,
                 decoration: TextDecoration.underline),
           ),

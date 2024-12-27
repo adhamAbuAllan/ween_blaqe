@@ -1,12 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:ween_blaqe/controller/provider_controllers/providers/apartment_provider.dart';
+import 'package:ween_blaqe/controller/provider_controllers/providers/color_provider.dart';
 
 import '../../constants/coordination.dart';
 import '../../constants/get_it_controller.dart';
 import '../../constants/localization.dart';
 import '../../constants/nums.dart';
 import '../../core/widgets/empty_screen_class_widget.dart';
+import '../common_widgets/empty_screen_widget.dart';
 import 'list_of_apartments.dart';
 
 class BookmarkApartmentUi extends ConsumerStatefulWidget {
@@ -40,17 +42,14 @@ class _BookmarkApartmentState extends ConsumerState<BookmarkApartmentUi> {
 
 var bookmarkedList = ref.watch(apartmentBookmarkedNotifier.notifier).state;
 return Scaffold(
-      backgroundColor: themeMode.isLight
-          ? kBackgroundAppColorLightMode
-          : kBackgroundAppColorDarkMode,
+      backgroundColor: ref.read(themeModeNotifier.notifier).backgroundAppTheme(ref: ref),
       appBar: AppBar(
         backgroundColor:
-            themeMode.isLight ? kPrimaryColorLightMode : kPrimaryColorDarkMode,
+            ref.read(themeModeNotifier.notifier).primaryTheme(ref: ref),
         title: Text(
           SetLocalization.of(context)!.getTranslateValue("favorites"),
           style: TextStyle(
             fontSize: getIt<AppDimension>().isSmallScreen(context) ? 16 : null,
-            color: themeMode.isLight ? kTextColorLightMode : kTextColorDarkMode,
           ),
         ),
       ),
@@ -63,7 +62,7 @@ const Center(
 ))
           :
       bookmarkedList.data?.isEmpty??false
-          ? EmptyScreenClassWidget(
+          ? EmptyScreenWidget(
               centerIcon: Icons.bookmark_outline,
               centerText: SetLocalization.of(context)!
                   .getTranslateValue("favorite_apartments_displayed_here"),

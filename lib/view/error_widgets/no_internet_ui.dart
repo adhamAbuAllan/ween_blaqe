@@ -18,7 +18,7 @@ import 'package:ween_blaqe/core/utils/funcations/route_pages/push_routes.dart';
 import 'package:ween_blaqe/core/utils/styles/text_style/aline_style.dart';
 import 'package:ween_blaqe/constants/nums.dart';
 import 'package:ween_blaqe/session/new_session.dart';
-import 'package:ween_blaqe/view/common_widgets/button_widgets/full_button_widget.dart';
+import 'package:ween_blaqe/view/common_widgets/button_widgets/elevated_button_widget.dart';
 import 'package:ween_blaqe/view/common_widgets/button_widgets/outline_button_widget.dart';
 import '../../constants/get_it_controller.dart';
 import '../../controller/get_controllers.dart';
@@ -253,7 +253,7 @@ class _NoInternetUiState extends ConsumerState<NoInternetUi>
                                                 .isSmallScreen(context)
                                             ? 55 / 1.2
                                             : 55,
-                                        child: OutlineButtonWidget(
+                                        child: OutlinedButtonWidget(
 
                                             onPressed: () {
                                               setState(() {
@@ -436,8 +436,8 @@ class _NoInternetUiState extends ConsumerState<NoInternetUi>
   }
 
   //SebhaButton
-  FullButtonWidget buildSebhaElevatedButton() {
-    return FullButtonWidget(
+  ElevatedButtonWidget buildSebhaElevatedButton() {
+    return ElevatedButtonWidget(
 
         onLongPress: () {
           setState(() {

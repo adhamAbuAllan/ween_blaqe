@@ -9,6 +9,7 @@ import '../../../../../../constants/get_it_controller.dart';
 import '../../../../../../constants/localization.dart';
 import '../../../../../../constants/nums.dart';
 import '../../../../../../controller/provider_controllers/providers/apartment_provider.dart';
+import '../../../../../../controller/provider_controllers/providers/color_provider.dart';
 import '../../../../../../controller/provider_controllers/providers/snack_bar_provider.dart';
 import '../../../../../../core/utils/styles/button.dart';
 
@@ -51,7 +52,10 @@ class _AppbarEditApartmentWidgetState
             WidgetsBinding.instance.addPostFrameCallback((_) async {
               if (ref.watch(updateApartmentNotifier).isUpdating) {
                 ref.read(showSnackBarNotifier.notifier).showNormalSnackBar(
-                      context: context,
+                  backgroundColor: ref.read(themeModeNotifier.notifier).backgroundAppTheme(ref: ref),
+                  textColor: ref.read(themeModeNotifier.notifier).textTheme(ref: ref),
+
+                  context: context,
                       message: SetLocalization.of(context)!.getTranslateValue(
                           "please_wait_while_saving_changes"),
                     );
@@ -86,7 +90,10 @@ class _AppbarEditApartmentWidgetState
               if (hasApartmentDataChanged.hasAnyChange(ref)) {
                 if (ref.watch(updateApartmentNotifier).isUpdating) {
                   ref.watch(showSnackBarNotifier.notifier).showNormalSnackBar(
-                        context: context,
+                    backgroundColor: ref.read(themeModeNotifier.notifier).backgroundAppTheme(ref: ref),
+                    textColor: ref.read(themeModeNotifier.notifier).textTheme(ref: ref),
+
+                    context: context,
                         message: SetLocalization.of(context)!.getTranslateValue(
                             "please_wait_while_saving_changes"),
                       );
@@ -101,6 +108,9 @@ class _AppbarEditApartmentWidgetState
 
                 if (ref.read(advantagesNotifer).chosen.length < 5) {
                   ref.read(showSnackBarNotifier.notifier).showNormalSnackBar(
+                      backgroundColor: ref.read(themeModeNotifier.notifier).backgroundAppTheme(ref: ref),
+                      textColor: ref.read(themeModeNotifier.notifier).textTheme(ref: ref),
+
                       context: context,
                       message: SetLocalization.of(context)!.getTranslateValue(
                           "should_be_at_least_five_advantages"));
@@ -108,6 +118,9 @@ class _AppbarEditApartmentWidgetState
                 }
                 if (ref.watch(updateApartmentNotifier).isUpdating) {
                   ref.watch(showSnackBarNotifier.notifier).showNormalSnackBar(
+                      backgroundColor: ref.read(themeModeNotifier.notifier).backgroundAppTheme(ref: ref),
+                      textColor: ref.read(themeModeNotifier.notifier).textTheme(ref: ref),
+
                       context: context,
                       message: SetLocalization.of(context)!
                           .getTranslateValue("saving_changes"));
@@ -120,14 +133,20 @@ class _AppbarEditApartmentWidgetState
                 if (ref.read(badResponse)) {
                   debugPrint("response bad");
                   ref.read(showSnackBarNotifier.notifier).showNormalSnackBar(
-                        context: context,
+                    backgroundColor: ref.read(themeModeNotifier.notifier).backgroundAppTheme(ref: ref),
+                    textColor: ref.read(themeModeNotifier.notifier).textTheme(ref: ref),
+
+                    context: context,
                         message: SetLocalization.of(context)!
                             .getTranslateValue("error"),
                       );
                   return;
                 }
                 ref.watch(showSnackBarNotifier.notifier).showNormalSnackBar(
-                      context: context,
+                  backgroundColor: ref.read(themeModeNotifier.notifier).backgroundAppTheme(ref: ref),
+                  textColor: ref.read(themeModeNotifier.notifier).textTheme(ref: ref),
+
+                  context: context,
                       message: SetLocalization.of(context)!
                           .getTranslateValue("changes_saved"),
                     );
@@ -147,7 +166,10 @@ class _AppbarEditApartmentWidgetState
                 }
 
                 ref.read(showSnackBarNotifier.notifier).showNormalSnackBar(
-                      context: context,
+                  backgroundColor: ref.read(themeModeNotifier.notifier).backgroundAppTheme(ref: ref),
+                  textColor: ref.read(themeModeNotifier.notifier).textTheme(ref: ref),
+
+                  context: context,
                       message: SetLocalization.of(context)!
                           .getTranslateValue("no_changes_made_yet"),
                     );

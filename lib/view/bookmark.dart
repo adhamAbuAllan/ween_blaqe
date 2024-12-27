@@ -9,6 +9,7 @@ import '../constants/nums.dart';
 import '../controller/get_controllers.dart';
 import '../core/widgets/empty_screen_class_widget.dart';
 import 'apartment/list_of_apartments.dart';
+import 'common_widgets/empty_screen_widget.dart';
 
 class BookmarkApartment extends StatefulWidget {
   const BookmarkApartment({super.key});
@@ -78,7 +79,7 @@ class _BookmarkApartmentState extends State<BookmarkApartment> {
             themeMode.isLight ? kTextColorLightMode : kTextColorDarkMode)),
       ),
       body: apartmentsBookmarked.data?.isEmpty ?? true
-          ?  EmptyScreenClassWidget(
+          ?  EmptyScreenWidget(
               centerIcon: Icons.bookmark_outline,
               centerText: SetLocalization.of(context)!
                   .getTranslateValue("favorite_apartments_displayed_here"),

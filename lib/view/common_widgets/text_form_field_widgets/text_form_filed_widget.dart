@@ -122,9 +122,7 @@ class TextFormFieldWidget extends ConsumerWidget {
       ),
       focusedBorder: OutlineInputBorder(
         borderSide: BorderSide(
-          color: themeMode.isLight
-              ? kPrimaryColorLightMode
-              : kPrimaryColorDarkMode,
+          color: focusedBorderColor,
           width: 1,
         ),
       ),

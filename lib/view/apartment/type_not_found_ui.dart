@@ -16,10 +16,10 @@ class TypeNotFoundUi extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     return ColorfulSafeArea(
       bottomColor: Colors.transparent,
-      color: themeMode.isLight ? kPrimaryColorLightMode : kPrimaryColorDarkMode,
+      color: ref.read(themeModeNotifier.notifier).primaryTheme(ref: ref),
       child: Scaffold(
-        backgroundColor:ref.read(themeModeNotifier.notifier).backgroundAppTheme(ref: ref)
-,
+        backgroundColor:
+            ref.read(themeModeNotifier.notifier).backgroundAppTheme(ref: ref),
         body: const SingleChildScrollView(
           child: Center(
             child: Column(

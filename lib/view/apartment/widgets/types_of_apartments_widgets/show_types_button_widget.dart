@@ -50,7 +50,7 @@ class BtnShowTypesOfApartments extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    return OutlineButtonWidget(
+    return OutlinedButtonWidget(
       isFloatingOutlinedButton: true,
       onPressed: onPressed ??
           () {
