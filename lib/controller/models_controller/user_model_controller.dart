@@ -53,7 +53,6 @@ class UserModelController extends GetxController {
       apartmentModelController.ownerToken = res.data.token;
       autoFocus.value = false;
       saveUserInfo(res.data);
-      cityModelController.cityId.value = 0;
       isLoading.value = false;
      myPushReplacementNamed(MyPagesRoutes.main, context: context);
       debugPrint("it should push");

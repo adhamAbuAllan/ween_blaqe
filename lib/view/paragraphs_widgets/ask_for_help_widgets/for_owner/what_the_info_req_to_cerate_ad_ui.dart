@@ -7,15 +7,14 @@ import 'package:ween_blaqe/controller/provider_controllers/providers/apartment_p
 
 // import 'package:ween_blaqe/core/utils/funcations/route_pages/push_routes.dart';
 // import 'package:ween_blaqe/core/utils/styles/text_style/aline_style.dart';
-import 'package:ween_blaqe/core/widgets/skeletons/general_skeleton_ready_widgets/paragraph_ready_skeleton.dart';
 import 'package:ween_blaqe/view/common_widgets/skeleton_widgets/ask_to_help_skeleton_widgets/skeleton_long_paragraph_ready_ui.dart';
 import 'package:ween_blaqe/view/paragraphs_widgets/ask_for_help_widgets/for_owner/about_apartment_data_required_widget.dart';
 import 'package:ween_blaqe/view/paragraphs_widgets/ask_for_help_widgets/for_owner/owner_data_reqiured_table_widget.dart';
 
 import '../../../../constants/get_it_controller.dart';
 import '../../../../controller/provider_controllers/providers/color_provider.dart';
-import '../../../../core/widgets/request_help_widgets/owner/what_data_is_required_to_post_an_ad_tables_widgets/general_apartment_info_data_required_table.dart';
 import 'apartment_features_available_table_widget.dart';
+import 'general_apartment_info_data_required_table_widget.dart';
 
 class WhatTheInfoReqToCreateAdUi extends ConsumerStatefulWidget {
   const WhatTheInfoReqToCreateAdUi({super.key});

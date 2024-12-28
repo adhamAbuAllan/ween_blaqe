@@ -2,7 +2,6 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter/material.dart';
 
 import '../../../../../constants/localization.dart';
-import '../../../../../core/widgets/empty_screen_class_widget.dart';
 import '../../../../common_widgets/empty_screen_widget.dart';
 
 class StartAddApartmentWidget extends ConsumerWidget {

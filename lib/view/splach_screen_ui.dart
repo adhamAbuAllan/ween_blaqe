@@ -1,7 +1,6 @@
 import 'dart:async';
 import 'package:colorful_safe_area/colorful_safe_area.dart';
 import 'package:flutter/material.dart';
-import 'package:ween_blaqe/controller/get_controllers.dart';
 import 'package:ween_blaqe/controller/provider_controllers/providers/color_provider.dart';
 import 'package:ween_blaqe/controller/provider_controllers/providers/language_proivder.dart';
 import '../constants/nums.dart';
@@ -20,7 +19,6 @@ class _SplashScreenState extends ConsumerState<SplashScreenUi> {
   @override
   void initState() {
     super.initState();
-    debugPrint("the first time value : --${introController.isFirstTime}");
     WidgetsBinding.instance.addPostFrameCallback((_) async {
       ref.read(languageNotifier.notifier);
       if(NewSession.get("language", "").isEmpty){
@@ -63,8 +61,7 @@ class _SplashScreenState extends ConsumerState<SplashScreenUi> {
       NewSession.get('isFirstTime', "") != "OK"
           ? Navigator.pushReplacementNamed(context, MyPagesRoutes.introScreen)
           : Navigator.pushReplacementNamed(context, MyPagesRoutes.main);
-      debugPrint("isFirstTime value in navigateToHome method "
-          "${introController.isFirstTime}");
+
       // checkWifiStatus();
     });
   }

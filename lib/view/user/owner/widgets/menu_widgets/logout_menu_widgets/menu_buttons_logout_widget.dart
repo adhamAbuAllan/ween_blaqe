@@ -6,11 +6,9 @@ import 'package:ween_blaqe/view/common_widgets/button_widgets/button_list_tile_w
 import '../../../../../../constants/coordination.dart';
 import '../../../../../../constants/get_it_controller.dart';
 import '../../../../../../constants/localization.dart';
-import '../../../../../../constants/nums.dart';
 import '../../../../../../constants/strings.dart';
 import '../../../../../../controller/provider_controllers/providers/color_provider.dart';
 import '../../../../../../core/utils/funcations/route_pages/push_routes.dart';
-import '../../../../../../core/utils/styles/text_style/aline_style.dart';
 import '../../../../../common_widgets/aline_widget.dart';
 
 class MenuButtonsWidgets extends ConsumerWidget {

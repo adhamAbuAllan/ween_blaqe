@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:ween_blaqe/controller/provider_controllers/providers/apartment_provider.dart';
+import 'package:ween_blaqe/view/apartment/widgets/types_of_apartments_widgets/show_types_button_widget.dart';
 
 import '../../../constants/localization.dart';
 import '../../../constants/strings.dart';
 import '../../../core/utils/funcations/route_pages/push_routes.dart';
-import '../../../core/widgets/apartments/new_master_home_classes_widgets/types_of_apartments_list/show_list_button.dart';
 
 
 class SebhaButtonWidget extends ConsumerWidget {

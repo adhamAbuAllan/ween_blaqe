@@ -3,10 +3,7 @@ import 'package:upgrader/upgrader.dart';
 import 'package:ween_blaqe/constants/localization.dart';
 
 // import 'package:get/get.dart';
-import 'package:ween_blaqe/constants/nums.dart';
 import 'package:ween_blaqe/controller/provider_controllers/providers/color_provider.dart';
-import 'package:ween_blaqe/core/widgets/subtitle_class_widget.dart';
-import 'package:ween_blaqe/core/widgets/title_class_widget.dart';
 
 import '../../../constants/coordination.dart';
 import '../../../constants/get_it_controller.dart';

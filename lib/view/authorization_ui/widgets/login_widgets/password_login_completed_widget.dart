@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:ween_blaqe/view/authorization_ui/widgets/login_widgets/password_container_widget.dart';
 
 import '../../../../constants/localization.dart';
-import '../../../../core/widgets/login/password_container_class_widget.dart';
 import '../../../../controller/provider_controllers/providers/auth_provider.dart';
 
 class PasswordLoginCompletedWidget extends ConsumerWidget {
@@ -12,7 +12,7 @@ class PasswordLoginCompletedWidget extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     return Form(
       key: formLoginPasswordKey,
-      child: PasswordContainerClassWidget(
+      child: PasswordContainerWidget(
         inputType: TextInputType.visiblePassword,
         validator: (value){
           return ref.watch(formFieldsNotifier)['password']?.error;

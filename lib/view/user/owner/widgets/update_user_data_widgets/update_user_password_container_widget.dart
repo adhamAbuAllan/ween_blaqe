@@ -4,7 +4,7 @@ import 'package:ween_blaqe/controller/provider_controllers/providers/auth_provid
 import 'package:ween_blaqe/controller/provider_controllers/providers/color_provider.dart';
 
 import '../../../../../constants/localization.dart';
-import '../../../../../core/widgets/registration/text_field_of_password_class_widget.dart';
+import '../../../../common_widgets/text_form_field_widgets/text_form_filed_password_widget.dart';
 
 class UpdateUserPasswordContainerWidget extends ConsumerWidget {
   const UpdateUserPasswordContainerWidget({super.key});
@@ -63,7 +63,7 @@ class OldPasswordWidget extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    return TextFieldOfPasswordClassWidget(
+    return TextFormFiledPasswordWidget(
       validator: (value) {
         if (ref.read(oldPasswordValidate.notifier).state == null) {
           ref.read(oldPasswordValidate.notifier).state = null;
@@ -92,7 +92,7 @@ class NewPasswordWidget extends ConsumerWidget {
     return Form(
       key: ref.watch(newPasswordValidate.notifier).state !=
           null ? newPasswordFormKey : null ,
-      child: TextFieldOfPasswordClassWidget(
+      child: TextFormFiledPasswordWidget(
         isObscure: ref.watch(isSureObscure),
         onObscureChanged: (newValue) {
           ref.read(isSureObscure.notifier).state = newValue;
@@ -121,7 +121,7 @@ class SureNewPasswordWidget extends ConsumerWidget {
     return Form(
       key: ref.watch(sureNewPasswordValidate.notifier).state !=
           null ? sureNewPasswordFormKey : null ,
-      child: TextFieldOfPasswordClassWidget(
+      child: TextFormFiledPasswordWidget(
         validator: (value) {
           if(ref.read(newPasswordValidate.notifier).state == null){
             ref.read(sureNewPasswordValidate.notifier).state = null;

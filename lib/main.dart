@@ -18,26 +18,16 @@ flutter clean واعمل بيلد تاني وارفعه وكل ما تيجي ت�
  */
 //مصطلح التفكير التصميمي
 
-import 'package:colorful_safe_area/colorful_safe_area.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:get/get.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:ween_blaqe/controller/function_controller/animation_about_apartment_boxs_controller.dart';
-import 'package:ween_blaqe/controller/function_controller/api_functions_controller/get_advatages_api.dart';
 import 'package:ween_blaqe/controller/function_controller/change_theme_mode.dart';
-import 'package:ween_blaqe/controller/function_controller/intro_controller.dart';
-import 'package:ween_blaqe/controller/main_controller.dart';
 import 'package:flutter/services.dart';
-import 'package:ween_blaqe/controller/models_controller/advantages_model_controller.dart';
-import 'package:ween_blaqe/controller/models_controller/city_model_controller.dart';
 
 // import 'package:ween_blaqe/controller/owner_controller/owner_controller.dart';
-import 'package:ween_blaqe/controller/student_controller/student_controller.dart';
 import 'package:ween_blaqe/core/utils/funcations/route_pages/push_routes.dart';
-import 'package:ween_blaqe/core/widgets/skeletons/general_skeleton_ready_widgets/paragraph_ready_skeleton.dart';
-import 'package:ween_blaqe/core/widgets/skeletons/student_widgets/show_more_skeleton_widget.dart';
 import 'package:ween_blaqe/view/apartment/apartment_of_owner/apartments_of_owner_ui.dart';
 import 'package:ween_blaqe/view/apartment/apartment_of_owner/create_apartment/first_step_ui.dart';
 import 'package:ween_blaqe/view/apartment/apartment_of_owner/create_apartment/fourth_step_ui.dart';
@@ -51,7 +41,6 @@ import 'package:ween_blaqe/view/error_widgets/no_internet_ui.dart';
 import 'package:ween_blaqe/view/paragraphs_widgets/ask_for_help_widgets/another_asks_ui.dart';
 import 'package:ween_blaqe/view/paragraphs_widgets/ask_for_help_widgets/ask_for_help_ui.dart';
 import 'package:ween_blaqe/view/paragraphs_widgets/ask_for_help_widgets/for_owner/how_create_ad_ui.dart';
-import 'package:ween_blaqe/view/paragraphs_widgets/ask_for_help_widgets/for_owner/the_ad_is_free_or_not.dart';
 import 'package:ween_blaqe/view/paragraphs_widgets/ask_for_help_widgets/for_owner/what_the_info_req_to_cerate_ad_ui.dart';
 import 'package:ween_blaqe/view/paragraphs_widgets/ask_for_help_widgets/for_student/system_booking_ui.dart';
 import 'package:ween_blaqe/view/paragraphs_widgets/ask_for_help_widgets/for_student/system_paying_ui.dart';
@@ -65,23 +54,14 @@ import 'package:ween_blaqe/session/new_session.dart';
 // import 'package:ween_blaqe/testing_code/bookmark_test.dart';
 import 'constants/get_it_controller.dart';
 import 'constants/localization.dart';
-import 'constants/nums.dart';
 import 'constants/strings.dart';
 import 'controller/bookmark_controller.dart';
-import 'controller/change_password_controller.dart';
-import 'controller/function_controller/api_functions_controller/cities_and_types_controller.dart';
 import 'controller/models_controller/apartment_model_controller.dart';
 import 'controller/function_controller/connectivity_controller.dart';
-import 'controller/function_controller/language_controller.dart';
-import 'controller/function_controller/update_social_connection_controller.dart';
-import 'controller/image_of_apartment_controller.dart';
-import 'controller/models_controller/images_model_controller.dart';
-import 'controller/models_controller/type_of_apartment_models_controller.dart';
 
 // import 'view/bookmark.dart';
 import 'controller/models_controller/user_model_controller.dart';
 import 'controller/provider_controllers/methods/local_methods/language_notifier.dart';
-import 'controller/scroll_controller.dart';
 import 'view/apartment/apartment_of_owner/update_apartment_ui.dart';
 import 'view/apartment/bookmark_ui.dart';
 import 'view/apartment/show_deitals_of_apartment/show_deitals_of_apartment_ui.dart';
@@ -130,27 +110,12 @@ void main() async {
   // final Future<SharedPreferences> prefs = SharedPreferences.getInstance();
   // var token = (await sp).get("token");
   //for put
-  Get.put(StudentController());
-  Get.put(ControllerScroll());
-  Get.put(IntroController());
-  Get.put(CityModelController());
   Get.put(ApartmentModelController());
   Get.put(ApartmentModelController());
   Get.put(ChangeThemeMode());
   Get.put(ConnectivityController());
   // Get.put(OwnerController());
-  Get.put(ReadyCityAndApartmentTypeApi());
-  Get.put(TypeOfApartmentModelsController());
-  Get.put(MainController());
-  Get.put(GetAdvantages());
-  Get.put(AdvantagesModelController());
-  Get.put(ImagesModelController());
-  Get.put(ImageOfApartmentController());
-  Get.put(ShowDetailOfImageOfApartmentController());
-  Get.put(ChangePasswordController());
-  Get.put(CreateSocialConnectionController());
-  Get.put(LanguageController());
-  Get.put(AnimationBoxController());
+
   Get.put(UserModelController());
   Get.put(BookmarkController()); //for testing
   // Get.put(BookmarkApartment());//for testing
@@ -286,8 +251,7 @@ class _OwnMaterialAppConsumerState
         //     const CouldBeOwnerAndStudentInOneTime(),
         MyPagesRoutes.sendNoticeForUs: (context) => const SendNoticeForUsUi(),
         // MyPagesRoutes.theAdIsFreeOrNot: (context) => const TheAdIsFreeOrNot(),
-        MyPagesRoutes.skeletonShowMoreWidget: (context) =>
-            const SkeletonShowMoreWidget(),
+
         // MyPagesRoutes.screensWillAddFuture: (context) =>
         //     const ScreensWillAddFuture(),
         MyPagesRoutes.noInternet: (context) => const NoInternetUi(),
@@ -549,7 +513,6 @@ class _MainState extends State<Main> {
   }
 
   // var index = 0;
-  MainController mainController = Get.find();
 
   @override
   Widget build(BuildContext context) {

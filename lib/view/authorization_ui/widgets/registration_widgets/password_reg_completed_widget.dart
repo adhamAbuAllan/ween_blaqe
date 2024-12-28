@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../../../constants/localization.dart';
-import '../../../../core/widgets/registration/text_field_of_password_class_widget.dart';
 import '../../../../controller/provider_controllers/providers/auth_provider.dart';
 import '../../../common_widgets/text_form_field_widgets/text_form_filed_password_widget.dart';
 

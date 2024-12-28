@@ -2,12 +2,10 @@ import 'package:flutter/material.dart';
 
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:ween_blaqe/controller/provider_controllers/providers/color_provider.dart';
-import 'package:ween_blaqe/view/common_widgets/button_widgets/button_list_tile_widget.dart';
 import 'package:ween_blaqe/view/user/owner/widgets/menu_widgets/language_switcher_widget.dart';
 import 'package:ween_blaqe/view/user/owner/widgets/menu_widgets/logout_menu_widgets/menu_buttons_logout_widget.dart';
 import 'package:ween_blaqe/view/user/owner/widgets/menu_widgets/theme_mode_switcher_widget.dart';
 
-import '../../../../../../core/utils/styles/text_style/aline_style.dart';
 import '../../../../../common_widgets/aline_widget.dart';
 
 class ContainerMenuWidget extends ConsumerStatefulWidget {

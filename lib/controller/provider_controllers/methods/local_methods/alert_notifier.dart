@@ -1,7 +1,9 @@
 import 'package:ween_blaqe/controller/provider_controllers/statuses/alert_state.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:ween_blaqe/core/widgets/alirt_class_widget.dart';
 import 'package:flutter/material.dart';
+
+import '../../../../view/common_widgets/alert_widgets/alert_normal_widget.dart';
+import '../../../../view/common_widgets/alert_widgets/alert_with_two_buttons_widget.dart';
 
 class AlertNotifier extends StateNotifier<AlertState> {
   AlertNotifier() : super(AlertState());

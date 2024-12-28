@@ -3,13 +3,11 @@ import 'package:connectivity_plus/connectivity_plus.dart';
 // import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
-import 'package:ween_blaqe/constants/nums.dart';
 import 'package:ween_blaqe/controller/provider_controllers/providers/apartment_provider.dart';
 import 'package:ween_blaqe/controller/provider_controllers/providers/color_provider.dart';
 import 'package:ween_blaqe/controller/provider_controllers/providers/connectivity_provider.dart';
 
 // import 'package:ween_blaqe/controller/provider_controllers/statuses/connectivity_state.dart';
-import 'package:ween_blaqe/core/widgets/skeletons/student_widgets/home_skeleton_widget.dart';
 import 'package:ween_blaqe/view/apartment/type_not_found_ui.dart';
 import 'package:ween_blaqe/view/apartment/widgets/sebha_button_widget.dart';
 import 'package:ween_blaqe/view/apartment/widgets/types_of_apartments_widgets'

@@ -9,7 +9,6 @@ import 'package:flutter/material.dart';
 // import 'package:ween_blaqe/controller/get_controllers.dart';
 
 // import 'package:ween_blaqe/core/widgets/buttons/social_media_connection_button.dart';
-import 'package:ween_blaqe/core/widgets/skeletons/owner_widgets/profile_skeleton.dart';
 import 'package:ween_blaqe/view/user/owner/widgets/profile_widgets/back_button_with_container_widget.dart';
 import 'package:ween_blaqe/view/user/owner/widgets/profile_widgets/circle_image_widget.dart';
 import 'package:ween_blaqe/view/user/owner/widgets/profile_widgets/count_of_ad_shown_widget.dart';
@@ -23,7 +22,6 @@ import 'package:ween_blaqe/session/new_session.dart';
 // ignore: duplicate_import
 import '../../../api/apartments_api/apartments.dart';
 import '../../../api/users.dart';
-import 'package:ween_blaqe/constants/nums.dart';
 
 // import '../../../core/utils/funcations/go_url_launcher_methodes/go_to_whatsapp_method.dart';
 
@@ -36,6 +34,8 @@ import '../../../controller/provider_controllers/providers/auth_provider.dart';
 // import '../../../core/widgets/profile_classs_widget/profile_image.dart';
 // import '../../../sesstion/new_session.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+
+import '../../common_widgets/skeleton_widgets/user_skeleton_widgets/skeleton_user_profile_ui.dart';
 
 class ProfileUi extends ConsumerStatefulWidget {
   const ProfileUi({super.key, this.userInfo, this.apartments});
@@ -97,7 +97,7 @@ class _ProfileOfOwnerConsumerState extends ConsumerState<ProfileUi> {
                 ref.watch(compressAndUploadImageNotifier).isLoading
             // &&
             //       ref.watch(isPop) == false
-            ? UserProfileSkeleton(isLightMode: themeMode.isLight)
+            ? const UserProfileSkeletonUi()
             : const SingleChildScrollView(
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,

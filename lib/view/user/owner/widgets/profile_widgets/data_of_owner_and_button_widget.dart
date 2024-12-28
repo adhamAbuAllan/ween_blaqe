@@ -8,9 +8,9 @@ import '../../../../../constants/get_it_controller.dart';
 import '../../../../../constants/localization.dart';
 import '../../../../../constants/strings.dart';
 import '../../../../../core/utils/funcations/route_pages/push_routes.dart';
-import '../../../../../core/utils/styles/button.dart';
 import '../../../../../session/new_session.dart';
 import '../../../../../controller/provider_controllers/providers/auth_provider.dart';
+import '../../../../common_widgets/button_widgets/elevated_button_widget.dart';
 import '../../update_data_of_user_ui.dart';
 
 class DataOfOwnerAndButtonWidget extends ConsumerWidget {
@@ -93,8 +93,7 @@ class DataOfOwnerAndButtonWidget extends ConsumerWidget {
                 height: getIt<AppDimension>().isSmallScreen(context)
                     ? 55 / 1.2
                     : 55,
-                child: ElevatedButton(
-                    style: fullButton(),
+                child: ElevatedButtonWidget(
                     onPressed: () {
                       myPushName(context, MyPagesRoutes.updateUserInfo);
                     },

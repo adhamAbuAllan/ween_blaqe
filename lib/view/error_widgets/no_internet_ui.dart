@@ -15,17 +15,13 @@ import 'package:ween_blaqe/constants/coordination.dart';
 import 'package:ween_blaqe/constants/localization.dart';
 import 'package:ween_blaqe/constants/strings.dart';
 import 'package:ween_blaqe/core/utils/funcations/route_pages/push_routes.dart';
-import 'package:ween_blaqe/core/utils/styles/text_style/aline_style.dart';
-import 'package:ween_blaqe/constants/nums.dart';
 import 'package:ween_blaqe/session/new_session.dart';
 import 'package:ween_blaqe/view/common_widgets/button_widgets/elevated_button_widget.dart';
 import 'package:ween_blaqe/view/common_widgets/button_widgets/outline_button_widget.dart';
 import '../../constants/get_it_controller.dart';
 import '../../controller/get_controllers.dart';
 import '../../controller/provider_controllers/providers/color_provider.dart';
-import '../../core/utils/styles/button.dart';
 import '../../core/widgets/buttons/lines_buttons/line_buttons.dart';
-import '../authorization_ui/account_before_login.dart';
 import '../common_widgets/aline_widget.dart';
 // import 'package:carousel_slider_plus/carousel_controller.dart';
 
@@ -83,6 +79,7 @@ class _NoInternetUiState extends ConsumerState<NoInternetUi>
             "Astaghfirullah",
           ]
         : sephaText;
+
     connectivityController.isSnackBarShow.value = false;
     WidgetsBinding.instance.addObserver(this);
     loadTotal();
@@ -303,7 +300,6 @@ class _NoInternetUiState extends ConsumerState<NoInternetUi>
                       tooltip: SetLocalization.of(context)!
                           .getTranslateValue('reload'),
                       onPressed: () {
-                        cityModelController.cityId.value = 0;
                         pushToMainPage();
                       },
                       shape: ContinuousRectangleBorder(
