@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 // import 'package:skeletons/skeletons.dart';
-import 'package:ween_blaqe/constants/nums.dart';
+import 'package:ween_blaqe/controller/provider_controllers/providers/color_provider.dart';
 
 import 'package:ween_blaqe/view/user/owner/pick_image_bottom_sheet_widget.dart';
 import 'package:ween_blaqe/view/user/owner/widgets/change_user_image_widgets'
@@ -42,9 +42,7 @@ class _ChangeUserImageConsumerState extends ConsumerState<UpdateUserImage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: themeMode.isLight
-          ? kBackgroundAppColorLightMode
-          : kBackgroundAppColorDarkMode,
+      backgroundColor: ref.read(themeModeNotifier.notifier).backgroundAppTheme(ref: ref),
       appBar: const AppBarUpdateProfileWidget(),
       body: Center(
         child: Column(

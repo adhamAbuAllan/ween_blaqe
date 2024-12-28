@@ -3,7 +3,6 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:ween_blaqe/controller/provider_controllers/providers/color_provider.dart';
 
 import '../../../../../constants/localization.dart';
-import '../../../../../constants/nums.dart';
 import '../../../../../session/new_session.dart';
 
 class JoinDateWidget extends ConsumerWidget {
@@ -29,9 +28,7 @@ class JoinDateWidget extends ConsumerWidget {
 
           Text(SetLocalization.of(context)!.getTranslateValue("joining_time"),
               style: TextStyle(
-                  color: themeMode.isLight
-                      ? kTextColorLightMode
-                      : kTextColorDarkMode,
+                  color: ref.read(themeModeNotifier.notifier).textTheme(ref: ref),
                   fontWeight: FontWeight.w600,
                   fontSize: 18,
                   fontFamily: "IBM")),
@@ -41,9 +38,7 @@ class JoinDateWidget extends ConsumerWidget {
           Text(
               " ${SetLocalization.of(context)!.getTranslateValue("account_created_since")}  ${NewSession.get("createdAt", "def")} ${SetLocalization.of(context)!.getTranslateValue("until_now")}",
               style: TextStyle(
-                  color: themeMode.isLight
-                      ? kTextColorLightMode
-                      : kTextColorDarkMode,
+                  color: ref.read(themeModeNotifier.notifier).textTheme(ref: ref),
                   fontSize: 16,
                   fontWeight: FontWeight.w500,
                   fontFamily: "IBM")),

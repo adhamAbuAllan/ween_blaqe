@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:ween_blaqe/controller/provider_controllers/providers/color_provider.dart';
 
-import '../../../../../../../constants/nums.dart';
 
 class TitleShowDialogWidget extends ConsumerWidget {
   const TitleShowDialogWidget( {super.key,required this.socialName});
@@ -12,7 +12,7 @@ class TitleShowDialogWidget extends ConsumerWidget {
     return Text(
       socialName,
       style: TextStyle(
-        color: themeMode.isLight ? kTextColorLightMode : kTextColorDarkMode,
+        color: ref.read(themeModeNotifier.notifier).textTheme(ref: ref),
         fontSize: 18,
       ),
     ) ;

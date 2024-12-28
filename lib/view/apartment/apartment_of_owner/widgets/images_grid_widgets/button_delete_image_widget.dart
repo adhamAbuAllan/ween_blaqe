@@ -1,6 +1,6 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter/material.dart';
-import 'package:ween_blaqe/constants/nums.dart';
+import 'package:ween_blaqe/controller/provider_controllers/providers/color_provider.dart';
 
 import '../../../../../api/apartments_api/apartments.dart';
 
@@ -27,10 +27,10 @@ class _ButtonCanselImageWidgetState
       child: GestureDetector(
 
           onTap: widget.onTap,
-          child: const Icon(
+          child:  Icon(
             Icons.cancel,
-            color: kTextColorDarkMode,
-            shadows: [
+            color: ref.read(textColorDark),
+            shadows: const [
               Shadow(
                 offset: Offset(2.0, 2.0), // Slightly offset the shadow for a 3D effect
                 blurRadius: 4.0,          // Blur the shadow for smoothness

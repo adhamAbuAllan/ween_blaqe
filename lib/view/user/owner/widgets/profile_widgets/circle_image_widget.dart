@@ -9,7 +9,6 @@ import 'package:ween_blaqe/view/user/owner/widgets/change_user_image_widgets'
 import 'package:ween_blaqe/view/user/owner/widgets/change_user_image_widgets'
     '/server_image_widget.dart';
 
-import '../../../../../constants/nums.dart';
 import '../../../../../session/new_session.dart';
 import '../../../../../controller/provider_controllers/providers/auth_provider.dart';
 import '../../change_user_image.dart';
@@ -29,9 +28,7 @@ class CircleImageWidget extends ConsumerWidget {
       decoration: BoxDecoration(
         gradient: LinearGradient(
           colors: [
-            (themeMode.isLight
-                ? kBackgroundAppColorLightMode
-                : kBackgroundAppColorDarkMode),
+            (ref.read(themeModeNotifier.notifier).backgroundAppTheme(ref: ref)),
             (ref.read(themeModeNotifier.notifier).backgroundAppTheme(ref: ref)),
             (ref.read(themeModeNotifier.notifier).containerTheme(ref: ref))
           ],

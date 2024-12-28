@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:ween_blaqe/controller/provider_controllers/providers/color_provider.dart';
 
 import '../../../../../constants/localization.dart';
-import '../../../../../constants/nums.dart';
 class NoImageSelectedWidget extends ConsumerWidget {
   const NoImageSelectedWidget({super.key});
 
@@ -13,7 +13,7 @@ class NoImageSelectedWidget extends ConsumerWidget {
         SetLocalization.of(context)!
             .getTranslateValue("selected_images_displayed_here"),
         style: TextStyle(
-          color: themeMode.isLight ? kTextColorLightMode : kTextColorDarkMode,
+          color: ref.read(themeModeNotifier.notifier).textTheme(ref: ref),
         ),
         textAlign: TextAlign.center,
       ),

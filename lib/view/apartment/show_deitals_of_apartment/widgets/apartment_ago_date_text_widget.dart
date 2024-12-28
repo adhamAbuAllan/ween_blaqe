@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:ween_blaqe/controller/provider_controllers/providers/color_provider.dart';
 
 import '../../../../api/apartments_api/apartments.dart';
-import '../../../../constants/nums.dart';
 
 class ApartmentAgoDateTextWidget extends ConsumerWidget {
   const ApartmentAgoDateTextWidget({super.key,this.oneApartment});
@@ -15,9 +15,7 @@ class ApartmentAgoDateTextWidget extends ConsumerWidget {
       child: Text(
         "${oneApartment?.timeAgo} ",
         style: TextStyle(
-            color: themeMode.isLight
-                ? kTextColorLightMode
-                : kTextColorDarkMode,
+            color: ref.read(themeModeNotifier.notifier).textTheme(ref: ref),
             fontSize: 14),
       ),
     )

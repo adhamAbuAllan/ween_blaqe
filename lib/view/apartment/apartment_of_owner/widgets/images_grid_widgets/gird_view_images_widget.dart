@@ -3,7 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:ween_blaqe/api/apartments_api/apartments.dart';
 import 'package:ween_blaqe/constants/localization.dart';
-import 'package:ween_blaqe/constants/nums.dart';
+import 'package:ween_blaqe/controller/provider_controllers/providers/color_provider.dart';
 import '../../../../../constants/coordination.dart';
 import '../../../../../constants/get_it_controller.dart';
 import '../../../../../controller/provider_controllers/providers/image_provider.dart';
@@ -103,15 +103,13 @@ class DefultEmptyGridWidget extends ConsumerWidget {
         children: [
           Icon(
             Icons.grid_view_rounded,
-            color: themeMode.isLight ? kTextColorLightMode : kTextColorDarkMode,
+            color: ref.read(themeModeNotifier.notifier).textTheme(ref: ref),
             size: getIt<AppDimension>().isSmallScreen(context) ?120 :150,
           ),
           Text(
             "${SetLocalization.of(context)?.getTranslateValue("selected_images_displayed_here")}",
             style: TextStyle(
-                color: themeMode.isLight
-                    ? kTextColorLightMode
-                    : kTextColorDarkMode,fontSize:
+                color: ref.read(themeModeNotifier.notifier).textTheme(ref: ref),fontSize:
             //check screen size
             getIt<AppDimension>().isSmallScreen(context) ? 16 :
             18),

@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../../../../constants/localization.dart';
-import '../../../../../constants/nums.dart';
 import '../../../../../controller/provider_controllers/providers/color_provider.dart';
 
 class CountOfAdShownWidget extends ConsumerWidget {
@@ -29,9 +28,7 @@ class CountOfAdShownWidget extends ConsumerWidget {
           Text(
               SetLocalization.of(context)!.getTranslateValue("ads_shown_count"),
               style: TextStyle(
-                  color: themeMode.isLight
-                      ? kTextColorLightMode
-                      : kTextColorDarkMode,
+                  color: ref.read(themeModeNotifier.notifier).textTheme(ref: ref),
                   fontSize: 18,
                   fontWeight: FontWeight.w600,
                   fontFamily: "IBM")),

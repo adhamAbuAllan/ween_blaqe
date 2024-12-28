@@ -3,15 +3,14 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:ween_blaqe/api/advantages.dart';
 import 'package:ween_blaqe/api/apartments_api/apartments.dart';
 import 'package:ween_blaqe/controller/provider_controllers/providers/image_provider.dart';
+import 'package:ween_blaqe/view/common_widgets/button_widgets/elevated_button_widget.dart';
 
 import '../../../../../../constants/coordination.dart';
 import '../../../../../../constants/get_it_controller.dart';
 import '../../../../../../constants/localization.dart';
-import '../../../../../../constants/nums.dart';
 import '../../../../../../controller/provider_controllers/providers/apartment_provider.dart';
 import '../../../../../../controller/provider_controllers/providers/color_provider.dart';
 import '../../../../../../controller/provider_controllers/providers/snack_bar_provider.dart';
-import '../../../../../../core/utils/styles/button.dart';
 
 class AppbarUpdateApartmentWidget extends ConsumerStatefulWidget
     implements PreferredSizeWidget {
@@ -41,7 +40,7 @@ class _AppbarEditApartmentWidgetState
       leading: Padding(
         padding: const EdgeInsets.symmetric(vertical: 8.0),
         child: BackButton(
-          color: themeMode.isLight ? kTextColorLightMode : kTextColorDarkMode,
+          color: ref.read(themeModeNotifier.notifier).textTheme(ref: ref),
           style: const ButtonStyle(
             // iconSize : WidgetStateProperty.all(34),
             //    maximumSize: WidgetStateProperty.all(Size(32,
@@ -72,7 +71,7 @@ class _AppbarEditApartmentWidgetState
           padding: EdgeInsets.symmetric(
               vertical: getIt<AppDimension>().isSmallScreen(context) ? 10 : 8,
               horizontal: 8),
-          child: ElevatedButton(
+          child: ElevatedButtonWidget(
             onPressed: () async {
               var advantagesApiNotifier =
                   ref.read(advantagesApi.notifier).state;
@@ -176,7 +175,6 @@ class _AppbarEditApartmentWidgetState
                 return;
               }
             },
-            style: fullButton(),
             child: ref.watch(updateApartmentNotifier).isUpdating
                 ? const CircularProgressIndicator(
                     color: Colors.white,

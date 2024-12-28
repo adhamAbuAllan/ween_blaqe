@@ -2,10 +2,10 @@ import 'package:flutter/material.dart';
 
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:ween_blaqe/controller/provider_controllers/providers/color_provider.dart';
 import 'package:ween_blaqe/view/apartment/apartment_of_owner/widgets/images_grid_widgets/floating_buttons_add_images_widgets.dart';
 import 'package:ween_blaqe/view/apartment/apartment_of_owner/widgets/images_grid_widgets/gird_view_images_widget.dart';
 
-import '../../../../constants/nums.dart';
 import '../../../../controller/provider_controllers/providers/image_provider.dart';
 import '../widgets/images_grid_widgets/grid_images_appbar_widget.dart';
 
@@ -38,9 +38,8 @@ class _AddImageUiState extends ConsumerState<AddImageUi> {
     final List<String> cancelImages = [];
 
     return Scaffold(
-      backgroundColor: themeMode.isLight
-          ? kBackgroundAppColorLightMode
-          : kBackgroundAppColorDarkMode,
+      backgroundColor:
+          ref.read(themeModeNotifier.notifier).backgroundAppTheme(ref: ref),
       appBar: AppBarGridWidget(
         newImages: ref.watch(newImagesNotifier.notifier).state,
         images: images,
@@ -51,9 +50,12 @@ class _AddImageUiState extends ConsumerState<AddImageUi> {
           child: Stack(
             children: [
               ref.watch(imageLocalNotifier).isLoading
-                  ?  Center(
-                      child: CircularProgressIndicator(color: themeMode
-                          .isLight ? kPrimaryColorLightMode :  kPrimaryColorDarkMode,),
+                  ? Center(
+                      child: CircularProgressIndicator(
+                        color: ref
+                            .read(themeModeNotifier.notifier)
+                            .primaryTheme(ref: ref),
+                      ),
                     )
                   : const SizedBox(),
               GridViewImagesWidget(

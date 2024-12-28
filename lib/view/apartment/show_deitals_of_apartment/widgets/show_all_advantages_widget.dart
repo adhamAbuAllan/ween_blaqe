@@ -2,10 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:skeletons/skeletons.dart';
 import 'package:ween_blaqe/api/apartments_api/apartments.dart';
+import 'package:ween_blaqe/controller/provider_controllers/providers/color_provider.dart';
 
 import '../../../../constants/coordination.dart';
 import '../../../../constants/get_it_controller.dart';
-import '../../../../constants/nums.dart';
 
 class ShowAllAdvantagesWidget extends ConsumerWidget {
   const ShowAllAdvantagesWidget({super.key,
@@ -25,9 +25,7 @@ final DataOfOneApartment ? oneApartment;
                   fontSize: getIt<AppDimension>().isSmallScreen(context)
                       ? 15
                       : 16,
-                  color: themeMode.isLight
-                      ? kTextColorLightMode
-                      : kTextColorDarkMode)):
+                  color: ref.read(themeModeNotifier.notifier).textTheme(ref: ref))):
           const SizedBox(
               child: SkeletonLine(
                   style: SkeletonLineStyle(width: 50, height: 10)))
@@ -48,7 +46,7 @@ final DataOfOneApartment ? oneApartment;
                         height: 28,
                       )));
             },
-            color: themeMode.isLight ? kTextColorLightMode : kTextColorDarkMode,
+            color: ref.read(themeModeNotifier.notifier).textTheme(ref: ref),
           ),
         );
       },

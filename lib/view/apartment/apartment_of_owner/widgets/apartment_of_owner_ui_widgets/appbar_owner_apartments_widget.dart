@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:ween_blaqe/constants/localization.dart';
+import 'package:ween_blaqe/controller/provider_controllers/providers/color_provider.dart';
 
 import '../../../../../constants/coordination.dart';
 import '../../../../../constants/get_it_controller.dart';
@@ -34,9 +35,7 @@ class _AppbarOwnerApartmentsWidgetState extends ConsumerState<AppBarOwnerApartme
           style: TextStyle(
               fontSize:
               getIt<AppDimension>().isSmallScreen(context) ? 16 : null,
-              color: themeMode.isLight
-                  ? kTextColorLightMode
-                  : kTextColorDarkMode)),
+              color: ref.read(themeModeNotifier.notifier).textTheme(ref: ref))),
       actions: ref.read(fetchApartmentNotifier).isOwnerHaveApartments
           ? [
         Padding(

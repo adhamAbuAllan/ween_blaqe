@@ -5,7 +5,6 @@ import 'package:ween_blaqe/controller/provider_controllers/providers/color_provi
 import '../../../../../constants/coordination.dart';
 import '../../../../../constants/get_it_controller.dart';
 import '../../../../../constants/localization.dart';
-import '../../../../../constants/nums.dart';
 import '../../../../../session/new_session.dart';
 import '../../social_media_buttons_connection/email_social_button.dart';
 import '../../social_media_buttons_connection/facebook_social_button.dart';
@@ -35,9 +34,7 @@ class SocialMediaWidget extends ConsumerWidget {
               SetLocalization.of(context)!
                   .getTranslateValue("available_contact_methods"),
               style: TextStyle(
-                  color: themeMode.isLight
-                      ? kTextColorLightMode
-                      : kTextColorDarkMode,
+                  color: ref.read(themeModeNotifier.notifier).textTheme(ref: ref),
                   fontSize: 18,
                   fontWeight: FontWeight.w600)),
           const SizedBox(

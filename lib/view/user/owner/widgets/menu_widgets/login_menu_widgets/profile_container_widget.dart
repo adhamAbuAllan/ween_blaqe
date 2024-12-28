@@ -4,7 +4,6 @@ import 'package:ween_blaqe/controller/provider_controllers/providers/color_provi
 
 import '../../../../../../constants/coordination.dart';
 import '../../../../../../constants/get_it_controller.dart';
-import '../../../../../../constants/nums.dart';
 import '../../../../../../session/new_session.dart';
 import '../../../../../../controller/provider_controllers/providers/auth_provider.dart';
 import '../../../profile_ui.dart';
@@ -69,9 +68,7 @@ class ContainerOfProfileWidget extends ConsumerWidget {
                     fontSize:
                         getIt<AppDimension>().isSmallScreen(context) ? 16 : 18,
                     fontWeight: FontWeight.w600,
-                    color: themeMode.isLight
-                        ? kTextColorLightMode
-                        : kTextColorDarkMode,
+                    color: ref.read(themeModeNotifier.notifier).textTheme(ref: ref),
                   ),
                 ),
                 SizedBox(
@@ -84,9 +81,7 @@ class ContainerOfProfileWidget extends ConsumerWidget {
                   style: TextStyle(
                       fontSize: 14,
                       fontWeight: FontWeight.w500,
-                      color: themeMode.isLight
-                          ? kTextColorLightMode
-                          : kTextColorDarkMode),
+                      color: ref.read(themeModeNotifier.notifier).textTheme(ref: ref)),
                 )
               ],
             ),
@@ -100,9 +95,7 @@ class ContainerOfProfileWidget extends ConsumerWidget {
               ),
               child: Icon(
                 Icons.arrow_forward_ios,
-                color: themeMode.isLight
-                    ? kTextColorLightMode
-                    : kTextColorDarkMode,
+                color: ref.read(themeModeNotifier.notifier).textTheme(ref: ref),
                 // size: ,
               ),
             ),

@@ -1,14 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:share_plus/share_plus.dart';
+import 'package:ween_blaqe/controller/provider_controllers/providers/color_provider.dart';
 
 import '../../../../../../constants/coordination.dart';
 import '../../../../../../constants/get_it_controller.dart';
 import '../../../../../../constants/localization.dart';
-import '../../../../../../constants/nums.dart';
 import '../../../../../../constants/strings.dart';
 import '../../../../../../core/utils/funcations/route_pages/push_routes.dart';
-import '../../../../../../core/utils/styles/text_style/aline_style.dart';
 import '../../../../../../core/widgets/buttons/lines_buttons/line_buttons.dart';
 import '../../../../../common_widgets/aline_widget.dart';
 
@@ -67,9 +66,7 @@ class MenuButtonsLoginWidgets extends ConsumerWidget {
           myPushName(context, MyPagesRoutes.noInternet);
         },
             image: Image.asset("assets/images/tasbih.png",
-                color: themeMode.isLight
-                    ? kTextColorLightMode
-                    : kTextColorDarkMode,
+                color: ref.read(themeModeNotifier.notifier).textTheme(ref: ref),
                 width: 35,
                 height: getIt<AppDimension>().isSmallScreen(context)
                     ? 35 - 5

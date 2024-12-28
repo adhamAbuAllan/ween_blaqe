@@ -4,7 +4,6 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../../../../constants/coordination.dart';
 import '../../../../../constants/get_it_controller.dart';
 import '../../../../../constants/localization.dart';
-import '../../../../../constants/nums.dart';
 import '../../../../../controller/provider_controllers/providers/color_provider.dart';
 
 class GeneralApartmentInfoDataRequiredTable extends ConsumerWidget {
@@ -16,7 +15,7 @@ class GeneralApartmentInfoDataRequiredTable extends ConsumerWidget {
       border: TableBorder(
         horizontalInside: BorderSide(
             width: .5,
-            color: themeMode.isLight ? kTextColorLightMode : kTextColorDarkMode
+            color: ref.read(themeModeNotifier.notifier).textTheme(ref: ref)
             // Change this to your desired color
             ),
       ),

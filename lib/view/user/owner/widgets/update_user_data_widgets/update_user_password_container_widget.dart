@@ -4,7 +4,6 @@ import 'package:ween_blaqe/controller/provider_controllers/providers/auth_provid
 import 'package:ween_blaqe/controller/provider_controllers/providers/color_provider.dart';
 
 import '../../../../../constants/localization.dart';
-import '../../../../../constants/nums.dart';
 import '../../../../../core/widgets/registration/text_field_of_password_class_widget.dart';
 
 class UpdateUserPasswordContainerWidget extends ConsumerWidget {
@@ -29,9 +28,7 @@ class UpdateUserPasswordContainerWidget extends ConsumerWidget {
             child: Text(
               SetLocalization.of(context)!.getTranslateValue("change_password"),
               style: TextStyle(
-                color: themeMode.isLight
-                    ? kTextColorLightMode
-                    : kTextColorDarkMode,
+                color: ref.read(themeModeNotifier.notifier).textTheme(ref: ref),
                 fontSize: 18,
                 fontWeight: FontWeight.w500,
               ),

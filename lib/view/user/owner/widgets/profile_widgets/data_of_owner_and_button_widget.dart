@@ -6,7 +6,6 @@ import 'package:ween_blaqe/controller/provider_controllers/providers/color_provi
 import '../../../../../constants/coordination.dart';
 import '../../../../../constants/get_it_controller.dart';
 import '../../../../../constants/localization.dart';
-import '../../../../../constants/nums.dart';
 import '../../../../../constants/strings.dart';
 import '../../../../../core/utils/funcations/route_pages/push_routes.dart';
 import '../../../../../core/utils/styles/button.dart';
@@ -44,9 +43,7 @@ class DataOfOwnerAndButtonWidget extends ConsumerWidget {
                 ))
               : Text(ref.watch(userData)?.name ?? "username",
                   style: TextStyle(
-                    color: themeMode.isLight
-                        ? kTextColorLightMode
-                        : kTextColorDarkMode,
+                    color: ref.read(themeModeNotifier.notifier).textTheme(ref: ref),
                     fontWeight: FontWeight.w600,
                     fontSize: 20,
                   )),
@@ -63,9 +60,7 @@ class DataOfOwnerAndButtonWidget extends ConsumerWidget {
                 ))
               : Text(ref.read(userData)?.phone ?? "97000000000",
                   style: TextStyle(
-                      color: themeMode.isLight
-                          ? kTextColorLightMode
-                          : kTextColorDarkMode,
+                      color: ref.read(themeModeNotifier.notifier).textTheme(ref: ref),
                       fontWeight: FontWeight.w600,
                       fontSize: 16)),
           const SizedBox(

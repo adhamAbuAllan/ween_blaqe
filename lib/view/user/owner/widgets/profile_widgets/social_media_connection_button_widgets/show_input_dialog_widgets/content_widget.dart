@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:ween_blaqe/controller/provider_controllers/providers/color_provider.dart';
 
 import '../../../../../../../constants/coordination.dart';
 import '../../../../../../../constants/get_it_controller.dart';
 import '../../../../../../../constants/localization.dart';
-import '../../../../../../../constants/nums.dart';
 
 class ShowDialogContentWidgets extends ConsumerWidget {
   const ShowDialogContentWidgets(
@@ -30,9 +30,7 @@ class ShowDialogContentWidgets extends ConsumerWidget {
             decoration: InputDecoration(
               labelText: labelUserName,
               labelStyle: TextStyle(
-                color: themeMode.isLight
-                    ? kTextColorLightMode
-                    : kTextColorDarkMode,
+                color: ref.read(themeModeNotifier.notifier).textTheme(ref: ref),
                 fontSize: 16,
               ),
             ),
@@ -42,7 +40,7 @@ class ShowDialogContentWidgets extends ConsumerWidget {
 
             style: TextStyle(
               color:
-                  themeMode.isLight ? kTextColorLightMode : kTextColorDarkMode,
+                  ref.read(themeModeNotifier.notifier).textTheme(ref: ref),
               fontSize: 16,
             ),
           ),
