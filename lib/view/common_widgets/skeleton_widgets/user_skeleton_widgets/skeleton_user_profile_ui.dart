@@ -214,7 +214,7 @@ class UserProfileSkeletonUi extends ConsumerWidget {
                   const EdgeInsets.symmetric(horizontal: 10, vertical: 20),
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(7),
-                    color: ref.read(themeModeNotifier.notifier).textTheme
+                    color: ref.read(themeModeNotifier.notifier).containerTheme
                       (ref:ref),
                   ),
                   child: Column(

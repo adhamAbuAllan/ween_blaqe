@@ -29,10 +29,12 @@ class _TypesContainerWidgetState extends ConsumerState<DropdownTypesWidget> {
         title: SetLocalization.of(context)!
             .getTranslateValue("housing_type_students"),
         childWidget: DropdownFieldWidget(
-            alreadyExistingValue: types.firstWhere(
+            alreadyExistingValue:
+            types.isNotEmpty ?
+            types.firstWhere(
               (item) => item.id == defaultValue?.id,
               orElse: () => types.first,
-            ),
+            ): "",
             onChanged: (items) {
               setState(() {
                 WidgetsBinding.instance.addPostFrameCallback((_) async {
@@ -48,6 +50,6 @@ class _TypesContainerWidgetState extends ConsumerState<DropdownTypesWidget> {
               });
             },
             items: ref.watch(typesNotifier).types),
-        isLoading: ref.watch(typesNotifier).isLoading!);
+        isLoading: ref.watch(typesNotifier).isLoading??false);
   }
 }

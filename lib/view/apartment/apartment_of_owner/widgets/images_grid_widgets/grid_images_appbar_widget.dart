@@ -6,11 +6,11 @@ import 'package:ween_blaqe/api/apartments_api/apartments.dart';
 import '../../../../../constants/coordination.dart';
 import '../../../../../constants/get_it_controller.dart';
 import '../../../../../constants/localization.dart';
-import '../../../../../constants/nums.dart';
 import '../../../../../controller/provider_controllers/providers/color_provider.dart';
 import '../../../../../controller/provider_controllers/providers/image_provider.dart';
 import '../../../../../controller/provider_controllers/providers/snack_bar_provider.dart';
-import '../../../../../core/utils/styles/button.dart';
+import '../../../../common_widgets/button_widgets/elevated_button_widget.dart';
+import '../../../../common_widgets/button_widgets/outline_button_widget.dart';
 
 class AppBarGridWidget extends ConsumerStatefulWidget
     implements PreferredSizeWidget {
@@ -39,19 +39,20 @@ class _AppBarGridWidgetState extends ConsumerState<AppBarGridWidget> {
   Widget build(BuildContext context) {
     return AppBar(
       automaticallyImplyLeading: false,
-      backgroundColor: ref.read(themeModeNotifier.notifier).containerTheme(ref: ref),
+      backgroundColor:
+          ref.read(themeModeNotifier.notifier).containerTheme(ref: ref),
       actions: [
         Padding(
           padding: EdgeInsets.symmetric(
               vertical: getIt<AppDimension>().isSmallScreen(context) ? 10 : 8,
               horizontal:
                   getIt<AppDimension>().isSmallScreen(context) ? 10 : 8),
-          child: OutlinedButton(
+          child: OutlinedButtonWidget(
             onPressed: () {
               setState(() {});
               Navigator.pop(context);
             },
-            style: outlinedButton(themeMode: themeMode, context: context),
+
             child:
                 Text(SetLocalization.of(context)!.getTranslateValue("cancel")),
           ),
@@ -62,15 +63,18 @@ class _AppBarGridWidgetState extends ConsumerState<AppBarGridWidget> {
               vertical: getIt<AppDimension>().isSmallScreen(context) ? 10 : 8,
               horizontal:
                   getIt<AppDimension>().isSmallScreen(context) ? 10 : 8),
-          child: ElevatedButton(
+          child: ElevatedButtonWidget(
             onPressed: () {
               if (widget.cancelImages.isNotEmpty ||
                   widget.newImages.isNotEmpty) {
                 if (widget.images.length < 3) {
                   ref.read(showSnackBarNotifier.notifier).showNormalSnackBar(
-                      backgroundColor: ref.read(themeModeNotifier.notifier).backgroundAppTheme(ref: ref),
-                      textColor: ref.read(themeModeNotifier.notifier).textTheme(ref: ref),
-
+                      backgroundColor: ref
+                          .read(themeModeNotifier.notifier)
+                          .backgroundAppTheme(ref: ref),
+                      textColor: ref
+                          .read(themeModeNotifier.notifier)
+                          .textTheme(ref: ref),
                       context: context,
                       message: SetLocalization.of(context)!.getTranslateValue(
                           "should_be_at_least_three_photos"));
@@ -88,9 +92,12 @@ class _AppBarGridWidgetState extends ConsumerState<AppBarGridWidget> {
                 Navigator.pop(context);
               } else {
                 ref.read(showSnackBarNotifier.notifier).showNormalSnackBar(
-                    backgroundColor: ref.read(themeModeNotifier.notifier).backgroundAppTheme(ref: ref),
-                    textColor: ref.read(themeModeNotifier.notifier).textTheme(ref: ref),
-
+                    backgroundColor: ref
+                        .read(themeModeNotifier.notifier)
+                        .backgroundAppTheme(ref: ref),
+                    textColor: ref
+                        .read(themeModeNotifier.notifier)
+                        .textTheme(ref: ref),
                     context: context,
                     message: SetLocalization.of(context)!
                         .getTranslateValue("no_changes_made_yet"));
@@ -98,7 +105,6 @@ class _AppBarGridWidgetState extends ConsumerState<AppBarGridWidget> {
                 return;
               }
             },
-            style: fullButton(),
             child: Text(SetLocalization.of(context)!.getTranslateValue("done")),
           ),
         ),

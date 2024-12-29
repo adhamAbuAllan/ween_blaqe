@@ -1,13 +1,14 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter/material.dart';
+import 'package:ween_blaqe/controller/provider_controllers/providers/color_provider.dart';
 
 import '../../../../../constants/localization.dart';
-import '../../../../../constants/nums.dart';
 import '../../../../../controller/provider_controllers/providers/apartment_provider.dart';
 import '../../../../../core/utils/styles/button.dart';
+import '../../../../common_widgets/button_widgets/elevated_button_widget.dart';
 
-class CreateApartmentButtonsWidgets extends ConsumerWidget {
-  const CreateApartmentButtonsWidgets({super.key, this.onPressed, this.title});
+class ButtonsCreateApartmentWidgets extends ConsumerWidget {
+  const ButtonsCreateApartmentWidgets({super.key, this.onPressed, this.title});
 
   final void Function()? onPressed;
   final String? title;
@@ -41,9 +42,8 @@ class NextButtonWidget extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    return ElevatedButton(
+    return ElevatedButtonWidget(
       onPressed: onPressed,
-      style: fullButton(),
       child: ref.watch(createApartmentNotifier).isLoading ||
               ref.watch(updateApartmentNotifier).isUpdating
           ?  const CircularProgressIndicator(color: Colors.white,)
@@ -62,7 +62,10 @@ class OutlinedBackButtonWidget extends ConsumerWidget {
       onPressed: () {
         Navigator.pop(context);
       },
-      style: outlinedButton(themeMode: themeMode, context: context),
+      style: outlinedButton(primaryColor: ref.read(themeModeNotifier
+          .notifier).primaryTheme(ref: ref),containerColor: ref.read
+        (themeModeNotifier.notifier).containerTheme(ref: ref), context: 
+      context),
       child: Text(SetLocalization.of(context)!.getTranslateValue("cancel")),
     );
   }

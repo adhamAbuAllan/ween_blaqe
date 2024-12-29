@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:ween_blaqe/constants/nums.dart';
 
 // import 'package:ween_blaqe/styles/colors.dart';
 // button style widget
@@ -14,12 +13,11 @@ import 'package:ween_blaqe/constants/nums.dart';
 
 import '../../../constants/coordination.dart';
 import '../../../constants/get_it_controller.dart';
-import '../../../controller/function_controller/change_theme_mode.dart';
 
-ButtonStyle fullButton() {
+ButtonStyle fullButton({Color? backgroundColor}) {
   return ElevatedButton.styleFrom(
     backgroundColor:
-        themeMode.isLight ? kPrimaryColorLightMode : kPrimaryColorDarkMode,
+       backgroundColor,
     elevation: 0,
     textStyle: const TextStyle(
       fontSize: 16,
@@ -32,33 +30,26 @@ ButtonStyle fullButton() {
 }
 
 ButtonStyle outlinedButton(
-    {ChangeThemeMode? themeMode,
+    {
+      Color ?containerColor,
+      Color ?primaryColor,
     required BuildContext context,
     bool? isFloatingOutlinedButton}) {
   return OutlinedButton.styleFrom(
-    foregroundColor: themeMode?.isLight ?? false
-        ? kPrimaryColorLightMode
-        : kPrimaryColorDarkMode,
+    foregroundColor: primaryColor,
     // elevation: 1,
     backgroundColor: isFloatingOutlinedButton ?? false
-        ? themeMode?.isLight ?? false
-        ? kContainerColorLightMode
-        : kContainerColorDarkMode
-        : null,
+        ? containerColor        : null,
     textStyle: TextStyle(
 
       fontSize: getIt<AppDimension>().isSmallScreen(context) ? 15 : 16,
-      color: themeMode?.isLight ?? false
-          ? kPrimaryColorLightMode
-          : kPrimaryColorDarkMode,
+      color: primaryColor,
       fontWeight: FontWeight.w500 ,
       fontFamily: 'IBM',
     ),
     side: BorderSide(
         width: 1,
-        color: themeMode?.isLight ?? false
-            ? kPrimaryColorLightMode
-            : kPrimaryColorDarkMode),
+        color: primaryColor?? Colors.blue),
 
     padding: const EdgeInsets.symmetric(horizontal: 10),
     alignment: Alignment.center,

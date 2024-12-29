@@ -12,7 +12,6 @@ import 'package:http/http.dart' as http;
 
 import '../../../providers/auth_provider.dart';
 import '../../../../../session/sesstion_of_user.dart';
-import '../../../../get_controllers.dart';
 
 class LoginNotifier extends StateNotifier<AuthState> {
   LoginNotifier() : super(AuthState());
@@ -30,7 +29,6 @@ class LoginNotifier extends StateNotifier<AuthState> {
 
     if (response.statusCode <= 400) {
       var res = UserRes.fromJson(jsonDecode(response.body));
-      apartmentModelController.ownerToken = res.data.token;
       saveUserInfo(res.data);
       ref
           .read(refreshUserDataNotifier.notifier)

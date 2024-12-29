@@ -8,15 +8,13 @@ import 'package:ween_blaqe/view/common_widgets/button_widgets/outline_button_wid
 
 import '../../../../api/cities.dart';
 
-
-
 class CityButtonWidget extends ConsumerWidget {
   final City city;
   final Function onClick;
   final ButtonStyle? style;
   final BuildContext context;
 
-  const CityButtonWidget( {
+  const CityButtonWidget({
     super.key,
     required this.city,
     required this.onClick,
@@ -28,17 +26,15 @@ class CityButtonWidget extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     // Watch the selected city state (if you're using state management)
 
-
     return Padding(
       padding: const EdgeInsets.all(10.0),
       child: SizedBox(
         width: getIt<AppDimension>().isSmallScreen(context) ? 75 : 80,
         height: getIt<AppDimension>().isSmallScreen(context) ? 35 : 40,
         child: OutlinedButtonWidget(
+          buttonStyle: style,
           onPressed: () {
-
             onClick.call();
-
           },
           child: Text(
             city.name ??

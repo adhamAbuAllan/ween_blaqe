@@ -13,10 +13,10 @@ import 'package:ween_blaqe/controller/provider_controllers/providers/auth_provid
 import '../../../constants/coordination.dart';
 import '../../../constants/get_it_controller.dart';
 import '../../../constants/localization.dart';
-import '../../../constants/nums.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../authorization_ui/widgets/registration_widgets/phone_completed_widget.dart';
+import '../../common_widgets/containers_widgets/container_widget.dart';
 
 class UpdateUserDataUi extends ConsumerWidget {
   const UpdateUserDataUi({super.key});
@@ -27,10 +27,10 @@ class UpdateUserDataUi extends ConsumerWidget {
       onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
       child: ColorfulSafeArea(
         bottomColor: Colors.transparent,
-        color:
-            ref.read(themeModeNotifier.notifier).primaryTheme(ref: ref),
+        color: ref.read(themeModeNotifier.notifier).primaryTheme(ref: ref),
         child: Scaffold(
-          backgroundColor: ref.read(themeModeNotifier.notifier).backgroundAppTheme(ref: ref),
+          backgroundColor:
+              ref.read(themeModeNotifier.notifier).backgroundAppTheme(ref: ref),
           appBar: const AppBarUpdateUserDataWidget(),
           body: Padding(
             padding: const EdgeInsets.symmetric(vertical: 0, horizontal: 8.0),
@@ -49,8 +49,10 @@ class UpdateUserDataUi extends ConsumerWidget {
 
                   //change name container
                   Form(
-                    key: ref.watch(updateUserNameValidate.notifier).state !=
-                        null ? updateUsernameFormKey : null,
+                    key:
+                        ref.watch(updateUserNameValidate.notifier).state != null
+                            ? updateUsernameFormKey
+                            : null,
                     child: ContainerFieldWidget(
                       validator: (value) {
                         if (ref.read(updateUserNameValidate.notifier).state ==
@@ -72,21 +74,14 @@ class UpdateUserDataUi extends ConsumerWidget {
                         ? 20 / 1.6
                         : 20,
                   ),
-                  //change phone container
-                  Container(
-                    margin: const EdgeInsets.fromLTRB(10, 2, 10, 0),
-                    // height: 140,
-                    padding:
-                        const EdgeInsets.symmetric(horizontal: 20, vertical: 0),
-
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(7),
-                      color: ref.read(themeModeNotifier.notifier).containerTheme(ref: ref),
-                    ),
+                  ContainerWidget(
+                    horizontalPadding: 20,
                     child: Form(
-                      key:ref.watch(updatePhoneValidate.notifier).state !=
-                          null ? updatePhoneNumberFormKey : null ,
+                      key: ref.watch(updatePhoneValidate.notifier).state != null
+                          ? updatePhoneNumberFormKey
+                          : null,
                       child: PhoneCompletedWidget(
+                        hasContainer: true,
                         validateValue: ref.watch(updatePhoneValidate),
                         controller: ref.watch(
                           updatePhoneNumberController,
@@ -95,6 +90,7 @@ class UpdateUserDataUi extends ConsumerWidget {
                       ),
                     ),
                   ),
+                  //change phone container
 
                   // change password container
                   const UpdateUserPasswordContainerWidget()

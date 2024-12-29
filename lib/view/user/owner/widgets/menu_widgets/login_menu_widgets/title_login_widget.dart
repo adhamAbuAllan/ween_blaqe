@@ -12,27 +12,31 @@ class TitleLoginWidget extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    return  Padding(
-      padding: EdgeInsets.fromLTRB(
-          20,
-          getIt<AppDimension>().isSmallScreen(context)
-              ? 50 / 1.6
-              : 50,
-          20,
-          0),
-      child: Text(
-        SetLocalization.of(context)!
-            .getTranslateValue("my_account"),
-        style: TextStyle(
-          fontSize:
-          getIt<AppDimension>().isSmallScreen(context)
-              ? 22
-              : 26,
-          inherit: true,
-          fontWeight: FontWeight.w600,
-          color: ref.read(themeModeNotifier.notifier).textTheme(ref: ref),
+    return  Row(
+      children: [
+        Padding(
+          padding: EdgeInsets.fromLTRB(
+              20,
+              getIt<AppDimension>().isSmallScreen(context)
+                  ? 50 / 1.6
+                  : 50,
+              20,
+              0),
+          child: Text(
+            SetLocalization.of(context)!
+                .getTranslateValue("my_account"),
+            style: TextStyle(
+              fontSize:
+              getIt<AppDimension>().isSmallScreen(context)
+                  ? 22
+                  : 26,
+              inherit: true,
+              fontWeight: FontWeight.w600,
+              color: ref.read(themeModeNotifier.notifier).textTheme(ref: ref),
+            ),
+          ),
         ),
-      ),
+      ],
     );
   }
 }

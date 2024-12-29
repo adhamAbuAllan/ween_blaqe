@@ -54,9 +54,9 @@ return Scaffold(
 
       body:
       ref.watch(fetchApartmentNotifier).isLoading ?
-const Center(
+ Center(
           child: CircularProgressIndicator(
-
+color: ref.read(themeModeNotifier.notifier).primaryTheme(ref: ref),
 ))
           :
       bookmarkedList.data?.isEmpty??false

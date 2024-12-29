@@ -6,7 +6,6 @@ import '../../../../api/apartments_api/apartments.dart';
 import '../../../../constants/coordination.dart';
 import '../../../../constants/get_it_controller.dart';
 import '../../../../constants/localization.dart';
-import '../../../../constants/nums.dart';
 import '../../../../controller/provider_controllers/providers/apartment_provider.dart';
 import '../../../../core/utils/styles/button.dart';
 
@@ -38,7 +37,8 @@ class AboutApartmentWidget extends ConsumerWidget {
             child: Text(
               SetLocalization.of(context)!.getTranslateValue("about_apartment"),
               style: TextStyle(
-                fontSize: getIt<AppDimension>().isSmallScreen(context) ? 18 : 20,
+                fontSize:
+                    getIt<AppDimension>().isSmallScreen(context) ? 18 : 20,
                 fontWeight: FontWeight.w600,
                 color: ref.read(themeModeNotifier.notifier).textTheme(ref: ref),
               ),
@@ -51,7 +51,10 @@ class AboutApartmentWidget extends ConsumerWidget {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                const SizedBox(height: 90,width: 10,),
+                const SizedBox(
+                  height: 90,
+                  width: 10,
+                ),
                 Flexible(
                   child: AnimateRoomBox(
                     oneApartment: oneApartment,
@@ -64,7 +67,9 @@ class AboutApartmentWidget extends ConsumerWidget {
                 Flexible(
                   child: AnimateAreaBox(oneApartment: oneApartment),
                 ),
-                const SizedBox(width: 10,),
+                const SizedBox(
+                  width: 10,
+                ),
               ],
             ),
           ),
@@ -73,6 +78,7 @@ class AboutApartmentWidget extends ConsumerWidget {
     );
   }
 }
+
 // Define providers for each state
 class AnimateRoomBox extends ConsumerWidget {
   const AnimateRoomBox({
@@ -93,13 +99,14 @@ class AnimateRoomBox extends ConsumerWidget {
       child: AnimatedContainer(
         duration: const Duration(milliseconds: 500),
         curve: Curves.easeInOut,
-
         decoration: BoxDecoration(
           border: Border.all(
             color: isRoomSizeChange
                 ? (ref.read(themeModeNotifier.notifier).primaryTheme(ref: ref))
-                : (ref.read(themeModeNotifier.notifier).primary300Theme(ref: ref)),
-            width: isRoomSizeChange? 1.5 : .5,
+                : (ref
+                    .read(themeModeNotifier.notifier)
+                    .primary300Theme(ref: ref)),
+            width: isRoomSizeChange ? 1.5 : .5,
           ),
           borderRadius: BorderRadius.circular(8),
         ),
@@ -107,24 +114,31 @@ class AnimateRoomBox extends ConsumerWidget {
           onPressed: () {
             ref.read(roomSizeChangeProvider.notifier).state = !isRoomSizeChange;
           },
-          style: outlinedButton(themeMode: themeMode, context: context).copyWith(
+          style: outlinedButton(
+                  primaryColor: ref
+                      .read(themeModeNotifier.notifier)
+                      .primaryTheme(ref: ref),
+                  containerColor: ref
+                      .read(themeModeNotifier.notifier)
+                      .containerTheme(ref: ref),
+                  context: context)
+              .copyWith(
             padding: const WidgetStatePropertyAll(EdgeInsets.all(10)),
             overlayColor: const WidgetStatePropertyAll(Colors.transparent),
           ),
           child: Column(
-
             children: [
               Text(
                 SetLocalization.of(context)!.getTranslateValue("rooms"),
                 style: TextStyle(
-                  color: ref.read(themeModeNotifier.notifier).textTheme(ref: ref),
+                  color:
+                      ref.read(themeModeNotifier.notifier).textTheme(ref: ref),
                 ),
               ),
               Row(
                 crossAxisAlignment: CrossAxisAlignment.center,
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-
                   Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 5.0),
                     child: AnimatedSwitcher(
@@ -135,27 +149,33 @@ class AnimateRoomBox extends ConsumerWidget {
                       ),
                       child: isRoomSizeChange
                           ? Text(
-                        "${oneApartment.rooms ?? 0}",
-                        key: const ValueKey('roomsCount'),
-                        style: TextStyle(
-                          fontWeight: FontWeight.bold,
-                          color: ref.read(themeModeNotifier.notifier).primaryTheme(ref: ref),
-                        ),
-                      )
+                              "${oneApartment.rooms ?? 0}",
+                              key: const ValueKey('roomsCount'),
+                              style: TextStyle(
+                                fontWeight: FontWeight.bold,
+                                color: ref
+                                    .read(themeModeNotifier.notifier)
+                                    .primaryTheme(ref: ref),
+                              ),
+                            )
                           : Text(
-                        "${oneApartment.rooms ?? 0}",
-                        key: const ValueKey('roomsCountStatic'),
-                        style: TextStyle(
-                          color: ref.read(themeModeNotifier.notifier).textTheme(ref: ref),
-                        ),
-                      ),
+                              "${oneApartment.rooms ?? 0}",
+                              key: const ValueKey('roomsCountStatic'),
+                              style: TextStyle(
+                                color: ref
+                                    .read(themeModeNotifier.notifier)
+                                    .textTheme(ref: ref),
+                              ),
+                            ),
                     ),
                   ),
                   Image(
                     image: AssetImage(imageAboutApartmentRoom),
                     width: 32,
                     height: 32,
-                    color: ref.read(themeModeNotifier.notifier).textTheme(ref: ref),
+                    color: ref
+                        .read(themeModeNotifier.notifier)
+                        .textTheme(ref: ref),
                   ),
                   const SizedBox(width: 10),
                 ],
@@ -183,22 +203,33 @@ class AnimateBathRoomBox extends ConsumerWidget {
     return Padding(
       padding: const EdgeInsets.all(5),
       child: AnimatedContainer(
-        duration: const Duration(milliseconds:500),
+        duration: const Duration(milliseconds: 500),
         curve: Curves.easeInOut,
         decoration: BoxDecoration(
           border: Border.all(
             color: isRoomBathSizeChange
                 ? (ref.read(themeModeNotifier.notifier).primaryTheme(ref: ref))
-                : (ref.read(themeModeNotifier.notifier).primary300Theme(ref: ref)),
+                : (ref
+                    .read(themeModeNotifier.notifier)
+                    .primary300Theme(ref: ref)),
             width: isRoomBathSizeChange ? 1.5 : .5,
           ),
           borderRadius: BorderRadius.circular(8),
         ),
         child: OutlinedButton(
           onPressed: () {
-            ref.read(bathSizeChangeProvider.notifier).state = !isRoomBathSizeChange;
+            ref.read(bathSizeChangeProvider.notifier).state =
+                !isRoomBathSizeChange;
           },
-          style: outlinedButton(themeMode: themeMode, context: context).copyWith(
+          style: outlinedButton(
+                  primaryColor: ref
+                      .read(themeModeNotifier.notifier)
+                      .primaryTheme(ref: ref),
+                  containerColor: ref
+                      .read(themeModeNotifier.notifier)
+                      .containerTheme(ref: ref),
+                  context: context)
+              .copyWith(
             padding: const WidgetStatePropertyAll(EdgeInsets.all(10)),
             overlayColor: const WidgetStatePropertyAll(Colors.transparent),
           ),
@@ -207,7 +238,8 @@ class AnimateBathRoomBox extends ConsumerWidget {
               Text(
                 SetLocalization.of(context)!.getTranslateValue("bathrooms"),
                 style: TextStyle(
-                  color: ref.read(themeModeNotifier.notifier).textTheme(ref: ref),
+                  color:
+                      ref.read(themeModeNotifier.notifier).textTheme(ref: ref),
                 ),
               ),
               Row(
@@ -224,20 +256,24 @@ class AnimateBathRoomBox extends ConsumerWidget {
                       ),
                       child: isRoomBathSizeChange
                           ? Text(
-                        "${oneApartment.bathrooms ?? 0}",
-                        key: const ValueKey('bathroomsCount'),
-                        style: TextStyle(
-                          fontWeight: FontWeight.bold,
-                          color: ref.read(themeModeNotifier.notifier).primaryTheme(ref: ref),
-                        ),
-                      )
+                              "${oneApartment.bathrooms ?? 0}",
+                              key: const ValueKey('bathroomsCount'),
+                              style: TextStyle(
+                                fontWeight: FontWeight.bold,
+                                color: ref
+                                    .read(themeModeNotifier.notifier)
+                                    .primaryTheme(ref: ref),
+                              ),
+                            )
                           : Text(
-                        "${oneApartment.bathrooms ?? 0}",
-                        key: const ValueKey('bathroomsCountStatic'),
-                        style: TextStyle(
-                          color: ref.read(themeModeNotifier.notifier).textTheme(ref: ref),
-                        ),
-                      ),
+                              "${oneApartment.bathrooms ?? 0}",
+                              key: const ValueKey('bathroomsCountStatic'),
+                              style: TextStyle(
+                                color: ref
+                                    .read(themeModeNotifier.notifier)
+                                    .textTheme(ref: ref),
+                              ),
+                            ),
                     ),
                   ),
                   Image(
@@ -245,7 +281,9 @@ class AnimateBathRoomBox extends ConsumerWidget {
                         "assets/images/apartments_images/about_apartment/bathroom.png"),
                     width: 32,
                     height: 32,
-                    color: ref.read(themeModeNotifier.notifier).textTheme(ref: ref),
+                    color: ref
+                        .read(themeModeNotifier.notifier)
+                        .textTheme(ref: ref),
                   ),
                   const SizedBox(width: 10),
                 ],
@@ -279,7 +317,9 @@ class AnimateAreaBox extends ConsumerWidget {
           border: Border.all(
             color: isAreaSizeChange
                 ? (ref.read(themeModeNotifier.notifier).primaryTheme(ref: ref))
-                : (ref.read(themeModeNotifier.notifier).primary300Theme(ref: ref)),
+                : (ref
+                    .read(themeModeNotifier.notifier)
+                    .primary300Theme(ref: ref)),
             width: isAreaSizeChange ? 1.5 : .5,
           ),
           borderRadius: BorderRadius.circular(8),
@@ -288,7 +328,15 @@ class AnimateAreaBox extends ConsumerWidget {
           onPressed: () {
             ref.read(areaSizeChangeProvider.notifier).state = !isAreaSizeChange;
           },
-          style: outlinedButton(themeMode: themeMode, context: context).copyWith(
+          style: outlinedButton(
+                  primaryColor: ref
+                      .read(themeModeNotifier.notifier)
+                      .primaryTheme(ref: ref),
+                  containerColor: ref
+                      .read(themeModeNotifier.notifier)
+                      .containerTheme(ref: ref),
+                  context: context)
+              .copyWith(
             padding: const WidgetStatePropertyAll(EdgeInsets.all(10)),
             overlayColor: const WidgetStatePropertyAll(Colors.transparent),
           ),
@@ -297,8 +345,8 @@ class AnimateAreaBox extends ConsumerWidget {
               Text(
                 SetLocalization.of(context)!.getTranslateValue("area"),
                 style: TextStyle(
-                  color: ref.read(themeModeNotifier.notifier).textTheme(ref: ref),
-
+                  color:
+                      ref.read(themeModeNotifier.notifier).textTheme(ref: ref),
                 ),
               ),
               Row(
@@ -315,21 +363,24 @@ class AnimateAreaBox extends ConsumerWidget {
                       ),
                       child: isAreaSizeChange
                           ? Text(
-                        "${oneApartment.squareMeters ?? 0} ${SetLocalization
-                          .of(context)!.getTranslateValue("m2")}",
-                        key: const ValueKey('areaSize'),
-                        style: TextStyle(
-                          fontWeight: FontWeight.bold,
-                          color: ref.read(themeModeNotifier.notifier).primaryTheme(ref: ref),
-                        ),
-                      )
+                              "${oneApartment.squareMeters ?? 0} ${SetLocalization.of(context)!.getTranslateValue("m2")}",
+                              key: const ValueKey('areaSize'),
+                              style: TextStyle(
+                                fontWeight: FontWeight.bold,
+                                color: ref
+                                    .read(themeModeNotifier.notifier)
+                                    .primaryTheme(ref: ref),
+                              ),
+                            )
                           : Text(
-                        "${oneApartment.squareMeters ?? 0} ${SetLocalization.of(context)!.getTranslateValue("m2")}",
-                        key: const ValueKey('areaSizeStatic'),
-                        style: TextStyle(
-                          color: ref.read(themeModeNotifier.notifier).textTheme(ref: ref),
-                        ),
-                      ),
+                              "${oneApartment.squareMeters ?? 0} ${SetLocalization.of(context)!.getTranslateValue("m2")}",
+                              key: const ValueKey('areaSizeStatic'),
+                              style: TextStyle(
+                                color: ref
+                                    .read(themeModeNotifier.notifier)
+                                    .textTheme(ref: ref),
+                              ),
+                            ),
                     ),
                   ),
                   Image(
@@ -337,7 +388,9 @@ class AnimateAreaBox extends ConsumerWidget {
                         "assets/images/apartments_images/about_apartment/area.png"),
                     width: 32,
                     height: 32,
-                    color: ref.read(themeModeNotifier.notifier).textTheme(ref: ref),
+                    color: ref
+                        .read(themeModeNotifier.notifier)
+                        .textTheme(ref: ref),
                   ),
                 ],
               ),

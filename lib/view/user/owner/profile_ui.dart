@@ -51,13 +51,14 @@ class _ProfileOfOwnerConsumerState extends ConsumerState<ProfileUi> {
   var countOfApartmentsOfOwner = 0;
 
   void initializeValue() async {
-    (await sp) .setString("name", ref.read(userData)?.name ?? "user name");
+    (await sp).setString("name", ref.read(userData)?.name ?? "user name");
     ref.read(updateUsernameController.notifier).state.text =
-        (await sp) .getString("name") ?? "user name";
-    (await sp) .setString("phone", ref.read(userData)?.phone??"9700000000");
+        (await sp).getString("name") ?? "user name";
+    (await sp).setString("phone", ref.read(userData)?.phone ?? "9700000000");
 
     ref.read(updatePhoneNumberController.notifier).state.text =
-        (await sp) .getString("phone")?.substring(3) ?? "97000000000".substring(3);
+        (await sp).getString("phone")?.substring(3) ??
+            "97000000000".substring(3);
 
     ref.read(userData)?.phone?.startsWith("970") ?? true
         ? ref.read(selectedCountryCode.notifier).state = "+970"
@@ -88,11 +89,10 @@ class _ProfileOfOwnerConsumerState extends ConsumerState<ProfileUi> {
   Widget build(BuildContext context) {
     return ColorfulSafeArea(
       bottomColor: Colors.transparent,
-      color:ref.read(themeModeNotifier.notifier).primaryTheme(ref: ref),
-
+      color: ref.read(themeModeNotifier.notifier).primaryTheme(ref: ref),
       child: Scaffold(
-        backgroundColor:ref.read(themeModeNotifier.notifier).backgroundAppTheme(ref: ref)
-,
+        backgroundColor:
+            ref.read(themeModeNotifier.notifier).backgroundAppTheme(ref: ref),
         body: ref.watch(loadProfileImageNotifier).isLoading != false ||
                 ref.watch(compressAndUploadImageNotifier).isLoading
             // &&

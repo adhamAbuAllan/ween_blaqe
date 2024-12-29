@@ -5,7 +5,6 @@ import 'package:ween_blaqe/view/apartment/apartment_of_owner/create_apartment/wi
 import 'package:ween_blaqe/constants/strings.dart';
 import 'package:ween_blaqe/core/utils/funcations/route_pages/push_routes.dart';
 import '../../../../constants/localization.dart';
-import '../../../../constants/nums.dart';
 import '../../../../controller/provider_controllers/providers/apartment_provider.dart';
 import '../../../../controller/provider_controllers/providers/color_provider.dart';
 import '../../../../controller/provider_controllers/providers/snack_bar_provider.dart';
@@ -40,7 +39,7 @@ class _SecondStepUiState extends ConsumerState<SecondStepUi> {
         body: SingleChildScrollView(
           child: Column(
             children: [
-              CreateApartmentButtonsWidgets(
+              ButtonsCreateApartmentWidgets(
                 onPressed: () {
                   if (ref.read(advantagesNotifer).chosen.length < 5) {
                     ref.read(showSnackBarNotifier.notifier).showNormalSnackBar(

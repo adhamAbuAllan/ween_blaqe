@@ -5,7 +5,6 @@ import 'package:ween_blaqe/controller/provider_controllers/providers/color_provi
 
 import '../../../../../constants/coordination.dart';
 import '../../../../../constants/get_it_controller.dart';
-import '../../../../../constants/nums.dart';
 import '../../../../../controller/provider_controllers/providers/apartment_provider.dart';
 
 class AppBarOwnerApartmentsWidget extends ConsumerStatefulWidget implements
@@ -27,15 +26,13 @@ class _AppbarOwnerApartmentsWidgetState extends ConsumerState<AppBarOwnerApartme
 
 
 
-      backgroundColor: themeMode.isLight
-          ? kPrimaryColorLightMode
-          : kPrimaryColorDarkMode,
+      backgroundColor: ref.read(themeModeNotifier.notifier).primaryTheme(ref: ref),
       title: Text(SetLocalization.of(context)!.getTranslateValue
         ("your_apartments"),
           style: TextStyle(
               fontSize:
               getIt<AppDimension>().isSmallScreen(context) ? 16 : null,
-              color: ref.read(themeModeNotifier.notifier).textTheme(ref: ref))),
+              color: Colors.white)),
       actions: ref.read(fetchApartmentNotifier).isOwnerHaveApartments
           ? [
         Padding(

@@ -31,7 +31,8 @@ class ContainerOfProfileWidget extends ConsumerWidget {
             getIt<AppDimension>().isSmallScreen(context) ? 0 : 10,
             5,
             getIt<AppDimension>().isSmallScreen(context) ? 0 : 10),
-        margin: const EdgeInsets.fromLTRB(10, 0, 10, 0),
+
+        margin: const EdgeInsets.fromLTRB(10, 50, 10, 30),
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(7),
           color: ref.read(themeModeNotifier.notifier).containerTheme(ref: ref),

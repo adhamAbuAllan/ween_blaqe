@@ -3,7 +3,6 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../../../../constants/coordination.dart';
 import '../../../../../constants/get_it_controller.dart';
-import '../../../../../constants/nums.dart';
 import '../../../../../controller/provider_controllers/providers/color_provider.dart';
 
 class ImageCreateApartmentStepsWidget extends ConsumerWidget {
@@ -15,16 +14,26 @@ class ImageCreateApartmentStepsWidget extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    double height =
+        getIt<AppDimension>().isSmallScreen(context) ? 65 / 1.1 : 65;
+    double width = getIt<AppDimension>().isSmallScreen(context) ? 65 / 1.1 : 65;
     return Padding(
       padding: const EdgeInsets.fromLTRB(25, 10, 25, 30),
       child: ref.read(themeModeNotifier.notifier).isLightMode
-          ? Image.asset(lightModeImage)
+          ? Image.asset(
+              lightModeImage,
+              width:
+                  width,
+              height:
+                  height,
+              fit: BoxFit.fill,
+            )
           : Image.asset(
               darkModeImage,
               width:
-                  getIt<AppDimension>().isSmallScreen(context) ? 65 / 1.1 : 65,
+                  width,
               height:
-                  getIt<AppDimension>().isSmallScreen(context) ? 65 / 1.1 : 65,
+                  height,
               fit: BoxFit.fill,
             ),
     );
@@ -37,8 +46,10 @@ class FirstStepImageWidget extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     return const ImageCreateApartmentStepsWidget(
-      lightModeImage:'assets/images/apartments_images/images_to_create_apartment/step_one.png' ,
-      darkModeImage: 'assets/images/apartments_images/images_to_create_apartment/first_setp_dark_mode.png',
+      lightModeImage:
+          'assets/images/apartments_images/images_to_create_apartment/step_one.png',
+      darkModeImage:
+          'assets/images/apartments_images/images_to_create_apartment/first_setp_dark_mode.png',
     );
   }
 }
@@ -49,8 +60,10 @@ class SecondStepImageWidget extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     return const ImageCreateApartmentStepsWidget(
-      lightModeImage:'assets/images/apartments_images/images_to_create_apartment/second_step.png' ,
-      darkModeImage: 'assets/images/apartments_images/images_to_create_apartment/second_step_dark_mode.png',
+      lightModeImage:
+          'assets/images/apartments_images/images_to_create_apartment/second_step.png',
+      darkModeImage:
+          'assets/images/apartments_images/images_to_create_apartment/second_step_dark_mode.png',
     );
   }
 }
@@ -61,8 +74,10 @@ class ThirdStepImageWidget extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     return const ImageCreateApartmentStepsWidget(
-      lightModeImage: 'assets/images/apartments_images/images_to_create_apartment/step_three.png',
-      darkModeImage:'assets/images/apartments_images/images_to_create_apartment/thrid_setp_dark_mode.png' ,
+      lightModeImage:
+          'assets/images/apartments_images/images_to_create_apartment/step_three.png',
+      darkModeImage:
+          'assets/images/apartments_images/images_to_create_apartment/thrid_setp_dark_mode.png',
     );
   }
 }
@@ -72,7 +87,10 @@ class FourthStepImageWidget extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    return const ImageCreateApartmentStepsWidget(lightModeImage: 'assets/images/apartments_images/images_to_create_apartment/step_four.png',
-        darkModeImage: 'assets/images/apartments_images/images_to_create_apartment/fourth_step_dark_mode.png');
+    return const ImageCreateApartmentStepsWidget(
+        lightModeImage:
+            'assets/images/apartments_images/images_to_create_apartment/step_four.png',
+        darkModeImage:
+            'assets/images/apartments_images/images_to_create_apartment/fourth_step_dark_mode.png');
   }
 }

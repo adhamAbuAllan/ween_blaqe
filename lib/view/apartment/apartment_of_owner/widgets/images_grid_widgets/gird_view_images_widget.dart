@@ -103,13 +103,15 @@ class DefultEmptyGridWidget extends ConsumerWidget {
         children: [
           Icon(
             Icons.grid_view_rounded,
-            color: ref.read(themeModeNotifier.notifier).textTheme(ref: ref),
+            color: ref.read(themeModeNotifier.notifier).primary300Theme(ref:
+            ref,),
             size: getIt<AppDimension>().isSmallScreen(context) ?120 :150,
           ),
           Text(
             "${SetLocalization.of(context)?.getTranslateValue("selected_images_displayed_here")}",
             style: TextStyle(
-                color: ref.read(themeModeNotifier.notifier).textTheme(ref: ref),fontSize:
+                color: ref.read(themeModeNotifier.notifier).textTheme(ref:
+                ref,withOpacity: .7),fontSize:
             //check screen size
             getIt<AppDimension>().isSmallScreen(context) ? 16 :
             18),

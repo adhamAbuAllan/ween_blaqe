@@ -22,7 +22,6 @@ class _ContainerLogoutWidgetState extends ConsumerState<ContainerMenuWidget> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: const EdgeInsets.fromLTRB(0, 0, 0, 0),
       margin: const EdgeInsets.fromLTRB(10, 0, 10, 0),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(7),

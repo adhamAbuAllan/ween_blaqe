@@ -55,12 +55,9 @@ import 'package:ween_blaqe/session/new_session.dart';
 import 'constants/get_it_controller.dart';
 import 'constants/localization.dart';
 import 'constants/strings.dart';
-import 'controller/bookmark_controller.dart';
-import 'controller/models_controller/apartment_model_controller.dart';
 import 'controller/function_controller/connectivity_controller.dart';
 
 // import 'view/bookmark.dart';
-import 'controller/models_controller/user_model_controller.dart';
 import 'controller/provider_controllers/methods/local_methods/language_notifier.dart';
 import 'view/apartment/apartment_of_owner/update_apartment_ui.dart';
 import 'view/apartment/bookmark_ui.dart';
@@ -110,14 +107,10 @@ void main() async {
   // final Future<SharedPreferences> prefs = SharedPreferences.getInstance();
   // var token = (await sp).get("token");
   //for put
-  Get.put(ApartmentModelController());
-  Get.put(ApartmentModelController());
   Get.put(ChangeThemeMode());
   Get.put(ConnectivityController());
   // Get.put(OwnerController());
 
-  Get.put(UserModelController());
-  Get.put(BookmarkController()); //for testing
   // Get.put(BookmarkApartment());//for testing
   //for get
   // String savedLanguage = Get.put(LanguageController()).getSavedLanguage();

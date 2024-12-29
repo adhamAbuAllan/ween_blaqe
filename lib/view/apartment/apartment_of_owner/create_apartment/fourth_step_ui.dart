@@ -1,7 +1,6 @@
 import 'package:colorful_safe_area/colorful_safe_area.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:ween_blaqe/constants/nums.dart';
 import 'package:ween_blaqe/controller/provider_controllers/providers/apartment_provider.dart';
 import 'package:ween_blaqe/view/apartment/apartment_of_owner/create_apartment/widgets/create_apartment_buttons_widgets.dart';
 import 'package:ween_blaqe/view/apartment/apartment_of_owner/create_apartment/widgets/images_create_apartment_stpes_widgets.dart';
@@ -33,7 +32,7 @@ class _FourthStepUiState extends ConsumerState<FourthStepUi> {
         body: SingleChildScrollView(
           child: Column(
             children: [
-              CreateApartmentButtonsWidgets(
+              ButtonsCreateApartmentWidgets(
                 onPressed: () {
                   WidgetsBinding.instance.addPostFrameCallback((_) async {
                     ref
