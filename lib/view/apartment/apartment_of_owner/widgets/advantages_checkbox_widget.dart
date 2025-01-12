@@ -8,7 +8,6 @@ import '../../../../api/advantages.dart';
 import '../../../../constants/coordination.dart';
 import '../../../../constants/get_it_controller.dart';
 import '../../../../constants/localization.dart';
-import '../../../../constants/nums.dart';
 import '../../../../controller/provider_controllers/providers/color_provider.dart';
 import '../../../common_widgets/containers_widgets/container_load_widget.dart';
 
@@ -25,8 +24,8 @@ class _AdvantagesUpdateWidgetState
     extends ConsumerState<AdvantagesCheckBoxWidget> {
   @override
   Widget build(BuildContext context) {
-    final advantageState = ref.watch(advantagesNotifer);
-    final advantageNotifier = ref.read(advantagesNotifer.notifier);
+    final advantageState = ref.watch(advantagesNotifier);
+    final advantageNotifier = ref.read(advantagesNotifier.notifier);
 
     return ContainerLoadWidget(
         isLoading: advantageState.isDataLoading,
@@ -85,7 +84,7 @@ class CheckBoxWidget extends ConsumerStatefulWidget {
 class _CheckBoxWidgetState extends ConsumerState<CheckBoxWidget> {
   @override
   Widget build(BuildContext context) {
-    final advantageNotifier = ref.read(advantagesNotifer.notifier);
+    final advantageNotifier = ref.read(advantagesNotifier.notifier);
 
     return Checkbox(
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(2.6)),

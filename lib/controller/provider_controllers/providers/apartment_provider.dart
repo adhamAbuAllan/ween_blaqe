@@ -41,7 +41,7 @@ final deleteApartmentNotifier =
 final toggleOwnerButtonsNotifier =
     StateNotifierProvider<ToggleOwnerButtonsNotifier, UpdateApartmentState>(
         (ref) => ToggleOwnerButtonsNotifier());
-final advantagesNotifer =
+final advantagesNotifier =
     StateNotifierProvider<AdvantagesNotifier, AdvantageState>(
   (ref) => AdvantagesNotifier(),
 );

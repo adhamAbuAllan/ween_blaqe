@@ -2,10 +2,12 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter/material.dart';
 import 'package:ween_blaqe/controller/provider_controllers/providers/color_provider.dart';
 
-import '../../../../constants/nums.dart';
 import '../../providers/connectivity_provider.dart';
 import '../../statuses/show_snack_bar_state.dart';
-
+/// s [ShowSnackBarNotifier] class has two methods, first [showSnackBar] 
+/// that show when connection of wifi turn-off , or turn-on ,
+/// second [showNormalSnackBar] that show when user make an action that should
+/// to take a massage in the UI.
 class ShowSnackBarNotifier extends StateNotifier<ShowSnackBarState> {
   ShowSnackBarNotifier() : super(ShowSnackBarState());
 

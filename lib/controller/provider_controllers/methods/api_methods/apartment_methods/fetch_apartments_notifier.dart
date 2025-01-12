@@ -12,7 +12,7 @@ import 'package:http/http.dart' as http;
 
 class FetchApartmentsNotifier extends StateNotifier<ApartmentState> {
   FetchApartmentsNotifier() : super(ApartmentState());
-
+/// a [fetchApartments] usage to fetch apartment data.
   Future<Apartments> fetchApartments({
     String? type,
     int? cityId,
@@ -73,7 +73,7 @@ class FetchApartmentsNotifier extends StateNotifier<ApartmentState> {
     return Apartments(data: []);
   }
 }
-
+/// a [getApartmentsByOwner] method for owner apartments only.
 Future<Apartments> getApartmentsByOwner({WidgetRef? ref}) async {
   final url = Uri.parse(ServerWeenBalaqee.apartmentOwner);
   final token = (await sp).get("token");

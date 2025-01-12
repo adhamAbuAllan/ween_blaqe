@@ -8,7 +8,8 @@ import '../../providers/image_provider.dart';
 
 class ImageLocalNotifier extends StateNotifier<ImageState> {
   ImageLocalNotifier() : super(ImageState());
-
+/// a [pickImage] method that take a one image, even for profile of owner , or
+/// for apartment.
   Future<void> pickImage(
     ImageSource source,
     WidgetRef ref, {
@@ -28,7 +29,7 @@ class ImageLocalNotifier extends StateNotifier<ImageState> {
       imageFileList = <XFile>[pickedFile ?? XFile("$pickedFile")];
     }
   }
-
+/// a [doneState] check where the images that user canceled or added.
   void doneState(
       {required WidgetRef ref,
      required  List<String> cancelImages,
@@ -38,8 +39,13 @@ ref.read(cancelImagesNotifier.notifier).state = cancelImages;
     ref.read(imagesFileList.notifier).state = images;
   }
 
-  // when click on done button
-
+/// a [addImagesState] that check if user chose a multi images 'pickedFileList'
+///  or one image 'imagePicker'.
+/// and check if a list of 'images' has images before that if true, that make an add 
+/// method, else 'that-mean-is-null' make list of 'images' 
+///  = a new images or image 'imagePicker' , 'pickedFileList'.
+/// after that, when user add new images will add a path of images in a 
+/// 'newImagesNotifier' list than to send a response to api to upload new images.
   Future<void> addImagesState({
     required WidgetRef ref,
     ImageSource? source,

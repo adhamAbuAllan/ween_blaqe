@@ -2,7 +2,6 @@ import 'package:colorful_safe_area/colorful_safe_area.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:ween_blaqe/controller/provider_controllers/providers/apartment_provider.dart';
-import 'package:ween_blaqe/constants/nums.dart';
 import 'package:ween_blaqe/controller/provider_controllers/providers/color_provider.dart';
 import 'package:ween_blaqe/view/apartment/apartment_of_owner/widgets/dropdown_fields_widgets/cities_drop_down_widget.dart';
 import 'package:ween_blaqe/view/apartment/apartment_of_owner/widgets/dropdown_fields_widgets/types_drop_down_widget.dart';
@@ -46,9 +45,9 @@ class _UpdateApartmentUiState extends ConsumerState<UpdateApartmentUi> {
       if (ref.read(imagesFileList.notifier).state.isNotEmpty) {
         ref.read(imagesFileList.notifier).state.clear();
       }
-      if (ref.read(advantagesNotifer).chosen.isNotEmpty) {
-        ref.read(advantagesNotifer).chosen.clear();
-        debugPrint("chosen init ${ref.read(advantagesNotifer).chosen}");
+      if (ref.read(advantagesNotifier).chosen.isNotEmpty) {
+        ref.read(advantagesNotifier).chosen.clear();
+        debugPrint("chosen init ${ref.read(advantagesNotifier).chosen}");
       }
       if (ref.read(isApartmentImagesUpdated)) {
         ref.read(isApartmentImagesUpdated.notifier).state = false;
@@ -74,7 +73,7 @@ class _UpdateApartmentUiState extends ConsumerState<UpdateApartmentUi> {
       ref.read(cityNotifier).selectedCity?.name !=
           widget.oneApartment?.city?.name;
       ref
-          .read(advantagesNotifer.notifier)
+          .read(advantagesNotifier.notifier)
           .fetchAdvantages(alreadyAdv: widget.oneApartment!.advantages!);
 
       ref.read(addressController).text = widget.oneApartment?.location ?? "";

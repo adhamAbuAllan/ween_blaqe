@@ -93,9 +93,9 @@ class CreateApartmentNotifier extends StateNotifier<ApartmentState> {
         var apartmentId = json['data']['id'];
         debugPrint("apartmentId ->> $apartmentId");
 
-        await ref.read(advantagesNotifer.notifier).insertAdvInApartment(
+        await ref.read(advantagesNotifier.notifier).insertAdvInApartment(
             apartmentId: apartmentId.toString(),
-            advantageIds: ref.read(advantagesNotifer).chosen,
+            advantageIds: ref.read(advantagesNotifier).chosen,
             ref: ref,
             context: context);
         debugPrint("new Images are : $newImages");
@@ -111,7 +111,7 @@ class CreateApartmentNotifier extends StateNotifier<ApartmentState> {
         }
 
         var res = DataOfOneApartment.fromJson(json);
-        ref.read(advantagesNotifer).chosen.clear();
+        ref.read(advantagesNotifier).chosen.clear();
         return res;
       } else {
         WidgetsBinding.instance.addPostFrameCallback((_) async {

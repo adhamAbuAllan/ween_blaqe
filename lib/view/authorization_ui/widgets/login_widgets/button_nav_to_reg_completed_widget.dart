@@ -6,7 +6,6 @@ import '../../../../constants/coordination.dart';
 import '../../../../constants/get_it_controller.dart';
 import '../../../../constants/localization.dart';
 import '../../../../core/utils/function_that_effect_widgets/hide_keyboard.dart';
-import '../../../../core/utils/styles/button.dart';
 import '../../registration_ui.dart';
 
 class ButtonNavToRegCompletedWidget extends ConsumerWidget {

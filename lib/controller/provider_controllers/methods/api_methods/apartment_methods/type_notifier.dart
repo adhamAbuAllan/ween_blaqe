@@ -11,10 +11,11 @@ import '../../../statuses/type_state.dart';
 class TypeNotifier extends StateNotifier<TypeState> {
   TypeNotifier() : super(TypeState(types: [], isLoading: false));
 
-
+/// a [setSelectedType] method that to set a type that in dopdown menu apartment have before.
   void setSelectedType(TypeOfApartment type) {
     state = state.copyWith(selectedType: type);
   }
+  /// a [fetchTypes] to feetch types in dropdown of types
   Future<List?> fetchTypes() async {
     state = state.copyWith(isLoading: true);
     var url = Uri.parse(ServerWeenBalaqee.typeOfApartment);

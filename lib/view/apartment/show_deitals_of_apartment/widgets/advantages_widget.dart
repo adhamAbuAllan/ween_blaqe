@@ -8,7 +8,6 @@ import 'package:ween_blaqe/controller/provider_controllers/providers/color_provi
 
 import '../../../../api/advantages.dart';
 import '../../../../api/apartments_api/apartments.dart';
-import '../../../../constants/nums.dart';
 import 'show_all_advantages_button_widget.dart';
 
 // Get the advantagesNotifier state from Riverpod

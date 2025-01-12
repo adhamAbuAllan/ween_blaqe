@@ -70,8 +70,8 @@ class _ApartmentsOfOwnerUiState extends ConsumerState<ApartmentsOfOwnerUi>
 
   @override
   void deactivate() {
-    if (ref.read(advantagesNotifer).chosen.isNotEmpty) {
-      ref.read(advantagesNotifer).chosen.clear();
+    if (ref.read(advantagesNotifier).chosen.isNotEmpty) {
+      ref.read(advantagesNotifier).chosen.clear();
     }
     ref.read(toggleOwnerButtonsNotifier).isDelete = false;
     ref.read(toggleOwnerButtonsNotifier).isEdit = false;

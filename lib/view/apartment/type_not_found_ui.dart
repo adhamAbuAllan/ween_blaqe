@@ -1,7 +1,6 @@
 import 'package:colorful_safe_area/colorful_safe_area.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import '../../constants/nums.dart';
 import '../../controller/provider_controllers/providers/color_provider.dart';
 import 'widgets/not_found_type_widgets/button_not_found_widget.dart';
 import 'widgets/not_found_type_widgets/image_not_found_widget.dart';

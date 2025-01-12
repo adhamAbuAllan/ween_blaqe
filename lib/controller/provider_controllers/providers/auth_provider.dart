@@ -9,7 +9,7 @@ import 'package:ween_blaqe/controller/provider_controllers/methods/hybrid_method
 import '../../../api/users.dart';
 import '../methods/api_methods/auth_methods/register_notifier.dart';
 import '../methods/api_methods/auth_methods/send_noice_for_us_notifier.dart';
-import '../methods/api_methods/auth_methods/update_user_methods/change_data_of_user_notifier.dart';
+import '../methods/api_methods/auth_methods/update_user_methods/update_data_of_user_notifier.dart';
 import '../methods/api_methods/auth_methods/update_user_methods/change_password_notifier.dart';
 import '../methods/api_methods/auth_methods/update_user_methods/compress_and_upload_profile_image_notifier.dart';
 import '../methods/api_methods/auth_methods/load_profile_image_notifier.dart';

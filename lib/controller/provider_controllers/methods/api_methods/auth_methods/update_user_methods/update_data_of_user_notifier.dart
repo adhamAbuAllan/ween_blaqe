@@ -14,7 +14,7 @@ import '../../../../../../main.dart';
 
 class UpdateDataOfUserNotifier extends StateNotifier<AuthState> {
   UpdateDataOfUserNotifier() : super(AuthState());
-
+/// a [updateDataOfUser] method that usage to update data of user in database.
   Future<void> updateDataOfUser(WidgetRef ref, BuildContext context) async {
     String usernameControllerValue =
         ref

@@ -12,7 +12,9 @@ import '../../../../../../constants/strings.dart';
 
 class ChangePasswordNotifier extends StateNotifier<AuthState> {
   ChangePasswordNotifier() : super(AuthState());
-
+/// a [changePassword] method take 3 fields old password, new password, sure new
+/// password, that don't send a request or take a response until all 3 fields is 
+/// not empty.
   Future<void> changePassword({
     required WidgetRef ref,
     required BuildContext context,

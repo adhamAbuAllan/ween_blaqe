@@ -5,9 +5,7 @@ import 'package:ween_blaqe/view/common_widgets/button_widgets/outline_button_wid
 import '../../../../../../constants/coordination.dart';
 import '../../../../../../constants/get_it_controller.dart';
 import '../../../../../../constants/localization.dart';
-import '../../../../../../constants/nums.dart';
 import '../../../../../../core/utils/funcations/route_pages/push_routes.dart';
-import '../../../../../../core/utils/styles/button.dart';
 import '../../../../../../main.dart';
 import '../../../../../../session/sesstion_of_user.dart';
 

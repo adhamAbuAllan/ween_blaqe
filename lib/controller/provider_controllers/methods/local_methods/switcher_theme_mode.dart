@@ -4,7 +4,20 @@ import 'package:ween_blaqe/controller/provider_controllers/providers/color_provi
 
 import '../../../../constants/nums.dart';
 import '../../../../main.dart';
-
+/// a [ThemeModeNotifier] has tow part of methods , first part that what should
+/// the current theme mode be. and the second part of mthods 
+/// that what the theme of every widget should be.
+/// a first part of methods =
+/// [toggleThemeMode] to toogle between dark theme or light theme.
+/// [saveThemeMode] to save a last theme mode after toggle it.
+/// [loadThemeMode] to load what the lastest theme mode has been saved.
+/// a second part of methods =
+/// [containerTheme] for a container widget.
+/// [primaryTheme] for a primary widget.
+/// [primary300Theme] for the secondary of primary widget.
+/// [textTheme] for the text widget.
+/// [backgroundAppTheme] for the background of app.
+/// the 'isLightMode' told the app, that the theme should app take.
 class ThemeModeNotifier extends StateNotifier<bool> {
   ThemeModeNotifier() : super(false) {
     loadThemeMode();

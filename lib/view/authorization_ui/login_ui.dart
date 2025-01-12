@@ -2,7 +2,6 @@ import 'package:colorful_safe_area/colorful_safe_area.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:ween_blaqe/view/common_widgets/button_widgets/back_button_widget.dart';
-import '../../../../constants/nums.dart';
 import '../../controller/provider_controllers/providers/color_provider.dart';
 import 'widgets/login_widgets/button_login_completed_widget.dart';
 import 'widgets/login_widgets/button_nav_to_reg_completed_widget.dart';

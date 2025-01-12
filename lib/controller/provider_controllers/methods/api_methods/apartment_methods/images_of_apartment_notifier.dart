@@ -16,27 +16,8 @@ import 'package:http/http.dart' as http;
 
 class ImageApiNotifier extends StateNotifier<ImageState> {
   ImageApiNotifier() : super(ImageState());
-
-  Future<List<String>> fetchApartmentImages(String apartmentId) async {
-    String apiUrl = ServerWeenBalaqee.showApartmentImages;
-
-    final response = await http.post(
-      Uri.parse(apiUrl),
-      body: {'apartment_id': apartmentId},
-    );
-
-    if (response.statusCode == 200) {
-      final Map<String, dynamic> data = json.decode(response.body);
-      if (data['success']) {
-        return List<String>.from(data['image_urls']);
-      } else {
-        throw Exception(data['message']);
-      }
-    } else {
-      throw Exception('Failed to fetch images');
-    }
-  }
-
+/// a [compressAndUploadImages] method usage to compress an images and add an
+/// images for apartment according id of apartment.
   Future<void> compressAndUploadImages(
       {required WidgetRef ref,
       int apartmentIdToUpdate = -1,
@@ -81,7 +62,7 @@ class ImageApiNotifier extends StateNotifier<ImageState> {
 
     state = state.copyWith(isLoading: false);
   }
-
+/// [deleteImages] method to delete specific images according apartment id.
   Future<void> deleteImages(
       {required int apartmentId,
       required List<int> photoIds,
@@ -113,7 +94,7 @@ class ImageApiNotifier extends StateNotifier<ImageState> {
 
     state = state.copyWith(isLoading: false);
   }
-
+/// a [updateImages] to update images of apartment according apartment id.
   Future<void> updateImages(
       {required int apartmentId,
       required WidgetRef ref,

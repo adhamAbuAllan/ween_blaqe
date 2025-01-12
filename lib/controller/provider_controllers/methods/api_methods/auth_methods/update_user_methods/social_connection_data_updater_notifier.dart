@@ -12,7 +12,8 @@ import 'package:http/http.dart' as http;
 
 class SocialConnectionDataUpdaterNotifier extends StateNotifier<AuthState> {
   SocialConnectionDataUpdaterNotifier() : super(AuthState());
-
+/// a [socialConnectionDataUpdater] usage to set or Update the data of social
+///  conneectoin for owner. 
   Future<void> socialConnectionDataUpdater(WidgetRef ref, BuildContext context,) async {
     state = state.copyWith(isLoading: true);
     final ownerId = NewSession.get("id", -1);

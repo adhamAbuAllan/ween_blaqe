@@ -5,7 +5,6 @@ import '../../../../api/apartments_api/apartments.dart';
 import '../../../../constants/coordination.dart';
 import '../../../../constants/get_it_controller.dart';
 import '../../../../constants/localization.dart';
-import '../../../../constants/nums.dart';
 
 class GeneralInfoWidget extends ConsumerWidget {
   const GeneralInfoWidget({super.key,

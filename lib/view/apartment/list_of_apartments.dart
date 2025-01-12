@@ -25,7 +25,6 @@ import 'package:ween_blaqe/view/apartment/widgets'
     '.dart';
 import 'package:ween_blaqe/view/apartment/widgets/type_text_widget.dart';
 
-import '../../constants/nums.dart';
 import '../../controller/provider_controllers/providers/apartment_provider.dart';
 import 'apartment_of_owner/widgets/apartment_of_owner_ui_widgets/delete_button_widget.dart';
 import 'apartment_of_owner/widgets/apartment_of_owner_ui_widgets/button_update_widget.dart';

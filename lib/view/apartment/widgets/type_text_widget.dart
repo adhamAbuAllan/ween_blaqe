@@ -3,7 +3,6 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:ween_blaqe/controller/provider_controllers/providers/color_provider.dart';
 
 import '../../../api/apartments_api/apartments.dart';
-import '../../../constants/nums.dart';
 
 class TypeTextWidget extends ConsumerWidget {
   const TypeTextWidget({super.key,required this.apartmentsRes,required this

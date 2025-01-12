@@ -4,7 +4,9 @@ import 'package:flutter/material.dart';
 
 import '../../../../view/common_widgets/alert_widgets/alert_normal_widget.dart';
 import '../../../../view/common_widgets/alert_widgets/alert_with_two_buttons_widget.dart';
-
+/// a [AlertNotifier] has two alerts , [normalAlert] method that has one Button 
+/// "ok btn", and [alertWithTwoBtn] method that has two buttons "ok btn", 
+/// "cancel btn".
 class AlertNotifier extends StateNotifier<AlertState> {
   AlertNotifier() : super(AlertState());
 

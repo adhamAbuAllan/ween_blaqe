@@ -4,7 +4,6 @@ import 'package:ween_blaqe/controller/provider_controllers/providers/color_provi
 
 import '../../../constants/coordination.dart';
 import '../../../constants/get_it_controller.dart';
-import '../../../constants/nums.dart';
 
 class CreateApartmentTitleWidget extends ConsumerWidget {
   const CreateApartmentTitleWidget({super.key,required this.title});

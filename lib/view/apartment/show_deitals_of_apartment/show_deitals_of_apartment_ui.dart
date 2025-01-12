@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:ween_blaqe/api/advantages.dart';
 import 'package:ween_blaqe/api/apartments_api/apartments.dart';
 import 'package:ween_blaqe/view/apartment/show_deitals_of_apartment'
     '/show_deitals_of_image/show_detials_of_image_ui.dart';
@@ -22,7 +21,6 @@ import 'package:ween_blaqe/view/common_widgets/button_widgets/back_button_widget
 
 import '../../../../constants/coordination.dart';
 import '../../../../constants/get_it_controller.dart';
-import '../../../../constants/nums.dart';
 import '../../../controller/provider_controllers/providers/apartment_provider.dart';
 import '../../../controller/provider_controllers/providers/color_provider.dart';
 

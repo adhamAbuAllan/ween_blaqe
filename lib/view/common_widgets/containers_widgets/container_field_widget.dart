@@ -2,15 +2,12 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:get/get.dart';
-import 'package:ween_blaqe/controller/function_controller/change_theme_mode.dart';
 import 'package:ween_blaqe/controller/provider_controllers/providers/apartment_provider.dart';
 import 'package:ween_blaqe/controller/provider_controllers/providers/color_provider.dart';
 import 'package:ween_blaqe/view/common_widgets/containers_widgets/container_widget.dart';
 
 import '../../../constants/coordination.dart';
 import '../../../constants/get_it_controller.dart';
-import '../../../constants/nums.dart';
 import '../text_form_field_widgets/text_form_filed_widget.dart';
 
 //container input text class widget

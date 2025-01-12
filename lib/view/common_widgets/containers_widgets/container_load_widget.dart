@@ -6,7 +6,6 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../../constants/coordination.dart';
 import '../../../constants/get_it_controller.dart';
 import '../../../constants/localization.dart';
-import '../../../constants/nums.dart';
 import '../../../controller/provider_controllers/providers/color_provider.dart';
 
 class ContainerLoadWidget extends ConsumerStatefulWidget {

@@ -3,7 +3,6 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:ween_blaqe/view/apartment/widgets/types_of_apartments_widgets'
     '/pointer_type_widget.dart';
 
-import '../../../../constants/nums.dart';
 import '../../../../controller/provider_controllers/providers/apartment_provider.dart';
 import 'package:ween_blaqe/constants/coordination.dart';
 

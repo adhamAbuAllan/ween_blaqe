@@ -6,7 +6,6 @@ import 'package:ween_blaqe/controller/provider_controllers/providers/apartment_p
 import '../../../../../constants/coordination.dart';
 import '../../../../../constants/get_it_controller.dart';
 import '../../../../../constants/localization.dart';
-import '../../../../../constants/nums.dart';
 import '../../../../controller/provider_controllers/providers/color_provider.dart';
 
 class AboutOwnerWidget extends ConsumerStatefulWidget {

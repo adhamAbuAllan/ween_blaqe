@@ -10,7 +10,7 @@ import '../../../statuses/auth_state.dart';
 
 class RefreshUserDataNotifier extends StateNotifier<AuthState> {
   RefreshUserDataNotifier() : super(AuthState());
-
+/// a [refreshUserData] method usage to get a lastest data of user from database.
   Future<User?> refreshUserData({required int userId, required WidgetRef ref})
   async {
     final url =

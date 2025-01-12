@@ -47,12 +47,12 @@ class ApartmentFeaturesAvailableTableWidget extends ConsumerWidget {
                 .getTranslateValue("icon_near_advantage"))
       ],
       rows: List<DataRow>.generate(
-          ref.read(advantagesNotifer).advantages.length ,
+          ref.read(advantagesNotifier).advantages.length ,
           (index) => DataRow(cells: [
                 DataCell(Text(
-                    ref.read(advantagesNotifer).advantages[index].advName !=
+                    ref.read(advantagesNotifier).advantages[index].advName !=
                             null
-                        ? "${ref.read(advantagesNotifer).advantages[index].advName}"
+                        ? "${ref.read(advantagesNotifier).advantages[index].advName}"
                         : "null",
                     style: TextStyle(
                       fontSize: 14,
@@ -63,8 +63,8 @@ class ApartmentFeaturesAvailableTableWidget extends ConsumerWidget {
                 DataCell(Align(
                     alignment: Alignment.center,
                     child: Image.network(
-                      ref.read(advantagesNotifer).advantages[index].icon != null
-                          ? "${ref.read(advantagesNotifer)
+                      ref.read(advantagesNotifier).advantages[index].icon != null
+                          ? "${ref.read(advantagesNotifier)
                           .advantages[index].icon}"
                           : "null",
                       width: 24,

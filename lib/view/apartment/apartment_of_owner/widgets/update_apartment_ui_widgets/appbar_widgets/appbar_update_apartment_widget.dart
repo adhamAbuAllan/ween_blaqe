@@ -105,7 +105,7 @@ class _AppbarEditApartmentWidgetState
                     ?.where((e) => e.id == widget.oneApartment.id);
                 var imagesApi = apartmentsOfOwnerNotifier?.first.photos;
 
-                if (ref.read(advantagesNotifer).chosen.length < 5) {
+                if (ref.read(advantagesNotifier).chosen.length < 5) {
                   ref.read(showSnackBarNotifier.notifier).showNormalSnackBar(
                       backgroundColor: ref.read(themeModeNotifier.notifier).backgroundAppTheme(ref: ref),
                       textColor: ref.read(themeModeNotifier.notifier).textTheme(ref: ref),

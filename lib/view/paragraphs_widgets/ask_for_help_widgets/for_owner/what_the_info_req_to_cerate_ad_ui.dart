@@ -29,7 +29,7 @@ class _WhatTheInfoReqToCreateAdState
   void initState() {
     super.initState();
     WidgetsBinding.instance.addPostFrameCallback((_) async {
-      await ref.read(advantagesNotifer.notifier).fetchAdvantages();
+      await ref.read(advantagesNotifier.notifier).fetchAdvantages();
     });
   }
 
@@ -45,7 +45,7 @@ class _WhatTheInfoReqToCreateAdState
           backgroundColor:
               ref.read(themeModeNotifier.notifier).primaryTheme(ref: ref),
         ),
-        body: ref.watch(advantagesNotifer).isDataLoading
+        body: ref.watch(advantagesNotifier).isDataLoading
             ? const LongParagraphReadySkeletonUi()
             : SingleChildScrollView(
                 child: Column(

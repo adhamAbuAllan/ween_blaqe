@@ -2,7 +2,6 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter/material.dart';
 
 import '../../../api/photos.dart';
-import '../../../constants/nums.dart';
 import '../../../controller/provider_controllers/providers/apartment_provider.dart';
 import '../../../controller/provider_controllers/providers/color_provider.dart';
 

@@ -6,7 +6,6 @@ import 'package:ween_blaqe/view/apartment/apartment_of_owner/widgets/images_grid
 
 import '../../../api/apartments_api/apartments.dart';
 
-import '../../../constants/nums.dart';
 import '../../../controller/provider_controllers/providers/color_provider.dart';
 import '../../../controller/provider_controllers/providers/image_provider.dart';
 import 'widgets/images_grid_widgets/grid_images_appbar_widget.dart';

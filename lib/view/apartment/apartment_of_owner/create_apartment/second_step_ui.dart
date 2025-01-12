@@ -41,7 +41,7 @@ class _SecondStepUiState extends ConsumerState<SecondStepUi> {
             children: [
               ButtonsCreateApartmentWidgets(
                 onPressed: () {
-                  if (ref.read(advantagesNotifer).chosen.length < 5) {
+                  if (ref.read(advantagesNotifier).chosen.length < 5) {
                     ref.read(showSnackBarNotifier.notifier).showNormalSnackBar(
                         backgroundColor: ref.read(themeModeNotifier.notifier).backgroundAppTheme(ref: ref),
                         textColor: ref.read(themeModeNotifier.notifier).textTheme(ref: ref),

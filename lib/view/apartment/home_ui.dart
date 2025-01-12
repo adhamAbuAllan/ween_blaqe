@@ -3,6 +3,7 @@ import 'package:connectivity_plus/connectivity_plus.dart';
 // import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
+import 'package:ween_blaqe/api/apartments_api/apartments.dart';
 import 'package:ween_blaqe/controller/provider_controllers/providers/apartment_provider.dart';
 import 'package:ween_blaqe/controller/provider_controllers/providers/color_provider.dart';
 import 'package:ween_blaqe/controller/provider_controllers/providers/connectivity_provider.dart';
@@ -71,8 +72,7 @@ class _HomeUiState extends ConsumerState<HomeUi> {
   Widget build(BuildContext context) {
     var type = ref.watch(apartmentTypeNotifier.notifier).state;
     // var isAll = ref.read(isAllTypesOfApartmentNotifier);
-    var cityId = ref.read(selectedCityIdToFilter.notifier)
-        .state;
+    var cityId = ref.read(selectedCityIdToFilter.notifier).state;
     final apartmentsState = ref.watch(fetchApartmentNotifier);
 
     final apartmentsList = apartmentsState.apartmentsList;
@@ -88,123 +88,146 @@ class _HomeUiState extends ConsumerState<HomeUi> {
 // make a scetion , that to check if list of apartment is null and the
 // intrent is not connection
           return ref.watch(fetchApartmentNotifier).isLoading
-              ? Stack(
-                  children: [
-                    GestureDetector(
-                      child: SkeletonHomeUi(
-                        hasCitiesBar: true,
-                        scrollController:
-                            widget.scrollController ?? ScrollController(),
-                      ),
-                      onDoubleTap: () {
-                        WidgetsBinding.instance.addPostFrameCallback((_) async {
-                          await ref
-                              .read(fetchApartmentNotifier.notifier)
-                              .fetchApartments(
-                                  isOwnerApartments: false,
-                                  type: ref.read(apartmentTypeNotifier),
-                                  isAll: true,
-                                  cityId: 0);
-                          debugPrint(
-                              "isLoading status ${apartmentState.isLoading}");
-                        });
-                        ref.read(isSebhaVisibleNotifier.notifier).state !=
-                            ref.read(isSebhaVisibleNotifier.notifier).state;
-                        debugPrint("");
-                      },
-                    ),
-                    apartmentsList.data?.isEmpty ?? false
-                        ? const SizedBox()
-                        : const SebhaButtonWidget(),
-                  ],
-                )
+              ? _buildSkeleton(apartmentsList)
               : (apartmentsList.data?.isEmpty ?? false
                   ? TypeNotFoundUi(
                       type: type,
                     )
-                  : RefreshIndicator(
-                      triggerMode: RefreshIndicatorTriggerMode.anywhere,
-                      backgroundColor: ref.read(themeModeNotifier.notifier).containerTheme(ref: ref),
-                      displacement: 100 * 3,
-                      semanticsValue: const Text("refresh").toString(),
-                      color: ref.read(themeModeNotifier.notifier).primaryTheme(ref: ref),
-                      onRefresh: () async {
-
-                        ref.read(isAllTypesOfApartmentNotifier.notifier).state =
-                            true;
-                        ref.read(selectedCityIdToFilter.notifier)
-                            .state = 0;
-                        WidgetsBinding.instance.addPostFrameCallback((_) async {
-                          await ref
-                              .read(fetchApartmentNotifier.notifier)
-                              .fetchApartments(
-                                  isOwnerApartments: false,
-                                  isAll: true,
-                                  cityId: 0);
-                        });
-                        ref.read(isBoyStudentNotifier.notifier).state = false;
-                        ref.read(isGirlStudentNotifier.notifier).state = false;
-                        ref.read(isFamiliesNotifier.notifier).state = false;
-                      },
-                      child: GestureDetector(
-                          onTap: () {
-                            ref.read(isSebhaVisibleNotifier.notifier).state =
-                                !ref.read(isSebhaVisibleNotifier);
-                          },
-                          child: Stack(
-                              alignment: NewSession.get("language", "ar") ==
-                                      "en"
-                                          ""
-                                  ? Alignment.topLeft
-                                  : Alignment.topRight,
-                              children: [
-                                // const ApartmentsListConsumer(),
-
-                                ApartmentsListWidget(
-                                  haveCitiesBar: true,
-                                  onClick: () async {
-
-                                    if (isAllTypesOfApartment) {
-                                      WidgetsBinding.instance
-                                          .addPostFrameCallback((_) async {
-                                        await ref
-                                            .watch(
-                                                fetchApartmentNotifier.notifier)
-                                            .fetchApartments(
-                                              isOwnerApartments: false,
-                                              isAll: true,
-                                              cityId: cityId,
-                                            );
-                                      });
-                                    } else {
-                                      ref
-                                          .read(isAllTypesOfApartmentNotifier
-                                              .notifier)
-                                          .state = true;
-                                      ref
-                                          .watch(
-                                              fetchApartmentNotifier.notifier)
-                                          .fetchApartments(
-                                            isOwnerApartments: false,
-                                            isAll: isAllTypesOfApartment,
-                                            type: type,
-                                            cityId: cityId,
-                                          );
-                                    }
-                                  },
-                                  apartmentsRes: apartmentsList,
-                                  // ref.watch
-                                  //   (fetchApartmentNotifier).apartmentsList,
-                                  scrollController: widget.scrollController,
-                                ), // list of apartments
-                                if (!ref
-                                    .watch(connectivityNotifier.notifier)
-                                    .isConnected)
-                                  const SebhaButtonWidget()
-                                else
-                                  const ShowTypesButtonWidget(),
-                                const ShowApartmentTypesBoxWidget() // list of types
-                              ]))));
+                  : buildRefreshIndicator(
+                      isAllTypesOfApartment, cityId, type, apartmentsList));
         });
+  }
+
+
+
+  /// a widgets that has been extract.
+  RefreshIndicator buildRefreshIndicator(bool isAllTypesOfApartment, int cityId,
+      String type, Apartments apartmentsList) {
+    return RefreshIndicator(
+        triggerMode: RefreshIndicatorTriggerMode.anywhere,
+        backgroundColor:
+            ref.read(themeModeNotifier.notifier).containerTheme(ref: ref),
+        displacement: 100 * 3,
+        semanticsValue: const Text("refresh").toString(),
+        color: ref.read(themeModeNotifier.notifier).primaryTheme(ref: ref),
+        onRefresh: () async {
+          ref.read(isAllTypesOfApartmentNotifier.notifier).state = true;
+          ref.read(selectedCityIdToFilter.notifier).state = 0;
+          WidgetsBinding.instance.addPostFrameCallback((_) async {
+            await ref.read(fetchApartmentNotifier.notifier).fetchApartments(
+                isOwnerApartments: false, isAll: true, cityId: 0);
+          });
+          ref.read(isBoyStudentNotifier.notifier).state = false;
+          ref.read(isGirlStudentNotifier.notifier).state = false;
+          ref.read(isFamiliesNotifier.notifier).state = false;
+        },
+        child: ListApartmentWithTypeBtn(
+            ref: ref,
+            isAllTypesOfApartment: isAllTypesOfApartment,
+            cityId: cityId,
+            type: type,
+            apartmentsList: apartmentsList,
+            widget: widget));
+  }
+
+  Stack _buildSkeleton(Apartments apartmentsList) {
+    return Stack(
+      children: [
+        GestureDetector(
+          child: SkeletonHomeUi(
+            hasCitiesBar: true,
+            scrollController: widget.scrollController ?? ScrollController(),
+          ),
+          onDoubleTap: () {
+            WidgetsBinding.instance.addPostFrameCallback((_) async {
+              await ref.read(fetchApartmentNotifier.notifier).fetchApartments(
+                  isOwnerApartments: false,
+                  type: ref.read(apartmentTypeNotifier),
+                  isAll: true,
+                  cityId: 0);
+              debugPrint("isLoading status ${apartmentState.isLoading}");
+            });
+            ref.read(isSebhaVisibleNotifier.notifier).state !=
+                ref.read(isSebhaVisibleNotifier.notifier).state;
+            debugPrint("");
+          },
+        ),
+        apartmentsList.data?.isEmpty ?? false
+            ? const SizedBox()
+            : const SebhaButtonWidget(),
+      ],
+    );
+  }
+}
+
+class ListApartmentWithTypeBtn extends StatelessWidget {
+  const ListApartmentWithTypeBtn({
+    super.key,
+    required this.ref,
+    required this.isAllTypesOfApartment,
+    required this.cityId,
+    required this.type,
+    required this.apartmentsList,
+    required this.widget,
+  });
+
+  final WidgetRef ref;
+  final bool isAllTypesOfApartment;
+  final int cityId;
+  final String type;
+  final Apartments apartmentsList;
+  final HomeUi widget;
+
+  @override
+  Widget build(BuildContext context) {
+    return GestureDetector(
+        onTap: () {
+          ref.read(isSebhaVisibleNotifier.notifier).state =
+              !ref.read(isSebhaVisibleNotifier);
+        },
+        child: Stack(
+            alignment: NewSession.get("language", "ar") ==
+                    "en"
+                        ""
+                ? Alignment.topLeft
+                : Alignment.topRight,
+            children: [
+              // const ApartmentsListConsumer(),
+
+              ApartmentsListWidget(
+                haveCitiesBar: true,
+                onClick: () async {
+                  if (isAllTypesOfApartment) {
+                    WidgetsBinding.instance.addPostFrameCallback((_) async {
+                      await ref
+                          .watch(fetchApartmentNotifier.notifier)
+                          .fetchApartments(
+                            isOwnerApartments: false,
+                            isAll: true,
+                            cityId: cityId,
+                          );
+                    });
+                  } else {
+                    ref.read(isAllTypesOfApartmentNotifier.notifier).state =
+                        true;
+                    ref.watch(fetchApartmentNotifier.notifier).fetchApartments(
+                          isOwnerApartments: false,
+                          isAll: isAllTypesOfApartment,
+                          type: type,
+                          cityId: cityId,
+                        );
+                  }
+                },
+                apartmentsRes: apartmentsList,
+                // ref.watch
+                //   (fetchApartmentNotifier).apartmentsList,
+                scrollController: widget.scrollController,
+              ), // list of apartments
+              if (!ref.watch(connectivityNotifier.notifier).isConnected)
+                const SebhaButtonWidget()
+              else
+                const ShowTypesButtonWidget(),
+              const ShowApartmentTypesBoxWidget() // list of types
+            ]));
   }
 }

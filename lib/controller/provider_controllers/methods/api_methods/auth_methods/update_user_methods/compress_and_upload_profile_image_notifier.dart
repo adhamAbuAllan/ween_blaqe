@@ -15,7 +15,8 @@ import '../../../../../../constants/strings.dart';
 
 class CompressAndUploadProfileImageNotifier extends StateNotifier<AuthState> {
   CompressAndUploadProfileImageNotifier() : super(AuthState());
-
+/// a [compressAndUploadProfileImage] method usage to set or update image of 
+/// user with compress it.
   Future<void> compressAndUploadProfileImage(
       XFile imageFile, WidgetRef ref, BuildContext context) async {
     Uri url = Uri.parse(

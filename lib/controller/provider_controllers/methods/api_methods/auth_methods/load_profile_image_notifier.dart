@@ -10,6 +10,8 @@ import '../../../../../main.dart';
 import '../../../../../session/new_session.dart';
 
 class LoadProfileImageNotifier extends StateNotifier<AuthState> {
+/// a [LoadProfileImageNotifier] usage to fetch data of user even in profile 
+/// or to get the image of user 'if-exists'.
   LoadProfileImageNotifier() : super(AuthState());
   Future<String> loadProfileImage( WidgetRef
   ref) async {

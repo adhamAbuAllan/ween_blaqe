@@ -12,29 +12,34 @@ import '../../../../../main.dart';
 import '../../../providers/apartment_provider.dart';
 import '../../../providers/image_provider.dart';
 import '../../../statuses/advantage_state.dart';
+import 'package:ween_blaqe/view/apartment/apartment_of_owner/create_apartment/second_step_ui.dart';
+
 
 class AdvantagesNotifier extends StateNotifier<AdvantageState> {
   AdvantagesNotifier() : super(AdvantageState());
-
+/// the [initChosenValues] method 
   initChosenValues({required List<Advantages> advantages}) {
     for (var advantage in advantages) {
       state.chosen.add(advantage.id ?? 0);
     }
     return state.chosen;
   }
-
+/// a [insertAdvInApartment]
   Future<void> insertAdvInApartment(
       {required String apartmentId,
       required List<int> advantageIds,
       required WidgetRef ref,
       required BuildContext context}) async {
+    /// a [advantagesApiNotifier] is the current advantages of apartment. 'if
+    /// -exists'.
     var advantagesApiNotifier = ref.read(advantagesApi.notifier).state;
-    var advantageChosen = ref.read(advantagesNotifer).chosen;
-    var token = (await sp).get("token"); // Replace with your token
-    // fetching logic
+    /// a [advantageChosen] is an advantages that user chosen. a new advantages.
+    var advantageChosen = ref.read(advantagesNotifier).chosen;
+    var token = (await sp).get("token");
     debugPrint("loading...");
     final String url = ServerWeenBalaqee.apartmentAdvantagesInsert;
-
+/// two important thing to insert advantages in any apartment first 'id of
+    /// apartment' second 'id of advantages'.
     final Map<String, dynamic> requestBody = {
       'apartment_id': apartmentId,
       'advantages': advantageIds,
@@ -48,7 +53,8 @@ class AdvantagesNotifier extends StateNotifier<AdvantageState> {
       },
       body: jsonEncode(requestBody),
     );
-// Future.delayed(const Duration(seconds: 2), () {
+    /// here usages to check if user make any changes to notiy him in the UI 
+    /// that has been make changes.
     if (response.statusCode == 200) {
       WidgetsBinding.instance.addPostFrameCallback((_) async {
         ref.read(isApartmentUpdatedNotifier.notifier).state = true;
@@ -117,7 +123,8 @@ class AdvantagesNotifier extends StateNotifier<AdvantageState> {
 
     state = state.copyWith(isDataLoading: false, dataStatus: false);
   }
-
+/// a [toggleChecked] method that usage when user want to add or remove feacher
+/// and then saved it in advantages state.
   void toggleChecked(int id) {
     // Toggle the 'checked' status of the selected advantage
     final updatedAdvantages = state.advantages.map((advantage) {
@@ -131,7 +138,7 @@ class AdvantagesNotifier extends StateNotifier<AdvantageState> {
   }
 
   void chooseAdvantage(int id) {
-    // Add or remove advantage ID from the chosen list
+    /// Add or remove advantage ID from the chosen list
     List<int> updatedChosen = List.from(state.chosen);
     if (updatedChosen.contains(id)) {
       updatedChosen.remove(id);
@@ -141,7 +148,8 @@ class AdvantagesNotifier extends StateNotifier<AdvantageState> {
 
     state = state.copyWith(chosen: updatedChosen);
   }
-
+/// a [deleteAdvInApartment] take a an apartment id that will updated it then
+  /// remove all advantages that already saved it in database.
   Future<void> deleteAdvInApartment(
       {required String apartmentId, required WidgetRef ref}) async {
     var token = (await sp).get("token");
@@ -170,7 +178,8 @@ class AdvantagesNotifier extends StateNotifier<AdvantageState> {
       // You might want to throw an exception or handle the error in a more appropriate way
     }
   }
-
+/// when update advantages of apartment that two methods work ,first
+  /// [deleteAdvInApartment] method and second [insertAdvInApartment].
   updateAdvantages(
       {required String apartmentId,
       required BuildContext context,

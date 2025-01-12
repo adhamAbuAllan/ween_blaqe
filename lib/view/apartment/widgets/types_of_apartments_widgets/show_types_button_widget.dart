@@ -1,11 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:ween_blaqe/constants/localization.dart';
-import 'package:ween_blaqe/controller/function_controller/change_theme_mode.dart';
 
-import '../../../../constants/nums.dart';
 import '../../../../controller/provider_controllers/providers/apartment_provider.dart';
-import '../../../../core/utils/styles/button.dart';
 import '../../../common_widgets/button_widgets/outline_button_widget.dart';
 
 // Assuming ChangeThemeMode is a provider that holds theme data

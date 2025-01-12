@@ -4,7 +4,6 @@ import 'package:ween_blaqe/controller/provider_controllers/providers/alert_provi
 import 'package:ween_blaqe/controller/provider_controllers/providers/snack_bar_provider.dart';
 
 import '../../../constants/localization.dart';
-import '../../../constants/nums.dart';
 import '../../../constants/strings.dart';
 import '../../../controller/provider_controllers/providers/apartment_provider.dart';
 import '../../../controller/provider_controllers/providers/color_provider.dart';

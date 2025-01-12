@@ -4,7 +4,6 @@ import 'package:photo_view/photo_view.dart';
 import 'package:photo_view/photo_view_gallery.dart';
 
 import '../../../../../api/photos.dart';
-import '../../../../../constants/nums.dart';
 import '../../../../../controller/provider_controllers/providers/color_provider.dart';
 
 class PhotoViewGalleryWidget extends ConsumerStatefulWidget {

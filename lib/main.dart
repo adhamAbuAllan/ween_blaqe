@@ -1,4 +1,4 @@
-/*
+ /*
 مطور تطبيقات الموبايل ، ومن أفضل مصممي واجهات الاستخدام على مستوى فلسطين و الضفة الغربية ، مصمم و مبرمج افضل تطبيق لحجز السكانات في فلسطين
  */
 /*
@@ -9,12 +9,13 @@
 flutter clean واعمل بيلد تاني وارفعه وكل ما تيجي ترفع تحديث
  لازم تعمل نفس العملية
  //
- owner -> 1. update apartment , 2. remove the profile image...isDone ,
+ owner -> 1. update apartment...isDone , 2. remove the profile image...isDone ,
  3.solve UI response and adaptive , 4.make the advantages to show instade of
- apartment of id = 1 , 5. add the cities bar. 6.check the phone number that
- is currect or Not , that from Whatsapp api...isDone , 7. make the user could to
+ apartment of id = 1...isDone , 5. add the cities bar...isDone
+  6.check the phone number that is currect or Not ,
+   that from Whatsapp api...isDone , 7. make the user could to
  change the passwrod if he is foregt it. 8. update the app that could to run
- it on 34 sdk or lower.
+ it on 34 sdk or lower...isDone
  */
 //مصطلح التفكير التصميمي
 
@@ -37,7 +38,7 @@ import 'package:ween_blaqe/view/apartment/home_ui.dart';
 import 'package:ween_blaqe/view/authorization_ui/login_ui.dart';
 import 'package:ween_blaqe/view/authorization_ui/registration_ui.dart';
 import 'package:ween_blaqe/view/common_widgets/skeleton_widgets/ask_to_help_skeleton_widgets/skeleton_long_paragraph_ready_ui.dart';
-import 'package:ween_blaqe/view/error_widgets/no_internet_ui.dart';
+import 'package:ween_blaqe/view/no_internet_feature/no_internet_ui.dart';
 import 'package:ween_blaqe/view/paragraphs_widgets/ask_for_help_widgets/another_asks_ui.dart';
 import 'package:ween_blaqe/view/paragraphs_widgets/ask_for_help_widgets/ask_for_help_ui.dart';
 import 'package:ween_blaqe/view/paragraphs_widgets/ask_for_help_widgets/for_owner/how_create_ad_ui.dart';
@@ -86,6 +87,12 @@ import 'view/send_notice_for_us_ui.dart';
 // final Future<SharedPreferences> sp = SharedPreferences.getInstance();
 //the line that could user to upload a file currently :
 //https://drive.google.com/uc?export=download&id=
+/*
+في فبالي فكرة ، لما المستخدم ما يسوي تحديث للتطبيق ، يظهر له زي شعبابون على
+زوايا التطبيق ، ولما يضغط عليها ، بتجيه رسالة ، انه التطبيق ما تحدث ، و
+الإصدار الحالي إصدار قديم ، حتى منظهر الرسالة ، بكون فيها صورة و بيشرح
+للمستخدم أنه تطبيقك صار قديم
+ */
 final Future<SharedPreferences> sp = SharedPreferences.getInstance();
 
 void main() async {
@@ -181,7 +188,7 @@ class _OwnMaterialAppConsumerState
         GlobalCupertinoLocalizations.delegate,
       ],
       locale: locale,
-      supportedLocales: const [
+      supportedLocales: const [ 
         Locale('en', 'US'),
         Locale('ar', 'JO'),
       ],
@@ -517,7 +524,7 @@ class _MainState extends State<Main> {
           currentFocus.unfocus();
         }
       },
-      child:   MainUi()
+      child:   const MainUi()
     );
   }
 }

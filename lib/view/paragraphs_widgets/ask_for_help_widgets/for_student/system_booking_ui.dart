@@ -3,9 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:ween_blaqe/view/common_widgets/button_widgets/button_list_tile_widget.dart';
 import '../../../../constants/localization.dart';
-import '../../../../constants/nums.dart';
 import '../../../../controller/provider_controllers/providers/color_provider.dart';
-import '../../../../core/widgets/buttons/lines_buttons/line_buttons.dart';
 import 'package:ween_blaqe/constants/strings.dart';
 import 'package:ween_blaqe/core/utils/funcations/route_pages/push_routes.dart';
 

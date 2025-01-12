@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:get/get.dart';
 
-import '../../../../main.dart';
 import '../../../../session/new_session.dart';
 
 class LanguageNotifier extends StateNotifier<Locale> {
@@ -19,7 +18,7 @@ class LanguageNotifier extends StateNotifier<Locale> {
         newLocale = const Locale('ar', 'JO');
         break;
       default:
-        return; // Return if the language code is invalid
+        return;
     }
     state = newLocale;
     Get.updateLocale(newLocale);

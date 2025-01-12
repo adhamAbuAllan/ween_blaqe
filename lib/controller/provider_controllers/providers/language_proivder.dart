@@ -2,7 +2,6 @@ import 'dart:ui';
 
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import '../../../main.dart';
 import '../../../session/new_session.dart';
 import '../methods/local_methods/language_notifier.dart';
 //LanguageNotifier

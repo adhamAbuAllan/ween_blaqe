@@ -5,10 +5,8 @@ import 'package:ween_blaqe/api/apartments_api/apartments.dart';
 import '../../../../../constants/coordination.dart';
 import '../../../../../constants/get_it_controller.dart';
 import '../../../../../constants/localization.dart';
-import '../../../../../constants/nums.dart';
 import '../../../../controller/provider_controllers/providers/color_provider.dart';
 import '../../../../core/utils/funcations/go_url_launcher_methodes/go_to_whatsapp_method.dart';
-import '../../../../core/utils/styles/button.dart';
 import '../../../common_widgets/button_widgets/outline_button_widget.dart';
 
 class ForInquiriesWidget extends ConsumerWidget {

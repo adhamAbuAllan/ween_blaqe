@@ -1,13 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:ween_blaqe/controller/provider_controllers/providers/apartment_provider.dart';
 
 import '../../../../../constants/coordination.dart';
 import '../../../../../constants/get_it_controller.dart';
 import '../../../../../constants/localization.dart';
-import '../../../../../constants/nums.dart';
 import '../../../../../controller/provider_controllers/providers/color_provider.dart';
-import '../../../../../core/utils/funcations/route_pages/push_routes.dart';
 
 class ThemeModeSwitcherWidget extends ConsumerStatefulWidget {
   const ThemeModeSwitcherWidget({super.key, this.onChange});

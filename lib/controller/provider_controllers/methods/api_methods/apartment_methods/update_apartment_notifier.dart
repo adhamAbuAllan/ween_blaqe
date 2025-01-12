@@ -21,7 +21,7 @@ class UpdateApartmentNotifier extends StateNotifier<ApartmentState> {
 
     var advantagesApiNotifier =
         ref.read(advantagesApi.notifier).state;
-    var advantageChosen = ref.read(advantagesNotifer).chosen;
+    var advantageChosen = ref.read(advantagesNotifier).chosen;
     var countOfRooms = ref.read(countOfRoomsController.notifier).state.text;
     var bathRooms = ref.read(countOfBathRoomsController.notifier).state.text;
     var squareMeters = ref.read(squareMetersController.notifier).state.text;
@@ -100,10 +100,10 @@ if(response.statusCode == 200 && ref.read(hasChanged)
 
     ///update advantages
     if (!listEquals(
-        advantagesApiNotifier, ref.read(advantagesNotifer).chosen)) {
+        advantagesApiNotifier, ref.read(advantagesNotifier).chosen)) {
       debugPrint("advantages updating...");
       await ref
-          .read(advantagesNotifer.notifier)
+          .read(advantagesNotifier.notifier)
           .updateAdvantages(apartmentId: apartmentId.toString(),ref: ref,
           context: context);
     }

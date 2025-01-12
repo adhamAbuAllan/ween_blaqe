@@ -9,7 +9,12 @@ import '../../../../../core/utils/funcations/route_pages/push_routes.dart';
 import '../../../providers/apartment_provider.dart';
 import '../../../providers/color_provider.dart';
 import '../../../statuses/apartment_state.dart';
-
+/// a [ValidatorCreateApartmentNotifier] class has four methods in every method for
+/// specific UI, that four methods for every step, that usage to check the fields
+/// in every UI, that could not to naviage to another UI until check that fields
+/// is true state. that check them if not empty Or check the length is not 
+/// short in second UI and check the images length is not under of three
+///  images and so on so far.
 class ValidatorCreateApartmentNotifier extends StateNotifier<ApartmentState> {
   ValidatorCreateApartmentNotifier() : super(ApartmentState());
 
@@ -64,8 +69,8 @@ class ValidatorCreateApartmentNotifier extends StateNotifier<ApartmentState> {
 
   void validateSecondStep(WidgetRef ref, BuildContext context) {
     ref
-        .read(advantagesNotifer.notifier)
-        .fetchAdvantages(chosen: ref.watch(advantagesNotifer).chosen);
+        .read(advantagesNotifier.notifier)
+        .fetchAdvantages(chosen: ref.watch(advantagesNotifier).chosen);
   }
 
   void validateThirdStep(WidgetRef ref, BuildContext context) async {

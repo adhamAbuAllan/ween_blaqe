@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:ween_blaqe/controller/provider_controllers/providers/color_provider.dart';
 
-import '../../../../../constants/nums.dart';
 import '../../../../common_widgets/button_widgets/back_button_widget.dart';
 import '../../../../../controller/provider_controllers/providers/auth_provider.dart';
 
