@@ -1,5 +1,5 @@
 
-![Logo](https://drive.google.com/file/d/1AeVBOpk82yNY9GtWRfxWopTqGZOYEjnz/view?usp=share_link)
+![Logo](https://drive.google.com/uc?id=1AeVBOpk82yNY9GtWRfxWopTqGZOYEjnz)
 
 ![preview](https://weenbalaqee.com/images/git_hub_images/git_hub_sub_header_small.png)
 
