@@ -1,7 +1,7 @@
 
 ![Logo](https://drive.google.com/uc?id=1AeVBOpk82yNY9GtWRfxWopTqGZOYEjnz)
 
-![preview](https://drive.google.com/uc?export=view&id=1HrBMtqWBfdR4pcOUeXjzPTPcJViV1jjf)
+![preview](https://drive.google.com/uc?export=view&id=17QM2Zax77clMB4SHBnW2d9eH8SitSPk2)
 
 
 
