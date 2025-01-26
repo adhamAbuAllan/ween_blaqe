@@ -9,33 +9,33 @@
 
 - Add an apartment
 
-   ![App Screenshot](https://weenbalaqee.com/images/screenshots/Oct_2024_screenshots/screeshot_first_step_with_text.jpg)
+   ![App Screenshot](https://drive.google.com/uc?export=view&id=1TkG6L09z-5UhCXCGNtXuXq-oFsDU0hHK)
 
-    ![App Screenshot](https://weenbalaqee.com/images/screenshots/Oct_2024_screenshots/screenshot_second_step_features.jpg) 
+    ![App Screenshot](https://drive.google.com/uc?export=view&id=1SQ_xTETfofooaS-LFid65NxaFoKV7E5p) 
 
-    ![App Screenshot](https://weenbalaqee.com/images/screenshots/Oct_2024_screenshots/screenshot_third_step.jpg) 
+    ![App Screenshot](https://drive.google.com/uc?export=view&id=1malakToy2soIRzH0FRDb_4FUj03MqVLz) 
       
-    ![App Screenshot](https://weenbalaqee.com/images/screenshots/Oct_2024_screenshots/screenshot_fourth_step.png)
+    ![App Screenshot](https://drive.google.com/uc?export=view&id=11cmYFiVn7uiGnIw44TlQIcradMG0vSTs)
 
-    ![App Screenshot](https://weenbalaqee.com/images/screenshots/Oct_2024_screenshots/screenshot_add_images.jpg)
+    ![App Screenshot](https://drive.google.com/uc?export=view&id=1R9hNjZ46C40lnK9N_XYwvakV6HwBbWi)
     
 
 - Delete and edit an apartment Ad
 
-    ![App Screenshot](https://weenbalaqee.com/images/screenshots/Oct_2024_screenshots/screenshot_delete_apartment_new.png)
+    ![App Screenshot](https://drive.google.com/uc?export=view&id=1Y6LRZ4N2Sacu321MMFYU9mqApGSzaPoB)
   
-    ![App Screenshot](https://weenbalaqee.com/images/screenshots/Oct_2024_screenshots/screenshot_apartment_of_owner_new.png)
+    ![App Screenshot](https://drive.google.com/uc?export=view&id=10nKWwoPK1quMA-rbgrV05pACj22PqEDe)
 
-    ![App Screenshot](https://weenbalaqee.com/images/screenshots/Oct_2024_screenshots/screenshot_edit_apartment_part1png.png)
+    ![App Screenshot](https://drive.google.com/uc?export=view&id=1VnAD8Y1VO6KL56EpbK4u7jAty0HSDThj)
 
-    ![App Screenshot](https://weenbalaqee.com/images/screenshots/Oct_2024_screenshots/screenshot_edit_apartment_4.png)
+    ![App Screenshot](https://drive.google.com/uc?export=view&id=1eOecSj-7L_Z4Rr9xduKT2Ylschxdl_1s)
 
-    ![App Screenshot](https://weenbalaqee.com/images/screenshots/Oct_2024_screenshots/screen_shot_edit_apartment_part3.png)
+    ![App Screenshot](https://drive.google.com/uc?export=view&id=1pMDiswg6hJ1vADTc_5_7osYYX6UYb9oA)
 
-    ![App Screenshot](https://weenbalaqee.com/images/screenshots/Oct_2024_screenshots/screenhost_edit_apartment_part4_final.jpg)
+    ![App Screenshot](https://drive.google.com/uc?export=view&id=1utCBWTbKL7Y5toqwS2RgM0_RRBXRVQF9)
 
 
-    ![App Screenshot](https://weenbalaqee.com/images/screenshots/Oct_2024_screenshots/screenshot_add_images.jpg)
+    ![App Screenshot](https://drive.google.com/uc?export=view&id=1R9hNjZ46C40lnK9N_XYwvakV6HwBbWi_)
 
    
 - Add favorite apartments
