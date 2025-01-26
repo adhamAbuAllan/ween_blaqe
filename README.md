@@ -39,40 +39,40 @@
    
 - Add favorite apartments
 
-    ![App Screenshot](https://weenbalaqee.com/images/screenshots/Oct_2024_screenshots/screenshot_bookmark_new.png)    
+    ![App Screenshot](https://drive.google.com/uc?export=view&id=1GNwh-KTVKZOPBrz3eshAiqyauMTkfEwi)    
 
 - View apartments by type and city
 
-    ![App Screenshot](https://weenbalaqee.com/images/screenshots/Oct_2024_screenshots/screenshot_home_with_type_and_city_filter.jpg)    
+    ![App Screenshot](https://drive.google.com/uc?export=view&id=1_QhL47ZZ9XWs2eVVY2n2cPQ17fbqv0yk)    
 
 
 - View apartment information, such as features and general details
 
-    ![App Screenshot](https://weenbalaqee.com/images/screenshots/Oct_2024_screenshots/screenshot_show_more_part1.jpg)
+    ![App Screenshot](https://drive.google.com/uc?export=view&id=1Fx0qGgUCIpX6ScTbXHk4wXSyx9Dk8yrE)
 
-    ![App Screenshot](https://weenbalaqee.com/images/screenshots/Oct_2024_screenshots/screenshot_show_more_part2.jpg)
+    ![App Screenshot](https://drive.google.com/uc?export=view&id=1h1ykp-bfmb4j6MaaeHT2IbWkXnkl-f8K)
 
 - sebha screen
 
-    ![App Screenshot](https://weenbalaqee.com/images/screenshots/Oct_2024_screenshots/screenshot_sebha.jpg)
+    ![App Screenshot](https://drive.google.com/uc?export=view&id=1mN2BtVrVcjJgzKtkIhhyzsXpVA9-T6Mv)
           
 
 - login and signup 
-    ![App Screenshot](https://weenbalaqee.com/images/screenshots/Oct_2024_screenshots/screenshot_login_new.png)
+    ![App Screenshot](https://drive.google.com/uc?export=view&id=1H0hAeDnbRYBKL3FagIgphGgacU-Zivdl)
 
-    ![App Screenshot](https://weenbalaqee.com/images/screenshots/Oct_2024_screenshots/screenshot_sginup.png)
+    ![App Screenshot](https://drive.google.com/uc?export=view&id=1xN1qEwCqXHtO0F7J1Br3QV_tdeOhZaaw)
 
 -profile and edit profile
- ![App Screenshot](https://weenbalaqee.com/images/screenshots/Oct_2024_screenshots/screenshot_profile.png)
+ ![App Screenshot](https://drive.google.com/uc?export=view&id=17GcqYwIZfhdBzg7oLJpCrjJaeNK4nUlI)
 
- ![App Screenshot](https://weenbalaqee.com/images/screenshots/Oct_2024_screenshots/screenshot_edit_profile_new.png)
+ ![App Screenshot](https://drive.google.com/uc?export=view&id=17GcqYwIZfhdBzg7oLJpCrjJaeNK4nUlI)
 
- ![App Screenshot](https://weenbalaqee.com/images/screenshots/Oct_2024_screenshots/screenshot_edit_profile_part2.png)
+ ![App Screenshot](https://drive.google.com/uc?export=view&id=1yHIeYTyPYE4oAAA7GRPAYAYnTreQZCv2)
 
 
 - Light/dark mode toggle
 
-    ![App Screenshot](https://weenbalaqee.com/images/screenshots/Oct_2024_screenshots/screenshot_dark_mode.png)
+    ![App Screenshot](https://drive.google.com/uc?export=view&id=1K19uvtGGYzTCtffWgnO6mCrr54ry0BZd)
 
 ## 🔗 Links
 [![app link](https://img.shields.io/badge/google_play-1,135,95?style=for-the-badge&logo=google-play&logoColor=white)](https://play.google.com/store/apps/details?id=com.weenbalaqee.weenbalaqee&hl=ar&pli=1)
