@@ -34,7 +34,7 @@
 
     ![App Screenshot](https://drive.google.com/uc?export=view&id=1pMDiswg6hJ1vADTc_5_7osYYX6UYb9oA)
 
-    ![App Screenshot](https://drive.google.com/uc?export=view&id=1R9hNjZ46C40lnK9N_XYwvakV6HwBbWi_)
+    ![App Screenshot](https://drive.google.com/uc?export=view&id=1-SfOiNcDGDqvpg3RIOVGm4UqVIkx41v2)
 
    
 - Add favorite apartments
