@@ -17,7 +17,7 @@
       
     ![App Screenshot](https://drive.google.com/uc?export=view&id=11cmYFiVn7uiGnIw44TlQIcradMG0vSTs)
 
-    ![App Screenshot](https://drive.google.com/uc?export=view&id=1R9hNjZ46C40lnK9N_XYwvakV6HwBbWi)
+    ![App Screenshot](https://drive.google.com/uc?export=view&id=1HrBMtqWBfdR4pcOUeXjzPTPcJViV1jjf)
     
 
 - Delete and edit an apartment Ad
