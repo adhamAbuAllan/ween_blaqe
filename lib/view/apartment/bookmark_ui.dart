@@ -7,7 +7,7 @@ import '../../constants/coordination.dart';
 import '../../constants/get_it_controller.dart';
 import '../../constants/localization.dart';
 import '../common_widgets/empty_screen_widget.dart';
-import 'list_of_apartments.dart';
+import 'apartments_list_widget.dart';
 
 class BookmarkApartmentUi extends ConsumerStatefulWidget {
   const BookmarkApartmentUi({super.key});

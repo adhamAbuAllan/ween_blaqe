@@ -159,11 +159,6 @@ class OwnMaterialAppConsumer extends ConsumerStatefulWidget {
 class _OwnMaterialAppConsumerState
     extends ConsumerState<OwnMaterialAppConsumer> {
   @override
-  void initState() {
-    super.initState();
-    NewSession.save("isFirstTime", "OK");
-  }
-  @override
   Widget build(BuildContext context) {
     final locale = ref.watch(languageProvider);
 

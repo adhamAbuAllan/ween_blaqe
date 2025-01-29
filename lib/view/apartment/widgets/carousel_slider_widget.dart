@@ -34,7 +34,7 @@ class _CoursolSliderWidgetState extends ConsumerState<CoursolSliderWidget> {
         ref.watch(imageSliderNotifier)[widget.apartmentId]?.currentIndex ?? 0;
 
     return SizedBox(
-      height: getIt<AppDimension>().isSmallScreen(context) ? 220 : 280,
+      // height: getIt<AppDimension>().isSmallScreen(context) ? 220 : 280,
       child: CarouselSlider.builder(
         controller: ref.watch(carouselSliderControllerNotifier),
         itemCount: widget.imageList.length,
@@ -45,7 +45,7 @@ class _CoursolSliderWidgetState extends ConsumerState<CoursolSliderWidget> {
               borderRadius: const BorderRadius.all(Radius.circular(7.0)),
               child: CachedNetworkImage(
                 height: 220,
-                width: MediaQuery.of(context).size.width - 32,
+                width: double.infinity,
                 fit: BoxFit.cover,
                 imageUrl: widget.imageList[index].url ?? "",
                 progressIndicatorBuilder: (context, url, progress) {

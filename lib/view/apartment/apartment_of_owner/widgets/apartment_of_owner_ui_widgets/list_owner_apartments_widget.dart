@@ -2,7 +2,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter/material.dart';
 
 import '../../../../../controller/provider_controllers/providers/apartment_provider.dart';
-import '../../../list_of_apartments.dart';
+import '../../../apartments_list_widget.dart';
 
 class ListOwnerApartmentsWidget extends ConsumerStatefulWidget {
   const ListOwnerApartmentsWidget({super.key,required this.scrollController});

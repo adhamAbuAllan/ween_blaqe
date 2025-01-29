@@ -34,9 +34,12 @@ class RegistrationUi extends ConsumerWidget {
                 child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
-                const Padding(
-                  padding: EdgeInsets.fromLTRB(0, 25, 0, 0),
-                  child: BackButtonWidget(),
+                Padding(
+                  padding: const EdgeInsets.fromLTRB(0, 25, 0, 0),
+                  child: BackButtonWidget(onPressed: (){
+
+                    Navigator.pop(context);
+                  },),
                 ),
                 SizedBox(
                   height: getIt<AppDimension>().isSmallScreen(context)

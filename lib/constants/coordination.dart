@@ -1,6 +1,7 @@
 import 'dart:math';
 
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class AppDimension {
@@ -70,26 +71,59 @@ class AppDimension {
 
 //if a screen under 600dp height give true or if screen between 600dp and 900dp give true else give false
 
-  bool isSmallScreen(BuildContext context) {
-    double screenWidth = MediaQuery.of(context).size.width;
-    double screenHeight =
-        MediaQuery.of(context).size.height; // Get device pixel ratio
-    double devicePixelRatio = MediaQuery.of(context).devicePixelRatio;
-    // Calculate physical screen width and height in inches
-    double physicalScreenWidth =
-        screenWidth / devicePixelRatio * 0.0393701; // Convert pixels to inches
-    double physicalScreenHeight =
-        screenHeight / devicePixelRatio * 0.0393701; // Convert pixels to inches
+  // bool isSmallScreen(BuildContext context, {bool isEmulator = true}) {
+  //   // Get screen size in pixels
+  //   double screenWidth = MediaQuery.of(context).size.width;
+  //   double screenHeight = MediaQuery.of(context).size.height;
+  //
+  //   // Get device pixel ratio (DPI scaling)
+  //   double devicePixelRatio = MediaQuery.of(context).devicePixelRatio;
+  //
+  //   // Convert pixels to physical screen size (in inches)
+  //   double physicalWidthInches = screenWidth /
+  //       devicePixelRatio /
+  //       160; // 160 DPI is the standard baseline
+  //   double physicalHeightInches = screenHeight / devicePixelRatio / 160;
+  //
+  //   // Calculate diagonal screen size in inches using Pythagorean theorem
+  //   double diagonalInches =
+  //       sqrt(pow(physicalWidthInches, 2) + pow(physicalHeightInches, 2));
+  //   debugPrint("the inch of screen is $diagonalInches");
+  //   // Check if screen is smaller than 5 inches
+  //   if (isEmulator) {
+  //     return diagonalInches < 2;
+  //   } else {
+  //     return diagonalInches < 5;
+  //   }
+  // }
+  bool isSmallScreen(BuildContext context) {// Get the screen size in pixels
+    final MediaQueryData mediaQuery = MediaQuery.of(context);
+    final double screenWidth = mediaQuery.size.width;
+    final double screenHeight = mediaQuery.size.height;
 
-// Calculate diagonal screen size in inches
-    double screenSizeInches =
-        sqrt(pow(physicalScreenWidth, 2) + pow(physicalScreenHeight, 2));
-    // debugPrint("screen size in inches is $screenSizeInches");
-if(screenSizeInches == 13.810970226550339){
-  return false;
+    // Calculate the diagonal in pixels
+    final double diagonalPixels =
+    sqrt((screenWidth * screenWidth) + (screenHeight * screenHeight));
 
-}
-    return screenSizeInches < 17; //
+    // Get the device's pixel density (DPI)
+    final double dpi = mediaQuery.devicePixelRatio * 160;
+
+    // Debugging: Print screen dimensions and DPI
+    print('Screen Width: $screenWidth, Height: $screenHeight');
+    print('Device Pixel Ratio: ${mediaQuery.devicePixelRatio}');
+    print('Calculated DPI: $dpi');
+
+    // Handle simulators/emulators with low DPI
+    final double effectiveDpi = dpi < 160 ? 160 : dpi;
+
+    // Convert diagonal from pixels to inches
+    final double diagonalInches = diagonalPixels / effectiveDpi;
+
+    // Debugging: Print the calculated diagonal in inches
+    print('Diagonal Inches: $diagonalInches');
+
+    // Return true if the screen size is less than 5 inches
+    return dpi < 450 ;
   }
 
   bool isSmallScreenToAppBar(BuildContext context) {

@@ -1,5 +1,6 @@
 <component name="ProjectRunConfigurationManager">
   <configuration default="false" name="main.dart" type="FlutterRunConfigurationType" factoryName="Flutter">
+    <option name="additionalArgs" value="--no-enable-impeller" />
     <option name="envs">
       <entry key="%HOME&amp;" value="C:\src\flutter\bin" />
     </option>
