@@ -184,7 +184,7 @@
 //               feature.advName!,
 //               // feature.advName,
 //               style: TextStyle(
-//                    fontSize: 16, color: Colors.grey.shade800),
+//                    fontSize: getIt<AppDimension>().isSmallScreen(context) ? 14 : 16, color: Colors.grey.shade800),
 //             ),
 //             const Expanded(child: Text("")),
 //             Image(
@@ -308,7 +308,7 @@
 // //         Text(
 // //           feature.name,
 // //           // feature.advName,
-// //           style: TextStyle(fontSize: 16,color: Colors.grey.shade800),
+// //           style: TextStyle(fontSize: getIt<AppDimension>().isSmallScreen(context) ? 14 : 16,color: Colors.grey.shade800),
 // //         ),
 // //         const Expanded(child: Text("") ),
 // //         Image( image: AssetImage(feature.icon),width: 30,height: 30,)

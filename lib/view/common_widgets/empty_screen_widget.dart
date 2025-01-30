@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:ween_blaqe/controller/provider_controllers/providers/color_provider.dart';
+
+import '../../constants/coordination.dart';
+import '../../constants/get_it_controller.dart';
 class EmptyScreenWidget extends ConsumerStatefulWidget {
   const EmptyScreenWidget({super.key, required this.centerIcon,
     required this.centerText,
@@ -39,7 +42,7 @@ class _EmptyScreenWidgetState extends ConsumerState<EmptyScreenWidget> {
           Text(
             widget.centerText,
             style: TextStyle(
-              fontSize: 18,
+              fontSize: getIt<AppDimension>().isSmallScreen(context) ? 16 : 18,
 
               color: ref.read(themeModeNotifier.notifier).textTheme(ref: ref),
 
@@ -54,7 +57,7 @@ class _EmptyScreenWidgetState extends ConsumerState<EmptyScreenWidget> {
               : Text(
             widget.underCenterText??"put your under center text here",
             style: TextStyle(
-              fontSize: 16,
+              fontSize: getIt<AppDimension>().isSmallScreen(context) ? 14 : 16,
 
               color: ref.read(themeModeNotifier.notifier).textTheme(ref: ref),
             ),
@@ -80,7 +83,7 @@ class CustomTextUnderCenterWidget extends ConsumerWidget {
         children: <TextSpan>[
           TextSpan(text: "$underCenterTextBeforeIcon ",style:
           TextStyle(
-            fontSize: 16,
+            fontSize: getIt<AppDimension>().isSmallScreen(context) ? 14 : 16,
 
             color: ref.read(themeModeNotifier.notifier).textTheme(ref: ref),
           )),
@@ -94,7 +97,7 @@ class CustomTextUnderCenterWidget extends ConsumerWidget {
           ),
           TextSpan(text: " $underCenterTextAfterIcon", style:
           TextStyle(
-            fontSize: 16,
+            fontSize: getIt<AppDimension>().isSmallScreen(context) ? 14 : 16,
 
             color: ref.read(themeModeNotifier.notifier).textTheme(ref: ref),
           )),

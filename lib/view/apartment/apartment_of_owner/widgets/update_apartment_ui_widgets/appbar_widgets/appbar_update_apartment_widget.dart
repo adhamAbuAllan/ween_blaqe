@@ -175,6 +175,7 @@ class _AppbarEditApartmentWidgetState
                 return;
               }
             },
+            context: context,
             child: ref.watch(updateApartmentNotifier).isUpdating
                 ? const CircularProgressIndicator(
                     color: Colors.white,

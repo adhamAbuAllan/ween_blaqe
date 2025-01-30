@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:ween_blaqe/controller/provider_controllers/providers/color_provider.dart';
 
+import '../../../../../constants/coordination.dart';
+import '../../../../../constants/get_it_controller.dart';
 import '../../../../../constants/localization.dart';
 import '../../../../../session/new_session.dart';
 
@@ -30,7 +32,7 @@ class JoinDateWidget extends ConsumerWidget {
               style: TextStyle(
                   color: ref.read(themeModeNotifier.notifier).textTheme(ref: ref),
                   fontWeight: FontWeight.w600,
-                  fontSize: 18,
+                  fontSize: getIt<AppDimension>().isSmallScreen(context) ? 16 : 18,
                   fontFamily: "IBM")),
           const SizedBox(
             height: 15,
@@ -39,7 +41,7 @@ class JoinDateWidget extends ConsumerWidget {
               " ${SetLocalization.of(context)!.getTranslateValue("account_created_since")}  ${NewSession.get("createdAt", "def")} ${SetLocalization.of(context)!.getTranslateValue("until_now")}",
               style: TextStyle(
                   color: ref.read(themeModeNotifier.notifier).textTheme(ref: ref),
-                  fontSize: 16,
+                  fontSize: getIt<AppDimension>().isSmallScreen(context) ? 14 : 16,
                   fontWeight: FontWeight.w500,
                   fontFamily: "IBM")),
         ],

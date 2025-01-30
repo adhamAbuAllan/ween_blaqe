@@ -2,6 +2,8 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter/material.dart';
 import 'package:ween_blaqe/controller/provider_controllers/providers/color_provider.dart';
 
+import '../../../../constants/coordination.dart';
+import '../../../../constants/get_it_controller.dart';
 import '../../providers/connectivity_provider.dart';
 import '../../statuses/show_snack_bar_state.dart';
 /// s [ShowSnackBarNotifier] class has two methods, first [showSnackBar] 
@@ -52,7 +54,7 @@ class ShowSnackBarNotifier extends StateNotifier<ShowSnackBarState> {
             : Text(
                 state.message ?? "",
                 style: TextStyle(
-                  fontSize: 16,
+                  fontSize: getIt<AppDimension>().isSmallScreen(context) ? 14 : 16,
                   fontFamily: "IBM",
                   color:
                       ref.read(themeModeNotifier.notifier).textTheme(ref: ref),
@@ -79,7 +81,7 @@ class ShowSnackBarNotifier extends StateNotifier<ShowSnackBarState> {
         content: Text(
           state.message ?? "",
           style: TextStyle(
-            fontSize: 16,
+            fontSize: getIt<AppDimension>().isSmallScreen(context) ? 14 : 16,
             fontFamily: "IBM",
             color: textColor,
           ),

@@ -96,7 +96,7 @@ class ContainerFieldWidget extends ConsumerWidget {
                     .read(themeModeNotifier.notifier)
                     .primary300Theme(ref: ref)),
             style: TextStyle(
-              fontSize: getIt<AppDimension>().isSmallScreen(context) ? 15 : 16,
+              fontSize: getIt<AppDimension>().isSmallScreen(context) ? 14 : 16,
               color: ref.read(themeModeNotifier.notifier).textTheme(ref: ref),
             ),
           ),
@@ -116,7 +116,7 @@ class ContainerFieldWidget extends ConsumerWidget {
         helperText: helperText,
         contentPadding: EdgeInsets.symmetric(
             vertical:
-                getIt<AppDimension>().isSmallScreen(context) ? 20 / 2 : 20,
+                getIt<AppDimension>().isSmallScreen(context) ? 20 / 2.3 : 20,
             horizontal: 12),
         errorText: errorText,
         hintText: hintInput,

@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 
+import '../../../constants/coordination.dart';
+import '../../../constants/get_it_controller.dart';
 import '../../../constants/localization.dart';
 import '../../../controller/provider_controllers/providers/color_provider.dart';
 
@@ -55,7 +57,7 @@ class WhatIsMeanSSUi extends ConsumerWidget {
                   "shekel_per_month_note")
                 ,
                 style: TextStyle(
-                  fontSize: 16.0,
+                  fontSize: getIt<AppDimension>().isSmallScreen(context) ? 14 : 16,
                   color: ref.read(themeModeNotifier.notifier).textTheme(
                       ref: ref),
 
@@ -122,7 +124,7 @@ class WhatIsMeanSSUi extends ConsumerWidget {
 //                 "نعم، حيث يسمح لك تطبيق 'وين بلاقي' أن تقوم بإنشاء "
 //                 "إعلانك الخاص و حجز شقة في نفس الوقت ، دون تغيير حسابك الاصلي. ",
 //                 style: TextStyle(
-//                   fontSize: 16.0,
+//                   fontSize: getIt<AppDimension>().isSmallScreen(context) ? 14 : 16,
 //                   color: Colors.grey.shade800,
 //                   
 //                   inherit: true,

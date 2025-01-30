@@ -35,7 +35,7 @@ class SocialMediaWidget extends ConsumerWidget {
                   .getTranslateValue("available_contact_methods"),
               style: TextStyle(
                   color: ref.read(themeModeNotifier.notifier).textTheme(ref: ref),
-                  fontSize: 18,
+                  fontSize: getIt<AppDimension>().isSmallScreen(context) ? 16 : 18,
                   fontWeight: FontWeight.w600)),
           const SizedBox(
             height: 15,

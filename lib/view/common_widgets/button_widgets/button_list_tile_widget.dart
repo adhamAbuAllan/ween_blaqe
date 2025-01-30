@@ -46,7 +46,7 @@ class ButtonListTileWidget extends ConsumerWidget {
       title: Text(
         title,
         style: TextStyle(
-          fontSize: 16,
+          fontSize: getIt<AppDimension>().isSmallScreen(context) ?14: 16,
           color: ref.read(themeModeNotifier.notifier).textTheme(ref: ref),
         ),
       ),

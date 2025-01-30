@@ -17,7 +17,7 @@ class UserNameRegCompletedWidget extends ConsumerWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         TextFormFieldWidget(
-          fontSize: getIt<AppDimension>().isSmallScreen(context) ? 15 : 16,
+          fontSize: getIt<AppDimension>().isSmallScreen(context) ? 14 : 16,
           labelName: SetLocalization.of(context)!.getTranslateValue("full_name"),
           autoFocus: true,
           errorText: ref.watch(formFieldsNotifier)['username']?.error,
@@ -45,7 +45,7 @@ class HintUnderUserNameField extends ConsumerWidget {
         style: TextStyle(
           color: ref.read(themeModeNotifier.notifier).textTheme(ref: ref),
 
-          fontSize: 14,
+          fontSize: getIt<AppDimension>().isSmallScreen(context) ? 12 : 14,
         ),
         softWrap: true,
       ),

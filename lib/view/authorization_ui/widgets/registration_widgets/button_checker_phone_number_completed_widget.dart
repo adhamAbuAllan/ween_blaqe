@@ -9,7 +9,7 @@ import '../../../../constants/localization.dart';
 import '../../../../controller/provider_controllers/providers/color_provider.dart';
 import '../../../../session/new_session.dart';
 
-  class ButtonCheckerPhoneNumberCompletedWidget extends ConsumerWidget {
+class ButtonCheckerPhoneNumberCompletedWidget extends ConsumerWidget {
   const ButtonCheckerPhoneNumberCompletedWidget({super.key});
 
   @override
@@ -20,11 +20,12 @@ import '../../../../session/new_session.dart';
           SetLocalization.of(context)!.getTranslateValue("verify_via_whatsapp"),
           style: TextStyle(
             color: ref.read(themeModeNotifier.notifier).textTheme(ref: ref),
-            fontSize: getIt<AppDimension>().isSmallScreen(context) ? 14 : 16,
+            fontSize: getIt<AppDimension>().isSmallScreen(context) ? 12 : 14,
           ),
         ),
         TextButton(
             style: ButtonStyle(
+                tapTargetSize: MaterialTapTargetSize.shrinkWrap,
                 padding: WidgetStateProperty.all(const EdgeInsets.symmetric(
                   horizontal: 5,
                 )),
@@ -38,16 +39,19 @@ import '../../../../session/new_session.dart';
             onPressed: () {
               ref.read(hasCheckedPhone.notifier).state = true;
 
-              sendMessageToWhatsApp(ref.read(selectedCountryCode) + ref.read
-                (phoneRegController).text,
+              sendMessageToWhatsApp(
+                  ref.read(selectedCountryCode) +
+                      ref.read(phoneRegController).text,
                   SetLocalization.of(context)!
                       .getTranslateValue("phone_valid_account_creation"));
-
             },
             child: Text(
               SetLocalization.of(context)!.getTranslateValue("verify"),
-              style: const TextStyle(
-                  color: Colors.blue, fontSize: 16, fontFamily: 'IBM'),
+              style: TextStyle(
+                  color: Colors.blue,
+                  fontSize:
+                      getIt<AppDimension>().isSmallScreen(context) ? 12 : 14,
+                  fontFamily: 'IBM'),
             ))
       ],
     );

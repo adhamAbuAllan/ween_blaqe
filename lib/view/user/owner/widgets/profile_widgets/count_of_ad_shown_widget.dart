@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+import '../../../../../constants/coordination.dart';
+import '../../../../../constants/get_it_controller.dart';
 import '../../../../../constants/localization.dart';
 import '../../../../../controller/provider_controllers/providers/color_provider.dart';
 
@@ -29,7 +31,7 @@ class CountOfAdShownWidget extends ConsumerWidget {
               SetLocalization.of(context)!.getTranslateValue("ads_shown_count"),
               style: TextStyle(
                   color: ref.read(themeModeNotifier.notifier).textTheme(ref: ref),
-                  fontSize: 18,
+                  fontSize: getIt<AppDimension>().isSmallScreen(context) ? 16 : 18,
                   fontWeight: FontWeight.w600,
                   fontFamily: "IBM")),
           const SizedBox(
@@ -43,7 +45,7 @@ class CountOfAdShownWidget extends ConsumerWidget {
           //         color: themeMode.isLight
           //             ? kTextColorLightMode
           //             : kTextColorDarkMode,
-          //         fontSize: 16,
+          //         fontSize: getIt<AppDimension>().isSmallScreen(context) ? 14 : 16,
           //         fontWeight: FontWeight.w500,
           //         fontFamily: "IBM"))
         ],

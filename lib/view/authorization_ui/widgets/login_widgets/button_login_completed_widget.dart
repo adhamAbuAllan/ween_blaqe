@@ -27,6 +27,7 @@ class ButtonLoginCompletedWidget extends ConsumerWidget {
               validateAndLogin(ref, context);
 
             },
+            context: context,
             child: ref.watch(loginNotifier).isLoading == false
                 ? Text(SetLocalization.of(context)!.getTranslateValue("login"))
                 : const CircularProgressIndicator(

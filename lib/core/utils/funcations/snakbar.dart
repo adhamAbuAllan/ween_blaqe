@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:ween_blaqe/controller/get_controllers.dart';
 
+import '../../../constants/coordination.dart';
+import '../../../constants/get_it_controller.dart';
+
 void  showSnakBar( BuildContext context,String message,
     { IconData? icon,bool ? withButton,String ?textOfButton,void Function()? onPressed}) {
   ScaffoldMessenger.of(context).showSnackBar(
@@ -38,7 +41,7 @@ void  showSnakBar( BuildContext context,String message,
         ],
       ):Text(
         message,
-        style: const TextStyle(fontSize: 16, fontFamily: "IBM"),
+        style: TextStyle(fontSize: getIt<AppDimension>().isSmallScreen(context) ? 14 : 16, fontFamily: "IBM"),
       ),
         margin: const EdgeInsets.only( bottom: 20,left: 25,right: 25),
         ) );

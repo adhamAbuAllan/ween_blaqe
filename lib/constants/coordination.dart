@@ -96,34 +96,19 @@ class AppDimension {
   //     return diagonalInches < 5;
   //   }
   // }
-  bool isSmallScreen(BuildContext context) {// Get the screen size in pixels
+  bool isSmallScreen(BuildContext context) {
+    // Get the screen size in pixels
     final MediaQueryData mediaQuery = MediaQuery.of(context);
     final double screenWidth = mediaQuery.size.width;
     final double screenHeight = mediaQuery.size.height;
-
+    debugPrint("screen width -> $screenWidth");
+    debugPrint("screen haight - > $screenHeight");
     // Calculate the diagonal in pixels
-    final double diagonalPixels =
-    sqrt((screenWidth * screenWidth) + (screenHeight * screenHeight));
+    double diagonalPixels = sqrt(pow(screenWidth, 2) + pow(screenHeight, 2));
 
-    // Get the device's pixel density (DPI)
-    final double dpi = mediaQuery.devicePixelRatio * 160;
-
-    // Debugging: Print screen dimensions and DPI
-    print('Screen Width: $screenWidth, Height: $screenHeight');
-    print('Device Pixel Ratio: ${mediaQuery.devicePixelRatio}');
-    print('Calculated DPI: $dpi');
-
-    // Handle simulators/emulators with low DPI
-    final double effectiveDpi = dpi < 160 ? 160 : dpi;
-
-    // Convert diagonal from pixels to inches
-    final double diagonalInches = diagonalPixels / effectiveDpi;
-
-    // Debugging: Print the calculated diagonal in inches
-    print('Diagonal Inches: $diagonalInches');
-
-    // Return true if the screen size is less than 5 inches
-    return dpi < 450 ;
+    final double screenInch = diagonalPixels / 116;
+    debugPrint("the inch of screen is $screenInch");
+    return screenInch < 5.5;
   }
 
   bool isSmallScreenToAppBar(BuildContext context) {

@@ -30,9 +30,9 @@
 //           ),
 //           isEqual == false
 //               ? const Text("check if couple of lists is equal 🟰",
-//                   style: TextStyle(fontSize: 18, color: Colors.white70))
+//                   style: TextStyle(fontSize: getIt<AppDimension>().isSmallScreen(context) ? 16 : 18, color: Colors.white70))
 //               : const Text("checked",
-//                   style: TextStyle(fontSize: 18, color: Colors.white70)),
+//                   style: TextStyle(fontSize: getIt<AppDimension>().isSmallScreen(context) ? 16 : 18, color: Colors.white70)),
 //           const SizedBox(
 //             height: 10,
 //           ),
@@ -40,11 +40,11 @@
 //               ? isEqual == false
 //                   ? const Text("couple of lists is not equal❎",
 //                       style: TextStyle(
-//                         fontSize: 18,
+//                         fontSize: getIt<AppDimension>().isSmallScreen(context) ? 16 : 18,
 //                         color: Colors.white70,
 //                       ))
 //                   : const Text("couple of lists is equal✅",
-//                       style: TextStyle(fontSize: 18, color: Colors.white70))
+//                       style: TextStyle(fontSize: getIt<AppDimension>().isSmallScreen(context) ? 16 : 18, color: Colors.white70))
 //               : const SizedBox(),
 //           ElevatedButton(
 //               onPressed: () {

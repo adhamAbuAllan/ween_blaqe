@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:ween_blaqe/controller/provider_controllers/providers/auth_provider.dart';
+import 'package:ween_blaqe/view/common_widgets/drop_down_widget.dart';
 
 import '../../../../constants/coordination.dart';
 import '../../../../constants/get_it_controller.dart';
@@ -40,7 +41,9 @@ class PhoneCompletedWidget extends ConsumerWidget {
                         color: ref
                             .read(themeModeNotifier.notifier)
                             .textTheme(ref: ref),
-                        fontSize: 18,
+                        fontSize: getIt<AppDimension>().isSmallScreen(context)
+                            ? 16
+                            : 18,
                         fontWeight: FontWeight.w500,
                       ),
                     ),
@@ -73,8 +76,8 @@ class PhoneCompletedWidget extends ConsumerWidget {
           ),
         ),
         const ButtonCheckerPhoneNumberCompletedWidget(),
-        const SizedBox(
-          height: 10,
+        SizedBox(
+          height: getIt<AppDimension>().isSmallScreen(context) ? 10 : 20,
         ),
       ],
     );
@@ -108,48 +111,13 @@ class DropDownMenuWidget extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    return DropdownButtonFormField<String>(
-      decoration: InputDecoration(
-        contentPadding: EdgeInsets.symmetric(
-            vertical:
-                getIt<AppDimension>().isSmallScreen(context) ? 20 / 2 : 20,
-            horizontal: 10),
-        enabledBorder: OutlineInputBorder(
-          borderSide: BorderSide(
-              color: ref
-                  .read(themeModeNotifier.notifier)
-                  .primary300Theme(ref: ref),
-              width: 0.5),
-        ),
-        focusedBorder: OutlineInputBorder(
-          borderSide: BorderSide(
-              color:
-                  ref.read(themeModeNotifier.notifier).primaryTheme(ref: ref),
-              width: 1),
-        ),
-      ),
-      value: ref.read(selectedCountryCode),
-      onChanged: (newValue) {
-        ref.read(selectedCountryCode.notifier).state = newValue!;
-      },
-      dropdownColor:
-          ref.read(themeModeNotifier.notifier).containerTheme(ref: ref),
-      items: ref
-          .watch(countriesCodes)
-          .map<DropdownMenuItem<String>>((String value) {
-        return DropdownMenuItem<String>(
-          value: value,
-          child: Text(
-            textDirection: TextDirection.ltr,
-            value,
-            style: TextStyle(
-              color: ref.read(themeModeNotifier.notifier).textTheme(ref: ref),
-              fontSize: getIt<AppDimension>().isSmallScreen(context) ? 14 : 15,
-            ),
-          ),
-        );
-      }).toList(),
-    );
+    return DropdownFieldWidget(
+
+        isStringOnly: true,
+        onChanged: (newValue) {
+          ref.read(selectedCountryCode.notifier).state = newValue!;
+        },
+        items: ref.watch(countriesCodes));
   }
 }
 
@@ -175,7 +143,7 @@ class PhoneNumberWidget extends ConsumerWidget {
     return TextFormFieldWidget(
       validateTextValue: validateTextValue,
       isPhoneRegTextField: isPhoneRegTextField ?? true,
-      fontSize: getIt<AppDimension>().isSmallScreen(context) ? 15 : 16,
+      fontSize: getIt<AppDimension>().isSmallScreen(context) ? 14 : 16,
       controller: controller,
       labelName: hasContainer ?? false
           ? null

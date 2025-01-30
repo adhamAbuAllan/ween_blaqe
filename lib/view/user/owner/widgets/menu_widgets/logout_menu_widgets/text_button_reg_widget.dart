@@ -26,6 +26,7 @@ class TextButtonRegWidget extends ConsumerWidget {
               fontFamily: "IBM"),
         ),
         TextButton(
+          style: const ButtonStyle(tapTargetSize: MaterialTapTargetSize.shrinkWrap),
           child: Text(
             SetLocalization.of(context)!.getTranslateValue("create_account"),
             style: const TextStyle(

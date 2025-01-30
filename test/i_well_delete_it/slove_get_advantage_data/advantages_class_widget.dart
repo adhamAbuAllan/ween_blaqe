@@ -58,7 +58,7 @@ class _AdvantagesClassWidgetState extends State<AdvantagesClassWidget> {
             Text(
               "feature.advName",
               style: TextStyle(
-                   fontSize: 16, color: Colors.grey.shade800),
+                   fontSize: getIt<AppDimension>().isSmallScreen(context) ? 14 : 16, color: Colors.grey.shade800),
             ),
             // const Expanded(child: Text("")),
             // Image(

@@ -45,6 +45,7 @@ class NormalAlert {
                   onPressed: () {
                     Navigator.pop(context);
                   },
+                  context: context,
                   child: Text(
                     textOfOkButton,
                   )),

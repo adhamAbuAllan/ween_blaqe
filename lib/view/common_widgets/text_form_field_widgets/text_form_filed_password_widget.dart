@@ -61,11 +61,14 @@ class _TextFormFiledPasswordWidgetState
             errorText: widget.errorText,
             contentPadding: EdgeInsets.symmetric(
                 vertical:
-                    getIt<AppDimension>().isSmallScreen(context) ? 20 / 2 : 20,
+                    getIt<AppDimension>().isSmallScreen(context) ? 20 / 2.3 :
+                    20,
                 horizontal: 10),
             labelText: widget.labelInput,
-            labelStyle: TextStyle(color: Colors.grey.shade500, fontSize: 16),
+            labelStyle: TextStyle(color: Colors.grey.shade500, fontSize: getIt<AppDimension>().isSmallScreen(context) ? 14 : 16,),
             suffixIcon: IconButton(
+              iconSize: getIt<AppDimension>().isSmallScreen(context) ? 20 : 24 ,
+
               icon: widget.isObscure
                   ? const Icon(Icons.visibility)
                   : const Icon(Icons.visibility_off),

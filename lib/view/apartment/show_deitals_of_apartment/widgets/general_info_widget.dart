@@ -160,7 +160,7 @@ class _AccountOfStudentTextWidgetState
           : "${SetLocalization.of(context)!.getTranslateValue("allowed_people_count")}: ${widget.oneApartment?.countOfStudnet ?? 0}"),
       style: TextStyle(
         color: ref.read(themeModeNotifier.notifier).textTheme(ref: ref),
-        fontSize: 16,
+        fontSize: getIt<AppDimension>().isSmallScreen(context) ? 14 : 16,
       ),
     );
   }
@@ -184,7 +184,7 @@ class _TypeOfApartmentTextWidgetState
       "${SetLocalization.of(context)!.getTranslateValue("housing_type_students")}:${widget.oneApartment?.type?.name ?? ""}",
       style: TextStyle(
         color: ref.read(themeModeNotifier.notifier).textTheme(ref: ref),
-        fontSize: 16,
+        fontSize: getIt<AppDimension>().isSmallScreen(context) ? 14 : 16,
       ),
     );
   }
@@ -208,7 +208,7 @@ class _PriceTextWidgetState extends ConsumerState<PriceTextWidget> {
           "${SetLocalization.of(context)!.getTranslateValue("rent")}: ${widget.oneApartment?.price ?? ""}",
           style: TextStyle(
             color: ref.read(themeModeNotifier.notifier).primaryTheme(ref: ref),
-            fontSize: 16,
+            fontSize: getIt<AppDimension>().isSmallScreen(context) ? 14 : 16,
             fontWeight: FontWeight.w600,
           ),
         ),

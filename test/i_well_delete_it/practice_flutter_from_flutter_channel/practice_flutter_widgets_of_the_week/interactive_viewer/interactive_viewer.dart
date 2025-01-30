@@ -15,7 +15,7 @@
 //       body: Column(mainAxisAlignment: MainAxisAlignment.center, children: [
 //         const Text(
 //           "Zoom the image 🔎",
-//           style: TextStyle(fontSize: 18,fontWeight: FontWeight.w800),
+//           style: TextStyle(fontSize: getIt<AppDimension>().isSmallScreen(context) ? 16 : 18,fontWeight: FontWeight.w800),
 //         ),
 //         InteractiveViewer(
 //             child: const Image(

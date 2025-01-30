@@ -1,4 +1,3 @@
-
 import 'package:colorful_safe_area/colorful_safe_area.dart';
 import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:flutter/material.dart';
@@ -30,11 +29,10 @@ class _NoInternetUiState extends ConsumerState<NoInternetUi>
     with WidgetsBindingObserver {
   @override
   void initState() {
-   
     super.initState();
 
     WidgetsBinding.instance.addPostFrameCallback((_) async {
-          var sephaText = ref.read(sephaTextProvider.notifier).state;
+      var sephaText = ref.read(sephaTextProvider.notifier).state;
 
       NewSession.get("language", "ar") == 'en'
           ? sephaText = [
@@ -78,7 +76,6 @@ class _NoInternetUiState extends ConsumerState<NoInternetUi>
 
   @override
   Widget build(BuildContext context) {
-
     return ColorfulSafeArea(
       bottomColor: Colors.transparent,
       color: ref.read(themeModeNotifier.notifier).primaryTheme(ref: ref),
@@ -90,26 +87,19 @@ class _NoInternetUiState extends ConsumerState<NoInternetUi>
               backgroundColor: ref
                   .read(themeModeNotifier.notifier)
                   .backgroundAppTheme(ref: ref),
-              body: const SingleChildScrollView(child: ContainerAnimatedWidget()),
+              body:
+                  const SingleChildScrollView(child: ContainerAnimatedWidget()),
               floatingActionButton:
                   ref.read(connectivityNotifier.notifier).isConnected
-                      ? const FloatingActionButtonNoInternetWidget()                      : const
-                  SizedBox(),
+                      ? const FloatingActionButtonNoInternetWidget()
+                      : const SizedBox(),
             );
           }),
     );
   }
-
-  
-
-
-
-
 }
-
 
 void saveTotal(int totalValue) async {
   SharedPreferences prefs = await SharedPreferences.getInstance();
   prefs.setInt('total', totalValue);
 }
-

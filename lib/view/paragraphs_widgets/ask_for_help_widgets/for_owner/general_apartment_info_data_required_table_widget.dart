@@ -25,7 +25,7 @@ class GeneralApartmentInfoDataRequiredTable extends ConsumerWidget {
           ref.read(themeModeNotifier.notifier).containerTheme(ref: ref)),
       horizontalMargin: 20,
       // dataRowHeight: 3,
-      headingTextStyle: const TextStyle(fontSize: 16),
+      headingTextStyle:  TextStyle(fontSize: getIt<AppDimension>().isSmallScreen(context) ? 14 : 16,),
       sortColumnIndex: 0,
       // dataRowMinHeight: 60,
       dataRowMinHeight: 48,
@@ -54,7 +54,7 @@ class GeneralApartmentInfoDataRequiredTable extends ConsumerWidget {
           // headingRowAlignment: MainAxisAlignment.center,
           label: Text(SetLocalization.of(context)!.getTranslateValue("example"),
               style: TextStyle(
-                  fontSize: 16,
+                  fontSize: getIt<AppDimension>().isSmallScreen(context) ? 14 : 16,
                   color: ref
                       .read(themeModeNotifier.notifier)
                       .textTheme(ref: ref))),

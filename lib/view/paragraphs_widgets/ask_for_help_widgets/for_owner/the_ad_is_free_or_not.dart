@@ -57,7 +57,7 @@
 //             //   child: Text(
 //             //     "التكلفة ",
 //             //     style: TextStyle(
-//             //       fontSize: 18.0,
+//             //       fontSize: getIt<AppDimension>().isSmallScreen(context) ? 16 : 18,
 //             //       color: Colors.grey.shade800,
 //             //
 //             //       inherit: true,
@@ -71,7 +71,7 @@
 //             //     // "الخطة السنوية : عند شرائك الخطة السنوية لأول مرة تكون تكلفة الاشتراك هي 1100 شيقل ، و عند تجديد الاشتراك تكون تكلفة الاشتراك 1200 شيقل",
 //             //     "",
 //             //     style: TextStyle(
-//             //       fontSize: 16.0,
+//             //       fontSize: getIt<AppDimension>().isSmallScreen(context) ? 14 : 16,
 //             //       color: Colors.grey.shade800,
 //             //
 //             //       inherit: true,
@@ -88,7 +88,7 @@
 //                   Text(
 //                     "أعرض إعلاناتك بلا حدود على تطبيق وين بلاقي بتكلفة قليلة نسبيًا",
 //                     style: TextStyle(
-//                       fontSize: 18.0,
+//                       fontSize: getIt<AppDimension>().isSmallScreen(context) ? 16 : 18,
 //
 //                       color: themeMode.isLight
 //                           ? kTextColorLightMode

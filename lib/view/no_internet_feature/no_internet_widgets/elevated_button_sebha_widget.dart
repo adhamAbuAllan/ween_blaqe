@@ -73,6 +73,7 @@ class _ElevatedButtonSebhaWidgetState
             }
           });
         },
+        context: context,
         child: Text(
           SetLocalization.of(context)!.getTranslateValue("tasbih"),
           style: TextStyle(color: Colors.white.withOpacity(.95)),

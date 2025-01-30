@@ -62,7 +62,7 @@ class DataOfOwnerAndButtonWidget extends ConsumerWidget {
                   style: TextStyle(
                       color: ref.read(themeModeNotifier.notifier).textTheme(ref: ref),
                       fontWeight: FontWeight.w600,
-                      fontSize: 16)),
+                      fontSize: getIt<AppDimension>().isSmallScreen(context) ? 14 : 16,)),
           const SizedBox(
             height: 30,
           ),
@@ -97,6 +97,7 @@ class DataOfOwnerAndButtonWidget extends ConsumerWidget {
                     onPressed: () {
                       myPushName(context, MyPagesRoutes.updateUserInfo);
                     },
+                    context: context,
                     child: Text(
                         SetLocalization.of(context)!
                             .getTranslateValue("edit_data"),

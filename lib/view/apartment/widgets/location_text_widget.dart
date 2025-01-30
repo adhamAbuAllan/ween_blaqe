@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import '../../../../../api/apartments_api/apartments.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+import '../../../constants/coordination.dart';
+import '../../../constants/get_it_controller.dart';
 import '../../../controller/provider_controllers/providers/color_provider.dart';
 class ApartmentLocatoinTextWidget extends ConsumerWidget {
   const ApartmentLocatoinTextWidget({super.key,required this.index, required
@@ -28,7 +30,7 @@ class ApartmentLocatoinTextWidget extends ConsumerWidget {
               softWrap: true,
               // textDirection: TextDirection.rtl,
               style: TextStyle(
-                fontSize: 16,
+                fontSize: getIt<AppDimension>().isSmallScreen(context) ? 14 : 16,
                 color:
                 ref.read(themeModeNotifier.notifier).textTheme(ref: ref)
                 ,

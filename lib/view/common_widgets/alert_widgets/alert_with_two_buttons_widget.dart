@@ -66,6 +66,7 @@ class AlertWithTwoBtn {
                   onPressed: () {
                     onClicked();
                   },
+                  context: context,
                   child: Text(
                     textOfOkButton,
                   ))

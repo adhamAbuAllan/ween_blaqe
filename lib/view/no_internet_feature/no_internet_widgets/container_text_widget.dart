@@ -51,7 +51,7 @@ class TextNoInternetWidget extends ConsumerWidget {
                     text: SetLocalization.of(context)!
                         .getTranslateValue("no_internet_connection"),
                     style: TextStyle(
-                      fontSize: 16.0,
+                      fontSize: getIt<AppDimension>().isSmallScreen(context) ? 14 : 16,
                       inherit: true,
                       color: ref
                           .read(themeModeNotifier.notifier)
@@ -68,8 +68,8 @@ class TextNoInternetWidget extends ConsumerWidget {
                 TextSpan(
                     text: SetLocalization.of(context)!
                         .getTranslateValue("try_enabling_mobile_data_or_wifi"),
-                    style: const TextStyle(
-                        fontSize: 16,
+                    style:  TextStyle(
+                        fontSize: getIt<AppDimension>().isSmallScreen(context) ? 14 : 16,
                         inherit: true,
                         color: Colors.grey,
                         fontWeight: FontWeight.bold)),

@@ -105,6 +105,7 @@ class _AppBarGridWidgetState extends ConsumerState<AppBarGridWidget> {
                 return;
               }
             },
+            context: context,
             child: Text(SetLocalization.of(context)!.getTranslateValue("done")),
           ),
         ),

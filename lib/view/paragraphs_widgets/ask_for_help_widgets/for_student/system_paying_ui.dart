@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:ween_blaqe/view/common_widgets/button_widgets/button_list_tile_widget.dart';
 
+import '../../../../constants/coordination.dart';
+import '../../../../constants/get_it_controller.dart';
 import '../../../../constants/localization.dart';
 import '../../../../controller/provider_controllers/providers/color_provider.dart';
 import 'package:ween_blaqe/constants/strings.dart';
@@ -115,7 +117,7 @@ class WhatIsSystemPayingAllowUi extends ConsumerWidget {
                 SetLocalization.of(context)!
                     .getTranslateValue("payment_by_agreement"),
                 style: TextStyle(
-                  fontSize: 16.0,
+                  fontSize: getIt<AppDimension>().isSmallScreen(context) ? 14 : 16,
                   color: ref
                       .read(themeModeNotifier.notifier)
                       .textTheme(ref: ref)
@@ -132,7 +134,7 @@ class WhatIsSystemPayingAllowUi extends ConsumerWidget {
             //     "سيتم العمل على إجاد طرق اخرى للدفع مثل"
             //     " البطاقات الإتمانية و غيرها من الطرق مسقبلاً بإذن الله",
             //     style: TextStyle(
-            //         fontSize: 16.0,
+            //         fontSize: getIt<AppDimension>().isSmallScreen(context) ? 14 : 16,
             //
             //         inherit: true,
             //         color: themeMode.isLight
@@ -188,7 +190,7 @@ class CouldIPayByDepositUi extends ConsumerWidget {
                 SetLocalization.of(context)!
                     .getTranslateValue("deposit_payment_agreement"),
                 style: TextStyle(
-                  fontSize: 16.0,
+                  fontSize: getIt<AppDimension>().isSmallScreen(context) ? 14 : 16,
                   color: ref
                       .read(themeModeNotifier.notifier)
                       .textTheme(ref: ref)

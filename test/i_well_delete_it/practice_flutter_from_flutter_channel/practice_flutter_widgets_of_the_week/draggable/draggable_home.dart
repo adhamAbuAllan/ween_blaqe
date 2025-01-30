@@ -33,7 +33,7 @@
 //                         style: TextStyle(
 //                             color: Colors.white,
 //                             decoration: TextDecoration.none,
-//                             fontSize: 18),
+//                             fontSize: getIt<AppDimension>().isSmallScreen(context) ? 16 : 18),
 //                       ),
 //                     ),
 //                   ),

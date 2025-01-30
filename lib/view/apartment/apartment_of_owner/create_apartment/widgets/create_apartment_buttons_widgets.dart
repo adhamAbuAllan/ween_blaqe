@@ -44,6 +44,7 @@ class NextButtonWidget extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     return ElevatedButtonWidget(
       onPressed: onPressed,
+      context: context,
       child: ref.watch(createApartmentNotifier).isLoading ||
               ref.watch(updateApartmentNotifier).isUpdating
           ?  const CircularProgressIndicator(color: Colors.white,)

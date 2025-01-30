@@ -24,6 +24,7 @@ class ButtonRegCompletedWidget extends ConsumerWidget {
               validateAndRegistration(ref, context);
 
             },
+            context: context,
             child: ref.watch(registerNotifier).isLoading == false
                 ? Text(SetLocalization.of(context)!.getTranslateValue
               ("create_account"))

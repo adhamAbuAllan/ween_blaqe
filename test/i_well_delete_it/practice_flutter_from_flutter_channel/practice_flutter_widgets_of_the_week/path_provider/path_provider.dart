@@ -30,7 +30,7 @@
 //       body: Column(mainAxisAlignment: MainAxisAlignment.center, children: [
 //         const Align(
 //             alignment: Alignment.centerLeft,
-//             child: Text("try path provider", style: TextStyle(fontSize: 18))),
+//             child: Text("try path provider", style: TextStyle(fontSize: getIt<AppDimension>().isSmallScreen(context) ? 16 : 18))),
 //         sizeBox10Height(),
 //         isWrite == true
 //             ? Text("the write is : $writeString")

@@ -25,7 +25,7 @@
 //               padding: EdgeInsets.symmetric(horizontal: 8,vertical: 35),
 //               child: Text(
 //                 overflow: TextOverflow.visible,
-//                 "In this widget you can setState without use stateful class for any stateless weiget ",style: TextStyle(color: Colors.red,height: 1.5,fontSize: 18),),
+//                 "In this widget you can setState without use stateful class for any stateless weiget ",style: TextStyle(color: Colors.red,height: 1.5,fontSize: getIt<AppDimension>().isSmallScreen(context) ? 16 : 18),),
 //             ),
 //
 //             StatefulBuilder(builder: (context, setState) {

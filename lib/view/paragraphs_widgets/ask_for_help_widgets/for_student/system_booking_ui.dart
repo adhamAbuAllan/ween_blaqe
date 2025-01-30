@@ -2,6 +2,8 @@ import 'package:colorful_safe_area/colorful_safe_area.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:ween_blaqe/view/common_widgets/button_widgets/button_list_tile_widget.dart';
+import '../../../../constants/coordination.dart';
+import '../../../../constants/get_it_controller.dart';
 import '../../../../constants/localization.dart';
 import '../../../../controller/provider_controllers/providers/color_provider.dart';
 import 'package:ween_blaqe/constants/strings.dart';
@@ -110,7 +112,7 @@ class HowCouldBookingApartmentUi extends ConsumerWidget {
                   // "يتطلب حجز شقة على تطبيق 'وين بلاقي' تسجيل دخول المستخدم أولاً ثم إتباع الخطوات التالية",
                   "${SetLocalization.of(context)!.getTranslateValue("booking_steps")}:",
                   style: TextStyle(
-                    fontSize: 16.0,
+                    fontSize: getIt<AppDimension>().isSmallScreen(context) ? 14 : 16,
                     color: ref
                         .read(themeModeNotifier.notifier)
                         .textTheme(ref: ref, withOpacity: 0.8),
@@ -127,7 +129,7 @@ class HowCouldBookingApartmentUi extends ConsumerWidget {
                   SetLocalization.of(context)!
                       .getTranslateValue("step_one_go_to_homepage"),
                   style: TextStyle(
-                      fontSize: 18.0,
+                      fontSize: getIt<AppDimension>().isSmallScreen(context) ? 16 : 18,
                       fontWeight: FontWeight.w600,
                       inherit: true,
                       color: ref
@@ -144,7 +146,7 @@ class HowCouldBookingApartmentUi extends ConsumerWidget {
                   SetLocalization.of(context)!
                       .getTranslateValue("navigate_to_homepage"),
                   style: TextStyle(
-                    fontSize: 16.0,
+                    fontSize: getIt<AppDimension>().isSmallScreen(context) ? 14 : 16,
                     color: ref
                         .read(themeModeNotifier.notifier)
                         .textTheme(ref: ref, withOpacity: 0.8),
@@ -162,7 +164,7 @@ class HowCouldBookingApartmentUi extends ConsumerWidget {
                   SetLocalization.of(context)!
                       .getTranslateValue("step_two_find_apartment"),
                   style: TextStyle(
-                      fontSize: 18.0,
+                      fontSize: getIt<AppDimension>().isSmallScreen(context) ? 16 : 18,
                       fontWeight: FontWeight.w600,
                       inherit: true,
                       color: ref
@@ -179,7 +181,7 @@ class HowCouldBookingApartmentUi extends ConsumerWidget {
                   SetLocalization.of(context)!
                       .getTranslateValue("step_two_details"),
                   style: TextStyle(
-                    fontSize: 16.0,
+                    fontSize: getIt<AppDimension>().isSmallScreen(context) ? 14 : 16,
                     color: ref
                         .read(themeModeNotifier.notifier)
                         .textTheme(ref: ref, withOpacity: 0.8),
@@ -200,7 +202,7 @@ class HowCouldBookingApartmentUi extends ConsumerWidget {
                         text:
                             "${SetLocalization.of(context)!.getTranslateValue("tip")}:",
                         style: TextStyle(
-                          fontSize: 18.0,
+                          fontSize: getIt<AppDimension>().isSmallScreen(context) ? 16 : 18,
                           color: ref
                               .read(themeModeNotifier.notifier)
                               .primaryTheme(ref: ref),
@@ -211,7 +213,7 @@ class HowCouldBookingApartmentUi extends ConsumerWidget {
                         text:
                             " ${SetLocalization.of(context)!.getTranslateValue("tip_contact_owner")}",
                         style: TextStyle(
-                          fontSize: 16.0,
+                          fontSize: getIt<AppDimension>().isSmallScreen(context) ? 14 : 16,
                           color: ref
                               .read(themeModeNotifier.notifier)
                               .textTheme(ref: ref, withOpacity: 0.7),
@@ -230,7 +232,7 @@ class HowCouldBookingApartmentUi extends ConsumerWidget {
                   SetLocalization.of(context)!
                       .getTranslateValue("step_three_view_more_details"),
                   style: TextStyle(
-                    fontSize: 18.0,
+                    fontSize: getIt<AppDimension>().isSmallScreen(context) ? 16 : 18,
                     fontWeight: FontWeight.w600,
                     inherit: true,
                     color: ref
@@ -248,7 +250,7 @@ class HowCouldBookingApartmentUi extends ConsumerWidget {
                   SetLocalization.of(context)!
                       .getTranslateValue("step_three_details"),
                   style: TextStyle(
-                    fontSize: 16.0,
+                    fontSize: getIt<AppDimension>().isSmallScreen(context) ? 14 : 16,
                     color: ref
                         .read(themeModeNotifier.notifier)
                         .textTheme(ref: ref, withOpacity: 0.8),
@@ -265,7 +267,7 @@ class HowCouldBookingApartmentUi extends ConsumerWidget {
                   SetLocalization.of(context)!
                       .getTranslateValue("step_four_select_contact_method"),
                   style: TextStyle(
-                    fontSize: 18.0,
+                    fontSize: getIt<AppDimension>().isSmallScreen(context) ? 16 : 18,
                     inherit: true,
                     fontWeight: FontWeight.w600,
                     color: ref
@@ -283,7 +285,7 @@ class HowCouldBookingApartmentUi extends ConsumerWidget {
                   SetLocalization.of(context)!
                       .getTranslateValue("step_four_details"),
                   style: TextStyle(
-                    fontSize: 16.0,
+                    fontSize: getIt<AppDimension>().isSmallScreen(context) ? 14 : 16,
                     color: ref
                         .read(themeModeNotifier.notifier)
                         .textTheme(ref: ref, withOpacity: 0.8),
@@ -300,7 +302,7 @@ class HowCouldBookingApartmentUi extends ConsumerWidget {
                   SetLocalization.of(context)!
                       .getTranslateValue("step_five_contact_owner_to_book"),
                   style: TextStyle(
-                    fontSize: 18.0,
+                    fontSize: getIt<AppDimension>().isSmallScreen(context) ? 16 : 18,
                     inherit: true,
                     fontWeight: FontWeight.w600,
                     color: ref
@@ -318,7 +320,7 @@ class HowCouldBookingApartmentUi extends ConsumerWidget {
                   SetLocalization.of(context)!
                       .getTranslateValue("step_five_details"),
                   style: TextStyle(
-                    fontSize: 16.0,
+                    fontSize: getIt<AppDimension>().isSmallScreen(context) ? 14 : 16,
                     color: ref
                         .read(themeModeNotifier.notifier)
                         .textTheme(ref: ref, withOpacity: 0.8),
@@ -379,7 +381,7 @@ class CouldICancelABookingUi extends ConsumerWidget {
               child: Text(
                 "",
                 style: TextStyle(
-                  fontSize: 16.0,
+                  fontSize: getIt<AppDimension>().isSmallScreen(context) ? 14 : 16,
                   color: ref
                       .read(themeModeNotifier.notifier)
                       .textTheme(ref: ref, withOpacity: 0.8),
@@ -439,7 +441,7 @@ class HowLongIsTheReservationAvailableUi extends ConsumerWidget {
                 SetLocalization.of(context)!
                     .getTranslateValue("booking_duration_details"),
                 style: TextStyle(
-                  fontSize: 16.0,
+                  fontSize: getIt<AppDimension>().isSmallScreen(context) ? 14 : 16,
                   color: ref
                       .read(themeModeNotifier.notifier)
                       .textTheme(ref: ref, withOpacity: 0.8),

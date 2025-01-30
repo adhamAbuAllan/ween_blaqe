@@ -103,7 +103,8 @@ class TextFormFieldWidget extends ConsumerWidget {
     return InputDecoration(
       isDense: true,
       contentPadding: EdgeInsets.symmetric(
-          vertical: getIt<AppDimension>().isSmallScreen(context) ? 20 / 2 : 20,
+          vertical: getIt<AppDimension>().isSmallScreen(context) ? 20 / 2.3 :
+          20,
           horizontal: 10),
       labelText: labelName,
       labelStyle: TextStyle(

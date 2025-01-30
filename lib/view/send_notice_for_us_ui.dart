@@ -62,6 +62,7 @@ class _SendNoticeForUsUiState extends ConsumerState<SendNoticeForUsUi> {
                           ? 10
                           : 8),
                   child: ElevatedButtonWidget(
+                    context: context,
                     onPressed: () {
                       if (connectivityController.isConnection()) {
                         if (sendNoticeForUsValue == "" ||

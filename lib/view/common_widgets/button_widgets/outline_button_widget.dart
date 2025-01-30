@@ -61,7 +61,7 @@ ButtonStyle outlinedButton({
     foregroundColor: forgroundColor,
     backgroundColor: isFloatingOutlinedButton ?? false ? backgroundColor : null,
     textStyle: TextStyle(
-      fontSize: getIt<AppDimension>().isSmallScreen(context) ? 15 : 16,
+      fontSize: getIt<AppDimension>().isSmallScreen(context) ? 14 : 16,
       color: primaryColor,
       fontWeight: FontWeight.w500,
       fontFamily: 'IBM',

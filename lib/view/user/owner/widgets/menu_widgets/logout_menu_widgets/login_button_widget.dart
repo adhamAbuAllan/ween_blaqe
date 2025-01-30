@@ -19,6 +19,7 @@ class LoginButtonWidget extends ConsumerWidget {
         width: double.infinity,
         height: getIt<AppDimension>().isSmallScreen(context) ? 55 / 1.2 : 55,
         child: ElevatedButtonWidget(
+          context: context,
             onPressed: () {
               myPushName(context, MyPagesRoutes.login);
             },

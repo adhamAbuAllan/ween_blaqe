@@ -23,11 +23,10 @@ class RegistrationUi extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     return ColorfulSafeArea(
       bottomColor: Colors.transparent,
-      color:
-      ref.read(themeModeNotifier.notifier).primaryTheme(ref: ref),
+      color: ref.read(themeModeNotifier.notifier).primaryTheme(ref: ref),
       child: Scaffold(
-          backgroundColor: ref.read(themeModeNotifier.notifier).backgroundAppTheme(ref: ref),
-
+          backgroundColor:
+              ref.read(themeModeNotifier.notifier).backgroundAppTheme(ref: ref),
           body: GestureDetector(
             onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
             child: SingleChildScrollView(
@@ -36,14 +35,15 @@ class RegistrationUi extends ConsumerWidget {
               children: <Widget>[
                 Padding(
                   padding: const EdgeInsets.fromLTRB(0, 25, 0, 0),
-                  child: BackButtonWidget(onPressed: (){
-
-                    Navigator.pop(context);
-                  },),
+                  child: BackButtonWidget(
+                    onPressed: () {
+                      Navigator.pop(context);
+                    },
+                  ),
                 ),
                 SizedBox(
                   height: getIt<AppDimension>().isSmallScreen(context)
-                      ? 20 / 1.6
+                      ? 20 / 3
                       : 20,
                 ),
                 const TitleRegCompletedWidget(),
@@ -58,8 +58,10 @@ class RegistrationUi extends ConsumerWidget {
                           // UserNameWidget(),
                           const UserNameRegCompletedWidget(),
                           // HintUnderUserNameField(),
-                          const SizedBox(
-                            height: 20,
+                          SizedBox(
+                            height: getIt<AppDimension>().isSmallScreen(context)
+                                ? 10
+                                : 20,
                           ),
                           Form(
                               key: formPhoneKey,
@@ -73,13 +75,17 @@ class RegistrationUi extends ConsumerWidget {
                                 isPhoneRegTextField: true,
                               )),
                           // PhoneNumberWidget(),
-                          const SizedBox(
-                            height: 10,
+                          SizedBox(
+                            height: getIt<AppDimension>().isSmallScreen(context)
+                                ? 0
+                                : 10,
                           ),
                           const PasswordRegCompletedWidget(),
                           // HintUnderPhoneNumberField(),
-                          const SizedBox(
-                            height: 20,
+                          SizedBox(
+                            height: getIt<AppDimension>().isSmallScreen(context)
+                                ? 0
+                                : 20,
                           ),
                           // PasswordWidget(),
                           const PrivacyPolicyTextWidget(),

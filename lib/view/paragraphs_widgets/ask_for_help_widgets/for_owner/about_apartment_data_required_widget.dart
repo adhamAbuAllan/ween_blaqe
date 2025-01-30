@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+import '../../../../constants/coordination.dart';
+import '../../../../constants/get_it_controller.dart';
 import '../../../../constants/localization.dart';
 import '../../../../controller/provider_controllers/providers/color_provider.dart';
 
@@ -29,7 +31,7 @@ class AboutApartmentDataRequiredWidget extends ConsumerWidget {
             label: Text(
                 SetLocalization.of(context)!.getTranslateValue("full_name"),
                 style: TextStyle(
-                    fontSize: 16,
+                    fontSize: getIt<AppDimension>().isSmallScreen(context) ? 14 : 16,
 
                     color: ref.read(themeModeNotifier.notifier).textTheme(ref: ref))),
             tooltip: SetLocalization.of(context)!
@@ -38,7 +40,7 @@ class AboutApartmentDataRequiredWidget extends ConsumerWidget {
             label: Text(
                 SetLocalization.of(context)!.getTranslateValue("example"),
                 style: TextStyle(
-                    fontSize: 16,
+                    fontSize: getIt<AppDimension>().isSmallScreen(context) ? 14 : 16,
 
                     color: ref.read(themeModeNotifier.notifier).textTheme(ref: ref))),
             tooltip: "مثال على العلومة المطلوبة")

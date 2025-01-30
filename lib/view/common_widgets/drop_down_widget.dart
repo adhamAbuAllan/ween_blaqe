@@ -5,20 +5,21 @@ import 'package:ween_blaqe/controller/provider_controllers/providers/color_provi
 import '../../constants/coordination.dart';
 import '../../constants/get_it_controller.dart';
 
-
 class DropdownFieldWidget extends ConsumerStatefulWidget {
   const DropdownFieldWidget({
     super.key,
     required this.onChanged,
     required this.items,
     this.alreadyExistingValue,
-    this.autofocus
+    this.autofocus,
+    this.isStringOnly,
   });
 
   final List<dynamic> items;
   final Function(dynamic)? onChanged;
-  final dynamic  alreadyExistingValue;
-  final bool ?autofocus;
+  final dynamic alreadyExistingValue;
+  final bool? autofocus;
+  final bool? isStringOnly;
 
   @override
   ConsumerState createState() => _DropdownFieldWidgetState();
@@ -28,31 +29,39 @@ class _DropdownFieldWidgetState extends ConsumerState<DropdownFieldWidget> {
   @override
   Widget build(BuildContext context) {
     return DropdownButtonFormField(
-      autofocus: widget.autofocus??false,
-        padding: const EdgeInsets.symmetric(vertical: 10,horizontal: 20),
+        autofocus: widget.autofocus ?? false,
+        padding:  EdgeInsets.symmetric(vertical: getIt<AppDimension>()
+            .isSmallScreen(context) ? 0 :10, horizontal:   getIt<AppDimension>().isSmallScreen(context) ? 0 : 20),
         decoration: InputDecoration(
+
           contentPadding: EdgeInsets.symmetric(
               vertical:
-              getIt<AppDimension>().isSmallScreen(context) ? 20 / 2 : 20,
+                  getIt<AppDimension>().isSmallScreen(context) ? 20 / 2.3 : 20,
               horizontal: 12),
           enabledBorder: OutlineInputBorder(
             borderSide: BorderSide(
-              width: 1,
-              color: ref.read(themeModeNotifier.notifier).primary300Theme(ref: ref),
+                width: 0.5,
+
+              color: ref
+                  .read(themeModeNotifier.notifier)
+                  .primary300Theme(ref: ref),
             ),
           ),
           focusedBorder: OutlineInputBorder(
             borderSide: BorderSide(
-              color: ref.read(themeModeNotifier.notifier).primaryTheme(ref: ref),
+              color:
+                  ref.read(themeModeNotifier.notifier).primaryTheme(ref: ref),
               width: 1,
             ),
           ),
         ),
-        dropdownColor: ref.read(themeModeNotifier.notifier).containerTheme(ref: ref),
-        value:widget.alreadyExistingValue??widget.items.first,
+
+        dropdownColor:
+            ref.read(themeModeNotifier.notifier).containerTheme(ref: ref),
+        value: widget.alreadyExistingValue ?? widget.items.first,
         items: widget.items.map((item) {
-          String? itemName = item.name;
-          itemName = item.name ?? "";
+          String? itemName = widget.isStringOnly??false ? item : item.name;
+          itemName = widget.isStringOnly??false ? item : item.name;
           return DropdownMenuItem(
 
             value: item,
@@ -61,7 +70,7 @@ class _DropdownFieldWidgetState extends ConsumerState<DropdownFieldWidget> {
                   itemName ?? "",
                   style: TextStyle(
                     fontSize:
-                    getIt<AppDimension>().isSmallScreen(context) ? 15 : 16,
+                    getIt<AppDimension>().isSmallScreen(context) ? 14 : 16,
                     color: ref.read(themeModeNotifier.notifier).textTheme(ref: ref),
                   ),
                 )),

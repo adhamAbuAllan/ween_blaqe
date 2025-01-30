@@ -128,7 +128,7 @@ class _WhatTheInfoReqToCreateAdState
                         SetLocalization.of(context)!
                             .getTranslateValue("info_of_general_info"),
                         style: TextStyle(
-                          fontSize: 16.0,
+                          fontSize: getIt<AppDimension>().isSmallScreen(context) ? 14 : 16,
                           fontWeight: FontWeight.w500,
                           color: ref
                               .read(themeModeNotifier.notifier)
@@ -174,7 +174,7 @@ class _WhatTheInfoReqToCreateAdState
                         SetLocalization.of(context)!
                             .getTranslateValue("apartment_details"),
                         style: TextStyle(
-                          fontSize: 16.0,
+                          fontSize: getIt<AppDimension>().isSmallScreen(context) ? 14 : 16,
                           fontWeight: FontWeight.w500,
                           color: ref
                               .read(themeModeNotifier.notifier)
@@ -216,7 +216,7 @@ class _WhatTheInfoReqToCreateAdState
                         SetLocalization.of(context)!
                             .getTranslateValue("apartment_advantages_details"),
                         style: TextStyle(
-                          fontSize: 16.0,
+                          fontSize: getIt<AppDimension>().isSmallScreen(context) ? 14 : 16,
                           fontWeight: FontWeight.w500,
                           letterSpacing: .5,
                           height: 1.35,
@@ -257,7 +257,7 @@ class _WhatTheInfoReqToCreateAdState
                         SetLocalization.of(context)!
                             .getTranslateValue("example_apartment_description"),
                         style: TextStyle(
-                          fontSize: 16.0,
+                          fontSize: getIt<AppDimension>().isSmallScreen(context) ? 14 : 16,
                           fontWeight: FontWeight.w500,
                           letterSpacing: .5,
                           height: 1.35,
@@ -293,7 +293,7 @@ class _WhatTheInfoReqToCreateAdState
                         SetLocalization.of(context)!
                             .getTranslateValue("owner_data_info"),
                         style: TextStyle(
-                          fontSize: 16.0,
+                          fontSize: getIt<AppDimension>().isSmallScreen(context) ? 14 : 16,
                           fontWeight: FontWeight.w500,
                           letterSpacing: .5,
                           height: 1.35,

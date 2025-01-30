@@ -73,7 +73,7 @@ class OrdersOfStudentUi extends ConsumerWidget {
                         "booking_advantage_in_development"),
                     overflow: TextOverflow.ellipsis,
                     style: TextStyle(
-                        fontSize: 16,
+                        fontSize: getIt<AppDimension>().isSmallScreen(context) ? 14 : 16,
                         color: ref
                             .read(themeModeNotifier.notifier)
                             .textTheme(ref: ref)),

@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:ween_blaqe/controller/provider_controllers/providers/apartment_provider.dart';
 
+import '../../../../constants/coordination.dart';
+import '../../../../constants/get_it_controller.dart';
 import '../../../../constants/localization.dart';
 import '../../../../controller/provider_controllers/providers/color_provider.dart';
 
@@ -30,7 +32,7 @@ class ApartmentFeaturesAvailableTableWidget extends ConsumerWidget {
             label: Text(
               SetLocalization.of(context)!.getTranslateValue("name"),
               style: TextStyle(
-                fontSize: 16,
+                fontSize: getIt<AppDimension>().isSmallScreen(context) ? 14 : 16,
                 color: ref.read(themeModeNotifier.notifier).textTheme(ref: ref),
               ),
             ),

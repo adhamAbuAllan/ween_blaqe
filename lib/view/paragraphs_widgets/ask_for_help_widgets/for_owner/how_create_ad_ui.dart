@@ -2,6 +2,8 @@ import 'package:colorful_safe_area/colorful_safe_area.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+import '../../../../constants/coordination.dart';
+import '../../../../constants/get_it_controller.dart';
 import '../../../../controller/provider_controllers/providers/color_provider.dart';
 
 class HowCreateAdUi extends ConsumerWidget {
@@ -50,7 +52,7 @@ class HowCreateAdUi extends ConsumerWidget {
                     // "يتطلب إنشاء إعلان على تطبيق 'وين بلاقي' تسجيل الدخول ، و من ثم الضغط على كملة إنشاء أو من خلال الدائرة في اسفل الشاشة  ثم إتباع الخظوات الاربعة لإتمام عملية النشر.",
                     "لإنشاء إعلان خاص بك على تطبيق وين بلاقي ، إذهب إلى الصفحة الرئيسية",
                     style: TextStyle(
-                      fontSize: 16.0,
+                      fontSize: getIt<AppDimension>().isSmallScreen(context) ? 14 : 16,
                       color: ref
                           .read(themeModeNotifier.notifier)
                           .textTheme(ref: ref, withOpacity: 0.8),
@@ -69,7 +71,7 @@ class HowCreateAdUi extends ConsumerWidget {
                   child: Text(
                     "إضعط على زر إضافة شقة المتواجد في اسفل الشاشة على اليمين",
                     style: TextStyle(
-                      fontSize: 16.0,
+                      fontSize: getIt<AppDimension>().isSmallScreen(context) ? 14 : 16,
                       color: ref
                           .read(themeModeNotifier.notifier)
                           .textTheme(ref: ref, withOpacity: .8),
@@ -91,7 +93,7 @@ class HowCreateAdUi extends ConsumerWidget {
                     // " يسهل على المستخدم حجز او نشر شقة في نفس الوقت",
                     "ثم أضغط على زر 'اطلب الإشتراك عبر واتس أب'",
                     style: TextStyle(
-                      fontSize: 16.0,
+                      fontSize: getIt<AppDimension>().isSmallScreen(context) ? 14 : 16,
                       color: ref
                           .read(themeModeNotifier.notifier)
                           .textTheme(ref: ref, withOpacity: .8),
@@ -114,7 +116,7 @@ class HowCreateAdUi extends ConsumerWidget {
                     // " يسهل على المستخدم حجز او نشر شقة في نفس الوقت",
                     "وسيتم الرد على رسالتك خلال بضع دقائق",
                     style: TextStyle(
-                      fontSize: 16.0,
+                      fontSize: getIt<AppDimension>().isSmallScreen(context) ? 14 : 16,
                       color: ref
                           .read(themeModeNotifier.notifier)
                           .textTheme(ref: ref, withOpacity: .8),

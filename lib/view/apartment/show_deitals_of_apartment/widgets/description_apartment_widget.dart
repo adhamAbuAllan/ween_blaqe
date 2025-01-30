@@ -46,7 +46,7 @@ class ApartmentDescriptionWidget extends ConsumerWidget {
             child: Text(apartment.description ?? "",
                 style: TextStyle(
                     color: ref.read(themeModeNotifier.notifier).textTheme(ref: ref),
-                    fontSize: getIt<AppDimension>().isSmallScreen(context) ? 15 : 16,
+                    fontSize: getIt<AppDimension>().isSmallScreen(context) ? 14 : 16,
                     height: 1.6,
                     wordSpacing: 1.3)),
           ),

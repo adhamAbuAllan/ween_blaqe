@@ -2,6 +2,8 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter/material.dart';
 import 'package:ween_blaqe/controller/provider_controllers/providers/color_provider.dart';
 
+import '../../../../constants/coordination.dart';
+import '../../../../constants/get_it_controller.dart';
 import '../../../../constants/localization.dart';
 import '../../../../controller/provider_controllers/providers/apartment_provider.dart';
 
@@ -27,7 +29,7 @@ class TitleNotFoundWidget extends ConsumerWidget {
                 " ${SetLocalization.of(context)!.getTranslateValue
                   ("housing_type")}$type ${SetLocalization.of(context)!.getTranslateValue("not_available")} ",
                 style: TextStyle(
-                  fontSize: 18.0,
+                  fontSize: getIt<AppDimension>().isSmallScreen(context) ? 16 : 18,
                   inherit: true,
                   color: ref.read(themeModeNotifier.notifier).textTheme(ref: ref,withOpacity: .6),
                 )),
@@ -39,7 +41,7 @@ class TitleNotFoundWidget extends ConsumerWidget {
                   ("apartments_will_be_added")}$type "
                 "${SetLocalization.of(context)!.getTranslateValue("coming_soon")} ",
                 style: TextStyle(
-                  fontSize: 16.0,
+                  fontSize: getIt<AppDimension>().isSmallScreen(context) ? 14 : 16,
                   inherit: true,
                   color: ref.read(themeModeNotifier.notifier).textTheme(ref: ref,withOpacity: .8),
                 )),

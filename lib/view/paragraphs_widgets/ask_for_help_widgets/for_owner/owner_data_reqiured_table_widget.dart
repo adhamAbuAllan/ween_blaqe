@@ -2,6 +2,8 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import 'package:flutter/material.dart';
 
+import '../../../../constants/coordination.dart';
+import '../../../../constants/get_it_controller.dart';
 import '../../../../constants/localization.dart';
 import '../../../../controller/provider_controllers/providers/color_provider.dart';
 class OwnerDataReqiuredTableWidget extends ConsumerWidget {
@@ -32,7 +34,7 @@ class OwnerDataReqiuredTableWidget extends ConsumerWidget {
               child: Text(
                   SetLocalization.of(context)!.getTranslateValue("name"),
                   style: TextStyle(
-                      fontSize: 16,
+                      fontSize: getIt<AppDimension>().isSmallScreen(context) ? 14 : 16,
 
                       color: ref.read(themeModeNotifier.notifier).textTheme(ref: ref),
 )),
@@ -43,8 +45,7 @@ class OwnerDataReqiuredTableWidget extends ConsumerWidget {
             label: Text(
                 SetLocalization.of(context)!.getTranslateValue("example"),
                 style: TextStyle(
-                    fontSize: 16,
-
+                    fontSize: getIt<AppDimension>().isSmallScreen(context) ? 14 : 16,
                     color: ref.read(themeModeNotifier.notifier).textTheme(ref: ref),
 )),
             tooltip: SetLocalization.of(context)!.getTranslateValue(

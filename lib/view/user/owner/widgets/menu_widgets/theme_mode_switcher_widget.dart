@@ -43,7 +43,8 @@ class _ThemeModeSwitcherWidgetState
             ),
             Text(SetLocalization.of(context)!.getTranslateValue("appearance"),
                 style: TextStyle(
-                    fontSize: 16,
+                    fontSize:  getIt<AppDimension>().isSmallScreen(context)
+                        ?14 : 16,
                     color: ref.read(themeModeNotifier.notifier).textTheme(ref: ref),
                 )),
           ],

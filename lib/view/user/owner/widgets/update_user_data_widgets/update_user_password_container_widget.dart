@@ -3,6 +3,8 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:ween_blaqe/controller/provider_controllers/providers/auth_provider.dart';
 import 'package:ween_blaqe/controller/provider_controllers/providers/color_provider.dart';
 
+import '../../../../../constants/coordination.dart';
+import '../../../../../constants/get_it_controller.dart';
 import '../../../../../constants/localization.dart';
 import '../../../../common_widgets/text_form_field_widgets/text_form_filed_password_widget.dart';
 
@@ -29,7 +31,7 @@ class UpdateUserPasswordContainerWidget extends ConsumerWidget {
               SetLocalization.of(context)!.getTranslateValue("change_password"),
               style: TextStyle(
                 color: ref.read(themeModeNotifier.notifier).textTheme(ref: ref),
-                fontSize: 18,
+                fontSize: getIt<AppDimension>().isSmallScreen(context) ? 16 : 18,
                 fontWeight: FontWeight.w500,
               ),
             ),

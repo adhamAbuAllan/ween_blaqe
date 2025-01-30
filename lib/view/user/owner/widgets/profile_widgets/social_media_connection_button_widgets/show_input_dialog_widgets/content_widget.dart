@@ -31,7 +31,7 @@ class ShowDialogContentWidgets extends ConsumerWidget {
               labelText: labelUserName,
               labelStyle: TextStyle(
                 color: ref.read(themeModeNotifier.notifier).textTheme(ref: ref),
-                fontSize: 16,
+                fontSize: getIt<AppDimension>().isSmallScreen(context) ? 14 : 16,
               ),
             ),
             // initialValue:  socialName,
@@ -41,7 +41,7 @@ class ShowDialogContentWidgets extends ConsumerWidget {
             style: TextStyle(
               color:
                   ref.read(themeModeNotifier.notifier).textTheme(ref: ref),
-              fontSize: 16,
+              fontSize: getIt<AppDimension>().isSmallScreen(context) ? 14 : 16,
             ),
           ),
           check != null

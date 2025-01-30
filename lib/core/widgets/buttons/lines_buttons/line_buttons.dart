@@ -31,7 +31,7 @@ Widget buttonAccount(Function onClick, String title,
     title: Text(
       title,
       style: TextStyle(
-          fontSize: 16,
+          fontSize: getIt<AppDimension>().isSmallScreen(context) ? 14 : 16,
           
           color: themeMode.isLight ? kTextColorLightMode : kTextColorDarkMode),
     ),
@@ -54,7 +54,7 @@ Widget buttonAccount(Function onClick, String title,
   //         ),
   //         Text(title
   //           ,style: const TextStyle(
-  //               fontSize: 18,
+  //               fontSize: getIt<AppDimension>().isSmallScreen(context) ? 16 : 18,
   //               
   //               color:Colors.black87
   //           ),
@@ -110,7 +110,7 @@ Widget askForHelpButton(Function onClick, String title,
   //         ),
   //         Text(title
   //           ,style: const TextStyle(
-  //               fontSize: 18,
+  //               fontSize: getIt<AppDimension>().isSmallScreen(context) ? 16 : 18,
   //               
   //               color:Colors.black87
   //           ),
@@ -140,7 +140,7 @@ Widget askForHelpButton(Function onClick, String title,
 //     title: Text(
 //       title,
 //       style: const TextStyle(
-//           fontSize: 16,  kTextColor),
+//           fontSize: getIt<AppDimension>().isSmallScreen(context) ? 14 : 16,  kTextColor),
 //     ),
 //     trailing: const Icon(Icons.arrow_forward_ios_rounded),
 //   );
@@ -158,7 +158,7 @@ Widget buttonHaveTitleAndIcon(Function onClick, String title,
     // title: Text(
     //   title,
     //   style: TextStyle(
-    //       fontSize: 16,
+    //       fontSize: getIt<AppDimension>().isSmallScreen(context) ? 14 : 16,
     //
     //       color: color),
     // ),

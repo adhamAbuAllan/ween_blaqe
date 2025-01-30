@@ -2,6 +2,8 @@ import 'package:colorful_safe_area/colorful_safe_area.dart';
 import 'package:flutter/material.dart';
 import 'package:ween_blaqe/constants/localization.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import '../../constants/coordination.dart';
+import '../../constants/get_it_controller.dart';
 import '../../controller/provider_controllers/providers/color_provider.dart';
 
 class PrivacyPolicyUi extends ConsumerStatefulWidget {
@@ -74,7 +76,7 @@ class _PrivacyPolicyUiState extends ConsumerState<PrivacyPolicyUi> {
                   SetLocalization.of(context)!
                       .getTranslateValue("data_protection_policy"),
                   style: TextStyle(
-                    fontSize: 16.0,
+                    fontSize: getIt<AppDimension>().isSmallScreen(context) ? 14 : 16,
 
                     inherit: true,
                     color: ref.read(themeModeNotifier.notifier).textTheme(ref: ref),
@@ -108,7 +110,7 @@ class _PrivacyPolicyUiState extends ConsumerState<PrivacyPolicyUi> {
                   // "معلومات شخصية و معلومات الحجز",
                   SetLocalization.of(context)!.getTranslateValue("owner_info"),
                   style: TextStyle(
-                    fontSize: 16.0,
+                    fontSize: getIt<AppDimension>().isSmallScreen(context) ? 14 : 16,
 
                     inherit: true,
                     fontWeight: FontWeight.w600,
@@ -144,7 +146,7 @@ class _PrivacyPolicyUiState extends ConsumerState<PrivacyPolicyUi> {
                   SetLocalization.of(context)!
                       .getTranslateValue("owner_info_usage"),
                   style: TextStyle(
-                    fontSize: 16.0,
+                    fontSize: getIt<AppDimension>().isSmallScreen(context) ? 14 : 16,
 
                     inherit: true,
                     color: ref.read(themeModeNotifier.notifier).textTheme(ref: ref),
@@ -173,7 +175,7 @@ class _PrivacyPolicyUiState extends ConsumerState<PrivacyPolicyUi> {
                 child: Text(
                   SetLocalization.of(context)!.getTranslateValue("the_phone"),
                   style: TextStyle(
-                    fontSize: 18.0,
+                    fontSize: getIt<AppDimension>().isSmallScreen(context) ? 16 : 18,
 
                     fontWeight: FontWeight.w600,
 
@@ -190,7 +192,7 @@ class _PrivacyPolicyUiState extends ConsumerState<PrivacyPolicyUi> {
                 child: Text(
                   SetLocalization.of(context)!.getTranslateValue("phone_usage"),
                   style: TextStyle(
-                    fontSize: 16.0,
+                    fontSize: getIt<AppDimension>().isSmallScreen(context) ? 14 : 16,
 
                     inherit: true,
                     color: ref.read(themeModeNotifier.notifier).textTheme(ref: ref),
@@ -205,7 +207,7 @@ class _PrivacyPolicyUiState extends ConsumerState<PrivacyPolicyUi> {
                 child: Text(
                   SetLocalization.of(context)!.getTranslateValue("info_phone_usage_details"),
                   style: TextStyle(
-                    fontSize: 16.0,
+                    fontSize: getIt<AppDimension>().isSmallScreen(context) ? 14 : 16,
 
                     inherit: true,
                     color: ref.read(themeModeNotifier.notifier).textTheme(ref: ref),
@@ -235,7 +237,7 @@ class _PrivacyPolicyUiState extends ConsumerState<PrivacyPolicyUi> {
               //   child:    Text(
               //     "الهاتف",
               //     style: TextStyle(
-              //       fontSize: 18.0,
+              //       fontSize: getIt<AppDimension>().isSmallScreen(context) ? 16 : 18,
               //
               //       inherit: true,
 // color:kTextColor,
@@ -250,7 +252,7 @@ class _PrivacyPolicyUiState extends ConsumerState<PrivacyPolicyUi> {
               //     " نستخدم رقم الهاتف الخاص بالطالب"
               //     " في حال وجود بعض النشاطات الغير مرغوب فيها ",
               //     style: TextStyle(
-              //       fontSize: 16.0,
+              //       fontSize: getIt<AppDimension>().isSmallScreen(context) ? 14 : 16,
               //
               //       inherit: true,
 // color:kTextColor,
@@ -264,7 +266,7 @@ class _PrivacyPolicyUiState extends ConsumerState<PrivacyPolicyUi> {
               //   child:    Text(
               //     "الجامعة",
               //     style: TextStyle(
-              //       fontSize: 18.0,
+              //       fontSize: getIt<AppDimension>().isSmallScreen(context) ? 16 : 18,
               //
               //       inherit: true,
 // color:kTextColor,
@@ -280,7 +282,7 @@ class _PrivacyPolicyUiState extends ConsumerState<PrivacyPolicyUi> {
               //     "التي يدرس بها فإننا نعرض على الطالب الشقق "
               //     "المتواجدة في المدينة التي تتواجد بها الجامعة ",
               //     style: TextStyle(
-              //       fontSize: 16.0,
+              //       fontSize: getIt<AppDimension>().isSmallScreen(context) ? 14 : 16,
               //
               //       inherit: true,
 // color:kTextColor,
@@ -294,7 +296,7 @@ class _PrivacyPolicyUiState extends ConsumerState<PrivacyPolicyUi> {
               //   child:    Text(
               //     "الجنس",
               //     style: TextStyle(
-              //       fontSize: 18.0,
+              //       fontSize: getIt<AppDimension>().isSmallScreen(context) ? 16 : 18,
               //
               //       inherit: true,
 // color:kTextColor,
@@ -308,7 +310,7 @@ class _PrivacyPolicyUiState extends ConsumerState<PrivacyPolicyUi> {
               //   child:    Text(
               //     "نقوم بعرض الشقق له/لها حسب جنس الطالب ",
               //     style: TextStyle(
-              //       fontSize: 16.0,
+              //       fontSize: getIt<AppDimension>().isSmallScreen(context) ? 14 : 16,
               //
               //       inherit: true,
 // color:kTextColor,
@@ -341,7 +343,7 @@ class _PrivacyPolicyUiState extends ConsumerState<PrivacyPolicyUi> {
                   SetLocalization.of(context)!.getTranslateValue("owner_apartment_info_usage")
                   ,
                   style: TextStyle(
-                    fontSize: 16.0,
+                    fontSize: getIt<AppDimension>().isSmallScreen(context) ? 14 : 16,
 
                     inherit: true,
                     color: ref.read(themeModeNotifier.notifier).textTheme(ref: ref),
@@ -372,7 +374,7 @@ class _PrivacyPolicyUiState extends ConsumerState<PrivacyPolicyUi> {
               //     " التطبيق مثل المعلومات الشخصية ، والتي تتضمن "
               //     "رقم هاتفك ، و اسمك و معرَّف الجهاز، وعنوان الIP",
               //     style: TextStyle(
-              //       fontSize: 16.0,
+              //       fontSize: getIt<AppDimension>().isSmallScreen(context) ? 14 : 16,
               //
               //       inherit: true,
 // color:kTextColor,
