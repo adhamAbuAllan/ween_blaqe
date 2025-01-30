@@ -62,51 +62,45 @@ class AppDimension {
   //   return MediaQuery.of(context).size.height <= 600;
   // }
 
-  // if a screen height above or equal 600dp  and in under or equal 900 give true else give false
-
   bool isMediumScreen(BuildContext context) {
-    return MediaQuery.sizeOf(context).height >= 600 &&
-        MediaQuery.sizeOf(context).height <= 900;
-  }
-
-//if a screen under 600dp height give true or if screen between 600dp and 900dp give true else give false
-
-  // bool isSmallScreen(BuildContext context, {bool isEmulator = true}) {
-  //   // Get screen size in pixels
-  //   double screenWidth = MediaQuery.of(context).size.width;
-  //   double screenHeight = MediaQuery.of(context).size.height;
-  //
-  //   // Get device pixel ratio (DPI scaling)
-  //   double devicePixelRatio = MediaQuery.of(context).devicePixelRatio;
-  //
-  //   // Convert pixels to physical screen size (in inches)
-  //   double physicalWidthInches = screenWidth /
-  //       devicePixelRatio /
-  //       160; // 160 DPI is the standard baseline
-  //   double physicalHeightInches = screenHeight / devicePixelRatio / 160;
-  //
-  //   // Calculate diagonal screen size in inches using Pythagorean theorem
-  //   double diagonalInches =
-  //       sqrt(pow(physicalWidthInches, 2) + pow(physicalHeightInches, 2));
-  //   debugPrint("the inch of screen is $diagonalInches");
-  //   // Check if screen is smaller than 5 inches
-  //   if (isEmulator) {
-  //     return diagonalInches < 2;
-  //   } else {
-  //     return diagonalInches < 5;
-  //   }
-  // }
-  bool isSmallScreen(BuildContext context) {
-    // Get the screen size in pixels
     final MediaQueryData mediaQuery = MediaQuery.of(context);
     final double screenWidth = mediaQuery.size.width;
     final double screenHeight = mediaQuery.size.height;
     debugPrint("screen width -> $screenWidth");
     debugPrint("screen haight - > $screenHeight");
-    // Calculate the diagonal in pixels
     double diagonalPixels = sqrt(pow(screenWidth, 2) + pow(screenHeight, 2));
+    double screenInch = 550;
+    if (screenHeight < 750) {
+      screenInch = diagonalPixels / 116 + 10;
+    } else if (screenHeight < 850) {
+      screenInch = diagonalPixels / 116 + 15;
+    } else if (screenHeight < 950) {
+      screenInch = diagonalPixels / 116 + 20;
+    }
+    debugPrint("the inch of screen is $screenInch");
+    return screenInch > 6 || screenInch < 6.5;
+  }
 
-    final double screenInch = diagonalPixels / 116;
+  bool isSmallScreen(BuildContext context) {
+    final MediaQueryData mediaQuery = MediaQuery.of(context);
+    final double screenWidth = mediaQuery.size.width;
+    final double screenHeight = mediaQuery.size.height;
+    debugPrint("screen width -> $screenWidth");
+    debugPrint("screen haight - > $screenHeight");
+    double diagonalPixels = sqrt(pow(screenWidth, 2) + pow(screenHeight, 2));
+    double screenInch = 550;
+    if (screenHeight < 550) {
+      screenInch = diagonalPixels / 116;
+    } else if (screenHeight < 650) {
+      screenInch = diagonalPixels / 116 + 5;
+    } else if (screenHeight < 750) {
+      screenInch = diagonalPixels / 116 + 10;
+    } else if (screenHeight < 850) {
+      screenInch = diagonalPixels / 116 + 15;
+    } else if (screenHeight < 950) {
+      screenInch = diagonalPixels / 116 + 20;
+    }
+
     debugPrint("the inch of screen is $screenInch");
     return screenInch < 5.5;
   }
