@@ -9,6 +9,7 @@ class AnimatedSizeWidget extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    debugPrint("AnimatedSizeWidget building");
     return AnimatedSize(
       duration: const Duration(milliseconds: 1000),
       curve: Curves.linear,
@@ -19,10 +20,13 @@ class AnimatedSizeWidget extends ConsumerWidget {
 }
 
 class AnimatedSize2900Widget extends ConsumerWidget {
+
   const AnimatedSize2900Widget({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    debugPrint("AnimatedSize2900Widget building");
+
     return const AnimatedSize(
         duration: Duration(milliseconds: 2900),
         curve: Curves.linear,
@@ -35,14 +39,17 @@ class AnimatedSizeWidget1000 extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    bool isWantToSepha = ref.read(isWantToSephaProvider.notifier).state;
+    debugPrint("AnimatedSizeWidget1000 building");
+
+    bool isWantToSepha = ref.watch(isWantToSephaProvider.notifier).state;
 
     return AnimatedSize(
       duration: const Duration(milliseconds: 1000),
       curve: Curves.linear,
       child: SizedBox(
-          height: !isWantToSepha
-              ? (getIt<AppDimension>().isSmallScreen(context) ? 0 : 60)
+          height: !ref.watch(isWantToSephaProvider.notifier).state
+
+          ? (getIt<AppDimension>().isSmallScreen(context) ? 0 : 60)
               : 0),
     );
   }

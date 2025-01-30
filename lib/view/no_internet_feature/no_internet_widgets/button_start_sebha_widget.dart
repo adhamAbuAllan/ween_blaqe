@@ -17,20 +17,15 @@ class _ButtonStartSebhaWidgetState
     extends ConsumerState<ButtonStartSebhaWidget> {
   @override
   Widget build(BuildContext context) {
-
-    bool isContExpanding = ref.read(isContExpandingProvider.notifier).state;
+    bool isContExpanding = ref.watch(isContExpandingProvider.notifier).state;
     return AnimatedAlign(
       duration: const Duration(milliseconds: 100),
       curve: Curves.bounceInOut,
       alignment: Alignment.bottomCenter,
       child: buttonHaveTitleAndIcon(
-
         () {
-          setState(() {
-            debugPrint("you click on");
-            ref.read(isWantToSephaProvider.notifier).state = true;
-            ref.read(isContExpandingProvider.notifier).state = true;
-          });
+          //should in notifier
+          ref.watch(noInternetNotfierProvider.notifier).onStartSebha(ref: ref);
         },
         SetLocalization.of(context)!.getTranslateValue("start_tasbih"),
         image: Image.asset("assets/images/tasbih.png",

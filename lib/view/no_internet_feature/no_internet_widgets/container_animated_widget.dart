@@ -27,8 +27,8 @@ class _ContainerAnimatedWidgetState
     extends ConsumerState<ContainerAnimatedWidget> {
   @override
   Widget build(BuildContext context) {
-    bool isWantToSebha = ref.read(isWantToSephaProvider.notifier).state;
-    bool isContExpanding = ref.read(isContExpandingProvider.notifier).state;
+    bool isWantToSebha = ref.watch(noInternetNotfierProvider).isWantToSepha;
+    bool isContExpanding = ref.watch(noInternetNotfierProvider).isContExpanding;
     bool isConnected = ref.watch(connectivityNotifier.notifier).isConnected;
 
     return AnimatedAlign(
@@ -39,9 +39,10 @@ class _ContainerAnimatedWidgetState
         width: widthAnimatedContainer(context),
         height: heightAnimatedContainer(isWantToSebha, context),
         onEnd: () {
-          setState(() {
-            isContExpanding = false;
-          });
+        setState(() {
+
+        });
+          ref.read(noInternetNotfierProvider.notifier).onStopSebha();
         },
         padding: const EdgeInsets.fromLTRB(10, 0, 10, 0),
         decoration: boxDecoratoinAnimatedContainer(),

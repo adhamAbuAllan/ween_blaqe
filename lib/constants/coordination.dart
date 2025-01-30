@@ -85,23 +85,20 @@ class AppDimension {
     final MediaQueryData mediaQuery = MediaQuery.of(context);
     final double screenWidth = mediaQuery.size.width;
     final double screenHeight = mediaQuery.size.height;
-    debugPrint("screen width -> $screenWidth");
-    debugPrint("screen haight - > $screenHeight");
     double diagonalPixels = sqrt(pow(screenWidth, 2) + pow(screenHeight, 2));
     double screenInch = 550;
     if (screenHeight < 550) {
       screenInch = diagonalPixels / 116;
-    } else if (screenHeight < 650) {
-      screenInch = diagonalPixels / 116 + 5;
-    } else if (screenHeight < 750) {
-      screenInch = diagonalPixels / 116 + 10;
-    } else if (screenHeight < 850) {
-      screenInch = diagonalPixels / 116 + 15;
-    } else if (screenHeight < 950) {
-      screenInch = diagonalPixels / 116 + 20;
+    } else if (screenHeight < 680) {
+      screenInch = diagonalPixels / 160 ;
+    } else if (screenHeight < 780) {
+      screenInch = diagonalPixels / 137;
+    } else if (screenHeight < 880) {
+      screenInch = diagonalPixels / 160;
+    } else if (screenHeight < 980) {
+      screenInch = diagonalPixels / 165;
     }
 
-    debugPrint("the inch of screen is $screenInch");
     return screenInch < 5.5;
   }
 

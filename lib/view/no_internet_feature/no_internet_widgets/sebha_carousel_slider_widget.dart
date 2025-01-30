@@ -16,7 +16,7 @@ class SebhaCarouselSliderWidget extends ConsumerWidget {
     return CarouselSlider(
       items: sephaText.asMap().entries.map((entry) {
         return Builder(builder: (BuildContext context) {
-          ref.read(indexProvider.notifier).state = entry.key;
+          // ref.read(indexProvider.notifier).state = entry.key;
           debugPrint(entry.value);
           return Align(
               alignment: Alignment.center,

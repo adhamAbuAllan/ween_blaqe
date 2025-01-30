@@ -9,7 +9,6 @@ class TotalTextWidget extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-        bool isAnimate = ref.read(isAnimateProvider.notifier).state;
 
     return AnimatedAlign(
       duration: const Duration(milliseconds: 2900),
@@ -20,7 +19,7 @@ class TotalTextWidget extends ConsumerWidget {
           mainAxisAlignment: MainAxisAlignment.start,
           mainAxisSize: MainAxisSize.max,
           children: [
-            isAnimate
+            ref.watch(isAnimateProvider.notifier).state
                 ? const SizedBox(
                     height: 28,
                     child: TotalAnimatedTextWidget(),

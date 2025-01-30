@@ -4,6 +4,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:ween_blaqe/constants/localization.dart';
 import 'package:ween_blaqe/controller/provider_controllers/providers/color_provider.dart';
+import 'package:ween_blaqe/view/common_widgets/button_widgets/elevated_button_widget.dart';
+
+import '../../../controller/provider_controllers/providers/no_internet_provider.dart';
 class AppBarNoInternetWidget extends ConsumerWidget  implements PreferredSizeWidget {
   const AppBarNoInternetWidget ({super.key});
 

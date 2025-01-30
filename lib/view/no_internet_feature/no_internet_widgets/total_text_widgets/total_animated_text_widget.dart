@@ -14,14 +14,13 @@ class TotalAnimatedTextWidget extends ConsumerStatefulWidget {
 class _AnimatedTextWidgetState extends ConsumerState<TotalAnimatedTextWidget> {
   @override
   Widget build(BuildContext context) {
-    bool isAnimate = ref.read(isAnimateProvider.notifier).state;
-    int total = ref.read(totalProvider.notifier).state;
+    int total = ref.watch(totalProvider.notifier).state;
     return AnimatedTextKit(
       totalRepeatCount: 3,
       pause: Duration.zero,
       onFinished: () {
         setState(() {
-          isAnimate = false;
+          ref.watch(isAnimateProvider.notifier).state = false;
         });
       },
       //aniatedTextOfCounter

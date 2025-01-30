@@ -19,24 +19,24 @@ class _ElevatedButtonSebhaWidgetState
     extends ConsumerState<ElevatedButtonSebhaWidget> {
   @override
   Widget build(BuildContext context) {
-    bool isAnimate = ref.read(isAnimateProvider.notifier).state;
-    bool isFirstAnimate = ref.read(isFirstAnimateProvider.notifier).state;
-    int total = ref.read(totalProvider.notifier).state;
+    bool isAnimate = ref.watch(isAnimateProvider.notifier).state;
+    bool isFirstAnimate = ref.watch(isFirstAnimateProvider.notifier).state;
+    int total = ref.watch(totalProvider.notifier).state;
     int onLongPressCounter =
-        ref.read(onLongPressCounterProvider.notifier).state;
-    CarouselSliderController controller =
-        ref.read(carouselSliderControllerProvider.notifier).state;
+        ref.watch(onLongPressCounterProvider.notifier).state;
+    CarouselSliderController? controller =
+        ref.watch(noInternetNotfierProvider).controller;
     int index = ref.watch(indexProvider.notifier).state;
-    List<String> sephaText = ref.read(sephaTextProvider.notifier).state;
+    List<String> sephaText = ref.watch(sephaTextProvider.notifier).state;
     return ElevatedButtonWidget(
         onLongPress: () {
           setState(() {
-            ref.read(isLongPressProvider.notifier).state = true;
+            ref.watch(isLongPressProvider.notifier).state = true;
             onLongPressCounter++;
             controller.animateToPage(
                 duration: const Duration(milliseconds: 300),
                 curve: Curves.linear,
-                 onLongPressCounter);
+                onLongPressCounter);
             debugPrint("longPressCounter = $onLongPressCounter");
           });
           Duration(milliseconds: onLongPressCounter);
@@ -45,32 +45,17 @@ class _ElevatedButtonSebhaWidgetState
             ref.watch(sephaCounterProvider.notifier).state++;
           });
         },
-        onPressed: () async {
+        onPressed: () {
           setState(() {
-            onLongPressCounter = 17;
-            ref.read(isLongPressProvider.notifier).state = false;
-            Vibration.vibrate(duration: 10);
-
-            if (index <= sephaText.length) {
-              ref.read(isSephaCountrEndProvider.notifier).state = false;
-              isAnimate = false;
-              isFirstAnimate = false;
-              ref.read(isSecondAnimateProvider.notifier).state = false;
-              return setState(() {
-                controller.animateToPage(
-                    duration: const Duration(milliseconds: 300),
-                    curve: Curves.linear,
-                    index);
-                total++;
-                saveTotal(total);
-                total % 10 == 0 ? isAnimate = true : false;
-                isAnimate ?  ref.read(isSephaCountrEndProvider.notifier).state = true :  ref.read(isSephaCountrEndProvider.notifier).state = false;
-                isAnimate ? isFirstAnimate = true : isFirstAnimate = false;
-                !isFirstAnimate
-                    ? ref.read(isSecondAnimateProvider.notifier).state = true
-                    : ref.read(isSecondAnimateProvider.notifier).state = false;
-              });
-            }
+            ref.watch(noInternetNotfierProvider.notifier).onPressSebha(
+                ref: ref,
+                index: index,
+                onLongPressCounter: onLongPressCounter,
+                sephaText: sephaText,
+                isAnimate: isAnimate,
+                isFirstAnimate: isFirstAnimate,
+                controller: controller,
+                total: ref.watch(totalProvider.notifier).state);
           });
         },
         context: context,
