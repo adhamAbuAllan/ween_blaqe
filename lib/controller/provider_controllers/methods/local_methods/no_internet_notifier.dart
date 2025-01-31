@@ -36,7 +36,7 @@ class NoInternetNotifier extends StateNotifier<NoInternetState> {
       required bool isAnimate,
       required bool isFirstAnimate,
       required CarouselSliderController controller,
-      required int total}) {
+      }) {
     onLongPressCounter = 17;
     ref.watch(isLongPressProvider.notifier).state = false;
     Vibration.vibrate(duration: 10);
@@ -46,14 +46,16 @@ class NoInternetNotifier extends StateNotifier<NoInternetState> {
       isAnimate = false;
       isFirstAnimate = false;
       ref.watch(isSecondAnimateProvider.notifier).state = false;
-
-      controller.animateToPage(
-          duration: const Duration(milliseconds: 300),
-          curve: Curves.linear,
-          index);
-      total++;
-      saveTotal(total);
-      total % 10 == 0 ? isAnimate = true : false;
+      ref.read(carouselSliderControllerProvider.notifier).state.animateToPage
+        (duration: const Duration(milliseconds: 300),curve: Curves.linear,ref
+          .watch(indexProvider));
+      // controller.animateToPage(
+      //     duration: const Duration(milliseconds: 300),
+      //     curve: Curves.linear,
+      //     index);
+      state = state.copyWith(sebhaTotal: state.sebhaTotal+1);
+      saveTotal(state.sebhaTotal);
+      state.sebhaTotal % 10 == 0 ? isAnimate = true : false;
       isAnimate
           ? ref.watch(isSephaCountrEndProvider.notifier).state = true
           : ref.watch(isSephaCountrEndProvider.notifier).state = false;

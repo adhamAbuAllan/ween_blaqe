@@ -21,11 +21,9 @@ class _ElevatedButtonSebhaWidgetState
   Widget build(BuildContext context) {
     bool isAnimate = ref.watch(isAnimateProvider.notifier).state;
     bool isFirstAnimate = ref.watch(isFirstAnimateProvider.notifier).state;
-    int total = ref.watch(totalProvider.notifier).state;
     int onLongPressCounter =
         ref.watch(onLongPressCounterProvider.notifier).state;
-    CarouselSliderController? controller =
-        ref.watch(noInternetNotfierProvider).controller;
+    var controller = ref.read(carouselSliderControllerProvider.notifier).state;
     int index = ref.watch(indexProvider.notifier).state;
     List<String> sephaText = ref.watch(sephaTextProvider.notifier).state;
     return ElevatedButtonWidget(
@@ -54,8 +52,7 @@ class _ElevatedButtonSebhaWidgetState
                 sephaText: sephaText,
                 isAnimate: isAnimate,
                 isFirstAnimate: isFirstAnimate,
-                controller: controller,
-                total: ref.watch(totalProvider.notifier).state);
+                controller: controller);
           });
         },
         context: context,

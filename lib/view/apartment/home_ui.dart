@@ -99,8 +99,6 @@ class _HomeUiState extends ConsumerState<HomeUi> {
         });
   }
 
-
-
   /// a widgets that has been extract.
   RefreshIndicator buildRefreshIndicator(bool isAllTypesOfApartment, int cityId,
       String type, Apartments apartmentsList) {

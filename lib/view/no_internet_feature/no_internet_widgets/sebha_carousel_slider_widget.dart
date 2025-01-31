@@ -12,10 +12,13 @@ class SebhaCarouselSliderWidget extends ConsumerWidget {
     List<String> sephaText = ref.read(sephaTextProvider.notifier).state;
 
     CarouselSliderController controller =
-        ref.read(carouselSliderControllerProvider.notifier).state;
+        ref.watch(carouselSliderControllerProvider.notifier).state;
     return CarouselSlider(
       items: sephaText.asMap().entries.map((entry) {
         return Builder(builder: (BuildContext context) {
+          WidgetsBinding.instance.addPostFrameCallback((_) async {
+            ref.watch(indexProvider.notifier).state = entry.key;
+          });
           // ref.read(indexProvider.notifier).state = entry.key;
           debugPrint(entry.value);
           return Align(
@@ -30,7 +33,7 @@ class SebhaCarouselSliderWidget extends ConsumerWidget {
               ));
         });
       }).toList(),
-      controller: controller,
+      controller: ref.watch(carouselSliderControllerProvider.notifier).state,
       options: CarouselOptions(scrollDirection: Axis.vertical, height: 50),
     );
   }
