@@ -18,7 +18,7 @@ void  showSnakBar( BuildContext context,String message,
     3: 5 ) ,
     padding: icon != null ? const EdgeInsets.all(10) : kTabLabelPadding
           ,
-      // backgroundColor:state?? false ?  Colors.black.withOpacity(.86)  : Colors.grey[900] ,
+      // backgroundColor:state?? false ?  Colors.black..86)  : Colors.grey[900] ,
       content: icon != null
           ?
       Row(
@@ -32,7 +32,7 @@ void  showSnakBar( BuildContext context,String message,
                   icon,
                   color: connectivityController.isConnection()
                       ? Colors.green
-                      : Colors.grey.withOpacity(.87),
+                      : Colors.grey.withValues(alpha: .87),
                   size: 28,
 
 

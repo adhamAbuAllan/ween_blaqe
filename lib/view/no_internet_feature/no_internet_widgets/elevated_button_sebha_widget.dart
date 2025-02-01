@@ -44,7 +44,7 @@ class _ElevatedButtonSebhaWidgetState
         context: context,
         child: Text(
           SetLocalization.of(context)!.getTranslateValue("tasbih"),
-          style: TextStyle(color: Colors.white.withOpacity(.95)),
+          style: TextStyle(color: Colors.white.withValues(alpha: .95)),
         ));
   }
 }

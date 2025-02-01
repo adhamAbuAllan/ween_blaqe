@@ -60,7 +60,7 @@ class _SplashScreenState extends ConsumerState<SplashScreenUi> {
           : null;
       NewSession.get('isFirstTime', "") != "OK"
           ? Navigator.pushReplacementNamed(context, MyPagesRoutes.introScreen)
-          : Navigator.pushReplacementNamed(context, MyPagesRoutes.noInternet);
+          : Navigator.pushReplacementNamed(context, MyPagesRoutes.main);
 
     });
   }

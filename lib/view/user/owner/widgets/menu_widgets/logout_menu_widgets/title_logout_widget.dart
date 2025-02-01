@@ -33,9 +33,7 @@ class _Title extends ConsumerWidget {
           child: Text(
             SetLocalization.of(context)!.getTranslateValue("my_account"),
             style: TextStyle(
-              color:
-    ref.read(themeModeNotifier.notifier).textTheme(ref: ref),
-
+              color: ref.read(themeModeNotifier.notifier).textTheme(ref: ref),
               fontSize: getIt<AppDimension>().isSmallScreen(context) ? 22 : 26,
               fontWeight: FontWeight.w600,
               inherit: true,
@@ -53,23 +51,27 @@ class _SubTitle extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    return Padding(
-      padding: EdgeInsets.fromLTRB(20, 0, 20,
-          getIt<AppDimension>().isSmallScreen(context) ? 75 / 1.5 : 75),
-      child: SizedBox(
-        width: getIt<AppDimension>().isMediumScreen(context) ? 300 : 400,
-        child: Text(
-          // "قم بتسجيل الدخول لتحجز اول شقة لك ",
-          SetLocalization.of(context)!
-              .getTranslateValue("booking_no_account_required"),
-          style: TextStyle(
-              color: Colors.grey.shade600,
-              fontSize: 14,
-              fontWeight: FontWeight.w500,
-              fontFamily: 'IBM'),
-          softWrap: true,
+    return Row(
+      children: [
+        Padding(
+          padding: EdgeInsets.fromLTRB(20, 0, 20,
+              getIt<AppDimension>().isSmallScreen(context) ? 75 / 1.5 : 75),
+          child: SizedBox(
+            width: getIt<AppDimension>().isMediumScreen(context) ? 300 : 400,
+            child: Text(
+              // "قم بتسجيل الدخول لتحجز اول شقة لك ",
+              SetLocalization.of(context)!
+                  .getTranslateValue("booking_no_account_required"),
+              style: TextStyle(
+                  color: Colors.grey.shade600,
+                  fontSize: 14,
+                  fontWeight: FontWeight.w500,
+                  fontFamily: 'IBM'),
+              softWrap: true,
+            ),
+          ),
         ),
-      ),
+      ],
     );
   }
 }

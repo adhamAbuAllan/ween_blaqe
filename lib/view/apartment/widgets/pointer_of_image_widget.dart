@@ -48,11 +48,11 @@ class PointerOfImageWidget extends ConsumerWidget {
                     ? (isActive
                             ? ref.read(primaryColor300Light)
                             : ref.read(primaryColor300Dark))
-                        .withOpacity(isActive ? 0.9 : 0.4)
+                        .withValues(alpha:isActive ? 0.9 : 0.4)
                     : (isActive
                             ? ref.read(primaryColorLight)
                             : ref.read(primaryColorDark))
-                        .withOpacity(isActive ? 0.9 : 0.4),
+                        .withValues(alpha:isActive ? 0.9 : 0.4),
                 // Adjust opacity based on active state
                 boxShadow: isActive
                     ? [

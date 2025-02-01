@@ -27,7 +27,7 @@ class ImageNotFoundWidget extends ConsumerWidget {
         width: getIt<AppDimension>().isSmallScreen(context)
             ? 130 * 1.5
             : (130 * 2.5),
-        // color: kContainerColor.withOpacity(.7),
+        // color: kContainerColor..7),
       ),
     );
   }

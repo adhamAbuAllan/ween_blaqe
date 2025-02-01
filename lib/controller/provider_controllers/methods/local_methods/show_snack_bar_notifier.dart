@@ -35,7 +35,6 @@ class ShowSnackBarNotifier extends StateNotifier<ShowSnackBarState> {
         duration: const Duration(seconds: 3),
 
         padding: icon != null ? const EdgeInsets.all(10) : kTabLabelPadding,
-        // backgroundColor:state?? false ?  Colors.black.withOpacity(.86)  : Colors.grey[900] ,
         content: icon != null
             ? Row(
                 crossAxisAlignment: CrossAxisAlignment.center,
@@ -46,7 +45,7 @@ class ShowSnackBarNotifier extends StateNotifier<ShowSnackBarState> {
                     icon,
                     color: ref.read(connectivityNotifier.notifier).isConnected
                         ? Colors.green
-                        : Colors.grey.withOpacity(.87),
+                        : Colors.grey.withValues(alpha: .87),
                     size: 28,
                   ),
                 ],

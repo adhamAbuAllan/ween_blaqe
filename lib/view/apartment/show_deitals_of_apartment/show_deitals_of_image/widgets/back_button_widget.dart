@@ -15,7 +15,7 @@ class ImageDetialsBackButtonWidget extends ConsumerWidget {
       right: 16.0,
       child: CircleAvatar(
         backgroundColor: ref.read(themeModeNotifier.notifier).isLightMode
-            ? Colors.black.withOpacity(0.5): Colors.white.withOpacity(0.5),
+            ? Colors.black.withValues(alpha: 0.5): Colors.white.withValues(alpha: 0.5),
         // Semi-transparent background
         child: BackButton(
           color:  ref.read(themeModeNotifier.notifier).textTheme(ref: ref),

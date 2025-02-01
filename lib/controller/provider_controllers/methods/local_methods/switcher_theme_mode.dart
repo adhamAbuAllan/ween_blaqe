@@ -48,7 +48,7 @@ class ThemeModeNotifier extends StateNotifier<bool> {
   Color containerTheme({required WidgetRef ref, double? withOpacity}) {
     return (isLightMode
         ? ref.read(containerColorLight)
-        : ref.read(containerColorDark)).withOpacity(withOpacity ?? 1);
+        : ref.read(containerColorDark)).withValues(alpha:withOpacity ?? 1);
   }
 
   Color primaryTheme({required WidgetRef ref, double? withOpacity}) {
@@ -57,8 +57,8 @@ class ThemeModeNotifier extends StateNotifier<bool> {
             ? ref.read(primaryColorLight)
             : ref.read(primaryColorDark))
         : (isLightMode
-            ? ref.read(primaryColorLight).withOpacity(withOpacity)
-            : ref.read(primaryColorDark).withOpacity(withOpacity));
+            ? ref.read(primaryColorLight).withValues(alpha: withOpacity)
+            : ref.read(primaryColorDark).withValues(alpha: withOpacity));
   }
 
   Color primary300Theme({required WidgetRef ref}) {
@@ -71,8 +71,8 @@ class ThemeModeNotifier extends StateNotifier<bool> {
     return withOpacity == null
         ? (isLightMode ? ref.read(textColorLight) : ref.read(textColorDark))
         : (isLightMode
-            ? ref.read(textColorLight).withOpacity(withOpacity)
-            : ref.read(textColorDark).withOpacity(withOpacity));
+            ? ref.read(textColorLight).withValues(alpha: withOpacity)
+            : ref.read(textColorDark).withValues(alpha: withOpacity));
   }
 
   Color backgroundAppTheme({required WidgetRef ref}) {

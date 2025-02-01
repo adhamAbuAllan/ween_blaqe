@@ -30,7 +30,7 @@ class _ShowDetialsOfImageUiState extends ConsumerState<ShowDetialsOfImageUi> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.grey.withOpacity(0.2),
+      backgroundColor: Colors.grey.withValues(alpha: 0.2),
       body: Stack(
         children: [
           PhotoViewGalleryWidget(

@@ -121,7 +121,7 @@ class WhatIsSystemPayingAllowUi extends ConsumerWidget {
                   color: ref
                       .read(themeModeNotifier.notifier)
                       .textTheme(ref: ref)
-                      .withOpacity(.8),
+                      .withValues(alpha: .8),
                   fontWeight: FontWeight.w500,
                   inherit: true,
                 ),
@@ -194,7 +194,7 @@ class CouldIPayByDepositUi extends ConsumerWidget {
                   color: ref
                       .read(themeModeNotifier.notifier)
                       .textTheme(ref: ref)
-                      .withOpacity(.8),
+                      .withValues(alpha: .8),
                   fontWeight: FontWeight.w500,
                   inherit: true,
                 ),
