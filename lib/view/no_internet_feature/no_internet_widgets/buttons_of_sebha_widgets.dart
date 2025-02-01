@@ -19,7 +19,6 @@ class ButtonsOfSebhaWidgets extends ConsumerStatefulWidget {
 class _ButtonsOfSebhaWidgetsState extends ConsumerState<ButtonsOfSebhaWidgets> {
   @override
   Widget build(BuildContext context) {
-    int total = ref.read(totalProvider.notifier).state;
 
     return Column(
       children: [
@@ -37,8 +36,7 @@ class _ButtonsOfSebhaWidgetsState extends ConsumerState<ButtonsOfSebhaWidgets> {
           child: OutlinedButtonWidget(
               onPressed: () {
                 setState(() {
-                  total = 0;
-                  saveTotal(total);
+                  ref.read(noInternetNotfierProvider.notifier).reset();
                 });
               },
               child: Text(

@@ -49,7 +49,7 @@ class _ContainerAnimatedWidgetState
           children: [
             ref.watch(connectivityNotifier.notifier).isConnected
                 ? sizedBoxWidget(context)
-                : const CounterTextWidget(),
+                :  const CounterTextWidget(),
             ref.watch(connectivityNotifier.notifier).isConnected
                 ? const SizedBox()
                 : aline,
@@ -101,7 +101,7 @@ class _ContainerAnimatedWidgetState
   double heightAnimatedContainer(BuildContext context) {
     return ref.watch(noInternetNotfierProvider).isWantToSepha
         ? (getIt<AppDimension>().isSmallScreen(context) ? 500 / 1.55 : 500)
-        : (ref.read(connectivityNotifier.notifier).isConnected ? 170 : 170);
+        : (ref.watch(connectivityNotifier.notifier).isConnected ? 170 : 170);
   }
 
   EdgeInsets marginAnimatedContainer(BuildContext context) {

@@ -70,7 +70,7 @@ class _NoInternetUiState extends ConsumerState<NoInternetUi>
     SharedPreferences prefs = await SharedPreferences.getInstance();
 
     setState(() {
-      ref.read(totalProvider.notifier).state = prefs.getInt('total') ?? 0;
+      ref.read(noInternetNotfierProvider).sebhaTotal = prefs.getInt('total') ?? 0;
     });
   }
 

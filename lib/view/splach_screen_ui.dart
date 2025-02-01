@@ -62,7 +62,6 @@ class _SplashScreenState extends ConsumerState<SplashScreenUi> {
           ? Navigator.pushReplacementNamed(context, MyPagesRoutes.introScreen)
           : Navigator.pushReplacementNamed(context, MyPagesRoutes.noInternet);
 
-      // checkWifiStatus();
     });
   }
 }

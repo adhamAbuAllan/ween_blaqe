@@ -35,8 +35,6 @@ class NoInternetNotifier extends StateNotifier<NoInternetState> {
         ref.watch(onLongPressCounterProvider));
     Duration(milliseconds: ref.read(onLongPressCounterProvider));
     Vibration.vibrate(duration: ref.read(onLongPressCounterProvider));
-
-
   }
 
   onPressSebha({
@@ -76,5 +74,11 @@ class NoInternetNotifier extends StateNotifier<NoInternetState> {
     }
     debugPrint("state.sebhaTotal:  => ${state.sebhaTotal}");
     debugPrint("state.sephaCounter:  => ${state.sephaCounter}");
+  }
+
+  reset() {
+    state = state.copyWith(sebhaTotal: 0);
+    saveTotal(state.sebhaTotal);
+
   }
 }
