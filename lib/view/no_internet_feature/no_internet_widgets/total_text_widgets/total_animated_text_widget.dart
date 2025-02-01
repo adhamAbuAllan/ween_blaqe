@@ -14,19 +14,18 @@ class TotalAnimatedTextWidget extends ConsumerStatefulWidget {
 class _AnimatedTextWidgetState extends ConsumerState<TotalAnimatedTextWidget> {
   @override
   Widget build(BuildContext context) {
-    int total = ref.watch(totalProvider.notifier).state;
     return AnimatedTextKit(
       totalRepeatCount: 3,
       pause: Duration.zero,
       onFinished: () {
         setState(() {
-          ref.watch(isAnimateProvider.notifier).state = false;
+          ref.watch(noInternetNotfierProvider).copyWith(isAnimated: false);
         });
       },
       //aniatedTextOfCounter
       animatedTexts: [
         FadeAnimatedText(
-          "$total+",
+          "${ref.watch(noInternetNotfierProvider).sebhaTotal}+",
           textStyle: TextStyle(
               color:
                   ref.read(themeModeNotifier.notifier).primaryTheme(ref: ref)),

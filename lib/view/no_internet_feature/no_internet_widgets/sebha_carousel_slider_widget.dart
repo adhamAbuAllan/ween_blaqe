@@ -11,8 +11,7 @@ class SebhaCarouselSliderWidget extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     List<String> sephaText = ref.read(sephaTextProvider.notifier).state;
 
-    CarouselSliderController controller =
-        ref.watch(carouselSliderControllerProvider.notifier).state;
+
     return CarouselSlider(
       items: sephaText.asMap().entries.map((entry) {
         return Builder(builder: (BuildContext context) {

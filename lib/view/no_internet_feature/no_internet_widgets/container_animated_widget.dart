@@ -29,7 +29,6 @@ class _ContainerAnimatedWidgetState
   Widget build(BuildContext context) {
     bool isWantToSebha = ref.watch(noInternetNotfierProvider).isWantToSepha;
     bool isContExpanding = ref.watch(noInternetNotfierProvider).isContExpanding;
-    bool isConnected = ref.watch(connectivityNotifier.notifier).isConnected;
 
     return AnimatedAlign(
       alignment: isWantToSebha ? Alignment.center : Alignment.topCenter,
@@ -37,37 +36,44 @@ class _ContainerAnimatedWidgetState
       child: AnimatedContainer(
         margin: marginAnimatedContainer(context),
         width: widthAnimatedContainer(context),
-        height: heightAnimatedContainer(isWantToSebha, context),
+        height: heightAnimatedContainer(context),
         onEnd: () {
-        setState(() {
-
-        });
-          ref.read(noInternetNotfierProvider.notifier).onStopSebha();
+          setState(() {
+            ref.watch(noInternetNotfierProvider.notifier).onStopSebha();
+          });
         },
         padding: const EdgeInsets.fromLTRB(10, 0, 10, 0),
         decoration: boxDecoratoinAnimatedContainer(),
         duration: const Duration(milliseconds: 800),
         child: Column(
           children: [
-            isConnected ? sizedBoxWidget(context) : const CounterTextWidget(),
-            isConnected ? const SizedBox() : aline,
-            isWantToSebha ? const AnimatedSizeWidget1000() : const SizedBox(),
+            ref.watch(connectivityNotifier.notifier).isConnected
+                ? sizedBoxWidget(context)
+                : const CounterTextWidget(),
+            ref.watch(connectivityNotifier.notifier).isConnected
+                ? const SizedBox()
+                : aline,
+            ref.watch(noInternetNotfierProvider).isWantToSepha
+                ? const AnimatedSizeWidget1000()
+                : const SizedBox(),
             isContExpanding
                 ? const AnimatedSize2900Widget()
                 : const TotalTextWidget(),
-            isWantToSebha
-                ? (!isContExpanding
+            ref.watch(noInternetNotfierProvider).isWantToSepha
+                ? (!ref.watch(noInternetNotfierProvider).isContExpanding
                     ? const ContainerOfSebhaWidget()
                     : const SizedBox())
-                : isConnected
+                : ref.watch(connectivityNotifier.notifier).isConnected
                     ? aline
                     : const SizedBox(),
-            isWantToSebha ? const AnimatedSizeWidget() : const SizedBox(),
-            isWantToSebha
-                ? (!isContExpanding
+            ref.watch(noInternetNotfierProvider).isWantToSepha
+                ? const AnimatedSizeWidget()
+                : const SizedBox(),
+            ref.watch(noInternetNotfierProvider).isWantToSepha
+                ? (!ref.watch(noInternetNotfierProvider).isContExpanding
                     ? const ButtonsOfSebhaWidgets()
                     : const SizedBox())
-                : (isContExpanding
+                : (ref.watch(noInternetNotfierProvider).isContExpanding
                     ? const AnimatedSize(duration: Duration(seconds: 1))
                     : const ButtonStartSebhaWidget())
           ],
@@ -92,8 +98,8 @@ class _ContainerAnimatedWidgetState
     );
   }
 
-  double heightAnimatedContainer(bool isWantToSepha, BuildContext context) {
-    return isWantToSepha
+  double heightAnimatedContainer(BuildContext context) {
+    return ref.watch(noInternetNotfierProvider).isWantToSepha
         ? (getIt<AppDimension>().isSmallScreen(context) ? 500 / 1.55 : 500)
         : (ref.read(connectivityNotifier.notifier).isConnected ? 170 : 170);
   }

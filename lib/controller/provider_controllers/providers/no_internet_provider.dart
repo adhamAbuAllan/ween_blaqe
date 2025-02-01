@@ -9,29 +9,20 @@ final noInternetNotfierProvider =
 });
 
 // Booleans
-final isWantToSephaProvider = StateProvider<bool>((ref) => false);
 
 /// should be an state.
-final isContExpandingProvider = StateProvider<bool>((ref) => false);
 
 ///should be an state.
-final isSephaCountrEndProvider = StateProvider<bool>((ref) => false);
 
 /// should be an state.
-final isAnimateProvider = StateProvider<bool>((ref) => false);
 
 /// should be an state.
-final isFirstAnimateProvider = StateProvider<bool>((ref) => false);
 
 /// should be an state.
-final isSecondAnimateProvider = StateProvider<bool>((ref) => false);
 
 /// should be an state.
-final isLongPressProvider = StateProvider<bool>((ref) => false);
 
 /// should be an state.
-final isDataLodingProvider = StateProvider<bool>((ref) => false);
-final onPerrsedProvider = StateProvider<bool>((ref) => false);
 
 // Integers
 final sephaCounterProvider = StateProvider<int>((ref) => 0);
@@ -41,7 +32,8 @@ final indexProvider = StateProvider<int>((ref) => 0);
 final totalProvider = StateProvider<int>((ref) => 0);
 
 /// should be an state.
-final onLongPressCounterProvider = StateProvider<int>((ref) => 17);
+final onLongPressCounterProvider =
+StateProvider<int>((ref) => 17);
 
 // Controller
 final carouselSliderControllerProvider =

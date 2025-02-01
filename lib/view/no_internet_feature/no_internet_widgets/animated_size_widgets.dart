@@ -41,13 +41,12 @@ class AnimatedSizeWidget1000 extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     debugPrint("AnimatedSizeWidget1000 building");
 
-    bool isWantToSepha = ref.watch(isWantToSephaProvider.notifier).state;
 
     return AnimatedSize(
       duration: const Duration(milliseconds: 1000),
       curve: Curves.linear,
       child: SizedBox(
-          height: !ref.watch(isWantToSephaProvider.notifier).state
+          height: !ref.watch(noInternetNotfierProvider).isWantToSepha
 
           ? (getIt<AppDimension>().isSmallScreen(context) ? 0 : 60)
               : 0),

@@ -17,7 +17,7 @@ class _ButtonStartSebhaWidgetState
     extends ConsumerState<ButtonStartSebhaWidget> {
   @override
   Widget build(BuildContext context) {
-    bool isContExpanding = ref.watch(isContExpandingProvider.notifier).state;
+    // bool isContExpanding = ref.watch(isContExpandingProvider.notifier).state;
     return AnimatedAlign(
       duration: const Duration(milliseconds: 100),
       curve: Curves.bounceInOut,
@@ -31,7 +31,7 @@ class _ButtonStartSebhaWidgetState
         image: Image.asset("assets/images/tasbih.png",
             color: ref.read(themeModeNotifier.notifier).textTheme(ref: ref),
             width: 35,
-            height: isContExpanding ? 0 : 35),
+            height: ref.watch(noInternetNotfierProvider).isContExpanding ? 0 : 35),
         isIcon: false,
       ),
     );

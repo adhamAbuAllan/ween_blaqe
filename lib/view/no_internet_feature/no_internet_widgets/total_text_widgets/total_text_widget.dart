@@ -19,7 +19,7 @@ class TotalTextWidget extends ConsumerWidget {
           mainAxisAlignment: MainAxisAlignment.start,
           mainAxisSize: MainAxisSize.max,
           children: [
-            ref.watch(isAnimateProvider.notifier).state
+            ref.watch(noInternetNotfierProvider).isAnimated
                 ? const SizedBox(
                     height: 28,
                     child: TotalAnimatedTextWidget(),
