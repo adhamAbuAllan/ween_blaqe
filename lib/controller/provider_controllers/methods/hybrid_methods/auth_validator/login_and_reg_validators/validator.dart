@@ -31,7 +31,7 @@ class Validator {
 
     return null;
   }
-///[validatePassword] that only in login
+///[validatePassword] that only for login
   static String? validatePassword(String value, BuildContext context) {
     if (value.isEmpty) {
       return SetLocalization.of(context)?.getTranslateValue('fill_field');
@@ -39,7 +39,7 @@ class Validator {
 
     return null;
   }
-///[validateRegPhone] that only in reg
+///[validateRegPhone] that only for reg
   static String? validateRegPhone(String value, BuildContext context) {
     //Reg => registration
 
@@ -53,7 +53,7 @@ class Validator {
 
     return null;
   }
-  ///[validateRegPassword] that only in reg
+  ///[validateRegPassword] that only for reg
 
   static String? validateRegPassword(String value, BuildContext context) {
     if (value.isEmpty) {
@@ -64,14 +64,14 @@ class Validator {
 
     return null;
   }
-  ///[validateUsername] that only in reg
+  ///[validateUsername] that only for reg
 
   static String? validateUsername(String value, BuildContext context) {
     if (value.isEmpty) {
       return SetLocalization.of(context)?.getTranslateValue('fill_field');
     }
 
-    if (value.contains(RegExp(r'[^a-zA-Z0-9]'))) {
+    if (value.contains(RegExp(r'[^a-zA-Z0-9\s\u0621-\u064A]'))) {
       return SetLocalization.of(context)?.getTranslateValue(
           "username_must_not_contain_special_characters"); //should not have symbols
     }

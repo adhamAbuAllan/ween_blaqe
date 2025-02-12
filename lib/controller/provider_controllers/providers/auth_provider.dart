@@ -205,7 +205,6 @@ final dataHasChanged = StateProvider<bool>((ref) => false);
 final isSureObscure = StateProvider<bool>((ref) => true);
 final isUpdateImageProfile = StateProvider<bool>((ref) => false);
 
-final completePhoneNumberReg = StateProvider<String>((ref) => "");
 final email = StateProvider<String>((ref) => "");
 final facebook = StateProvider<String>((ref) => "");
 final phone = StateProvider<String>((ref) => "");

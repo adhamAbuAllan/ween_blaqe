@@ -1,3 +1,4 @@
+import 'dart:io';
 import 'dart:math';
 
 import 'package:flutter/material.dart';
@@ -66,8 +67,8 @@ class AppDimension {
     final MediaQueryData mediaQuery = MediaQuery.of(context);
     final double screenWidth = mediaQuery.size.width;
     final double screenHeight = mediaQuery.size.height;
-    debugPrint("screen width -> $screenWidth");
-    debugPrint("screen haight - > $screenHeight");
+    // debugPrint("screen width -> $screenWidth");
+    // debugPrint("screen haight - > $screenHeight");
     double diagonalPixels = sqrt(pow(screenWidth, 2) + pow(screenHeight, 2));
     double screenInch = 550;
     if (screenHeight < 750) {
@@ -77,7 +78,7 @@ class AppDimension {
     } else if (screenHeight < 950) {
       screenInch = diagonalPixels / 116 + 20;
     }
-    debugPrint("the inch of screen is $screenInch");
+    // debugPrint("the inch of screen is $screenInch");
     return screenInch > 6 || screenInch < 6.5;
   }
 
@@ -89,8 +90,15 @@ class AppDimension {
     double screenInch = 550;
     if (screenHeight < 550) {
       screenInch = diagonalPixels / 116;
-    } else if (screenHeight < 680) {
-      screenInch = diagonalPixels / 160 ;
+    } else if (screenHeight < 690) {
+      if (Platform.isIOS) {
+        screenInch = diagonalPixels / 160 ;
+        // debugPrint("the inch of iOS  screen is $screenInch");
+      }else {
+        // debugPrint("the inch of screen is $screenInch");
+        screenInch = diagonalPixels / 160 ;
+
+      }
     } else if (screenHeight < 780) {
       screenInch = diagonalPixels / 137;
     } else if (screenHeight < 880) {
@@ -98,6 +106,18 @@ class AppDimension {
     } else if (screenHeight < 980) {
       screenInch = diagonalPixels / 165;
     }
+    /*
+    import 'dart:io';
+
+void main() {
+  if (Platform.isAndroid) {
+    print('Running on Android');
+  } else if (Platform.isIOS) {
+    print('Running on iOS');
+  }
+}
+
+     */
 
     return screenInch < 5.5;
   }

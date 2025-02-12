@@ -31,7 +31,8 @@ class _FirstStepCreateApartmentUiState extends ConsumerState<FirstStepUi> {
         child: GestureDetector(
           onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
           child: Scaffold(
-            backgroundColor: ref.read(themeModeNotifier.notifier).backgroundAppTheme(ref: ref),
+            backgroundColor: ref.read(themeModeNotifier.notifier).
+            backgroundAppTheme(ref: ref),
 
             body: SingleChildScrollView(
               child: Column(

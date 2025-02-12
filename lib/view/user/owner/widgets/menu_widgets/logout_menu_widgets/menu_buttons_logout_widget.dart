@@ -54,16 +54,6 @@ class MenuButtonsWidgets extends ConsumerWidget {
         ),
         aline,
 
-        /// send feedback for us
-        ButtonListTileWidget(
-          onTap: () {
-            myPushName(context, MyPagesRoutes.sendNoticeForUs);
-          },
-          title: SetLocalization.of(context)!
-              .getTranslateValue("send_notify_for_us"),
-          icon: Icons.feedback_outlined,
-        ),
-        aline,
 
         /// Sebha
 
@@ -79,18 +69,6 @@ class MenuButtonsWidgets extends ConsumerWidget {
                   getIt<AppDimension>().isSmallScreen(context) ? 35 - 5 : 35),
         ),
 
-        aline,
-
-        /// favorites
-        ButtonListTileWidget(
-          onTap: () {
-            myPushName(context, MyPagesRoutes.bookmarkUi);
-          },
-          title: SetLocalization.of(context)!.getTranslateValue(
-            "favorites",
-          ),
-          icon: Icons.bookmark_border_outlined,
-        ),
         aline,
 
         /// share app

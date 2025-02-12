@@ -88,16 +88,13 @@ class _CheckBoxWidgetState extends ConsumerState<CheckBoxWidget> {
 
     return Checkbox(
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(2.6)),
-      focusColor:
-          ref.read(themeModeNotifier.notifier).primaryTheme(ref: ref),
+      focusColor: ref.read(themeModeNotifier.notifier).primaryTheme(ref: ref),
       checkColor: Colors.white,
-      hoverColor:
-      ref.read(themeModeNotifier.notifier).primaryTheme(ref: ref),
-      activeColor:
-      ref.read(themeModeNotifier.notifier).primaryTheme(ref: ref),
+      hoverColor: ref.read(themeModeNotifier.notifier).primaryTheme(ref: ref),
+      activeColor: ref.read(themeModeNotifier.notifier).primaryTheme(ref: ref),
       side: BorderSide(
-          color: ref.read(themeModeNotifier.notifier).primary300Theme(ref:
-          ref)),
+          color:
+              ref.read(themeModeNotifier.notifier).primary300Theme(ref: ref)),
       splashRadius: 20,
       value: widget.advantage.checked,
       onChanged: (value) {
@@ -127,7 +124,15 @@ class _AdvantageIconWidgetState extends ConsumerState<AdvantageIconWidget> {
             child: SkeletonAvatar(
                 style: SkeletonAvatarStyle(width: 28, height: 28)))
         : Image.network(
-            widget.advantage.icon!,
+            /*
+            entry.icon!.startsWith("1")
+                          ? "http://${entry.icon!}"
+                          : entry.icon!,
+          */
+
+            widget.advantage.icon!.startsWith("1")
+                ? "http://${widget.advantage.icon}"
+                : widget.advantage.icon!,
             height: getIt<AppDimension>().isSmallScreen(context) ? 26 : 30,
             width: getIt<AppDimension>().isSmallScreen(context) ? 26 : 30,
             errorBuilder: (context, error, stackTrace) {

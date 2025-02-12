@@ -1,6 +1,7 @@
 import 'package:colorful_safe_area/colorful_safe_area.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:ween_blaqe/view/apartment/bookmark_ui.dart';
 import 'package:ween_blaqe/view/apartment/home_ui.dart';
 import 'package:ween_blaqe/view/common_widgets/connectivity_listen_widget.dart';
 import 'package:ween_blaqe/view/common_widgets/button_widgets/floating_action_button_widget.dart';
@@ -36,7 +37,7 @@ class _MainScreenState extends ConsumerState<MainUi> {
             index: index,
             children: [
               HomeUi(scrollController: _scrollController),
-              const OrdersOfStudentUi(),
+              const BookmarkApartmentUi(),
               MenuUi(
                 onChange: (value) {
                     WidgetsBinding.instance.addPostFrameCallback((_) async {

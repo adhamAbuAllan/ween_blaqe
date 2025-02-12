@@ -41,31 +41,34 @@ class _CoursolSliderWidgetState extends ConsumerState<CoursolSliderWidget> {
         itemBuilder: (context, index, realIndex) {
           return Container(
             margin: const EdgeInsets.symmetric(horizontal: 3),
-            child: ClipRRect(
-              borderRadius: const BorderRadius.all(Radius.circular(7.0)),
-              child: CachedNetworkImage(
-                height: 220,
-                width: double.infinity,
-                fit: BoxFit.cover,
-                imageUrl: widget.imageList[index].url ?? "",
-                progressIndicatorBuilder: (context, url, progress) {
-                  return SkeletonAvatar(
-                    style: SkeletonAvatarStyle(
-                      width: double.infinity,
-                      height: 240,
-                      borderRadius: BorderRadius.circular(7),
-                    ),
-                  );
-                },
-                errorWidget: (context, url, error) {
-                  return SkeletonAvatar(
-                    style: SkeletonAvatarStyle(
-                      width: double.infinity,
-                      height: 240,
-                      borderRadius: BorderRadius.circular(7),
-                    ),
-                  );
-                },
+            child: Hero(
+              tag: "imageApartmentTag",
+              child: ClipRRect(
+                borderRadius: const BorderRadius.all(Radius.circular(7.0)),
+                child: CachedNetworkImage(
+                  height: 220,
+                  width: double.infinity,
+                  fit: BoxFit.cover,
+                  imageUrl: widget.imageList[index].url ?? "",
+                  progressIndicatorBuilder: (context, url, progress) {
+                    return SkeletonAvatar(
+                      style: SkeletonAvatarStyle(
+                        width: double.infinity,
+                        height: 240,
+                        borderRadius: BorderRadius.circular(7),
+                      ),
+                    );
+                  },
+                  errorWidget: (context, url, error) {
+                    return SkeletonAvatar(
+                      style: SkeletonAvatarStyle(
+                        width: double.infinity,
+                        height: 240,
+                        borderRadius: BorderRadius.circular(7),
+                      ),
+                    );
+                  },
+                ),
               ),
             ),
           );

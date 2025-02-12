@@ -72,9 +72,9 @@ class BottomNavigationBarWidget extends ConsumerWidget {
           activeIcon: const Icon(Icons.home),
         ),
         BottomNavigationBarItem(
-          icon: const Icon(Icons.home_repair_service_outlined),
-          label: SetLocalization.of(context)!.getTranslateValue("orders"),
-          activeIcon: const Icon(Icons.home_repair_service),
+          icon: const Icon(Icons.bookmark_border_outlined),
+          label: SetLocalization.of(context)!.getTranslateValue("favorites"),
+          activeIcon: const Icon(Icons.bookmark),
         ),
         BottomNavigationBarItem(
           icon: const Icon(Icons.person_2_outlined),

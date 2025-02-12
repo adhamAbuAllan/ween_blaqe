@@ -61,7 +61,7 @@ class _TextFormFiledPasswordWidgetState
             errorText: widget.errorText,
             contentPadding: EdgeInsets.symmetric(
                 vertical:
-                    getIt<AppDimension>().isSmallScreen(context) ? 20 / 2.3 :
+                    getIt<AppDimension>().isSmallScreen(context) ? 20 / 1.5 :
                     20,
                 horizontal: 10),
             labelText: widget.labelInput,

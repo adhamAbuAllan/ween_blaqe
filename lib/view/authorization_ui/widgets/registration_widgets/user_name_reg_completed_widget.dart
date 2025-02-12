@@ -17,6 +17,7 @@ class UserNameRegCompletedWidget extends ConsumerWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         TextFormFieldWidget(
+          isPhoneRegTextField: true,
           fontSize: getIt<AppDimension>().isSmallScreen(context) ? 14 : 16,
           labelName: SetLocalization.of(context)!.getTranslateValue("full_name"),
           autoFocus: true,

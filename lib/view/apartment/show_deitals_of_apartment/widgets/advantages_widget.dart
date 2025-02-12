@@ -48,12 +48,11 @@ class AdvantagesWidget extends ConsumerWidget {
             ),
           ),
           Column(
-            children:
-                _advantageItemsWidget(advantages: advantages, context:
-                context,ref: ref)
-                    .toList()
-                    .take(10)
-                    .toList(),
+            children: _advantageItemsWidget(
+                    advantages: advantages, context: context, ref: ref)
+                .toList()
+                .take(10)
+                .toList(),
           ),
 
           // Button to show more advantages if there are more than 10
@@ -68,9 +67,9 @@ class AdvantagesWidget extends ConsumerWidget {
   }
 
   Iterable<Padding> _advantageItemsWidget(
-      {List<Advantages>? advantages, required BuildContext context,required
-      WidgetRef
-      ref}) {
+      {List<Advantages>? advantages,
+      required BuildContext context,
+      required WidgetRef ref}) {
     return advantages?.map((entry) {
           return Padding(
             padding: const EdgeInsets.fromLTRB(12, 0, 12, 0),
@@ -78,11 +77,13 @@ class AdvantagesWidget extends ConsumerWidget {
               title: entry.advName?.isNotEmpty ?? true
                   ? Text(entry.advName ?? "",
                       style: TextStyle(
-                          fontSize: getIt<AppDimension>().isSmallScreen(context)
-                              ? 15
-                              : 16,
-                          color: ref.read(themeModeNotifier.notifier)
-                              .textTheme(ref: ref),))
+                        fontSize: getIt<AppDimension>().isSmallScreen(context)
+                            ? 15
+                            : 16,
+                        color: ref
+                            .read(themeModeNotifier.notifier)
+                            .textTheme(ref: ref),
+                      ))
                   : const SizedBox(
                       child: SkeletonLine(
                           style: SkeletonLineStyle(width: 50, height: 10))),
@@ -91,7 +92,9 @@ class AdvantagesWidget extends ConsumerWidget {
                       child: SkeletonAvatar(
                           style: SkeletonAvatarStyle(width: 28, height: 28)))
                   : Image.network(
-                      entry.icon!,
+                      entry.icon!.startsWith("1")
+                          ? "http://${entry.icon!}"
+                          : entry.icon!,
                       height: getIt<AppDimension>().isSmallScreen(context)
                           ? 26
                           : 30,
@@ -106,7 +109,9 @@ class AdvantagesWidget extends ConsumerWidget {
                           height: 28,
                         )));
                       },
-                      color: ref.read(themeModeNotifier.notifier).textTheme(ref: ref),
+                      color: ref
+                          .read(themeModeNotifier.notifier)
+                          .textTheme(ref: ref),
                     ),
             ),
           );

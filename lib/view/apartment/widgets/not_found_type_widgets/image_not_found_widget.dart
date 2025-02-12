@@ -22,12 +22,9 @@ class ImageNotFoundWidget extends ConsumerWidget {
                 "assets/images/error_images/not_found_dark_mode.png",
               ),
         height: getIt<AppDimension>().isSmallScreen(context)
-            ? 130 * 1.5
+            ? 130 * 2
             : (130 * 2.5),
-        width: getIt<AppDimension>().isSmallScreen(context)
-            ? 130 * 1.5
-            : (130 * 2.5),
-        // color: kContainerColor..7),
+        
       ),
     );
   }

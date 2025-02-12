@@ -112,7 +112,7 @@ class DropDownMenuWidget extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     return DropdownFieldWidget(
-
+      horizantalPadding: 0,
         isStringOnly: true,
         onChanged: (newValue) {
           ref.read(selectedCountryCode.notifier).state = newValue!;

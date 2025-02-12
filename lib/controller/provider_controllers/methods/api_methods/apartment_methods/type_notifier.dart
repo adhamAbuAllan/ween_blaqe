@@ -21,6 +21,7 @@ class TypeNotifier extends StateNotifier<TypeState> {
     var url = Uri.parse(ServerWeenBalaqee.typeOfApartment);
     var response = await http.get(url);
     if (response.statusCode == 200) {
+      
       var jsonData = jsonDecode(response.body);
       var getData = jsonData['data'];
       state.types.clear();

@@ -5,7 +5,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../../../../../core/utils/function_that_effect_widgets/remove_plus_from_phone_number.dart';
 import '../../../../providers/auth_provider.dart';
 
-void validateAndRegistration(WidgetRef ref, BuildContext context) async {
+Future<void> validateAndRegistration(WidgetRef ref, BuildContext context) async {
     ref.refresh(formFieldsNotifier)['phoneNumberRegistration']?.error ??
       "no error"; // this check phone
   // value then make refresh , that to check have error
@@ -14,7 +14,7 @@ void validateAndRegistration(WidgetRef ref, BuildContext context) async {
 // password
   // value then make refresh , that to check have error
   ref.refresh(formFieldsNotifier)['username']?.error ?? "no error";
-  String phoneControllerValue = ref
+  String phoneControllerValue =  ref
       .read(phoneRegController)
       .text;
   String passwordControllerValue = ref
@@ -23,13 +23,12 @@ void validateAndRegistration(WidgetRef ref, BuildContext context) async {
   String userNameControllerValue = ref
       .read(userNameController)
       .text;
-  String completePhoneNumberValue = ref.read(completePhoneNumberReg);
   String selectedCountryCodeValue = ref.read(selectedCountryCode);
   bool? formPhoneState = formPhoneKey.currentState?.validate();
   bool? formPasswordState = formRegPasswordKey.currentState?.validate();
   bool? formUsernameState = formUsernameKey.currentState?.validate();
 
-  newRemovePlusSymbol(ref, selectedCountryCodeValue, phoneControllerValue);
+await   newRemovePlusSymbol(ref: ref,codeCountry:  selectedCountryCodeValue,phoneNumber:  phoneControllerValue);
 
   ref
       .read(formFieldsNotifier.notifier)
@@ -53,7 +52,8 @@ void validateAndRegistration(WidgetRef ref, BuildContext context) async {
     formUsernameState;
     return;
   }
-  if (errorPhone != "no error have") {
+  if (errorPhone != "no error have") 
+  {
     // debugPrint("formPhoneState is $formPhoneState");
     if (errorPassword == "fill_field") {
       // debugPrint("phone number error is aaa : $errorPhone");
@@ -71,7 +71,7 @@ void validateAndRegistration(WidgetRef ref, BuildContext context) async {
 
   await ref.read(registerNotifier.notifier).register(
       userNameControllerValue,
-      completePhoneNumberValue,
+      phoneControllerValue,
       passwordControllerValue,
       1,
       1,

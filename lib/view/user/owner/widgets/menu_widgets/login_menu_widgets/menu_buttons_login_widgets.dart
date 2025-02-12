@@ -47,20 +47,7 @@ class MenuButtonsLoginWidgets extends ConsumerWidget {
                 .getTranslateValue("privacy_policy"),
             context: context),
         aline,
-        /// send feedback for us
-        buttonAccount(() {
-          // if (connectivityController.isConnection() == false) {
-          // } else {
-          //   showSnakBar(context, "انت غير متصل بالانترنت");
-          // }
-
-          myPushName(context, MyPagesRoutes.sendNoticeForUs);
-        },
-            icon: Icons.feedback_outlined,
-            SetLocalization.of(context)!
-                .getTranslateValue("send_notify_for_us"),
-            context: context),
-        aline,
+ 
         /// Sebha
         buttonAccount(() {
           myPushName(context, MyPagesRoutes.noInternet);
@@ -72,18 +59,6 @@ class MenuButtonsLoginWidgets extends ConsumerWidget {
                     ? 35 - 5
                     : 35),
             SetLocalization.of(context)!.getTranslateValue("sebha"),
-            context: context),
-        aline,
-        /// favorites
-        buttonAccount(() {
-          // apartmentModelController.fetchApartments(
-          //     isOwnerApartments: false);
-          myPushName(context, MyPagesRoutes.bookmarkUi);
-        },
-            SetLocalization.of(context)!.getTranslateValue(
-              "favorites",
-            ),
-            icon: Icons.bookmark_border_outlined,
             context: context),
         aline,
         /// share app
