@@ -66,25 +66,6 @@ import 'view/apartment/show_deitals_of_apartment/show_deitals_of_apartment_ui.da
 import 'view/intro_screen.dart';
 import 'view/main_ui.dart';
 import 'view/send_notice_for_us_ui.dart';
-
-/*
-**كيف ممكن ننشئ مشاريع في الفريق تاعنا و الكل يوخذ حقه**
-لما بدنا نقترح فكرة على بعض رح نوجه
- مشكلة وهي انه الكل بده فكرته تتطبيق ،a
- ففي هذا الحالة مش الكل رح يوخذ حقه ، بطرح
- افكاره ، طيب كيف ممكن نحل هاي المشكلة
- ، انا بقترح انه نطبق الافكار بالادوار ،
-  والمقصد انه كل واحد فينا إله دور في
- طرح فكرته ، فبعد ما نتم الموافقة على فكرته
-  كتصويت نبلش نشتغل عليها ، وفي حال
- ما وافقنا على فكرته ، نطلب منه يجيب
-  فكرة ثانية. بعد ما نشتغل على فكرته الشخص
- ، بنبدأ في مشروع ثاني من فكرة شخص آخر.
-  في هاي الحالة بنتجنب الكثير من المشاكل
-*/
-// late SharedPreferences sp;
-//main screen
-// final Future<SharedPreferences> sp = SharedPreferences.getInstance();
 //the line that could user to upload a file currently :
 //https://drive.google.com/uc?export=download&id=
 /*
@@ -96,12 +77,6 @@ import 'view/send_notice_for_us_ui.dart';
 final Future<SharedPreferences> sp = SharedPreferences.getInstance();
 
 void main() async {
-  //firebase initaize code
-  // await Firebase.initializeApp(
-  //   options: DefaultFirebaseOptions.currentPlatform,
-  // );
-  // FirebaseApp defaultApp = Firebase.app();
-  // final storageRef = FirebaseStorage.instance.ref();
 
   debugPrint("Starting");
   WidgetsFlutterBinding.ensureInitialized();
@@ -110,26 +85,9 @@ void main() async {
     DeviceOrientation.portraitUp,
     DeviceOrientation.portraitDown,
   ]);
-  // await EasyLocalization.ensureInitialized();
-  // final Future<SharedPreferences> prefs = SharedPreferences.getInstance();
-  // var token = (await sp).get("token");
-  //for put
+ 
   Get.put(ChangeThemeMode());
   Get.put(ConnectivityController());
-  // Get.put(OwnerController());
-
-  // Get.put(BookmarkApartment());//for testing
-  //for get
-  // String savedLanguage = Get.put(LanguageController()).getSavedLanguage();
-  //
-  // // Set the initial locale
-  // Locale initialLocale;
-  // if (savedLanguage == 'ar') {
-  //   initialLocale = const Locale('ar', 'JO');
-  // } else {
-  //   initialLocale = const Locale('en', 'US');
-  // }
-
   await configureInjection();
   runApp(ProviderScope(
     overrides: [
@@ -199,29 +157,9 @@ class _OwnMaterialAppConsumerState
         MyPagesRoutes.step4: (context) => const FourthStepUi(),
         MyPagesRoutes.login: (context) => const LoginUi(),
         MyPagesRoutes.register: (context) => const RegistrationUi(),
-        // MyPagesRoutes.masterHome: (context) => const MasterHome(),
-        // MyPagesRoutes.showMore: (context) => const ShowMore(),
-        // MyPagesRoutes.accountBeforeLoginInStudent: (context) =>
-        //     const AccountBeforeLoginInStudent(),
-        // MyPagesRoutes.accountBeforeLoginInOwner: (context) =>
-        //     const AccountBeforeLoginInOwner(),
-        // MyPagesRoutes.accountOfStudent: (context) => const AccountOfStudent(),
-        // MyPagesRoutes.accountOfOwner: (context) => const AccountOfOwner(),
-        // MyPagesRoutes.bookingNow: (context) => const BookingNow(),
-        // MyPagesRoutes.getStarted: (context) => const GetStarted(),
-        // MyPagesRoutes.searchFilter: (context) => const SearchFilter(),
+   
         MyPagesRoutes.profileOfOwner: (context) => const ProfileUi(),
-        // MyPagesRoutes.ordersOfStudent: (context) => const OrdersOfStudent(),
         MyPagesRoutes.bookmarkUi: (context) => const BookmarkApartmentUi(),
-        // MyPagesRoutes.orders: (context) => const Orders(),
-        // MyPagesRoutes.notificationOfStudent: (context) =>
-        //     const NotificationOfStudentWithNotifi(),
-        // MyPagesRoutes.notificationOfOwner: (context) =>
-        //     const NotificationOfOwner(),
-        // MyPagesRoutes.apartmentOfOwnerAfterAdd: (context) =>
-        //     const ApartmentsOfOwnerAfterAdd(),
-        // MyPagesRoutes.apartmentOfOwnerBeforeAdd: (context) =>
-        //     const ApartmentOfOwnerBeforeAdd(),
         MyPagesRoutes.apartmentsOwner: (context) => const ApartmentsOfOwnerUi(),
 
         MyPagesRoutes.splashScreen: (context) => const SplashScreenUi(),
@@ -242,17 +180,8 @@ class _OwnMaterialAppConsumerState
         MyPagesRoutes.howLongIsTheReservationAvailable: (context) =>
             const HowLongIsTheReservationAvailableUi(),
         MyPagesRoutes.howCreateAd: (context) => const HowCreateAdUi(),
-        // MyPagesRoutes.couldBeOwnerAndStudentInOneTime: (context) =>
-        //     const CouldBeOwnerAndStudentInOneTime(),
         MyPagesRoutes.sendNoticeForUs: (context) => const SendNoticeForUsUi(),
-        // MyPagesRoutes.theAdIsFreeOrNot: (context) => const TheAdIsFreeOrNot(),
-
-        // MyPagesRoutes.screensWillAddFuture: (context) =>
-        //     const ScreensWillAddFuture(),
         MyPagesRoutes.noInternet: (context) => const NoInternetUi(),
-        // MyPagesRoutes.searchNotFound: (context) => const SearchNotFound(),
-        // MyPagesRoutes.skeletonBookingNow: (context) =>
-        //     const BookingNowSkeletonWidget(),
         MyPagesRoutes.skeletonParagraph: (context) =>
             const LongParagraphReadySkeletonUi(),
         MyPagesRoutes.homeUi: (context) => const HomeUi(),
@@ -262,180 +191,10 @@ class _OwnMaterialAppConsumerState
             const WhatTheInfoReqToCreateAdUi(),
         MyPagesRoutes.introScreen: (context) => const IntroScreenUi(),
         MyPagesRoutes.updateUserInfo: (context) => const UpdateUserDataUi(),
-
-        //testing routes..
-        // MyPagesRoutes.citiesTest:(context)=> CitiesTest(),
-        // MyPagesRoutes.showAllAdvantages:(context)=>ShowAllAdvantages,
       },
-
-      // Main(),
-      //The ThemeData of ween blaqe application
     );
   }
 }
-
-// class OwnMaterialApp extends StatefulWidget {
-//
-//   const OwnMaterialApp({
-//     super.key,
-//     // required this.logged
-//   });
-//
-//   static void setLocale(BuildContext context, Locale locale) {
-//     _OwnMaterialAppState? state =
-//         context.findAncestorStateOfType<_OwnMaterialAppState>();
-//     state!.setLocale(locale);
-//   }
-//
-//   // final bool logged = false;
-//
-//   @override
-//   State<OwnMaterialApp> createState() => _OwnMaterialAppState();
-// }
-
-// class _OwnMaterialAppState extends State<OwnMaterialApp> {
-//   Locale? _local = NewSession.get("isFirstTime", "") != "OK"
-//       ? const Locale("ar", "JO")
-//       : null;
-//
-//   void setLocale(Locale locale) {
-//     setState(() {
-//       _local = locale;
-//     });
-//   }
-//
-//   @override
-//   void initState() {
-//     super.initState();
-//   }
-//
-//   @override
-//   Widget build(BuildContext context) {
-//     /// here should put this :  final isLightMode = ref.watch(themeModeProvider);
-//     return GetMaterialApp(
-//       debugShowCheckedModeBanner: false,
-//
-//       darkTheme: ThemeData(
-//         useMaterial3: false,
-//         fontFamily: 'IBM',
-//         colorScheme: ColorScheme.fromSwatch().copyWith(secondary: Colors.grey),
-//
-//         // brightness: Brightness.darkf
-//       ),
-//
-//       // themeMode: ThemeMode.system,
-//
-//       theme: ThemeData(
-//           useMaterial3: false,
-//           fontFamily: 'IBM',
-//           // brightness: Brightness.,
-//
-//           // scaffoldBackgroundColor: Colors.grey.shade200,
-//           switchTheme: const SwitchThemeData(),
-//           colorSchemeSeed: const Color(0xffff9800),
-//           bottomNavigationBarTheme: const BottomNavigationBarThemeData(
-//               selectedIconTheme: IconThemeData(size: 26))),
-//       //make screen rtl
-//       localizationsDelegates: const [
-//         SetLocalization.localizationsDelegate,
-//         GlobalMaterialLocalizations.delegate,
-//         GlobalWidgetsLocalizations.delegate,
-//         GlobalCupertinoLocalizations.delegate,
-//       ],
-//       supportedLocales: const [
-//         Locale('ar'), // Arabic
-//         Locale('en'), // English
-//       ],
-//
-//       locale: _local,
-//
-//       initialRoute: MyPagesRoutes.splashScreen,
-//       //  initialRoute: MyPagesRoutes.newMasterHome,
-//       routes: {
-//         MyPagesRoutes.main: (context) => const Main(),
-//         // MyPagesRoutes.mainOwner: (context) => const MainOwner(),
-//         MyPagesRoutes.mainUi: (context) => const MainUi(),
-//         MyPagesRoutes.step1: (context) => const FirstStepUi(),
-//         MyPagesRoutes.step2: (context) => const SecondStepUi(),
-//         MyPagesRoutes.step3: (context) => const ThirdStepUi(),
-//         MyPagesRoutes.step4: (context) => const FourthStepUi(),
-//         MyPagesRoutes.login: (context) => const LoginUi(),
-//         MyPagesRoutes.register: (context) => const RegistrationUi(),
-//         // MyPagesRoutes.masterHome: (context) => const MasterHome(),
-//         // MyPagesRoutes.showMore: (context) => const ShowMore(),
-//         // MyPagesRoutes.accountBeforeLoginInStudent: (context) =>
-//         //     const AccountBeforeLoginInStudent(),
-//         // MyPagesRoutes.accountBeforeLoginInOwner: (context) =>
-//         //     const AccountBeforeLoginInOwner(),
-//         // MyPagesRoutes.accountOfStudent: (context) => const AccountOfStudent(),
-//         // MyPagesRoutes.accountOfOwner: (context) => const AccountOfOwner(),
-//         // MyPagesRoutes.bookingNow: (context) => const BookingNow(),
-//         // MyPagesRoutes.getStarted: (context) => const GetStarted(),
-//         // MyPagesRoutes.searchFilter: (context) => const SearchFilter(),
-//         MyPagesRoutes.profileOfOwner: (context) => const ProfileUi(),
-//         // MyPagesRoutes.ordersOfStudent: (context) => const OrdersOfStudent(),
-//         MyPagesRoutes.bookmarkUi: (context) => const BookmarkApartmentUi(),
-//         // MyPagesRoutes.orders: (context) => const Orders(),
-//         // MyPagesRoutes.notificationOfStudent: (context) =>
-//         //     const NotificationOfStudentWithNotifi(),
-//         // MyPagesRoutes.notificationOfOwner: (context) =>
-//         //     const NotificationOfOwner(),
-//         // MyPagesRoutes.apartmentOfOwnerAfterAdd: (context) =>
-//         //     const ApartmentsOfOwnerAfterAdd(),
-//         // MyPagesRoutes.apartmentOfOwnerBeforeAdd: (context) =>
-//         //     const ApartmentOfOwnerBeforeAdd(),
-//         MyPagesRoutes.apartmentsOwner: (context) => const ApartmentsOfOwnerUi(),
-//
-//         MyPagesRoutes.splashScreen: (context) => const SplashScreen(),
-//         MyPagesRoutes.updateApartment: (context) => const UpdateApartmentUi(),
-//         MyPagesRoutes.privacyPolicy: (context) => const PrivacyPolicy(),
-//         MyPagesRoutes.askForHelp: (context) => const AskForHelp(),
-//         MyPagesRoutes.systemPaying: (context) => const SystemPaying(),
-//         MyPagesRoutes.whatIsSystemPayingAllow: (context) =>
-//             const WhatIsSystemPayingAllow(),
-//         MyPagesRoutes.couldIPayByDeposit: (context) =>
-//             const CouldIPayByDeposit(),
-//         MyPagesRoutes.whatIsMeanSS: (context) => const WhatIsMeanSS(),
-//         MyPagesRoutes.howCouldBookingApartment: (context) =>
-//             const HowCouldBookingApartment(),
-//         MyPagesRoutes.systemBooking: (context) => const SystemBooking(),
-//         MyPagesRoutes.couldICancelABooking: (context) =>
-//             const CouldICancelABooking(),
-//         MyPagesRoutes.howLongIsTheReservationAvailable: (context) =>
-//             const HowLongIsTheReservationAvailable(),
-//         MyPagesRoutes.howCreateAd: (context) => const HowCreateAd(),
-//         // MyPagesRoutes.couldBeOwnerAndStudentInOneTime: (context) =>
-//         //     const CouldBeOwnerAndStudentInOneTime(),
-//         MyPagesRoutes.sendNoticeForUs: (context) => const SendNoticeForUs(),
-//         MyPagesRoutes.theAdIsFreeOrNot: (context) => const TheAdIsFreeOrNot(),
-//         MyPagesRoutes.skeletonShowMoreWidget: (context) =>
-//             const SkeletonShowMoreWidget(),
-//         // MyPagesRoutes.screensWillAddFuture: (context) =>
-//         //     const ScreensWillAddFuture(),
-//         MyPagesRoutes.noInternet: (context) => const NoInternet(),
-//         // MyPagesRoutes.searchNotFound: (context) => const SearchNotFound(),
-//         // MyPagesRoutes.skeletonBookingNow: (context) =>
-//         //     const BookingNowSkeletonWidget(),
-//         MyPagesRoutes.skeletonParagraph: (context) =>
-//             const LongParagraphReadySkeleton(),
-//         MyPagesRoutes.homeUi: (context) => const HomeUi(),
-//         MyPagesRoutes.showDeitalsOfApartmentUi: (context) =>
-//             const ShowDeitalsOfApartmentUi(),
-//         MyPagesRoutes.whatTheInfoReqToCreateAd: (context) =>
-//             const WhatTheInfoReqToCreateAd(),
-//         MyPagesRoutes.introScreen: (context) => const IntroScreen(),
-//         MyPagesRoutes.updateUserInfo: (context) => const UpdateUserDataUi(),
-//
-//         //testing routes..
-//         // MyPagesRoutes.citiesTest:(context)=> CitiesTest(),
-//         // MyPagesRoutes.showAllAdvantages:(context)=>ShowAllAdvantages,
-//       },
-//
-//       // Main(),
-//       //The ThemeData of ween blaqe application
-//     );
-//   }
-// }
 
 /*
 Main Class that have 3 main item ...

@@ -34,6 +34,7 @@ class _ShowDetialsOfImageUiState extends ConsumerState<ShowDetialsOfImageUi> {
       body: Stack(
         children: [
           PhotoViewGalleryWidget(
+            apartmentId: widget.oneApartment?.id??0,
             imageList: widget.imageList??[],
             initialIndex: widget.initialIndex??0,
             onPageChanged: (index) {

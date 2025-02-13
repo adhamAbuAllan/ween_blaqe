@@ -16,12 +16,15 @@ class CoursolSliderWidget extends ConsumerStatefulWidget {
       required this.imageList,
       required this.apartmentId,
       required this.oneApartment,
-      this.marageBetweenImages});
+      this.marageBetweenImages,
+      
+      });
 
   final List<Photos> imageList;
   final int apartmentId;
   final DataOfOneApartment oneApartment;
   final double? marageBetweenImages;
+
 
   @override
   ConsumerState createState() => _CoursolSliderWidgetState();
@@ -42,7 +45,8 @@ class _CoursolSliderWidgetState extends ConsumerState<CoursolSliderWidget> {
           return Container(
             margin: const EdgeInsets.symmetric(horizontal: 3),
             child: Hero(
-              tag: "imageApartmentTag",
+            
+              tag: "${widget.apartmentId}-$index", 
               child: ClipRRect(
                 borderRadius: const BorderRadius.all(Radius.circular(7.0)),
                 child: CachedNetworkImage(

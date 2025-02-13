@@ -9,12 +9,15 @@ import '../../../../../controller/provider_controllers/providers/color_provider.
 class PhotoViewGalleryWidget extends ConsumerStatefulWidget {
   const PhotoViewGalleryWidget({super.key,
     required this.imageList,
+    required this.apartmentId,
     required this.initialIndex,
     this.onPageChanged,
   });
   final List<Photos> imageList;
   final int initialIndex;
   final ValueChanged<int>? onPageChanged;
+    final int apartmentId;
+
 
   @override
   ConsumerState createState() => _PhotoViewGalleryWidgetState();
@@ -43,6 +46,9 @@ late PageController _pageController;
           imageProvider: NetworkImage(widget.imageList[index].url!),
           minScale: PhotoViewComputedScale.contained * 0.8,
           maxScale: PhotoViewComputedScale.covered * 2,
+             heroAttributes: PhotoViewHeroAttributes(
+            tag: "${widget.apartmentId}-$index",
+          ),
         );
       },
 
