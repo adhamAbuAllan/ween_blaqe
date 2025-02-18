@@ -21,10 +21,10 @@ class BottomNavigationBarWidget extends ConsumerWidget {
     return BottomNavigationBar(
       selectedLabelStyle: const TextStyle(fontFamily: 'IBM'),
       unselectedLabelStyle: const TextStyle(),
-      backgroundColor: ref.read(themeModeNotifier.notifier).containerTheme(ref: ref)
-,
+      backgroundColor:
+          ref.read(themeModeNotifier.notifier).containerTheme(ref: ref),
       selectedItemColor:
-      ref.read(themeModeNotifier.notifier).primaryTheme(ref: ref),
+          ref.read(themeModeNotifier.notifier).primaryTheme(ref: ref),
       unselectedItemColor: Colors.grey,
       type: BottomNavigationBarType.fixed,
       iconSize: 30,
@@ -32,8 +32,8 @@ class BottomNavigationBarWidget extends ConsumerWidget {
       currentIndex: indexNotifier,
       onTap: (i) {
         if (i == 0 && indexNotifier == 0) {
-          debugPrint("hasApartmentChanged -- ${ref.watch
-            (isApartmentDataChangedNotifier.notifier).hasAnyChange(ref)}");
+          debugPrint(
+              "hasApartmentChanged -- ${ref.watch(isApartmentDataChangedNotifier.notifier).hasAnyChange(ref)}");
           debugPrint("scrollController offset is ${scrollController?.offset}");
           // Scroll to top when already on the home page
           if (scrollController != null && scrollController!.offset > 400) {
@@ -45,23 +45,39 @@ class BottomNavigationBarWidget extends ConsumerWidget {
           } else if (i == 0 &&
               indexNotifier == 0 &&
               scrollController!.offset < 100) {
-            ref.read(isAllTypesOfApartmentNotifier.notifier).state =
-            true;
-            ref.read(selectedCityIdToFilter.notifier)
-                .state = 0;
+            ref.read(isAllTypesOfApartmentNotifier.notifier).state = true;
+            ref.read(selectedCityIdToFilter.notifier).state = 0;
             WidgetsBinding.instance.addPostFrameCallback((_) async {
-              await ref
-                  .read(fetchApartmentNotifier.notifier)
-                  .fetchApartments(
-                  isOwnerApartments: false,
-                  isAll: true,
-                  cityId: 0);
+              await ref.read(fetchApartmentNotifier.notifier).fetchApartments(
+                  isOwnerApartments: false, isAll: true, cityId: 0);
             });
             ref.read(isBoyStudentNotifier.notifier).state = false;
             ref.read(isGirlStudentNotifier.notifier).state = false;
             ref.read(isFamiliesNotifier.notifier).state = false;
-
           }
+        }
+        if (i == 1) {
+          WidgetsBinding.instance.addPostFrameCallback((_) async {
+            if (ref.read(bookmarkNotifier).bookmarkIds.isNotEmpty &&
+                ref.read(bookmarkNotifier).bookmarkIds.length <= 2 || indexNotifier == 1) {
+              await ref.read(fetchApartmentNotifier.notifier).fetchApartments(
+                    isOwnerApartments: false,
+                    isAll: true,
+                    cityId: 0,
+                  );
+            } else if (ref.read(bookmarkNotifier).bookmarkIds.length > 2 &&
+                indexNotifier == 1) {
+              await ref.read(fetchApartmentNotifier.notifier).fetchApartments(
+                    isOwnerApartments: false,
+                    isAll: true,
+                    cityId: 0,
+                  );
+            }
+
+            await ref
+                .watch(bookmarkNotifier.notifier)
+                .fetchBookmarkedApartment(ref: ref);
+          });
         }
         ref.read(btmNavBarIndexNotifier.notifier).changeTo(i);
       },

@@ -15,6 +15,7 @@ class _ListOwnerApartmentsWidgetState extends ConsumerState<ListOwnerApartmentsW
   @override
   Widget build(BuildContext context) {
     return ApartmentsListWidget(
+      isOwnerApartment: true,
       haveCitiesBar: false,
       apartmentsRes: ref.watch(fetchApartmentNotifier).apartmentsOfOwner,
       isDeleteMode: ref.watch(toggleOwnerButtonsNotifier).isDelete,

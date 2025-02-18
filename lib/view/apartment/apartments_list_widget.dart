@@ -40,7 +40,7 @@ class ApartmentsListWidget extends ConsumerStatefulWidget {
       this.isDeleteMode = false,
       required this.haveCitiesBar,
       required this.apartmentsRes,
-      this.margeBetweenImages});
+      this.margeBetweenImages,this.isOwnerApartment});
 
   final Apartments apartmentsRes;
   final ScrollController? scrollController;
@@ -49,6 +49,7 @@ class ApartmentsListWidget extends ConsumerStatefulWidget {
   final void Function()? onPressed;
   final bool haveCitiesBar;
   final double? margeBetweenImages;
+  final bool? isOwnerApartment;
 
   @override
   ConsumerState createState() => _ApartmentsListConsumerState();
@@ -132,6 +133,7 @@ class _ApartmentsListConsumerState extends ConsumerState<ApartmentsListWidget> {
                         ],
                       ),
                       ClipRRect(
+                        
                           borderRadius: BorderRadius.circular(7 / 2),
                           child: widget.apartmentsRes.data?[index].photos?[0]
                                       .url ==
@@ -144,6 +146,7 @@ class _ApartmentsListConsumerState extends ConsumerState<ApartmentsListWidget> {
                                           BorderRadius.circular(7 / 2)),
                                 )
                               : CoursolSliderWidget(
+                                isOwnerApartment: widget.isOwnerApartment,
                                   marageBetweenImages: .95,
                                   imageList:
                                       widget.apartmentsRes.data![index].photos!,

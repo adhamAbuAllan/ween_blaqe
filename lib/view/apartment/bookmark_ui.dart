@@ -17,30 +17,28 @@ class BookmarkApartmentUi extends ConsumerStatefulWidget {
 }
 
 class _BookmarkApartmentState extends ConsumerState<BookmarkApartmentUi> {
-
   @override
   void initState() {
     super.initState();
     WidgetsBinding.instance.addPostFrameCallback((_) async {
       await ref.read(fetchApartmentNotifier.notifier).fetchApartments(
-        isOwnerApartments: false,
+            isOwnerApartments: false,
+            isAll: true,
+            cityId: 0,
+          );
 
-        isAll: true,
-        cityId: 0,);
-
-     await ref.watch(bookmarkNotifier.notifier).fetchBookmarkedApartment(ref:
-      ref);
-
+      await ref
+          .watch(bookmarkNotifier.notifier)
+          .fetchBookmarkedApartment(ref: ref);
     });
-
   }
 
   @override
   Widget build(BuildContext context) {
-
-var bookmarkedList = ref.watch(apartmentBookmarkedNotifier.notifier).state;
-return Scaffold(
-      backgroundColor: ref.read(themeModeNotifier.notifier).backgroundAppTheme(ref: ref),
+    var bookmarkedList = ref.watch(apartmentBookmarkedNotifier.notifier).state;
+    return Scaffold(
+      backgroundColor:
+          ref.read(themeModeNotifier.notifier).backgroundAppTheme(ref: ref),
       appBar: AppBar(
         backgroundColor:
             ref.read(themeModeNotifier.notifier).primaryTheme(ref: ref),
@@ -51,26 +49,23 @@ return Scaffold(
           ),
         ),
       ),
-
-      body:
-      ref.watch(fetchApartmentNotifier).isLoading ?
- Center(
-          child: CircularProgressIndicator(
-color: ref.read(themeModeNotifier.notifier).primaryTheme(ref: ref),
-))
-          :
-      bookmarkedList.data?.isEmpty??false
-          ? EmptyScreenWidget(
-              centerIcon: Icons.bookmark_outline,
-              centerText: SetLocalization.of(context)!
-                  .getTranslateValue("favorite_apartments_displayed_here"),
-              underCenterText: "  ",
-            )
-          : ApartmentsListWidget(
-              haveCitiesBar: false,
-              apartmentsRes:bookmarkedList,
-
-            ),
+      body: ref.watch(fetchApartmentNotifier).isLoading
+          ? Center(
+              child: CircularProgressIndicator(
+              color:
+                  ref.read(themeModeNotifier.notifier).primaryTheme(ref: ref),
+            ))
+          : bookmarkedList.data?.isEmpty ?? false
+              ? EmptyScreenWidget(
+                  centerIcon: Icons.bookmark_outline,
+                  centerText: SetLocalization.of(context)!
+                      .getTranslateValue("favorite_apartments_displayed_here"),
+                  underCenterText: "  ",
+                )
+              : ApartmentsListWidget(
+                  haveCitiesBar: false,
+                  apartmentsRes: bookmarkedList,
+                ),
     );
   }
 }

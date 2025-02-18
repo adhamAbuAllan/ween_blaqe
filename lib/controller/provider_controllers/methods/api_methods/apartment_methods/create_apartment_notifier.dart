@@ -115,6 +115,8 @@ class CreateApartmentNotifier extends StateNotifier<ApartmentState> {
         return res;
       } else {
         WidgetsBinding.instance.addPostFrameCallback((_) async {
+           state = state.copyWith(isLoading: false);
+        ref.read(badResponse.notifier).state = true;
           if (ref.read(addressController.notifier).state.text.isNotEmpty) {
             ref.read(addressController.notifier).state.clear();
           }
@@ -153,8 +155,7 @@ class CreateApartmentNotifier extends StateNotifier<ApartmentState> {
             context: context,
             message: SetLocalization.of(context)
                 ?.getTranslateValue("error_has_been_while_creating_apartment"));
-        state = state.copyWith(isLoading: false);
-        ref.read(badResponse.notifier).state = true;
+       
 
         debugPrint("the statee of code is not true : ${response.statusCode}");
         debugPrint(

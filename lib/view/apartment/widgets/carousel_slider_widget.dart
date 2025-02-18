@@ -2,29 +2,27 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:skeletons/skeletons.dart';
 import 'package:ween_blaqe/api/apartments_api/apartments.dart';
-import 'package:ween_blaqe/constants/coordination.dart';
 import 'package:carousel_slider_plus/carousel_slider_plus.dart';
 import 'package:ween_blaqe/controller/provider_controllers/providers/apartment_provider.dart';
 
 import '../../../../../api/photos.dart';
-import '../../../../../constants/get_it_controller.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class CoursolSliderWidget extends ConsumerStatefulWidget {
-  const CoursolSliderWidget(
-      {super.key,
-      required this.imageList,
-      required this.apartmentId,
-      required this.oneApartment,
-      this.marageBetweenImages,
-      
-      });
+  const CoursolSliderWidget({
+    super.key,
+    required this.imageList,
+    required this.apartmentId,
+    required this.oneApartment,
+    this.marageBetweenImages,
+    this.isOwnerApartment,
+  });
 
   final List<Photos> imageList;
   final int apartmentId;
   final DataOfOneApartment oneApartment;
   final double? marageBetweenImages;
-
+  final bool? isOwnerApartment;
 
   @override
   ConsumerState createState() => _CoursolSliderWidgetState();
@@ -44,37 +42,18 @@ class _CoursolSliderWidgetState extends ConsumerState<CoursolSliderWidget> {
         itemBuilder: (context, index, realIndex) {
           return Container(
             margin: const EdgeInsets.symmetric(horizontal: 3),
-            child: Hero(
-            
-              tag: "${widget.apartmentId}-$index", 
-              child: ClipRRect(
-                borderRadius: const BorderRadius.all(Radius.circular(7.0)),
-                child: CachedNetworkImage(
-                  height: 220,
-                  width: double.infinity,
-                  fit: BoxFit.cover,
-                  imageUrl: widget.imageList[index].url ?? "",
-                  progressIndicatorBuilder: (context, url, progress) {
-                    return SkeletonAvatar(
-                      style: SkeletonAvatarStyle(
-                        width: double.infinity,
-                        height: 240,
-                        borderRadius: BorderRadius.circular(7),
-                      ),
-                    );
-                  },
-                  errorWidget: (context, url, error) {
-                    return SkeletonAvatar(
-                      style: SkeletonAvatarStyle(
-                        width: double.infinity,
-                        height: 240,
-                        borderRadius: BorderRadius.circular(7),
-                      ),
-                    );
-                  },
-                ),
-              ),
-            ),
+            child: widget.isOwnerApartment ?? false
+                ? CarouselSliderItemWidget(
+                    widget: widget,
+                    index: index,
+                  )
+                : Hero(
+                    tag: "${widget.apartmentId}-$index",
+                    child: CarouselSliderItemWidget(
+                      widget: widget,
+                      index: index,
+                    ),
+                  ),
           );
         },
         options: CarouselOptions(
@@ -93,6 +72,48 @@ class _CoursolSliderWidgetState extends ConsumerState<CoursolSliderWidget> {
                 .updateIndex(widget.apartmentId, index);
           },
         ),
+      ),
+    );
+  }
+}
+
+class CarouselSliderItemWidget extends ConsumerWidget {
+  const CarouselSliderItemWidget({
+    super.key,
+    required this.widget,
+    required this.index,
+  });
+
+  final CoursolSliderWidget widget;
+  final int index;
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    return ClipRRect(
+      borderRadius: const BorderRadius.all(Radius.circular(7.0)),
+      child: CachedNetworkImage(
+        height: 220,
+        width: double.infinity,
+        fit: BoxFit.cover,
+        imageUrl: widget.imageList[index].url ?? "",
+        progressIndicatorBuilder: (context, url, progress) {
+          return SkeletonAvatar(
+            style: SkeletonAvatarStyle(
+              width: double.infinity,
+              height: 240,
+              borderRadius: BorderRadius.circular(7),
+            ),
+          );
+        },
+        errorWidget: (context, url, error) {
+          return SkeletonAvatar(
+            style: SkeletonAvatarStyle(
+              width: double.infinity,
+              height: 240,
+              borderRadius: BorderRadius.circular(7),
+            ),
+          );
+        },
       ),
     );
   }

@@ -81,18 +81,20 @@ String encodeQueryParameters(Map<String, String> params) {
       .join('&');
 }
 
+
 void makePhoneCall(String phoneNumber) async {
   debugPrint("the phone number is $phoneNumber");
   if (phoneNumber.startsWith("+")) {
     phoneNumber = phoneNumber.replaceFirst("+", "");
-    debugPrint("the phone after remove '+' number is $phoneNumber");
+    debugPrint("The phone after removing '+' is $phoneNumber");
   }
 
-  String phoneUrl = 'tel:$phoneNumber';
+  final Uri phoneUri = Uri(scheme: 'tel', path: phoneNumber);
 
-  if (await canLaunchUrl(Uri.parse(phoneUrl))) {
-    await launchUrl(Uri.parse(phoneUrl));
+  if (await canLaunchUrl(phoneUri)) {
+    await launchUrl(phoneUri, mode: LaunchMode.externalApplication);
   } else {
+    debugPrint("Could not launch phone dialer");
     throw "Could not launch phone dialer";
   }
 }

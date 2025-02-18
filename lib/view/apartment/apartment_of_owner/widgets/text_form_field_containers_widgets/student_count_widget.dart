@@ -10,15 +10,17 @@ class StudentCountFieldWidget extends ConsumerWidget {
   final String? originalStudentCount;
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    return                     Form(
-      key:ref.watch(studentCountValidate.notifier).state != null
+    return Form(
+      key: ref.watch(studentCountValidate.notifier).state != null
           ? formStudentCountValidateKey
           : null,
       child: ContainerFieldWidget(
-        title: SetLocalization.of(context)!
-            .getTranslateValue("allowed_students"),
+        title: ref.watch(typesNotifier).selectedType?.id == 1
+            ? SetLocalization.of(context)!.getTranslateValue("allowed_people_count")
+            : SetLocalization.of(context)!
+                .getTranslateValue("allowed_students"),
         hintInput: '0',
-        validator: (value){
+        validator: (value) {
           if (ref.watch(studentCountValidate.notifier).state == null) {
             return null;
           }
