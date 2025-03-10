@@ -365,14 +365,19 @@ class AnimateAreaBox extends ConsumerWidget {
                       ),
                       child: isAreaSizeChange
                           ? Text(
-                              "${oneApartment.squareMeters ?? 0} ${SetLocalization.of(context)!.getTranslateValue("m2")}",
+                              "${oneApartment.squareMeters ?? 0} "
+                                  "${SetLocalization.of(context)!
+                                  .getTranslateValue("m2")}",
+
                               key: const ValueKey('areaSize'),
                               style: TextStyle(
                                 fontWeight: FontWeight.bold,
                                 color: ref
                                     .read(themeModeNotifier.notifier)
                                     .primaryTheme(ref: ref),
+                                fontSize: 12
                               ),
+
                             )
                           : Text(
                               "${oneApartment.squareMeters ?? 0} ${SetLocalization.of(context)!.getTranslateValue("m2")}",
@@ -381,6 +386,7 @@ class AnimateAreaBox extends ConsumerWidget {
                                 color: ref
                                     .read(themeModeNotifier.notifier)
                                     .textTheme(ref: ref),
+                                fontSize: 12
                               ),
                             ),
                     ),

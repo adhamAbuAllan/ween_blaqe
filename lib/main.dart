@@ -1,4 +1,4 @@
- /*
+/*
 مطور تطبيقات الموبايل ، ومن أفضل مصممي واجهات الاستخدام على مستوى فلسطين و الضفة الغربية ، مصمم و مبرمج افضل تطبيق لحجز السكانات في فلسطين
  */
 /*
@@ -66,6 +66,7 @@ import 'view/apartment/show_deitals_of_apartment/show_deitals_of_apartment_ui.da
 import 'view/intro_screen.dart';
 import 'view/main_ui.dart';
 import 'view/send_notice_for_us_ui.dart';
+
 //the line that could user to upload a file currently :
 //https://drive.google.com/uc?export=download&id=
 /*
@@ -77,7 +78,6 @@ import 'view/send_notice_for_us_ui.dart';
 final Future<SharedPreferences> sp = SharedPreferences.getInstance();
 
 void main() async {
-
   debugPrint("Starting");
   WidgetsFlutterBinding.ensureInitialized();
   await NewSession.init();
@@ -85,7 +85,7 @@ void main() async {
     DeviceOrientation.portraitUp,
     DeviceOrientation.portraitDown,
   ]);
- 
+
   Get.put(ChangeThemeMode());
   Get.put(ConnectivityController());
   await configureInjection();
@@ -96,7 +96,8 @@ void main() async {
       )
     ],
     child: const OwnMaterialAppConsumer(),
-  ));
+  )
+  );
 }
 
 final savedLanguage = NewSession.get('language', 'ar');
@@ -141,7 +142,7 @@ class _OwnMaterialAppConsumerState
         GlobalCupertinoLocalizations.delegate,
       ],
       locale: locale,
-      supportedLocales: const [ 
+      supportedLocales: const [
         Locale('en', 'US'),
         Locale('ar', 'JO'),
       ],
@@ -157,7 +158,7 @@ class _OwnMaterialAppConsumerState
         MyPagesRoutes.step4: (context) => const FourthStepUi(),
         MyPagesRoutes.login: (context) => const LoginUi(),
         MyPagesRoutes.register: (context) => const RegistrationUi(),
-   
+
         MyPagesRoutes.profileOfOwner: (context) => const ProfileUi(),
         MyPagesRoutes.bookmarkUi: (context) => const BookmarkApartmentUi(),
         MyPagesRoutes.apartmentsOwner: (context) => const ApartmentsOfOwnerUi(),
@@ -271,14 +272,13 @@ class _MainState extends State<Main> {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      //onTap to hide keyboard when click outside keyboard
-      onTap: () {
-        FocusScopeNode currentFocus = FocusScope.of(context);
-        if (!currentFocus.hasPrimaryFocus) {
-          currentFocus.unfocus();
-        }
-      },
-      child:   const MainUi()
-    );
+        //onTap to hide keyboard when click outside keyboard
+        onTap: () {
+          FocusScopeNode currentFocus = FocusScope.of(context);
+          if (!currentFocus.hasPrimaryFocus) {
+            currentFocus.unfocus();
+          }
+        },
+        child: const MainUi());
   }
 }

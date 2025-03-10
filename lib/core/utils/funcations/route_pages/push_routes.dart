@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:ween_blaqe/view/splach_screen_ui.dart'; //push to another page
 
-myPush(BuildContext context, Widget page, String routeName) {
+myPush({required BuildContext context, required Widget ui, String ?
+routeName}) {
   Navigator.of(context).push(MaterialPageRoute(
     builder: (ctx) {
-      return page;
+      return ui;
     },
     settings: RouteSettings(name: routeName),
   ));

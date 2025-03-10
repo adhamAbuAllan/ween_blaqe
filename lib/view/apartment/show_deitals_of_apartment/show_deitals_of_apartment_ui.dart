@@ -43,13 +43,11 @@ class _ShowDeitalsOfApartmentUiState
   bool _isBoyStudent = false;
   bool _isFamilies = false;
 
-  bool isStart = false;
 
   @override
   void initState() {
     super.initState();
 
-    isStart = true;
     if (widget.oneApartment?.type?.name == "طلاب") {
       _isBoyStudent = true;
     }

@@ -92,7 +92,7 @@ class MenuButtonsWidgets extends ConsumerWidget {
           },
           title: SetLocalization.of(context)!.getTranslateValue("share_app"),
           icon: Icons.share_outlined,
-        )
+        ),
       ],
     );
   }

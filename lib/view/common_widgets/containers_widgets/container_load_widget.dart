@@ -33,7 +33,7 @@ class _ContainerLoadWidgetState
         Row(
           children: [
             Padding(
-              padding: const EdgeInsets.fromLTRB(20, 10, 20, 0),
+              padding: const EdgeInsets.fromLTRB(20, 10, 20, 10),
               child: Text(
                 widget.title,
                 style: TextStyle(
@@ -46,12 +46,15 @@ class _ContainerLoadWidgetState
             ),
           ],
         ),
-        widget.isLoading
-            ? Text(SetLocalization.of(context)!.getTranslateValue("loading"
-            "..."),style: TextStyle(color: ref.read(themeModeNotifier.notifier).textTheme(ref: ref),
-        ),)
-            :
-        widget.childWidget
+        Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 20),
+          child: widget.isLoading
+              ? Text(SetLocalization.of(context)!.getTranslateValue("loading"
+              "..."),style: TextStyle(color: ref.read(themeModeNotifier.notifier).textTheme(ref: ref),
+          ),)
+              :
+          widget.childWidget,
+        )
       ],
     ));
   }

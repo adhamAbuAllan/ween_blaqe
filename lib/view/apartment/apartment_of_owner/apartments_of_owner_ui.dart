@@ -94,7 +94,11 @@ class _ApartmentsOfOwnerUiState extends ConsumerState<ApartmentsOfOwnerUi>
             animationController: _animationController,
             iconColorAnimation: _iconColorAnimation),
         body: ref.watch(fetchApartmentNotifier).isLoading
-            ? const Center(child: CircularProgressIndicator())
+            ? Center(
+                child: CircularProgressIndicator(
+                color:
+                    ref.read(themeModeNotifier.notifier).primaryTheme(ref: ref),
+              ))
             : ref.watch(fetchApartmentNotifier).isOwnerHaveApartments == false
                 ? const StartAddApartmentWidget()
                 : Stack(children: [

@@ -21,7 +21,7 @@ class DropdownFieldWidget extends ConsumerStatefulWidget {
   final dynamic alreadyExistingValue;
   final bool? autofocus;
   final bool? isStringOnly;
-  final double ? horizantalPadding;
+  final double? horizantalPadding;
 
   @override
   ConsumerState createState() => _DropdownFieldWidgetState();
@@ -36,9 +36,12 @@ class _DropdownFieldWidgetState extends ConsumerState<DropdownFieldWidget> {
           vertical: getIt<AppDimension>().isSmallScreen(context) ? 0 : 10,
           horizontal:  widget.horizantalPadding ?? 20),
         decoration: InputDecoration(
+          border: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(7),
+          ),
           contentPadding: EdgeInsets.symmetric(
               vertical:
-                  getIt<AppDimension>().isSmallScreen(context) ? 20 / 2.3 : 20,
+                  getIt<AppDimension>().isSmallScreen(context) ? 20 / 2.3 : 10,
               horizontal: 12),
           enabledBorder: OutlineInputBorder(
             borderSide: BorderSide(

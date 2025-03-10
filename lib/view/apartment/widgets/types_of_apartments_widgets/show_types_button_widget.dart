@@ -21,9 +21,9 @@ class ShowTypesButtonWidget extends ConsumerWidget {
       child: isBoxVisible
           ? Padding(
               padding:
-                  const EdgeInsets.symmetric(horizontal: 15.0, vertical: 102),
+                  const EdgeInsets.symmetric(horizontal: 5.0, vertical: 102),
               child: Opacity(
-                opacity: .95,
+                opacity: 1,
                 child: BtnShowTypesOfApartments(
                   onPressed: onPressed,
                   text: text,

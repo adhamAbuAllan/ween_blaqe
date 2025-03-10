@@ -112,6 +112,7 @@ class DropDownMenuWidget extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     return DropdownFieldWidget(
+
       horizantalPadding: 0,
         isStringOnly: true,
         onChanged: (newValue) {
@@ -141,6 +142,7 @@ class PhoneNumberWidget extends ConsumerWidget {
     WidgetRef ref,
   ) {
     return TextFormFieldWidget(
+
       validateTextValue: validateTextValue,
       isPhoneRegTextField: isPhoneRegTextField ?? true,
       fontSize: getIt<AppDimension>().isSmallScreen(context) ? 14 : 16,

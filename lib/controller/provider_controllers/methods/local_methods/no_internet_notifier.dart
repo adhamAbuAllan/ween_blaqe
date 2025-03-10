@@ -1,6 +1,6 @@
 import 'package:carousel_slider_plus/carousel_controller.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:vibration/vibration.dart';
+// import 'package:vibration/vibration.dart';
 import 'package:ween_blaqe/controller/provider_controllers/providers/no_internet_provider.dart';
 import 'package:ween_blaqe/controller/provider_controllers/statuses/no_internet_state.dart';
 import 'package:flutter/material.dart';
@@ -34,7 +34,7 @@ class NoInternetNotifier extends StateNotifier<NoInternetState> {
         curve: Curves.linear,
         ref.watch(onLongPressCounterProvider));
     Duration(milliseconds: ref.read(onLongPressCounterProvider));
-    Vibration.vibrate(duration: ref.read(onLongPressCounterProvider));
+    // Vibration.vibrate(duration: ref.read(onLongPressCounterProvider));
   }
 
   onPressSebha({
@@ -45,7 +45,7 @@ class NoInternetNotifier extends StateNotifier<NoInternetState> {
   }) {
     onLongPressCounter = 17;
     state = state.copyWith(isLongPress: false);
-    Vibration.vibrate(duration: 10);
+    // Vibration.vibrate(duration: 10);
 
     if (index <= sephaText.length) {
       state = state.copyWith(isSephaCountrEnd: false);
