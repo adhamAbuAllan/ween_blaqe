@@ -41,7 +41,7 @@ void  showSnakBar( BuildContext context,String message,
         ],
       ):Text(
         message,
-        style: TextStyle(fontSize: getIt<AppDimension>().isSmallScreen(context) ? 14 : 16, fontFamily: "IBM"),
+        style: TextStyle(fontSize: getIt<AppDimension>().isSmallScreen(context) ? 14 : 16, fontFamily: "Cairo"),
       ),
         margin: const EdgeInsets.only( bottom: 20,left: 25,right: 25),
         ) );

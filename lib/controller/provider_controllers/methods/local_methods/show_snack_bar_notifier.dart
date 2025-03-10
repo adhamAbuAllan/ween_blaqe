@@ -54,7 +54,7 @@ class ShowSnackBarNotifier extends StateNotifier<ShowSnackBarState> {
                 state.message ?? "",
                 style: TextStyle(
                   fontSize: getIt<AppDimension>().isSmallScreen(context) ? 14 : 16,
-                  fontFamily: "IBM",
+                  fontFamily: "Cairo",
                   color:
                       ref.read(themeModeNotifier.notifier).textTheme(ref: ref),
                 ),
@@ -81,7 +81,7 @@ class ShowSnackBarNotifier extends StateNotifier<ShowSnackBarState> {
           state.message ?? "",
           style: TextStyle(
             fontSize: getIt<AppDimension>().isSmallScreen(context) ? 14 : 16,
-            fontFamily: "IBM",
+            fontFamily: "Cairo",
             color: textColor,
           ),
         ),

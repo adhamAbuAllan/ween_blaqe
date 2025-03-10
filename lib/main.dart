@@ -125,12 +125,12 @@ class _OwnMaterialAppConsumerState
       debugShowCheckedModeBanner: false,
       darkTheme: ThemeData(
         useMaterial3: false,
-        fontFamily: 'IBM',
+        fontFamily: 'Cairo',
         colorScheme: ColorScheme.fromSwatch().copyWith(secondary: Colors.grey),
       ),
       theme: ThemeData(
           useMaterial3: false,
-          fontFamily: 'IBM',
+          fontFamily: 'Cairo',
           switchTheme: const SwitchThemeData(),
           colorSchemeSeed: const Color(0xffff9800),
           bottomNavigationBarTheme: const BottomNavigationBarThemeData(

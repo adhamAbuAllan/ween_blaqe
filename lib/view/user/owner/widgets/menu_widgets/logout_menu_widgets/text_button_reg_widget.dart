@@ -23,7 +23,7 @@ class TextButtonRegWidget extends ConsumerWidget {
           style: TextStyle(
               color:
                   ref.read(themeModeNotifier.notifier).textTheme(ref: ref),
-              fontFamily: "IBM"),
+              fontFamily: "Cairo"),
         ),
         TextButton(
           style: const ButtonStyle(tapTargetSize: MaterialTapTargetSize.shrinkWrap),

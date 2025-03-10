@@ -33,7 +33,7 @@ class JoinDateWidget extends ConsumerWidget {
                   color: ref.read(themeModeNotifier.notifier).textTheme(ref: ref),
                   fontWeight: FontWeight.w600,
                   fontSize: getIt<AppDimension>().isSmallScreen(context) ? 16 : 18,
-                  fontFamily: "IBM")),
+                  fontFamily: "Cairo")),
           const SizedBox(
             height: 15,
           ),
@@ -43,7 +43,7 @@ class JoinDateWidget extends ConsumerWidget {
                   color: ref.read(themeModeNotifier.notifier).textTheme(ref: ref),
                   fontSize: getIt<AppDimension>().isSmallScreen(context) ? 14 : 16,
                   fontWeight: FontWeight.w500,
-                  fontFamily: "IBM")),
+                  fontFamily: "Cairo")),
         ],
       ),
     );

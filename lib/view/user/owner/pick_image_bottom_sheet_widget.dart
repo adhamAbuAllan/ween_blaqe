@@ -41,7 +41,7 @@ class _PickFromGalleryWidget extends ConsumerWidget {
           style: TextStyle(
               color:
                   ref.read(themeModeNotifier.notifier).textTheme(ref: ref),
-              fontFamily: "IBM")),
+              fontFamily: "Cairo")),
       onTap: () {
         Navigator.pop(context); // Close bottom sheet
         ref
@@ -64,7 +64,7 @@ class _PickFromCameraWidget extends ConsumerWidget {
         SetLocalization.of(context)!.getTranslateValue("from_camera"),
         style: TextStyle(
             color: ref.read(themeModeNotifier.notifier).textTheme(ref: ref) ,
-            fontFamily: "IBM"),
+            fontFamily: "Cairo"),
       ),
       onTap: () {
         Navigator.pop(context); // Close bottom sheet

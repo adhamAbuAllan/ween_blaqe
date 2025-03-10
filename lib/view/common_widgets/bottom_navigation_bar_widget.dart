@@ -19,7 +19,7 @@ class BottomNavigationBarWidget extends ConsumerWidget {
     final indexNotifier = ref.read(btmNavBarIndexNotifier);
 
     return BottomNavigationBar(
-      selectedLabelStyle: const TextStyle(fontFamily: 'IBM'),
+      selectedLabelStyle: const TextStyle(fontFamily: 'Cairo'),
       unselectedLabelStyle: const TextStyle(),
       backgroundColor:
           ref.read(themeModeNotifier.notifier).containerTheme(ref: ref),

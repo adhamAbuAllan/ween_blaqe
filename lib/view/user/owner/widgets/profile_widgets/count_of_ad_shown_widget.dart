@@ -33,7 +33,7 @@ class CountOfAdShownWidget extends ConsumerWidget {
                   color: ref.read(themeModeNotifier.notifier).textTheme(ref: ref),
                   fontSize: getIt<AppDimension>().isSmallScreen(context) ? 16 : 18,
                   fontWeight: FontWeight.w600,
-                  fontFamily: "IBM")),
+                  fontFamily: "Cairo")),
           const SizedBox(
             height: 15,
           ),

@@ -61,7 +61,7 @@ class AppBarUpdateUserDataWidget extends ConsumerWidget
                           ? 12
                           : 14,
                       color: Colors.white,
-                      fontFamily: "IBM"),
+                      fontFamily: "Cairo"),
                 );
               } else {
                 return const Text(""); // Hide the subtitle if
