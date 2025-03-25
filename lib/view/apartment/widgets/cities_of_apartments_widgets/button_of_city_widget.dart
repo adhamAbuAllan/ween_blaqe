@@ -29,7 +29,6 @@ class CityButtonWidget extends ConsumerWidget {
     return Padding(
       padding: const EdgeInsets.all(10.0),
       child: SizedBox(
-        width: getIt<AppDimension>().isSmallScreen(context) ? 75 : 80,
         height: getIt<AppDimension>().isSmallScreen(context) ? 35 : 40,
         child: OutlinedButtonWidget(
           buttonStyle: style,

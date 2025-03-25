@@ -48,25 +48,27 @@ class Apartments {
   }
 }
 class DataOfOneApartment {
-  DataOfOneApartment(
-      {this.id,
-      this.owner,
-      this.photos,
-      this.advantages,
-      this.rooms,
-      this.bathrooms,
-      this.squareMeters,
-      this.title,
-      this.description,
-      this.location,
-      this.price,
-      this.city,
-      this.type,
-      this.updatedAt,
-      this.countOfStudnet,
-      this.timeAgo}){
-
-currentPhotoIndex = 0.obs;
+  DataOfOneApartment({
+    this.id,
+    this.owner,
+    this.photos,
+    this.advantages,
+    this.rooms,
+    this.bathrooms,
+    this.squareMeters,
+    this.title,
+    this.description,
+    this.location,
+    this.price,
+    this.city,
+    this.type,
+    this.updatedAt,
+    this.countOfStudnet,
+    this.timeAgo,
+    this.latitude,       // Added field
+    this.longitude,      // Added field
+  }) {
+    currentPhotoIndex = 0.obs;
   }
 
   late final int? id;
@@ -85,6 +87,8 @@ currentPhotoIndex = 0.obs;
   late final String? updatedAt;
   late final int? countOfStudnet;
   late final String? timeAgo;
+  late final num? latitude;
+  late final num? longitude;
   RxInt currentPhotoIndex = 0.obs;
 
   DataOfOneApartment.fromJson(Map<String, dynamic> json) {
@@ -102,10 +106,20 @@ currentPhotoIndex = 0.obs;
     description = json['description'];
     location = json['location'];
     price = json['price'];
+    latitude = json['latitude'];
+    longitude = json['longitude'];
     city = City.fromJson(json['city']);
     type = TypeOfApartment.fromJson(json['type']);
     updatedAt = json['updated_at'];
     timeAgo = json['time_ago'];
+
+
+
+    // latitude = json['latitude'] != null ? double.tryParse(json['latitude']
+    //     .toStringAsFixed(15)) : null;
+    // longitude = json['longitude'] != null ? double.tryParse(json['longitude']
+    //     .toStringAsFixed(15)) : null;
+
   }
 
   Map<String, dynamic> toJson() {
@@ -126,8 +140,11 @@ currentPhotoIndex = 0.obs;
     _data['type'] = type?.toJson() ?? "";
     _data['updated_at'] = updatedAt;
     _data['time_ago'] = timeAgo;
+    _data['latitude'] = latitude;    // Added field
+    _data['longitude'] = longitude;  // Added field
     return _data;
   }
+
   @override
   String toString() {
     return toJson().toString();

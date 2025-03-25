@@ -12,11 +12,11 @@ class ContainerLoadWidget extends ConsumerStatefulWidget {
   const ContainerLoadWidget(
       {super.key,
       required this.title,
-      required this.childWidget,
+      required this.child,
       required this.isLoading});
 
   final bool isLoading;
-  final Widget childWidget;
+  final Widget child;
   final String title;
 
   @override
@@ -53,7 +53,7 @@ class _ContainerLoadWidgetState
               "..."),style: TextStyle(color: ref.read(themeModeNotifier.notifier).textTheme(ref: ref),
           ),)
               :
-          widget.childWidget,
+          widget.child,
         )
       ],
     ));

@@ -28,7 +28,7 @@ class _TypesContainerWidgetState extends ConsumerState<DropdownTypesWidget> {
     return ContainerLoadWidget(
         title: SetLocalization.of(context)!
             .getTranslateValue("housing_type_students"),
-        childWidget: DropdownFieldWidget(
+        child: DropdownFieldWidget(
             alreadyExistingValue:
             types.isNotEmpty ?
             types.firstWhere(

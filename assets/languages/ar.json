@@ -83,7 +83,7 @@
   "from_gallery": "من المعرض",
   "from_camera": "من الكاميرا",
   "allowed_people_count": "عدد الأفراد المسموح به",
-  "shekel_per_month": "شيكل/شهري",
+  "shekel_per_month": "د.ع/شهري",
   "rent": "الأجرة",
   "about_apartment": "حول الشقة",
   "advantages": "المزايا",
@@ -254,5 +254,10 @@
   "should_be_at_least_five_advantages": "برجاء إضافة ما لا يقل عن 5 مزايا",
   "latest_updates": "آخر التحديثات",
   "the_address_should_be_true": "يجب أن يكون العنوان صحيحًا",
-  "error_has_been_while_creating_apartment": "حدث خطأ أثناء إنشاء الشقة"
+  "error_has_been_while_creating_apartment": "حدث خطأ أثناء إنشاء الشقة",
+  "selected_location" : "الموقع المحدد",
+  "the_map": "الخريطة",
+  "select_the_location_on_the_map" : "حدد الموقع على الخريطة",
+  "the_location_has_been_selected": "تم تحديد الموقع",
+  "please_select_the_location" : "يرجى تحديد الموقع"
 }

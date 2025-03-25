@@ -9,10 +9,11 @@ import '../../../../../core/utils/funcations/route_pages/push_routes.dart';
 import '../../../providers/apartment_provider.dart';
 import '../../../providers/color_provider.dart';
 import '../../../statuses/apartment_state.dart';
+
 /// a [ValidatorCreateApartmentNotifier] class has four methods in every method for
 /// specific UI, that four methods for every step, that usage to check the fields
 /// in every UI, that could not to naviage to another UI until check that fields
-/// is true state. that check them if not empty Or check the length is not 
+/// is true state. that check them if not empty Or check the length is not
 /// short in second UI and check the images length is not under of three
 ///  images and so on so far.
 class ValidatorCreateApartmentNotifier extends StateNotifier<ApartmentState> {
@@ -56,7 +57,7 @@ class ValidatorCreateApartmentNotifier extends StateNotifier<ApartmentState> {
     } else {
       formRoomsCountValidateKey.currentState?.reset();
     }
-    if (countOfBathRoomsControllerValue == ""||
+    if (countOfBathRoomsControllerValue == "" ||
         countOfBathRoomsControllerValue == "0") {
       formBathRoomsCountValidateKey.currentState?.validate();
       ref.watch(bathRoomsCountValidate.notifier).state = fillField;
@@ -81,8 +82,7 @@ class ValidatorCreateApartmentNotifier extends StateNotifier<ApartmentState> {
         ref.watch(squareMetersController.notifier).state.text;
     String? fillField =
         SetLocalization.of(context)?.getTranslateValue("fill_field");
-    if (priceControllerValue == ""||
-        priceControllerValue == "0") {
+    if (priceControllerValue == "" || priceControllerValue == "0") {
       formPriceValidateKey.currentState?.validate();
       ref.watch(priceValidate.notifier).state = fillField;
       debugPrint("price validate -> ${ref.read(priceValidate)}");
@@ -91,7 +91,7 @@ class ValidatorCreateApartmentNotifier extends StateNotifier<ApartmentState> {
       ref.watch(priceValidate.notifier).state = "";
       formPriceValidateKey.currentState?.reset();
     }
-    if (countOfStudentControllerValue == ""||
+    if (countOfStudentControllerValue == "" ||
         countOfStudentControllerValue == "0") {
       formStudentCountValidateKey.currentState?.validate();
       ref.watch(studentCountValidate.notifier).state = fillField;
@@ -121,11 +121,29 @@ class ValidatorCreateApartmentNotifier extends StateNotifier<ApartmentState> {
         SetLocalization.of(context)?.getTranslateValue("fill_field");
     debugPrint(
         "images length -> ${ref.read(imagesFileList.notifier).state.length}");
-    if (ref.read(imagesFileList.notifier).state.length < 3) {
+    if (ref.read(selectedLocationProvider.notifier).state == null) {
+      if (ref.read(isDialOpen).value == false) {
+        ref.read(isDialOpen.notifier).state.value = true;
+      }
       ref.read(showSnackBarNotifier.notifier).showNormalSnackBar(
-          backgroundColor: ref.read(themeModeNotifier.notifier).backgroundAppTheme(ref: ref),
+          backgroundColor:
+              ref.read(themeModeNotifier.notifier).backgroundAppTheme(ref: ref),
           textColor: ref.read(themeModeNotifier.notifier).textTheme(ref: ref),
+          context: context,
+          message: SetLocalization.of(context)!
+              .getTranslateValue("please_select_the_location"));
 
+      return;
+    }
+    if (ref.read(imagesFileList.notifier).state.length < 3) {
+      if (ref.read(isDialOpen).value == false) {
+        ref.read(isDialOpen.notifier).state.value = true;
+      }
+
+      ref.read(showSnackBarNotifier.notifier).showNormalSnackBar(
+          backgroundColor:
+              ref.read(themeModeNotifier.notifier).backgroundAppTheme(ref: ref),
+          textColor: ref.read(themeModeNotifier.notifier).textTheme(ref: ref),
           context: context,
           message: SetLocalization.of(context)!
               .getTranslateValue("should_be_at_least_three_photos"));

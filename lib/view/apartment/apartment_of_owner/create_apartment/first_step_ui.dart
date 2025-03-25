@@ -2,6 +2,7 @@ import 'package:colorful_safe_area/colorful_safe_area.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:ween_blaqe/controller/provider_controllers/providers/apartment_provider.dart';
+import 'package:ween_blaqe/session/new_session.dart';
 import 'package:ween_blaqe/view/apartment/apartment_of_owner/create_apartment/widgets/create_apartment_buttons_widgets.dart';
 import 'package:ween_blaqe/view/apartment/apartment_of_owner/create_apartment/widgets/images_create_apartment_stpes_widgets.dart';
 import 'package:ween_blaqe/view/apartment/apartment_of_owner/widgets/text_form_field_containers_widgets/bath_rooms_widget.dart';
@@ -23,6 +24,12 @@ class FirstStepUi extends ConsumerStatefulWidget {
 }
 
 class _FirstStepCreateApartmentUiState extends ConsumerState<FirstStepUi> {
+  @override
+  void initState() {
+    super.initState();
+    debugPrint("newSession lastLat ${NewSession.get("lastLat", 2.2)}");
+    debugPrint("newSession lastLng ${NewSession.get("lastLng", 2.2)}");
+  }
   @override
   Widget build(BuildContext context) {
     return ColorfulSafeArea(

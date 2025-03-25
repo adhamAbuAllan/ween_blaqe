@@ -24,7 +24,7 @@ final defaultValue = ref.watch(cityNotifier).selectedCity;
 
         title: SetLocalization.of(context)!.getTranslateValue("city")
         , isLoading: ref.watch(cityNotifier).isLoading
-        , childWidget: DropdownFieldWidget(
+        , child: DropdownFieldWidget(
       autofocus: widget.autofocus,
 /*
 final dynamicItems = ref.watch(dynamicNotifier).items; // Example dynamic items

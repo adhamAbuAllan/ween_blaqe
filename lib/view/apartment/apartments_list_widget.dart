@@ -18,6 +18,7 @@ import 'package:ween_blaqe/view/apartment/show_deitals_of_apartment'
 import 'package:ween_blaqe/view/apartment/widgets/bookmark_button_widget.dart';
 import 'package:ween_blaqe/view/apartment/widgets/cities_of_apartments_widgets'
     '/bar_of_cities_widget.dart';
+import 'package:ween_blaqe/view/apartment/widgets/pointer_of_image_widget.dart';
 import 'package:ween_blaqe/view/apartment/widgets/price_text_widget.dart';
 import 'package:ween_blaqe/view/apartment/widgets/time_ago_text_widget.dart';
 import 'package:ween_blaqe/view/apartment/widgets'
@@ -40,7 +41,8 @@ class ApartmentsListWidget extends ConsumerStatefulWidget {
       this.isDeleteMode = false,
       required this.haveCitiesBar,
       required this.apartmentsRes,
-      this.margeBetweenImages,this.isOwnerApartment});
+      this.margeBetweenImages,
+      this.isOwnerApartment});
 
   final Apartments apartmentsRes;
   final ScrollController? scrollController;
@@ -90,7 +92,7 @@ class _ApartmentsListConsumerState extends ConsumerState<ApartmentsListWidget> {
                 },
                 child: Container(
                   margin: const EdgeInsets.fromLTRB(10, 0, 10, 23),
-                  padding: const EdgeInsets.symmetric(horizontal: 10),
+                  // padding: const EdgeInsets.symmetric(horizontal: 10),
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(7),
                     color: ref
@@ -133,7 +135,6 @@ class _ApartmentsListConsumerState extends ConsumerState<ApartmentsListWidget> {
                         ],
                       ),
                       ClipRRect(
-                        
                           borderRadius: BorderRadius.circular(7 / 2),
                           child: widget.apartmentsRes.data?[index].photos?[0]
                                       .url ==
@@ -146,7 +147,7 @@ class _ApartmentsListConsumerState extends ConsumerState<ApartmentsListWidget> {
                                           BorderRadius.circular(7 / 2)),
                                 )
                               : CoursolSliderWidget(
-                                isOwnerApartment: widget.isOwnerApartment,
+                                  isOwnerApartment: widget.isOwnerApartment,
                                   marageBetweenImages: .95,
                                   imageList:
                                       widget.apartmentsRes.data![index].photos!,
@@ -158,22 +159,34 @@ class _ApartmentsListConsumerState extends ConsumerState<ApartmentsListWidget> {
                       const SizedBox(
                         height: 10,
                       ),
-                      ApartmentTitleTextWidget(
-                        index: index,
-                        apartmentsRes: widget.apartmentsRes,
+                      PointerOfImageWidget(
+                        imageList:
+                            widget.apartmentsRes.data![index].photos ?? [],
+                        apartmentId: widget.apartmentsRes.data![index].id ?? -1,
                       ),
-                      ApartmentLocatoinTextWidget(
-                        index: index,
-                        apartmentsRes: widget.apartmentsRes,
+                      Container(
+                        padding: const EdgeInsets.symmetric(horizontal: 10),
+                        child: Column(
+                          children: [
+                            ApartmentTitleTextWidget(
+                              index: index,
+                              apartmentsRes: widget.apartmentsRes,
+                            ),
+                            ApartmentLocatoinTextWidget(
+                              index: index,
+                              apartmentsRes: widget.apartmentsRes,
+                            ),
+                            ApartmentPriceTextWidget(
+                              index: index,
+                              apartmentsRes: widget.apartmentsRes,
+                            ),
+                            TimeAgoTextWidget(
+                              index: index,
+                              apartmentsRes: widget.apartmentsRes,
+                            )
+                          ],
+                        ),
                       ),
-                      ApartmentPriceTextWidget(
-                        index: index,
-                        apartmentsRes: widget.apartmentsRes,
-                      ),
-                      TimeAgoTextWidget(
-                        index: index,
-                        apartmentsRes: widget.apartmentsRes,
-                      )
                     ],
                   ),
                 ),

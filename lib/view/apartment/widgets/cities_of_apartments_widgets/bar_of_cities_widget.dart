@@ -32,6 +32,7 @@ class _CitiesBarWidgetState extends ConsumerState<CitiesBarWidget> {
                 .watch(cityNotifier)
                 .cities
                 .map((c) => CityButtonWidget(
+
                       context: context,
                       onClick: () async {
                         /*
@@ -87,6 +88,7 @@ class _CitiesBarWidgetState extends ConsumerState<CitiesBarWidget> {
                                   WidgetStateProperty.all<Color>(Colors.white),
                             )
                           : outlinedButton(
+
                               primaryColor: ref
                                   .read(themeModeNotifier.notifier)
                                   .primaryTheme(ref: ref),

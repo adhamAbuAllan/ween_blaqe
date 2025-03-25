@@ -246,6 +246,11 @@
   "should_be_at_least_five_advantages": "Should be at least 5 advantages",
   "latest_updates": "Latest Updates",
   "the_address_should_be_true" : "the address should be true",
-  "error_has_been_while_creating_apartment" : "Error has been while creating apartment"
+  "error_has_been_while_creating_apartment" : "Error has been while creating apartment",
+  "selected_location" : "Selected Location",
+  "the_map": "the map",
+  "select_the_location_on_the_map": "Select the location on the map",
+  "the_location_has_been_selected": "The location has been selected",
+  "please_select_the_location": "Please select the location"
 }
 

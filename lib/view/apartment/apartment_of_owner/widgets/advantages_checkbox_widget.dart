@@ -31,7 +31,7 @@ class _AdvantagesUpdateWidgetState
         isLoading: advantageState.isDataLoading,
         title:
             SetLocalization.of(context)!.getTranslateValue("select_advantages"),
-        childWidget: Container(
+        child: Container(
           margin: const EdgeInsets.all(10),
           child: Column(children: [
             ...advantageState.advantages.map((advantage) {

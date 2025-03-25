@@ -1,6 +1,9 @@
+import 'dart:async';
+
 import 'package:carousel_slider_plus/carousel_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:ween_blaqe/controller/provider_controllers/methods/api_methods/apartment_methods/fetch_apartments_notifier.dart';
 import 'package:ween_blaqe/controller/provider_controllers/methods/api_methods/apartment_methods/cities_notifier.dart';
 import 'package:ween_blaqe/controller/provider_controllers/methods/api_methods/apartment_methods/type_notifier.dart';
@@ -16,10 +19,12 @@ import '../methods/api_methods/apartment_methods/update_apartment_notifier.dart'
 import '../methods/hybrid_methods/apartment_validator/validator_create_apartment.dart';
 import '../methods/hybrid_methods/bookmarker.dart';
 import '../methods/local_methods/image_slider_notifier.dart';
+import '../methods/local_methods/location_notifier.dart';
 import '../methods/local_methods/toggle_owner_buttons_notifier.dart';
 import '../statuses/advantage_state.dart';
 import '../statuses/apartment_state.dart';
 import '../statuses/bookmark_state.dart';
+import '../statuses/map_state.dart';
 import '../statuses/update_apartment_state.dart';
 
 /// Extension for [firstWhereOrNull] usage in [getApartmentsFromBookmarks] method in [bookmaker.dart]
@@ -68,12 +73,12 @@ final updateApartmentNotifier =
     StateNotifierProvider<UpdateApartmentNotifier, ApartmentState>(
   (ref) => UpdateApartmentNotifier(),
 );
-final createApartmentNotifier = StateNotifierProvider<CreateApartmentNotifier
-, ApartmentState>((ref)
-=>CreateApartmentNotifier());
+final createApartmentNotifier =
+    StateNotifierProvider<CreateApartmentNotifier, ApartmentState>(
+        (ref) => CreateApartmentNotifier());
 final validatorCreateApartmentNotifier =
-    StateNotifierProvider<ValidatorCreateApartmentNotifier,ApartmentState>((ref)
-=>ValidatorCreateApartmentNotifier());
+    StateNotifierProvider<ValidatorCreateApartmentNotifier, ApartmentState>(
+        (ref) => ValidatorCreateApartmentNotifier());
 // CarouselSliderController
 final carouselSliderControllerNotifier =
     Provider<CarouselSliderController>((ref) {
@@ -81,6 +86,12 @@ final carouselSliderControllerNotifier =
 });
 final pageControllerNotifier = Provider<PageController>((ref) {
   return PageController();
+});
+final locationNotifier = StateNotifierProvider<LocationNotifier, LatLng?>((ref) {
+  return LocationNotifier();
+});
+final mapStateProvider = StateNotifierProvider<MapStateNotifier, MapState>((ref) {
+  return MapStateNotifier();
 });
 
 final ownerTokenNotifier = Provider<String?>((ref) {
@@ -135,6 +146,14 @@ final descriptionController = StateProvider<TextEditingController>((ref) {
       () => controller.dispose()); // Dispose when the provider is disposed
   return controller;
 });
+final streamMapPositionController = StateProvider<StreamController<String>>(
+      (ref) {
+    final controller = StreamController<String>.broadcast();
+    ref.onDispose(() => controller.close());
+    return controller;
+  },
+);
+
 final apartmentsListNotifier = StateProvider<Apartments>((ref) => Apartments());
 var apartmentBookmarkedNotifier =
     StateProvider<Apartments>((ref) => Apartments(data: []));
@@ -172,7 +191,8 @@ final hasChanged = StateProvider<bool>((ref) => false);
 final isApartmentUpdatedNotifier = StateProvider<bool>((ref) => false);
 final badResponse = StateProvider<bool>((ref) => false);
 final isAllTypesOfApartmentNotifier = StateProvider<bool>((ref) => false);
-
+final isDialOpen = StateProvider<ValueNotifier<bool> >((ref) => ValueNotifier
+  (false));
 final currentPhotoIndexNotifier =
     StateProvider.family<int, int>((ref, apartmentId) {
   return 0; // Default value
@@ -194,3 +214,5 @@ final formStudentCountValidateKey = GlobalKey<FormState>();
 final formApartmentSquareMeterValidateKey = GlobalKey<FormState>();
 final formTitleValidateKey = GlobalKey<FormState>();
 final formApartmentDescriptionValidateKey = GlobalKey<FormState>();
+
+ var selectedLocationProvider = StateProvider<LatLng?>((ref) => null);

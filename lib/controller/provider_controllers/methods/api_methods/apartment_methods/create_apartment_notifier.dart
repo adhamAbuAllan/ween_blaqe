@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'dart:developer';
 
 import 'package:file_selector/file_selector.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -32,6 +33,7 @@ class CreateApartmentNotifier extends StateNotifier<ApartmentState> {
   }) async {
     List<XFile> newImages = [];
 
+    // location
     state = state.copyWith(isLoading: true);
 
     var url = Uri.parse(ServerWeenBalaqee.apartmentAdd);
@@ -47,6 +49,11 @@ class CreateApartmentNotifier extends StateNotifier<ApartmentState> {
       debugPrint("type_id is : ${ref.read(typesNotifier).selectedType?.id}");
       debugPrint("city_id is : ${ref.read(cityNotifier).selectedCity?.id}");
       var body = jsonEncode({
+        "latitude":
+        ref.read(selectedLocationProvider.notifier).state?.latitude ?? 33.3152,
+        "longitude":
+        ref.read(selectedLocationProvider.notifier).state?.longitude ?? 44.3661,
+
         "location": ref.read(addressController.notifier).state.text.trim(),
         "title": ref.read(titleController.notifier).state.text.trim(),
         "description": ref.read(descriptionController.notifier).state.text,
@@ -77,7 +84,10 @@ class CreateApartmentNotifier extends StateNotifier<ApartmentState> {
             .replaceAll(RegExp(r'[^0-9]'), ''),
         "type_id": ref.read(typesNotifier).selectedType?.id.toString() ?? 1,
         "city_id": ref.read(cityNotifier).selectedCity?.id.toString() ?? 1,
-      });
+       });
+      log("latitude provider ${ref.read(selectedLocationProvider.notifier).state?.latitude}");
+      log("longitude provider ${ref.read(selectedLocationProvider.notifier)
+          .state?.longitude}");
 
       var response = await http.post(url, headers: headers, body: body);
       if (response.statusCode == 200) {
@@ -112,11 +122,13 @@ class CreateApartmentNotifier extends StateNotifier<ApartmentState> {
 
         var res = DataOfOneApartment.fromJson(json);
         ref.read(advantagesNotifier).chosen.clear();
+        debugPrint("new longitude data : ${res.longitude}");
+        debugPrint("new latitude data : ${res.latitude}");
         return res;
       } else {
         WidgetsBinding.instance.addPostFrameCallback((_) async {
-           state = state.copyWith(isLoading: false);
-        ref.read(badResponse.notifier).state = true;
+          state = state.copyWith(isLoading: false);
+          ref.read(badResponse.notifier).state = true;
           if (ref.read(addressController.notifier).state.text.isNotEmpty) {
             ref.read(addressController.notifier).state.clear();
           }
@@ -142,20 +154,23 @@ class CreateApartmentNotifier extends StateNotifier<ApartmentState> {
           if (ref.read(squareMetersController.notifier).state.text.isNotEmpty) {
             ref.read(squareMetersController.notifier).state.clear();
           }
-          if (ref.read(countOfStudentController.notifier).state.text.isNotEmpty) {
+          if (ref
+              .read(countOfStudentController.notifier)
+              .state
+              .text
+              .isNotEmpty) {
             ref.read(countOfStudentController.notifier).state.clear();
           }
-
         });
 
-
         ref.read(showSnackBarNotifier.notifier).showNormalSnackBar(
-           backgroundColor: ref.read(themeModeNotifier.notifier).backgroundAppTheme(ref: ref),
+            backgroundColor: ref
+                .read(themeModeNotifier.notifier)
+                .backgroundAppTheme(ref: ref),
             textColor: ref.read(themeModeNotifier.notifier).textTheme(ref: ref),
             context: context,
             message: SetLocalization.of(context)
                 ?.getTranslateValue("error_has_been_while_creating_apartment"));
-       
 
         debugPrint("the statee of code is not true : ${response.statusCode}");
         debugPrint(

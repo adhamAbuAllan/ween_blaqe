@@ -21,7 +21,7 @@ class ApartmentDescriptionWidget extends ConsumerWidget {
     return Container(
       width: double.infinity,
       margin: EdgeInsets.fromLTRB(
-          10, getIt<AppDimension>().isSmallScreen(context) ? 15 : 20, 10, 0),
+          10, getIt<AppDimension>().isSmallScreen(context) ? 15 : 20, 10, 20),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(7),
         color: ref.read(themeModeNotifier.notifier).containerTheme(ref: ref),

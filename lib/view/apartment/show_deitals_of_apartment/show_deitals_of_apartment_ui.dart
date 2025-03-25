@@ -16,6 +16,7 @@ import 'package:ween_blaqe/view/apartment/show_deitals_of_apartment/widgets'
 import 'package:ween_blaqe/view/apartment/show_deitals_of_apartment/widgets'
     '/general_info_widget.dart';
 import 'package:ween_blaqe/view/apartment/widgets/carousel_slider_widget.dart';
+import 'package:ween_blaqe/view/apartment/widgets/map_widgets/map_ui.dart';
 import 'package:ween_blaqe/view/apartment/widgets/pointer_of_image_widget.dart';
 import 'package:ween_blaqe/view/common_widgets/button_widgets/back_button_widget.dart';
 
@@ -39,15 +40,14 @@ class ShowDeitalsOfApartmentUi extends ConsumerStatefulWidget {
 
 class _ShowDeitalsOfApartmentUiState
     extends ConsumerState<ShowDeitalsOfApartmentUi> {
+
   bool _isGirlStudent = false;
   bool _isBoyStudent = false;
   bool _isFamilies = false;
 
-
   @override
   void initState() {
     super.initState();
-
     if (widget.oneApartment?.type?.name == "طلاب") {
       _isBoyStudent = true;
     }
@@ -154,6 +154,9 @@ class _ShowDeitalsOfApartmentUiState
             AdvantagesWidget(oneApartment: widget.oneApartment),
             ApartmentDescriptionWidget(
               apartment: widget.oneApartment ?? DataOfOneApartment(),
+            ),
+            MapUi(
+              oneApartment: widget.oneApartment ?? DataOfOneApartment(),
             ),
             ForInquiriesWidget(
                 apartment: widget.oneApartment ?? DataOfOneApartment()),

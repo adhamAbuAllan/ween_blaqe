@@ -30,19 +30,17 @@ class _MainScreenState extends ConsumerState<MainUi> {
       child: ColorfulSafeArea(
         color: themeMode.primaryTheme(ref: ref),
         child: Scaffold(
-          backgroundColor: themeMode.backgroundAppTheme(ref: ref),
-        
-          body: IndexedStack(
-            index: index,
-            children: [
-              HomeUi(scrollController: _scrollController),
-              const BookmarkApartmentUi(),
-              MenuUi(
-                onChange: (value) {
+            backgroundColor: themeMode.backgroundAppTheme(ref: ref),
+            body: IndexedStack(
+              index: index,
+              children: [
+                HomeUi(scrollController: _scrollController),
+                const BookmarkApartmentUi(),
+                MenuUi(
+                  onChange: (value) {
                     WidgetsBinding.instance.addPostFrameCallback((_) async {
                       setState(() {
                         themeMode.toggleThemeMode(value);
-        
                       });
                   });
                   myPushNameAnimation(context);
