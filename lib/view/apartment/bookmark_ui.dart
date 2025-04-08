@@ -25,6 +25,7 @@ class _BookmarkApartmentState extends ConsumerState<BookmarkApartmentUi> {
             isOwnerApartments: false,
             isAll: true,
             cityId: 0,
+
           );
 
       await ref

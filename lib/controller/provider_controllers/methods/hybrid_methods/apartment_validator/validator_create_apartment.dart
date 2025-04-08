@@ -40,15 +40,15 @@ class ValidatorCreateApartmentNotifier extends StateNotifier<ApartmentState> {
       ref.watch(addressValidate.notifier).state = "";
       formAddressKey.currentState?.reset();
     }
-    if (addressControllerValue.length < 10 && addressControllerValue != "") {
-      debugPrint("addressControllerValue ->$addressControllerValue");
-      formAddressKey.currentState?.validate();
-      ref.watch(addressValidate.notifier).state = addressShouldBeTrue;
-      return;
-    } else {
-      ref.watch(addressValidate.notifier).state = "";
-      formAddressKey.currentState?.reset();
-    }
+    // if (addressControllerValue.length < 10 && addressControllerValue != "") {
+    //   debugPrint("addressControllerValue ->$addressControllerValue");
+    //   formAddressKey.currentState?.validate();
+    //   ref.watch(addressValidate.notifier).state = addressShouldBeTrue;
+    //   return;
+    // } else {
+    //   ref.watch(addressValidate.notifier).state = "";
+    //   formAddressKey.currentState?.reset();
+    // }
     if (countOfRoomsControllerValue == "" ||
         countOfRoomsControllerValue == "0") {
       formRoomsCountValidateKey.currentState?.validate();

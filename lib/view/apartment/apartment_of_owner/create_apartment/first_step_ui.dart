@@ -25,12 +25,6 @@ class FirstStepUi extends ConsumerStatefulWidget {
 
 class _FirstStepCreateApartmentUiState extends ConsumerState<FirstStepUi> {
   @override
-  void initState() {
-    super.initState();
-    debugPrint("newSession lastLat ${NewSession.get("lastLat", 2.2)}");
-    debugPrint("newSession lastLng ${NewSession.get("lastLng", 2.2)}");
-  }
-  @override
   Widget build(BuildContext context) {
     return ColorfulSafeArea(
         color:

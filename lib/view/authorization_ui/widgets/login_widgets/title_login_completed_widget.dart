@@ -11,13 +11,14 @@ class TitleLoginCompletedWidget extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Padding(
-          padding: EdgeInsets.fromLTRB(20,
-              getIt<AppDimension>().isSmallScreen(context) ? 20 : 30, 20, 0),
-          child: Text(
+    return Padding(
+     padding:  EdgeInsets.fromLTRB(20,
+          getIt<AppDimension>().isSmallScreen(context) ? 20 : 30, 20, 30),
+      child: Row(
+        spacing: 10,
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(
             SetLocalization.of(context)!.getTranslateValue("login"),
             style: TextStyle(
                 fontSize:
@@ -27,49 +28,41 @@ class TitleLoginCompletedWidget extends ConsumerWidget {
                 color:
                     ref.read(themeModeNotifier.notifier).textTheme(ref: ref)),
           ),
-        ),
-        //nameApp
-        Row(
-          children: [
-            const SizedBox(
-              width: 20,
-            ),
-            Padding(
-              padding: const EdgeInsets.fromLTRB(0, 0, 0, 30),
-              child: Row(
-                children: <Widget>[
-                  Text(
-                    SetLocalization.of(context)!.getTranslateValue("in"),
-                    style: TextStyle(
-                        fontSize: getIt<AppDimension>().isSmallScreen(context)
-                            ? 22
-                            : 26,
-                        inherit: true,
-                        fontWeight: FontWeight.w600,
-                        color: ref
-                            .read(themeModeNotifier.notifier)
-                            .textTheme(ref: ref)),
-                  ),
-                  Text(
-                    SetLocalization.of(context)!
-                        .getTranslateValue("ween_balaqee"),
-                    style: TextStyle(
-                      fontSize: getIt<AppDimension>().isSmallScreen(context)
-                          ? 22
-                          : 26,
-                      inherit: true,
-                      color: ref
-                          .read(themeModeNotifier.notifier)
-                          .primaryTheme(ref: ref),
-                      fontWeight: FontWeight.w600,
-                    ),
-                  ),
-                ],
-              ),
-            ),
-          ],
-        ),
-      ],
+          //nameApp
+
+          // Row(
+          //   children: <Widget>[
+          //     Text(
+          //       SetLocalization.of(context)!.getTranslateValue("in"),
+          //       style: TextStyle(
+          //           fontSize: getIt<AppDimension>().isSmallScreen(context)
+          //               ? 22
+          //               : 26,
+          //           inherit: true,
+          //           fontWeight: FontWeight.w600,
+          //           color: ref
+          //               .read(themeModeNotifier.notifier)
+          //               .textTheme(ref: ref)),
+          //     ),
+          //     SizedBox(width: 10,),
+          //     Text(
+          //       SetLocalization.of(context)!
+          //           .getTranslateValue("aqaree"),
+          //       style: TextStyle(
+          //         fontSize: getIt<AppDimension>().isSmallScreen(context)
+          //             ? 22
+          //             : 26,
+          //         inherit: true,
+          //         color: ref
+          //             .read(themeModeNotifier.notifier)
+          //             .primaryTheme(ref: ref),
+          //         fontWeight: FontWeight.w600,
+          //       ),
+          //     ),
+          //   ],
+          // ),
+        ],
+      ),
     );
   }
 }

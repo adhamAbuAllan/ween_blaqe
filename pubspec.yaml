@@ -61,9 +61,14 @@ dependencies:
   system_info_plus: ^0.0.6
   upgrader: ^10.3.0
   url_launcher: ^6.1.11
-  youtube_player_flutter: ^9.1.1
+  rename_app: ^1.6.2
 #  introduction_screen: ^3.1.12
 dev_dependencies:
+  flutter_launcher_icons: ^0.14.3
+flutter_icons:
+  android: true
+  ios: true
+  image_path: "assets/images/qi_logo.png"
   flutter_lints: ^3.0.2
   flutter_native_splash: ^2.4.1
 
@@ -72,8 +77,8 @@ dev_dependencies:
     sdk: flutter
   linter: null
 flutter_native_splash:
-  color: "#2B2B2B"
-  image: assets/images/icon_app.png
+  color: "#cdcdcd"
+  image: assets/images/qi_logo.png
   android: true
   ios: true
   web: false
@@ -90,6 +95,7 @@ flutter:
     - assets/images/apartments_images/images_to_create_apartment/second_step.png
     - assets/images/apartments_images/images_to_create_apartment/step_four.png
     - assets/images/tasbih.png
+    - assets/images/qi_logo.png
     - assets/images/error_images/no network.png
     #    - assets/images/error_images/search_not_found.png
     - assets/images/apartments_images/apartment.jpg

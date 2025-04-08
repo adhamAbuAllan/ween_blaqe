@@ -49,8 +49,7 @@ class _TextFormFiledPasswordWidgetState
   Widget build(BuildContext context) {
     return Padding(
         padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 0),
-        child:
-        TextFormField(
+        child: TextFormField(
           validator: widget.validator,
           controller: widget.controller,
           obscureText: widget.isObscure,
@@ -60,15 +59,17 @@ class _TextFormFiledPasswordWidgetState
           decoration: InputDecoration(
             errorText: widget.errorText,
             contentPadding: EdgeInsets.symmetric(
-                vertical:
-                    getIt<AppDimension>().isSmallScreen(context) ? 20 / 1.5 :
-                    20,
+                vertical:15,
+                    // getIt<AppDimension>().isSmallScreen(context) ? 20 / 1.5 :
+                    // 20,
                 horizontal: 10),
             labelText: widget.labelInput,
-            labelStyle: TextStyle(color: Colors.grey.shade500, fontSize: getIt<AppDimension>().isSmallScreen(context) ? 14 : 16,),
+            labelStyle: TextStyle(
+              color: Colors.grey.shade500,
+              fontSize: getIt<AppDimension>().isSmallScreen(context) ? 14 : 16,
+            ),
             suffixIcon: IconButton(
-              iconSize: getIt<AppDimension>().isSmallScreen(context) ? 20 : 24 ,
-
+              iconSize: getIt<AppDimension>().isSmallScreen(context) ? 20 : 24,
               icon: widget.isObscure
                   ? const Icon(Icons.visibility)
                   : const Icon(Icons.visibility_off),

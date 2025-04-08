@@ -89,9 +89,7 @@ class PasswordContainerWidget extends ConsumerWidget {
                 // Customize error text style
 
                 contentPadding: EdgeInsets.symmetric(
-                  vertical: getIt<AppDimension>().isSmallScreen(context)
-                      ? 20 / 2
-                      : 20,
+                  vertical: 15,
                   horizontal: 12,
                 ),
                 hintText: hintInput,

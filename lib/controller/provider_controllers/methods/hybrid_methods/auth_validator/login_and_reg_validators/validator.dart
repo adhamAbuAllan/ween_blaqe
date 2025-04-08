@@ -21,13 +21,13 @@ class Validator {
   static String? validatePhone(String value, BuildContext context) {
     debugPrint("value phone validate = $value");
     if (value.isEmpty) return 'fill_field';
-    if (!value.startsWith('97')) {
-      return "phone number should start with country code";
-    }
-    if (value.length > 12 || value.length < 12) {
-      return SetLocalization.of(context)
-          ?.getTranslateValue("the_phone_number_is_not_suitable");
-    }
+    // if (!value.startsWith('964')) {
+    //   return "phone number should start with country code";
+    // }
+    // if (value.length > 13 || value.length < 13) {
+    //   return SetLocalization.of(context)
+    //       ?.getTranslateValue("the_phone_number_is_not_suitable");
+    // }
 
     return null;
   }
@@ -46,10 +46,10 @@ class Validator {
     if (value.isEmpty) {
       return SetLocalization.of(context)?.getTranslateValue('fill_field');
     }
-    if (value.length > 9 || value.length < 9) {
-      return SetLocalization.of(context)
-          ?.getTranslateValue("the_phone_number_is_not_suitable");
-    }
+    // if (value.length > 10 || value.length < 10) {
+    //   return SetLocalization.of(context)
+    //       ?.getTranslateValue("the_phone_number_is_not_suitable");
+    // }
 
     return null;
   }

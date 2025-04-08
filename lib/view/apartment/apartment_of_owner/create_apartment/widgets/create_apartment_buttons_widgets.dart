@@ -67,7 +67,7 @@ class OutlinedBackButtonWidget extends ConsumerWidget {
           .notifier).primaryTheme(ref: ref),containerColor: ref.read
         (themeModeNotifier.notifier).containerTheme(ref: ref), context: 
       context),
-      child: Text(SetLocalization.of(context)!.getTranslateValue("cancel")),
+      child: Text(SetLocalization.of(context)!.getTranslateValue("back")),
     );
   }
 }

@@ -16,10 +16,13 @@ void sendMessageToWhatsApp(String phoneNumber, String message,
 //should urlWith92 await until phoneNumber is remove "+"
 
   String whatsappUrl =
-      'https://wa.me/$phoneNumber/?text=${Uri.encodeFull("$message ${image?.isNotEmpty ?? false ? image : ""}")}';
-  whatsappUrl.startsWith("97")
-      ? debugPrint("true:is start with 97")
-      : debugPrint("false:is not start with 97");
+      'https://wa.me/964$phoneNumber/'
+      '?text=${Uri.encodeFull("$message"
+      " ${image?.isNotEmpty ??
+      false ? image : ""}")}';
+  // whatsappUrl.startsWith("97")
+  //     ? debugPrint("true:is start with 97")
+  //     : debugPrint("false:is not start with 97");
 
   //this code could not be good work
 

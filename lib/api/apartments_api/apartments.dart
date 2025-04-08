@@ -67,6 +67,7 @@ class DataOfOneApartment {
     this.timeAgo,
     this.latitude,       // Added field
     this.longitude,      // Added field
+    this.distance_in_meters
   }) {
     currentPhotoIndex = 0.obs;
   }
@@ -89,6 +90,7 @@ class DataOfOneApartment {
   late final String? timeAgo;
   late final num? latitude;
   late final num? longitude;
+  late final int? distance_in_meters;
   RxInt currentPhotoIndex = 0.obs;
 
   DataOfOneApartment.fromJson(Map<String, dynamic> json) {
@@ -112,6 +114,7 @@ class DataOfOneApartment {
     type = TypeOfApartment.fromJson(json['type']);
     updatedAt = json['updated_at'];
     timeAgo = json['time_ago'];
+    distance_in_meters = json['distance_in_meters'];
 
 
 
@@ -142,6 +145,7 @@ class DataOfOneApartment {
     _data['time_ago'] = timeAgo;
     _data['latitude'] = latitude;    // Added field
     _data['longitude'] = longitude;  // Added field
+    _data['distance_in_meters'] = distance_in_meters;
     return _data;
   }
 

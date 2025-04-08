@@ -10,7 +10,10 @@ import 'package:ween_blaqe/view/apartment/widgets/map_widgets/app_bar_map_widget
 import 'package:ween_blaqe/view/common_widgets/containers_widgets/container_widget.dart';
 
 import '../../../../api/apartments_api/apartments.dart';
+import '../../../../constants/coordination.dart';
+import '../../../../constants/get_it_controller.dart';
 import '../../../../controller/provider_controllers/providers/apartment_provider.dart';
+import '../../../../controller/provider_controllers/providers/color_provider.dart';
 import '../../../common_widgets/containers_widgets/container_load_widget.dart';
 
 class MapUi extends ConsumerStatefulWidget {
@@ -38,8 +41,8 @@ class _MapUiState extends ConsumerState<MapUi> {
 
       mapStateNotifier.updateMapStyle(ref.read(mapStateProvider).mapStyle);
       if (widget.oneApartment != null) {
-        debugPrint("latitude : ${widget.oneApartment?.latitude??0.0}");
-        debugPrint("longitude : ${widget.oneApartment?.longitude??0.0}");
+        debugPrint("latitude : ${widget.oneApartment?.latitude ?? 0.0}");
+        debugPrint("longitude : ${widget.oneApartment?.longitude ?? 0.0}");
       }
     });
   }
@@ -122,9 +125,11 @@ class MapSelectModeUi extends StatelessWidget {
                         horizontalPadding: 10,
                         child: Text(
                           " ${selectedLocation == null ? snapshot.data ?? "${SetLocalization.of(context)!.getTranslateValue("select_the_location_on_the_map")} " : SetLocalization.of(context)!.getTranslateValue("the_location_has_been_selected")}",
-                          style: const TextStyle(
+                          style: TextStyle(
                             fontSize: 15,
-                            color: Colors.white,
+                            color: ref
+                                .read(themeModeNotifier.notifier)
+                                .textTheme(ref: ref),
                             fontFamily: "Cairo",
                           ),
                         ),
@@ -156,6 +161,11 @@ class _MapShowModeWidgetState extends ConsumerState<MapShowModeWidget> {
   @override
   Widget build(BuildContext context) {
     return ContainerLoadWidget(
+      textStyle: TextStyle(
+        fontSize: getIt<AppDimension>().isSmallScreen(context) ? 18 : 20,
+        fontWeight: FontWeight.w600,
+        color: ref.read(themeModeNotifier.notifier).textTheme(ref: ref),
+      ),
       title: SetLocalization.of(context)!.getTranslateValue("the_map"),
       isLoading: false,
       child: ClipRRect(
@@ -168,8 +178,8 @@ class _MapShowModeWidgetState extends ConsumerState<MapShowModeWidget> {
             },
             style: ref.watch(mapStateProvider).mapStyle,
             initialCameraPosition: CameraPosition(
-              target: LatLng(widget.oneApartment.latitude?.toDouble()??0.0,
-                  widget.oneApartment.longitude?.toDouble()??0.0),
+              target: LatLng(widget.oneApartment.latitude?.toDouble() ?? 0.0,
+                  widget.oneApartment.longitude?.toDouble() ?? 0.0),
               zoom: 14,
             ),
             markers: apartmentLocationMark(),
@@ -182,10 +192,9 @@ class _MapShowModeWidgetState extends ConsumerState<MapShowModeWidget> {
   Set<Marker> apartmentLocationMark() {
     return {
       Marker(
-
         markerId: const MarkerId("fixed_marker"),
-        position: LatLng(widget.oneApartment.latitude?.toDouble()??0.0,
-            widget.oneApartment.longitude?.toDouble()??0.0),
+        position: LatLng(widget.oneApartment.latitude?.toDouble() ?? 0.0,
+            widget.oneApartment.longitude?.toDouble() ?? 0.0),
         infoWindow: InfoWindow(
             title: ""
                 "${widget.oneApartment.city?.name!} - "

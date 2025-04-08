@@ -33,9 +33,10 @@ class _CoursolSliderWidgetState extends ConsumerState<CoursolSliderWidget> {
   Widget build(BuildContext context) {
     final currentIndex =
         ref.watch(imageSliderNotifier)[widget.apartmentId]?.currentIndex ?? 0;
+    // final isFirstIndex = currentIndex == 0;
+    // final isLastIndex = currentIndex == widget.imageList.length - 1;
 
     return SizedBox(
-      // height: getIt<AppDimension>().isSmallScreen(context) ? 220 : 280,
       child: CarouselSlider.builder(
         controller: ref.watch(carouselSliderControllerNotifier),
         itemCount: widget.imageList.length,
@@ -44,27 +45,33 @@ class _CoursolSliderWidgetState extends ConsumerState<CoursolSliderWidget> {
             margin: const EdgeInsets.symmetric(horizontal: 3),
             child: widget.isOwnerApartment ?? false
                 ? CarouselSliderItemWidget(
-                    widget: widget,
-                    index: index,
-                  )
+              widget: widget,
+              index: index,
+            )
                 : Hero(
-                    tag: "${widget.apartmentId}-$index",
-                    child: CarouselSliderItemWidget(
-                      widget: widget,
-                      index: index,
-                    ),
-                  ),
+              tag: "${widget.apartmentId}-$index",
+              child: CarouselSliderItemWidget(
+                widget: widget,
+                index: index,
+              ),
+            ),
           );
         },
         options: CarouselOptions(
           enlargeCenterPage: false,
-          aspectRatio: 1.5,
+          aspectRatio: 16/9,
           pauseAutoPlayInFiniteScroll: true,
           enableInfiniteScroll: false,
           disableCenter: false,
-          viewportFraction: widget.marageBetweenImages ?? 0.98,
+          viewportFraction:.85,
+          // widget.marageBetweenImages ?? 0.98,
           autoPlayCurve: Curves.fastLinearToSlowEaseIn,
+          enlargeFactor: 1,
+          padEnds: false,
+          // padEnds: (isFirstIndex || isLastIndex), // Set padEnds to false
+          // only on first and last index
           enlargeStrategy: CenterPageEnlargeStrategy.height,
+
           initialPage: currentIndex,
           onPageChanged: (index, reason) {
             ref
@@ -74,8 +81,7 @@ class _CoursolSliderWidgetState extends ConsumerState<CoursolSliderWidget> {
         ),
       ),
     );
-  }
-}
+  }}
 
 class CarouselSliderItemWidget extends ConsumerWidget {
   const CarouselSliderItemWidget({

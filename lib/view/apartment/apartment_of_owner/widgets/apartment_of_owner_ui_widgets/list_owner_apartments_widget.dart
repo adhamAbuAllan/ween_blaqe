@@ -1,5 +1,6 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter/material.dart';
+import 'package:geolocator/geolocator.dart';
 
 import '../../../../../controller/provider_controllers/providers/apartment_provider.dart';
 import '../../../apartments_list_widget.dart';
@@ -20,11 +21,13 @@ class _ListOwnerApartmentsWidgetState extends ConsumerState<ListOwnerApartmentsW
       apartmentsRes: ref.watch(fetchApartmentNotifier).apartmentsOfOwner,
       isDeleteMode: ref.watch(toggleOwnerButtonsNotifier).isDelete,
       scrollController: widget.scrollController,
+
       onPressed: () {
         ref
             .read(fetchApartmentNotifier.notifier)
             .fetchApartments(isOwnerApartments: true,);
       },
+
     );
   }
 }

@@ -3,11 +3,8 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:share_plus/share_plus.dart';
 import 'package:ween_blaqe/view/common_widgets/button_widgets/button_list_tile_widget.dart';
 
-import '../../../../../../constants/coordination.dart';
-import '../../../../../../constants/get_it_controller.dart';
 import '../../../../../../constants/localization.dart';
 import '../../../../../../constants/strings.dart';
-import '../../../../../../controller/provider_controllers/providers/color_provider.dart';
 import '../../../../../../core/utils/funcations/route_pages/push_routes.dart';
 import '../../../../../common_widgets/aline_widget.dart';
 
@@ -51,22 +48,6 @@ class MenuButtonsWidgets extends ConsumerWidget {
           title:
               SetLocalization.of(context)!.getTranslateValue("privacy_policy"),
           icon: Icons.privacy_tip_outlined,
-        ),
-        aline,
-
-
-        /// Sebha
-
-        ButtonListTileWidget(
-          onTap: () {
-            myPushName(context, MyPagesRoutes.noInternet);
-          },
-          title: SetLocalization.of(context)!.getTranslateValue("sebha"),
-          image: Image.asset("assets/images/tasbih.png",
-              color: ref.read(themeModeNotifier.notifier).textTheme(ref: ref),
-              width: 35,
-              height:
-                  getIt<AppDimension>().isSmallScreen(context) ? 35 - 5 : 35),
         ),
 
         aline,

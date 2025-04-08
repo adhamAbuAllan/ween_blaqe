@@ -28,33 +28,34 @@ class TextFormFieldWidget extends ConsumerWidget {
   final bool? autofocus;
   final InputDecoration? decoration;
   final TextStyle? style;
+  final String? hintText;
 
-  const TextFormFieldWidget({
-    super.key,
-    this.labelName,
-    this.keyboardType,
-    this.fontSize,
-    this.onFieldSubmitted,
-    this.controller,
-    this.autoFocus,
-    this.validator,
-    this.onChanged,
-    this.errorText,
-    this.isPhoneRegTextField,
-    this.validateTextValue,
-    this.hintInput,
-    this.inputType,
-    this.hintMaxLines,
-    this.maxLines,
-    this.maxLength,
-    this.helperText,
-    this.originalValue,
-    this.style,
-    this.autofocus,
-    this.cursorColor,
-    this.decoration,
-    this.textInputAction,
-  });
+  const TextFormFieldWidget(
+      {super.key,
+      this.labelName,
+      this.keyboardType,
+      this.fontSize,
+      this.onFieldSubmitted,
+      this.controller,
+      this.autoFocus,
+      this.validator,
+      this.onChanged,
+      this.errorText,
+      this.isPhoneRegTextField,
+      this.validateTextValue,
+      this.hintInput,
+      this.inputType,
+      this.hintMaxLines,
+      this.maxLines,
+      this.maxLength,
+      this.helperText,
+      this.originalValue,
+      this.style,
+      this.autofocus,
+      this.cursorColor,
+      this.decoration,
+      this.textInputAction,
+      this.hintText});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -63,11 +64,13 @@ class TextFormFieldWidget extends ConsumerWidget {
         vertical: decoration != null ? 0 : 5,
       ),
       child: TextFormField(
+          maxLines: maxLines,
           validator: validator,
           textInputAction: textInputAction,
-          textDirection: isPhoneRegTextField ?? false
-              ? TextDirection.ltr
-              : TextDirection.rtl,
+          // textDirection:
+          // isPhoneRegTextField ?? false
+          //     ? TextDirection.ltr
+          //     : TextDirection.rtl,
           controller: controller,
           autofocus: autoFocus ?? false,
           keyboardType: keyboardType,
@@ -78,11 +81,13 @@ class TextFormFieldWidget extends ConsumerWidget {
               ),
           decoration: decoration ??
               defultInputDecoration(
-              context:   context,
-             enabledBorderColor:ref.
-             read(themeModeNotifier.notifier).primary300Theme(ref:
-              ref),
-                focusedBorderColor: ref.read(themeModeNotifier.notifier).primaryTheme(ref: ref),
+                hintText: hintText,
+                context: context,
+                enabledBorderColor: ref
+                    .read(themeModeNotifier.notifier)
+                    .primary300Theme(ref: ref),
+                focusedBorderColor:
+                    ref.read(themeModeNotifier.notifier).primaryTheme(ref: ref),
               ),
           onChanged: onChanged),
     );
@@ -95,18 +100,20 @@ class TextFormFieldWidget extends ConsumerWidget {
     );
   }
 
-  InputDecoration defultInputDecoration({
-    required BuildContext context,
-    required Color enabledBorderColor,
-    required Color focusedBorderColor,
-  }) {
+  InputDecoration defultInputDecoration(
+      {required BuildContext context,
+      required Color enabledBorderColor,
+      required Color focusedBorderColor,
+      String? hintText}) {
     return InputDecoration(
+      hintText: hintText,
+
       isDense: true,
-      contentPadding: EdgeInsets.symmetric(
-          vertical: getIt<AppDimension>().isSmallScreen(context) ? 20 / 1.5:
-          20,
-          horizontal: 10),
+
+      // contentPadding: EdgeInsets. fromLTRB(12, 24, 12, 16),
+      contentPadding: EdgeInsets.symmetric(vertical: 15, horizontal: 10),
       labelText: labelName,
+      alignLabelWithHint: true,
       labelStyle: TextStyle(
         color: Colors.grey,
         fontSize: fontSize,

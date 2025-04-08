@@ -13,11 +13,13 @@ class ContainerLoadWidget extends ConsumerStatefulWidget {
       {super.key,
       required this.title,
       required this.child,
-      required this.isLoading});
+      required this.isLoading,
+      this.textStyle}) ;
 
   final bool isLoading;
   final Widget child;
   final String title;
+  final TextStyle ? textStyle;
 
   @override
   ConsumerState createState() => _ContainerLoadWidgetState();
@@ -36,7 +38,7 @@ class _ContainerLoadWidgetState
               padding: const EdgeInsets.fromLTRB(20, 10, 20, 10),
               child: Text(
                 widget.title,
-                style: TextStyle(
+                style: widget.textStyle ??TextStyle(
                   color: ref.read(themeModeNotifier.notifier).textTheme(ref: ref),
 
                   fontSize:
@@ -50,7 +52,9 @@ class _ContainerLoadWidgetState
           padding: const EdgeInsets.symmetric(horizontal: 20),
           child: widget.isLoading
               ? Text(SetLocalization.of(context)!.getTranslateValue("loading"
-              "..."),style: TextStyle(color: ref.read(themeModeNotifier.notifier).textTheme(ref: ref),
+              "..."),style:  TextStyle(color: ref.read
+            (themeModeNotifier
+              .notifier).textTheme(ref: ref),
           ),)
               :
           widget.child,

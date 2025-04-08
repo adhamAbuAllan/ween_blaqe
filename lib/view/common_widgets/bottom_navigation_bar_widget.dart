@@ -49,7 +49,7 @@ class BottomNavigationBarWidget extends ConsumerWidget {
             ref.read(selectedCityIdToFilter.notifier).state = 0;
             WidgetsBinding.instance.addPostFrameCallback((_) async {
               await ref.read(fetchApartmentNotifier.notifier).fetchApartments(
-                  isOwnerApartments: false, isAll: true, cityId: 0);
+                  isOwnerApartments: false, isAll: true, cityId: 0,ref:ref);
             });
             ref.read(isBoyStudentNotifier.notifier).state = false;
             ref.read(isGirlStudentNotifier.notifier).state = false;
@@ -64,6 +64,7 @@ class BottomNavigationBarWidget extends ConsumerWidget {
                     isOwnerApartments: false,
                     isAll: true,
                     cityId: 0,
+                ref: ref
                   );
             } else if (ref.read(bookmarkNotifier).bookmarkIds.length > 2 &&
                 indexNotifier == 1) {
@@ -71,7 +72,9 @@ class BottomNavigationBarWidget extends ConsumerWidget {
                     isOwnerApartments: false,
                     isAll: true,
                     cityId: 0,
-                  );
+                  ref: ref
+
+              );
             }
 
             await ref

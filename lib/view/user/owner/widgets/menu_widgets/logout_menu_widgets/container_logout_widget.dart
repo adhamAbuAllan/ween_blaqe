@@ -13,7 +13,8 @@ class ContainerMenuWidget extends ConsumerStatefulWidget {
       {super.key, this.onChange, required this.isLogined});
 
   final Function(bool)? onChange;
-final bool isLogined ;
+  final bool isLogined;
+
   @override
   ConsumerState createState() => _ContainerLogoutWidgetState();
 }
@@ -32,16 +33,9 @@ class _ContainerLogoutWidgetState extends ConsumerState<ContainerMenuWidget> {
           ThemeModeSwitcherWidget(
             onChange: widget.onChange,
           ),
-          Padding(
-            padding: const EdgeInsets.only(top: 0),
-            child: aline,
+          MenuButtonsWidgets(
+            isLogined: widget.isLogined,
           ),
-          const LanguageSwitcherWidget(),
-          Padding(
-            padding: const EdgeInsets.only(top: 4.0),
-            child: aline,
-          ),
-           MenuButtonsWidgets(isLogined: widget.isLogined,),
         ],
       ),
     );

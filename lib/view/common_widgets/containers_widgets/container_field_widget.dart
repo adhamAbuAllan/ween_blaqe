@@ -65,6 +65,7 @@ class ContainerFieldWidget extends ConsumerWidget {
         Padding(
           padding: const EdgeInsets.fromLTRB(20, 0, 20, 10),
           child: TextFormFieldWidget(
+
             onChanged: (value) {
               bool hasChange = originalValue != controller?.text;
               if (value.isNotEmpty) {
@@ -85,6 +86,7 @@ class ContainerFieldWidget extends ConsumerWidget {
             maxLines: maxLines,
             maxLength: maxLength,
             keyboardType: inputType,
+
             autofocus: autoFocus ?? false,
             decoration: containerInputDecoration(hintInput, context,
                 helperText: helperText,
@@ -114,15 +116,18 @@ class ContainerFieldWidget extends ConsumerWidget {
     return InputDecoration(
         helperStyle: TextStyle(color: textColor, fontFamily: "Cairo"),
         helperText: helperText,
+
         contentPadding: EdgeInsets.symmetric(
             vertical:
-                getIt<AppDimension>().isSmallScreen(context) ? 20 / 2.3 : 20,
+               15,
             horizontal: 12),
         errorText: errorText,
         hintText: hintInput,
         border: InputBorder.none,
         hintMaxLines: hintMaxLines,
+
         hintStyle: const TextStyle(
+
           color: Colors.grey,
         ),
         focusedBorder: OutlineInputBorder(

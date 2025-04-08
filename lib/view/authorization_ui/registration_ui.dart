@@ -27,6 +27,7 @@ class RegistrationUi extends ConsumerWidget {
       child: Scaffold(
           backgroundColor:
               ref.read(themeModeNotifier.notifier).backgroundAppTheme(ref: ref),
+
           body: GestureDetector(
             onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
             child: SingleChildScrollView(
@@ -74,7 +75,6 @@ class RegistrationUi extends ConsumerWidget {
                                 controller: ref.read(phoneRegController),
                                 isPhoneRegTextField: true,
                               )),
-                          // PhoneNumberWidget(),
                           SizedBox(
                             height: getIt<AppDimension>().isSmallScreen(context)
                                 ? 0
@@ -90,10 +90,12 @@ class RegistrationUi extends ConsumerWidget {
                           // PasswordWidget(),
                           const PrivacyPolicyTextWidget(),
                           const ButtonRegCompletedWidget()
-                        ])),
+                        ])
+                      ),
               ],
             )),
-          )),
+          )
+    ),
     );
 // );
   }

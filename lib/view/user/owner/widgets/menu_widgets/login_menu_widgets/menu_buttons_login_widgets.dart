@@ -19,35 +19,36 @@ class MenuButtonsLoginWidgets extends ConsumerWidget {
     return Column(
       children: [
         /// apartments of owner
+        aline,
         buttonAccount(() {
           myPushName(context, MyPagesRoutes.apartmentsOwner);
         },
             icon: Icons.apartment,
-            SetLocalization.of(context)!
-                .getTranslateValue("your_apartments"),
+            SetLocalization.of(context)!.getTranslateValue("your_apartments"),
             context: context),
+
         /// ask for help
         aline,
+
         /// ask for help
         buttonAccount(() {
           myPushName(context, MyPagesRoutes.askForHelp);
         },
             icon: Icons.info_outline,
-            SetLocalization.of(context)!
-                .getTranslateValue("request_help"),
+            SetLocalization.of(context)!.getTranslateValue("request_help"),
             context: context),
 
         aline,
+
         /// privacy policy
         buttonAccount(() {
           myPushName(context, MyPagesRoutes.privacyPolicy);
         },
             icon: Icons.privacy_tip_outlined,
-            SetLocalization.of(context)!
-                .getTranslateValue("privacy_policy"),
+            SetLocalization.of(context)!.getTranslateValue("privacy_policy"),
             context: context),
         aline,
- 
+
         /// Sebha
         buttonAccount(() {
           myPushName(context, MyPagesRoutes.noInternet);
@@ -55,15 +56,15 @@ class MenuButtonsLoginWidgets extends ConsumerWidget {
             image: Image.asset("assets/images/tasbih.png",
                 color: ref.read(themeModeNotifier.notifier).textTheme(ref: ref),
                 width: 35,
-                height: getIt<AppDimension>().isSmallScreen(context)
-                    ? 35 - 5
-                    : 35),
+                height:
+                    getIt<AppDimension>().isSmallScreen(context) ? 35 - 5 : 35),
             SetLocalization.of(context)!.getTranslateValue("sebha"),
             context: context),
         aline,
+
         /// share app
         buttonAccount(
-              () {
+          () {
             String url =
                 "https://play.google.com/store/apps/details?id=com.weenbalaqee.weenbalaqee";
 
@@ -84,9 +85,7 @@ class MenuButtonsLoginWidgets extends ConsumerWidget {
           context: context,
           icon: Icons.share_outlined,
         )
-
       ],
     );
   }
 }
-

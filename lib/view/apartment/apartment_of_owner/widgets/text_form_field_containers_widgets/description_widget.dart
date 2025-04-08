@@ -30,6 +30,7 @@ class DescriptionFieldWidget extends ConsumerWidget {
             .getTranslateValue("private_student_apartment"),
         inputType: TextInputType.text,
         maxLength: 255,
+
         hintMaxLines: 7,
         originalValue: originalDescription,
       ),

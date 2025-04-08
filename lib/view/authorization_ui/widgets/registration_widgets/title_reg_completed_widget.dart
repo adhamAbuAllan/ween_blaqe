@@ -11,16 +11,20 @@ class TitleRegCompletedWidget extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    return const Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        TitleScreenWidget(),
-        NameOfApp(),
-      ],
+    return Padding(
+      padding: const EdgeInsets.fromLTRB(20, 0, 20, 30),
+      child: const Row(
+        spacing: 10,
+
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          TitleScreenWidget(),
+          // NameOfApp(),
+        ],
+      ),
     );
   }
 }
-
 class TitleScreenWidget extends ConsumerWidget {
   const TitleScreenWidget({super.key});
 
@@ -28,20 +32,16 @@ class TitleScreenWidget extends ConsumerWidget {
   Widget build(BuildContext context,WidgetRef ref) {
     return
         //title signup
-        Padding(
-      padding: EdgeInsets.fromLTRB(
-          20, getIt<AppDimension>().isSmallScreen(context) ? 20 : 30, 20, 0),
-      child: Text(
-        SetLocalization.of(context)!.getTranslateValue("start_registration"),
-        style: TextStyle(
-          fontSize: getIt<AppDimension>().isSmallScreen(context) ? 22 : 26,
-          inherit: true,
-          fontWeight: FontWeight.w600,
-          color:
-          ref.read(themeModeNotifier.notifier).textTheme(ref: ref),
-        ),
-      ),
-    );
+        Text(
+          SetLocalization.of(context)!.getTranslateValue("start_registration"),
+          style: TextStyle(
+            fontSize: getIt<AppDimension>().isSmallScreen(context) ? 22 : 26,
+            inherit: true,
+            fontWeight: FontWeight.w600,
+            color:
+            ref.read(themeModeNotifier.notifier).textTheme(ref: ref),
+          ),
+        );
     //nameApp
   }
 }
@@ -51,33 +51,31 @@ class NameOfApp extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context,WidgetRef ref) {
-    return Padding(
-      padding: const EdgeInsets.fromLTRB(20, 0, 20, 30),
-      child: Row(
-        children: [
-          Text(
-            SetLocalization.of(context)!.getTranslateValue("in"),
-            style: TextStyle(
-                fontSize:
-                    getIt<AppDimension>().isSmallScreen(context) ? 22 : 26,
-                inherit: true,
-                fontWeight: FontWeight.w600,
-                color:
-                ref.read(themeModeNotifier.notifier).textTheme(ref: ref),
-),
-          ),
-          Text(
-            SetLocalization.of(context)!.getTranslateValue("ween_balaqee"),
-            style: TextStyle(
-              fontSize: getIt<AppDimension>().isSmallScreen(context) ? 22 : 26,
+    return Row(
+      spacing: 10,
+      children: [
+        Text(
+          SetLocalization.of(context)!.getTranslateValue("in"),
+          style: TextStyle(
+              fontSize:
+                  getIt<AppDimension>().isSmallScreen(context) ? 22 : 26,
               inherit: true,
-              color: ref.read(themeModeNotifier.notifier).primaryTheme(ref: ref),
-
               fontWeight: FontWeight.w600,
-            ),
+              color:
+              ref.read(themeModeNotifier.notifier).textTheme(ref: ref),
+    ),
+        ),
+        Text(
+          SetLocalization.of(context)!.getTranslateValue("aqaree"),
+          style: TextStyle(
+            fontSize: getIt<AppDimension>().isSmallScreen(context) ? 22 : 26,
+            inherit: true,
+            color: ref.read(themeModeNotifier.notifier).primaryTheme(ref: ref),
+
+            fontWeight: FontWeight.w600,
           ),
-        ],
-      ),
+        ),
+      ],
     );
   }
 }

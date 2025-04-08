@@ -61,10 +61,7 @@ class _HomeUiState extends ConsumerState<HomeUi> {
       // you should to handel that from api
       ref.read(isAllTypesOfApartmentNotifier.notifier).state = true;
       await ref.read(fetchApartmentNotifier.notifier).fetchApartments(
-            isOwnerApartments: false,
-            isAll: true,
-            cityId: 0,
-          );
+          isOwnerApartments: false, isAll: true, cityId: 0, ref: ref);
       ref.read(cityNotifier.notifier).getCity();
     });
   }
@@ -89,6 +86,7 @@ class _HomeUiState extends ConsumerState<HomeUi> {
 // make a scetion , that to check if list of apartment is null and the
 // intrent is not connection
           return ref.watch(fetchApartmentNotifier).isLoading
+              // || ref.watch(mapStateProvider).loadingLocation
               ? _buildSkeleton(apartmentsList)
               : (apartmentsList.data?.isEmpty ?? false
                   ? TypeNotFoundUi(
@@ -114,7 +112,7 @@ class _HomeUiState extends ConsumerState<HomeUi> {
           ref.read(selectedCityIdToFilter.notifier).state = 0;
           WidgetsBinding.instance.addPostFrameCallback((_) async {
             await ref.read(fetchApartmentNotifier.notifier).fetchApartments(
-                isOwnerApartments: false, isAll: true, cityId: 0);
+                isOwnerApartments: false, isAll: true, cityId: 0, ref: ref);
           });
           ref.read(isBoyStudentNotifier.notifier).state = false;
           ref.read(isGirlStudentNotifier.notifier).state = false;
@@ -141,6 +139,7 @@ class _HomeUiState extends ConsumerState<HomeUi> {
             WidgetsBinding.instance.addPostFrameCallback((_) async {
               await ref.read(fetchApartmentNotifier.notifier).fetchApartments(
                   isOwnerApartments: false,
+                  ref: ref,
                   type: ref.read(apartmentTypeNotifier),
                   isAll: true,
                   cityId: 0);
@@ -194,6 +193,29 @@ class ListApartmentWithTypeBtn extends StatelessWidget {
               // const ApartmentsListConsumer(),
 
               ApartmentsListWidget(
+                onLocationPress: () async {
+                  if (isAllTypesOfApartment) {
+                    WidgetsBinding.instance.addPostFrameCallback((_) async {
+                      await ref
+                          .watch(fetchApartmentNotifier.notifier)
+                          .fetchApartments(
+                              isOwnerApartments: false,
+                              isAll: true,
+                              ref: ref,
+                              cityId: cityId,
+                              isWantToEnableLocationService: true);
+                    });
+                  } else {
+                    ref.read(isAllTypesOfApartmentNotifier.notifier).state =
+                        true;
+                    ref.watch(fetchApartmentNotifier.notifier).fetchApartments(
+                        isOwnerApartments: false,
+                        isAll: isAllTypesOfApartment,
+                        type: type,
+                        cityId: cityId,
+                        isWantToEnableLocationService: true);
+                  }
+                },
                 haveCitiesBar: true,
                 onClick: () async {
                   if (isAllTypesOfApartment) {
@@ -203,6 +225,7 @@ class ListApartmentWithTypeBtn extends StatelessWidget {
                           .fetchApartments(
                             isOwnerApartments: false,
                             isAll: true,
+                            ref: ref,
                             cityId: cityId,
                           );
                     });

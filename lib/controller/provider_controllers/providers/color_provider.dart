@@ -7,6 +7,11 @@ final themeModeNotifier = StateNotifierProvider<ThemeModeNotifier, bool>((ref) {
   return ThemeModeNotifier();
 });
 
+//EB9B6A->GOLD
+//WHITE
+//GRAY -> E6E6E6
+//06273A -> DARK BLUE
+
 // dark theme
 final containerColorDark =
     StateProvider<Color>((ref) => const Color(0xf3333333));

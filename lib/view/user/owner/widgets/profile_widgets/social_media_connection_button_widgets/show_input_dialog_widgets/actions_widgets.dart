@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:ween_blaqe/view/common_widgets/button_widgets/elevated_button_widget.dart';
+import 'package:ween_blaqe/view/common_widgets/button_widgets/outline_button_widget.dart';
 
 import '../../../../../../../constants/coordination.dart';
 import '../../../../../../../constants/get_it_controller.dart';
@@ -16,9 +18,10 @@ class ShowDialogElevatedButtonWidget extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     return SizedBox(
       width: double.infinity,
-      child: ElevatedButton(
+      child: ElevatedButtonWidget(
         onPressed: onPressed,
-        style: fullButton(),
+        
+        context: context,
         child: ref
             .watch(socialConnectionDataUpdaterNotifier)
             .isLoading
@@ -42,9 +45,8 @@ class ShowDialogOutlineButtonWidget extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     return SizedBox(
       width: double.infinity,
-      child: OutlinedButton(
+      child: OutlinedButtonWidget(
         onPressed: onPressed,
-        style: outlinedButton(context: context),
         child: Text(
           SetLocalization.of(context)!.getTranslateValue("cancel"),
           style: TextStyle(

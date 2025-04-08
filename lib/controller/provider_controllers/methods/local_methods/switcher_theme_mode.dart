@@ -39,7 +39,7 @@ class ThemeModeNotifier extends StateNotifier<bool> {
 
   Future<void> loadThemeMode() async {
     state =
-        (await sp).getBool('isLightMode') ?? false; // Default to false (Dark
+        (await sp).getBool('isLightMode') ?? true; // Default to true (Light
     // mode)
     debugPrint(
         "Loaded theme mode from SharedPreferences: ${state ? 'Light' : 'Dark'}");

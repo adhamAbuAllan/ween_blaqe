@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:ween_blaqe/api/apartments_api/apartments.dart';
 import 'package:ween_blaqe/view/apartment/show_deitals_of_apartment'
     '/show_deitals_of_image/show_detials_of_image_ui.dart';
@@ -128,6 +129,7 @@ class _ShowDeitalsOfApartmentUiState
               child: Column(
                 children: [
                   CoursolSliderWidget(
+                    marageBetweenImages: .85,
                     imageList: widget.oneApartment!.photos!,
                     apartmentId: widget.oneApartment!.id ?? 1,
                     oneApartment: widget.oneApartment!,

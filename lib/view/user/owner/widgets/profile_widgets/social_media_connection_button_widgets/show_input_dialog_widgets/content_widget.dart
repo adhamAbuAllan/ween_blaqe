@@ -44,20 +44,20 @@ class ShowDialogContentWidgets extends ConsumerWidget {
               fontSize: getIt<AppDimension>().isSmallScreen(context) ? 14 : 16,
             ),
           ),
-          check != null
-              ? TextButton(
-                  onPressed: check,
-                  child: Text(
-                    //verify
-                    SetLocalization.of(context)!.getTranslateValue("verify"),
-                    style: TextStyle(
-                      color: Colors.blue,
-                      fontSize: getIt<AppDimension>().isSmallScreen(context)
-                          ? 14
-                          : 16,
-                    ),
-                  ))
-              : const SizedBox()
+          // check != null
+          //     ? TextButton(
+          //         onPressed: check,
+          //         child: Text(
+          //           //verify
+          //           SetLocalization.of(context)!.getTranslateValue("verify"),
+          //           style: TextStyle(
+          //             color: Colors.blue,
+          //             fontSize: getIt<AppDimension>().isSmallScreen(context)
+          //                 ? 14
+          //                 : 16,
+          //           ),
+          //         ))
+          //     : const SizedBox()
         ],
       ),
     );

@@ -18,7 +18,6 @@ import 'package:ween_blaqe/view/apartment/show_deitals_of_apartment'
 import 'package:ween_blaqe/view/apartment/widgets/bookmark_button_widget.dart';
 import 'package:ween_blaqe/view/apartment/widgets/cities_of_apartments_widgets'
     '/bar_of_cities_widget.dart';
-import 'package:ween_blaqe/view/apartment/widgets/pointer_of_image_widget.dart';
 import 'package:ween_blaqe/view/apartment/widgets/price_text_widget.dart';
 import 'package:ween_blaqe/view/apartment/widgets/time_ago_text_widget.dart';
 import 'package:ween_blaqe/view/apartment/widgets'
@@ -41,6 +40,7 @@ class ApartmentsListWidget extends ConsumerStatefulWidget {
       this.isDeleteMode = false,
       required this.haveCitiesBar,
       required this.apartmentsRes,
+      this.onLocationPress,
       this.margeBetweenImages,
       this.isOwnerApartment});
 
@@ -52,6 +52,16 @@ class ApartmentsListWidget extends ConsumerStatefulWidget {
   final bool haveCitiesBar;
   final double? margeBetweenImages;
   final bool? isOwnerApartment;
+  final Function()? onLocationPress;
+
+  /*
+  async {
+                debugPrint("before void");
+                await ref.watch(locationNotifier.notifier).getUserLocation(ref:
+                ref);
+                debugPrint("after void");
+              }
+   */
 
   @override
   ConsumerState createState() => _ApartmentsListConsumerState();
@@ -72,6 +82,7 @@ class _ApartmentsListConsumerState extends ConsumerState<ApartmentsListWidget> {
                   height: 70,
                   child: CitiesBarWidget(
                     onClick: widget.onClick,
+                    onLocationPress: widget.onLocationPress,
                   ))
               : const SizedBox(
                   height: 10,
@@ -81,6 +92,15 @@ class _ApartmentsListConsumerState extends ConsumerState<ApartmentsListWidget> {
           delegate: SliverChildBuilderDelegate(
             childCount: widget.apartmentsRes.data?.length,
             (context, index) {
+              final distanceInMeters =
+                  widget.apartmentsRes.data?[index].distance_in_meters;
+              final distance = (distanceInMeters != null)
+                  ? distanceInMeters > 1000
+                      ? (distanceInMeters / 1000).toStringAsFixed(1)
+                      : distanceInMeters.toStringAsFixed(1)
+                  : null;
+              final displayDistance =
+              distance != null ? "$distance ${distanceInMeters! > 1000 ? "كيلومتر" : "متر"}" : null;
               return RepaintBoundary(
                   child: GestureDetector(
                 onTap: () {
@@ -92,7 +112,7 @@ class _ApartmentsListConsumerState extends ConsumerState<ApartmentsListWidget> {
                 },
                 child: Container(
                   margin: const EdgeInsets.fromLTRB(10, 0, 10, 23),
-                  // padding: const EdgeInsets.symmetric(horizontal: 10),
+                  padding: const EdgeInsets.symmetric(horizontal: 0),
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(7),
                     color: ref
@@ -148,7 +168,7 @@ class _ApartmentsListConsumerState extends ConsumerState<ApartmentsListWidget> {
                                 )
                               : CoursolSliderWidget(
                                   isOwnerApartment: widget.isOwnerApartment,
-                                  marageBetweenImages: .95,
+                                  marageBetweenImages: .85,
                                   imageList:
                                       widget.apartmentsRes.data![index].photos!,
                                   apartmentId:
@@ -159,11 +179,11 @@ class _ApartmentsListConsumerState extends ConsumerState<ApartmentsListWidget> {
                       const SizedBox(
                         height: 10,
                       ),
-                      PointerOfImageWidget(
-                        imageList:
-                            widget.apartmentsRes.data![index].photos ?? [],
-                        apartmentId: widget.apartmentsRes.data![index].id ?? -1,
-                      ),
+                      // PointerOfImageWidget(
+                      //   imageList:
+                      //       widget.apartmentsRes.data?[index].photos ?? [],
+                      //   apartmentId: widget.apartmentsRes.data ?[index].id ?? -1,
+                      // ),
                       Container(
                         padding: const EdgeInsets.symmetric(horizontal: 10),
                         child: Column(
@@ -180,9 +200,28 @@ class _ApartmentsListConsumerState extends ConsumerState<ApartmentsListWidget> {
                               index: index,
                               apartmentsRes: widget.apartmentsRes,
                             ),
-                            TimeAgoTextWidget(
-                              index: index,
-                              apartmentsRes: widget.apartmentsRes,
+                            Row(
+                              children: [
+                                TimeAgoTextWidget(
+                                  index: index,
+                                  apartmentsRes: widget.apartmentsRes,
+                                ),
+                                const Spacer(),
+                                widget.apartmentsRes.data?[index]
+                                                .distance_in_meters !=
+                                            null &&
+                                        widget.apartmentsRes.data![index]
+                                                .distance_in_meters! >=
+                                            10000
+                                    ? Text(displayDistance??"",
+                                        style: TextStyle(
+                                          color: ref
+                                              .read(themeModeNotifier.notifier)
+                                              .textTheme(ref: ref),
+                                          fontSize: 14,
+                                        ))
+                                    : SizedBox()
+                              ],
                             )
                           ],
                         ),

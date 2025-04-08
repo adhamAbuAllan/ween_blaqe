@@ -53,6 +53,15 @@ class AlertWithTwoBtn {
                   fontWeight: FontWeight.w400),
             ),
             actions: [
+              ElevatedButtonWidget(
+                  onPressed: () {
+                    onClicked();
+                  },
+                  context: context,
+                  child: Text(
+                    textOfOkButton,
+                  )),
+
               OutlinedButtonWidget(
                   onPressed: () {
                     Navigator.pop(context);
@@ -62,14 +71,6 @@ class AlertWithTwoBtn {
                   )),
               // SizedBox(width: 1,),
 
-              ElevatedButtonWidget(
-                  onPressed: () {
-                    onClicked();
-                  },
-                  context: context,
-                  child: Text(
-                    textOfOkButton,
-                  ))
             ],
           );
         });

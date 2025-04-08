@@ -42,7 +42,7 @@ class AddressFieldWidget extends ConsumerWidget {
               .getTranslateValue("example_apartment_address"),
           inputType: TextInputType.text,
           controller: ref.watch(addressController),
-          helperText:"مثال: واد الهرية بالقرب من جامعة بولتكنك",
+          // helperText:"مثال: واد الهرية بالقرب من جامعة بولتكنك",
           originalValue: originalAddress,
         ),
       ),

@@ -2,6 +2,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:flutter/material.dart';
+import 'package:ween_blaqe/controller/provider_controllers/providers/auth_provider.dart';
 import 'package:ween_blaqe/controller/provider_controllers/providers/color_provider.dart';
 
 import '../../../../constants/localization.dart';
@@ -12,6 +13,35 @@ import '../../statuses/map_state.dart';
 
 class LocationNotifier extends StateNotifier<LatLng?> {
   LocationNotifier() : super(null);
+
+/*
+async {
+                LocationPermission permission =
+                    await Geolocator.checkPermission();
+
+                if (permission == LocationPermission.denied) {
+                  permission = await Geolocator.requestPermission();
+                }
+
+                if (permission == LocationPermission.denied ||
+                    permission == LocationPermission.deniedForever) {
+                  debugPrint('Location permissions are denied');
+                  return;
+                }
+
+                LocationSettings locationSettings = LocationSettings(
+                  accuracy: LocationAccuracy.high,
+                  // Specify the desired accuracy here
+                  distanceFilter:
+                      0,
+                );
+
+                Position position = await Geolocator.getCurrentPosition(
+                    locationSettings: locationSettings);
+                debugPrint(
+                    'Current location: Lat: ${position.latitude}, Lon: ${position.longitude}');
+              }
+ */
 
   // The state variables will be managed by MapState
   void moveToCurrentLocation(BuildContext context, WidgetRef ref) async {
@@ -48,7 +78,7 @@ class LocationNotifier extends StateNotifier<LatLng?> {
       required BuildContext context,
       required WidgetRef ref}) {
     final mapState = ref.read(mapStateProvider.notifier);
-    mapState.updateMarkersOnTap(position, context ,ref);
+    mapState.updateMarkersOnTap(position, context, ref);
     state = position; // Update the state directly
   }
 
@@ -79,11 +109,52 @@ class LocationNotifier extends StateNotifier<LatLng?> {
 
 class MapStateNotifier extends StateNotifier<MapState> {
   MapStateNotifier()
-      : super(MapState(markers: {}, mapController: null, mapStyle: ""));
+      : super(MapState(
+            markers: {},
+            mapController: null,
+            mapStyle: "",
+            loadingLocation: false,
+            didServiceLocationEnabled: false));
+
+  Future<void> getUserLocation({
+    required WidgetRef ref,
+  }) async {
+    state = state.copyWith(loadingLocation: true);
+
+    LocationPermission permission = await Geolocator.checkPermission();
+
+    if (permission == LocationPermission.denied) {
+      permission = await Geolocator.requestPermission();
+      if (permission == LocationPermission.denied ||
+          permission == LocationPermission.deniedForever) {
+        state = state.copyWith(
+            didServiceLocationEnabled: false, loadingLocation: false);
+        debugPrint('Location permissions are denied');
+      }
+    } else {
+      LocationSettings locationSettings = LocationSettings(
+        accuracy: LocationAccuracy.high,
+        // Specify the desired accuracy here
+        distanceFilter: 0,
+      );
+      state = state.copyWith(
+          userPosition: await Geolocator.getCurrentPosition(
+              locationSettings: locationSettings));
+      debugPrint('Current location: Lat: ${state.userPosition?.latitude}, Lon: '
+          '${state.userPosition?.longitude}');
+
+      // ref.read(didPositionProviderNull.notifier).state = false;
+      state =  state.copyWith(
+          didServiceLocationEnabled: true,
+          userPosition: state.userPosition,loadingLocation: false);
+    }
+
+    ;
+    //final updatePhoneValidate = StateProvider<String?>((ref) => null);
+  }
 
   // Update markers
   void updateMarkers(Set<Marker> markers) {
-
     state = state.copyWith(markers: markers);
   }
 
@@ -111,7 +182,8 @@ class MapStateNotifier extends StateNotifier<MapState> {
   }
 
   // Add a marker when a user taps on the map
-  void updateMarkersOnTap(LatLng position, BuildContext context,WidgetRef ref) {
+  void updateMarkersOnTap(
+      LatLng position, BuildContext context, WidgetRef ref) {
     Set<Marker> updatedMarkers = {...state.markers};
     updatedMarkers.clear();
     updatedMarkers.add(
@@ -126,15 +198,18 @@ class MapStateNotifier extends StateNotifier<MapState> {
       ),
     );
     updateMarkers(updatedMarkers);
-    ref.read(selectedLocationProvider.notifier).state = position;}
+    ref.read(selectedLocationProvider.notifier).state = position;
+  }
 
   // Update map style
   void updateMapStyle(String style) {
     state = state.copyWith(mapStyle: style);
   }
+
   void addMarker(Marker marker) {
     state = state.copyWith(markers: {...state.markers, marker});
   }
+
   // Set the map controller
   void setMapController(GoogleMapController controller) {
     state = state.copyWith(mapController: controller);

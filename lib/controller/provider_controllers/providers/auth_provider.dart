@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:geolocator/geolocator.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:ween_blaqe/controller/provider_controllers/methods/api_methods/auth_methods/refresh_user_data_notifier.dart';
 import 'package:ween_blaqe/controller/provider_controllers/methods/hybrid_methods/auth_validator/login_and_reg_validators/validator.dart';
@@ -41,13 +42,12 @@ final loadProfileImageNotifier =
 final compressAndUploadImageNotifier =
     StateNotifierProvider<CompressAndUploadProfileImageNotifier, AuthState>(
         (ref) => CompressAndUploadProfileImageNotifier());
+
 /// a [formFieldsNotifier] only usage for textFormField widgets in two UI Screens
 /// [LoginUi] and [RegistrationUi]
 final formFieldsNotifier =
     StateNotifierProvider<FormFieldsNotifier, Map<String, TextFieldState>>(
         (ref) => FormFieldsNotifier());
-
-
 
 final socialConnectionDataUpdaterNotifier =
     StateNotifierProvider<SocialConnectionDataUpdaterNotifier, AuthState>(
@@ -184,8 +184,7 @@ final userNameController = StateProvider<TextEditingController>((ref) {
       () => controller.dispose()); // Dispose when the provider is disposed
   return controller;
 });
-final sendNoticeForUcController = StateProvider<TextEditingController>(
-        (ref) {
+final sendNoticeForUcController = StateProvider<TextEditingController>((ref) {
   final controller = TextEditingController();
   ref.onDispose(
       () => controller.dispose()); // Dispose when the provider is disposed
@@ -204,30 +203,30 @@ final isOldPassword = StateProvider<bool>((ref) => false);
 final dataHasChanged = StateProvider<bool>((ref) => false);
 final isSureObscure = StateProvider<bool>((ref) => true);
 final isUpdateImageProfile = StateProvider<bool>((ref) => false);
+// final locationServiceChecker = StateProvider<bool>((ref) => false);
 
 final email = StateProvider<String>((ref) => "");
 final facebook = StateProvider<String>((ref) => "");
 final phone = StateProvider<String>((ref) => "");
 final whatsapp = StateProvider<String>((ref) => "");
 final selectedCountryCode = StateProvider<String>((ref) => "+970");
+
 /// those string value is the errors that show in TextFormField widget
 final updateUserNameValidate = StateProvider<String?>((ref) => null);
 final oldPasswordValidate = StateProvider<String?>((ref) => null);
 final newPasswordValidate = StateProvider<String?>((ref) => null);
 final sureNewPasswordValidate = StateProvider<String?>((ref) => null);
 final updatePhoneValidate = StateProvider<String?>((ref) => null);
-
 final countriesCodes = StateProvider<List<String>>((ref) => [
-      "+970",
-      "+972",
+      "+964",
     ]);
 
 final errorStatusCode = StateProvider<int>((ref) => 0);
 
 final profileImageFile = StateProvider<XFile?>((ref) => null);
 
-
 final userData = StateProvider<User?>((ref) => User());
+
 ///that the [formLoginPhoneKey],[formLoginPasswordKey],[formPhoneKey],
 ///[formRegPasswordKey],[formUsernameKey] , use the [Validator] class
 ///and [FormFieldsNotifier] , and every method in hybrid_method folder
@@ -238,6 +237,7 @@ final formLoginPasswordKey = GlobalKey<FormState>();
 final formPhoneKey = GlobalKey<FormState>();
 final formRegPasswordKey = GlobalKey<FormState>();
 final formUsernameKey = GlobalKey<FormState>();
+
 /// the  [updateUsernameFormKey] ,[updatePhoneNumberFormKey],
 /// [oldPasswordFormKey],[newPasswordFormKey],[sureNewPasswordFormKey] usage
 /// for [UpdateUserDataUi] screen only.
