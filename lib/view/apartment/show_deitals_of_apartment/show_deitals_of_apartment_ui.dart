@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:ween_blaqe/api/apartments_api/apartments.dart';
+import 'package:ween_blaqe/controller/provider_controllers/providers/auth_provider.dart';
 import 'package:ween_blaqe/view/apartment/show_deitals_of_apartment'
     '/show_deitals_of_image/show_detials_of_image_ui.dart';
 import 'package:ween_blaqe/view/apartment/show_deitals_of_apartment/widgets'
@@ -41,7 +41,6 @@ class ShowDeitalsOfApartmentUi extends ConsumerStatefulWidget {
 
 class _ShowDeitalsOfApartmentUiState
     extends ConsumerState<ShowDeitalsOfApartmentUi> {
-
   bool _isGirlStudent = false;
   bool _isBoyStudent = false;
   bool _isFamilies = false;
@@ -49,6 +48,14 @@ class _ShowDeitalsOfApartmentUiState
   @override
   void initState() {
     super.initState();
+    WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
+      ref.read(ownerIdNotifier.notifier).state =
+          widget.oneApartment?.owner?.id ?? 0;
+      debugPrint("type id of owner ${widget.oneApartment?.owner?.typeId}");
+      debugPrint(
+          "isShowOwnerApartmentMode ${ref.read(isShowOwnerApartmentMode)}");
+      debugPrint("owner id ${ref.read(ownerIdNotifier)}");
+    });
     if (widget.oneApartment?.type?.name == "طلاب") {
       _isBoyStudent = true;
     }
@@ -162,8 +169,10 @@ class _ShowDeitalsOfApartmentUiState
             ),
             ForInquiriesWidget(
                 apartment: widget.oneApartment ?? DataOfOneApartment()),
-            AboutOwnerWidget(
-                oneApartment: widget.oneApartment ?? DataOfOneApartment()),
+            ref.read(isShowOwnerApartmentMode)
+                ? SizedBox()
+                : AboutOwnerWidget(
+                    oneApartment: widget.oneApartment ?? DataOfOneApartment()),
             const SizedBox(height: 40),
           ],
         ),

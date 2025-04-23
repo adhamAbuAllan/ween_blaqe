@@ -22,7 +22,7 @@ class RegisterNotifier extends StateNotifier<AuthState> {
       int universityId, WidgetRef ref, BuildContext context) async {
     state = state.copyWith(isLoading: true, errorMessage: null);
     var url = Uri.parse(ServerWeenBalaqee.register);
-
+    typeId = typeId + 1;
     var response = await http.post(url, body: {
       "name": name,
       "phone": phone,
@@ -32,31 +32,30 @@ class RegisterNotifier extends StateNotifier<AuthState> {
       "country_phone_number_id": "1",
     });
 
-
     final responseData = jsonDecode(response.body);
     debugPrint("response from server ${response.body}");
+
+    debugPrint("the type id ${typeId}");
     debugPrint("msg from server ${responseData['msg']}");
     debugPrint("Status code: ${response.statusCode}");
     // debugPrint("response body -> ${response.body}");
     if (response.statusCode <= 400) {
       var res = UserRes.fromJson(jsonDecode(response.body));
 
-       saveUserInfo(res.data);
+      saveUserInfo(res.data);
 
       ref
           .read(refreshUserDataNotifier.notifier)
-          .refreshUserData(userId: res.data.id??-1, ref: ref);
-        ref.read(phoneLoginController).clear();
-        ref.read(passwordLoginController).clear();
-        state = state.copyWith(isLoading: false);
-        await myPushReplacementNamedFuture(MyPagesRoutes.main, context);
-
+          .refreshUserData(userId: res.data.id ?? -1, ref: ref);
+      ref.read(phoneLoginController).clear();
+      ref.read(passwordLoginController).clear();
+      state = state.copyWith(isLoading: false);
+      await myPushReplacementNamedFuture(MyPagesRoutes.main, context);
     } else {
       if (response.statusCode == 404) {
         ref.read(formFieldsNotifier.notifier).updateApiErrors({
           'phoneNumberRegistration': SetLocalization.of(context)!
               .getTranslateValue("try_different_phone"),
-
         });
         state = state.copyWith(isLoading: false);
         return;

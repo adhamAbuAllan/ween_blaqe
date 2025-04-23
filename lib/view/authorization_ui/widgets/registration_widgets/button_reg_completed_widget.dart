@@ -20,6 +20,7 @@ class ButtonRegCompletedWidget extends ConsumerWidget {
         height: getIt<AppDimension>().isSmallScreen(context) ? 55 / 1.2 : 55,
         child: ElevatedButtonWidget(
             onPressed: () async{
+              // Navigator.push(context, MaterialPageRoute(builder: (context) => OtpScreen()));
 
               validateAndRegistration(ref, context);
 

@@ -114,6 +114,7 @@ class TypeRowOfBoyStudent extends ConsumerWidget {
                   isOwnerApartments: false,
                   type: "طلاب",
                   isAll: false,
+                  ref: ref,
                   cityId: ref.read(selectedCityIdToFilter.notifier).state);
             });
             ref.read(apartmentTypeNotifier.notifier).state = "طلاب";
@@ -152,6 +153,8 @@ class TypeRowOfGirlStudent extends ConsumerWidget {
 
             WidgetsBinding.instance.addPostFrameCallback((_) async {
               await ref.read(fetchApartmentNotifier.notifier).fetchApartments(
+                  ref: ref,
+
                   isOwnerApartments: false,
                   type: "طالبات",
                   isAll: false,
@@ -194,7 +197,9 @@ class TypeRowOfFamilies extends ConsumerWidget {
             WidgetsBinding.instance.addPostFrameCallback(
               (_) async {
                 await ref.read(fetchApartmentNotifier.notifier).fetchApartments(
-                      isOwnerApartments: false,
+                  ref: ref,
+
+                  isOwnerApartments: false,
                       type: "عائلات",
                       isAll: false,
                       cityId: ref.read(selectedCityIdToFilter.notifier).state,
@@ -233,6 +238,8 @@ class TypeRowOfAllTypes extends ConsumerWidget {
             ref.read(isAllTypesOfApartmentNotifier.notifier).state = true;
             WidgetsBinding.instance.addPostFrameCallback((_) async {
               await ref.read(fetchApartmentNotifier.notifier).fetchApartments(
+                  ref: ref,
+
                   isOwnerApartments: false, isAll: true, cityId: 0);
             });
             ref.read(isBoyStudentNotifier.notifier).state = false;

@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import '../../../constants/coordination.dart';
-import '../../../constants/get_it_controller.dart';
 import '../../../controller/provider_controllers/providers/color_provider.dart';
 
 class TextFormFieldWidget extends ConsumerWidget {
@@ -109,7 +107,7 @@ class TextFormFieldWidget extends ConsumerWidget {
       hintText: hintText,
 
       isDense: true,
-
+      hintStyle: TextStyle(color: Colors.grey),
       // contentPadding: EdgeInsets. fromLTRB(12, 24, 12, 16),
       contentPadding: EdgeInsets.symmetric(vertical: 15, horizontal: 10),
       labelText: labelName,

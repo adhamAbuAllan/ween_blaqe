@@ -32,6 +32,7 @@ class BottomNavigationBarWidget extends ConsumerWidget {
       currentIndex: indexNotifier,
       onTap: (i) {
         if (i == 0 && indexNotifier == 0) {
+          // ref.read(isShowOwnerApartmentMode.notifier).state = false;
           debugPrint(
               "hasApartmentChanged -- ${ref.watch(isApartmentDataChangedNotifier.notifier).hasAnyChange(ref)}");
           debugPrint("scrollController offset is ${scrollController?.offset}");
@@ -47,9 +48,10 @@ class BottomNavigationBarWidget extends ConsumerWidget {
               scrollController!.offset < 100) {
             ref.read(isAllTypesOfApartmentNotifier.notifier).state = true;
             ref.read(selectedCityIdToFilter.notifier).state = 0;
+            ref.read(selectedTypeOwnerId.notifier).state = -1;
             WidgetsBinding.instance.addPostFrameCallback((_) async {
               await ref.read(fetchApartmentNotifier.notifier).fetchApartments(
-                  isOwnerApartments: false, isAll: true, cityId: 0,ref:ref);
+                  isOwnerApartments: false, isAll: true, cityId: 0, ref: ref);
             });
             ref.read(isBoyStudentNotifier.notifier).state = false;
             ref.read(isGirlStudentNotifier.notifier).state = false;
@@ -59,22 +61,14 @@ class BottomNavigationBarWidget extends ConsumerWidget {
         if (i == 1) {
           WidgetsBinding.instance.addPostFrameCallback((_) async {
             if (ref.read(bookmarkNotifier).bookmarkIds.isNotEmpty &&
-                ref.read(bookmarkNotifier).bookmarkIds.length <= 2 || indexNotifier == 1) {
+                    ref.read(bookmarkNotifier).bookmarkIds.length <= 2 ||
+                indexNotifier == 1) {
               await ref.read(fetchApartmentNotifier.notifier).fetchApartments(
-                    isOwnerApartments: false,
-                    isAll: true,
-                    cityId: 0,
-                ref: ref
-                  );
+                  isOwnerApartments: false, isAll: true, cityId: 0, ref: ref);
             } else if (ref.read(bookmarkNotifier).bookmarkIds.length > 2 &&
                 indexNotifier == 1) {
               await ref.read(fetchApartmentNotifier.notifier).fetchApartments(
-                    isOwnerApartments: false,
-                    isAll: true,
-                    cityId: 0,
-                  ref: ref
-
-              );
+                  isOwnerApartments: false, isAll: true, cityId: 0, ref: ref);
             }
 
             await ref

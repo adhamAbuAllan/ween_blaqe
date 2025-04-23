@@ -6,7 +6,7 @@ import 'package:ween_blaqe/controller/provider_controllers/providers/alert_provi
 import 'package:ween_blaqe/controller/provider_controllers/providers/apartment_provider.dart';
 
 // import 'package:ween_blaqe/features/user/owner/account_of_owner.dart';
-// import 'package:ween_blaqe/features/user/studnet/from_master_home_to_show_more/new_master_home.dart';
+// import 'package:ween_blaqe/features/user/user/from_master_home_to_show_more/new_master_home.dart';
 
 import '../../../../../api/apartments_api/apartments.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -76,7 +76,7 @@ class _DeleteButtonConsumerState extends ConsumerState<DeleteButtonWidget> {
               ref.read(bookmarkNotifier).bookmarkIds.remove(widget.apartmentId);
               ref
                   .read(fetchApartmentNotifier.notifier)
-                  .fetchApartments(isOwnerApartments: true, );
+                  .fetchApartments(isOwnerApartments: true, ref: ref);
 
               Navigator.pop(context);
               // ref.read(isDeletedNotifier.notifier).state = false;

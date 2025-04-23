@@ -1,6 +1,7 @@
 import 'package:colorful_safe_area/colorful_safe_area.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:ween_blaqe/view/authorization_ui/widgets/registration_widgets/drop_down_user_type_widget.dart';
 
 import 'package:ween_blaqe/view/common_widgets/button_widgets/back_button_widget.dart';
 import '../../constants/coordination.dart';
@@ -14,20 +15,31 @@ import 'widgets/registration_widgets/phone_completed_widget.dart';
 import 'widgets/registration_widgets/title_reg_completed_widget.dart';
 import 'widgets/registration_widgets/user_name_reg_completed_widget.dart';
 
-class RegistrationUi extends ConsumerWidget {
-  const RegistrationUi({
-    super.key,
-  });
+class RegistrationUi extends ConsumerStatefulWidget {
+  const RegistrationUi({super.key});
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
+  ConsumerState createState() => _RegistrationUiState();
+}
+
+class _RegistrationUiState extends ConsumerState<RegistrationUi> {
+
+  @override
+  void initState() {
+    super.initState();
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      ref.watch(isObscure.notifier).state = false;
+    });
+  }
+
+  @override
+  Widget build(BuildContext context) {
     return ColorfulSafeArea(
       bottomColor: Colors.transparent,
       color: ref.read(themeModeNotifier.notifier).primaryTheme(ref: ref),
       child: Scaffold(
           backgroundColor:
               ref.read(themeModeNotifier.notifier).backgroundAppTheme(ref: ref),
-
           body: GestureDetector(
             onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
             child: SingleChildScrollView(
@@ -64,6 +76,14 @@ class RegistrationUi extends ConsumerWidget {
                                 ? 10
                                 : 20,
                           ),
+                          DropDownUserTypeWidget(
+                            stringValues: ref.read(typeOfUser),
+                          ),
+                          SizedBox(
+                            height: getIt<AppDimension>().isSmallScreen(context)
+                                ? 10
+                                : 30,
+                          ),
                           Form(
                               key: formPhoneKey,
                               child: PhoneCompletedWidget(
@@ -90,13 +110,10 @@ class RegistrationUi extends ConsumerWidget {
                           // PasswordWidget(),
                           const PrivacyPolicyTextWidget(),
                           const ButtonRegCompletedWidget()
-                        ])
-                      ),
+                        ])),
               ],
             )),
-          )
-    ),
+          )),
     );
-// );
   }
 }

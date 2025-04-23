@@ -36,8 +36,8 @@ class DataOfOwnerAndButtonWidget extends ConsumerWidget {
           ref.read(userData)?.name?.isEmpty ?? true
               ? const SkeletonLine(
                   style: SkeletonLineStyle(
-                    height: 20,
-                    width: 150,
+                  height: 20,
+                  width: 150,
                   borderRadius: BorderRadius.all(Radius.circular(7)),
                   randomLength: true,
                 ))

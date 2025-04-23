@@ -4,16 +4,16 @@ import '../../../../../../constants/localization.dart';
 
 // import 'package:ween_blaqe/features/user/provider/auth_provider.dart';
 /**
-a Validator class for only the login and reg
-that here, when and where should text error should user to got it,
-so how a validate work ?
-the validate work according the String value , that if not empty got me a validate
-for e.g , in [validatePhone] that is a method return a String value , if it return
-a null value that mean is now error have , and that should to know that the method
-itself return a String value according the value of controller of textFormField
-that for e.g if it empty then return a String value for [validatePhone]
-that I use the switch case in [validateField] to check if any method in Validator class
-return a string.
+    a Validator class for only the login and reg
+    that here, when and where should text error should user to got it,
+    so how a validate work ?
+    the validate work according the String value , that if not empty got me a validate
+    for e.g , in [validatePhone] that is a method return a String value , if it return
+    a null value that mean is now error have , and that should to know that the method
+    itself return a String value according the value of controller of textFormField
+    that for e.g if it empty then return a String value for [validatePhone]
+    that I use the switch case in [validateField] to check if any method in Validator class
+    return a string.
  **/
 
 class Validator {
@@ -31,7 +31,8 @@ class Validator {
 
     return null;
   }
-///[validatePassword] that only for login
+
+  ///[validatePassword] that only for login
   static String? validatePassword(String value, BuildContext context) {
     if (value.isEmpty) {
       return SetLocalization.of(context)?.getTranslateValue('fill_field');
@@ -39,7 +40,8 @@ class Validator {
 
     return null;
   }
-///[validateRegPhone] that only for reg
+
+  ///[validateRegPhone] that only for reg
   static String? validateRegPhone(String value, BuildContext context) {
     //Reg => registration
 
@@ -53,6 +55,16 @@ class Validator {
 
     return null;
   }
+
+  ///[validateOTP] that only for reg
+  static String? validateOTP(String value, BuildContext context) {
+    if (value.isEmpty || value.length < 6) {
+      return SetLocalization.of(context)?.getTranslateValue('fill_field');
+    }
+
+    return null;
+  }
+
   ///[validateRegPassword] that only for reg
 
   static String? validateRegPassword(String value, BuildContext context) {
@@ -60,10 +72,12 @@ class Validator {
       return SetLocalization.of(context)?.getTranslateValue('fill_field');
     }
 //
-    if (value.length < 6) return SetLocalization.of(context)?.getTranslateValue('weak_password');
+    if (value.length < 6)
+      return SetLocalization.of(context)?.getTranslateValue('weak_password');
 
     return null;
   }
+
   ///[validateUsername] that only for reg
 
   static String? validateUsername(String value, BuildContext context) {
@@ -79,7 +93,7 @@ class Validator {
     return null;
   }
 
-/// [validateField] a validateField that check
+  /// [validateField] a validateField that check
   ///  [updateValue] have two parameters [fieldKey] and [value]
   ///  a [fieldKey] to put the error in 'if-exist' in current textFormField Widget.
   ///   a[value] to take a value of textFormField controller and then to match it
@@ -97,7 +111,8 @@ class Validator {
         return validateRegPhone(value, context);
       case "passwordRegistration":
         return validateRegPassword(value, context);
-
+      case "otp":
+        return validateOTP(value, context);
       default:
         return null;
     }

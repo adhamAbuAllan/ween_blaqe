@@ -42,7 +42,7 @@ class _CoursolSliderWidgetState extends ConsumerState<CoursolSliderWidget> {
         itemCount: widget.imageList.length,
         itemBuilder: (context, index, realIndex) {
           return Container(
-            margin: const EdgeInsets.symmetric(horizontal: 3),
+            margin: const EdgeInsets.symmetric(horizontal: 5),
             child: widget.isOwnerApartment ?? false
                 ? CarouselSliderItemWidget(
               widget: widget,
@@ -64,6 +64,7 @@ class _CoursolSliderWidgetState extends ConsumerState<CoursolSliderWidget> {
           enableInfiniteScroll: false,
           disableCenter: false,
           viewportFraction:.85,
+
           // widget.marageBetweenImages ?? 0.98,
           autoPlayCurve: Curves.fastLinearToSlowEaseIn,
           enlargeFactor: 1,

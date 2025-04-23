@@ -2,10 +2,10 @@ import 'dart:async';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:geolocator/geolocator.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:ween_blaqe/controller/provider_controllers/methods/api_methods/auth_methods/refresh_user_data_notifier.dart';
 import 'package:ween_blaqe/controller/provider_controllers/methods/hybrid_methods/auth_validator/login_and_reg_validators/validator.dart';
+import 'package:ween_blaqe/controller/provider_controllers/methods/hybrid_methods/drop_down_notifier.dart';
 
 import '../../../api/users.dart';
 import '../methods/api_methods/auth_methods/register_notifier.dart';
@@ -82,6 +82,12 @@ final sendNoticeForUsNotifier =
     StateNotifierProvider<SendNoticeForUsNotifier, AuthState>(
   (ref) => SendNoticeForUsNotifier(),
 );
+
+
+final dropdownProvider = StateNotifierProvider<DropdownNotifier, int>((ref) {
+  return DropdownNotifier();
+});
+
 
 final phoneLoginController = StateProvider<TextEditingController>((ref) {
   final controller = TextEditingController();
@@ -203,6 +209,7 @@ final isOldPassword = StateProvider<bool>((ref) => false);
 final dataHasChanged = StateProvider<bool>((ref) => false);
 final isSureObscure = StateProvider<bool>((ref) => true);
 final isUpdateImageProfile = StateProvider<bool>((ref) => false);
+final isShowOwnerApartmentMode = StateProvider<bool>((ref) => false);
 // final locationServiceChecker = StateProvider<bool>((ref) => false);
 
 final email = StateProvider<String>((ref) => "");
@@ -220,8 +227,14 @@ final updatePhoneValidate = StateProvider<String?>((ref) => null);
 final countriesCodes = StateProvider<List<String>>((ref) => [
       "+964",
     ]);
+final typeOfUser = StateProvider<List<String>>((ref) => [
+      "بائع",
+      "مكتب عقاري",
+      "مجمع سكني",
+    ]);
 
 final errorStatusCode = StateProvider<int>((ref) => 0);
+final ownerIdNotifier = StateProvider<int>((ref) => 0);
 
 final profileImageFile = StateProvider<XFile?>((ref) => null);
 

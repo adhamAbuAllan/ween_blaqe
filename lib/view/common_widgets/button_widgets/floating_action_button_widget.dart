@@ -56,13 +56,15 @@ class FloatingActionButtonWidgetState
                   textOfCancelButton:
                       SetLocalization.of(context)!.getTranslateValue("cancel"),
                   context: context,
-                  title: SetLocalization.of(context)!
+                  //login_to_create_ad
+                  title:
+                      SetLocalization.of(context)!.getTranslateValue("login"),
+                  message: SetLocalization.of(context)!
                       .getTranslateValue("login_to_create_ad"),
-                  message: "",
                   // SetLocalization.of(context)!
                   //     .getTranslateValue("login_to_add_apartment"),
-                  textOfOkButton: SetLocalization.of(context)!
-                      .getTranslateValue("login"),
+                  textOfOkButton:
+                      SetLocalization.of(context)!.getTranslateValue("login"),
                 );
           } else {
             myPushName(context, MyPagesRoutes.step1);

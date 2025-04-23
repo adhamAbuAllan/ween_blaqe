@@ -24,6 +24,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:get/get.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:supabase_flutter/supabase_flutter.dart';
 import 'package:ween_blaqe/controller/function_controller/change_theme_mode.dart';
 import 'package:flutter/services.dart';
 
@@ -66,7 +67,7 @@ import 'view/apartment/show_deitals_of_apartment/show_deitals_of_apartment_ui.da
 import 'view/intro_screen.dart';
 import 'view/main_ui.dart';
 import 'view/send_notice_for_us_ui.dart';
-
+//QN2FHFR7JTFYLSCEVVK7BYBD
 //the line that could user to upload a file currently :
 //https://drive.google.com/uc?export=download&id=
 /*
@@ -75,7 +76,14 @@ import 'view/send_notice_for_us_ui.dart';
 الإصدار الحالي إصدار قديم ، حتى منظهر الرسالة ، بكون فيها صورة و بيشرح
 للمستخدم أنه تطبيقك صار قديم
  */
+/*
+a type of user
+  1 : بائع،
+2 : صاحب مجمع سكني،
+  3 : صاحب مكتب عقار
+ */
 final Future<SharedPreferences> sp = SharedPreferences.getInstance();
+final RouteObserver<ModalRoute<void>> routeObserver = RouteObserver<ModalRoute<void>>();
 
 void main() async {
   debugPrint("Starting");
@@ -85,7 +93,10 @@ void main() async {
     DeviceOrientation.portraitUp,
     DeviceOrientation.portraitDown,
   ]);
-
+  await Supabase.initialize(
+    url: 'https://xocwlsvdiawzwxyfexlw.supabase.co',
+    anonKey: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InhvY3dsc3ZkaWF3end4eWZleGx3Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDQ4MzE1NDgsImV4cCI6MjA2MDQwNzU0OH0.pA7ttvEJ7kc1JaCZpGe0fSIhSlA8whP-htMj2MRldnA',
+  );
   Get.put(ChangeThemeMode());
   Get.put(ConnectivityController());
   await configureInjection();
@@ -117,11 +128,14 @@ class OwnMaterialAppConsumer extends ConsumerStatefulWidget {
 
 class _OwnMaterialAppConsumerState
     extends ConsumerState<OwnMaterialAppConsumer> {
+
   @override
   Widget build(BuildContext context) {
     final locale = ref.watch(languageProvider);
 
     return GetMaterialApp(
+      navigatorObservers: [routeObserver],
+
       debugShowCheckedModeBanner: false,
       darkTheme: ThemeData(
         useMaterial3: false,

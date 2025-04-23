@@ -22,7 +22,7 @@ import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:permission_handler/permission_handler.dart';
 
 void main() {
-  runApp( const MyApp());
+  runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
@@ -36,7 +36,7 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home:  const CreateApartmentScreen(),
+      home: const MapSample(),
     );
   }
 }
@@ -58,6 +58,8 @@ class MapSampleState extends State<MapSample> {
   bool _isPermissionGranted = false;
   LatLng? _currentLocation;
   bool _isShow = false;
+  final LatLng southwest = LatLng(29.85365664070315, 34.815332230871846);
+  final LatLng northeast = LatLng(33.235290355495835, 35.672425997705766);
 
   @override
   void initState() {
@@ -72,46 +74,57 @@ class MapSampleState extends State<MapSample> {
     super.dispose();
   }
 
+//top right :
+  //33.235290355495835, 35.672425997705766
+  // bottom left :
+  //29.85365664070315, 34.815332230871846
   @override
   Widget build(BuildContext context) {
+    final LatLngBounds cameraTargetBounds = LatLngBounds(
+      southwest: southwest,
+      northeast: northeast,
+    );
     return Scaffold(
       appBar: AppBar(
-        leading: Row(
-          children: [
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 8.0),
-              child: CupertinoSwitch(
-                  value: _isShow,
-                  onChanged: (value) {
-                    setState(() {
-                      _isShow = value;
-                    });
-                  }),
-            ),
-            Text("is map for show: $_isShow")
-          ],
+        toolbarHeight: 50,
+        backgroundColor: Colors.black87,
+        leadingWidth: double.infinity,
+        leading: Align(
+          alignment: Alignment.centerRight,
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 8.0),
+            child: CupertinoSwitch(
+                value: _isShow,
+                onChanged: (value) {
+                  setState(() {
+                    _isShow = value;
+                  });
+                }),
+          ),
         ),
       ),
-      body:
-
-      _isShow ?
-      GoogleMap(
-        myLocationButtonEnabled: true,
-        myLocationEnabled: _isPermissionGranted,
-        style: mapStyle,
-        initialCameraPosition: const CameraPosition(
-          target: LatLng(33.3152, 44.3661),
-          zoom: 14,
-        ),
-        onMapCreated: (GoogleMapController controller) async {
-          _controller.complete(controller);
-          _addHotelMarker();
-        },
-        markers: _markers,
-      ):SelectLocationMap(),
+      body: _isShow
+          ? GoogleMap(
+            //to limit the map camera movement
+            //  cameraTargetBounds: CameraTargetBounds(cameraTargetBounds),
+              myLocationButtonEnabled: true,
+              myLocationEnabled: _isPermissionGranted,
+              style: mapStyle,
+              initialCameraPosition: const CameraPosition(
+                target: LatLng(33.3152, 44.3661),
+                zoom: 14,
+              ),
+              onMapCreated: (GoogleMapController controller) async {
+                _controller.complete(controller);
+                _addHotelMarker();
+              },
+              markers: _markers,
+            )
+          : SelectLocationMap(),
     );
   }
-/// a method *
+
+  /// a method *
   Future<void> _loadMapStyle() async {
     final String style = await DefaultAssetBundle.of(context)
         .loadString('assets/map_style.json');
@@ -130,6 +143,7 @@ class MapSampleState extends State<MapSample> {
       _getUserLocation();
     }
   }
+
   /// a method *
   void _getUserLocation() async {
     if (!_isPermissionGranted) return;
@@ -156,6 +170,7 @@ class MapSampleState extends State<MapSample> {
     // Delay and then move to the hotel location
     Future.delayed(const Duration(seconds: 3), _moveToHotel);
   }
+
   /// a method *
   void _startTracking() {
     _positionStream = Geolocator.getPositionStream(
@@ -185,7 +200,8 @@ class MapSampleState extends State<MapSample> {
       }
     });
   }
-/// a method *
+
+  /// a method *
   void _addHotelMarker() async {
     const LatLng hotelLocation = LatLng(31.2304, 29.9553);
 
@@ -206,6 +222,7 @@ class MapSampleState extends State<MapSample> {
       );
     });
   }
+
   /// a method *
   void _moveToHotel() async {
     const LatLng hotelLocation = LatLng(31.2304, 29.9553);
@@ -266,12 +283,12 @@ class _SelectLocationMapState extends State<SelectLocationMap> {
       ),
       floatingActionButton: _selectedPosition != null
           ? FloatingActionButton(
-        child: Icon(Icons.check),
-        onPressed: () {
-          // Return the selected coordinates to the previous screen
-          Navigator.pop(context, _selectedPosition);
-        },
-      )
+              child: Icon(Icons.check),
+              onPressed: () {
+                // Return the selected coordinates to the previous screen
+                Navigator.pop(context, _selectedPosition);
+              },
+            )
           : null,
     );
   }
@@ -301,7 +318,7 @@ class _CreateApartmentScreenState extends State<CreateApartmentScreen> {
   }
 
   void _submitApartment() {
-      if (selectedLocation == null) {
+    if (selectedLocation == null) {
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(content: Text('Please select a location.')),
       );

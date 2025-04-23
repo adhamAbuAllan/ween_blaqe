@@ -4,7 +4,6 @@ import 'package:ween_blaqe/constants/localization.dart';
 import 'package:ween_blaqe/constants/get_it_controller.dart';
 
 import 'package:ween_blaqe/constants/coordination.dart';
-import 'package:ween_blaqe/controller/provider_controllers/providers/apartment_provider.dart';
 import 'package:ween_blaqe/view/common_widgets/button_widgets/outline_button_widget.dart';
 
 import '../../../../api/cities.dart';
@@ -34,6 +33,7 @@ class CityButtonWidget extends ConsumerWidget {
         height: getIt<AppDimension>().isSmallScreen(context) ? 35 : 40,
         child: OutlinedButtonWidget(
           buttonStyle: style,
+
           onPressed: () async {
 
             onClick.call();

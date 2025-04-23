@@ -22,6 +22,7 @@ class PasswordRegCompletedWidget extends ConsumerWidget {
                   ?.error;
             },
             isObscure: ref.watch(isObscure),
+
             onObscureChanged: (newValue) {
               ref.read(isObscure.notifier).state = newValue;
             },

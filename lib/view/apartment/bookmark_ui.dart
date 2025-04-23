@@ -22,7 +22,9 @@ class _BookmarkApartmentState extends ConsumerState<BookmarkApartmentUi> {
     super.initState();
     WidgetsBinding.instance.addPostFrameCallback((_) async {
       await ref.read(fetchApartmentNotifier.notifier).fetchApartments(
-            isOwnerApartments: false,
+        ref: ref,
+
+        isOwnerApartments: false,
             isAll: true,
             cityId: 0,
 

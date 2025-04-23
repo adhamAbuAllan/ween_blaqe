@@ -1,4 +1,3 @@
-import 'dart:io';
 import 'dart:convert';
 
 import 'package:flutter/cupertino.dart';
@@ -23,43 +22,50 @@ class FetchApartmentsNotifier extends StateNotifier<ApartmentState> {
     bool? isAll,
     int? latitude,
     int? longitude,
-    WidgetRef? ref,
+   required  WidgetRef ref,
     bool? isWantToEnableLocationService,
     required bool isOwnerApartments,
   }) async {
+
+    late Position? pos;
+
+    int typeOfOwnerId = ref.read(selectedTypeOwnerId);
+
+    debugPrint("typeOfOwnerId : $typeOfOwnerId");
+    if (typeOfOwnerId != -1) {
+      typeOfOwnerId = ref.watch(selectedTypeOwnerId) + 1;
+    }
     state = state.copyWith(isLoading: true);
     bool locationServiceEnabled = await Geolocator.isLocationServiceEnabled();
-
-    Position? pos = await ref?.watch(mapStateProvider).userPosition;
-
+    pos = await ref.read(mapStateProvider).userPosition;
     String urlWithLocation = "";
-    if (ref != null) {
-      if (locationServiceEnabled) {
-        await ref.watch(mapStateProvider.notifier).getUserLocation(
+    if (locationServiceEnabled) {
+      await ref.read(mapStateProvider.notifier).getUserLocation(
+            ref: ref,
+          );
+      urlWithLocation = "latitude=${pos?.latitude}&"
+          "longitude=${pos?.longitude}";
+      debugPrint("urlWithLocation : $urlWithLocation");
+    } else {
+      if (isWantToEnableLocationService ?? false) {
+        await ref.read(mapStateProvider.notifier).getUserLocation(
               ref: ref,
             );
-        urlWithLocation = "latitude=${pos?.latitude}&"
+        urlWithLocation = await "latitude=${pos?.latitude}&"
             "longitude=${pos?.longitude}";
-        debugPrint("urlWithLocation : $urlWithLocation");
-      } else {
-        if (isWantToEnableLocationService ?? false) {
-          await ref.watch(mapStateProvider.notifier).getUserLocation(
-                ref: ref,
-              );
-          urlWithLocation = await "latitude=${pos?.latitude}&"
-              "longitude=${pos?.longitude}";
-          debugPrint("urlWithLocation : ${urlWithLocation}");
-        }
+        debugPrint("urlWithLocation : ${urlWithLocation}");
       }
-      debugPrint("posLongitude : ${pos?.longitude}");
     }
+    debugPrint("posLongitude : ${pos?.longitude}");
 
     debugPrint(
         "locationServiceEnabled : $locationServiceEnabled$urlWithLocation");
     String urlByCity = "${ServerWeenBalaqee.apartmentAll}"
         "?city_id=$cityId";
-    String urlByCityAndType =
-        "${ServerWeenBalaqee.apartmentAll}?type=$type&&city_id=$cityId";
+    String urlByTypeOfOwnerId = "${ServerWeenBalaqee.apartmentAll}"
+        "?type_id=$typeOfOwnerId";
+    String urlByCityAndTypeAndTypeOwnerId =
+        "${ServerWeenBalaqee.apartmentAll}?type=$type&&city_id=$cityId&&type_id=$typeOfOwnerId";
     // debugPrint("posLAT : ${pos?.latitude}");
 
     if (isOwnerApartments) {
@@ -75,7 +81,12 @@ class FetchApartmentsNotifier extends StateNotifier<ApartmentState> {
     } else {
       late Uri uri;
       if (isAll ?? false) {
-        if (type == null) {
+        if (typeOfOwnerId != -1) {
+          debugPrint("typeOfOwnerId is $typeOfOwnerId");
+          uri = await pos?.longitude != null
+              ? await Uri.parse("${urlByTypeOfOwnerId}&${urlWithLocation}")
+              : Uri.parse(urlByTypeOfOwnerId);
+        } else if (type == null) {
           uri = await pos?.longitude != null
               ? await Uri.parse("${urlByCity}&${urlWithLocation}")
               : Uri.parse(urlByCity);
@@ -83,8 +94,9 @@ class FetchApartmentsNotifier extends StateNotifier<ApartmentState> {
       } else {
         debugPrint("cityId is $cityId");
         uri = await pos?.longitude != null
-            ? await Uri.parse("${urlByCityAndType}&${urlWithLocation}")
-            : Uri.parse(urlByCityAndType);
+            ? await Uri.parse(
+                "${urlByCityAndTypeAndTypeOwnerId}&${urlWithLocation}")
+            : Uri.parse(urlByCityAndTypeAndTypeOwnerId);
       }
 
       debugPrint("uri is $uri");
@@ -111,6 +123,7 @@ class FetchApartmentsNotifier extends StateNotifier<ApartmentState> {
     }
 
     state = state.copyWith(isLoading: false);
+
     return Apartments(data: []);
   }
 }
@@ -120,6 +133,7 @@ Future<Apartments> getApartmentsByOwner({WidgetRef? ref}) async {
   final url = Uri.parse(ServerWeenBalaqee.apartmentOwner);
   final token = (await sp).get("token");
   final ownerId = (await sp).get("id");
+  int? ownerIdProvider = ref?.watch(ownerIdNotifier.notifier).state;
 
   final response = await http.post(
     url,
@@ -128,7 +142,9 @@ Future<Apartments> getApartmentsByOwner({WidgetRef? ref}) async {
       'Content-Type': 'application/json',
       'Accept': 'application/json',
     },
-    body: jsonEncode({'owner_id': '$ownerId'}),
+    body: ref?.watch(ownerIdNotifier.notifier).state != 0
+        ? jsonEncode({'owner_id': '$ownerIdProvider'})
+        : jsonEncode({'owner_id': '$ownerId'}),
   );
 
   if (response.statusCode == 200) {
@@ -140,6 +156,8 @@ Future<Apartments> getApartmentsByOwner({WidgetRef? ref}) async {
     }
     return apartmentsRes;
   } else {
+    debugPrint("error is ${response.body}");
+    debugPrint("owner id notifier is ${ref?.watch(ownerIdNotifier)}");
     throw Exception('Failed to fetch apartments by owner');
   }
 }

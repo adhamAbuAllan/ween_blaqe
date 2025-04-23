@@ -1,5 +1,6 @@
 
 
+
 class UserRes {
   UserRes({
     required this.status,
@@ -31,7 +32,7 @@ class User {
      this.name,
      this.phone,
     this.profile,
-    // required this.typeId,
+     this.typeId,
    // required this.countryPhoneNumberId,
      this.timeAgoCreated,
      this.token,
@@ -42,7 +43,7 @@ class User {
   late final String ? profile;
   late final String ? facebook;
   late final String ? email;
-  // late final TypeOfUser typeId;
+  late final int ?typeId;
  // late final CountryPhoneNumberId countryPhoneNumberId;
  //  late final String countryPhoneNumberId;
   late final String ? timeAgoCreated;
@@ -57,7 +58,7 @@ class User {
     facebook = json['facebook'];
     email = json['email'];
 
-    // typeId = TypeOfUser.fromJson(json['type_id']);
+    typeId = json['type'];
     //countryPhoneNumberId = CountryPhoneNumberId.fromJson(json['country_phone_number_id']);
     timeAgoCreated = json['time_ago'];
     token = json['token'];
@@ -71,7 +72,7 @@ class User {
     _data['facebook'] = facebook;
     _data['email'] = email;
     _data['profile'] = profile;
-    // _data['type_id'] = typeId.toJson();
+    _data['type'] = typeId;
   //  _data['country_phone_number_id'] = countryPhoneNumberId.toJson();
     _data["time_ago"] = timeAgoCreated;
     _data['token'] = token;

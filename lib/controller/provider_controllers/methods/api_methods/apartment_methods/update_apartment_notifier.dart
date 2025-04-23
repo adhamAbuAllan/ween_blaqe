@@ -118,7 +118,8 @@ if(response.statusCode == 200 && ref.read(hasChanged)
 debugPrint("is apartment updated -- ${ ref.read
   (isApartmentUpdatedNotifier.notifier).state }");
     ref.read(fetchApartmentNotifier.notifier).fetchApartments(
-      isOwnerApartments: true
+      isOwnerApartments: true,
+          ref: ref,
     );
     state = state.copyWith(isUpdating: false);
   }

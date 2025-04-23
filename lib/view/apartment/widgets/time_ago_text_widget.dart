@@ -14,7 +14,7 @@ class TimeAgoTextWidget extends ConsumerWidget {
     return  Row(
       children: [
         Padding(
-          padding: const EdgeInsets.symmetric(vertical: 4),
+          padding: const EdgeInsets.symmetric(vertical: 8),
           child: Text(
             "${apartmentsRes.data?[index].timeAgo ?? "التاريخ"} ",
             style: TextStyle(

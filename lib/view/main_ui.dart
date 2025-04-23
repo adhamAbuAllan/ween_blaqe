@@ -21,6 +21,8 @@ class MainUi extends ConsumerStatefulWidget {
 class _MainScreenState extends ConsumerState<MainUi> {
   final ScrollController _scrollController = ScrollController();
 
+
+
   @override
   Widget build(BuildContext context) {
     final index = ref.watch(btmNavBarIndexNotifier);

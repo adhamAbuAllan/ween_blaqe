@@ -5,6 +5,7 @@ import 'package:ween_blaqe/view/common_widgets/button_widgets/button_list_tile_w
 
 import '../../../../../../constants/localization.dart';
 import '../../../../../../constants/strings.dart';
+import '../../../../../../controller/provider_controllers/providers/auth_provider.dart';
 import '../../../../../../core/utils/funcations/route_pages/push_routes.dart';
 import '../../../../../common_widgets/aline_widget.dart';
 
@@ -18,9 +19,12 @@ class MenuButtonsWidgets extends ConsumerWidget {
     return Column(
       children: [
         /// apartments of owner
+        aline,
         isLogined
             ? ButtonListTileWidget(
                 onTap: () {
+                  ref.read(ownerIdNotifier.notifier).state = 0;
+
                   myPushName(context, MyPagesRoutes.apartmentsOwner);
                 },
                 title: SetLocalization.of(context)!

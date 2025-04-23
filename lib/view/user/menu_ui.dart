@@ -27,9 +27,12 @@ class _MenuUiState extends ConsumerState<MenuUi> {
         ? MenuLogout(
             onChange: widget.onChange,
           )
-        :  MenuLogin(onChange: widget.onChange,);
+        : MenuLogin(
+            onChange: widget.onChange,
+          );
   }
 }
+
 //when user not login menu
 class MenuLogout extends ConsumerStatefulWidget {
   const MenuLogout({
@@ -56,16 +59,17 @@ class _MenuLogoutState extends ConsumerState<MenuLogout> {
           ),
           const LoginButtonWidget(),
           const TextButtonRegWidget(),
-
           const VersionAppTextWidget()
         ],
       ),
     );
   }
 }
+
 //when user login menu
 class MenuLogin extends ConsumerWidget {
   const MenuLogin({super.key, this.onChange});
+
   final Function(bool)? onChange;
 
   @override
@@ -78,10 +82,16 @@ class MenuLogin extends ConsumerWidget {
           ContainerMenuWidget(
             onChange: onChange,
             isLogined: true,
-
           ),
+          SizedBox(height: 30,),
+          // ElevatedButtonWidget(
+          //     child: Text("otp Testing"),
+          //     onPressed: () {
+          //       Navigator.push(context, MaterialPageRoute(builder: (context) =>  OtpLoginScreen()));
+          //     },
+          //     context: context),
           const LogoutButtonWidget(),
-          const VersionAppTextWidget()
+          const VersionAppTextWidget(),
         ],
       ),
     );
