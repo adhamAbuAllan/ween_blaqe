@@ -103,6 +103,13 @@ final phoneRegController = StateProvider<TextEditingController>((ref) {
       () => controller.dispose()); // Dispose when the provider is disposed
   return controller;
 });
+final otpCodeController = StateProvider<TextEditingController>((ref) {
+  //Reg => registration
+  final controller = TextEditingController();
+  ref.onDispose(
+      () => controller.dispose()); // Dispose when the provider is disposed
+  return controller;
+});
 
 final passwordLoginController = StateProvider<TextEditingController>((ref) {
   final controller = TextEditingController();
