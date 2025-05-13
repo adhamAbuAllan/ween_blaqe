@@ -51,17 +51,20 @@ class FloatingActionButtonWidgetState
                       .containerTheme(ref: ref),
                   onClickOkBtn: () {
                     Navigator.pop(context);
-                    myPushName(context, MyPagesRoutes.register);
+                    myPushName(context, MyPagesRoutes.login);
                   },
                   textOfCancelButton:
                       SetLocalization.of(context)!.getTranslateValue("cancel"),
                   context: context,
-                  title: SetLocalization.of(context)!
-                      .getTranslateValue("login_to_create_ad"),
+                  //login_to_create_ad
+                  title:
+                      SetLocalization.of(context)!.getTranslateValue("login"),
                   message: SetLocalization.of(context)!
-                      .getTranslateValue("login_to_add_apartment"),
-                  textOfOkButton: SetLocalization.of(context)!
-                      .getTranslateValue("create_account"),
+                      .getTranslateValue("login_to_create_ad"),
+                  // SetLocalization.of(context)!
+                  //     .getTranslateValue("login_to_add_apartment"),
+                  textOfOkButton:
+                      SetLocalization.of(context)!.getTranslateValue("login"),
                 );
           } else {
             myPushName(context, MyPagesRoutes.step1);

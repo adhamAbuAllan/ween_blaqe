@@ -59,21 +59,36 @@ class _ApartmentsListConsumerState extends ConsumerState<ApartmentsListWidget> {
   @override
   Widget build(BuildContext context) {
     return CustomScrollView(
-      clipBehavior: Clip.antiAliasWithSaveLayer,
-      physics: const BouncingScrollPhysics(
-          decelerationRate: ScrollDecelerationRate.fast),
+      physics: const BouncingScrollPhysics(),
       controller: widget.scrollController,
       slivers: [
-        SliverToBoxAdapter(
-          child: widget.haveCitiesBar
-              ? SizedBox(
-                  height: 70,
-                  child: CitiesBarWidget(
-                    onClick: widget.onClick,
-                  ))
-              : const SizedBox(
-                  height: 10,
-                ),
+        widget.haveCitiesBar
+            ? SliverAppBar(
+          backgroundColor: ref
+              .read(themeModeNotifier.notifier)
+              .backgroundAppTheme(ref: ref),
+          leading: SizedBox(),
+          expandedHeight: 70,
+          floating: true,
+          snap: true,
+          // Enables smooth snapping
+          pinned: false,
+          stretch: true,
+          // Optional: allows for stretch/bounce effect
+          flexibleSpace: FlexibleSpaceBar(
+            collapseMode: CollapseMode.pin,
+            background: SizedBox(
+              height: 70,
+              child: CitiesBarWidget(
+                onClick: widget.onClick,
+              ),
+            ),
+          ),
+        )
+            : const SliverToBoxAdapter(
+          child: SizedBox(
+            height: 10,
+          ),
         ),
         SliverList(
           delegate: SliverChildBuilderDelegate(

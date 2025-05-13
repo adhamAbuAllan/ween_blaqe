@@ -5,6 +5,10 @@ import 'package:ween_blaqe/view/common_widgets/button_widgets/outline_button_wid
 import '../../../constants/get_it_controller.dart';
 
 class AlertWithTwoBtn {
+
+
+
+
   // var  visible = true;
 
   static show
@@ -53,6 +57,15 @@ class AlertWithTwoBtn {
                   fontWeight: FontWeight.w400),
             ),
             actions: [
+              ElevatedButtonWidget(
+                  onPressed: () {
+                    onClicked();
+                  },
+                  context: context,
+                  child: Text(
+                    textOfOkButton,
+                  )),
+
               OutlinedButtonWidget(
                   onPressed: () {
                     Navigator.pop(context);
@@ -62,14 +75,6 @@ class AlertWithTwoBtn {
                   )),
               // SizedBox(width: 1,),
 
-              ElevatedButtonWidget(
-                  onPressed: () {
-                    onClicked();
-                  },
-                  context: context,
-                  child: Text(
-                    textOfOkButton,
-                  ))
             ],
           );
         });

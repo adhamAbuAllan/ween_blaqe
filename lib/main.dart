@@ -26,6 +26,7 @@ import 'package:get/get.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:ween_blaqe/controller/function_controller/change_theme_mode.dart';
 import 'package:flutter/services.dart';
+import 'package:ween_blaqe/controller/provider_controllers/providers/system_provider.dart';
 
 // import 'package:ween_blaqe/controller/owner_controller/owner_controller.dart';
 import 'package:ween_blaqe/core/utils/funcations/route_pages/push_routes.dart';
@@ -122,15 +123,15 @@ class _OwnMaterialAppConsumerState
     final locale = ref.watch(languageProvider);
 
     return GetMaterialApp(
-      debugShowCheckedModeBanner: false,
+      debugShowCheckedModeBanner: ref.read(isDebugMode),
       darkTheme: ThemeData(
         useMaterial3: false,
-        fontFamily: 'IBM',
+        fontFamily: 'Cairo',
         colorScheme: ColorScheme.fromSwatch().copyWith(secondary: Colors.grey),
       ),
       theme: ThemeData(
           useMaterial3: false,
-          fontFamily: 'IBM',
+          fontFamily: 'Cairo',
           switchTheme: const SwitchThemeData(),
           colorSchemeSeed: const Color(0xffff9800),
           bottomNavigationBarTheme: const BottomNavigationBarThemeData(

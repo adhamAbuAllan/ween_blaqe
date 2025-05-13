@@ -142,29 +142,17 @@ flutter:
 #    - family: Cairo
 #      fonts:
 #        - asset: fonts/Cairo/Cairo-SemiBold.ttf
-    - family: IBM
+    - family: Cairo
       fonts:
-        - asset: fonts/IBM/IBMPlexSansArabic-Bold.ttf
-        - asset: fonts/IBM/IBMPlexSansArabic-ExtraLight.ttf
-        - asset: fonts/IBM/IBMPlexSansArabic-Light.ttf
-        - asset: fonts/IBM/IBMPlexSansArabic-Medium.ttf
-        - asset: fonts/IBM/IBMPlexSansArabic-Regular.ttf
-        - asset: fonts/IBM/IBMPlexSansArabic-SemiBold.ttf
-        - asset: fonts/IBM/IBMPlexSansArabic-Thin.ttf
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+        - asset: fonts/Cairo/static/Cairo-Black.ttf
+        - asset: fonts/Cairo/static/Cairo-Bold.ttf
+        - asset: fonts/Cairo/static/Cairo-ExtraBold.ttf
+        - asset: fonts/Cairo/static/Cairo-ExtraLight.ttf
+        - asset: fonts/Cairo/static/Cairo-Light.ttf
+        - asset: fonts/Cairo/static/Cairo-Medium.ttf
+        - asset: fonts/Cairo/static/Cairo-Regular.ttf
+        - asset: fonts/Cairo/static/Cairo-SemiBold.ttf
+        - asset: fonts/Cairo/Cairo-VariableFont_slnt,wght.ttf
 
 #    - family: TT Norms
 #      fonts:

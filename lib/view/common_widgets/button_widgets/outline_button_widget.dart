@@ -64,7 +64,7 @@ ButtonStyle outlinedButton({
       fontSize: getIt<AppDimension>().isSmallScreen(context) ? 14 : 16,
       color: primaryColor,
       fontWeight: FontWeight.w500,
-      fontFamily: 'IBM',
+      fontFamily: 'Cairo',
     ),
     side: borderSide ?? BorderSide(width: 1, color: borderColor),
     padding: const EdgeInsets.symmetric(horizontal: 10),

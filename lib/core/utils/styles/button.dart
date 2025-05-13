@@ -21,7 +21,7 @@ ButtonStyle fullButton({Color? backgroundColor}) {
     elevation: 0,
     textStyle: const TextStyle(
       fontSize: 16,
-      fontFamily: "IBM",
+      fontFamily: "Cairo",
       fontWeight: FontWeight.w500,
     ),
     shape: const RoundedRectangleBorder(
@@ -45,7 +45,7 @@ ButtonStyle outlinedButton(
       fontSize: getIt<AppDimension>().isSmallScreen(context) ? 14 : 16,
       color: primaryColor,
       fontWeight: FontWeight.w500 ,
-      fontFamily: 'IBM',
+      fontFamily: 'Cairo',
     ),
     side: BorderSide(
         width: 1,

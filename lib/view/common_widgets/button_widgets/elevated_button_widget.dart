@@ -30,7 +30,7 @@ ButtonStyle fullButton({required Color color , required BuildContext context}) {
     textStyle: TextStyle(
 
       fontSize: getIt<AppDimension>().isSmallScreen(context) ?14: 16,
-      fontFamily: "IBM",
+      fontFamily: "Cairo",
       fontWeight:getIt<AppDimension>().isSmallScreen(context) ?  FontWeight
           .w500: FontWeight.w400,
     ),

@@ -51,7 +51,7 @@ class ButtonCheckerPhoneNumberCompletedWidget extends ConsumerWidget {
                   color: Colors.blue,
                   fontSize:
                       getIt<AppDimension>().isSmallScreen(context) ? 12 : 14,
-                  fontFamily: 'IBM'),
+                  fontFamily: 'Cairo'),
             ))
       ],
     );

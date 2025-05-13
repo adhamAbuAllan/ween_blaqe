@@ -66,7 +66,7 @@ class _SubTitle extends ConsumerWidget {
                   color: Colors.grey.shade600,
                   fontSize: 14,
                   fontWeight: FontWeight.w500,
-                  fontFamily: 'IBM'),
+                  fontFamily: 'Cairo'),
               softWrap: true,
             ),
           ),

@@ -101,7 +101,7 @@ class DataOfOwnerAndButtonWidget extends ConsumerWidget {
                     child: Text(
                         SetLocalization.of(context)!
                             .getTranslateValue("edit_data"),
-                        style: const TextStyle(fontFamily: "IBM"))),
+                        style: const TextStyle(fontFamily: "Cairo"))),
               ),
             ),
           )

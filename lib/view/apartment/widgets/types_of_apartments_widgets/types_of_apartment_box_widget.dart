@@ -84,7 +84,7 @@ class ApartmentShowTypesTextButtonWidget extends ConsumerWidget {
           style: TextStyle(
             color: ref.read(themeModeNotifier.notifier).textTheme(ref: ref),
             fontSize: getIt<AppDimension>().isSmallScreen(context) ? 14 : 15,
-            fontFamily: 'IBM',
+            fontFamily: 'Cairo',
           ),
         ),
       ),

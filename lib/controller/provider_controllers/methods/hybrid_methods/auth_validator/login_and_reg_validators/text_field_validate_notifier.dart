@@ -1,5 +1,6 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+import '../../../../providers/system_provider.dart';
 import '../../../../statuses/validate_text_form_field_state.dart';
 import 'package:flutter/material.dart';
 
@@ -19,7 +20,8 @@ class FormFieldsNotifier extends StateNotifier<Map<String, TextFieldState>> {
     
   void updateValue(String fieldKey, String value,
       {BuildContext? context, WidgetRef? ref}) {
-    String? error = Validator.validateField(fieldKey, value,context!);
+    String? error = Validator.validateField(fieldKey, value,context!,
+        isDebugMode: ref?.read(isDebugMode)??false);
 
     state = {
       ...state,

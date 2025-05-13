@@ -27,8 +27,11 @@ import 'package:upgrader/upgrader.dart';
 ///
 //weenbalaqee server host
 //Loclhost for physical Divise
-class ServerWeenBalaqee {static String server = "http://192.168.2.2:8000/api/";
-  // static String postAll = "${server}post/all";
+class ServerWeenBalaqee {
+  static String server = "http://192.168.2.1:8000/api/";
+
+  static String get serverWithoutApi => server.replaceFirst(
+      'api/', ''); // static String postAll = "${server}post/all";
   static String userLogin = "${server}user/login";
   static String userUpdate = "${server}user/update";
   static String checkPhone = "${server}user/check_phone";
@@ -62,8 +65,7 @@ class ServerWeenBalaqee {static String server = "http://192.168.2.2:8000/api/";
   static String commentAdd = "${server}comment/add";
   static String uploadImages = "${server}photo/add";
   static String deleteImage = "${server}photo/delete";
-static String showApartmentImages = "${server}photo/show";
-
+  static String showApartmentImages = "${server}photo/show";
 }
 
 class ServerLocalhost {

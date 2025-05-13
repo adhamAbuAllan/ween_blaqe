@@ -31,7 +31,6 @@ class _MainScreenState extends ConsumerState<MainUi> {
         color: themeMode.primaryTheme(ref: ref),
         child: Scaffold(
           backgroundColor: themeMode.backgroundAppTheme(ref: ref),
-        
           body: IndexedStack(
             index: index,
             children: [
@@ -39,11 +38,10 @@ class _MainScreenState extends ConsumerState<MainUi> {
               const BookmarkApartmentUi(),
               MenuUi(
                 onChange: (value) {
-                    WidgetsBinding.instance.addPostFrameCallback((_) async {
-                      setState(() {
-                        themeMode.toggleThemeMode(value);
-        
-                      });
+                  WidgetsBinding.instance.addPostFrameCallback((_) async {
+                    setState(() {
+                      themeMode.toggleThemeMode(value);
+                    });
                   });
                   myPushNameAnimation(context);
                 },
