@@ -232,8 +232,8 @@ final newPasswordValidate = StateProvider<String?>((ref) => null);
 final sureNewPasswordValidate = StateProvider<String?>((ref) => null);
 final updatePhoneValidate = StateProvider<String?>((ref) => null);
 final countriesCodes = StateProvider<List<String>>((ref) => [
-      "+964",
-    ]);
+  "+970",
+  "+972",    ]);
 final typeOfUser = StateProvider<List<String>>((ref) => [
       "بائع",
       "مكتب عقاري",

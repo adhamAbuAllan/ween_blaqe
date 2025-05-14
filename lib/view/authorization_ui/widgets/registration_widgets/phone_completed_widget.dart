@@ -8,6 +8,7 @@ import '../../../../constants/get_it_controller.dart';
 import '../../../../constants/localization.dart';
 import '../../../../controller/provider_controllers/providers/color_provider.dart';
 import '../../../common_widgets/text_form_field_widgets/text_form_filed_widget.dart';
+import 'button_checker_phone_number_completed_widget.dart';
 
 class PhoneCompletedWidget extends ConsumerWidget {
   const PhoneCompletedWidget({
@@ -50,11 +51,22 @@ class PhoneCompletedWidget extends ConsumerWidget {
                 ],
               )
             : const SizedBox(),
-        PhoneNumberWidget(
-          hasContainer: hasContainer,
-          validateTextValue: validateValue,
-          controller: controller,
-          isPhoneRegTextField: isPhoneRegTextField,
+        Row(
+          children: [
+            Expanded(
+              flex: 2,
+              child: PhoneNumberWidget(
+                hasContainer: hasContainer,
+                validateTextValue: validateValue,
+                controller: controller,
+                isPhoneRegTextField: isPhoneRegTextField,
+              ),
+            ),
+            const SizedBox(width: 10),
+            const Expanded(
+              child: DropDownMenuWidget(),
+            ),
+          ],
         ),
         // const Spacer(),
         SizedBox(
@@ -63,7 +75,7 @@ class PhoneCompletedWidget extends ConsumerWidget {
             children: [CustomErrorText(validateValue ?? "")],
           ),
         ),
-        // const ButtonCheckerPhoneNumberCompletedWidget(),
+        const ButtonCheckerPhoneNumberCompletedWidget(),
         SizedBox(
           height: getIt<AppDimension>().isSmallScreen(context) ? 10 : 20,
         ),
@@ -100,7 +112,8 @@ class DropDownMenuWidget extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     return DropdownFieldWidget(
-        horizantalPadding: 0,
+
+      horizantalPadding: 0,
         isStringOnly: true,
         onChanged: (newValue) {
           ref.read(selectedCountryCode.notifier).state = newValue!;
@@ -129,7 +142,7 @@ class PhoneNumberWidget extends ConsumerWidget {
     WidgetRef ref,
   ) {
     return TextFormFieldWidget(
-      hintText: "07XX XXX XXXX",
+
       validateTextValue: validateTextValue,
       isPhoneRegTextField: isPhoneRegTextField ?? true,
       fontSize: getIt<AppDimension>().isSmallScreen(context) ? 14 : 16,

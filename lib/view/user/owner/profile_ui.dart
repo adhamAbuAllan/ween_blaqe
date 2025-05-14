@@ -58,11 +58,11 @@ class _ProfileOfOwnerConsumerState extends ConsumerState<ProfileUi> {
 
     ref.read(updatePhoneNumberController.notifier).state.text =
         (await sp).getString("phone")?.substring(3) ??
-            "07XXXXXXXX".substring(3);
+            "97000000000".substring(3);
 
-    // ref.read(userData)?.phone?.startsWith("970") ?? true
-    //     ? ref.read(selectedCountryCode.notifier).state = "+970"
-    //     : ref.read(selectedCountryCode.notifier).state = "+972";
+    ref.read(userData)?.phone?.startsWith("970") ?? true
+        ? ref.read(selectedCountryCode.notifier).state = "+970"
+        : ref.read(selectedCountryCode.notifier).state = "+972";
   }
 
   @override

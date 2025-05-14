@@ -79,8 +79,8 @@ flutter_icons:
     sdk: flutter
   linter: null
 flutter_native_splash:
-  color: "#cdcdcd"
-  image: assets/images/qi_logo.png
+  color: "#2B2B2B"
+  image: assets/images/icon_app.png
   android: true
   ios: true
   web: false

@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 // import '../../../features/statuses/validate_text_form_field_state.dart';
+import '../../../../../../core/utils/function_that_effect_widgets/remove_plus_from_phone_number.dart';
 import '../../../../providers/auth_provider.dart';
 
 Future<void> validateAndRegistration(
@@ -19,12 +20,12 @@ Future<void> validateAndRegistration(
   String passwordControllerValue = ref.read(passwordRegController).text;
   String userNameControllerValue = ref.read(userNameController).text;
   int typeOfUserValue = ref.read(dropdownProvider);
-  // String selectedCountryCodeValue = ref.read(selectedCountryCode);
+  String selectedCountryCodeValue = ref.read(selectedCountryCode);
   bool? formPhoneState = formPhoneKey.currentState?.validate();
   bool? formPasswordState = formRegPasswordKey.currentState?.validate();
   bool? formUsernameState = formUsernameKey.currentState?.validate();
 
-// await   newRemovePlusSymbol(ref: ref,codeCountry:  selectedCountryCodeValue,phoneNumber:  phoneControllerValue);
+await   newRemovePlusSymbol(ref: ref,codeCountry:  selectedCountryCodeValue,phoneNumber:  phoneControllerValue);
 
   ref.read(formFieldsNotifier.notifier).updateValue(
       "phoneNumberRegistration", phoneControllerValue,
