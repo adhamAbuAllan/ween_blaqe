@@ -38,15 +38,20 @@ class _SplashScreenState extends ConsumerState<SplashScreenUi> {
     BuildContext context,
   ) {
     return Scaffold(
-        backgroundColor: const Color(0xffd9d9d9),
+        backgroundColor: const Color(0x2ef0f0fe),
         body: ColorfulSafeArea(
           bottomColor: Colors.transparent,
           color: ref.read(themeModeNotifier.notifier).primaryTheme(ref: ref),
-          child: Center(
-            child: Image(
-              image: AssetImage("assets/images/qi_logo.png"),
-            ),
-          ),
+          child: const SingleChildScrollView(
+              child: Center(
+                  child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                Image(
+                  image: AssetImage(
+                      "assets/images/splash screen heigh qulity with large size.png"),
+                )
+              ]))),
         ));
   }
 

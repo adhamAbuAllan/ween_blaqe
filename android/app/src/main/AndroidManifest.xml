@@ -36,7 +36,7 @@
 
     <application
         android:hardwareAccelerated="true"
-        android:label="عقاري"
+        android:label="وين بلاقي"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher"
         android:usesCleartextTraffic="true"

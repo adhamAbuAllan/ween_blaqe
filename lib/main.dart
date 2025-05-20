@@ -25,7 +25,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:get/get.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:supabase_flutter/supabase_flutter.dart';
 import 'package:ween_blaqe/controller/function_controller/change_theme_mode.dart';
 import 'package:flutter/services.dart';
 
@@ -94,10 +93,10 @@ void main() async {
     DeviceOrientation.portraitUp,
     DeviceOrientation.portraitDown,
   ]);
-  await Supabase.initialize(
-    url: 'https://xocwlsvdiawzwxyfexlw.supabase.co',
-    anonKey: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InhvY3dsc3ZkaWF3end4eWZleGx3Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDQ4MzE1NDgsImV4cCI6MjA2MDQwNzU0OH0.pA7ttvEJ7kc1JaCZpGe0fSIhSlA8whP-htMj2MRldnA',
-  );
+  // await Supabase.initialize(
+  //   url: 'https://xocwlsvdiawzwxyfexlw.supabase.co',
+  //   anonKey: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InhvY3dsc3ZkaWF3end4eWZleGx3Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDQ4MzE1NDgsImV4cCI6MjA2MDQwNzU0OH0.pA7ttvEJ7kc1JaCZpGe0fSIhSlA8whP-htMj2MRldnA',
+  // );
   Get.put(ChangeThemeMode());
   Get.put(ConnectivityController());
   await configureInjection();
