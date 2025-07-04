@@ -38,7 +38,7 @@ class FloatingActionButtonWidgetState
         });
         debugPrint("is connected $isConnected");
         if (isConnected) {
-          if (NewSession.get("logged", "") == "") {
+          if (NewSession.get(PrefKeys.logged, "") == "") {
             /// this how show if user not logged
             ref.read(alertNotifier.notifier).alertWithTwoBtn(
                   textColor:

@@ -16,7 +16,7 @@ class SocialConnectionDataUpdaterNotifier extends StateNotifier<AuthState> {
 ///  conneectoin for owner. 
   Future<void> socialConnectionDataUpdater(WidgetRef ref, BuildContext context,) async {
     state = state.copyWith(isLoading: true);
-    final ownerId = NewSession.get("id", -1);
+    final ownerId = NewSession.get(PrefKeys.id, -1);
 
     final url = Uri.parse(ServerWeenBalaqee.userUpdate);
 

@@ -5,6 +5,7 @@ import 'package:ween_blaqe/view/user/owner/widgets/menu_widgets/login_menu_widge
 import 'package:ween_blaqe/view/user/owner/widgets/menu_widgets/login_menu_widgets/logout_button_widget.dart';
 import 'package:ween_blaqe/view/user/owner/widgets/menu_widgets/logout_menu_widgets/login_button_widget.dart';
 
+import '../../constants/strings.dart';
 import '../../session/new_session.dart';
 import 'owner/widgets/menu_widgets/logout_menu_widgets/container_logout_widget.dart';
 import 'owner/widgets/menu_widgets/logout_menu_widgets/text_button_reg_widget.dart';
@@ -23,7 +24,7 @@ class MenuUi extends ConsumerStatefulWidget {
 class _MenuUiState extends ConsumerState<MenuUi> {
   @override
   Widget build(BuildContext context) {
-    return NewSession.get("logged", "") == ""
+    return NewSession.get(PrefKeys.logged, "") == ""
         ? MenuLogout(
             onChange: widget.onChange,
           )

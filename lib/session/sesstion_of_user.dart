@@ -3,19 +3,21 @@ import 'package:ween_blaqe/api/apartments_api/apartments.dart';
 
 import '../api/users.dart';
 
+import '../constants/strings.dart';
 import 'new_session.dart';
-saveUserInfo(User data,{DataOfOneApartment ? apartment } ) {
-  NewSession.save("logged", "OK");
+
+saveUserInfo(User data, {DataOfOneApartment? apartment}) {
+  NewSession.save(PrefKeys.logged, "OK");
   // if(apartmentModelController.ownerToken!=null){
   //   NewSession.save("token", apartmentModelController.ownerToken);
   //   debugPrint("the token of owner is ${apartmentModelController.ownerToken}");
   //
   // }
-  NewSession.save<int>("id", data.id??-1);
-  NewSession.save<String>("token", data.token??"null");
+  NewSession.save<int>(PrefKeys.id, data.id ?? -1);
+  NewSession.save<String>(PrefKeys.token, data.token ?? "null");
   // Session.save("profile", data.profile);
 
-  NewSession.save("name", data.name);
+  NewSession.save(PrefKeys.name, data.name);
 
   /*
              * be careful !!!
@@ -29,40 +31,36 @@ saveUserInfo(User data,{DataOfOneApartment ? apartment } ) {
 */
 
   // NewSession.save("type", data.type);
-  NewSession.save("phone", data.phone);
-  NewSession.save("profile", data.profile);
-  NewSession.save("apartmentId",apartment?.id??-1 );
-  NewSession.save("facebook", data.facebook);
-  NewSession.save("email", data.email);
-  NewSession.save("createdAt",data.timeAgoCreated );
+  NewSession.save(PrefKeys.phone, data.phone);
+  NewSession.save(PrefKeys.profile, data.profile);
+  NewSession.save(PrefKeys.apartmentId, apartment?.id ?? -1);
+  NewSession.save(PrefKeys.facebook, data.facebook);
+  NewSession.save(PrefKeys.email, data.email);
+  NewSession.save(PrefKeys.createdAt, data.timeAgoCreated);
 
   // NewSession.save("countryPhoneNumberId", data.)
   // NewSession.save("gender", data.gender);
   // NewSession.save("university", data.university);
-
-
 }
 //
 
-
 removeUserInfo() {
-
-  NewSession.remove("logged");
-  NewSession.remove("token");
-  NewSession.remove("id");
-  NewSession.remove("profile");
-  NewSession.remove("facebook");
-  NewSession.remove("email");
-  NewSession.remove("name");
+  NewSession.remove(PrefKeys.logged);
+  NewSession.remove(PrefKeys.token);
+  NewSession.remove(PrefKeys.id);
+  NewSession.remove(PrefKeys.profile);
+  NewSession.remove(PrefKeys.facebook);
+  NewSession.remove(PrefKeys.email);
+  NewSession.remove(PrefKeys.name);
   // NewSession.remove("gender");
-  NewSession.remove("type_id");
-  NewSession.remove('phone');
-  NewSession.remove('createdAt');
+  NewSession.remove(PrefKeys.typeId);
+  NewSession.remove(PrefKeys.phone);
+  NewSession.remove(PrefKeys.createdAt);
   // NewSession.remove("university_id");
 }
 
 // saveUserInfoOfTeach(User data) {
-//   NewSession.save("logged", "OK");
+//   NewSession.save(PrefKeys.logged", "OK");
 //   // NewSession.save("token", data.token);
 //   NewSession.save<int>("id", data.id);
 //   // Session.save("profile", data.profile);

@@ -2,6 +2,7 @@ import 'dart:ui';
 
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+import '../../../constants/strings.dart';
 import '../../../session/new_session.dart';
 import '../methods/local_methods/language_notifier.dart';
 //LanguageNotifier
@@ -13,22 +14,22 @@ final languageNotifier = StateNotifierProvider<LanguageNotifier, Locale>(
 final widthSizeWithActiveEnButtonInSmallScreen = StateProvider<double>((ref) =>
 (NewSession
     .get
-  ("language", "en") == "en" ? 48 : 50));//English Button width for small
+  (PrefKeys.language, "en") == "en" ? 48 : 50));//English Button width for small
 // screen
 // size
 final widthSizeWithInActiveEnButton = StateProvider<double>((ref) =>  (NewSession
     .get
-("language", "en") == "en" ? 62 : 64)); //English Button width for normal
+(PrefKeys.language, "en") == "en" ? 62 : 64)); //English Button width for normal
 // screen
 // size
 final heightSizeActiveEnButtonInSmallScreen = StateProvider<double>((ref) =>
 (NewSession.get
-  ("language", "en") == "en" ? 28 : 30)); // English Button height for small
+  (PrefKeys.language, "en") == "en" ? 28 : 30)); // English Button height for small
 // screen
 // size
 final heightSizeInActiveEnButton = StateProvider<double>((ref) =>  (NewSession
     .get
-("language", "en") == "en" ? 34 : 36));//English Button height for normal
+(PrefKeys.language, "en") == "en" ? 34 : 36));//English Button height for normal
 // screen
 // size
 
@@ -37,22 +38,22 @@ final heightSizeInActiveEnButton = StateProvider<double>((ref) =>  (NewSession
 final widthSizeWithActiveArButtonInSmallScreen = StateProvider<double>((ref) =>
 (NewSession
     .get
-  ("language", "ar") == "ar" ? 48 : 50));// Arabic Button width for small
+  (PrefKeys.language, "ar") == "ar" ? 48 : 50));// Arabic Button width for small
 // screen
 // size
 final widthSizeWithInActiveArButton = StateProvider<double>((ref) =>
 (NewSession
     .get
-("language", "ar") == "ar" ? 62 : 64));// Arabic Button width for normal screen
+(PrefKeys.language, "ar") == "ar" ? 62 : 64));// Arabic Button width for normal screen
 // size
 final heightSizeActiveArButtonInSmallScreen = StateProvider<double>((ref) =>
 (NewSession.get
-  ("language", "ar") == "ar" ? 28 : 30));// Arabic Button  height for small
+  (PrefKeys.language, "ar") == "ar" ? 28 : 30));// Arabic Button  height for small
 // screen
 // size
 final heightSizeInActiveArButton = StateProvider<double>((ref) =>  (NewSession
     .get
-("language", "ar") == "ar" ? 34 : 36));// Arabic Button height for normal
+(PrefKeys.language, "ar") == "ar" ? 34 : 36));// Arabic Button height for normal
 // screen
 // size
 /*

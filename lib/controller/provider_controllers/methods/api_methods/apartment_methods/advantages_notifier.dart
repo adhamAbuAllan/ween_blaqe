@@ -35,7 +35,7 @@ class AdvantagesNotifier extends StateNotifier<AdvantageState> {
     var advantagesApiNotifier = ref.read(advantagesApi.notifier).state;
     /// a [advantageChosen] is an advantages that user chosen. a new advantages.
     var advantageChosen = ref.read(advantagesNotifier).chosen;
-    var token = (await sp).get("token");
+    var token = (await sp).get(PrefKeys.token);
     debugPrint("loading...");
     final String url = ServerWeenBalaqee.apartmentAdvantagesInsert;
 /// two important thing to insert advantages in any apartment first 'id of
@@ -152,7 +152,7 @@ class AdvantagesNotifier extends StateNotifier<AdvantageState> {
   /// remove all advantages that already saved it in database.
   Future<void> deleteAdvInApartment(
       {required String apartmentId, required WidgetRef ref}) async {
-    var token = (await sp).get("token");
+    var token = (await sp).get(PrefKeys.token);
 
     final url = Uri.parse(ServerWeenBalaqee.apartmentAdvantagesDelete);
 

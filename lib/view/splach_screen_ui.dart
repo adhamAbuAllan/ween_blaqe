@@ -1,7 +1,6 @@
 import 'dart:async';
 import 'package:colorful_safe_area/colorful_safe_area.dart';
 import 'package:flutter/material.dart';
-import 'package:ween_blaqe/controller/provider_controllers/providers/apartment_provider.dart';
 import 'package:ween_blaqe/controller/provider_controllers/providers/color_provider.dart';
 import 'package:ween_blaqe/controller/provider_controllers/providers/language_proivder.dart';
 import '../constants/nums.dart';
@@ -24,8 +23,8 @@ class _SplashScreenState extends ConsumerState<SplashScreenUi> {
       // await ref.watch(mapStateProvider.notifier).getUserLocation(ref: ref);
 
       ref.read(languageNotifier.notifier);
-      if (NewSession.get("language", "").isEmpty) {
-        NewSession.save("language", "ar");
+      if (NewSession.get(PrefKeys.language, "").isEmpty) {
+        NewSession.save(PrefKeys.language, "ar");
       }
       ref.read(themeModeNotifier.notifier).loadThemeMode();
     });
@@ -57,10 +56,10 @@ class _SplashScreenState extends ConsumerState<SplashScreenUi> {
 
   Future<void> navigateToHome() async {
     Future.delayed(const Duration(milliseconds: 1700), () {
-      NewSession.get("isFirstTime", "") != "OK"
-          ? NewSession.save("language", "ar")
+      NewSession.get("PrefKeys.isFirstTime", "") != "OK"
+          ? NewSession.save(PrefKeys.language, "ar")
           : null;
-      NewSession.get('isFirstTime', "") != "OK"
+      NewSession.get('PrefKeys.isFirstTime', "") != "OK"
           ? Navigator.pushReplacementNamed(context, MyPagesRoutes.introScreen)
           : Navigator.pushReplacementNamed(context, MyPagesRoutes.main);
     });

@@ -36,7 +36,7 @@ class FloatingActionButtonNoInternetWidget extends ConsumerWidget {
         context,
         MyPagesRoutes.main,
             (route) => route.settings.name == MyPagesRoutes.main,
-        (NewSession.get("logged", "def") == "ok"
+        (NewSession.get(PrefKeys.logged, "def") == "ok"
             ? MyPagesRoutes.accountOfOwner
             : MyPagesRoutes.accountBeforeLoginInStudent));
   }

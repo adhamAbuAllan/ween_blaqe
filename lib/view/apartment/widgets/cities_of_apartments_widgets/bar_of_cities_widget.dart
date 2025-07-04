@@ -26,7 +26,10 @@ class CitiesBarWidget extends ConsumerStatefulWidget {
 class _CitiesBarWidgetState extends ConsumerState<CitiesBarWidget> {
   @override
   Widget build(BuildContext context) {
-    final List<String> buttonLabels = ["بائع", "مكتب عقاري", "محمع سكني"];
+    final List<String> buttonLabels = [
+      "مالك",
+      "مكتب عقاري",
+    ];
     return SingleChildScrollView(
       keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior.onDrag,
       scrollDirection: Axis.horizontal,
@@ -35,37 +38,37 @@ class _CitiesBarWidgetState extends ConsumerState<CitiesBarWidget> {
         elevation: 0,
         child: Row(
           children: [
-            ref.watch(mapStateProvider).loadingLocation
-                ? Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 15),
-                    child: CircularProgressIndicator(
-                      color: ref
-                          .read(themeModeNotifier.notifier)
-                          .primaryTheme(ref: ref),
-                    ),
-                  )
-                : CityButtonWidget(
-                    city: City(),
-                    onClick: widget.onLocationPress!,
-                    context: context,
-                    style: ref
-                                .watch(fetchApartmentNotifier)
-                                .apartmentsList
-                                .data
-                                ?.first
-                                .distance_in_meters !=
-                            null
-                        ? fullButton(
-                                backgroundColor: ref
-                                    .read(themeModeNotifier.notifier)
-                                    .primaryTheme(ref: ref))
-                            .copyWith(
-                            foregroundColor:
-                                WidgetStateProperty.all<Color>(Colors.white),
-                          )
-                        : null,
-                    child: const Icon(Icons.location_on),
-                  ),
+            // ref.watch(mapStateProvider).loadingLocation
+            //     ? Padding(
+            //         padding: const EdgeInsets.symmetric(horizontal: 15),
+            //         child: CircularProgressIndicator(
+            //           color: ref
+            //               .read(themeModeNotifier.notifier)
+            //               .primaryTheme(ref: ref),
+            //         ),
+            //       )
+            //     : CityButtonWidget(
+            //         city: City(),
+            //         onClick: widget.onLocationPress!,
+            //         context: context,
+            //         style: ref
+            //                     .watch(fetchApartmentNotifier)
+            //                     .apartmentsList
+            //                     .data
+            //                     ?.first
+            //                     .distance_in_meters !=
+            //                 null
+            //             ? fullButton(
+            //                     backgroundColor: ref
+            //                         .read(themeModeNotifier.notifier)
+            //                         .primaryTheme(ref: ref))
+            //                 .copyWith(
+            //                 foregroundColor:
+            //                     WidgetStateProperty.all<Color>(Colors.white),
+            //               )
+            //             : null,
+            //         child: const Icon(Icons.location_on),
+            //       ),
 
             // Generate city buttons from the cities list
             ...ref.watch(cityNotifier).cities.map((c) => CityButtonWidget(
@@ -80,7 +83,7 @@ class _CitiesBarWidgetState extends ConsumerState<CitiesBarWidget> {
                             ? ref.read(selectedCityIdToFilter.notifier).state =
                                 0
                             : ref.read(selectedCityIdToFilter.notifier).state =
-                                c.id!;
+                                c.id??0;
                         await ref
                             .read(fetchApartmentNotifier.notifier)
                             .fetchApartments(

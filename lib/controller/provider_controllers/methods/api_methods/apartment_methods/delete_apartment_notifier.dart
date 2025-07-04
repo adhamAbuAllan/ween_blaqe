@@ -17,7 +17,7 @@ class DeleteApartmentNotifier extends StateNotifier<ApartmentState> {
     int apartmentId,
     WidgetRef ref,
   ) async {
-    final token = (await sp).get("token");
+    final token = (await sp).get(PrefKeys.token);
 
     final response = await http.post(
       Uri.parse(ServerWeenBalaqee.apartmentDelete),

@@ -111,7 +111,7 @@ void main() async {
   );
 }
 
-final savedLanguage = NewSession.get('language', 'ar');
+final savedLanguage = NewSession.get(PrefKeys.language, 'ar');
 final initialLocale = (savedLanguage == 'ar')
     ? const Locale('ar', 'JO')
     : const Locale('en', 'US');
@@ -242,7 +242,7 @@ class _MainState extends State<Main> {
   void initState() {
     super.initState();
     debugPrint(
-        "code language now is in sp is -- ${NewSession.get("language", "def")}");
+        "code language now is in sp is -- ${NewSession.get(PrefKeys.language, "def")}");
     // introController.saveIsFirstTime();
     controller.addListener(listener);
     SystemChrome.setPreferredOrientations([

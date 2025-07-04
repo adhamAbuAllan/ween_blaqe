@@ -3,13 +3,10 @@ import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:ween_blaqe/constants/localization.dart';
 import 'package:ween_blaqe/constants/strings.dart';
 import 'package:ween_blaqe/controller/provider_controllers/providers/connectivity_provider.dart';
 import 'package:ween_blaqe/controller/provider_controllers/providers/no_internet_provider.dart';
-import 'package:ween_blaqe/core/utils/funcations/route_pages/push_routes.dart';
 import 'package:ween_blaqe/session/new_session.dart';
 import 'package:ween_blaqe/view/no_internet_feature/no_internet_widgets/app_bar_no_internet_widget.dart';
 import 'package:ween_blaqe/view/no_internet_feature/no_internet_widgets/container_animated_widget.dart';
@@ -34,7 +31,7 @@ class _NoInternetUiState extends ConsumerState<NoInternetUi>
     WidgetsBinding.instance.addPostFrameCallback((_) async {
       var sephaText = ref.read(sephaTextProvider.notifier).state;
 
-      NewSession.get("language", "ar") == 'en'
+      NewSession.get(PrefKeys.language, "ar") == 'en'
           ? sephaText = [
               "Subhan Allah",
               "Alhamdulillah",

@@ -31,7 +31,7 @@ class UpdateApartmentNotifier extends StateNotifier<ApartmentState> {
     var price = ref.read(priceController.notifier).state.text;
     var cityId = ref.read(selectedCityId);
     var typeId = ref.read(selectedTypeId);
-    final token = (await sp).get("token");
+    final token = (await sp).get(PrefKeys.token);
     final url = Uri.parse(ServerWeenBalaqee.apartmentUpdate);
 
     final response = await http.post(

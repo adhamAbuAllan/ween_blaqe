@@ -26,6 +26,7 @@ import '../../../api/users.dart';
 // import '../../../core/utils/funcations/go_url_launcher_methodes/go_to_whatsapp_method.dart';
 
 // import '../../../main.dart';
+import '../../../constants/strings.dart';
 import '../../../controller/provider_controllers/providers/color_provider.dart';
 import '../../../main.dart';
 import '../../../controller/provider_controllers/providers/auth_provider.dart';
@@ -51,13 +52,13 @@ class _ProfileOfOwnerConsumerState extends ConsumerState<ProfileUi> {
   var countOfApartmentsOfOwner = 0;
 
   void initializeValue() async {
-    (await sp).setString("name", ref.read(userData)?.name ?? "user name");
+    (await sp).setString(PrefKeys.name, ref.read(userData)?.name ?? "user name");
     ref.read(updateUsernameController.notifier).state.text =
-        (await sp).getString("name") ?? "user name";
-    (await sp).setString("phone", ref.read(userData)?.phone ?? "9700000000");
+        (await sp).getString(PrefKeys.name) ?? "user name";
+    (await sp).setString(PrefKeys.phone, ref.read(userData)?.phone ?? "9700000000");
 
     ref.read(updatePhoneNumberController.notifier).state.text =
-        (await sp).getString("phone")?.substring(3) ??
+        (await sp).getString(PrefKeys.phone)?.substring(3) ??
             "97000000000".substring(3);
 
     ref.read(userData)?.phone?.startsWith("970") ?? true
@@ -75,7 +76,7 @@ class _ProfileOfOwnerConsumerState extends ConsumerState<ProfileUi> {
 
       await ref
           .read(refreshUserDataNotifier.notifier)
-          .refreshUserData(userId: NewSession.get("id", -1), ref: ref);
+          .refreshUserData(userId: NewSession.get(PrefKeys.id, -1), ref: ref);
 
       await ref
           .read(refreshAndSetSocialDataNotifier.notifier)

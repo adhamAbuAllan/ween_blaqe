@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:ween_blaqe/view/apartment/widgets/types_of_apartments_widgets'
     '/pointer_type_widget.dart';
 
+import '../../../../constants/strings.dart';
 import '../../../../controller/provider_controllers/providers/apartment_provider.dart';
 import 'package:ween_blaqe/constants/coordination.dart';
 
@@ -71,7 +72,7 @@ class ApartmentShowTypesTextButtonWidget extends ConsumerWidget {
           padding: const WidgetStatePropertyAll(
             EdgeInsets.symmetric(horizontal: 10),
           ),
-          alignment: NewSession.get("language", "ar") == "en"
+          alignment: NewSession.get(PrefKeys.language, "ar") == "en"
               ? Alignment.centerLeft
               : Alignment.centerRight,
           overlayColor: WidgetStatePropertyAll(

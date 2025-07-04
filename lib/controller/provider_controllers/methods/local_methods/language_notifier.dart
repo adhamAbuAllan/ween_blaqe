@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:get/get.dart';
 
+import '../../../../constants/strings.dart';
 import '../../../../session/new_session.dart';
 
 class LanguageNotifier extends StateNotifier<Locale> {
@@ -26,7 +27,7 @@ class LanguageNotifier extends StateNotifier<Locale> {
   }
 
   Future<void> saveLanguage(String langCode) async {
-    await NewSession.save('language', langCode);
+    await NewSession.save(PrefKeys.language, langCode);
   }
 
 

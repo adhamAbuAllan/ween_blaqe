@@ -5,6 +5,7 @@ import 'package:ween_blaqe/controller/provider_controllers/providers/language_pr
 import '../../../../../constants/coordination.dart';
 import '../../../../../constants/get_it_controller.dart';
 import '../../../../../constants/localization.dart';
+import '../../../../../constants/strings.dart';
 import '../../../../../controller/provider_controllers/providers/color_provider.dart';
 import '../../../../../core/utils/funcations/route_pages/push_routes.dart';
 import '../../../../../session/new_session.dart';
@@ -98,12 +99,12 @@ class ArabicButton extends ConsumerWidget {
             ref.read(languageNotifier.notifier).changeLanguage("ar", context);
             ref.read(languageNotifier.notifier).saveLanguage("ar");
           });
-          if (NewSession.get("language", "ar") == "ar") {
+          if (NewSession.get(PrefKeys.language, "ar") == "ar") {
             return;
           }
           await myPushNameAnimation(context);
 
-          NewSession.save("language", "ar");
+          NewSession.save(PrefKeys.language, "ar");
 
           /// languageController.changeLanguage("ar", context);
 
@@ -112,9 +113,9 @@ class ArabicButton extends ConsumerWidget {
           // e.g., changeLanguage('ar', context);
         },
         style: ElevatedButton.styleFrom(
-          elevation: NewSession.get("language", "ar") == 'ar' ? 0 : 3.5,
+          elevation: NewSession.get(PrefKeys.language, "ar") == 'ar' ? 0 : 3.5,
           backgroundColor: NewSession.get(
-                      "language",
+                      PrefKeys.language,
                       "ar"
                           "") ==
                   'ar'
@@ -162,16 +163,16 @@ class EnglishButton extends ConsumerWidget {
             ref.read(languageNotifier.notifier).saveLanguage("en");
           });
 
-          if (NewSession.get("language", "en") == "en") {
+          if (NewSession.get(PrefKeys.language, "en") == "en") {
             return;
           }
 
           await myPushNameAnimation(context);
-          NewSession.save("language", "en");
+          NewSession.save(PrefKeys.language, "en");
         },
         style: ElevatedButton.styleFrom(
-          elevation: NewSession.get("language", "en") == 'en' ? 0 : 3.5,
-          backgroundColor: NewSession.get("language", "en") == 'en'
+          elevation: NewSession.get(PrefKeys.language, "en") == 'en' ? 0 : 3.5,
+          backgroundColor: NewSession.get(PrefKeys.language, "en") == 'en'
               ? (ref.read(themeModeNotifier.notifier).primaryTheme(ref: ref))
               : Colors.grey, // Highlight selected
           // language

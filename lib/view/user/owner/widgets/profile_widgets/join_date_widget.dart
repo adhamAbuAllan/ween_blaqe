@@ -5,6 +5,7 @@ import 'package:ween_blaqe/controller/provider_controllers/providers/color_provi
 import '../../../../../constants/coordination.dart';
 import '../../../../../constants/get_it_controller.dart';
 import '../../../../../constants/localization.dart';
+import '../../../../../constants/strings.dart';
 import '../../../../../session/new_session.dart';
 
 class JoinDateWidget extends ConsumerWidget {
@@ -38,7 +39,7 @@ class JoinDateWidget extends ConsumerWidget {
             height: 15,
           ),
           Text(
-              " ${SetLocalization.of(context)!.getTranslateValue("account_created_since")}  ${NewSession.get("createdAt", "def")} ${SetLocalization.of(context)!.getTranslateValue("until_now")}",
+              " ${SetLocalization.of(context)!.getTranslateValue("account_created_since")}  ${NewSession.get(PrefKeys.createdAt, "def")} ${SetLocalization.of(context)!.getTranslateValue("until_now")}",
               style: TextStyle(
                   color: ref.read(themeModeNotifier.notifier).textTheme(ref: ref),
                   fontSize: getIt<AppDimension>().isSmallScreen(context) ? 14 : 16,

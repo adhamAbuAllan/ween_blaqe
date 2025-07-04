@@ -4,6 +4,7 @@ import 'package:ween_blaqe/controller/provider_controllers/providers/color_provi
 
 import '../../../../../constants/coordination.dart';
 import '../../../../../constants/get_it_controller.dart';
+import '../../../../../constants/strings.dart';
 import '../../../../../main.dart';
 import '../../../../../controller/provider_controllers/providers/auth_provider.dart';
 
@@ -31,11 +32,11 @@ class AppBarUpdateUserDataWidget extends ConsumerWidget
           if (ref.watch(dataHasChanged.notifier).state != true) {
             if (ref.read(updateUsernameController).text.isEmpty) {
               ref.read(updateUsernameController.notifier).state.text =
-                  (await sp).getString("name") ?? "user name";
+                  (await sp).getString(PrefKeys.name) ?? "user name";
             }
             if (ref.read(updatePhoneNumberController).text.isEmpty) {
               ref.read(updatePhoneNumberController.notifier).state.text =
-                  (await sp).getString("phone")?.substring(3) ??
+                  (await sp).getString(PrefKeys.phone)?.substring(3) ??
                       "97000000000".substring(3);
             }
           }

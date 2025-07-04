@@ -5,6 +5,7 @@ import 'package:ween_blaqe/controller/provider_controllers/providers/color_provi
 import '../../../../../constants/coordination.dart';
 import '../../../../../constants/get_it_controller.dart';
 import '../../../../../constants/localization.dart';
+import '../../../../../constants/strings.dart';
 import '../../../../../session/new_session.dart';
 import '../../social_media_buttons_connection/email_social_button.dart';
 import '../../social_media_buttons_connection/facebook_social_button.dart';
@@ -51,13 +52,13 @@ class SocialMediaWidget extends ConsumerWidget {
 
                 children: [
                   Padding(
-                    padding: NewSession.get("language", "ar") == "en"
+                    padding: NewSession.get(PrefKeys.language, "ar") == "en"
                         ? const EdgeInsets.only(left: 10 * 2)
                         : const EdgeInsets.only(right: 10 * 2),
                     child: const WhatsAppSocialButton(),
                   ),
                   Padding(
-                    padding: NewSession.get("language", "ar") == "en"
+                    padding: NewSession.get(PrefKeys.language, "ar") == "en"
                         ? EdgeInsets.only(
                             right: getIt<AppDimension>().isSmallScreen(context)
                                 ? 0

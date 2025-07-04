@@ -15,7 +15,8 @@ class StudentCountFieldWidget extends ConsumerWidget {
           ? formStudentCountValidateKey
           : null,
       child: ContainerFieldWidget(
-        title: ref.watch(typesNotifier).selectedType?.id == 1
+        title: ref.watch(typesNotifier).selectedType?.id == 1 ||
+            ref.watch(typesNotifier).selectedType?.id == null
             ? SetLocalization.of(context)!.getTranslateValue("allowed_people_count")
             : SetLocalization.of(context)!
                 .getTranslateValue("allowed_students"),

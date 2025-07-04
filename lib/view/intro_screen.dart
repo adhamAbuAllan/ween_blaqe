@@ -113,21 +113,7 @@ class _IntroScreenUiState extends ConsumerState<IntroScreenUi> {
             imageFlex: 1,
           ),
         ),
-        PageViewModel(
-          reverse: false,
-          useRowInLandscape: true,
-          useScrollView: false,
-          titleWidget: const SizedBox(),
-          bodyWidget: const SizedBox(),
-          image: _buildFullscreenImage(
-              'assets/images/intro_images/splash_screen6.png'),
-          decoration: pageDecoration.copyWith(
-            // contentMargin: const EdgeInsets.symmetric(horizontal: 16),
-            fullScreen: true,
-            bodyFlex: 0,
-            imageFlex: 1,
-          ),
-        ),
+
       ],
       globalBackgroundColor: Colors.orange,
 

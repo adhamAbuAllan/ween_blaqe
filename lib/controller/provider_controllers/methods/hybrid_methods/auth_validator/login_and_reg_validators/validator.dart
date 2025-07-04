@@ -19,10 +19,12 @@ import '../../../../../../constants/localization.dart';
 class Validator {
   ///[validatePhone] that only for login
   static String? validatePhone(String value, BuildContext context) {
+
     debugPrint("value phone validate = $value");
     if (value.isEmpty) return 'fill_field';
     if (!value.startsWith('97')) {
-      return "phone number should start with country code";
+      return SetLocalization.of(context)
+          ?.getTranslateValue("phone_number_should_start_with_country_code");
     }
     if (value.length > 12 || value.length < 12) {
       return SetLocalization.of(context)

@@ -6,6 +6,7 @@ import 'package:ween_blaqe/controller/provider_controllers/providers/auth_provid
 import '../../../../constants/coordination.dart';
 import '../../../../constants/get_it_controller.dart';
 import '../../../../constants/localization.dart';
+import '../../../../constants/strings.dart';
 import '../../../../controller/provider_controllers/providers/color_provider.dart';
 import '../../../../session/new_session.dart';
 
@@ -30,7 +31,7 @@ class ButtonCheckerPhoneNumberCompletedWidget extends ConsumerWidget {
                   horizontal: 5,
                 )),
                 alignment: NewSession.get(
-                            "language",
+                            PrefKeys.language,
                             ""
                                 "ar") ==
                         "en"

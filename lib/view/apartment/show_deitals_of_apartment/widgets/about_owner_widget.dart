@@ -222,11 +222,9 @@ class _AboutOwnerContainerWidgetState extends ConsumerState<AboutOwnerWidget> {
     debugPrint("current ownerId $id");
     switch (id) {
       case 1:
-        return "بائع";
+        return "مالك";
       case 2:
         return "مكتب عقاري";
-      case 3:
-        return "محمع سكني";
       default:
         return "بائع";
     }

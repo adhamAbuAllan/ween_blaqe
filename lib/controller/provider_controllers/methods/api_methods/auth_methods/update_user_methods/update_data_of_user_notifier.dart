@@ -48,7 +48,7 @@ class UpdateDataOfUserNotifier extends StateNotifier<AuthState> {
       final response = await http.post(
         url,
         body: jsonEncode({
-          'id': NewSession.get("id", -1),
+          'id': NewSession.get(PrefKeys.id, -1),
           'name': usernameControllerValue,
           'phone': selectedCountryCodeValue.substring(1) + phoneControllerValue,
         }),
@@ -65,14 +65,14 @@ class UpdateDataOfUserNotifier extends StateNotifier<AuthState> {
         if (usernameControllerValue != ref
             .watch(userData)
             ?.name) {
-          (await sp).remove("name");
-          (await sp).setString("name", usernameControllerValue);
+          (await sp).remove(PrefKeys.name);
+          (await sp).setString(PrefKeys.name, usernameControllerValue);
         }
         if (phoneControllerValue != ref
             .watch(userData)
             ?.phone) {
-          (await sp).remove("phone");
-          (await sp).setString("phone", phoneControllerValue);
+          (await sp).remove(PrefKeys.phone);
+          (await sp).setString(PrefKeys.phone, phoneControllerValue);
         }
 
         debugPrint('User updated successfully');

@@ -25,7 +25,7 @@ class CompressAndUploadProfileImageNotifier extends StateNotifier<AuthState> {
 
     var request = http.MultipartRequest('POST', url);
 
-    request.fields['id'] = (await sp).get("id").toString(); // User ID
+    request.fields['id'] = (await sp).get(PrefKeys.id).toString(); // User ID
 
     var mimeType = lookupMimeType(imageFile.path);
     int imageSize = await imageFile.length();

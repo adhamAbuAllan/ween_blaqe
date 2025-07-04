@@ -4,6 +4,7 @@ import 'package:ween_blaqe/controller/provider_controllers/providers/color_provi
 
 import '../../../../../../constants/coordination.dart';
 import '../../../../../../constants/get_it_controller.dart';
+import '../../../../../../constants/strings.dart';
 import '../../../../../../session/new_session.dart';
 import '../../../../../../controller/provider_controllers/providers/auth_provider.dart';
 import '../../../profile_ui.dart';
@@ -47,7 +48,7 @@ class ContainerOfProfileWidget extends ConsumerWidget {
                           ? 32 / 1.5
                           : 32,
                     )
-                  : (NewSession.get("profile", "def") !=
+                  : (NewSession.get(PrefKeys.profile, "def") !=
                           "images/profile/user.png"
                       ? ServerImageWidget(
                           radius: getIt<AppDimension>().isSmallScreen(context)
@@ -64,7 +65,7 @@ class ContainerOfProfileWidget extends ConsumerWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  NewSession.get("name", ""),
+                  NewSession.get(PrefKeys.name, ""),
                   style: TextStyle(
                     fontSize:
                         getIt<AppDimension>().isSmallScreen(context) ? 16 : 18,
@@ -77,7 +78,7 @@ class ContainerOfProfileWidget extends ConsumerWidget {
                 ),
                 Text(
                   // "عرض الملف الشخصي",
-                  NewSession.get("phone", ""),
+                  NewSession.get(PrefKeys.phone, ""),
                   // "972569339613",
                   style: TextStyle(
                       fontSize: 14,

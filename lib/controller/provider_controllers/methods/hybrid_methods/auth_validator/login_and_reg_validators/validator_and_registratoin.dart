@@ -25,8 +25,10 @@ Future<void> validateAndRegistration(
   bool? formPasswordState = formRegPasswordKey.currentState?.validate();
   bool? formUsernameState = formUsernameKey.currentState?.validate();
 
-await   newRemovePlusSymbol(ref: ref,codeCountry:  selectedCountryCodeValue,phoneNumber:  phoneControllerValue);
-
+  phoneControllerValue = await newRemovePlusSymbol(
+      ref: ref,
+      codeCountry: selectedCountryCodeValue,
+      phoneNumber: phoneControllerValue);
   ref.read(formFieldsNotifier.notifier).updateValue(
       "phoneNumberRegistration", phoneControllerValue,
       context: context);

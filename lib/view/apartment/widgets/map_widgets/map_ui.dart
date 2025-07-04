@@ -82,6 +82,8 @@ class MapSelectModeUi extends StatelessWidget {
   final MapState mapState;
   final LocationNotifier locationNoti;
   final StreamController<String> streamController;
+  final double latitude = 31.904070339860116;
+  final double longitude = 35.203478970904236;
 
   @override
   Widget build(BuildContext context) {
@@ -95,8 +97,8 @@ class MapSelectModeUi extends StatelessWidget {
               ref.read(mapStateProvider.notifier).setMapController(controller);
             },
             markers: mapState.markers,
-            initialCameraPosition: const CameraPosition(
-              target: LatLng(33.3152, 44.3661),
+            initialCameraPosition: CameraPosition(
+              target: LatLng(latitude, longitude),
               zoom: 14,
             ),
             mapType: MapType.normal,

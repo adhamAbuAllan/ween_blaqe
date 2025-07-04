@@ -71,7 +71,7 @@ class ImageApiNotifier extends StateNotifier<ImageState> {
 
     for (int photoId in photoIds) {
       final url = Uri.parse(ServerWeenBalaqee.deleteImage);
-      final token = (await sp).get("token");
+      final token = (await sp).get(PrefKeys.token);
 
       final headers = {
         'Authorization': 'Bearer $token',

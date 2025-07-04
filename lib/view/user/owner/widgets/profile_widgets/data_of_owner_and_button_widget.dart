@@ -73,7 +73,7 @@ class DataOfOwnerAndButtonWidget extends ConsumerWidget {
                   MaterialPageRoute(
                     builder: (context) {
                       ref.read(refreshUserDataNotifier.notifier).refreshUserData(
-                        userId: NewSession.get("id", -1),
+                        userId: NewSession.get(PrefKeys.id, -1),
                         ref: ref,
                       );
 

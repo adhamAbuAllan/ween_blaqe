@@ -15,6 +15,7 @@ import 'package:ween_blaqe/view/user/owner/widgets/change_user_image_widgets'
     '/server_image_widget.dart';
 import '../../../constants/coordination.dart';
 import '../../../constants/get_it_controller.dart';
+import '../../../constants/strings.dart';
 import '../../../session/new_session.dart';
 import '../../../controller/provider_controllers/providers/auth_provider.dart';
 
@@ -58,7 +59,7 @@ class _ChangeUserImageConsumerState extends ConsumerState<UpdateUserImage> {
                   );
                 },
                 child: ref.watch(profileImageFile)?.path == null &&
-                        NewSession.get("profile", "def") ==
+                        NewSession.get(PrefKeys.profile, "def") ==
                             "images/profile/user.png"
                     ? DefaultImageWidget(
                         radius: getIt<AppDimension>().isSmallScreen(context)

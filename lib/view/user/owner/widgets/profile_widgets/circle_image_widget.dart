@@ -9,6 +9,7 @@ import 'package:ween_blaqe/view/user/owner/widgets/change_user_image_widgets'
 import 'package:ween_blaqe/view/user/owner/widgets/change_user_image_widgets'
     '/server_image_widget.dart';
 
+import '../../../../../constants/strings.dart';
 import '../../../../../session/new_session.dart';
 import '../../../../../controller/provider_controllers/providers/auth_provider.dart';
 import '../../change_user_image.dart';
@@ -20,7 +21,7 @@ class CircleImageWidget extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     return Container(
       padding: const EdgeInsets.only(right: 15, left: 15),
-      alignment: NewSession.get("language", 'ar') == 'en'
+      alignment: NewSession.get(PrefKeys.language, 'ar') == 'en'
           ? Alignment.bottomLeft
           : Alignment.bottomRight,
       width: double.infinity,
@@ -47,7 +48,7 @@ class CircleImageWidget extends ConsumerWidget {
 
       ref.watch(profileImageFile)?.path != null ?
         const MobileStorageImageWidget(radius: 40,):
-        ( NewSession.get("profile", "def") != "images/profile/user.png"?
+        ( NewSession.get(PrefKeys.profile, "def") != "images/profile/user.png"?
         const ServerImageWidget(radius: 40,): const DefaultImageWidget(radius: 40,)),
 
 

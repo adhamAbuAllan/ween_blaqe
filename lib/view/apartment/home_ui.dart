@@ -21,6 +21,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:ween_blaqe/view/common_widgets/skeleton_widgets/apartment_skeleton_widgets/skeleton_home_ui.dart';
 
 import '../../../../controller/provider_controllers/statuses/apartment_state.dart';
+import '../../constants/strings.dart';
 import 'apartments_list_widget.dart';
 
 class HomeUi extends ConsumerStatefulWidget {
@@ -47,7 +48,7 @@ animate and scroll the bar of cities.
  */
 
 
-    NewSession.save("isFirstTime", "OK");
+    NewSession.save("PrefKeys.isFirstTime", "OK");
     widget.scrollController?.addListener(() {
       Future.delayed(const Duration(milliseconds: 350), () {
         if (widget.scrollController?.position.userScrollDirection ==
@@ -164,9 +165,9 @@ animate and scroll the bar of cities.
             debugPrint("");
           },
         ),
-        apartmentsList.data?.isEmpty ?? false
-            ? const SizedBox()
-            : const SebhaButtonWidget(),
+        // apartmentsList.data?.isEmpty ?? false
+        //     ? const SizedBox()
+        //     : const SebhaButtonWidget(),
       ],
     );
   }
@@ -200,7 +201,7 @@ class ListApartmentWithTypeBtn extends StatelessWidget {
               !ref.read(isSebhaVisibleNotifier);
         },
         child: Stack(
-            alignment: NewSession.get("language", "ar") ==
+            alignment: NewSession.get(PrefKeys.language, "ar") ==
                     "en"
                         ""
                 ? Alignment.topLeft

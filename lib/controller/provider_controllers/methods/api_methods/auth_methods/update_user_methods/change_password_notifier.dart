@@ -80,7 +80,7 @@ class ChangePasswordNotifier extends StateNotifier<AuthState> {
         // sure password and new password controllers is same --> make action
         final url = Uri.parse(ServerWeenBalaqee.changePassword);
         // var token = (await sp).get("token");
-        var token = NewSession.get("token", "");
+        var token = NewSession.get(PrefKeys.token, "");
         final response = await http.post(
           url,
           headers: {
@@ -89,7 +89,7 @@ class ChangePasswordNotifier extends StateNotifier<AuthState> {
             'Accept': 'application/json',
           },
           body: jsonEncode({
-            'id': NewSession.get("id", -1),
+            'id': NewSession.get(PrefKeys.id, -1),
             'current_password': oldPasswordControllerValue,
             'new_password': newPasswordControllerValue,
             "confirm_new_password": sureNewPasswordControllerValue,

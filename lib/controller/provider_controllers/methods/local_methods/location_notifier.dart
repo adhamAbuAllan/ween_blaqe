@@ -1,11 +1,13 @@
-import 'package:flutter_riverpod/flutter_riverpod.dart';
+
+import 'package:flutter_riverpod/flutter_riverpod.dart'
+    show StateNotifier, WidgetRef;
 import 'package:geolocator/geolocator.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:flutter/material.dart';
-import 'package:ween_blaqe/controller/provider_controllers/providers/auth_provider.dart';
 import 'package:ween_blaqe/controller/provider_controllers/providers/color_provider.dart';
 
 import '../../../../constants/localization.dart';
+import '../../../../constants/strings.dart';
 import '../../../../session/new_session.dart';
 
 import '../../providers/apartment_provider.dart';
@@ -64,8 +66,8 @@ async {
     final currentLatLng = LatLng(position.latitude, position.longitude);
 
     // Save location to SharedPreferences
-    await NewSession.save("lastLat", currentLatLng.latitude);
-    await NewSession.save("lastLng", currentLatLng.longitude);
+    await NewSession.save(PrefKeys.lastLat, currentLatLng.latitude);
+    await NewSession.save(PrefKeys.lastLng, currentLatLng.longitude);
 
     final mapState = ref.read(mapStateProvider.notifier);
     mapState.setMapControllerAndUpdateMarkers(currentLatLng, context);
@@ -83,20 +85,26 @@ async {
   }
 
   Future<void> loadLastLocation(BuildContext context, WidgetRef ref) async {
-    double lastLat = NewSession.get("lastLat", 33.3152); // Default location
-    double lastLng = NewSession.get("lastLng", 44.3661);
 
-    if (lastLat != 33.3152 && lastLng != 44.3661) {
+    double latitude = 31.904070339860116;
+    double longitude = 35.203478970904236;
+
+    double lastLat =
+        NewSession.get(PrefKeys.lastLat, latitude); // Default location
+    double lastLng = NewSession.get(PrefKeys.lastLng, longitude);
+    if (lastLat != latitude && lastLng != longitude) {
       state = LatLng(lastLat, lastLng);
       final mapState = ref.read(mapStateProvider.notifier);
       mapState.setMapControllerAndUpdateMarkers(state!, context);
     } else {
       moveToCurrentLocation(context, ref);
     }
+
   }
 
   Future<void> loadMapStyle(
       {required BuildContext context, required WidgetRef ref}) async {
+
     final String style = ref.watch(themeModeNotifier.notifier).isLightMode
         ? ""
         : await DefaultAssetBundle.of(context)
@@ -144,9 +152,10 @@ class MapStateNotifier extends StateNotifier<MapState> {
           '${state.userPosition?.longitude}');
 
       // ref.read(didPositionProviderNull.notifier).state = false;
-      state =  state.copyWith(
+      state = state.copyWith(
           didServiceLocationEnabled: true,
-          userPosition: state.userPosition,loadingLocation: false);
+          userPosition: state.userPosition,
+          loadingLocation: false);
     }
 
     ;

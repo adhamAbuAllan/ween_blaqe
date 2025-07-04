@@ -37,7 +37,7 @@ class CreateApartmentNotifier extends StateNotifier<ApartmentState> {
     state = state.copyWith(isLoading: true);
 
     var url = Uri.parse(ServerWeenBalaqee.apartmentAdd);
-    var token = (await sp).get("token");
+    var token = (await sp).get(PrefKeys.token);
 
     if (token != null) {
       final headers = {

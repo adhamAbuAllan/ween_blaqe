@@ -2,11 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:ween_blaqe/controller/provider_controllers/providers/color_provider.dart';
 
+import '../../../../../constants/strings.dart';
 import '../../../../../session/new_session.dart';
 
 class ServerImageWidget extends ConsumerWidget {
-  const ServerImageWidget(
-      {super.key, this.radius, this.urlImage});
+  const ServerImageWidget({super.key, this.radius, this.urlImage});
 
   final double? radius;
   final String? urlImage;
@@ -21,7 +21,8 @@ class ServerImageWidget extends ConsumerWidget {
       backgroundImage: urlImage != null
           ? NetworkImage(urlImage ?? "")
           : NetworkImage(
-              "http://softapps.website/ ${NewSession.get("profile", "def")}"),
+              "${ServerWeenBalaqee.serverBase} ${NewSession.get(PrefKeys.profile, ""
+                  "def")}"),
     );
   }
 }

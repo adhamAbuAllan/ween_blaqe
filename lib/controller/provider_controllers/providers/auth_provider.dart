@@ -235,9 +235,8 @@ final countriesCodes = StateProvider<List<String>>((ref) => [
   "+970",
   "+972",    ]);
 final typeOfUser = StateProvider<List<String>>((ref) => [
-      "بائع",
-      "مكتب عقاري",
-      "مجمع سكني",
+  "مالك",
+  "مكتب عقاري",
     ]);
 
 final errorStatusCode = StateProvider<int>((ref) => 0);

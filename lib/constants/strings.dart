@@ -28,6 +28,7 @@ import 'package:upgrader/upgrader.dart';
 //weenbalaqee server host
 //Loclhost for physical Divise
 class ServerWeenBalaqee {static String server = "http://softapps.website/api/";
+  static String serverBase = "http://softapps.website/";
   // static String postAll = "${server}post/all";
   static String userLogin = "${server}user/login";
   static String userUpdate = "${server}user/update";
@@ -257,4 +258,21 @@ class ArabicUpgraderMessages extends UpgraderMessages {
       'الآن'; // "
 // Rele
 // ase Notes"
+}
+class PrefKeys {
+  static const String phone = 'phone';
+  static const String token = 'token';
+  static const String id = 'id';
+  static const String lastLat = 'lastLat';
+  static const String lastLng = 'lastLng';
+  static const String language = 'language';
+  static const String logged = 'logged';
+  static const String isFirstTime = 'isFirstTime';
+  static const String profile = 'profile';
+  static const String name = 'name';
+  static const String apartmentId = 'apartmentId';
+  static const String facebook = 'facebook';
+  static const String email = 'email';
+  static const String createdAt = 'createdAt';
+  static const String typeId = 'type_id';
 }

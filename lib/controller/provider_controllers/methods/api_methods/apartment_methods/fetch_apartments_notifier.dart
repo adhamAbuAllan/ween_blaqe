@@ -2,7 +2,6 @@ import 'dart:convert';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:geolocator/geolocator.dart';
 import 'package:ween_blaqe/controller/provider_controllers/providers/apartment_provider.dart';
 import 'package:ween_blaqe/controller/provider_controllers/providers/auth_provider.dart';
 
@@ -15,6 +14,35 @@ import 'package:http/http.dart' as http;
 class FetchApartmentsNotifier extends StateNotifier<ApartmentState> {
   FetchApartmentsNotifier() : super(ApartmentState());
 
+  int putTypeId(String typeName) {
+    switch (typeName) {
+      case "عائلات":
+        return 1;
+      case "طلاب":
+        return 2;
+      case "طالبات":
+        return 3;
+
+      default:
+        return 0;
+    }
+  }
+
+  String formatUrl(
+      {required WidgetRef ref,
+      int? typeId = 0,
+      int? cityId = 0,
+      int? typeOfOwnerId = 0}) {
+    String url = "${ServerWeenBalaqee.apartmentAll}"
+        "?type_id=$typeId"
+        "&city_id=$cityId"
+        "&type_of_owner=$typeOfOwnerId";
+
+    /// that the userPosition will stop currently, but in the future, will
+    /// enable it.
+    return url;
+  }
+
   /// a [fetchApartments] usage to fetch apartment data.
   Future<Apartments> fetchApartments({
     String? type,
@@ -22,50 +50,40 @@ class FetchApartmentsNotifier extends StateNotifier<ApartmentState> {
     bool? isAll,
     int? latitude,
     int? longitude,
-   required  WidgetRef ref,
+    required WidgetRef ref,
     bool? isWantToEnableLocationService,
     required bool isOwnerApartments,
   }) async {
-
-    late Position? pos;
-
+    // late Position? pos = null;
+    int typeId = putTypeId(type ?? "");
     int typeOfOwnerId = ref.read(selectedTypeOwnerId);
 
-    debugPrint("typeOfOwnerId : $typeOfOwnerId");
     if (typeOfOwnerId != -1) {
       typeOfOwnerId = ref.watch(selectedTypeOwnerId) + 1;
+    } else {
+      typeOfOwnerId = 0;
     }
     state = state.copyWith(isLoading: true);
-    bool locationServiceEnabled = await Geolocator.isLocationServiceEnabled();
-    pos = await ref.read(mapStateProvider).userPosition;
-    String urlWithLocation = "";
-    if (locationServiceEnabled) {
-      await ref.read(mapStateProvider.notifier).getUserLocation(
-            ref: ref,
-          );
-      urlWithLocation = "latitude=${pos?.latitude}&"
-          "longitude=${pos?.longitude}";
-      debugPrint("urlWithLocation : $urlWithLocation");
-    } else {
-      if (isWantToEnableLocationService ?? false) {
-        await ref.read(mapStateProvider.notifier).getUserLocation(
-              ref: ref,
-            );
-        urlWithLocation = await "latitude=${pos?.latitude}&"
-            "longitude=${pos?.longitude}";
-        debugPrint("urlWithLocation : ${urlWithLocation}");
-      }
-    }
-    debugPrint("posLongitude : ${pos?.longitude}");
+    // bool locationServiceEnabled = await Geolocator.isLocationServiceEnabled();
+    // late String urlWithLocation = "";
+    // if (locationServiceEnabled) {
+    // pos = await ref.read(mapStateProvider).userPosition;
 
-    debugPrint(
-        "locationServiceEnabled : $locationServiceEnabled$urlWithLocation");
-    String urlByCity = "${ServerWeenBalaqee.apartmentAll}"
-        "?city_id=$cityId";
-    String urlByTypeOfOwnerId = "${ServerWeenBalaqee.apartmentAll}"
-        "?type_id=$typeOfOwnerId";
-    String urlByCityAndTypeAndTypeOwnerId =
-        "${ServerWeenBalaqee.apartmentAll}?type=$type&&city_id=$cityId&&type_id=$typeOfOwnerId";
+    // await ref.read(mapStateProvider.notifier).getUserLocation(
+    //       ref: ref,
+    //     );
+    // urlWithLocation = "latitude=${pos?.latitude}&"
+    //     "longitude=${pos?.longitude}";
+    // } else {
+    //   if (isWantToEnableLocationService ?? false) {
+    //     await ref.read(mapStateProvider.notifier).getUserLocation(
+    //           ref: ref,
+    //         );
+    // urlWithLocation = await "latitude=${pos?.latitude}&"
+    //     "longitude=${pos?.longitude}";
+    // }
+    // }
+
     // debugPrint("posLAT : ${pos?.latitude}");
 
     if (isOwnerApartments) {
@@ -79,28 +97,13 @@ class FetchApartmentsNotifier extends StateNotifier<ApartmentState> {
         );
       }
     } else {
-      late Uri uri;
-      if (isAll ?? false) {
-        if (typeOfOwnerId != -1) {
-          debugPrint("typeOfOwnerId is $typeOfOwnerId");
-          uri = await pos?.longitude != null
-              ? await Uri.parse("${urlByTypeOfOwnerId}&${urlWithLocation}")
-              : Uri.parse(urlByTypeOfOwnerId);
-        } else if (type == null) {
-          uri = await pos?.longitude != null
-              ? await Uri.parse("${urlByCity}&${urlWithLocation}")
-              : Uri.parse(urlByCity);
-        }
-      } else {
-        debugPrint("cityId is $cityId");
-        uri = await pos?.longitude != null
-            ? await Uri.parse(
-                "${urlByCityAndTypeAndTypeOwnerId}&${urlWithLocation}")
-            : Uri.parse(urlByCityAndTypeAndTypeOwnerId);
-      }
+      Uri uri = Uri.parse(formatUrl(
+          typeId: typeId,
+          typeOfOwnerId: typeOfOwnerId,
+          cityId: cityId,
+          ref: ref));
 
       debugPrint("uri is $uri");
-
       final response = await http.get(uri);
       debugPrint("status code is ${response.statusCode}");
       debugPrint("response body is ${response.body}");
@@ -131,9 +134,14 @@ class FetchApartmentsNotifier extends StateNotifier<ApartmentState> {
 /// a [getApartmentsByOwner] method for owner apartments only.
 Future<Apartments> getApartmentsByOwner({WidgetRef? ref}) async {
   final url = Uri.parse(ServerWeenBalaqee.apartmentOwner);
-  final token = (await sp).get("token");
+  var token = (await sp).get(PrefKeys.token);
   final ownerId = (await sp).get("id");
   int? ownerIdProvider = ref?.watch(ownerIdNotifier.notifier).state;
+  if (ref?.read(isShowOwnerApartmentMode.notifier).state ?? false == true) {
+    if (token == null) {
+      token = "1762|CiaT9P4nugBKqDBchvbUhGYTIk8aubFfpC47vQB8c585f0c6";
+    }
+  }
 
   final response = await http.post(
     url,

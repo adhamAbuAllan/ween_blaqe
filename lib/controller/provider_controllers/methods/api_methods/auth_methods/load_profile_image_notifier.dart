@@ -17,12 +17,12 @@ class LoadProfileImageNotifier extends StateNotifier<AuthState> {
   ref) async {
     state = state.copyWith(isLoading: true);
     final url = Uri.parse(ServerWeenBalaqee.loadProfileImage);
-    var userId = (await sp).get("id").toString();
+    var userId = (await sp).get(PrefKeys.id).toString();
     var response = await http.post(url, body: {"id": userId});
     if (response.statusCode == 200) {
       var responseBody = response.body;
       var jsonResponse = jsonDecode(responseBody);
-      NewSession.save("profile", await jsonResponse['data']['profile']);
+      NewSession.save(PrefKeys.profile, await jsonResponse['data']['profile']);
       NewSession.save(
           "createdAt", await jsonResponse['data']['time_ago']);
 
