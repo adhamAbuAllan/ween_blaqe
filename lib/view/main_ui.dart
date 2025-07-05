@@ -5,13 +5,10 @@ import 'package:ween_blaqe/controller/provider_controllers/providers/animation_p
 import 'package:ween_blaqe/view/apartment/bookmark_ui.dart';
 import 'package:ween_blaqe/view/apartment/home_ui.dart';
 import 'package:ween_blaqe/view/common_widgets/connectivity_listen_widget.dart';
-import 'package:ween_blaqe/view/common_widgets/button_widgets/floating_action_button_widget.dart';
 import 'package:ween_blaqe/view/user/menu_ui.dart';
-import '../controller/provider_controllers/providers/auth_provider.dart';
 import '../controller/provider_controllers/providers/color_provider.dart';
 import '../core/utils/funcations/route_pages/push_routes.dart';
 import 'common_widgets/animations_widgets/bottom_bar_widget.dart';
-import 'common_widgets/bottom_navigation_bar_widget.dart';
 
 class MainUi extends ConsumerStatefulWidget {
   const MainUi({super.key});
@@ -55,7 +52,7 @@ class _MainScreenState extends ConsumerState<MainUi> {
                 padding: const EdgeInsets.only(bottom: 10),
                 child: Align(
                     alignment: Alignment.bottomCenter,
-                    child: CustomBottomNavBarCarved()),
+                    child: CustomBottomNavBarCarved(scrollController: _scrollController,)),
               )
 
             ],

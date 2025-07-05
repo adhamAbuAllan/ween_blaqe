@@ -2,10 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import '../../../controller/provider_controllers/providers/animation_provider.dart';
+import '../../../controller/provider_controllers/providers/apartment_provider.dart';
 import '../../../controller/provider_controllers/providers/color_provider.dart';
 
 class CustomBottomNavBarCarved extends ConsumerStatefulWidget {
-  const CustomBottomNavBarCarved({super.key});
+  const CustomBottomNavBarCarved({super.key,this.scrollController});
+  final ScrollController? scrollController;
 
   @override
   ConsumerState<CustomBottomNavBarCarved> createState() =>
@@ -28,17 +30,45 @@ class _CustomBottomNavBarCarvedState
         duration: const Duration(milliseconds: 3000),
       ),
     );
-    // _controllers[0].repeat();
-    // _controllers[0].forward();
+    _controllers[0].repeat();
+    _controllers[0].forward();
   }
 
   void _onTap(int index) {
     final previousIndex = ref.read(bottomNavProvider);
+
+    if (index == 0 && previousIndex == 0) {
+      // ref.read(isShowOwnerApartmentMode.notifier).state = false;
+      debugPrint(
+          "hasApartmentChanged -- ${ref.watch(isApartmentDataChangedNotifier.notifier).hasAnyChange(ref)}");
+      debugPrint("scrollController offset is ${widget.scrollController?.offset}");
+      // Scroll to top when already on the home page
+      if (widget.scrollController != null && widget.scrollController!.offset > 400) {
+        widget.scrollController!.animateTo(
+          0,
+          duration: const Duration(milliseconds: 300),
+          curve: Curves.easeInOut,
+        );
+      } else if (index == 0 &&
+          previousIndex == 0 &&
+          widget.scrollController!.offset < 100) {
+        ref.read(isAllTypesOfApartmentNotifier.notifier).state = true;
+        ref.read(selectedCityIdToFilter.notifier).state = 0;
+        ref.read(selectedTypeOwnerId.notifier).state = -1;
+        WidgetsBinding.instance.addPostFrameCallback((_) async {
+          await ref.read(fetchApartmentNotifier.notifier).fetchApartments(
+              isOwnerApartments: false, isAll: true, cityId: 0, ref: ref);
+        });
+        ref.read(isBoyStudentNotifier.notifier).state = false;
+        ref.read(isGirlStudentNotifier.notifier).state = false;
+        ref.read(isFamiliesNotifier.notifier).state = false;
+      }
+    }
+
     if (previousIndex == index) {
-      // If it's the same icon, animate again (repeat or restart)
       final controller = _controllers[index];
       controller.reset();
-      controller.forward(); // or .repeat() if you want loop
+      controller.forward();
       return;
     }
 
@@ -51,7 +81,8 @@ class _CustomBottomNavBarCarvedState
     }
 
     final controller = _controllers[index];
-    controller.forward(); // animate only the new selected icon
+    controller.forward();
+
   }
 
   @override
