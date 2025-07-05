@@ -96,5 +96,6 @@ class BottomNavigationBarWidget extends ConsumerWidget {
         ),
       ],
     );
+
   }
 }

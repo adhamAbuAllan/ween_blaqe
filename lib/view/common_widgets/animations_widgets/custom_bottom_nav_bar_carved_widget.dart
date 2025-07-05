@@ -6,7 +6,8 @@ import '../../../controller/provider_controllers/providers/apartment_provider.da
 import '../../../controller/provider_controllers/providers/color_provider.dart';
 
 class CustomBottomNavBarCarved extends ConsumerStatefulWidget {
-  const CustomBottomNavBarCarved({super.key,this.scrollController});
+  const CustomBottomNavBarCarved({super.key, this.scrollController});
+
   final ScrollController? scrollController;
 
   @override
@@ -36,53 +37,13 @@ class _CustomBottomNavBarCarvedState
 
   void _onTap(int index) {
     final previousIndex = ref.read(bottomNavProvider);
+    handelHomeIconClick(
+        index: index,
+        previousIndex: previousIndex,
+        scrollController: widget.scrollController);
 
-    if (index == 0 && previousIndex == 0) {
-      // ref.read(isShowOwnerApartmentMode.notifier).state = false;
-      debugPrint(
-          "hasApartmentChanged -- ${ref.watch(isApartmentDataChangedNotifier.notifier).hasAnyChange(ref)}");
-      debugPrint("scrollController offset is ${widget.scrollController?.offset}");
-      // Scroll to top when already on the home page
-      if (widget.scrollController != null && widget.scrollController!.offset > 400) {
-        widget.scrollController!.animateTo(
-          0,
-          duration: const Duration(milliseconds: 300),
-          curve: Curves.easeInOut,
-        );
-      } else if (index == 0 &&
-          previousIndex == 0 &&
-          widget.scrollController!.offset < 100) {
-        ref.read(isAllTypesOfApartmentNotifier.notifier).state = true;
-        ref.read(selectedCityIdToFilter.notifier).state = 0;
-        ref.read(selectedTypeOwnerId.notifier).state = -1;
-        WidgetsBinding.instance.addPostFrameCallback((_) async {
-          await ref.read(fetchApartmentNotifier.notifier).fetchApartments(
-              isOwnerApartments: false, isAll: true, cityId: 0, ref: ref);
-        });
-        ref.read(isBoyStudentNotifier.notifier).state = false;
-        ref.read(isGirlStudentNotifier.notifier).state = false;
-        ref.read(isFamiliesNotifier.notifier).state = false;
-      }
-    }
-
-    if (previousIndex == index) {
-      final controller = _controllers[index];
-      controller.reset();
-      controller.forward();
-      return;
-    }
-
-    // Otherwise: switch state and animate only the new one
-    ref.read(bottomNavProvider.notifier).state = index;
-
-    for (int i = 0; i < _controllers.length; i++) {
-      _controllers[i].reverse();
-      // _controllers[i].reset(); // stop all animations
-    }
-
-    final controller = _controllers[index];
-    controller.forward();
-
+    handelAnimationBtmBar(
+        controllers: _controllers, index: index, previousIndex: previousIndex);
   }
 
   @override
@@ -132,12 +93,7 @@ class _CustomBottomNavBarCarvedState
                 ),
                 child: Icon(
                   _icons[index],
-                  color:isActive ? Colors.blue : Colors.grey,
-                  // color: isActive
-                  //     ? ref
-                  //         .read(themeModeNotifier.notifier)
-                  //         .primaryTheme(ref: ref)
-                  //     : Colors.grey,
+                  color: isActive ? Colors.blue : Colors.grey,
                   size: 30,
                 ),
               ),
@@ -146,6 +102,63 @@ class _CustomBottomNavBarCarvedState
         }),
       ),
     );
+  }
+
+  void handelAnimationBtmBar(
+      {required List<AnimationController> controllers,
+      required int index,
+      required int previousIndex}) {
+    if (previousIndex == index) {
+      final controller = controllers[index];
+      controller.reset();
+      controller.forward();
+      return;
+    }
+
+    // Otherwise: switch state and animate only the new one
+    ref.read(bottomNavProvider.notifier).state = index;
+
+    for (int i = 0; i < controllers.length; i++) {
+      controllers[i].reverse();
+      // controllers[i].reset(); // stop all animations
+    }
+
+    final controller = controllers[index];
+    controller.forward();
+  }
+
+  void handelHomeIconClick({
+    required int index,
+    required int previousIndex,
+    ScrollController? scrollController,
+  }) {
+    if (index == 0 && previousIndex == 0) {
+      // ref.read(isShowOwnerApartmentMode.notifier).state = false;
+      debugPrint(
+          "hasApartmentChanged -- ${ref.watch(isApartmentDataChangedNotifier.notifier).hasAnyChange(ref)}");
+      debugPrint("scrollController offset is ${scrollController?.offset}");
+      // Scroll to top when already on the home page
+      if (scrollController != null && scrollController.offset > 400) {
+        scrollController.animateTo(
+          0,
+          duration: const Duration(milliseconds: 300),
+          curve: Curves.easeInOut,
+        );
+      } else if (index == 0 &&
+          previousIndex == 0 &&
+          scrollController!.offset < 100) {
+        ref.read(isAllTypesOfApartmentNotifier.notifier).state = true;
+        ref.read(selectedCityIdToFilter.notifier).state = 0;
+        ref.read(selectedTypeOwnerId.notifier).state = -1;
+        WidgetsBinding.instance.addPostFrameCallback((_) async {
+          await ref.read(fetchApartmentNotifier.notifier).fetchApartments(
+              isOwnerApartments: false, isAll: true, cityId: 0, ref: ref);
+        });
+        ref.read(isBoyStudentNotifier.notifier).state = false;
+        ref.read(isGirlStudentNotifier.notifier).state = false;
+        ref.read(isFamiliesNotifier.notifier).state = false;
+      }
+    }
   }
 
   @override

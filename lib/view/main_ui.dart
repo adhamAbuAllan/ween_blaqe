@@ -8,7 +8,7 @@ import 'package:ween_blaqe/view/common_widgets/connectivity_listen_widget.dart';
 import 'package:ween_blaqe/view/user/menu_ui.dart';
 import '../controller/provider_controllers/providers/color_provider.dart';
 import '../core/utils/funcations/route_pages/push_routes.dart';
-import 'common_widgets/animations_widgets/bottom_bar_widget.dart';
+import 'common_widgets/animations_widgets/custom_bottom_nav_bar_carved_widget.dart';
 
 class MainUi extends ConsumerStatefulWidget {
   const MainUi({super.key});
