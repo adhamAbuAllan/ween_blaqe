@@ -7,15 +7,16 @@ import '../../../../../constants/get_it_controller.dart';
 import '../../../../../constants/localization.dart';
 import '../../../../controller/provider_controllers/providers/color_provider.dart';
 import '../../../../core/utils/funcations/go_url_launcher_methodes/go_to_whatsapp_method.dart';
+import '../../../common_widgets/animations_widgets/build_animation_widget.dart';
 import '../../../common_widgets/button_widgets/outline_button_widget.dart';
 
 class ForInquiriesWidget extends ConsumerWidget {
   const ForInquiriesWidget({super.key, required this.apartment});
 
   final DataOfOneApartment apartment;
-
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+
     return Container(
       padding: const EdgeInsets.only(bottom: 10),
       margin: EdgeInsets.fromLTRB(
@@ -51,21 +52,31 @@ class ForInquiriesWidget extends ConsumerWidget {
                 runSpacing:
                     getIt<AppDimension>().isSmallScreen(context) ? 5 : 10,
                 children: [
-                  IntrinsicWidth(child: WhatsAppButton(apartment: apartment)),
+                  IntrinsicWidth(child: FadeInOnVisible(
+                      delay: const Duration(milliseconds: 100),
+                      child: WhatsAppButton(apartment: apartment))),
                   apartment.owner?.email == "user_email"
                       ? const SizedBox()
                       : Padding(
                           padding: const EdgeInsets.symmetric(horizontal: 10),
                           child: IntrinsicWidth(
-                              child: EmailButton(apartment: apartment)),
+                              child: FadeInOnVisible(
+                                  delay: const Duration(milliseconds: 150),
+                                  child: FadeInOnVisible(
+                                      delay: const Duration(milliseconds: 200),
+                                      child: EmailButton(apartment: apartment)))),
                         ),
-                  IntrinsicWidth(child: PhoneButton(apartment: apartment)),
+                  IntrinsicWidth(child: FadeInOnVisible(
+                      delay: const Duration(milliseconds: 250),
+                      child: PhoneButton(apartment: apartment))),
                   apartment.owner?.facebook == "user_name"
                       ? const SizedBox()
                       : Padding(
                           padding: const EdgeInsets.symmetric(horizontal: 10),
                           child: IntrinsicWidth(
-                              child: FacebookButton(apartment: apartment)),
+                              child: FadeInOnVisible(
+                                  delay: const Duration(milliseconds: 300),
+                                  child: FacebookButton(apartment: apartment))),
                         ),
                 ],
               ),

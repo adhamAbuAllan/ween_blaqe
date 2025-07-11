@@ -78,8 +78,8 @@ class _CustomBottomNavBarCarvedState
               controller: controller,
               autoPlay: false,
               effects: [
-                Effect(duration: 2250.ms),
-                Effect(delay: 750.ms, duration: 1500.ms),
+                Effect(duration: 1950.ms),
+                Effect(delay: 350.ms, duration: 1500.ms),
                 ScaleEffect(end: const Offset(1, 1), curve: Curves.easeOutBack),
                 MoveEffect(end: Offset(0, -5)),
                 ElevationEffect(
@@ -135,7 +135,8 @@ class _CustomBottomNavBarCarvedState
     if (index == 0 && previousIndex == 0) {
       // ref.read(isShowOwnerApartmentMode.notifier).state = false;
       debugPrint(
-          "hasApartmentChanged -- ${ref.watch(isApartmentDataChangedNotifier.notifier).hasAnyChange(ref)}");
+        "hasApartmentChanged -- ${ref.watch(isApartmentDataChangedNotifier.notifier).hasAnyChange(ref)}",
+      );
       debugPrint("scrollController offset is ${scrollController?.offset}");
       // Scroll to top when already on the home page
       if (scrollController != null && scrollController.offset > 400) {
@@ -151,8 +152,14 @@ class _CustomBottomNavBarCarvedState
         ref.read(selectedCityIdToFilter.notifier).state = 0;
         ref.read(selectedTypeOwnerId.notifier).state = -1;
         WidgetsBinding.instance.addPostFrameCallback((_) async {
-          await ref.read(fetchApartmentNotifier.notifier).fetchApartments(
-              isOwnerApartments: false, isAll: true, cityId: 0, ref: ref);
+          await ref
+              .read(fetchApartmentNotifier.notifier)
+              .fetchApartments(
+                isOwnerApartments: false,
+                isAll: true,
+                cityId: 0,
+                ref: ref,
+              );
         });
         ref.read(isBoyStudentNotifier.notifier).state = false;
         ref.read(isGirlStudentNotifier.notifier).state = false;

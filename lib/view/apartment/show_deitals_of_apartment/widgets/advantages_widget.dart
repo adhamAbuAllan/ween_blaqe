@@ -5,6 +5,7 @@ import 'package:ween_blaqe/constants/coordination.dart';
 import 'package:ween_blaqe/constants/get_it_controller.dart';
 import 'package:ween_blaqe/constants/localization.dart';
 import 'package:ween_blaqe/controller/provider_controllers/providers/color_provider.dart';
+import 'package:ween_blaqe/view/common_widgets/animations_widgets/build_animation_widget.dart';
 
 import '../../../../api/advantages.dart';
 import '../../../../api/apartments_api/apartments.dart';
@@ -57,9 +58,13 @@ class AdvantagesWidget extends ConsumerWidget {
 
           // Button to show more advantages if there are more than 10
           (advantages.length) > 10
-              ? ShowAllAdvantagesButtonWidget(
-                  oneApartment: oneApartment ?? DataOfOneApartment(),
-                )
+              ? FadeInOnVisible(
+            delay: const Duration(milliseconds: 1000),
+            child: ShowAllAdvantagesButtonWidget(
+
+                    oneApartment: oneApartment ?? DataOfOneApartment(),
+                  ),
+              )
               : const SizedBox(),
         ],
       ),
@@ -73,46 +78,49 @@ class AdvantagesWidget extends ConsumerWidget {
     return advantages?.map((entry) {
           return Padding(
             padding: const EdgeInsets.fromLTRB(12, 0, 12, 0),
-            child: ListTile(
-              title: entry.advName?.isNotEmpty ?? true
-                  ? Text(entry.advName ?? "",
-                      style: TextStyle(
-                        fontSize: getIt<AppDimension>().isSmallScreen(context)
-                            ? 15
-                            : 16,
+            child: FadeInOnVisible(
+              delay: Duration(milliseconds: advantages.indexOf(entry) * 100),
+              child: ListTile(
+                title: entry.advName?.isNotEmpty ?? true
+                    ? Text(entry.advName ?? "",
+                        style: TextStyle(
+                          fontSize: getIt<AppDimension>().isSmallScreen(context)
+                              ? 15
+                              : 16,
+                          color: ref
+                              .read(themeModeNotifier.notifier)
+                              .textTheme(ref: ref),
+                        ))
+                    : const SizedBox(
+                        child: SkeletonLine(
+                            style: SkeletonLineStyle(width: 50, height: 10))),
+                trailing: entry.icon?.isEmpty ?? true
+                    ? const SizedBox(
+                        child: SkeletonAvatar(
+                            style: SkeletonAvatarStyle(width: 28, height: 28)))
+                    : Image.network(
+                        entry.icon!.startsWith("1")
+                            ? "http://${entry.icon!}"
+                            : entry.icon!,
+                        height: getIt<AppDimension>().isSmallScreen(context)
+                            ? 26
+                            : 30,
+                        width: getIt<AppDimension>().isSmallScreen(context)
+                            ? 26
+                            : 30,
+                        errorBuilder: (context, error, stackTrace) {
+                          return const SizedBox(
+                              child: SkeletonAvatar(
+                                  style: SkeletonAvatarStyle(
+                            width: 28,
+                            height: 28,
+                          )));
+                        },
                         color: ref
                             .read(themeModeNotifier.notifier)
                             .textTheme(ref: ref),
-                      ))
-                  : const SizedBox(
-                      child: SkeletonLine(
-                          style: SkeletonLineStyle(width: 50, height: 10))),
-              trailing: entry.icon?.isEmpty ?? true
-                  ? const SizedBox(
-                      child: SkeletonAvatar(
-                          style: SkeletonAvatarStyle(width: 28, height: 28)))
-                  : Image.network(
-                      entry.icon!.startsWith("1")
-                          ? "http://${entry.icon!}"
-                          : entry.icon!,
-                      height: getIt<AppDimension>().isSmallScreen(context)
-                          ? 26
-                          : 30,
-                      width: getIt<AppDimension>().isSmallScreen(context)
-                          ? 26
-                          : 30,
-                      errorBuilder: (context, error, stackTrace) {
-                        return const SizedBox(
-                            child: SkeletonAvatar(
-                                style: SkeletonAvatarStyle(
-                          width: 28,
-                          height: 28,
-                        )));
-                      },
-                      color: ref
-                          .read(themeModeNotifier.notifier)
-                          .textTheme(ref: ref),
-                    ),
+                      ),
+              ),
             ),
           );
         }) ??

@@ -17,7 +17,7 @@ import '../../../../controller/provider_controllers/providers/color_provider.dar
 import '../../../common_widgets/containers_widgets/container_load_widget.dart';
 
 class MapUi extends ConsumerStatefulWidget {
-  const MapUi({
+  const   MapUi({
     super.key,
     this.oneApartment,
   });

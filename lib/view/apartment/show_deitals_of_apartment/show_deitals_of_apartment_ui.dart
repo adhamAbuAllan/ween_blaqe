@@ -19,6 +19,7 @@ import 'package:ween_blaqe/view/apartment/show_deitals_of_apartment/widgets'
 import 'package:ween_blaqe/view/apartment/widgets/carousel_slider_widget.dart';
 import 'package:ween_blaqe/view/apartment/widgets/map_widgets/map_ui.dart';
 import 'package:ween_blaqe/view/apartment/widgets/pointer_of_image_widget.dart';
+import 'package:ween_blaqe/view/common_widgets/animations_widgets/build_animation_widget.dart';
 import 'package:ween_blaqe/view/common_widgets/button_widgets/back_button_widget.dart';
 
 import '../../../../constants/coordination.dart';
@@ -87,20 +88,27 @@ class _ShowDeitalsOfApartmentUiState
               children: [
                 const Padding(
                   padding: EdgeInsets.fromLTRB(8, 0, 8, 0),
-                  child: BackButtonWidget(
-                    style: ButtonStyle(
-                        tapTargetSize: MaterialTapTargetSize.shrinkWrap),
+                  child: FadeInOnVisible(
+
+                    direction: SlideDirection.x,
+                    child: BackButtonWidget(
+                      style: ButtonStyle(
+                          tapTargetSize: MaterialTapTargetSize.shrinkWrap),
+                    ),
                   ),
                 ),
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 20),
-                  child: Text(
-                    "${widget.oneApartment?.timeAgo}",
-                    style: TextStyle(
-                      color: ref
-                          .read(themeModeNotifier.notifier)
-                          .textTheme(ref: ref),
-                      fontSize: 14,
+                  child: FadeInOnVisible(
+                    direction: SlideDirection.y,
+                    child: Text(
+                      "${widget.oneApartment?.timeAgo}",
+                      style: TextStyle(
+                        color: ref
+                            .read(themeModeNotifier.notifier)
+                            .textTheme(ref: ref),
+                        fontSize: 14,
+                      ),
                     ),
                   ),
                 ),
@@ -135,44 +143,70 @@ class _ShowDeitalsOfApartmentUiState
               },
               child: Column(
                 children: [
-                  CoursolSliderWidget(
-                    marageBetweenImages: .85,
-                    imageList: widget.oneApartment!.photos!,
-                    apartmentId: widget.oneApartment!.id ?? 1,
-                    oneApartment: widget.oneApartment!,
+                  FadeInOnVisible(
+                    direction: SlideDirection.x,
+                    child: CoursolSliderWidget(
+                      marageBetweenImages: .85,
+                      imageList: widget.oneApartment!.photos!,
+                      apartmentId: widget.oneApartment!.id ?? 1,
+                      oneApartment: widget.oneApartment!,
+                    ),
                   ),
                   const SizedBox(height: 10),
-                  PointerOfImageWidget(
-                    imageList: widget.oneApartment?.photos ?? [],
-                    apartmentId: widget.oneApartment?.id ?? -1,
+                  FadeInOnVisible(
+                    direction: SlideDirection.xy,
+                    child: PointerOfImageWidget(
+                      imageList: widget.oneApartment?.photos ?? [],
+                      apartmentId: widget.oneApartment?.id ?? -1,
+                    ),
                   ),
                 ],
               ),
             ),
-            GeneralInfoWidget(
-              oneApartment: widget.oneApartment,
-              isGirlStudent: _isGirlStudent,
-              isBoyStudent: _isBoyStudent,
-              isFamilies: _isFamilies,
+            FadeInOnVisible(
+              direction: SlideDirection.y,
+              child: GeneralInfoWidget(
+                oneApartment: widget.oneApartment,
+                isGirlStudent: _isGirlStudent,
+                isBoyStudent: _isBoyStudent,
+                isFamilies: _isFamilies,
+              ),
             ),
-            AboutApartmentWidget(
-              oneApartment: widget.oneApartment ?? DataOfOneApartment(),
-              imageAboutApartmentRoom:
-                  "assets/images/apartments_images/about_apartment/room.png",
+            FadeInOnVisible(
+              direction: SlideDirection.x,
+              child: AboutApartmentWidget(
+                oneApartment: widget.oneApartment ?? DataOfOneApartment(),
+                imageAboutApartmentRoom:
+                    "assets/images/apartments_images/about_apartment/room.png",
+              ),
             ),
-            AdvantagesWidget(oneApartment: widget.oneApartment),
-            ApartmentDescriptionWidget(
-              apartment: widget.oneApartment ?? DataOfOneApartment(),
+            FadeInOnVisible(
+                direction: SlideDirection.x,
+                child: AdvantagesWidget(oneApartment: widget.oneApartment)),
+            FadeInOnVisible(
+              child: ApartmentDescriptionWidget(
+
+                apartment: widget.oneApartment ?? DataOfOneApartment(),
+              ),
             ),
-            MapUi(
-              oneApartment: widget.oneApartment ?? DataOfOneApartment(),
+            FadeInOnVisible(
+              direction: SlideDirection.x,
+              child: MapUi(
+
+                oneApartment: widget.oneApartment ?? DataOfOneApartment(),
+              ),
             ),
-            ForInquiriesWidget(
-                apartment: widget.oneApartment ?? DataOfOneApartment()),
+            FadeInOnVisible(
+              direction: SlideDirection.x,
+              child: ForInquiriesWidget(
+                  apartment: widget.oneApartment ?? DataOfOneApartment()),
+            ),
             ref.read(isShowOwnerApartmentMode)
                 ? SizedBox()
-                : AboutOwnerWidget(
-                    oneApartment: widget.oneApartment ?? DataOfOneApartment()),
+                : FadeInOnVisible(
+                  child: AboutOwnerWidget(
+                      oneApartment: widget.oneApartment ?? DataOfOneApartment()),
+                ),
             const SizedBox(height: 40),
           ],
         ),

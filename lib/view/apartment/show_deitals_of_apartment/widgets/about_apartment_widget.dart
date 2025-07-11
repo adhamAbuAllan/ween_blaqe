@@ -1,8 +1,8 @@
-import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:ween_blaqe/controller/provider_controllers/providers/color_provider.dart';
+import 'package:ween_blaqe/view/common_widgets/animations_widgets/build_animation_widget.dart';
 
 import '../../../../api/apartments_api/apartments.dart';
 import '../../../../constants/coordination.dart';
@@ -58,16 +58,25 @@ class AboutApartmentWidget extends ConsumerWidget {
                   width: 10,
                 ),
                 Flexible(
-                  child: AnimateRoomBox(
-                    oneApartment: oneApartment,
-                    imageAboutApartmentRoom: imageAboutApartmentRoom,
+                  child: FadeInOnVisible(
+                    delay: const Duration(milliseconds: 100),
+                    child: AnimateRoomBox(
+                      oneApartment: oneApartment,
+                      imageAboutApartmentRoom: imageAboutApartmentRoom,
+                    ),
                   ),
                 ),
                 Flexible(
-                  child: AnimateBathRoomBox(oneApartment: oneApartment),
+                  child: FadeInOnVisible(
+                    delay: const Duration(milliseconds: 200),
+                    child: AnimateBathRoomBox(oneApartment: oneApartment),
+                  ),
                 ),
                 Flexible(
-                  child: AnimateAreaBox(oneApartment: oneApartment),
+                  child: FadeInOnVisible(
+                    delay: const Duration(milliseconds: 300),
+                    child: AnimateAreaBox(oneApartment: oneApartment),
+                  ),
                 ),
                 const SizedBox(
                   width: 10,

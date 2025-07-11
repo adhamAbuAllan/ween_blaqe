@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:ween_blaqe/view/apartment/widgets/types_of_apartments_widgets'
     '/pointer_type_widget.dart';
+import 'package:ween_blaqe/view/common_widgets/animations_widgets/build_animation_widget.dart';
 
 import '../../../../constants/strings.dart';
 import '../../../../controller/provider_controllers/providers/apartment_provider.dart';
@@ -29,11 +30,13 @@ class ShowApartmentTypesBoxWidget extends ConsumerWidget {
                   decoration: BoxDecoration(
                     border: Border.all(
                         width: 7,
-                        color: ref.read(themeModeNotifier.notifier).backgroundAppTheme(ref: ref)
-                        ,
+                        color: ref
+                            .read(themeModeNotifier.notifier)
+                            .backgroundAppTheme(ref: ref),
                         strokeAlign: BorderSide.strokeAlignOutside),
-                    color: ref.read(themeModeNotifier.notifier).containerTheme(ref: ref)
-                    ,
+                    color: ref
+                        .read(themeModeNotifier.notifier)
+                        .containerTheme(ref: ref),
                     borderRadius: BorderRadiusDirectional.circular(7),
                   ),
                   height: 200,
@@ -42,10 +45,28 @@ class ShowApartmentTypesBoxWidget extends ConsumerWidget {
                       padding: EdgeInsets.only(top: 0, left: 8, right: 8),
                       child: Column(
                         children: [
-                          TypeRowOfBoyStudent(),
-                          TypeRowOfGirlStudent(),
-                          TypeRowOfFamilies(),
-                          TypeRowOfAllTypes(),
+                          FadeInOnVisible(
+                            direction: SlideDirection.x
+                              ,
+                            delay: Duration(milliseconds: 100),
+                              child: TypeRowOfBoyStudent()),
+                          FadeInOnVisible(
+                              direction: SlideDirection.x,
+                              delay: Duration(milliseconds: 200),
+
+                              child: TypeRowOfGirlStudent()),
+                          FadeInOnVisible(
+                              direction: SlideDirection.x,
+
+                              delay: Duration(milliseconds: 300),
+
+                              child: TypeRowOfFamilies()),
+                          FadeInOnVisible(
+                              direction: SlideDirection.x,
+
+                              delay: Duration(milliseconds: 400),
+
+                              child: TypeRowOfAllTypes()),
                         ],
                       ))),
             )
@@ -155,7 +176,6 @@ class TypeRowOfGirlStudent extends ConsumerWidget {
             WidgetsBinding.instance.addPostFrameCallback((_) async {
               await ref.read(fetchApartmentNotifier.notifier).fetchApartments(
                   ref: ref,
-
                   isOwnerApartments: false,
                   type: "طالبات",
                   isAll: false,
@@ -198,9 +218,8 @@ class TypeRowOfFamilies extends ConsumerWidget {
             WidgetsBinding.instance.addPostFrameCallback(
               (_) async {
                 await ref.read(fetchApartmentNotifier.notifier).fetchApartments(
-                  ref: ref,
-
-                  isOwnerApartments: false,
+                      ref: ref,
+                      isOwnerApartments: false,
                       type: "عائلات",
                       isAll: false,
                       cityId: ref.read(selectedCityIdToFilter.notifier).state,
@@ -239,9 +258,7 @@ class TypeRowOfAllTypes extends ConsumerWidget {
             ref.read(isAllTypesOfApartmentNotifier.notifier).state = true;
             WidgetsBinding.instance.addPostFrameCallback((_) async {
               await ref.read(fetchApartmentNotifier.notifier).fetchApartments(
-                  ref: ref,
-
-                  isOwnerApartments: false, isAll: true, cityId: 0);
+                  ref: ref, isOwnerApartments: false, isAll: true, cityId: 0);
             });
             ref.read(isBoyStudentNotifier.notifier).state = false;
             ref.read(isGirlStudentNotifier.notifier).state = false;

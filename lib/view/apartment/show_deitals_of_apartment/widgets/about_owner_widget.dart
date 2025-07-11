@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:ween_blaqe/api/apartments_api/apartments.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:ween_blaqe/core/utils/funcations/route_pages/push_routes.dart';
+import 'package:ween_blaqe/view/common_widgets/animations_widgets/build_animation_widget.dart';
 
 import '../../../../../constants/coordination.dart';
 import '../../../../../constants/get_it_controller.dart';
@@ -98,116 +99,127 @@ class _AboutOwnerContainerWidgetState extends ConsumerState<AboutOwnerWidget> {
   Row dataOfUserWidget(BuildContext context, {bool isForListHome = false}) {
     return Row(
       children: [
-        Padding(
-          padding: isForListHome
-              ? const EdgeInsets.only(left: 10, top: 15, bottom: 15)
-              : const EdgeInsets.all(10),
-          child:
-          // ref.watch(profileImageFile)?.path != null
-          //     ? MobileStorageImageWidget(
-          //         radius: isForListHome
-          //             ? 20
-          //             : getIt<AppDimension>().isSmallScreen(context)
-          //                 ? 26
-          //                 : 28,
-          //       )
-          //     :
-          // (NewSession.get("profile", "def") != "images/profile/user.png"
-          //         ? ServerImageWidget(
-          //             urlImage:
-          //                 "http://softapps.website/${widget.oneApartment.owner?.profile ?? "images/profile/user.png"}",
-          //             radius: isForListHome
-          //                 ? 20
-          //                 : getIt<AppDimension>().isSmallScreen(context)
-          //                     ? 26
-          //                     : 28,
-          //           )
-          //         :
-          DefaultImageWidget(
-                      radius: isForListHome
-                          ? 20
-                          : getIt<AppDimension>().isSmallScreen(context)
-                              ? 26
-                              : 28,
-                    )
-    // ),
-          // child: widget.oneApartment.owner?.profile == "images/profile/"
-          //     ? CircleAvatar(
-          //         radius: isForListHome
-          //             ? 20
-          //             : getIt<AppDimension>().isSmallScreen(context)
-          //                 ? 26
-          //                 : 28,
-          //         backgroundColor: Colors.grey.shade700,
-          //         child: Icon(
-          //           Icons.person,
-          //           color: Colors.white,
-          //           size:
-          //               getIt<AppDimension>().isSmallScreen(context) ? 26 : 28,
-          //         ),
-          //       )
-          //     : CircleAvatar(
-          //         radius: isForListHome
-          //             ? 20
-          //             : getIt<AppDimension>().isSmallScreen(context)
-          //                 ? 26
-          //                 : 28,
-          //         backgroundColor: ref
-          //             .read(themeModeNotifier.notifier)
-          //             .backgroundAppTheme(ref: ref),
-          //         backgroundImage: NetworkImage(
-          //
-          //             //for localhost
-          //             "http://softapps.website/${widget.oneApartment.owner?.profile ?? "images/profile/user.png"}"),
-          //         //for server
-          //         //   "https://weenbalaqee.com/${widget.oneApartment.owner?.profile ?? "images/profile/user.png"}"),
-          //         child: ref.watch(fetchApartmentNotifier).isLoading
-          //             ? const CircularProgressIndicator()
-          //             : null),
+        FadeInOnVisible(
+          delay: const Duration(milliseconds: 100),
+          child: Padding(
+            padding: isForListHome
+                ? const EdgeInsets.only(left: 10, top: 15, bottom: 15)
+                : const EdgeInsets.all(10),
+            child:
+            // ref.watch(profileImageFile)?.path != null
+            //     ? MobileStorageImageWidget(
+            //         radius: isForListHome
+            //             ? 20
+            //             : getIt<AppDimension>().isSmallScreen(context)
+            //                 ? 26
+            //                 : 28,
+            //       )
+            //     :
+            // (NewSession.get("profile", "def") != "images/profile/user.png"
+            //         ? ServerImageWidget(
+            //             urlImage:
+            //                 "http://softapps.website/${widget.oneApartment.owner?.profile ?? "images/profile/user.png"}",
+            //             radius: isForListHome
+            //                 ? 20
+            //                 : getIt<AppDimension>().isSmallScreen(context)
+            //                     ? 26
+            //                     : 28,
+            //           )
+            //         :
+            DefaultImageWidget(
+                        radius: isForListHome
+                            ? 20
+                            : getIt<AppDimension>().isSmallScreen(context)
+                                ? 26
+                                : 28,
+                      )
+              // ),
+            // child: widget.oneApartment.owner?.profile == "images/profile/"
+            //     ? CircleAvatar(
+            //         radius: isForListHome
+            //             ? 20
+            //             : getIt<AppDimension>().isSmallScreen(context)
+            //                 ? 26
+            //                 : 28,
+            //         backgroundColor: Colors.grey.shade700,
+            //         child: Icon(
+            //           Icons.person,
+            //           color: Colors.white,
+            //           size:
+            //               getIt<AppDimension>().isSmallScreen(context) ? 26 : 28,
+            //         ),
+            //       )
+            //     : CircleAvatar(
+            //         radius: isForListHome
+            //             ? 20
+            //             : getIt<AppDimension>().isSmallScreen(context)
+            //                 ? 26
+            //                 : 28,
+            //         backgroundColor: ref
+            //             .read(themeModeNotifier.notifier)
+            //             .backgroundAppTheme(ref: ref),
+            //         backgroundImage: NetworkImage(
+            //
+            //             //for localhost
+            //             "http://softapps.website/${widget.oneApartment.owner?.profile ?? "images/profile/user.png"}"),
+            //         //for server
+            //         //   "https://weenbalaqee.com/${widget.oneApartment.owner?.profile ?? "images/profile/user.png"}"),
+            //         child: ref.watch(fetchApartmentNotifier).isLoading
+            //             ? const CircularProgressIndicator()
+            //             : null),
+          ),
         ),
         Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Row(
-              spacing: 5,
-              children: [
-                Text(
-                  widget.oneApartment.owner?.name ?? "",
-                  style: TextStyle(
-                    fontSize: isForListHome
-                        ? 15
-                        : getIt<AppDimension>().isSmallScreen(context)
-                            ? 15
-                            : 18,
-                    color: ref
-                        .read(themeModeNotifier.notifier)
-                        .textTheme(ref: ref),
+            FadeInOnVisible(
+              direction: SlideDirection.x,
+              delay: const Duration(milliseconds: 150),
+              child: Row(
+                spacing: 5,
+                children: [
+                  Text(
+                    widget.oneApartment.owner?.name ?? "",
+                    style: TextStyle(
+                      fontSize: isForListHome
+                          ? 15
+                          : getIt<AppDimension>().isSmallScreen(context)
+                              ? 15
+                              : 18,
+                      color: ref
+                          .read(themeModeNotifier.notifier)
+                          .textTheme(ref: ref),
+                    ),
                   ),
-                ),
-                Text(
-                  "- ${getTypeOfUser(id: widget.oneApartment.owner?.typeId)}",
-                  style: TextStyle(
-                    fontSize: 14,
-                    fontWeight: FontWeight.w200,
-                    color: ref
-                        .read(themeModeNotifier.notifier)
-                        .textTheme(ref: ref),
-                  ),
-                )
-              ],
+                  Text(
+                    "- ${getTypeOfUser(id: widget.oneApartment.owner?.typeId)}",
+                    style: TextStyle(
+                      fontSize: 14,
+                      fontWeight: FontWeight.w200,
+                      color: ref
+                          .read(themeModeNotifier.notifier)
+                          .textTheme(ref: ref),
+                    ),
+                  )
+                ],
+              ),
             ),
             isForListHome
                 ? const SizedBox()
                 : Row(
                     children: [
-                      Text(
-                        widget.oneApartment.owner?.phone ?? "",
-                        style: TextStyle(
-                          fontSize: 14,
-                          fontWeight: FontWeight.w200,
-                          color: ref
-                              .read(themeModeNotifier.notifier)
-                              .textTheme(ref: ref),
+                      FadeInOnVisible(
+                        direction: SlideDirection.y,
+                        delay: const Duration(milliseconds: 200),
+                        child: Text(
+                          widget.oneApartment.owner?.phone ?? "",
+                          style: TextStyle(
+                            fontSize: 14,
+                            fontWeight: FontWeight.w200,
+                            color: ref
+                                .read(themeModeNotifier.notifier)
+                                .textTheme(ref: ref),
+                          ),
                         ),
                       ),
                     ],

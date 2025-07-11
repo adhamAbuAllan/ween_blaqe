@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:ween_blaqe/controller/provider_controllers/providers/color_provider.dart';
+import 'package:ween_blaqe/view/common_widgets/animations_widgets/build_animation_widget.dart';
 
 import '../../constants/coordination.dart';
 import '../../constants/get_it_controller.dart';
@@ -34,18 +35,26 @@ class _EmptyScreenWidgetState extends ConsumerState<EmptyScreenWidget> {
         // textDirection: TextDirection.rtl,
 
         children: [
-          Icon(
-            size: 100 * 2,
-            widget.centerIcon,
-            color: ref.read(themeModeNotifier.notifier).textTheme(ref: ref),
-          ),
-          Text(
-            widget.centerText,
-            style: TextStyle(
-              fontSize: getIt<AppDimension>().isSmallScreen(context) ? 16 : 18,
+          FadeInOnVisible(
+            direction: SlideDirection.y,
 
+            child: Icon(
+              size: 100 * 2,
+              widget.centerIcon,
               color: ref.read(themeModeNotifier.notifier).textTheme(ref: ref),
+            ),
+          ),
+          FadeInOnVisible(
+            direction: SlideDirection.x,
 
+            child: Text(
+              widget.centerText,
+              style: TextStyle(
+                fontSize: getIt<AppDimension>().isSmallScreen(context) ? 16 : 18,
+            
+                color: ref.read(themeModeNotifier.notifier).textTheme(ref: ref),
+            
+              ),
             ),
           ),
           widget.centerIconInUnderCenterText != null

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:ween_blaqe/view/common_widgets/animations_widgets/build_animation_widget.dart';
 import 'package:ween_blaqe/view/user/owner/widgets/menu_widgets/login_menu_widgets/profile_container_widget.dart';
 import 'package:ween_blaqe/view/user/owner/widgets/menu_widgets/login_menu_widgets/title_login_widget.dart';
 import 'package:ween_blaqe/view/user/owner/widgets/menu_widgets/login_menu_widgets/logout_button_widget.dart';
@@ -58,9 +59,16 @@ class _MenuLogoutState extends ConsumerState<MenuLogout> {
             onChange: widget.onChange,
             isLogined: false,
           ),
-          const LoginButtonWidget(),
+          FadeInOnVisible(
+              delay: const Duration(milliseconds: 500),
+
+              child: const LoginButtonWidget()),
           const TextButtonRegWidget(),
-          const VersionAppTextWidget()
+          FadeInOnVisible(
+              delay: const Duration(milliseconds: 700),
+
+
+              child: const VersionAppTextWidget())
         ],
       ),
     );
@@ -91,8 +99,14 @@ class MenuLogin extends ConsumerWidget {
           //       Navigator.push(context, MaterialPageRoute(builder: (context) =>  OtpLoginScreen()));
           //     },
           //     context: context),
-          const LogoutButtonWidget(),
-          const VersionAppTextWidget(),
+          FadeInOnVisible(
+              delay: const Duration(milliseconds: 500),
+
+              child: const LogoutButtonWidget()),
+          FadeInOnVisible(
+              delay: const Duration(milliseconds: 700),
+
+              child: const VersionAppTextWidget()),
         ],
       ),
     );
