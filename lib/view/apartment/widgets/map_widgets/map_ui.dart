@@ -5,7 +5,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:ween_blaqe/constants/localization.dart';
 import 'package:ween_blaqe/controller/provider_controllers/methods/local_methods/location_notifier.dart';
-import 'package:ween_blaqe/controller/provider_controllers/statuses/map_state.dart';
+import 'package:ween_blaqe/controller/provider_controllers/statuses/status_of_apartment/map_state.dart';
 import 'package:ween_blaqe/view/apartment/widgets/map_widgets/app_bar_map_widget.dart';
 import 'package:ween_blaqe/view/common_widgets/containers_widgets/container_widget.dart';
 

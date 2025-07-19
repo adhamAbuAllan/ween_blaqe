@@ -24,6 +24,7 @@ class _CustomBottomNavBarCarvedState
   @override
   void initState() {
     super.initState();
+
     _controllers = List.generate(
       _icons.length,
       (_) => AnimationController(
@@ -31,8 +32,13 @@ class _CustomBottomNavBarCarvedState
         duration: const Duration(milliseconds: 3000),
       ),
     );
-    _controllers[0].repeat();
-    _controllers[0].forward();
+    if (ref.read(bottomNavProvider.notifier).state == 0) {
+      _controllers[0].repeat();
+      _controllers[0].forward();
+    }else{
+      _controllers[2].repeat();
+      _controllers[2].forward();
+    }
   }
 
   void _onTap(int index) {
@@ -88,12 +94,20 @@ class _CustomBottomNavBarCarvedState
               child: Container(
                 padding: const EdgeInsets.all(6),
                 decoration: BoxDecoration(
-                  color: isActive ? Colors.blue.shade50 : Colors.transparent,
+                  color: isActive
+                      ? ref
+                          .read(themeModeNotifier.notifier)
+                          .primary300Theme(ref: ref)
+                      : Colors.transparent,
                   borderRadius: BorderRadius.circular(7),
                 ),
                 child: Icon(
                   _icons[index],
-                  color: isActive ? Colors.blue : Colors.grey,
+                  color: isActive
+                      ? ref
+                          .read(themeModeNotifier.notifier)
+                          .primaryTheme(ref: ref)
+                      : Colors.grey,
                   size: 30,
                 ),
               ),
@@ -152,9 +166,8 @@ class _CustomBottomNavBarCarvedState
         ref.read(selectedCityIdToFilter.notifier).state = 0;
         ref.read(selectedTypeOwnerId.notifier).state = -1;
         WidgetsBinding.instance.addPostFrameCallback((_) async {
-          await ref
-              .read(fetchApartmentNotifier.notifier)
-              .fetchApartments(
+          ref.read(apartmentTypeNotifier.notifier).state = 0;
+          await ref.read(fetchApartmentNotifier.notifier).fetchApartments(
                 isOwnerApartments: false,
                 isAll: true,
                 cityId: 0,

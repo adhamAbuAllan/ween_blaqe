@@ -46,26 +46,20 @@ class ShowApartmentTypesBoxWidget extends ConsumerWidget {
                       child: Column(
                         children: [
                           FadeInOnVisible(
-                            direction: SlideDirection.x
-                              ,
-                            delay: Duration(milliseconds: 100),
+                              direction: SlideDirection.x,
+                              delay: Duration(milliseconds: 100),
                               child: TypeRowOfBoyStudent()),
                           FadeInOnVisible(
                               direction: SlideDirection.x,
                               delay: Duration(milliseconds: 200),
-
                               child: TypeRowOfGirlStudent()),
                           FadeInOnVisible(
                               direction: SlideDirection.x,
-
                               delay: Duration(milliseconds: 300),
-
                               child: TypeRowOfFamilies()),
                           FadeInOnVisible(
                               direction: SlideDirection.x,
-
                               delay: Duration(milliseconds: 400),
-
                               child: TypeRowOfAllTypes()),
                         ],
                       ))),
@@ -126,6 +120,8 @@ class TypeRowOfBoyStudent extends ConsumerWidget {
         ApartmentShowTypesTextButtonWidget(
           textType: "طلاب", // Change this as per localization
           onPressed: () {
+            ref.read(apartmentTypeNotifier.notifier).state = 2;
+
             ref.read(isBoyStudentNotifier.notifier).state = true;
             ref.read(isGirlStudentNotifier.notifier).state = false;
             ref.read(isFamiliesNotifier.notifier).state = false;
@@ -134,12 +130,11 @@ class TypeRowOfBoyStudent extends ConsumerWidget {
             WidgetsBinding.instance.addPostFrameCallback((_) async {
               await ref.read(fetchApartmentNotifier.notifier).fetchApartments(
                   isOwnerApartments: false,
-                  type: "طلاب",
+                  typeId: 2,
                   isAll: false,
                   ref: ref,
                   cityId: ref.read(selectedCityIdToFilter.notifier).state);
             });
-            ref.read(apartmentTypeNotifier.notifier).state = "طلاب";
           },
         ),
         Padding(
@@ -168,20 +163,22 @@ class TypeRowOfGirlStudent extends ConsumerWidget {
         ApartmentShowTypesTextButtonWidget(
           textType: "طالبات", // Change this as per localization
           onPressed: () {
+
             ref.read(isBoyStudentNotifier.notifier).state = false;
             ref.read(isGirlStudentNotifier.notifier).state = true;
             ref.read(isFamiliesNotifier.notifier).state = false;
             ref.read(isAllTypesOfApartmentNotifier.notifier).state = false;
+            ref.read(apartmentTypeNotifier.notifier).state = 3;
 
             WidgetsBinding.instance.addPostFrameCallback((_) async {
+
               await ref.read(fetchApartmentNotifier.notifier).fetchApartments(
                   ref: ref,
                   isOwnerApartments: false,
-                  type: "طالبات",
+                  typeId: 3,
                   isAll: false,
                   cityId: ref.read(selectedCityIdToFilter.notifier).state);
             });
-            ref.read(apartmentTypeNotifier.notifier).state = "طالبات";
           },
         ),
         Padding(
@@ -217,16 +214,17 @@ class TypeRowOfFamilies extends ConsumerWidget {
 
             WidgetsBinding.instance.addPostFrameCallback(
               (_) async {
+                ref.read(apartmentTypeNotifier.notifier).state = 1;
+
                 await ref.read(fetchApartmentNotifier.notifier).fetchApartments(
                       ref: ref,
                       isOwnerApartments: false,
-                      type: "عائلات",
+                      typeId: await 1,
                       isAll: false,
                       cityId: ref.read(selectedCityIdToFilter.notifier).state,
                     );
               },
             );
-            ref.read(apartmentTypeNotifier.notifier).state = "عائلات";
           },
         ),
         Padding(
@@ -257,6 +255,8 @@ class TypeRowOfAllTypes extends ConsumerWidget {
           onPressed: () {
             ref.read(isAllTypesOfApartmentNotifier.notifier).state = true;
             WidgetsBinding.instance.addPostFrameCallback((_) async {
+              ref.read(apartmentTypeNotifier.notifier).state = 0;
+
               await ref.read(fetchApartmentNotifier.notifier).fetchApartments(
                   ref: ref, isOwnerApartments: false, isAll: true, cityId: 0);
             });

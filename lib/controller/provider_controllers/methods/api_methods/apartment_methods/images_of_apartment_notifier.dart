@@ -11,7 +11,7 @@ import '../../../../../api/photos.dart';
 import '../../../../../constants/strings.dart';
 import '../../../../../main.dart';
 import '../../../providers/image_provider.dart';
-import '../../../statuses/image_state.dart';
+import '../../../statuses/status_of_apartment/image_state.dart';
 import 'package:http/http.dart' as http;
 
 class ImageApiNotifier extends StateNotifier<ImageState> {

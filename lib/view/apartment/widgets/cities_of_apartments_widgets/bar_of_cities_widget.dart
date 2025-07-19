@@ -92,7 +92,7 @@ class _CitiesBarWidgetState extends ConsumerState<CitiesBarWidget> {
                               .fetchApartments(
                             ref: ref,
                                   isOwnerApartments: false,
-                                  type: ref.read(isAllTypesOfApartmentNotifier)
+                              typeId: ref.read(isAllTypesOfApartmentNotifier)
                                       ? null
                                       : ref
                                           .read(apartmentTypeNotifier.notifier)

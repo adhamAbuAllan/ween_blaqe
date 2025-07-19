@@ -7,9 +7,8 @@ import 'widgets/not_found_type_widgets/image_not_found_widget.dart';
 import 'widgets/not_found_type_widgets/title_screen_wdiget.dart';
 
 class TypeNotFoundUi extends ConsumerWidget {
-  const TypeNotFoundUi({super.key, this.type});
+  const TypeNotFoundUi({super.key, });
 
-  final String? type;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {

@@ -3,7 +3,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 import '../../../../api/apartments_api/apartments.dart';
 import 'package:get/get.dart';
 import '../../providers/apartment_provider.dart';
-import '../../statuses/bookmark_state.dart';
+import '../../statuses/status_of_apartment/bookmark_state.dart';
 
 class BookmarkNotifier extends StateNotifier<BookmarkState> {
   BookmarkNotifier() : super(BookmarkState(bookmarkIds: [], bookmarkKey: 'bookmarks')) {

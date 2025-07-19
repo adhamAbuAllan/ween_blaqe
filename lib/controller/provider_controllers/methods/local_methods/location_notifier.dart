@@ -11,7 +11,7 @@ import '../../../../constants/strings.dart';
 import '../../../../session/new_session.dart';
 
 import '../../providers/apartment_provider.dart';
-import '../../statuses/map_state.dart';
+import '../../statuses/status_of_apartment/map_state.dart';
 
 class LocationNotifier extends StateNotifier<LatLng?> {
   LocationNotifier() : super(null);

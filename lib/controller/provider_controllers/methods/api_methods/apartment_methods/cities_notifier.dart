@@ -5,7 +5,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../../../../api/cities.dart';
 import '../../../../../constants/strings.dart';
-import '../../../statuses/city_state.dart';
+import '../../../statuses/status_of_apartment/city_state.dart';
 import 'package:http/http.dart' as http;
 import 'package:ween_blaqe/view/apartment/apartment_of_owner/widgets/dropdown_fields_widgets/cities_drop_down_widget.dart';
 import 'package:ween_blaqe/view/apartment/widgets/cities_of_apartments_widgets/bar_of_cities_widget.dart';

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:ween_blaqe/controller/provider_controllers/providers/color_provider.dart';
+import 'package:ween_blaqe/view/common_widgets/animations_widgets/build_animation_widget.dart';
 
 import '../../../../../../constants/coordination.dart';
 import '../../../../../../constants/get_it_controller.dart';
@@ -43,47 +44,67 @@ class ContainerOfProfileWidget extends ConsumerWidget {
             Padding(
               padding: const EdgeInsets.all(10),
               child: ref.watch(profileImageFile)?.path != null
-                  ? MobileStorageImageWidget(
-                      radius: getIt<AppDimension>().isSmallScreen(context)
-                          ? 32 / 1.5
-                          : 32,
-                    )
+                  ? FadeInOnVisible(
+                delay: const Duration(milliseconds: 30),
+                direction: SlideDirection.x,
+                child: MobileStorageImageWidget(
+                        radius: getIt<AppDimension>().isSmallScreen(context)
+                            ? 32 / 1.5
+                            : 32,
+                      ),
+                  )
                   : (NewSession.get(PrefKeys.profile, "def") !=
                           "images/profile/user.png"
-                      ? ServerImageWidget(
-                          radius: getIt<AppDimension>().isSmallScreen(context)
-                              ? 32 / 1.5
-                              : 32,
-                        )
-                      : DefaultImageWidget(
-                          radius: getIt<AppDimension>().isSmallScreen(context)
-                              ? 32 / 1.5
-                              : 32,
-                        )),
+                      ? FadeInOnVisible(
+                delay: const Duration(milliseconds: 20),
+                direction: SlideDirection.x,
+                child: ServerImageWidget(
+                            radius: getIt<AppDimension>().isSmallScreen(context)
+                                ? 32 / 1.5
+                                : 32,
+                          ),
+                      )
+                      : FadeInOnVisible(
+                delay: const Duration(milliseconds: 20),
+                direction: SlideDirection.x,
+                child: DefaultImageWidget(
+                            radius: getIt<AppDimension>().isSmallScreen(context)
+                                ? 32 / 1.5
+                                : 32,
+                          ),
+                      )),
             ),
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text(
-                  NewSession.get(PrefKeys.name, ""),
-                  style: TextStyle(
-                    fontSize:
-                        getIt<AppDimension>().isSmallScreen(context) ? 16 : 18,
-                    fontWeight: FontWeight.w600,
-                    color: ref.read(themeModeNotifier.notifier).textTheme(ref: ref),
+                FadeInOnVisible(
+                  delay: const Duration(milliseconds: 30),
+                  direction: SlideDirection.x,
+                  child: Text(
+                    NewSession.get(PrefKeys.name, ""),
+                    style: TextStyle(
+                      fontSize:
+                          getIt<AppDimension>().isSmallScreen(context) ? 16 : 18,
+                      fontWeight: FontWeight.w600,
+                      color: ref.read(themeModeNotifier.notifier).textTheme(ref: ref),
+                    ),
                   ),
                 ),
                 SizedBox(
                   height: getIt<AppDimension>().isSmallScreen(context) ? 0 : 2,
                 ),
-                Text(
-                  // "عرض الملف الشخصي",
-                  NewSession.get(PrefKeys.phone, ""),
-                  // "972569339613",
-                  style: TextStyle(
-                      fontSize: 14,
-                      fontWeight: FontWeight.w500,
-                      color: ref.read(themeModeNotifier.notifier).textTheme(ref: ref)),
+                FadeInOnVisible(
+                  delay: const Duration(milliseconds: 40),
+                  direction: SlideDirection.y,
+                  child: Text(
+                    // "عرض الملف الشخصي",
+                    NewSession.get(PrefKeys.phone, ""),
+                    // "972569339613",
+                    style: TextStyle(
+                        fontSize: 14,
+                        fontWeight: FontWeight.w500,
+                        color: ref.read(themeModeNotifier.notifier).textTheme(ref: ref)),
+                  ),
                 )
               ],
             ),
@@ -95,10 +116,14 @@ class ContainerOfProfileWidget extends ConsumerWidget {
               padding: const EdgeInsets.only(
                 left: 10,
               ),
-              child: Icon(
-                Icons.arrow_forward_ios,
-                color: ref.read(themeModeNotifier.notifier).textTheme(ref: ref),
-                // size: ,
+              child: FadeInOnVisible(
+                delay: const Duration(milliseconds: 50),
+                direction: SlideDirection.x,
+                child: Icon(
+                  Icons.arrow_forward_ios,
+                  color: ref.read(themeModeNotifier.notifier).textTheme(ref: ref),
+                  // size: ,
+                ),
               ),
             ),
           ],

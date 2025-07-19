@@ -8,7 +8,7 @@ import '../../../../../constants/strings.dart';
 import '../../../../../core/utils/funcations/route_pages/push_routes.dart';
 import '../../../providers/apartment_provider.dart';
 import '../../../providers/color_provider.dart';
-import '../../../statuses/apartment_state.dart';
+import '../../../statuses/status_of_apartment/apartment_state.dart';
 
 /// a [ValidatorCreateApartmentNotifier] class has four methods in every method for
 /// specific UI, that four methods for every step, that usage to check the fields
@@ -29,8 +29,8 @@ class ValidatorCreateApartmentNotifier extends StateNotifier<ApartmentState> {
 
     String? fillField =
         SetLocalization.of(context)?.getTranslateValue("fill_field");
-    String? addressShouldBeTrue = SetLocalization.of(context)
-        ?.getTranslateValue("the_address_should_be_true");
+  //  String? addressShouldBeTrue = SetLocalization.of(context)
+   //     ?.getTranslateValue("the_address_should_be_true");
     if (addressControllerValue == "") {
       debugPrint("addresssController is empty");
       formAddressKey.currentState?.validate();

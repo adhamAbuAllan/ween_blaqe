@@ -5,7 +5,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:http/http.dart' as http;
 import 'package:ween_blaqe/controller/provider_controllers/providers/apartment_provider.dart';
-import 'package:ween_blaqe/controller/provider_controllers/statuses/apartment_state.dart';
+import 'package:ween_blaqe/controller/provider_controllers/statuses/status_of_apartment/apartment_state.dart';
 
 import '../../../../../api/photos.dart';
 import '../../../../../constants/strings.dart';

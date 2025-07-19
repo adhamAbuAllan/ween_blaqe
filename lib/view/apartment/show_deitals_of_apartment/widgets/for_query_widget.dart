@@ -53,8 +53,11 @@ class ForInquiriesWidget extends ConsumerWidget {
                     getIt<AppDimension>().isSmallScreen(context) ? 5 : 10,
                 children: [
                   IntrinsicWidth(child: FadeInOnVisible(
-                      delay: const Duration(milliseconds: 100),
-                      child: WhatsAppButton(apartment: apartment))),
+                      delay: const Duration(milliseconds: 200),
+                      child: AnimateEffects.shimmer(
+
+                          // delay: const Duration(milliseconds: 100),
+                          child: WhatsAppButton(apartment: apartment)))),
                   apartment.owner?.email == "user_email"
                       ? const SizedBox()
                       : Padding(
@@ -62,21 +65,23 @@ class ForInquiriesWidget extends ConsumerWidget {
                           child: IntrinsicWidth(
                               child: FadeInOnVisible(
                                   delay: const Duration(milliseconds: 150),
-                                  child: FadeInOnVisible(
-                                      delay: const Duration(milliseconds: 200),
+                                  child: AnimateEffects.shimmer(
+                                      delay: const Duration(milliseconds: 250),
                                       child: EmailButton(apartment: apartment)))),
                         ),
                   IntrinsicWidth(child: FadeInOnVisible(
-                      delay: const Duration(milliseconds: 250),
-                      child: PhoneButton(apartment: apartment))),
+                      delay: const Duration(milliseconds: 200),
+                      child: AnimateEffects.shimmer(
+                          delay: const Duration(milliseconds: 300),
+                          child: PhoneButton(apartment: apartment)))),
                   apartment.owner?.facebook == "user_name"
                       ? const SizedBox()
                       : Padding(
                           padding: const EdgeInsets.symmetric(horizontal: 10),
                           child: IntrinsicWidth(
                               child: FadeInOnVisible(
-                                  delay: const Duration(milliseconds: 300),
-                                  child: FacebookButton(apartment: apartment))),
+                                  delay: const Duration(milliseconds: 250),
+                                  child: AnimateEffects.shimmer(child: FacebookButton(apartment: apartment)))),
                         ),
                 ],
               ),

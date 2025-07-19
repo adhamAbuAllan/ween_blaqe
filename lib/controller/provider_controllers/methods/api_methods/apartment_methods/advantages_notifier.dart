@@ -1,3 +1,4 @@
+
 import 'dart:convert';
 
 import 'package:flutter/cupertino.dart';
@@ -11,7 +12,7 @@ import '../../../../../constants/strings.dart';
 import '../../../../../main.dart';
 import '../../../providers/apartment_provider.dart';
 import '../../../providers/image_provider.dart';
-import '../../../statuses/advantage_state.dart';
+import '../../../statuses/status_of_apartment/advantage_state.dart';
 import 'package:ween_blaqe/view/apartment/apartment_of_owner/create_apartment/second_step_ui.dart';
 
 

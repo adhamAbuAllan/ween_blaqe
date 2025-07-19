@@ -86,11 +86,19 @@ class MenuLogin extends ConsumerWidget {
     return SingleChildScrollView(
       child: Column(
         children: [
-          const TitleLoginWidget(),
-          const ContainerOfProfileWidget(),
-          ContainerMenuWidget(
-            onChange: onChange,
-            isLogined: true,
+          FadeInOnVisible(
+            delay: const Duration(milliseconds: 16),
+              child: const TitleLoginWidget()),
+          FadeInOnVisible(
+              direction: SlideDirection.x,
+              delay: const Duration(milliseconds: 20),
+              child: const ContainerOfProfileWidget()),
+          FadeInOnVisible(
+            direction: SlideDirection.x,
+            child: ContainerMenuWidget(
+              onChange: onChange,
+              isLogined: true,
+            ),
           ),
           SizedBox(height: 30,),
           // ElevatedButtonWidget(

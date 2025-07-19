@@ -8,25 +8,25 @@ import 'package:ween_blaqe/controller/provider_controllers/providers/auth_provid
 import '../../../../../api/apartments_api/apartments.dart';
 import '../../../../../constants/strings.dart';
 import '../../../../../main.dart';
-import '../../../statuses/apartment_state.dart';
+import '../../../statuses/status_of_apartment/apartment_state.dart';
 import 'package:http/http.dart' as http;
 
 class FetchApartmentsNotifier extends StateNotifier<ApartmentState> {
   FetchApartmentsNotifier() : super(ApartmentState());
 
-  int putTypeId(String typeName) {
-    switch (typeName) {
-      case "عائلات":
-        return 1;
-      case "طلاب":
-        return 2;
-      case "طالبات":
-        return 3;
-
-      default:
-        return 0;
-    }
-  }
+  // int putTypeId(String typeName) {
+  //   switch (typeName) {
+  //     case "عائلات":
+  //       return 1;
+  //     case "طلاب":
+  //       return 2;
+  //     case "طالبات":
+  //       return 3;
+  //
+  //     default:
+  //       return 0;
+  //   }
+  // }
 
   String formatUrl(
       {required WidgetRef ref,
@@ -45,7 +45,7 @@ class FetchApartmentsNotifier extends StateNotifier<ApartmentState> {
 
   /// a [fetchApartments] usage to fetch apartment data.
   Future<Apartments> fetchApartments({
-    String? type,
+    int? typeId,
     int? cityId,
     bool? isAll,
     int? latitude,
@@ -55,7 +55,6 @@ class FetchApartmentsNotifier extends StateNotifier<ApartmentState> {
     required bool isOwnerApartments,
   }) async {
     // late Position? pos = null;
-    int typeId = putTypeId(type ?? "");
     int typeOfOwnerId = ref.read(selectedTypeOwnerId);
 
     if (typeOfOwnerId != -1) {
@@ -97,10 +96,11 @@ class FetchApartmentsNotifier extends StateNotifier<ApartmentState> {
         );
       }
     } else {
-      Uri uri = Uri.parse(formatUrl(
-          typeId: typeId,
-          typeOfOwnerId: typeOfOwnerId,
-          cityId: cityId,
+
+      Uri uri =  Uri.parse( formatUrl(
+          typeId:   ref.read(apartmentTypeNotifier.notifier).state,
+          typeOfOwnerId:  typeOfOwnerId,
+          cityId:   cityId,
           ref: ref));
 
       debugPrint("uri is $uri");

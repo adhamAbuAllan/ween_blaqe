@@ -1,5 +1,5 @@
 
-import '../../../api/advantages.dart';
+import '../../../../api/advantages.dart';
 class AdvantageState {
   final List<int> chosen;
   final List<Advantages> advantages;

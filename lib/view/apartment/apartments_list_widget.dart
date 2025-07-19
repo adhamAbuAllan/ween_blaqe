@@ -25,6 +25,7 @@ import 'package:ween_blaqe/view/apartment/widgets'
     '/title_of_apartment_text_widget'
     '.dart';
 import 'package:ween_blaqe/view/apartment/widgets/type_text_widget.dart';
+// import 'package:ween_blaqe/view/common_widgets/animations_widgets/navigation_animation_widget.dart';
 
 import '../../controller/provider_controllers/providers/apartment_provider.dart';
 import '../../controller/provider_controllers/providers/auth_provider.dart';
@@ -233,7 +234,7 @@ class _ApartmentsListConsumerState extends ConsumerState<ApartmentsListWidget> {
                                     : AboutOwnerWidget(
                                     isForListHome: true,
                                     oneApartment:
-                                    widget.apartmentsRes.data![index]),
+                                    widget.apartmentsRes.data?[index]??DataOfOneApartment()),
                                 Row(
                                   children: [
                                     TimeAgoTextWidget(

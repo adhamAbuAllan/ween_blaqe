@@ -20,7 +20,7 @@ import 'package:ween_blaqe/session/new_session.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:ween_blaqe/view/common_widgets/skeleton_widgets/apartment_skeleton_widgets/skeleton_home_ui.dart';
 
-import '../../../../controller/provider_controllers/statuses/apartment_state.dart';
+import '../../controller/provider_controllers/statuses/status_of_apartment/apartment_state.dart';
 import '../../constants/strings.dart';
 import 'apartments_list_widget.dart';
 
@@ -100,7 +100,6 @@ animate and scroll the bar of cities.
               ? _buildSkeleton(apartmentsList)
               : (apartmentsList.data?.isEmpty ?? false
                   ? TypeNotFoundUi(
-                      type: type,
                     )
                   : buildRefreshIndicator(isAllTypesOfApartment, cityId, type,
                       apartmentsList: apartmentsList));
@@ -109,7 +108,7 @@ animate and scroll the bar of cities.
 
   /// a widgets that has been extract.
   RefreshIndicator buildRefreshIndicator(
-      bool isAllTypesOfApartment, int cityId, String type,
+      bool isAllTypesOfApartment, int cityId, int type,
       {required apartmentsList}) {
     int typeOwnerId = ref.watch(selectedTypeOwnerId);
 
@@ -125,6 +124,7 @@ animate and scroll the bar of cities.
           ref.read(selectedCityIdToFilter.notifier).state = 0;
           ref.read(selectedTypeOwnerId.notifier).state = -1;
           WidgetsBinding.instance.addPostFrameCallback((_) async {
+            ref.read(apartmentTypeNotifier.notifier).state = 0;
             await ref.read(fetchApartmentNotifier.notifier).fetchApartments(
                 isOwnerApartments: false, isAll: true, cityId: 0, ref: ref);
           });
@@ -137,7 +137,7 @@ animate and scroll the bar of cities.
             ref: ref,
             isAllTypesOfApartment: isAllTypesOfApartment,
             cityId: cityId,
-            type: type,
+            typeId: type,
             apartmentsList: apartmentsList,
             widget: widget));
   }
@@ -150,20 +150,21 @@ animate and scroll the bar of cities.
             hasCitiesBar: true,
             scrollController: widget.scrollController ?? ScrollController(),
           ),
-          onDoubleTap: () {
-            WidgetsBinding.instance.addPostFrameCallback((_) async {
-              await ref.read(fetchApartmentNotifier.notifier).fetchApartments(
-                  isOwnerApartments: false,
-                  ref: ref,
-                  type: ref.read(apartmentTypeNotifier),
-                  isAll: true,
-                  cityId: 0);
-              debugPrint("isLoading status ${apartmentState.isLoading}");
-            });
-            ref.read(isSebhaVisibleNotifier.notifier).state !=
-                ref.read(isSebhaVisibleNotifier.notifier).state;
-            debugPrint("");
-          },
+          // onDoubleTap: () {
+          //   WidgetsBinding.instance.addPostFrameCallback((_) async {
+          //
+          //     await ref.read(fetchApartmentNotifier.notifier).fetchApartments(
+          //         isOwnerApartments: false,
+          //         ref: ref,
+          //         typeId: ref.read(apartmentTypeNotifier),
+          //         isAll: true,
+          //         cityId: 0);
+          //     debugPrint("isLoading status ${apartmentState.isLoading}");
+          //   });
+          //   ref.read(isSebhaVisibleNotifier.notifier).state !=
+          //       ref.read(isSebhaVisibleNotifier.notifier).state;
+          //   debugPrint("");
+          // },
         ),
         // apartmentsList.data?.isEmpty ?? false
         //     ? const SizedBox()
@@ -179,7 +180,7 @@ class ListApartmentWithTypeBtn extends StatelessWidget {
     required this.ref,
     required this.isAllTypesOfApartment,
     required this.cityId,
-    required this.type,
+    required this.typeId,
     required this.typeOwnerId,
     required this.apartmentsList,
     required this.widget,
@@ -189,7 +190,7 @@ class ListApartmentWithTypeBtn extends StatelessWidget {
   final bool isAllTypesOfApartment;
   final int cityId;
   final int typeOwnerId;
-  final String type;
+  final int typeId;
   final Apartments apartmentsList;
   final HomeUi widget;
 
@@ -232,7 +233,7 @@ class ListApartmentWithTypeBtn extends StatelessWidget {
 
                       isOwnerApartments: false,
                           isAll: isAllTypesOfApartment,
-                          type: type,
+                          typeId: typeId,
                           // typeOfOwnerId: typeOwnerId,
                           cityId: cityId,
                         );
@@ -258,7 +259,7 @@ class ListApartmentWithTypeBtn extends StatelessWidget {
 
                         isOwnerApartments: false,
                         isAll: isAllTypesOfApartment,
-                        type: type,
+                        typeId: typeId,
                         cityId: cityId,
                         isWantToEnableLocationService: true);
                   }
@@ -284,7 +285,7 @@ class ListApartmentWithTypeBtn extends StatelessWidget {
 
                       isOwnerApartments: false,
                           isAll: isAllTypesOfApartment,
-                          type: type,
+                          typeId: typeId,
                           cityId: cityId,
                         );
                   }

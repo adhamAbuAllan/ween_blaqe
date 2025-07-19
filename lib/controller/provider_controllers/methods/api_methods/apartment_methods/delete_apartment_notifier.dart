@@ -3,7 +3,7 @@ import 'dart:convert';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:http/http.dart' as http;
-import 'package:ween_blaqe/controller/provider_controllers/statuses/apartment_state.dart';
+import 'package:ween_blaqe/controller/provider_controllers/statuses/status_of_apartment/apartment_state.dart';
 import 'package:ween_blaqe/view/apartment/apartment_of_owner/widgets/apartment_of_owner_ui_widgets/delete_button_widget.dart';
 import '../../../../../constants/strings.dart';
 import '../../../../../main.dart';

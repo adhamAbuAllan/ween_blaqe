@@ -20,7 +20,11 @@ class MenuButtonsWidgets extends ConsumerWidget {
     return Column(
       children: [
         /// apartments of owner
-        isLogined?  aline: const SizedBox(),
+        isLogined?  FadeInOnVisible(
+            direction: SlideDirection.x,
+            delay: const Duration(milliseconds: 100),
+
+            child: aline): const SizedBox(),
         isLogined
             ? FadeInOnVisible(
           delay: const Duration(milliseconds: 130),

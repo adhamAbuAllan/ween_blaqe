@@ -6,7 +6,7 @@ import 'package:ween_blaqe/api/type_of_apartment.dart';
 import 'package:ween_blaqe/constants/strings.dart';
 import 'package:http/http.dart' as http;
 
-import '../../../statuses/type_state.dart';
+import '../../../statuses/status_of_apartment/type_state.dart';
 
 class TypeNotifier extends StateNotifier<TypeState> {
   TypeNotifier() : super(TypeState(types: [], isLoading: false));

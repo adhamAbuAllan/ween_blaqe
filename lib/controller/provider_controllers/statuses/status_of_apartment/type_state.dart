@@ -1,4 +1,4 @@
-import '../../../api/type_of_apartment.dart';
+import '../../../../api/type_of_apartment.dart';
 
 class TypeState {
   final List<TypeOfApartment> types; // List of cities to display in the

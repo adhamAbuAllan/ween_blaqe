@@ -5,8 +5,8 @@ import '../methods/api_methods/apartment_methods/images_of_apartment_notifier.da
 import '../methods/hybrid_methods/hybrid_image_notifier.dart';
 import '../methods/local_methods/image_grid_notifier.dart';
 import '../methods/local_methods/permission_notifier.dart';
-import '../statuses/image_state.dart';
-import '../statuses/permission_state.dart';
+import '../statuses/status_of_apartment/image_state.dart';
+import '../statuses/status_of_apartment/permission_state.dart';
 final imageHybridNotifer =
 StateNotifierProvider<HybridImageNotifier,ImageState>((ref) {
   return HybridImageNotifier();

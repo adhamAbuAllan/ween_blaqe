@@ -1,6 +1,6 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import '../../statuses/apartment_state.dart';
+import '../../statuses/status_of_apartment/apartment_state.dart';
 class ImageSliderNotifier extends StateNotifier<Map<int, ApartmentState>> {
   ImageSliderNotifier() : super({});
 

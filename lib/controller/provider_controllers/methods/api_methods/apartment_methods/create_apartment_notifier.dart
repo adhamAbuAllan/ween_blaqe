@@ -13,7 +13,7 @@ import '../../../../../constants/strings.dart';
 import '../../../../../core/utils/funcations/route_pages/push_routes.dart';
 import '../../../../../main.dart';
 import '../../../providers/image_provider.dart';
-import '../../../statuses/apartment_state.dart';
+import '../../../statuses/status_of_apartment/apartment_state.dart';
 import 'package:http/http.dart' as http;
 
 class CreateApartmentNotifier extends StateNotifier<ApartmentState> {

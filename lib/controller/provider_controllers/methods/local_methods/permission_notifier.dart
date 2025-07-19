@@ -1,7 +1,7 @@
 import 'package:permission_handler/permission_handler.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import '../../statuses/permission_state.dart';
+import '../../statuses/status_of_apartment/permission_state.dart';
 
 class PermissionNotifier extends StateNotifier<PermissionState> {
   PermissionNotifier() : super(PermissionState());

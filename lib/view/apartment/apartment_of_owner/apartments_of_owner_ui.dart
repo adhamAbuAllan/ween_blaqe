@@ -10,7 +10,7 @@ import 'package:ween_blaqe/view/apartment/apartment_of_owner/widgets'
 import 'package:ween_blaqe/view/common_widgets/button_widgets/floating_action_button_widget.dart';
 import '../../../controller/provider_controllers/providers/apartment_provider.dart';
 import '../../../controller/provider_controllers/providers/color_provider.dart';
-import '../../../controller/provider_controllers/statuses/apartment_state.dart';
+import '../../../controller/provider_controllers/statuses/status_of_apartment/apartment_state.dart';
 import '../../../main.dart';
 import '../widgets/types_of_apartments_widgets/show_types_button_widget.dart';
 import 'widgets/apartment_of_owner_ui_widgets/start_add_apartment_widget.dart';

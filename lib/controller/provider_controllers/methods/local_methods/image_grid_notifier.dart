@@ -1,6 +1,6 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:ween_blaqe/controller/provider_controllers/statuses/image_state.dart';
+import 'package:ween_blaqe/controller/provider_controllers/statuses/status_of_apartment/image_state.dart';
 import 'package:flutter/material.dart';
 import '../../../../api/photos.dart';
 import '../../providers/auth_provider.dart';

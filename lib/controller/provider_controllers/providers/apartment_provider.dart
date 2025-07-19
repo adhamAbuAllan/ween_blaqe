@@ -8,8 +8,8 @@ import 'package:ween_blaqe/controller/provider_controllers/methods/api_methods/a
 import 'package:ween_blaqe/controller/provider_controllers/methods/api_methods/apartment_methods/cities_notifier.dart';
 import 'package:ween_blaqe/controller/provider_controllers/methods/api_methods/apartment_methods/type_notifier.dart';
 import 'package:ween_blaqe/controller/provider_controllers/methods/local_methods/check_update_apartment_notifier.dart';
-import 'package:ween_blaqe/controller/provider_controllers/statuses/city_state.dart';
-import 'package:ween_blaqe/controller/provider_controllers/statuses/type_state.dart';
+import 'package:ween_blaqe/controller/provider_controllers/statuses/status_of_apartment/city_state.dart';
+import 'package:ween_blaqe/controller/provider_controllers/statuses/status_of_apartment/type_state.dart';
 import '../../../api/apartments_api/apartments.dart';
 import '../../../api/cities.dart';
 import '../methods/api_methods/apartment_methods/create_apartment_notifier.dart';
@@ -21,11 +21,11 @@ import '../methods/hybrid_methods/bookmarker.dart';
 import '../methods/local_methods/image_slider_notifier.dart';
 import '../methods/local_methods/location_notifier.dart';
 import '../methods/local_methods/toggle_owner_buttons_notifier.dart';
-import '../statuses/advantage_state.dart';
-import '../statuses/apartment_state.dart';
-import '../statuses/bookmark_state.dart';
-import '../statuses/map_state.dart';
-import '../statuses/update_apartment_state.dart';
+import '../statuses/status_of_apartment/advantage_state.dart';
+import '../statuses/status_of_apartment/apartment_state.dart';
+import '../statuses/status_of_apartment/bookmark_state.dart';
+import '../statuses/status_of_apartment/map_state.dart';
+import '../statuses/status_of_apartment/update_apartment_state.dart';
 
 /// Extension for [firstWhereOrNull] usage in [getApartmentsFromBookmarks] method in [bookmaker.dart]
 extension FirstWhereOrNull<E> on Iterable<E> {
@@ -160,7 +160,7 @@ var apartmentBookmarkedNotifier =
 final apartmentsOfOwnerNotifier =
     StateProvider<Apartments>((ref) => Apartments(data: []));
 
-final apartmentTypeNotifier = StateProvider<String>((ref) => 'طلاب');
+final   apartmentTypeNotifier = StateProvider<int>((ref) => 0);
 final errorMessageNotifier = StateProvider<String>((ref) => '');
 final apartmentIdNotifier = StateProvider<dynamic>((ref) => '-1');
 
