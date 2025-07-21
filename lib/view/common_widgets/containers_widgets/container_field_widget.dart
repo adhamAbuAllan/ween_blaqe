@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:ween_blaqe/controller/provider_controllers/providers/apartment_provider.dart';
 import 'package:ween_blaqe/controller/provider_controllers/providers/color_provider.dart';
+import 'package:ween_blaqe/view/common_widgets/animations_widgets/build_animation_widget.dart';
 import 'package:ween_blaqe/view/common_widgets/containers_widgets/container_widget.dart';
 
 import '../../../constants/coordination.dart';
@@ -49,14 +50,16 @@ class ContainerFieldWidget extends ConsumerWidget {
           children: [
             Padding(
               padding: const EdgeInsets.fromLTRB(20, 10, 20, 10),
-              child: Text(
-                title,
-                style: TextStyle(
-                  color:
-                      ref.read(themeModeNotifier.notifier).textTheme(ref: ref),
-                  fontSize:
-                      getIt<AppDimension>().isSmallScreen(context) ? 16 : 18,
-                  fontWeight: FontWeight.w500,
+              child: FadeInOnVisible(
+                child: Text(
+                  title,
+                  style: TextStyle(
+                    color:
+                        ref.read(themeModeNotifier.notifier).textTheme(ref: ref),
+                    fontSize:
+                        getIt<AppDimension>().isSmallScreen(context) ? 16 : 18,
+                    fontWeight: FontWeight.w500,
+                  ),
                 ),
               ),
             ),
@@ -64,42 +67,44 @@ class ContainerFieldWidget extends ConsumerWidget {
         ),
         Padding(
           padding: const EdgeInsets.fromLTRB(20, 0, 20, 10),
-          child: TextFormFieldWidget(
+          child: FadeInOnVisible(
+            direction: SlideDirection.x,
+            child: TextFormFieldWidget(
 
-            onChanged: (value) {
-              bool hasChange = originalValue != controller?.text;
-              if (value.isNotEmpty) {
-                if (hasChange) {
-                  ref.read(hasChanged.notifier).state = true;
+              onChanged: (value) {
+                bool hasChange = originalValue != controller?.text;
+                if (value.isNotEmpty) {
+                  if (hasChange) {
+                    ref.read(hasChanged.notifier).state = true;
+                  } else {
+                    ref.read(hasChanged.notifier).state = false;
+                  }
                 } else {
-                  ref.read(hasChanged.notifier).state = false;
+                  ///should show the validate message when the field is empty
                 }
-              } else {
-                ///should show the validate message when the field is empty
-              }
-            },
-            validator: validator,
-            cursorColor:
-                ref.read(themeModeNotifier.notifier).primaryTheme(ref: ref),
-            textInputAction: TextInputAction.next,
-            controller: controller,
-            maxLines: maxLines,
-            maxLength: maxLength,
-            keyboardType: inputType,
+              },
+              validator: validator,
+              cursorColor:
+                  ref.read(themeModeNotifier.notifier).primaryTheme(ref: ref),
+              textInputAction: TextInputAction.next,
+              controller: controller,
+              maxLines: maxLines,
+              maxLength: maxLength,
+              keyboardType: inputType,
 
-            autofocus: autoFocus ?? false,
-            decoration: containerInputDecoration(hintInput, context,
-                helperText: helperText,
-                textColor:
-                    ref.read(themeModeNotifier.notifier).textTheme(ref: ref),
-                foucsBorderColor:
-                    ref.read(themeModeNotifier.notifier).primaryTheme(ref: ref),
-                unFoucsBorderColor: ref
-                    .read(themeModeNotifier.notifier)
-                    .primary300Theme(ref: ref)),
-            style: TextStyle(
-              fontSize: getIt<AppDimension>().isSmallScreen(context) ? 14 : 16,
-              color: ref.read(themeModeNotifier.notifier).textTheme(ref: ref),
+              autofocus: autoFocus ?? false,
+              decoration: containerInputDecoration(hintInput, context,
+                  helperText: helperText,
+                  textColor:
+                      ref.read(themeModeNotifier.notifier).textTheme(ref: ref),
+                  foucsBorderColor:
+                      ref.read(themeModeNotifier.notifier).primaryTheme(ref: ref),
+                  unFoucsBorderColor:ref.read(themeModeNotifier.notifier)
+                      .primaryTheme(ref: ref,withOpacity: .3),),
+              style: TextStyle(
+                fontSize: getIt<AppDimension>().isSmallScreen(context) ? 14 : 16,
+                color: ref.read(themeModeNotifier.notifier).textTheme(ref: ref),
+              ),
             ),
           ),
         ),

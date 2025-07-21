@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:ween_blaqe/view/common_widgets/animations_widgets/build_animation_widget.dart';
 
 import '../../../../constants/coordination.dart';
 import '../../../../constants/get_it_controller.dart';
@@ -16,19 +17,26 @@ class UserNameRegCompletedWidget extends ConsumerWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        TextFormFieldWidget(
-          isPhoneRegTextField: true,
-          fontSize: getIt<AppDimension>().isSmallScreen(context) ? 14 : 16,
-          labelName: SetLocalization.of(context)!.getTranslateValue("full_name"),
-          autoFocus: true,
-          errorText: ref.watch(formFieldsNotifier)['username']?.error,
-          controller: ref.read(userNameController),
-          keyboardType: TextInputType.name,
-          validator: (value) {
-            return ref.watch(formFieldsNotifier)['username']?.error;
-          },
+        FadeInOnVisible(
+          isUIHaveScroll: false,
+          direction: SlideDirection.x,
+          child: TextFormFieldWidget(
+            isPhoneRegTextField: true,
+            fontSize: getIt<AppDimension>().isSmallScreen(context) ? 14 : 16,
+            labelName: SetLocalization.of(context)!.getTranslateValue("full_name"),
+            autoFocus: true,
+            errorText: ref.watch(formFieldsNotifier)['username']?.error,
+            controller: ref.read(userNameController),
+            keyboardType: TextInputType.name,
+            validator: (value) {
+              return ref.watch(formFieldsNotifier)['username']?.error;
+            },
+          ),
         ),
-        const HintUnderUserNameField()
+        FadeInOnVisible(
+          direction: SlideDirection.y,
+            isUIHaveScroll: false,
+            child: const HintUnderUserNameField())
       ],
     );
   }

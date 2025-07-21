@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:ween_blaqe/controller/provider_controllers/providers/color_provider.dart';
+import 'package:ween_blaqe/view/common_widgets/animations_widgets/build_animation_widget.dart';
 import 'package:ween_blaqe/view/user/owner/widgets/profile_widgets'
     '/social_media_connection_button_widgets/show_input_dialog_widgets/title_widget.dart';
 
@@ -47,7 +48,7 @@ class _ShowInputDialogState extends ConsumerState<ShowInputDialogWidget> {
         ),
       ),
       actionsPadding: const EdgeInsets.fromLTRB(10, 0, 10, 0),
-      title: TitleShowDialogWidget(socialName: widget.socialName),
+      title: FadeInOnVisible(child: TitleShowDialogWidget(socialName: widget.socialName)),
       content: ShowDialogContentWidgets(
         labelUserName: widget.labelUserName,
         controller: widget.controller,
@@ -55,9 +56,14 @@ class _ShowInputDialogState extends ConsumerState<ShowInputDialogWidget> {
         check: widget.check,
       ),
       actions: <Widget>[
-        ShowDialogElevatedButtonWidget(onPressed: widget.onPressed),
-        ShowDialogOutlineButtonWidget(onPressed: widget
-            .onPressedOutlinedButton,)
+        FadeInOnVisible(
+            delay: const Duration(milliseconds: 600),
+            child: ShowDialogElevatedButtonWidget(onPressed: widget.onPressed)),
+        FadeInOnVisible(
+          delay: const Duration(milliseconds: 700),
+          child: ShowDialogOutlineButtonWidget(onPressed: widget
+              .onPressedOutlinedButton,),
+        )
       ],
     );
   }

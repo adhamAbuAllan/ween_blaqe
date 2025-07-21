@@ -2,6 +2,8 @@ import 'package:colorful_safe_area/colorful_safe_area.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:ween_blaqe/view/authorization_ui/widgets/registration_widgets/drop_down_user_type_widget.dart';
+import 'package:ween_blaqe/view/authorization_ui/widgets/registration_widgets/phone_completed_widget.dart';
+import 'package:ween_blaqe/view/common_widgets/animations_widgets/build_animation_widget.dart';
 
 import 'package:ween_blaqe/view/common_widgets/button_widgets/back_button_widget.dart';
 import '../../constants/coordination.dart';
@@ -11,7 +13,6 @@ import '../../controller/provider_controllers/providers/color_provider.dart';
 import '../common_widgets/privacy_policy_text_widget.dart';
 import 'widgets/registration_widgets/button_reg_completed_widget.dart';
 import 'widgets/registration_widgets/password_reg_completed_widget.dart';
-import 'widgets/registration_widgets/phone_completed_widget.dart';
 import 'widgets/registration_widgets/title_reg_completed_widget.dart';
 import 'widgets/registration_widgets/user_name_reg_completed_widget.dart';
 
@@ -48,10 +49,14 @@ class _RegistrationUiState extends ConsumerState<RegistrationUi> {
               children: <Widget>[
                 Padding(
                   padding: const EdgeInsets.fromLTRB(0, 25, 0, 0),
-                  child: BackButtonWidget(
-                    onPressed: () {
-                      Navigator.pop(context);
-                    },
+                  child: FadeInOnVisible(
+
+                    isUIHaveScroll: false,
+                    child: BackButtonWidget(
+                      onPressed: () {
+                        Navigator.pop(context);
+                      },
+                    ),
                   ),
                 ),
                 SizedBox(
@@ -59,7 +64,9 @@ class _RegistrationUiState extends ConsumerState<RegistrationUi> {
                       ? 20 / 3
                       : 20,
                 ),
-                const TitleRegCompletedWidget(),
+                FadeInOnVisible(
+                    isUIHaveScroll: false,
+                    child: const TitleRegCompletedWidget()),
                 Padding(
                     padding: EdgeInsets.symmetric(
                         horizontal: getIt<AppDimension>().isSmallScreen(context)
@@ -87,6 +94,7 @@ class _RegistrationUiState extends ConsumerState<RegistrationUi> {
                           Form(
                               key: formPhoneKey,
                               child: PhoneCompletedWidget(
+                                  isUIHaveScroll:false,
                                 validateValue: ref
                                         .watch(formFieldsNotifier)[
                                             'phoneNumberRegistration']

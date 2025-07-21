@@ -81,9 +81,9 @@ class TextFormFieldWidget extends ConsumerWidget {
               defultInputDecoration(
                 hintText: hintText,
                 context: context,
-                enabledBorderColor: ref
-                    .read(themeModeNotifier.notifier)
-                    .primary300Theme(ref: ref),
+                enabledBorderColor:
+                ref.read(themeModeNotifier.notifier)
+                    .primaryTheme(ref: ref,withOpacity: .3),
                 focusedBorderColor:
                     ref.read(themeModeNotifier.notifier).primaryTheme(ref: ref),
               ),

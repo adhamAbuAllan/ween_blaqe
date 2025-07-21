@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:ween_blaqe/controller/provider_controllers/providers/apartment_provider.dart';
 import 'package:ween_blaqe/controller/provider_controllers/providers/color_provider.dart';
+import 'package:ween_blaqe/view/common_widgets/animations_widgets/build_animation_widget.dart';
 
 import '../../constants/coordination.dart';
 import '../../constants/get_it_controller.dart';
@@ -45,10 +46,12 @@ class _BookmarkApartmentState extends ConsumerState<BookmarkApartmentUi> {
       appBar: AppBar(
         backgroundColor:
             ref.read(themeModeNotifier.notifier).primaryTheme(ref: ref),
-        title: Text(
-          SetLocalization.of(context)!.getTranslateValue("favorites"),
-          style: TextStyle(
-            fontSize: getIt<AppDimension>().isSmallScreen(context) ? 16 : null,
+        title: FadeInOnVisible(
+          child: Text(
+            SetLocalization.of(context)!.getTranslateValue("favorites"),
+            style: TextStyle(
+              fontSize: getIt<AppDimension>().isSmallScreen(context) ? 16 : null,
+            ),
           ),
         ),
       ),

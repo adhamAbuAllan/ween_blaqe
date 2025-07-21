@@ -7,6 +7,7 @@ import '../../../../constants/coordination.dart';
 import '../../../../constants/get_it_controller.dart';
 import '../../../../constants/localization.dart';
 import '../../../../controller/provider_controllers/providers/color_provider.dart';
+import '../../../common_widgets/animations_widgets/build_animation_widget.dart';
 import '../../../common_widgets/text_form_field_widgets/text_form_filed_widget.dart';
 import 'button_checker_phone_number_completed_widget.dart';
 
@@ -17,12 +18,14 @@ class PhoneCompletedWidget extends ConsumerWidget {
     this.isPhoneRegTextField,
     this.controller,
     this.hasContainer,
+    this.isUIHaveScroll,
   });
 
   final String? validateValue;
   final bool? isPhoneRegTextField;
   final TextEditingController? controller;
   final bool? hasContainer;
+  final bool? isUIHaveScroll;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -34,17 +37,19 @@ class PhoneCompletedWidget extends ConsumerWidget {
                 children: [
                   Padding(
                     padding: const EdgeInsets.symmetric(vertical: 10),
-                    child: Text(
-                      SetLocalization.of(context)!
-                          .getTranslateValue("phone_number"),
-                      style: TextStyle(
-                        color: ref
-                            .read(themeModeNotifier.notifier)
-                            .textTheme(ref: ref),
-                        fontSize: getIt<AppDimension>().isSmallScreen(context)
-                            ? 16
-                            : 18,
-                        fontWeight: FontWeight.w500,
+                    child: FadeInOnVisible(
+                      child: Text(
+                        SetLocalization.of(context)!
+                            .getTranslateValue("phone_number"),
+                        style: TextStyle(
+                          color: ref
+                              .read(themeModeNotifier.notifier)
+                              .textTheme(ref: ref),
+                          fontSize: getIt<AppDimension>().isSmallScreen(context)
+                              ? 16
+                              : 18,
+                          fontWeight: FontWeight.w500,
+                        ),
                       ),
                     ),
                   ),
@@ -55,16 +60,22 @@ class PhoneCompletedWidget extends ConsumerWidget {
           children: [
             Expanded(
               flex: 2,
-              child: PhoneNumberWidget(
-                hasContainer: hasContainer,
-                validateTextValue: validateValue,
-                controller: controller,
-                isPhoneRegTextField: isPhoneRegTextField,
+              child: FadeInOnVisible(
+                isUIHaveScroll: isUIHaveScroll,
+                direction: SlideDirection.x,
+                child: PhoneNumberWidget(
+                  hasContainer: hasContainer,
+                  validateTextValue: validateValue,
+                  controller: controller,
+                  isPhoneRegTextField: isPhoneRegTextField,
+                ),
               ),
             ),
             const SizedBox(width: 10),
-            const Expanded(
-              child: DropDownMenuWidget(),
+             Expanded(
+              child: FadeInOnVisible(
+                  isUIHaveScroll: isUIHaveScroll,
+                  child: DropDownMenuWidget()),
             ),
           ],
         ),
@@ -75,7 +86,9 @@ class PhoneCompletedWidget extends ConsumerWidget {
             children: [CustomErrorText(validateValue ?? "")],
           ),
         ),
-        const ButtonCheckerPhoneNumberCompletedWidget(),
+        FadeInOnVisible(
+            isUIHaveScroll: isUIHaveScroll,
+            child: const ButtonCheckerPhoneNumberCompletedWidget()),
         SizedBox(
           height: getIt<AppDimension>().isSmallScreen(context) ? 10 : 20,
         ),
@@ -112,8 +125,7 @@ class DropDownMenuWidget extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     return DropdownFieldWidget(
-
-      horizantalPadding: 0,
+        horizantalPadding: 0,
         isStringOnly: true,
         onChanged: (newValue) {
           ref.read(selectedCountryCode.notifier).state = newValue!;
@@ -142,7 +154,6 @@ class PhoneNumberWidget extends ConsumerWidget {
     WidgetRef ref,
   ) {
     return TextFormFieldWidget(
-
       validateTextValue: validateTextValue,
       isPhoneRegTextField: isPhoneRegTextField ?? true,
       fontSize: getIt<AppDimension>().isSmallScreen(context) ? 14 : 16,

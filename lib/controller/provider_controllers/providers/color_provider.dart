@@ -28,8 +28,7 @@ final containerColorLight =
     StateProvider<Color>((ref) => const Color(0xffffffff));
 final primaryColorLight =
     StateProvider<Color>((ref) => const Color(0xFF2196F3));
-final primaryColor300Light =
-    StateProvider<Color>((ref) => const Color(0xFFE3F2FD));
+final primaryColor300Light = StateProvider<Color>((ref) => const Color(0xFFE3F2FD));
 final textColorLight = StateProvider<Color>((ref) => const Color(0xdd000000));
 final backgroundAppColorLight =
     StateProvider<Color>((ref) => const Color(0xffeeeeee));

@@ -1,6 +1,7 @@
 import 'package:colorful_safe_area/colorful_safe_area.dart';
 import 'package:flutter/material.dart';
 import 'package:ween_blaqe/controller/provider_controllers/providers/color_provider.dart';
+import 'package:ween_blaqe/view/common_widgets/animations_widgets/build_animation_widget.dart';
 import 'package:ween_blaqe/view/common_widgets/containers_widgets'
     '/container_field_widget.dart';
 import 'package:ween_blaqe/view/user/owner/widgets/update_user_data_widgets'
@@ -40,7 +41,9 @@ class UpdateUserDataUi extends ConsumerWidget {
                 // mainAxisAlignment: MainAxisAlignment.center,
                 // mainAxisSize: MainAxisSize.min,
                 children: [
-                  const TitleUpdateUserDataWidget(),
+                  FadeInOnVisible(
+                      direction: SlideDirection.x,
+                      child: const TitleUpdateUserDataWidget()),
                   SizedBox(
                     height: getIt<AppDimension>().isSmallScreen(context)
                         ? 50 / 2.1

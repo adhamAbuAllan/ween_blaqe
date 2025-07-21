@@ -6,6 +6,7 @@ import 'package:ween_blaqe/controller/provider_controllers/providers/color_provi
 import '../../../../../constants/coordination.dart';
 import '../../../../../constants/get_it_controller.dart';
 import '../../../../../constants/localization.dart';
+import '../../../common_widgets/animations_widgets/build_animation_widget.dart';
 
 
 
@@ -31,24 +32,29 @@ class ApartmentDescriptionWidget extends ConsumerWidget {
         children: [
           Padding(
             padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 20),
-            child: Text(
-                SetLocalization.of(context)!
-                    .getTranslateValue("apartment_description"),
-                style: TextStyle(
-                  color: ref.read(themeModeNotifier.notifier).textTheme(ref: ref),
-                  fontSize: getIt<AppDimension>().isSmallScreen(context) ? 18 : 20,
-                  fontWeight: FontWeight.w600,
-                )),
+            child: FadeInOnVisible(
+              child: Text(
+                  SetLocalization.of(context)!
+                      .getTranslateValue("apartment_description"),
+                  style: TextStyle(
+                    color: ref.read(themeModeNotifier.notifier).textTheme(ref: ref),
+                    fontSize: getIt<AppDimension>().isSmallScreen(context) ? 18 : 20,
+                    fontWeight: FontWeight.w600,
+                  )),
+            ),
           ),
           // Display description
           Padding(
             padding: const EdgeInsets.fromLTRB(20, 0, 20, 10),
-            child: Text(apartment.description ?? "",
-                style: TextStyle(
-                    color: ref.read(themeModeNotifier.notifier).textTheme(ref: ref),
-                    fontSize: getIt<AppDimension>().isSmallScreen(context) ? 14 : 16,
-                    height: 1.6,
-                    wordSpacing: 1.3)),
+            child: FadeInOnVisible(
+              direction: SlideDirection.x,
+              child: Text(apartment.description ?? "",
+                  style: TextStyle(
+                      color: ref.read(themeModeNotifier.notifier).textTheme(ref: ref),
+                      fontSize: getIt<AppDimension>().isSmallScreen(context) ? 14 : 16,
+                      height: 1.6,
+                      wordSpacing: 1.3)),
+            ),
           ),
         ],
       ),

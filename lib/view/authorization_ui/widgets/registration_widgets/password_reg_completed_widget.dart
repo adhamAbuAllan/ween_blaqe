@@ -16,6 +16,7 @@ class PasswordRegCompletedWidget extends ConsumerWidget {
         Form(
           key: formRegPasswordKey,
           child: TextFormFiledPasswordWidget(
+            isUIHaveScroll: false,
             validator: (value) {
               return ref
                   .watch(formFieldsNotifier)['passwordRegistration']

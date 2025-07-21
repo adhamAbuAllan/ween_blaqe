@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 // import 'package:skeletons/skeletons.dart';
 import 'package:ween_blaqe/controller/provider_controllers/providers/color_provider.dart';
+import 'package:ween_blaqe/view/common_widgets/animations_widgets/build_animation_widget.dart';
 
 import 'package:ween_blaqe/view/user/owner/pick_image_bottom_sheet_widget.dart';
 import 'package:ween_blaqe/view/user/owner/widgets/change_user_image_widgets'
@@ -49,34 +50,38 @@ class _ChangeUserImageConsumerState extends ConsumerState<UpdateUserImage> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            GestureDetector(
-                onTap: () {
-                  showModalBottomSheet(
-                    context: context,
-                    builder: (context) {
-                      return const PickImageBottomSheetWidget();
-                    },
-                  );
-                },
-                child: ref.watch(profileImageFile)?.path == null &&
-                        NewSession.get(PrefKeys.profile, "def") ==
-                            "images/profile/user.png"
-                    ? DefaultImageWidget(
-                        radius: getIt<AppDimension>().isSmallScreen(context)
-                            ? 40 * 2
-                            : (40 * 4),
-                      )
-                    : (ref.watch(profileImageFile)?.path != null
-                        ? MobileStorageImageWidget(
-                            radius: getIt<AppDimension>().isSmallScreen(context)
-                                ? 40 * 2
-                                : (40 * 4),
-                          )
-                        : ServerImageWidget(
-                            radius: getIt<AppDimension>().isSmallScreen(context)
-                                ? 40 * 2
-                                : (40 * 4),
-                          ))),
+            FadeInOnVisible(
+              delay: const Duration(milliseconds: 510),
+              direction: SlideDirection.xy,
+              child: GestureDetector(
+                  onTap: () {
+                    showModalBottomSheet(
+                      context: context,
+                      builder: (context) {
+                        return const PickImageBottomSheetWidget();
+                      },
+                    );
+                  },
+                  child: ref.watch(profileImageFile)?.path == null &&
+                          NewSession.get(PrefKeys.profile, "def") ==
+                              "images/profile/user.png"
+                      ? DefaultImageWidget(
+                          radius: getIt<AppDimension>().isSmallScreen(context)
+                              ? 40 * 2
+                              : (40 * 4),
+                        )
+                      : (ref.watch(profileImageFile)?.path != null
+                          ? MobileStorageImageWidget(
+                              radius: getIt<AppDimension>().isSmallScreen(context)
+                                  ? 40 * 2
+                                  : (40 * 4),
+                            )
+                          : ServerImageWidget(
+                              radius: getIt<AppDimension>().isSmallScreen(context)
+                                  ? 40 * 2
+                                  : (40 * 4),
+                            ))),
+            ),
             const SizedBox(height: 20),
           ],
         ),

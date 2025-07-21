@@ -46,9 +46,8 @@ class _DropdownFieldWidgetState extends ConsumerState<DropdownFieldWidget> {
           enabledBorder: OutlineInputBorder(
             borderSide: BorderSide(
               width: 0.5,
-              color: ref
-                  .read(themeModeNotifier.notifier)
-                  .primary300Theme(ref: ref),
+              color: ref.read(themeModeNotifier.notifier)
+                  .primaryTheme(ref: ref,withOpacity: .3),
             ),
           ),
           focusedBorder: OutlineInputBorder(

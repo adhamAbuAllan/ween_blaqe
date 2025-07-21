@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:ween_blaqe/controller/provider_controllers/providers/color_provider.dart';
+import 'package:ween_blaqe/view/common_widgets/animations_widgets/build_animation_widget.dart';
 
 import '../../../../../../../constants/coordination.dart';
 import '../../../../../../../constants/get_it_controller.dart';
-import '../../../../../../../constants/localization.dart';
 
 class ShowDialogContentWidgets extends ConsumerWidget {
   const ShowDialogContentWidgets(
@@ -26,22 +26,25 @@ class ShowDialogContentWidgets extends ConsumerWidget {
         mainAxisAlignment: MainAxisAlignment.end,
         crossAxisAlignment: CrossAxisAlignment.end,
         children: <Widget>[
-          TextFormField(
-            decoration: InputDecoration(
-              labelText: labelUserName,
-              labelStyle: TextStyle(
-                color: ref.read(themeModeNotifier.notifier).textTheme(ref: ref),
+          FadeInOnVisible(
+            direction: SlideDirection.y,
+            child: TextFormField(
+              decoration: InputDecoration(
+                labelText: labelUserName,
+                labelStyle: TextStyle(
+                  color: ref.read(themeModeNotifier.notifier).textTheme(ref: ref),
+                  fontSize: getIt<AppDimension>().isSmallScreen(context) ? 14 : 16,
+                ),
+              ),
+              // initialValue:  socialName,
+              controller: controller,
+              onChanged: onChanged,
+
+              style: TextStyle(
+                color:
+                    ref.read(themeModeNotifier.notifier).textTheme(ref: ref),
                 fontSize: getIt<AppDimension>().isSmallScreen(context) ? 14 : 16,
               ),
-            ),
-            // initialValue:  socialName,
-            controller: controller,
-            onChanged: onChanged,
-
-            style: TextStyle(
-              color:
-                  ref.read(themeModeNotifier.notifier).textTheme(ref: ref),
-              fontSize: getIt<AppDimension>().isSmallScreen(context) ? 14 : 16,
             ),
           ),
           // check != null

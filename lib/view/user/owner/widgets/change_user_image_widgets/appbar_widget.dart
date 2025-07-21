@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:ween_blaqe/controller/provider_controllers/providers/color_provider.dart';
+import 'package:ween_blaqe/view/common_widgets/animations_widgets/build_animation_widget.dart';
 
 import '../../../../../constants/coordination.dart';
 import '../../../../../constants/get_it_controller.dart';
@@ -12,29 +13,35 @@ class AppBarUpdateProfileWidget extends ConsumerWidget implements PreferredSizeW
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    return AppBar(
-      backgroundColor:
-      ref.read(themeModeNotifier.notifier).primaryTheme(ref: ref),
-      title: Text(
-        SetLocalization.of(context)!
-            .getTranslateValue("change_profile_picture"),
-        style: TextStyle(
-            fontWeight: FontWeight.w600,
-            fontSize: getIt<AppDimension>().isSmallScreen(context) ? 16 : null,
-            color: Colors.white),
-      ),
-      leading:BackButton(
-        onPressed: (){
-          ref.read(profileImageFile.notifier).state = null;
-          Navigator.pop(context);
-        },
-      ),
-      actions: const [
-        Padding(
-          padding: EdgeInsets.only(left: 5.0),
-          child:_CheckButtonWidget() ,
+    return FadeInOnVisible(
+      child: AppBar(
+        backgroundColor:
+        ref.read(themeModeNotifier.notifier).primaryTheme(ref: ref),
+        title: Text(
+          SetLocalization.of(context)!
+              .getTranslateValue("change_profile_picture"),
+          style: TextStyle(
+              fontWeight: FontWeight.w600,
+              fontSize: getIt<AppDimension>().isSmallScreen(context) ? 16 : null,
+              color: Colors.white),
         ),
-      ],
+        leading:FadeInOnVisible(
+          child: BackButton(
+            onPressed: (){
+              ref.read(profileImageFile.notifier).state = null;
+              Navigator.pop(context);
+            },
+          ),
+        ),
+        actions: const [
+          Padding(
+            padding: EdgeInsets.only(left: 5.0),
+            child:FadeInOnVisible(
+              direction: SlideDirection.x,
+                child: _CheckButtonWidget()) ,
+          ),
+        ],
+      ),
     );
   }
 

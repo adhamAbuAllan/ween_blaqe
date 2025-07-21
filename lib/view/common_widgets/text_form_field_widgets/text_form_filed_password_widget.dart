@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:ween_blaqe/controller/provider_controllers/providers/color_provider.dart';
+import 'package:ween_blaqe/view/common_widgets/animations_widgets/build_animation_widget.dart';
 
 import '../../../constants/coordination.dart';
 import '../../../constants/get_it_controller.dart';
@@ -19,7 +20,10 @@ class TextFormFiledPasswordWidget extends ConsumerStatefulWidget {
       required this.onObscureChanged,
       this.validator,
       this.helperText,
-      this.errorText});
+      this.errorText,this.delay,
+      this.isUIHaveScroll = true
+
+      });
 
   final TextInputType? inputType;
   final Function? onFieldSubmitted;
@@ -38,6 +42,8 @@ class TextFormFiledPasswordWidget extends ConsumerStatefulWidget {
   final TextEditingController? controller;
   final String? helperText;
   final String? errorText;
+  final Duration ?delay;
+  final bool ?isUIHaveScroll;
 
   @override
   ConsumerState createState() => _TextFormFiledPasswordWidgetState();
@@ -49,67 +55,72 @@ class _TextFormFiledPasswordWidgetState
   Widget build(BuildContext context) {
     return Padding(
         padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 0),
-        child: TextFormField(
-          validator: widget.validator,
-          controller: widget.controller,
-          obscureText: widget.isObscure,
-          style: TextStyle(
-              color: ref.read(themeModeNotifier.notifier).textTheme(ref: ref)),
-          keyboardType: widget.inputType,
-          decoration: InputDecoration(
-            errorText: widget.errorText,
-            contentPadding: EdgeInsets.symmetric(
-                vertical:15,
-                    // getIt<AppDimension>().isSmallScreen(context) ? 20 / 1.5 :
-                    // 20,
-                horizontal: 10),
-            labelText: widget.labelInput,
-            labelStyle: TextStyle(
-              color: Colors.grey.shade500,
-              fontSize: getIt<AppDimension>().isSmallScreen(context) ? 14 : 16,
-            ),
-            suffixIcon: IconButton(
-              iconSize: getIt<AppDimension>().isSmallScreen(context) ? 20 : 24,
-              icon: widget.isObscure
-                  ? const Icon(Icons.visibility)
-                  : const Icon(Icons.visibility_off),
-              color: ref.read(themeModeNotifier.notifier).textTheme(ref: ref),
-              onPressed: () {
-                setState(() {
-                  widget.onObscureChanged(!widget.isObscure);
-                });
-              },
-            ),
-            hintStyle: const TextStyle(color: Colors.grey),
-            border: InputBorder.none,
-            focusedBorder: OutlineInputBorder(
-              borderSide: BorderSide(
-                width: 1,
-                color:
-                    ref.read(themeModeNotifier.notifier).primaryTheme(ref: ref),
+        child: FadeInOnVisible(
+          isUIHaveScroll: widget.isUIHaveScroll,
+          direction: SlideDirection.x,
+          delay: widget.delay,
+
+          child: TextFormField(
+            validator: widget.validator,
+            controller: widget.controller,
+            obscureText: widget.isObscure,
+            style: TextStyle(
+                color: ref.read(themeModeNotifier.notifier).textTheme(ref: ref)),
+            keyboardType: widget.inputType,
+            decoration: InputDecoration(
+              errorText: widget.errorText,
+              contentPadding: EdgeInsets.symmetric(
+                  vertical:15,
+                      // getIt<AppDimension>().isSmallScreen(context) ? 20 / 1.5 :
+                      // 20,
+                  horizontal: 10),
+              labelText: widget.labelInput,
+              labelStyle: TextStyle(
+                color: Colors.grey.shade500,
+                fontSize: getIt<AppDimension>().isSmallScreen(context) ? 14 : 16,
               ),
-            ),
-
-            enabledBorder: OutlineInputBorder(
+              suffixIcon: IconButton(
+                iconSize: getIt<AppDimension>().isSmallScreen(context) ? 20 : 24,
+                icon: widget.isObscure
+                    ? const Icon(Icons.visibility)
+                    : const Icon(Icons.visibility_off),
+                color: ref.read(themeModeNotifier.notifier).textTheme(ref: ref),
+                onPressed: () {
+                  setState(() {
+                    widget.onObscureChanged(!widget.isObscure);
+                  });
+                },
+              ),
+              hintStyle: const TextStyle(color: Colors.grey),
+              border: InputBorder.none,
+              focusedBorder: OutlineInputBorder(
                 borderSide: BorderSide(
-                  width: 0.5,
-                  color: ref
-                      .read(themeModeNotifier.notifier)
-                      .primary300Theme(ref: ref),
+                  width: 1,
+                  color:
+                      ref.read(themeModeNotifier.notifier).primaryTheme(ref: ref),
                 ),
-                borderRadius: BorderRadius.circular(7)),
-            helperText: widget.helperText,
-            errorBorder: const OutlineInputBorder(
-              borderSide:
-                  BorderSide(color: Colors.red), // Set error border color
+              ),
+          
+              enabledBorder: OutlineInputBorder(
+                  borderSide: BorderSide(
+                    width: 0.5,
+                    color:ref.read(themeModeNotifier.notifier)
+                        .primaryTheme(ref: ref,withOpacity: .3),
+                  ),
+                  borderRadius: BorderRadius.circular(7)),
+              helperText: widget.helperText,
+              errorBorder: const OutlineInputBorder(
+                borderSide:
+                    BorderSide(color: Colors.red), // Set error border color
+              ),
+          
+              focusedErrorBorder: const OutlineInputBorder(
+                borderSide: BorderSide(
+                    color: Colors.red, width: 2.0), // Set focused error border
+              ),
+              errorStyle: const TextStyle(
+                  color: Colors.red), // Customize error text style
             ),
-
-            focusedErrorBorder: const OutlineInputBorder(
-              borderSide: BorderSide(
-                  color: Colors.red, width: 2.0), // Set focused error border
-            ),
-            errorStyle: const TextStyle(
-                color: Colors.red), // Customize error text style
           ),
         ));
   }

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:ween_blaqe/controller/provider_controllers/providers/color_provider.dart';
+import 'package:ween_blaqe/view/common_widgets/animations_widgets/build_animation_widget.dart';
 import 'package:ween_blaqe/view/common_widgets/button_widgets/outline_button_widget.dart';
 
 import '../../../../../../constants/coordination.dart';
@@ -76,14 +77,19 @@ class _SocialMediaConnectionButtonConsumerState
         child: Wrap(
           // Use Wrap instead of Row
           children: [
-            SocialIconWidget(
-              socialIcon: widget.socialIcon,
-              colorOfIcon: widget.contentColor,
+            FadeInOnVisible(
+              child: SocialIconWidget(
+                socialIcon: widget.socialIcon,
+                colorOfIcon: widget.contentColor,
+              ),
             ),
-            SocialMediaNameWidget(
-              socialName: widget.socialDialogName,
-              colorOfText: widget.contentColor,
-              fontWeightOfText: widget.fontWeight,
+            FadeInOnVisible(
+              direction: SlideDirection.x,
+              child: SocialMediaNameWidget(
+                socialName: widget.socialDialogName,
+                colorOfText: widget.contentColor,
+                fontWeightOfText: widget.fontWeight,
+              ),
             ),
           ],
         ),

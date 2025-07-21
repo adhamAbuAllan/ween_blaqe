@@ -1,6 +1,7 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter/material.dart';
 import 'package:ween_blaqe/controller/provider_controllers/providers/auth_provider.dart';
+import 'package:ween_blaqe/view/common_widgets/animations_widgets/build_animation_widget.dart';
 import 'package:ween_blaqe/view/common_widgets/drop_down_widget.dart';
 
 import '../../../../constants/coordination.dart';
@@ -24,14 +25,20 @@ class _DropDownUserTypeWidgetState
       crossAxisAlignment: CrossAxisAlignment.start,
 
       children: [
-        TypeOfUserTitle(),
-        DropdownFieldWidget(
-          onChanged: (newValue) {
-            ref.read(dropdownProvider.notifier).setSelectedItem(
-                stringValues: widget.stringValues, currentValue: newValue);
-          },
-          items: ref.read(typeOfUser),
-          isStringOnly: true,
+        FadeInOnVisible(
+            isUIHaveScroll: false,
+            child: TypeOfUserTitle()),
+        FadeInOnVisible(
+          direction: SlideDirection.x,
+          isUIHaveScroll: false,
+          child: DropdownFieldWidget(
+            onChanged: (newValue) {
+              ref.read(dropdownProvider.notifier).setSelectedItem(
+                  stringValues: widget.stringValues, currentValue: newValue);
+            },
+            items: ref.read(typeOfUser),
+            isStringOnly: true,
+          ),
         ),
         SizedBox(
           height: getIt<AppDimension>().isSmallScreen(context)

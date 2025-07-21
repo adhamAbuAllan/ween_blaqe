@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:ween_blaqe/controller/provider_controllers/providers/auth_provider.dart';
 import 'package:ween_blaqe/controller/provider_controllers/providers/color_provider.dart';
+import 'package:ween_blaqe/view/common_widgets/animations_widgets/build_animation_widget.dart';
 
 import '../../../../../constants/coordination.dart';
 import '../../../../../constants/get_it_controller.dart';
@@ -13,48 +14,53 @@ class UpdateUserPasswordContainerWidget extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    return Container(
-      margin: const EdgeInsets.fromLTRB(10, 30, 10, 50),
-      // height: 140,
-      padding: const EdgeInsets.fromLTRB(10, 10, 0, 10),
+    return FadeInOnVisible(
+      direction: SlideDirection.x,
+      child: Container(
+        margin: const EdgeInsets.fromLTRB(10, 30, 10, 50),
+        // height: 140,
+        padding: const EdgeInsets.fromLTRB(10, 10, 0, 10),
 
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(7),
-        color: ref.read(themeModeNotifier.notifier).containerTheme(ref: ref),
-      ),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Padding(
-            padding: const EdgeInsets.fromLTRB(20, 0, 20, 10),
-            child: Text(
-              SetLocalization.of(context)!.getTranslateValue("change_password"),
-              style: TextStyle(
-                color: ref.read(themeModeNotifier.notifier).textTheme(ref: ref),
-                fontSize: getIt<AppDimension>().isSmallScreen(context) ? 16 : 18,
-                fontWeight: FontWeight.w500,
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(7),
+          color: ref.read(themeModeNotifier.notifier).containerTheme(ref: ref),
+        ),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Padding(
+              padding: const EdgeInsets.fromLTRB(20, 0, 20, 10),
+              child: FadeInOnVisible(
+                child: Text(
+                  SetLocalization.of(context)!.getTranslateValue("change_password"),
+                  style: TextStyle(
+                    color: ref.read(themeModeNotifier.notifier).textTheme(ref: ref),
+                    fontSize: getIt<AppDimension>().isSmallScreen(context) ? 16 : 18,
+                    fontWeight: FontWeight.w500,
+                  ),
+                ),
               ),
             ),
-          ),
-          //old password
-          Padding(
-            padding: const EdgeInsets.only(right: 20, left: 10),
-            child: Column(
-              children: [
-                Form(key: ref.watch(oldPasswordValidate.notifier).state !=
-                    null ? oldPasswordFormKey : null ,
+            //old password
+            Padding(
+              padding: const EdgeInsets.only(right: 20, left: 10),
+              child: Column(
+                children: [
+                  Form(key: ref.watch(oldPasswordValidate.notifier).state !=
+                      null ? oldPasswordFormKey : null ,
 
-                    child: const OldPasswordWidget()),
-                const Column(
-                    children: [
-                      //new password
-                      NewPasswordWidget(),
-                      //sure new password
-                      SureNewPasswordWidget()])
-              ],
+                      child: const OldPasswordWidget()),
+                  const Column(
+                      children: [
+                        //new password
+                        NewPasswordWidget(),
+                        //sure new password
+                        SureNewPasswordWidget()])
+                ],
+              ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }
@@ -66,6 +72,7 @@ class OldPasswordWidget extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     return TextFormFiledPasswordWidget(
+      delay: const Duration(milliseconds: 600),
       validator: (value) {
         if (ref.read(oldPasswordValidate.notifier).state == null) {
           ref.read(oldPasswordValidate.notifier).state = null;
@@ -95,6 +102,8 @@ class NewPasswordWidget extends ConsumerWidget {
       key: ref.watch(newPasswordValidate.notifier).state !=
           null ? newPasswordFormKey : null ,
       child: TextFormFiledPasswordWidget(
+        delay: const Duration(milliseconds: 700),
+
         isObscure: ref.watch(isSureObscure),
         onObscureChanged: (newValue) {
           ref.read(isSureObscure.notifier).state = newValue;
@@ -124,6 +133,8 @@ class SureNewPasswordWidget extends ConsumerWidget {
       key: ref.watch(sureNewPasswordValidate.notifier).state !=
           null ? sureNewPasswordFormKey : null ,
       child: TextFormFiledPasswordWidget(
+        delay: const Duration(milliseconds: 800),
+
         validator: (value) {
           if(ref.read(newPasswordValidate.notifier).state == null){
             ref.read(sureNewPasswordValidate.notifier).state = null;
