@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:ween_blaqe/controller/provider_controllers/providers/apartment_provider.dart';
 import 'package:ween_blaqe/controller/provider_controllers/providers/color_provider.dart';
 import 'package:ween_blaqe/view/common_widgets/animations_widgets/build_animation_widget.dart';
+import '../common_widgets/animations_widgets/animated_app_bar.dart';
 
 import '../../constants/coordination.dart';
 import '../../constants/get_it_controller.dart';
@@ -23,12 +24,10 @@ class _BookmarkApartmentState extends ConsumerState<BookmarkApartmentUi> {
     super.initState();
     WidgetsBinding.instance.addPostFrameCallback((_) async {
       await ref.read(fetchApartmentNotifier.notifier).fetchApartments(
-        ref: ref,
-
-        isOwnerApartments: false,
+            ref: ref,
+            isOwnerApartments: false,
             isAll: true,
             cityId: 0,
-
           );
 
       await ref
@@ -43,14 +42,16 @@ class _BookmarkApartmentState extends ConsumerState<BookmarkApartmentUi> {
     return Scaffold(
       backgroundColor:
           ref.read(themeModeNotifier.notifier).backgroundAppTheme(ref: ref),
-      appBar: AppBar(
+      appBar: FadeAppBar(
         backgroundColor:
             ref.read(themeModeNotifier.notifier).primaryTheme(ref: ref),
         title: FadeInOnVisible(
+          delay: const Duration(milliseconds: 700),
           child: Text(
             SetLocalization.of(context)!.getTranslateValue("favorites"),
             style: TextStyle(
-              fontSize: getIt<AppDimension>().isSmallScreen(context) ? 16 : null,
+              fontSize:
+                  getIt<AppDimension>().isSmallScreen(context) ? 16 : null,
             ),
           ),
         ),

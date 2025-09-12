@@ -9,6 +9,7 @@ import 'package:ween_blaqe/view/user/menu_ui.dart';
 import '../controller/provider_controllers/providers/color_provider.dart';
 import '../core/utils/funcations/route_pages/push_routes.dart';
 import 'common_widgets/animations_widgets/custom_bottom_nav_bar_carved_widget.dart';
+import 'common_widgets/button_widgets/floating_action_button_widget.dart';
 
 class MainUi extends ConsumerStatefulWidget {
   const MainUi({super.key});
@@ -61,7 +62,7 @@ class _MainScreenState extends ConsumerState<MainUi> {
           // bottomNavigationBar: BottomNavigationBarWidget(
           //   scrollController: _scrollController,
           // ),
-          // floatingActionButton: const FloatingActionButtonWidget(),
+          floatingActionButton: const FloatingActionButtonWidget(),
 
         ),
       ),

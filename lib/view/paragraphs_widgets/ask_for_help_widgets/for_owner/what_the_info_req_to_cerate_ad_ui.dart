@@ -13,6 +13,7 @@ import 'package:ween_blaqe/view/paragraphs_widgets/ask_for_help_widgets/for_owne
 
 import '../../../../constants/get_it_controller.dart';
 import '../../../../controller/provider_controllers/providers/color_provider.dart';
+import 'package:ween_blaqe/view/common_widgets/animations_widgets/animated_app_bar.dart';
 import 'apartment_features_available_table_widget.dart';
 import 'general_apartment_info_data_required_table_widget.dart';
 
@@ -41,7 +42,7 @@ class _WhatTheInfoReqToCreateAdState
       child: Scaffold(
         backgroundColor:
             ref.read(themeModeNotifier.notifier).backgroundAppTheme(ref: ref),
-        appBar: AppBar(
+        appBar: FadeAppBar(
           backgroundColor:
               ref.read(themeModeNotifier.notifier).primaryTheme(ref: ref),
         ),
@@ -128,7 +129,9 @@ class _WhatTheInfoReqToCreateAdState
                         SetLocalization.of(context)!
                             .getTranslateValue("info_of_general_info"),
                         style: TextStyle(
-                          fontSize: getIt<AppDimension>().isSmallScreen(context) ? 14 : 16,
+                          fontSize: getIt<AppDimension>().isSmallScreen(context)
+                              ? 14
+                              : 16,
                           fontWeight: FontWeight.w500,
                           color: ref
                               .read(themeModeNotifier.notifier)
@@ -174,7 +177,9 @@ class _WhatTheInfoReqToCreateAdState
                         SetLocalization.of(context)!
                             .getTranslateValue("apartment_details"),
                         style: TextStyle(
-                          fontSize: getIt<AppDimension>().isSmallScreen(context) ? 14 : 16,
+                          fontSize: getIt<AppDimension>().isSmallScreen(context)
+                              ? 14
+                              : 16,
                           fontWeight: FontWeight.w500,
                           color: ref
                               .read(themeModeNotifier.notifier)
@@ -216,7 +221,9 @@ class _WhatTheInfoReqToCreateAdState
                         SetLocalization.of(context)!
                             .getTranslateValue("apartment_advantages_details"),
                         style: TextStyle(
-                          fontSize: getIt<AppDimension>().isSmallScreen(context) ? 14 : 16,
+                          fontSize: getIt<AppDimension>().isSmallScreen(context)
+                              ? 14
+                              : 16,
                           fontWeight: FontWeight.w500,
                           letterSpacing: .5,
                           height: 1.35,
@@ -257,7 +264,9 @@ class _WhatTheInfoReqToCreateAdState
                         SetLocalization.of(context)!
                             .getTranslateValue("example_apartment_description"),
                         style: TextStyle(
-                          fontSize: getIt<AppDimension>().isSmallScreen(context) ? 14 : 16,
+                          fontSize: getIt<AppDimension>().isSmallScreen(context)
+                              ? 14
+                              : 16,
                           fontWeight: FontWeight.w500,
                           letterSpacing: .5,
                           height: 1.35,
@@ -293,7 +302,9 @@ class _WhatTheInfoReqToCreateAdState
                         SetLocalization.of(context)!
                             .getTranslateValue("owner_data_info"),
                         style: TextStyle(
-                          fontSize: getIt<AppDimension>().isSmallScreen(context) ? 14 : 16,
+                          fontSize: getIt<AppDimension>().isSmallScreen(context)
+                              ? 14
+                              : 16,
                           fontWeight: FontWeight.w500,
                           letterSpacing: .5,
                           height: 1.35,

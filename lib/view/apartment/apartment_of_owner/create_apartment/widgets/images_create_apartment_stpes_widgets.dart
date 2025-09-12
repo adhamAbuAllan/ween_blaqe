@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:ween_blaqe/view/common_widgets/animations_widgets/build_animation_widget.dart';
 
 import '../../../../../constants/coordination.dart';
 import '../../../../../constants/get_it_controller.dart';
@@ -17,25 +18,28 @@ class ImageCreateApartmentStepsWidget extends ConsumerWidget {
     double height =
         getIt<AppDimension>().isSmallScreen(context) ? 65 / 1.1 : 65;
     double width = getIt<AppDimension>().isSmallScreen(context) ? 65 / 1.1 : 65;
-    return Padding(
-      padding: const EdgeInsets.fromLTRB(25, 10, 25, 30),
-      child: ref.read(themeModeNotifier.notifier).isLightMode
-          ? Image.asset(
-              lightModeImage,
-              width:
-                  width,
-              height:
-                  height,
-              fit: BoxFit.fill,
-            )
-          : Image.asset(
-              darkModeImage,
-              width:
-                  width,
-              height:
-                  height,
-              fit: BoxFit.fill,
-            ),
+    return FadeInOnVisible(
+      delay: const Duration(milliseconds: 550),
+      child: Padding(
+        padding: const EdgeInsets.fromLTRB(25, 10, 25, 30),
+        child: ref.read(themeModeNotifier.notifier).isLightMode
+            ? Image.asset(
+                lightModeImage,
+                width:
+                    width,
+                height:
+                    height,
+                fit: BoxFit.fill,
+              )
+            : Image.asset(
+                darkModeImage,
+                width:
+                    width,
+                height:
+                    height,
+                fit: BoxFit.fill,
+              ),
+      ),
     );
   }
 }

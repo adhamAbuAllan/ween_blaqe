@@ -9,12 +9,13 @@ import '../../../../constants/get_it_controller.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart'; // Import Riverpod
 
 import '../../../controller/provider_controllers/providers/color_provider.dart';
+import '../../common_widgets/animations_widgets/animated_app_bar.dart';
 import 'widgets/show_all_advantages_widget.dart';
 
 class ShowAllAdvantagesUi extends ConsumerWidget {
   const ShowAllAdvantagesUi({super.key, this.oneApartment});
 
-  final DataOfOneApartment ? oneApartment;
+  final DataOfOneApartment? oneApartment;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -22,23 +23,23 @@ class ShowAllAdvantagesUi extends ConsumerWidget {
 
     // Check if data is still loading
 
-
     return ColorfulSafeArea(
       bottomColor: Colors.transparent,
       color: ref.read(themeModeNotifier.notifier).primaryTheme(ref: ref),
       child: Scaffold(
-        backgroundColor:ref.read(themeModeNotifier.notifier).backgroundAppTheme(ref: ref)
-,
-        appBar: AppBar(
+        backgroundColor:
+            ref.read(themeModeNotifier.notifier).backgroundAppTheme(ref: ref),
+        appBar: FadeAppBar(
           title: Text(
               SetLocalization.of(context)!.getTranslateValue("all_advantages"),
               style: TextStyle(
                 color: Colors.white,
                 fontSize:
-                getIt<AppDimension>().isSmallScreen(context) ? 18 : 20,
+                    getIt<AppDimension>().isSmallScreen(context) ? 18 : 20,
                 fontWeight: FontWeight.w600,
               )),
-          backgroundColor: ref.read(themeModeNotifier.notifier).primaryTheme(ref: ref),
+          backgroundColor:
+              ref.read(themeModeNotifier.notifier).primaryTheme(ref: ref),
         ),
         body: ShowAllAdvantagesWidget(oneApartment: oneApartment),
       ),

@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:ween_blaqe/constants/localization.dart';
 import 'package:ween_blaqe/controller/provider_controllers/providers/auth_provider.dart';
 import 'package:ween_blaqe/controller/provider_controllers/providers/color_provider.dart';
+import 'package:ween_blaqe/view/common_widgets/animations_widgets/animated_app_bar.dart';
 
 import '../../../../../constants/coordination.dart';
 import '../../../../../constants/get_it_controller.dart';
@@ -13,11 +14,12 @@ class AppBarOwnerApartmentsWidget extends ConsumerStatefulWidget
   const AppBarOwnerApartmentsWidget(
       {super.key,
       required this.animationController,
-      required this.iconColorAnimation, this.ownerName});
+      required this.iconColorAnimation,
+      this.ownerName});
 
   final AnimationController animationController;
   final Animation<Color?> iconColorAnimation;
-  final String ?ownerName;
+  final String? ownerName;
   @override
   ConsumerState createState() => _AppbarOwnerApartmentsWidgetState();
 
@@ -29,14 +31,13 @@ class _AppbarOwnerApartmentsWidgetState
     extends ConsumerState<AppBarOwnerApartmentsWidget> {
   @override
   Widget build(BuildContext context) {
-    return AppBar(
-      backgroundColor:
+    return FadeAppBar(
+         backgroundColor:
           ref.read(themeModeNotifier.notifier).primaryTheme(ref: ref),
-      title: Text(
-          ref.read(ownerIdNotifier)!= 0 ? "شقق ${widget.ownerName}" :
-          SetLocalization.of
-            (context)!
-              .getTranslateValue("your_apartments"),
+      title: Text( ref.read(ownerIdNotifier) != 0
+              ? "شقق ${widget.ownerName}"
+              : SetLocalization.of(context)!
+                  .getTranslateValue("your_apartments"),
           style: TextStyle(
               fontSize:
                   getIt<AppDimension>().isSmallScreen(context) ? 16 : null,

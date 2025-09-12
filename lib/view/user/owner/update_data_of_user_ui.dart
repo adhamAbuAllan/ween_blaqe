@@ -56,20 +56,24 @@ class UpdateUserDataUi extends ConsumerWidget {
                         ref.watch(updateUserNameValidate.notifier).state != null
                             ? updateUsernameFormKey
                             : null,
-                    child: ContainerFieldWidget(
-                      validator: (value) {
-                        if (ref.read(updateUserNameValidate.notifier).state ==
-                            null) {
-                          return null;
-                        }
-                        return ref.watch(updateUserNameValidate);
-                      },
-                      title: SetLocalization.of(context)!
-                          .getTranslateValue("full_name"),
-                      hintInput: "",
-                      inputType: TextInputType.name,
-                      controller: ref.watch(updateUsernameController),
-                      autoFocus: true,
+                    child: FadeInOnVisible(
+                      direction: SlideDirection.x,
+
+                      child: ContainerFieldWidget(
+                        validator: (value) {
+                          if (ref.read(updateUserNameValidate.notifier).state ==
+                              null) {
+                            return null;
+                          }
+                          return ref.watch(updateUserNameValidate);
+                        },
+                        title: SetLocalization.of(context)!
+                            .getTranslateValue("full_name"),
+                        hintInput: "",
+                        inputType: TextInputType.name,
+                        controller: ref.watch(updateUsernameController),
+                        autoFocus: true,
+                      ),
                     ),
                   ),
                   SizedBox(
@@ -79,19 +83,23 @@ class UpdateUserDataUi extends ConsumerWidget {
                   ),
                   
                   //change phone container
-                  ContainerWidget(
-                    horizontalPadding: 20,
-                    child: Form(
-                      key: ref.watch(updatePhoneValidate.notifier).state != null
-                          ? updatePhoneNumberFormKey
-                          : null,
-                      child: PhoneCompletedWidget(
-                        hasContainer: true,
-                        validateValue: ref.watch(updatePhoneValidate),
-                        controller: ref.watch(
-                          updatePhoneNumberController,
+                  FadeInOnVisible(
+                    direction: SlideDirection.x,
+
+                    child: ContainerWidget(
+                      horizontalPadding: 20,
+                      child: Form(
+                        key: ref.watch(updatePhoneValidate.notifier).state != null
+                            ? updatePhoneNumberFormKey
+                            : null,
+                        child: PhoneCompletedWidget(
+                          hasContainer: true,
+                          validateValue: ref.watch(updatePhoneValidate),
+                          controller: ref.watch(
+                            updatePhoneNumberController,
+                          ),
+                          isPhoneRegTextField: true,
                         ),
-                        isPhoneRegTextField: true,
                       ),
                     ),
                   ),

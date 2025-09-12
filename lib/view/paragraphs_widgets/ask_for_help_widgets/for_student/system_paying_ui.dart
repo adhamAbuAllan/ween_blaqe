@@ -11,6 +11,7 @@ import 'package:ween_blaqe/constants/strings.dart';
 import 'package:ween_blaqe/core/utils/funcations/route_pages/push_routes.dart';
 
 import '../../../common_widgets/aline_widget.dart';
+import 'package:ween_blaqe/view/common_widgets/animations_widgets/animated_app_bar.dart';
 
 class SystemPayingUi extends ConsumerWidget {
   const SystemPayingUi({super.key});
@@ -23,7 +24,7 @@ class SystemPayingUi extends ConsumerWidget {
       child: Scaffold(
         backgroundColor:
             ref.read(themeModeNotifier.notifier).backgroundAppTheme(ref: ref),
-        appBar: AppBar(
+        appBar: FadeAppBar(
           title: Text(
             SetLocalization.of(context)!.getTranslateValue("payment"),
             style: const TextStyle(fontWeight: FontWeight.w600),
@@ -86,7 +87,7 @@ class WhatIsSystemPayingAllowUi extends ConsumerWidget {
       child: Scaffold(
         backgroundColor:
             ref.read(themeModeNotifier.notifier).backgroundAppTheme(ref: ref),
-        appBar: AppBar(
+        appBar: FadeAppBar(
           backgroundColor:
               ref.read(themeModeNotifier.notifier).primaryTheme(ref: ref),
         ),
@@ -117,7 +118,8 @@ class WhatIsSystemPayingAllowUi extends ConsumerWidget {
                 SetLocalization.of(context)!
                     .getTranslateValue("payment_by_agreement"),
                 style: TextStyle(
-                  fontSize: getIt<AppDimension>().isSmallScreen(context) ? 14 : 16,
+                  fontSize:
+                      getIt<AppDimension>().isSmallScreen(context) ? 14 : 16,
                   color: ref
                       .read(themeModeNotifier.notifier)
                       .textTheme(ref: ref)
@@ -159,7 +161,7 @@ class CouldIPayByDepositUi extends ConsumerWidget {
       child: Scaffold(
         backgroundColor:
             ref.read(themeModeNotifier.notifier).backgroundAppTheme(ref: ref),
-        appBar: AppBar(
+        appBar: FadeAppBar(
           backgroundColor:
               ref.read(themeModeNotifier.notifier).primaryTheme(ref: ref),
         ),
@@ -190,7 +192,8 @@ class CouldIPayByDepositUi extends ConsumerWidget {
                 SetLocalization.of(context)!
                     .getTranslateValue("deposit_payment_agreement"),
                 style: TextStyle(
-                  fontSize: getIt<AppDimension>().isSmallScreen(context) ? 14 : 16,
+                  fontSize:
+                      getIt<AppDimension>().isSmallScreen(context) ? 14 : 16,
                   color: ref
                       .read(themeModeNotifier.notifier)
                       .textTheme(ref: ref)

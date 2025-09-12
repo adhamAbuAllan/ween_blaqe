@@ -9,6 +9,7 @@ import 'package:ween_blaqe/constants/coordination.dart';
 import 'package:ween_blaqe/controller/get_controllers.dart';
 import 'package:ween_blaqe/core/utils/funcations/snakbar.dart';
 import 'package:ween_blaqe/view/common_widgets/button_widgets/back_button_widget.dart';
+import 'package:ween_blaqe/view/common_widgets/animations_widgets/animated_app_bar.dart';
 import 'package:ween_blaqe/view/common_widgets/button_widgets/elevated_button_widget.dart';
 import '../constants/get_it_controller.dart';
 import '../constants/localization.dart';
@@ -39,7 +40,7 @@ class _SendNoticeForUsUiState extends ConsumerState<SendNoticeForUsUi> {
                 .backgroundAppTheme(ref: ref),
 
             // Colors.grey.shade200,
-            appBar: AppBar(
+            appBar: FadeAppBar(
               backgroundColor:
                   ref.read(themeModeNotifier.notifier).containerTheme(ref: ref),
               actions: [

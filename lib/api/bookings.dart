@@ -62,7 +62,7 @@
 //     required this.price,
 //     required this.fromDate,
 //     required this.toDate,
-//     required this.totalPrice,
+//     required this.totalPrice,m
 //     required this.monthCount
 //   });
 //   late final DataOfOneApartment apartment;

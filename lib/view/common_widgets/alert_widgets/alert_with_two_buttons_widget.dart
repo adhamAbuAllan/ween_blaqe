@@ -27,7 +27,7 @@ class AlertWithTwoBtn {
     showDialog(
         context: context,
         builder: (context) {
-          return AlertDialog(
+          return AlertDialog.adaptive(
             actionsAlignment: MainAxisAlignment.spaceEvenly,
             backgroundColor: containerColor,
             shape: RoundedRectangleBorder(

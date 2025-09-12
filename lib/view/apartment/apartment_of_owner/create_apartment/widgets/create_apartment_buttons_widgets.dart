@@ -1,6 +1,7 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter/material.dart';
 import 'package:ween_blaqe/controller/provider_controllers/providers/color_provider.dart';
+import 'package:ween_blaqe/view/common_widgets/animations_widgets/build_animation_widget.dart';
 
 import '../../../../../constants/localization.dart';
 import '../../../../../controller/provider_controllers/providers/apartment_provider.dart';
@@ -19,12 +20,17 @@ class ButtonsCreateApartmentWidgets extends ConsumerWidget {
       padding: const EdgeInsets.all(8.0),
       child: Row(
         children: [
-          const OutlinedBackButtonWidget(),
+          FadeInOnVisible(
+              isUIHaveScroll: false,
+              child: const OutlinedBackButtonWidget()),
           const Expanded(child: SizedBox()),
-          NextButtonWidget(
-            onPressed: onPressed,
-            title: title,
-            ref: ref,
+          FadeInOnVisible(
+            isUIHaveScroll: false,
+            child: NextButtonWidget(
+              onPressed: onPressed,
+              title: title,
+              ref: ref,
+            ),
           ),
         ],
       ),

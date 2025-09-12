@@ -138,6 +138,7 @@ class _OwnMaterialAppConsumerState
 
       debugShowCheckedModeBanner: false,
       darkTheme: ThemeData(
+
         useMaterial3: false,
         fontFamily: 'Cairo',
         colorScheme: ColorScheme.fromSwatch().copyWith(secondary: Colors.grey),

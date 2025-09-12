@@ -2,11 +2,11 @@ import 'package:colorful_safe_area/colorful_safe_area.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-
 import '../../../constants/coordination.dart';
 import '../../../constants/get_it_controller.dart';
 import '../../../constants/localization.dart';
 import '../../../controller/provider_controllers/providers/color_provider.dart';
+import 'package:ween_blaqe/view/common_widgets/animations_widgets/animated_app_bar.dart';
 
 class WhatIsMeanSSUi extends ConsumerWidget {
   const WhatIsMeanSSUi({super.key});
@@ -15,19 +15,13 @@ class WhatIsMeanSSUi extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     return ColorfulSafeArea(
       bottomColor: Colors.transparent,
-      color:
-      ref.read(themeModeNotifier.notifier).primaryTheme(ref: ref),
-
-
+      color: ref.read(themeModeNotifier.notifier).primaryTheme(ref: ref),
       child: Scaffold(
-        backgroundColor: ref.read(themeModeNotifier.notifier)
-            .backgroundAppTheme(ref: ref),
-
-        appBar: AppBar(
+        backgroundColor:
+            ref.read(themeModeNotifier.notifier).backgroundAppTheme(ref: ref),
+        appBar: FadeAppBar(
           backgroundColor:
-          ref.read(themeModeNotifier.notifier).primaryTheme(ref: ref),
-
-
+              ref.read(themeModeNotifier.notifier).primaryTheme(ref: ref),
         ),
         body: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -38,13 +32,11 @@ class WhatIsMeanSSUi extends ConsumerWidget {
               child: Text(
                 SetLocalization.of(context)!.getTranslateValue("what_is_ss"),
                 style: TextStyle(
-                    fontSize: 20.0,
-                    color: ref.read(themeModeNotifier.notifier).textTheme(
-                        ref: ref),
-
-
-                    fontWeight: FontWeight.w600 ,
-                    inherit: true,
+                  fontSize: 20.0,
+                  color:
+                      ref.read(themeModeNotifier.notifier).textTheme(ref: ref),
+                  fontWeight: FontWeight.w600,
+                  inherit: true,
                 ),
                 softWrap: true,
               ),
@@ -53,14 +45,14 @@ class WhatIsMeanSSUi extends ConsumerWidget {
             Container(
               width: double.infinity,
               margin: const EdgeInsets.fromLTRB(30, 0, 30, 10),
-              child: Text(SetLocalization.of(context)!.getTranslateValue(
-                  "shekel_per_month_note")
-                ,
+              child: Text(
+                SetLocalization.of(context)!
+                    .getTranslateValue("shekel_per_month_note"),
                 style: TextStyle(
-                  fontSize: getIt<AppDimension>().isSmallScreen(context) ? 14 : 16,
-                  color: ref.read(themeModeNotifier.notifier).textTheme(
-                      ref: ref),
-
+                  fontSize:
+                      getIt<AppDimension>().isSmallScreen(context) ? 14 : 16,
+                  color:
+                      ref.read(themeModeNotifier.notifier).textTheme(ref: ref),
                   fontWeight: FontWeight.w500,
                   inherit: true,
                 ),

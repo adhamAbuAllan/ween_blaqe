@@ -10,6 +10,7 @@ import '../../../constants/localization.dart';
 import '../../../controller/provider_controllers/providers/color_provider.dart';
 import '../../../core/utils/funcations/go_url_launcher_methodes/go_to_whatsapp_method.dart';
 import '../../common_widgets/aline_widget.dart';
+import 'package:ween_blaqe/view/common_widgets/animations_widgets/animated_app_bar.dart';
 
 class AskForHelpUi extends ConsumerStatefulWidget {
   const AskForHelpUi({super.key});
@@ -25,12 +26,11 @@ class _AskForHelpUiState extends ConsumerState<AskForHelpUi> {
       length: 2,
       child: ColorfulSafeArea(
         // bottomColor: Colors.transparent ,
-        color:
-            ref.read(themeModeNotifier.notifier).primaryTheme(ref: ref),
+        color: ref.read(themeModeNotifier.notifier).primaryTheme(ref: ref),
         child: Scaffold(
           backgroundColor:
               ref.read(themeModeNotifier.notifier).backgroundAppTheme(ref: ref),
-          appBar: AppBar(
+          appBar: FadeAppBar(
             backgroundColor:
                 ref.read(themeModeNotifier.notifier).primaryTheme(ref: ref),
             title: Text(
@@ -79,7 +79,6 @@ class _AskForHelpUiState extends ConsumerState<AskForHelpUi> {
                           title: SetLocalization.of(context)!
                               .getTranslateValue("payment"),
                         ),
-
                         aline,
                         ButtonListTileWidget(
                             onTap: () {

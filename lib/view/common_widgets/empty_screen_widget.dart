@@ -58,19 +58,23 @@ class _EmptyScreenWidgetState extends ConsumerState<EmptyScreenWidget> {
             ),
           ),
           widget.centerIconInUnderCenterText != null
-              ? CustomTextUnderCenterWidget(
-            centerIconInUnderCenterText: widget
-                .centerIconInUnderCenterText??Icons.emoji_emotions_outlined,
-            underCenterTextBeforeIcon: widget.underCenterTextBeforeIcon??"",
-            underCenterTextAfterIcon: widget.underCenterTextAfterIcon??"",)
-              : Text(
-            widget.underCenterText??"put your under center text here",
-            style: TextStyle(
-              fontSize: getIt<AppDimension>().isSmallScreen(context) ? 14 : 16,
+              ? FadeInOnVisible(
+                child: CustomTextUnderCenterWidget(
+                            centerIconInUnderCenterText: widget
+                  .centerIconInUnderCenterText??Icons.emoji_emotions_outlined,
+                            underCenterTextBeforeIcon: widget.underCenterTextBeforeIcon??"",
+                            underCenterTextAfterIcon: widget.underCenterTextAfterIcon??"",),
+              )
+              : FadeInOnVisible(
+                child: Text(
+                            widget.underCenterText??"put your under center text here",
+                            style: TextStyle(
+                fontSize: getIt<AppDimension>().isSmallScreen(context) ? 14 : 16,
 
-              color: ref.read(themeModeNotifier.notifier).textTheme(ref: ref),
-            ),
-          ),
+                color: ref.read(themeModeNotifier.notifier).textTheme(ref: ref),
+                            ),
+                          ),
+              ),
         ],
       ),
     );

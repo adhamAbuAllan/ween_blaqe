@@ -21,7 +21,7 @@ class _ThemeModeSwitcherWidgetState
   Widget build(BuildContext context) {
     final themeModeNoti = ref.watch(themeModeNotifier.notifier);
 
-    return SwitchListTile(
+    return SwitchListTile.adaptive(
         inactiveThumbColor: ref.read(backgroundAppColorLight),
         activeColor:
         ref.read(themeModeNotifier.notifier).primaryTheme(ref: ref),

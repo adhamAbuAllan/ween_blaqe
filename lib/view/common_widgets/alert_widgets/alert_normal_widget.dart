@@ -15,7 +15,7 @@ class NormalAlert {
     showDialog(
         context: context,
         builder: (context) {
-          return AlertDialog(
+          return AlertDialog.adaptive(
             actionsAlignment: MainAxisAlignment.center,
             backgroundColor: containerColor,
             shape: RoundedRectangleBorder(

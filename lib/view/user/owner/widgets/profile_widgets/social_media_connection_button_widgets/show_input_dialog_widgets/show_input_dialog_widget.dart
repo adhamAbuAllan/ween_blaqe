@@ -37,7 +37,7 @@ class ShowInputDialogWidget extends ConsumerStatefulWidget {
 class _ShowInputDialogState extends ConsumerState<ShowInputDialogWidget> {
   @override
   Widget build(BuildContext context) {
-    return AlertDialog(
+    return AlertDialog.adaptive(
       backgroundColor: ref.read(themeModeNotifier.notifier).containerTheme(ref: ref),
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(7),
