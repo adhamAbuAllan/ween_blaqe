@@ -6,7 +6,6 @@ import 'package:ween_blaqe/view/common_widgets/button_widgets/outline_button_wid
 import '../../../../../../../constants/coordination.dart';
 import '../../../../../../../constants/get_it_controller.dart';
 import '../../../../../../../constants/localization.dart';
-import '../../../../../../../core/utils/styles/button.dart';
 import '../../../../../../../controller/provider_controllers/providers/auth_provider.dart';
 
 class ShowDialogElevatedButtonWidget extends ConsumerWidget {

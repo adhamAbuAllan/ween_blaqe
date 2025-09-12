@@ -1,11 +1,9 @@
-import 'package:carousel_slider_plus/carousel_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 // import 'package:vibration/vibration.dart';
 import 'package:ween_blaqe/constants/localization.dart';
 import 'package:ween_blaqe/controller/provider_controllers/providers/no_internet_provider.dart';
 import 'package:ween_blaqe/view/common_widgets/button_widgets/elevated_button_widget.dart';
-import 'package:ween_blaqe/view/no_internet_feature/no_internet_ui.dart';
 
 class ElevatedButtonSebhaWidget extends ConsumerStatefulWidget {
   const ElevatedButtonSebhaWidget({super.key});

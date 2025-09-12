@@ -36,7 +36,6 @@ class TotalTextWithoutAnimate extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-        int total = ref.watch(totalProvider.notifier).state;
 
     return Text("${ref.watch(noInternetNotfierProvider).sebhaTotal}+",
                     style: TextStyle(

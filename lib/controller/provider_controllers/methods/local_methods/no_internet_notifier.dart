@@ -1,4 +1,3 @@
-import 'package:carousel_slider_plus/carousel_controller.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 // import 'package:vibration/vibration.dart';
 import 'package:ween_blaqe/controller/provider_controllers/providers/no_internet_provider.dart';

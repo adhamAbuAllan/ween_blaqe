@@ -60,7 +60,7 @@ class _DropdownFieldWidgetState extends ConsumerState<DropdownFieldWidget> {
         ),
         dropdownColor:
             ref.read(themeModeNotifier.notifier).containerTheme(ref: ref),
-        value: widget.alreadyExistingValue ?? widget.items.first,
+        initialValue: widget.alreadyExistingValue ?? widget.items.first,
         items: widget.items.map((item) {
           String? itemName = widget.isStringOnly ?? false ? item : item.name;
           itemName = widget.isStringOnly ?? false ? item : item.name;

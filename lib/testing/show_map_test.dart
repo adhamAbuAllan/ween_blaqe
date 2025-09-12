@@ -106,7 +106,7 @@ class MapSampleState extends State<MapSample> {
       body: _isShow
           ? GoogleMap(
             //to limit the map camera movement
-            //  cameraTargetBounds: CameraTargetBounds(cameraTargetBounds),
+             cameraTargetBounds: CameraTargetBounds(cameraTargetBounds),
               myLocationButtonEnabled: true,
               myLocationEnabled: _isPermissionGranted,
               style: mapStyle,
