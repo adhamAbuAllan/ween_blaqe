@@ -53,17 +53,16 @@ class _MainScreenState extends ConsumerState<MainUi> {
                 padding: const EdgeInsets.only(bottom: 10),
                 child: Align(
                     alignment: Alignment.bottomCenter,
-                    child: CustomBottomNavBarCarved(scrollController: _scrollController,)),
+                    child: AnimationBottomNavBar(
+                      scrollController: _scrollController,
+                    )),
               )
-
             ],
-
           ),
           // bottomNavigationBar: BottomNavigationBarWidget(
           //   scrollController: _scrollController,
           // ),
           floatingActionButton: const FloatingActionButtonWidget(),
-
         ),
       ),
     );

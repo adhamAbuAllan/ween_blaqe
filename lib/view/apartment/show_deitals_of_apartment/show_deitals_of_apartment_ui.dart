@@ -180,6 +180,13 @@ class _ShowDeitalsOfApartmentUiState
               ),
               FadeInOnVisible(
                 direction: SlideDirection.x,
+                isUIHaveScroll: getIt<AppDimension>()
+                    .isSmallScreen(context)
+                    ? false
+                    : true,
+                    delay: getIt<AppDimension>().isSmallScreen(context)
+                        ? const Duration(milliseconds: 530)
+                        : null,
                 child: AboutApartmentWidget(
                   oneApartment: widget.oneApartment ?? DataOfOneApartment(),
                   imageAboutApartmentRoom:
@@ -187,7 +194,8 @@ class _ShowDeitalsOfApartmentUiState
                 ),
               ),
               FadeInOnVisible(
-                delay: Duration(milliseconds: 500),
+                delay: const Duration(milliseconds: 500),
+              
                 isUIHaveScroll: false,
                   direction: SlideDirection.x,
                   child: AdvantagesWidget(oneApartment: widget.oneApartment)),

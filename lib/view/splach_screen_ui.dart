@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:ween_blaqe/controller/provider_controllers/providers/color_provider.dart';
 import 'package:ween_blaqe/controller/provider_controllers/providers/language_proivder.dart';
-import 'package:ween_blaqe/view/common_widgets/animations_widgets/build_animation_widget.dart';
 import '../constants/nums.dart';
 import '../constants/strings.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -35,33 +34,45 @@ class _SplashScreenState extends ConsumerState<SplashScreenUi> {
   }
 
   @override
-  Widget build(
-    BuildContext context,
-  ) {
+  Widget build(BuildContext context) {
     return Scaffold(
-        backgroundColor: const Color(0x2ef0f0fe),
-        body: ColorfulSafeArea(
-          bottomColor: Colors.transparent,
-          color: ref.read(themeModeNotifier.notifier).primaryTheme(ref: ref),
-          child: SingleChildScrollView(
-              child: Center(
-                  child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                buildAnimatedWidget(child :Image(
-                  image: AssetImage(
-                      "assets/images/splash screen heigh qulity with large size.png"),
-                ))
-                    .fadeIn()
-                    .untint(color: Colors.white)
-                    .blurXY(begin: 64)
-                    .scaleXY(begin: 3.6),
-              ]))),
-        ));
+      backgroundColor: const Color(0x2ef0f0fe),
+
+      body: ColorfulSafeArea(
+        bottomColor: Colors.transparent,
+        color: ref.read(themeModeNotifier.notifier).primaryTheme(ref: ref),
+        child: Stack(
+          alignment: Alignment.center,
+          children: [
+            // Background image
+            Image.asset(
+              "assets/images/splash screen heigh qulity with large size.png",
+              fit: BoxFit.cover,
+            ),
+            // Gradient overlay with animation
+            Container(
+              decoration:  BoxDecoration(
+                gradient: LinearGradient(
+                  colors: [ Colors.white.withAlpha(255),Colors.white.withAlpha(220),Colors.white.withAlpha(180),Colors.white.withAlpha(140),Colors.white.withAlpha(80),Colors.transparent,],
+                  begin: Alignment.topCenter,
+                  end: Alignment.bottomCenter,
+                  tileMode: TileMode.repeated,
+
+                ),
+              ),
+            )
+                  .animate()
+              .fadeIn(duration: 100.ms) // appear
+               .then(duration: 100.ms) // after 100ms
+              .fadeOut(duration: 300.ms), 
+          ],
+        ),
+      ),
+    );
   }
 
   Future<void> navigateToHome() async {
-    Future.delayed(const Duration(milliseconds: 2250), () {
+    Future.delayed(const Duration(milliseconds: 700), () {
       NewSession.get("PrefKeys.isFirstTime", "") != "OK"
           ? NewSession.save(PrefKeys.language, "ar")
           : null;

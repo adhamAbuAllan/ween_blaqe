@@ -27,6 +27,7 @@ import 'package:get/get.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:ween_blaqe/controller/function_controller/change_theme_mode.dart';
 import 'package:flutter/services.dart';
+import 'package:ween_blaqe/controller/provider_controllers/providers/color_provider.dart';
 
 // import 'package:ween_blaqe/controller/owner_controller/owner_controller.dart';
 import 'package:ween_blaqe/core/utils/funcations/route_pages/push_routes.dart';
@@ -144,6 +145,11 @@ class _OwnMaterialAppConsumerState
         colorScheme: ColorScheme.fromSwatch().copyWith(secondary: Colors.grey),
       ),
       theme: ThemeData(
+        textSelectionTheme: TextSelectionThemeData(
+          cursorColor: ref.read(themeModeNotifier.notifier).primaryTheme(ref: ref),
+          selectionColor: ref.read(themeModeNotifier.notifier).primaryTheme(ref: ref).withAlpha(128),
+          selectionHandleColor: ref.read(themeModeNotifier.notifier).primaryTheme(ref: ref),
+        ),
           useMaterial3: false,
           fontFamily: 'Cairo',
           switchTheme: const SwitchThemeData(),

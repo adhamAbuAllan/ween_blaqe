@@ -62,6 +62,7 @@ class TextFormFieldWidget extends ConsumerWidget {
         vertical: decoration != null ? 0 : 5,
       ),
       child: TextFormField(
+        
           maxLines: maxLines,
           validator: validator,
           textInputAction: textInputAction,
@@ -70,15 +71,20 @@ class TextFormFieldWidget extends ConsumerWidget {
           //     ? TextDirection.ltr
           //     : TextDirection.rtl,
           controller: controller,
+          
           autofocus: autoFocus ?? false,
           keyboardType: keyboardType,
-          cursorColor: cursorColor,
+          cursorColor: cursorColor?? ref
+              .read(themeModeNotifier.notifier)
+              .primaryTheme(ref: ref),
+              
           style: style ??
               defultTextStyle(
                 ref.read(themeModeNotifier.notifier).textTheme(ref: ref),
               ),
           decoration: decoration ??
               defultInputDecoration(
+                
                 hintText: hintText,
                 context: context,
                 enabledBorderColor:
@@ -107,9 +113,9 @@ class TextFormFieldWidget extends ConsumerWidget {
       hintText: hintText,
 
       isDense: true,
-      hintStyle: TextStyle(color: Colors.grey),
+      hintStyle: const TextStyle(color: Colors.grey),
       // contentPadding: EdgeInsets. fromLTRB(12, 24, 12, 16),
-      contentPadding: EdgeInsets.symmetric(vertical: 15, horizontal: 10),
+      contentPadding: const EdgeInsets.symmetric(vertical: 15, horizontal: 10),
       labelText: labelName,
       alignLabelWithHint: true,
       labelStyle: TextStyle(

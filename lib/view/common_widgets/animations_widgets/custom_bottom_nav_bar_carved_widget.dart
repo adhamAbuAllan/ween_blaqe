@@ -5,19 +5,18 @@ import '../../../controller/provider_controllers/providers/animation_provider.da
 import '../../../controller/provider_controllers/providers/apartment_provider.dart';
 import '../../../controller/provider_controllers/providers/color_provider.dart';
 
-class CustomBottomNavBarCarved extends ConsumerStatefulWidget {
-  const CustomBottomNavBarCarved({super.key, this.scrollController});
+class AnimationBottomNavBar extends ConsumerStatefulWidget {
+  const AnimationBottomNavBar({super.key, this.scrollController});
 
   final ScrollController? scrollController;
 
   @override
-  ConsumerState<CustomBottomNavBarCarved> createState() =>
+  ConsumerState<AnimationBottomNavBar> createState() =>
       _CustomBottomNavBarCarvedState();
 }
 
 class _CustomBottomNavBarCarvedState
-    extends ConsumerState<CustomBottomNavBarCarved>
-    with TickerProviderStateMixin {
+    extends ConsumerState<AnimationBottomNavBar> with TickerProviderStateMixin {
   late List<AnimationController> _controllers;
   final List<IconData> _icons = [Icons.home, Icons.bookmark, Icons.settings];
 
@@ -35,7 +34,7 @@ class _CustomBottomNavBarCarvedState
     if (ref.read(bottomNavProvider.notifier).state == 0) {
       _controllers[0].repeat();
       _controllers[0].forward();
-    }else{
+    } else {
       _controllers[2].repeat();
       _controllers[2].forward();
     }
@@ -67,7 +66,7 @@ class _CustomBottomNavBarCarvedState
         borderRadius: BorderRadius.circular(32),
         boxShadow: const [
           BoxShadow(
-              color: Colors.black12, blurRadius: 12, offset: Offset(0, -2)),
+              color: Colors.black12, blurRadius: 12, offset: Offset(0, -2),blurStyle: BlurStyle.outer),
         ],
       ),
       child: Row(
@@ -84,12 +83,21 @@ class _CustomBottomNavBarCarvedState
               controller: controller,
               autoPlay: false,
               effects: [
-                Effect(duration: 1950.ms),
-                Effect(delay: 350.ms, duration: 1500.ms),
-                ScaleEffect(end: const Offset(1, 1), curve: Curves.easeOutBack),
-                MoveEffect(end: Offset(0, -5)),
+                // 1950 /2 = 975
+                // 1500 /2 = 750
+                // 350 /2 = 175
+
+                Effect(duration: 975.ms),
+                Effect(delay: 175.ms, duration: 750.ms),
+                const ScaleEffect(end: Offset(1, 1), curve: Curves.easeOutBack),
+                const MoveEffect(end: Offset(0, -5)),
                 ElevationEffect(
-                    end: _controllers[index].isForwardOrCompleted ? 30 : 0),
+                    end: _controllers[index].isForwardOrCompleted ? 1.5 : 0,
+                    curve: Curves.easeOutBack,
+                  borderRadius: BorderRadius.circular(12),
+                   delay: 175.ms,
+                   duration: 750.ms
+                   ),
               ],
               child: Container(
                 padding: const EdgeInsets.all(6),
@@ -99,7 +107,7 @@ class _CustomBottomNavBarCarvedState
                           .read(themeModeNotifier.notifier)
                           .primary300Theme(ref: ref)
                       : Colors.transparent,
-                  borderRadius: BorderRadius.circular(7),
+                  borderRadius: BorderRadius.circular(12),
                 ),
                 child: Icon(
                   _icons[index],
