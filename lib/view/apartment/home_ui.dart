@@ -35,7 +35,6 @@ class HomeUi extends ConsumerStatefulWidget {
 
 class _HomeUiState extends ConsumerState<HomeUi> {
   ApartmentState apartmentState = ApartmentState();
-
   @override
   void initState() {
     super.initState();
@@ -99,7 +98,7 @@ animate and scroll the bar of cities.
               // || ref.watch(mapStateProvider).loadingLocation
               ? _buildSkeleton(apartmentsList)
               : (apartmentsList.data?.isEmpty ?? false
-                  ? TypeNotFoundUi(
+                  ? const TypeNotFoundUi(
                     )
                   : buildRefreshIndicator(isAllTypesOfApartment, cityId, type,
                       apartmentsList: apartmentsList));
@@ -211,7 +210,7 @@ class ListApartmentWithTypeBtn extends StatelessWidget {
               // const ApartmentsListConsumer(),
 
               ApartmentsListWidget(
-                 apartmentsRes: apartmentsList,
+                apartmentsRes: apartmentsList,
                 onTypePress: () {
                   if (isAllTypesOfApartment) {
                     WidgetsBinding.instance.addPostFrameCallback((_) async {

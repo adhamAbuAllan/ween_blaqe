@@ -19,6 +19,7 @@ import 'package:ween_blaqe/view/apartment/show_deitals_of_apartment/widgets/abou
 import 'package:ween_blaqe/view/apartment/widgets/bookmark_button_widget.dart';
 import 'package:ween_blaqe/view/apartment/widgets/cities_of_apartments_widgets'
     '/bar_of_cities_widget.dart';
+import 'package:ween_blaqe/view/apartment/widgets/remaining_student_count_widget.dart';
 import 'package:ween_blaqe/view/apartment/widgets/price_text_widget.dart';
 import 'package:ween_blaqe/view/apartment/widgets/time_ago_text_widget.dart';
 import 'package:ween_blaqe/view/apartment/widgets'
@@ -35,7 +36,8 @@ import 'package:ween_blaqe/view/apartment/widgets/carousel_slider_widget.dart';
 import 'package:ween_blaqe/view/apartment/widgets/location_text_widget.dart';
 
 class ApartmentsListWidget extends ConsumerStatefulWidget {
-  const ApartmentsListWidget({super.key,
+  const ApartmentsListWidget({
+    super.key,
     this.scrollController,
     this.onPressed,
     this.onClick,
@@ -45,7 +47,8 @@ class ApartmentsListWidget extends ConsumerStatefulWidget {
     required this.apartmentsRes,
     this.onLocationPress,
     this.margeBetweenImages,
-    this.isOwnerApartment,});
+    this.isOwnerApartment,
+  });
 
   final Apartments apartmentsRes;
   final ScrollController? scrollController;
@@ -80,191 +83,205 @@ class _ApartmentsListConsumerState extends ConsumerState<ApartmentsListWidget> {
       slivers: [
         widget.haveCitiesBar
             ? SliverAppBar(
-          backgroundColor: ref
-              .read(themeModeNotifier.notifier)
-              .backgroundAppTheme(ref: ref),
-          leading: SizedBox(),
-          expandedHeight: 70,
-          floating: true,
-          snap: true,
-          // Enables smooth snapping
-          pinned: false,
-          stretch: true,
-          // Optional: allows for stretch/bounce effect
-          flexibleSpace: FlexibleSpaceBar(
-            collapseMode: CollapseMode.pin,
-            background: SizedBox(
-              height: 70,
-              child: CitiesBarWidget(
-                onTypePress: widget.onTypePress,
-                onClick: widget.onClick,
-                onLocationPress: widget.onLocationPress,
-              ),
-            ),
-          ),
-        )
+                backgroundColor: ref
+                    .read(themeModeNotifier.notifier)
+                    .backgroundAppTheme(ref: ref),
+                leading: const SizedBox(),
+                expandedHeight: 70,
+                floating: true,
+                snap: true,
+                // Enables smooth snapping
+                pinned: false,
+                stretch: true,
+                // Optional: allows for stretch/bounce effect
+                flexibleSpace: FlexibleSpaceBar(
+                  collapseMode: CollapseMode.pin,
+                  background: SizedBox(
+                    height: 70,
+                    child: CitiesBarWidget(
+                      onTypePress: widget.onTypePress,
+                      onClick: widget.onClick,
+                      onLocationPress: widget.onLocationPress,
+                    ),
+                  ),
+                ),
+              )
             : const SliverToBoxAdapter(
-          child: SizedBox(
-            height: 10,
-          ),
-        ),
+                child: SizedBox(
+                  height: 10,
+                ),
+              ),
         SliverList(
           delegate: SliverChildBuilderDelegate(
             childCount: widget.apartmentsRes.data?.length,
-                (context, index) {
+            (context, index) {
               final distanceInMeters =
                   widget.apartmentsRes.data?[index].distance_in_meters;
               final distance = (distanceInMeters != null)
                   ? distanceInMeters > 1000
-                  ? (distanceInMeters / 1000).toStringAsFixed(1)
-                  : distanceInMeters.toStringAsFixed(1)
+                      ? (distanceInMeters / 1000).toStringAsFixed(1)
+                      : distanceInMeters.toStringAsFixed(1)
                   : null;
               final displayDistance = distance != null
                   ? "$distance ${distanceInMeters! > 1000 ? "كيلومتر" : "متر"}"
                   : null;
               return RepaintBoundary(
                   child: GestureDetector(
-                    onTap: () {
-                      Navigator.of(context).push(MaterialPageRoute(
-                          builder: (BuildContext context) =>
-                              ShowDeitalsOfApartmentUi(
-                                oneApartment: widget.apartmentsRes.data?[index],
-                              )));
-                    },
-                    child: Container(
-                      margin: const EdgeInsets.fromLTRB(10, 0, 10, 23),
-                      padding: const EdgeInsets.symmetric(horizontal: 0),
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(7),
-                        color: ref
-                            .read(themeModeNotifier.notifier)
-                            .containerTheme(ref: ref),
-                      ),
-                      child: Column(
+                onTap: () {
+                  Navigator.of(context).push(MaterialPageRoute(
+                      builder: (BuildContext context) =>
+                          ShowDeitalsOfApartmentUi(
+                            oneApartment: widget.apartmentsRes.data?[index],
+                          )));
+                },
+                child: Container(
+                  margin: const EdgeInsets.fromLTRB(10, 0, 10, 23),
+                  padding: const EdgeInsets.symmetric(horizontal: 0),
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(7),
+                    color: ref
+                        .read(themeModeNotifier.notifier)
+                        .containerTheme(ref: ref),
+                  ),
+                  child: Column(
+                    children: [
+                      Row(
                         children: [
-                          Row(
-                            children: [
-                              const SizedBox(
-                                width: 10,
-                              ),
-                              TypeTextWidget(
+                          const SizedBox(
+                            width: 10,
+                          ),
+                          TypeTextWidget(
+                              apartmentsRes: widget.apartmentsRes,
+                              index: index),
+                          
+                          ref
+                                  .read(
+                                      isApartmentHaveStudentsNotifier.notifier)
+                                  .hasStudents(
+                                      widget.apartmentsRes.data?[index])
+                              ? RemainingStudentCountWidget(
+                                index: index,
                                   apartmentsRes: widget.apartmentsRes,
-                                  index: index),
-                              const Spacer(),
-                              if (widget.isDeleteMode)
-                                DeleteButtonWidget(
-                                  apartmentId:
-                                  widget.apartmentsRes.data?[index].id ?? 0,
-                                  onPressed: widget.onPressed,
-                                  apartmentsRes: widget.apartmentsRes,
-                                  index: index,
+                                  totalStudentCount: widget
+                                          .apartmentsRes
+                                          .data?[index]
+                                          .studentCountHave ??
+                                      0,
+                                  currentStudentCount: widget
+                                          .apartmentsRes
+                                          .data?[index]
+                                          .countOfStudnet ??
+                                      0,
                                 )
-                              else
-                                if (ref
-                                    .watch(toggleOwnerButtonsNotifier)
-                                    .isEdit)
-                                  ButtonUpdateClassWdiget(
-                                    apartmentsRes: widget.apartmentsRes,
-                                    apartmentId: index,
-                                  )
-                                else
-                                  if (ref
+                              : const SizedBox.shrink(),
+                          const Spacer(),
+                          if (widget.isDeleteMode)
+                            DeleteButtonWidget(
+                              apartmentId:
+                                  widget.apartmentsRes.data?[index].id ?? 0,
+                              onPressed: widget.onPressed,
+                              apartmentsRes: widget.apartmentsRes,
+                              index: index,
+                            )
+                          else if (ref.watch(toggleOwnerButtonsNotifier).isEdit)
+                            ButtonUpdateClassWdiget(
+                              apartmentsRes: widget.apartmentsRes,
+                              apartmentId: index,
+                            )
+                          else if (ref
                                       .watch(toggleOwnerButtonsNotifier)
                                       .isDelete ==
-                                      false &&
-                                      ref
-                                          .watch(toggleOwnerButtonsNotifier)
-                                          .isEdit ==
-                                          false)
-                                    BookmarkButtonWidget(
-                                        apartmentId:
-                                        widget.apartmentsRes.data?[index].id ??
-                                            0),
-                            ],
-                          ),
-                          ClipRRect(
-                              borderRadius: BorderRadius.circular(7 / 2),
-                              child: widget.apartmentsRes.data?[index]
-                                  .photos?[0]
-                                  .url ==
-                                  null
-                                  ? SkeletonAvatar(
-                                style: SkeletonAvatarStyle(
-                                    width: 367,
-                                    height: 220,
-                                    borderRadius:
-                                    BorderRadius.circular(7 / 2)),
-                              )
-                                  : CoursolSliderWidget(
-                                isOwnerApartment: widget.isOwnerApartment,
-                                marageBetweenImages: .85,
-                                imageList:
-                                widget.apartmentsRes.data![index].photos!,
+                                  false &&
+                              ref.watch(toggleOwnerButtonsNotifier).isEdit ==
+                                  false)
+                            BookmarkButtonWidget(
                                 apartmentId:
-                                widget.apartmentsRes.data![index].id!,
-                                oneApartment:
-                                widget.apartmentsRes.data![index],
-                              )),
-                          const SizedBox(
-                            height: 10,
-                          ),
-                          // PointerOfImageWidget(
-                          //   imageList:
-                          //       widget.apartmentsRes.data?[index].photos ?? [],
-                          //   apartmentId: widget.apartmentsRes.data ?[index].id ?? -1,
-                          // ),
-                          Container(
-                            padding: const EdgeInsets.symmetric(horizontal: 10),
-                            child: Column(
-                              children: [
-                                ApartmentTitleTextWidget(
-                                  index: index,
-                                  apartmentsRes: widget.apartmentsRes,
-                                ),
-                                ApartmentLocatoinTextWidget(
-                                  index: index,
-                                  apartmentsRes: widget.apartmentsRes,
-                                ),
-                                ApartmentPriceTextWidget(
-                                  index: index,
-                                  apartmentsRes: widget.apartmentsRes,
-                                ),
-                                ref.watch(isShowOwnerApartmentMode)
-                                    ? SizedBox()
-                                    : AboutOwnerWidget(
+                                    widget.apartmentsRes.data?[index].id ?? 0),
+                        ],
+                      ),
+                      ClipRRect(
+                          borderRadius: BorderRadius.circular(7 / 2),
+                          child: widget.apartmentsRes.data?[index].photos?[0]
+                                      .url ==
+                                  null
+                              ? SkeletonAvatar(
+                                  style: SkeletonAvatarStyle(
+                                      width: 367,
+                                      height: 220,
+                                      borderRadius:
+                                          BorderRadius.circular(7 / 2)),
+                                )
+                              : CoursolSliderWidget(
+                                  isOwnerApartment: widget.isOwnerApartment,
+                                  marageBetweenImages: .85,
+                                  imageList:
+                                      widget.apartmentsRes.data![index].photos!,
+                                  apartmentId:
+                                      widget.apartmentsRes.data![index].id!,
+                                  oneApartment:
+                                      widget.apartmentsRes.data![index],
+                                )),
+                      const SizedBox(
+                        height: 10,
+                      ),
+                      // PointerOfImageWidget(
+                      //   imageList:
+                      //       widget.apartmentsRes.data?[index].photos ?? [],
+                      //   apartmentId: widget.apartmentsRes.data ?[index].id ?? -1,
+                      // ),
+                      Container(
+                        padding: const EdgeInsets.symmetric(horizontal: 10),
+                        child: Column(
+                          children: [
+                            ApartmentTitleTextWidget(
+                              index: index,
+                              apartmentsRes: widget.apartmentsRes,
+                            ),
+                            ApartmentLocatoinTextWidget(
+                              index: index,
+                              apartmentsRes: widget.apartmentsRes,
+                            ),
+                            ApartmentPriceTextWidget(
+                              index: index,
+                              apartmentsRes: widget.apartmentsRes,
+                            ),
+                            ref.watch(isShowOwnerApartmentMode)
+                                ? const SizedBox()
+                                : AboutOwnerWidget(
                                     isForListHome: true,
                                     oneApartment:
-                                    widget.apartmentsRes.data?[index]??DataOfOneApartment()),
-                                Row(
-                                  children: [
-                                    TimeAgoTextWidget(
-                                      index: index,
-                                      apartmentsRes: widget.apartmentsRes,
-                                    ),
-                                    const Spacer(),
-                                    widget.apartmentsRes.data?[index]
-                                        .distance_in_meters !=
-                                        null &&
+                                        widget.apartmentsRes.data?[index] ??
+                                            DataOfOneApartment()),
+                            Row(
+                              children: [
+                                TimeAgoTextWidget(
+                                  index: index,
+                                  apartmentsRes: widget.apartmentsRes,
+                                ),
+                                const Spacer(),
+                                widget.apartmentsRes.data?[index]
+                                                .distance_in_meters !=
+                                            null &&
                                         widget.apartmentsRes.data![index]
-                                            .distance_in_meters! <=
+                                                .distance_in_meters! <=
                                             10000
-                                        ? Text(displayDistance ?? "",
+                                    ? Text(displayDistance ?? "",
                                         style: TextStyle(
                                           color: ref
                                               .read(themeModeNotifier.notifier)
                                               .textTheme(ref: ref),
                                           fontSize: 14,
                                         ))
-                                        : SizedBox()
-                                  ],
-                                )
+                                    : const SizedBox()
                               ],
-                            ),
-                          ),
-                        ],
+                            )
+                          ],
+                        ),
                       ),
-                    ),
-                  ));
+                    ],
+                  ),
+                ),
+              ));
             },
           ),
         ),

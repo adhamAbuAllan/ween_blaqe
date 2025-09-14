@@ -64,6 +64,7 @@ class DataOfOneApartment {
     this.type,
     this.updatedAt,
     this.countOfStudnet,
+    this.studentCountHave,
     this.timeAgo,
     this.latitude,       // Added field
     this.longitude,      // Added field
@@ -87,6 +88,7 @@ class DataOfOneApartment {
   late final TypeOfApartment? type;
   late final String? updatedAt;
   late final int? countOfStudnet;
+  late final int? studentCountHave;
   late final String? timeAgo;
   late final num? latitude;
   late final num? longitude;
@@ -102,6 +104,7 @@ class DataOfOneApartment {
         .toList();
     rooms = json['rooms'];
     countOfStudnet = json['count_of_student'];
+    studentCountHave = json['student_count_have'];
     bathrooms = json['bathrooms'];
     squareMeters = json['square_meters'];
     title = json['title'];
@@ -139,6 +142,7 @@ class DataOfOneApartment {
     _data['location'] = location;
     _data['price'] = price;
     _data['count_of_student'] = countOfStudnet;
+    _data['student_count_have'] = studentCountHave;
     _data['city'] = city?.toJson() ?? "";
     _data['type'] = type?.toJson() ?? "";
     _data['updated_at'] = updatedAt;

@@ -7,6 +7,7 @@ import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:ween_blaqe/controller/provider_controllers/methods/api_methods/apartment_methods/fetch_apartments_notifier.dart';
 import 'package:ween_blaqe/controller/provider_controllers/methods/api_methods/apartment_methods/cities_notifier.dart';
 import 'package:ween_blaqe/controller/provider_controllers/methods/api_methods/apartment_methods/type_notifier.dart';
+import 'package:ween_blaqe/controller/provider_controllers/methods/hybrid_methods/students_counter_notifier.dart';
 import 'package:ween_blaqe/controller/provider_controllers/methods/local_methods/check_update_apartment_notifier.dart';
 import 'package:ween_blaqe/controller/provider_controllers/statuses/status_of_apartment/city_state.dart';
 import 'package:ween_blaqe/controller/provider_controllers/statuses/status_of_apartment/type_state.dart';
@@ -64,6 +65,12 @@ final bookmarkNotifier =
 final isApartmentDataChangedNotifier =
     StateNotifierProvider<ApartmentDataChangedCheckerNotifier, bool>(
         (ref) => ApartmentDataChangedCheckerNotifier());
+
+final isApartmentHaveStudentsNotifier =
+    StateNotifierProvider<StudentsCounterNotifier, bool>(
+        (ref) => StudentsCounterNotifier());
+        
+
 // Provider for the ApartmentStateNotifier
 final imageSliderNotifier =
     StateNotifierProvider<ImageSliderNotifier, Map<int, ApartmentState>>(
