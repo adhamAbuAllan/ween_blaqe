@@ -20,13 +20,11 @@ class _ListOwnerApartmentsWidgetState extends ConsumerState<ListOwnerApartmentsW
       apartmentsRes: ref.watch(fetchApartmentNotifier).apartmentsOfOwner,
       isDeleteMode: ref.watch(toggleOwnerButtonsNotifier).isDelete,
       scrollController: widget.scrollController,
-
       onPressed: () {
         ref
             .read(fetchApartmentNotifier.notifier)
             .fetchApartments(isOwnerApartments: true,ref: ref);
       },
-
     );
   }
 }

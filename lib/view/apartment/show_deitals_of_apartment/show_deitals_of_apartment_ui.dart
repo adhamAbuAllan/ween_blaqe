@@ -27,6 +27,7 @@ import '../../../../constants/get_it_controller.dart';
 import '../../../controller/provider_controllers/providers/apartment_provider.dart';
 import '../../../controller/provider_controllers/providers/color_provider.dart';
 import 'package:flutter/services.dart';
+
 class ShowDeitalsOfApartmentUi extends ConsumerStatefulWidget {
   const ShowDeitalsOfApartmentUi({
     super.key,
@@ -45,7 +46,6 @@ class _ShowDeitalsOfApartmentUiState
   bool _isGirlStudent = false;
   bool _isBoyStudent = false;
   bool _isFamilies = false;
-
 
   @override
   void initState() {
@@ -85,8 +85,9 @@ class _ShowDeitalsOfApartmentUiState
           child: Column(
             children: [
               SizedBox(
-                height:
-                    getIt<AppDimension>().isSmallScreen(context) ? 50 / 1.6 : 50,
+                height: getIt<AppDimension>().isSmallScreen(context)
+                    ? 50 / 1.6
+                    : 50,
               ),
               Row(
                 crossAxisAlignment: CrossAxisAlignment.center,
@@ -95,7 +96,6 @@ class _ShowDeitalsOfApartmentUiState
                   const Padding(
                     padding: EdgeInsets.fromLTRB(8, 0, 8, 0),
                     child: FadeInOnVisible(
-      
                       direction: SlideDirection.x,
                       child: BackButtonWidget(
                         style: ButtonStyle(
@@ -128,7 +128,7 @@ class _ShowDeitalsOfApartmentUiState
                   final currentIndex = ref
                       .read(imageSliderNotifier.notifier)
                       .getCurrentIndex(widget.oneApartment?.id ?? -1);
-      
+
                   final newIndex = await Navigator.push<int>(
                     context,
                     MaterialPageRoute(
@@ -136,11 +136,12 @@ class _ShowDeitalsOfApartmentUiState
                         context: context,
                         imageList: widget.oneApartment?.photos ?? [],
                         initialIndex: currentIndex,
-                        oneApartment: widget.oneApartment ?? DataOfOneApartment(),
+                        oneApartment:
+                            widget.oneApartment ?? DataOfOneApartment(),
                       ),
                     ),
                   );
-      
+
                   if (newIndex != null) {
                     ref
                         .read(imageSliderNotifier.notifier)
@@ -180,13 +181,11 @@ class _ShowDeitalsOfApartmentUiState
               ),
               FadeInOnVisible(
                 direction: SlideDirection.x,
-                isUIHaveScroll: getIt<AppDimension>()
-                    .isSmallScreen(context)
-                    ? false
-                    : true,
-                    delay: getIt<AppDimension>().isSmallScreen(context)
-                        ? const Duration(milliseconds: 530)
-                        : null,
+                isUIHaveScroll:
+                    getIt<AppDimension>().isSmallScreen(context) ? false : true,
+                delay: getIt<AppDimension>().isSmallScreen(context)
+                    ? const Duration(milliseconds: 530)
+                    : null,
                 child: AboutApartmentWidget(
                   oneApartment: widget.oneApartment ?? DataOfOneApartment(),
                   imageAboutApartmentRoom:
@@ -194,21 +193,18 @@ class _ShowDeitalsOfApartmentUiState
                 ),
               ),
               FadeInOnVisible(
-                delay: const Duration(milliseconds: 500),
-              
-                isUIHaveScroll: false,
+                  delay: const Duration(milliseconds: 500),
+                  isUIHaveScroll: false,
                   direction: SlideDirection.x,
                   child: AdvantagesWidget(oneApartment: widget.oneApartment)),
               FadeInOnVisible(
                 child: ApartmentDescriptionWidget(
-      
                   apartment: widget.oneApartment ?? DataOfOneApartment(),
                 ),
               ),
               FadeInOnVisible(
                 direction: SlideDirection.x,
                 child: MapUi(
-      
                   oneApartment: widget.oneApartment ?? DataOfOneApartment(),
                 ),
               ),
@@ -218,11 +214,12 @@ class _ShowDeitalsOfApartmentUiState
                     apartment: widget.oneApartment ?? DataOfOneApartment()),
               ),
               ref.read(isShowOwnerApartmentMode)
-                  ? SizedBox()
+                  ? const SizedBox()
                   : FadeInOnVisible(
-                    child: AboutOwnerWidget(
-                        oneApartment: widget.oneApartment ?? DataOfOneApartment()),
-                  ),
+                      child: AboutOwnerWidget(
+                          oneApartment:
+                              widget.oneApartment ?? DataOfOneApartment()),
+                    ),
               const SizedBox(height: 40),
             ],
           ),

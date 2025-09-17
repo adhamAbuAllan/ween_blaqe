@@ -210,6 +210,7 @@ class ListApartmentWithTypeBtn extends StatelessWidget {
               // const ApartmentsListConsumer(),
 
               ApartmentsListWidget(
+                isOwnerApartment: false,
                 apartmentsRes: apartmentsList,
                 onTypePress: () {
                   if (isAllTypesOfApartment) {

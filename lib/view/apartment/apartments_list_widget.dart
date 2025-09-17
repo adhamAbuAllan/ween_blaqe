@@ -16,6 +16,7 @@ import 'package:ween_blaqe/controller/provider_controllers/providers/color_provi
 import 'package:ween_blaqe/view/apartment/show_deitals_of_apartment'
     '/show_deitals_of_apartment_ui.dart';
 import 'package:ween_blaqe/view/apartment/show_deitals_of_apartment/widgets/about_owner_widget.dart';
+import 'package:ween_blaqe/view/apartment/show_deitals_of_apartment/widgets/add_student_widget.dart';
 import 'package:ween_blaqe/view/apartment/widgets/bookmark_button_widget.dart';
 import 'package:ween_blaqe/view/apartment/widgets/cities_of_apartments_widgets'
     '/bar_of_cities_widget.dart';
@@ -47,7 +48,7 @@ class ApartmentsListWidget extends ConsumerStatefulWidget {
     required this.apartmentsRes,
     this.onLocationPress,
     this.margeBetweenImages,
-    this.isOwnerApartment,
+    this.isOwnerApartment = false,
   });
 
   final Apartments apartmentsRes;
@@ -58,10 +59,10 @@ class ApartmentsListWidget extends ConsumerStatefulWidget {
   final void Function()? onTypePress;
   final bool haveCitiesBar;
   final double? margeBetweenImages;
-  final bool? isOwnerApartment;
+  final bool isOwnerApartment;
   final Function()? onLocationPress;
 
-  /*
+  /*  
   async {
                 debugPrint("before void");
                 await ref.watch(locationNotifier.notifier).getUserLocation(ref:
@@ -115,6 +116,17 @@ class _ApartmentsListConsumerState extends ConsumerState<ApartmentsListWidget> {
           delegate: SliverChildBuilderDelegate(
             childCount: widget.apartmentsRes.data?.length,
             (context, index) {
+              // If apartment is full (studentCountHave equals countOfStudnet), don't render it.
+              final oneApartment = widget.apartmentsRes.data?[index];
+              final studentCountHave = oneApartment?.studentCountHave ?? 0;
+              final countOfStudnet = oneApartment?.countOfStudnet ?? 0;
+              if (studentCountHave == countOfStudnet &&
+                  studentCountHave != 0 &&
+                  widget.isOwnerApartment == false) {
+                return const SizedBox.shrink();
+              }
+
+              // continue building when not full
               final distanceInMeters =
                   widget.apartmentsRes.data?[index].distance_in_meters;
               final distance = (distanceInMeters != null)
@@ -153,27 +165,42 @@ class _ApartmentsListConsumerState extends ConsumerState<ApartmentsListWidget> {
                           TypeTextWidget(
                               apartmentsRes: widget.apartmentsRes,
                               index: index),
-                          
                           ref
                                   .read(
                                       isApartmentHaveStudentsNotifier.notifier)
                                   .hasStudents(
                                       widget.apartmentsRes.data?[index])
                               ? RemainingStudentCountWidget(
-                                index: index,
+                                  index: index,
                                   apartmentsRes: widget.apartmentsRes,
-                                  totalStudentCount: widget
-                                          .apartmentsRes
-                                          .data?[index]
-                                          .studentCountHave ??
+                                  totalStudentCount: widget.apartmentsRes
+                                          .data?[index].studentCountHave ??
                                       0,
-                                  currentStudentCount: widget
-                                          .apartmentsRes
-                                          .data?[index]
-                                          .countOfStudnet ??
+                                  currentStudentCount: widget.apartmentsRes
+                                          .data?[index].countOfStudnet ??
                                       0,
                                 )
                               : const SizedBox.shrink(),
+                          ref.read(isShowOwnerApartmentMode)
+                              ? const SizedBox()
+                              : 
+                                   StudentAddWidget(
+                                    typeStudentId: widget.apartmentsRes.data?[index].type?.id??0,
+                         
+                                      currentStudentCount: widget.apartmentsRes
+                                              .data?[index].studentCountHave ??
+                                          0,
+                                      apartmentId: widget
+                                              .apartmentsRes.data?[index].id ??
+                                          0,
+                                      countOfStudents: widget.apartmentsRes
+                                              .data?[index].countOfStudnet ??
+                                          0,
+                                      isOwnerApartment: widget.isOwnerApartment,
+                                      isStudentType: widget.apartmentsRes
+                                              .data?[index].type?.id !=
+                                          1,
+                                    ),
                           const Spacer(),
                           if (widget.isDeleteMode)
                             DeleteButtonWidget(

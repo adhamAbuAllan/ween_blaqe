@@ -10,13 +10,12 @@ class RemainingStudentCountWidget extends ConsumerWidget {
       required this.totalStudentCount,
       required this.currentStudentCount,
       required this.apartmentsRes,
-      required this.index
-      });
+      required this.index});
 
   final int totalStudentCount;
   final int currentStudentCount;
   final int index;
-  final Apartments   apartmentsRes;
+  final Apartments apartmentsRes;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -24,40 +23,47 @@ class RemainingStudentCountWidget extends ConsumerWidget {
         fontSize: 16,
         fontWeight: FontWeight.w700,
         color: ref.read(themeModeNotifier.notifier).textTheme(ref: ref));
+    if (totalStudentCount == currentStudentCount) {
+      return const SizedBox();
+    }
     return Row(
       children: [
         Text(" -", style: textStyle),
         Text(" مُتبقي", style: textStyle),
         const SizedBox(width: 4.0),
         // that if the currentStudentCount - totalStudentCount <= 1 , you should not to show the result
-      if (currentStudentCount - totalStudentCount > 1)
+        if (currentStudentCount - totalStudentCount > 1)
           Text(
-              (currentStudentCount- totalStudentCount  ).toString(),
-              style: textStyle,
-            ), 
-            if (currentStudentCount - totalStudentCount > 1)
-
-        const SizedBox(width: 4.0),
-        Text(ref.read(isApartmentHaveStudentsNotifier.notifier).
-        aTextAccordingToCountAndType(apartmentsRes.data?[index] ).keys.first,
+            (currentStudentCount - totalStudentCount).toString(),
+            style: textStyle,
+          ),
+        if (currentStudentCount - totalStudentCount > 1)
+          const SizedBox(width: 4.0),
+        Text(
+            ref
+                .read(isApartmentHaveStudentsNotifier.notifier)
+                .aTextAccordingToCountAndType(apartmentsRes.data?[index])
+                .keys
+                .first,
             style: textStyle),
-                    const SizedBox(width: 4.0),
-                    // an Icon, if keys.Seond value > 1 show the Group icon else show the person icon
-                    ref.read(isApartmentHaveStudentsNotifier.notifier).
-                    aTextAccordingToCountAndType(apartmentsRes.data?[index] ).values.last  > 1
-                    ?  Icon(
-                       Icons.group,
-                      size: 18,
-                      color: ref.read(themeModeNotifier.notifier).textTheme(ref: ref),
-                    )
-                    :
-
-                    Icon(
-                       Icons.person,
-                      size: 18,
-                      color: ref.read(themeModeNotifier.notifier).textTheme(ref: ref),
-                    ),
-
+        const SizedBox(width: 4.0),
+        // an Icon, if keys.Seond value > 1 show the Group icon else show the person icon
+        ref
+                    .read(isApartmentHaveStudentsNotifier.notifier)
+                    .aTextAccordingToCountAndType(apartmentsRes.data?[index])
+                    .values
+                    .last >
+                1
+            ? Icon(
+                Icons.group,
+                size: 18,
+                color: ref.read(themeModeNotifier.notifier).textTheme(ref: ref),
+              )
+            : Icon(
+                Icons.person,
+                size: 18,
+                color: ref.read(themeModeNotifier.notifier).textTheme(ref: ref),
+              ),
       ],
     );
   }

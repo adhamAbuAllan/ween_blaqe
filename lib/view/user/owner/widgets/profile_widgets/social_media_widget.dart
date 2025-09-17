@@ -60,9 +60,9 @@ class SocialMediaWidget extends ConsumerWidget {
                       padding: NewSession.get(PrefKeys.language, "ar") == "en"
                           ? const EdgeInsets.only(left: 10 * 2)
                           : const EdgeInsets.only(right: 10 * 2),
-                      child: FadeInOnVisible(
+                      child: const FadeInOnVisible(
                           direction: SlideDirection.x,
-                          child: const WhatsAppSocialButton()),
+                          child: WhatsAppSocialButton()),
                     ),
                     Padding(
                       padding: NewSession.get(PrefKeys.language, "ar") == "en"
@@ -74,16 +74,16 @@ class SocialMediaWidget extends ConsumerWidget {
                               left: getIt<AppDimension>().isSmallScreen(context)
                                   ? 0
                                   : 16),
-                      child: FadeInOnVisible(
+                      child: const FadeInOnVisible(
                           direction: SlideDirection.x,
-                          child: const FacebookSocialButton()),
+                          child: FacebookSocialButton()),
                     ),
-                    FadeInOnVisible(
+                    const FadeInOnVisible(
                         direction: SlideDirection.x,
-                        child: const EmailSocialButton()),
-                    FadeInOnVisible(
+                        child: EmailSocialButton()),
+                    const FadeInOnVisible(
                         direction: SlideDirection.x,
-                        child: const PhoneSocialButton()),
+                        child: PhoneSocialButton()),
                   ],
                 ),
               ],

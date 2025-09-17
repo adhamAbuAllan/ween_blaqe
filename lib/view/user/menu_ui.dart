@@ -59,16 +59,16 @@ class _MenuLogoutState extends ConsumerState<MenuLogout> {
             onChange: widget.onChange,
             isLogined: false,
           ),
-          FadeInOnVisible(
-              delay: const Duration(milliseconds: 500),
+          const FadeInOnVisible(
+              delay: Duration(milliseconds: 500),
 
-              child: const LoginButtonWidget()),
+              child: LoginButtonWidget()),
           const TextButtonRegWidget(),
-          FadeInOnVisible(
-              delay: const Duration(milliseconds: 700),
+          const FadeInOnVisible(
+              delay: Duration(milliseconds: 700),
 
 
-              child: const VersionAppTextWidget())
+              child: VersionAppTextWidget())
         ],
       ),
     );
@@ -86,13 +86,13 @@ class MenuLogin extends ConsumerWidget {
     return SingleChildScrollView(
       child: Column(
         children: [
-          FadeInOnVisible(
-            delay: const Duration(milliseconds: 16),
-              child: const TitleLoginWidget()),
-          FadeInOnVisible(
+          const FadeInOnVisible(
+            delay: Duration(milliseconds: 16),
+              child: TitleLoginWidget()),
+          const FadeInOnVisible(
               direction: SlideDirection.x,
-              delay: const Duration(milliseconds: 20),
-              child: const ContainerOfProfileWidget()),
+              delay: Duration(milliseconds: 20),
+              child: ContainerOfProfileWidget()),
           FadeInOnVisible(
             direction: SlideDirection.x,
             child: ContainerMenuWidget(
@@ -100,21 +100,21 @@ class MenuLogin extends ConsumerWidget {
               isLogined: true,
             ),
           ),
-          SizedBox(height: 30,),
+          const SizedBox(height: 30,),
           // ElevatedButtonWidget(
           //     child: Text("otp Testing"),
           //     onPressed: () {
           //       Navigator.push(context, MaterialPageRoute(builder: (context) =>  OtpLoginScreen()));
           //     },
           //     context: context),
-          FadeInOnVisible(
-              delay: const Duration(milliseconds: 500),
+          const FadeInOnVisible(
+              delay: Duration(milliseconds: 500),
 
-              child: const LogoutButtonWidget()),
-          FadeInOnVisible(
-              delay: const Duration(milliseconds: 700),
+              child: LogoutButtonWidget()),
+          const FadeInOnVisible(
+              delay: Duration(milliseconds: 700),
 
-              child: const VersionAppTextWidget()),
+              child: VersionAppTextWidget()),
         ],
       ),
     );

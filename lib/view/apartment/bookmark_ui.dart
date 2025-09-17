@@ -70,6 +70,7 @@ class _BookmarkApartmentState extends ConsumerState<BookmarkApartmentUi> {
                   underCenterText: "  ",
                 )
               : ApartmentsListWidget(
+                isOwnerApartment: false,
                   haveCitiesBar: false,
                   apartmentsRes: bookmarkedList,
                 ),

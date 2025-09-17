@@ -159,9 +159,9 @@ Future<Apartments> getApartmentsByOwner({WidgetRef? ref}) async {
     final json = jsonDecode(response.body);
     final apartmentsRes = Apartments.fromJson(json);
     apartmentsRes.data?.sort((a, b) => b.updatedAt!.compareTo(a.updatedAt!));
-    if (ref != null) {
-      ref.read(isApartmentUpdatedNotifier.notifier).state = false;
-    }
+    // if (ref != null ) {
+    //   ref.read(isApartmentUpdatedNotifier.notifier).state = false;
+    // }
     return apartmentsRes;
   } else {
     debugPrint("error is ${response.body}");

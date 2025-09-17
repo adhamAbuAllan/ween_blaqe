@@ -16,10 +16,10 @@ import '../widgets/types_of_apartments_widgets/show_types_button_widget.dart';
 import 'widgets/apartment_of_owner_ui_widgets/start_add_apartment_widget.dart';
 
 class ApartmentsOfOwnerUi extends ConsumerStatefulWidget {
-  const ApartmentsOfOwnerUi({super.key,this.ownerName, this.ownerIdToShow});
+  const ApartmentsOfOwnerUi({super.key, this.ownerName, this.ownerIdToShow});
 
   final int? ownerIdToShow;
-  final String ?ownerName;
+  final String? ownerName;
 
   @override
   ConsumerState createState() => _ApartmentsOfOwnerUiState();
@@ -61,6 +61,16 @@ class _ApartmentsOfOwnerUiState extends ConsumerState<ApartmentsOfOwnerUi>
       ref
           .read(fetchApartmentNotifier.notifier)
           .fetchApartments(isOwnerApartments: true, ref: ref);
+      debugPrint("Init ListOwnerApartmentsWidget");
+      if (ref.read(selectedStudentCount) != null) {
+        ref.read(selectedStudentCount.notifier).state = null;
+      }
+      if (ref.read(isChosenStudentCount) != false) {
+        ref.read(isChosenStudentCount.notifier).state = false;
+      }
+      debugPrint(
+          "isChosenStudentcount in listOwnerApartmentWidget/UI ${ref.read(isChosenStudentCount)}");
+
       if (ref.read(ownerIdNotifier) != 0) {
         ref.read(toggleOwnerButtonsNotifier).isEdit = false;
       } else {
@@ -73,10 +83,9 @@ class _ApartmentsOfOwnerUiState extends ConsumerState<ApartmentsOfOwnerUi>
       duration: const Duration(milliseconds: 300),
     );
     _iconColorAnimation = ColorTween(
-            begin: 
-            Colors.white,
-            end:  Colors.white,)
-        .animate(_animationController);
+      begin: Colors.white,
+      end: Colors.white,
+    ).animate(_animationController);
     _animationController.forward();
   }
 
@@ -101,7 +110,6 @@ class _ApartmentsOfOwnerUiState extends ConsumerState<ApartmentsOfOwnerUi>
       ref.read(advantagesNotifier).chosen.clear();
     }
     WidgetsBinding.instance.addPostFrameCallback((_) async {
-
       ref.read(isShowOwnerApartmentMode.notifier).state = false;
     });
     ref.read(toggleOwnerButtonsNotifier).isDelete = false;
@@ -114,7 +122,6 @@ class _ApartmentsOfOwnerUiState extends ConsumerState<ApartmentsOfOwnerUi>
       return;
     }
     WidgetsBinding.instance.addPostFrameCallback((_) async {
-
       ref.read(isShowOwnerApartmentMode.notifier).state = true;
     });
   }
@@ -152,13 +159,29 @@ class _ApartmentsOfOwnerUiState extends ConsumerState<ApartmentsOfOwnerUi>
   @override
   Widget build(BuildContext context) {
     var isApartmentUpdated = ref.read(isApartmentUpdatedNotifier);
+        if (ref.read(selectedStudentCount.notifier).state != null &&
+        ref.watch(isChosenStudentCount)) {
+      WidgetsBinding.instance.addPostFrameCallback((_) async {
+        await ref.read(updateApartmentNotifier.notifier).updateStudentCountHave(
+              ref: ref,
+              apartmentId: ref.read(apartmentIdNotifier.notifier).state,
+              studentCountHave: ref.read(selectedStudentCount.notifier).state!,
+            );
+                ref.read(selectedStudentCount.notifier).state = null;
+        ref.read(isChosenStudentCount.notifier).state = false;   
+      });
+     
+    } 
+    debugPrint(
+        "selectedStudentCount in ListOwnerApartmentsWidget ${ref.watch(selectedStudentCount)}");
+    debugPrint("isChosenSudentcount : ${ref.watch(isChosenStudentCount)}");
+
     return Scaffold(
         backgroundColor:
             ref.read(themeModeNotifier.notifier).backgroundAppTheme(ref: ref),
         appBar: AppBarOwnerApartmentsWidget(
             animationController: _animationController,
             iconColorAnimation: _iconColorAnimation,
-
             ownerName: widget.ownerName),
         body: ref.watch(fetchApartmentNotifier).isLoading
             ? Center(

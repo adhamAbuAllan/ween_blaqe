@@ -16,11 +16,11 @@ class UpdateApartmentNotifier extends StateNotifier<ApartmentState> {
   UpdateApartmentNotifier() : super(ApartmentState());
 
   /// update only fields of apartment table
-  Future<void> updateFieldsOfApartment({required WidgetRef ref,required  int
-  apartmentId,required BuildContext context}) async {
-
-    var advantagesApiNotifier =
-        ref.read(advantagesApi.notifier).state;
+  Future<void> updateFieldsOfApartment(
+      {required WidgetRef ref,
+      required int apartmentId,
+      required BuildContext context}) async {
+    var advantagesApiNotifier = ref.read(advantagesApi.notifier).state;
     var advantageChosen = ref.read(advantagesNotifier).chosen;
     var countOfRooms = ref.read(countOfRoomsController.notifier).state.text;
     var bathRooms = ref.read(countOfBathRoomsController.notifier).state.text;
@@ -57,24 +57,56 @@ class UpdateApartmentNotifier extends StateNotifier<ApartmentState> {
         if (typeId.toString().isNotEmpty) 'type_id': typeId,
       }),
     );
-if(response.statusCode == 200 && ref.read(hasChanged)
-    &&
-    ref.watch(isApartmentImagesUpdated
-    .notifier)
-    .state == false &&  listEquals(advantagesApiNotifier,
-    advantageChosen)){
-  // Delay showing the button by 2 seconds
-    WidgetsBinding.instance.addPostFrameCallback((_) async {
-      ref.read(isApartmentUpdatedNotifier.notifier).state = true;
+    if (response.statusCode == 200 &&
+        ref.read(hasChanged) &&
+        ref.watch(isApartmentImagesUpdated.notifier).state == false &&
+        listEquals(advantagesApiNotifier, advantageChosen)) {
+      // Delay showing the button by 2 seconds
+      WidgetsBinding.instance.addPostFrameCallback((_) async {
+        ref.read(isApartmentUpdatedNotifier.notifier).state = true;
+      });
 
-    });
-
-
-  ref.read(badResponse.notifier).state = false;
-  Navigator.pop(context);
-}
+      ref.read(badResponse.notifier).state = false;
+      Navigator.pop(context);
+    }
     if (response.statusCode != 200) {
       ref.read(badResponse.notifier).state = true;
+    }
+  }
+
+  /// Update only the current number of students (student_count_have)
+  Future<void> updateStudentCountHave({
+    required WidgetRef ref,
+    required int apartmentId,
+    required int studentCountHave,
+  }) async {
+    final token = (await sp).get(PrefKeys.token);
+    final url = Uri.parse(ServerWeenBalaqee.apartmentUpdate);
+
+    final response = await http.post(
+      url,
+      headers: {
+        'Authorization': 'Bearer $token',
+        'Content-Type': 'application/json',
+      },
+      body: jsonEncode({
+        'id': apartmentId,
+        'student_count_have': studentCountHave,
+      }),
+    );
+
+    if (response.statusCode == 200) {
+      // mark as updated and clear bad response
+      ref.read(isApartmentUpdatedNotifier.notifier).state = true;
+      ref.read(badResponse.notifier).state = false;
+      //  refresh owner's apartments so UI reflects change
+      await ref.read(fetchApartmentNotifier.notifier).fetchApartments(
+            isOwnerApartments: true,
+            ref: ref,
+          );
+    
+    } else {
+      //ref.read(badResponse.notifier).state = true;
     }
   }
 
@@ -84,43 +116,43 @@ if(response.statusCode == 200 && ref.read(hasChanged)
   updateApartment({
     required WidgetRef ref,
     required int apartmentId,
-  required   List<Photos> imagesApi,
+    required List<Photos> imagesApi,
     required BuildContext context,
   }) async {
-    
     state = state.copyWith(isUpdating: true);
     var advantagesApiNotifier = ref.watch(advantagesApi.notifier).state;
 
     ///update fields of apartment
     if (ref.watch(hasChanged.notifier).state) {
       debugPrint("fields updating...");
-      await updateFieldsOfApartment(ref:ref,apartmentId:  apartmentId,
-          context: context);
+      await updateFieldsOfApartment(
+          ref: ref, apartmentId: apartmentId, context: context);
     }
 
     ///update advantages
     if (!listEquals(
         advantagesApiNotifier, ref.read(advantagesNotifier).chosen)) {
       debugPrint("advantages updating...");
-      await ref
-          .read(advantagesNotifier.notifier)
-          .updateAdvantages(apartmentId: apartmentId.toString(),ref: ref,
-          context: context);
+      await ref.read(advantagesNotifier.notifier).updateAdvantages(
+          apartmentId: apartmentId.toString(), ref: ref, context: context);
     }
 
     /// update images
     if (ref.read(isApartmentImagesUpdated)) {
       debugPrint("images updating...");
       await ref.read(imageApiNotifier.notifier).updateImages(
-          apartmentId: apartmentId, ref: ref, imagesApi: imagesApi,context: context);
+          apartmentId: apartmentId,
+          ref: ref,
+          imagesApi: imagesApi,
+          context: context);
     }
 
-debugPrint("is apartment updated -- ${ ref.read
-  (isApartmentUpdatedNotifier.notifier).state }");
+    debugPrint(
+        "is apartment updated -- ${ref.read(isApartmentUpdatedNotifier.notifier).state}");
     ref.read(fetchApartmentNotifier.notifier).fetchApartments(
-      isOwnerApartments: true,
+          isOwnerApartments: true,
           ref: ref,
-    );
+        );
     state = state.copyWith(isUpdating: false);
   }
 }

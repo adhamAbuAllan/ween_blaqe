@@ -177,6 +177,7 @@ final selectedCityId = StateProvider<int>((ref) => 1);
 final selectedCityIdToFilter = StateProvider<int>((ref) => 0);
 final selectedTypeId = StateProvider<int>((ref) => 1);
 final selectedTypeOwnerId = StateProvider<int>((ref) => -1);
+final selectedStudentCount = StateProvider<int?>((ref) => null);  
 
 // create a scroll controller
 final scrollBarCitiesController = StateProvider<ScrollController>((ref) {
@@ -208,6 +209,7 @@ final badResponse = StateProvider<bool>((ref) => false);
 final isAllTypesOfApartmentNotifier = StateProvider<bool>((ref) => false);
 final isDialOpen = StateProvider<ValueNotifier<bool> >((ref) => ValueNotifier
   (false));
+  final isChosenStudentCount = StateProvider<bool>((ref) => false);
 final currentPhotoIndexNotifier =
     StateProvider.family<int, int>((ref, apartmentId) {
   return 0; // Default value

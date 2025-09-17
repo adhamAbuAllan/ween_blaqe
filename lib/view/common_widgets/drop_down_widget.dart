@@ -14,6 +14,7 @@ class DropdownFieldWidget extends ConsumerStatefulWidget {
     this.autofocus,
     this.isStringOnly,
     this.horizantalPadding,
+    this.isIntOnly = false,
   });
 
   final List<dynamic> items;
@@ -22,6 +23,7 @@ class DropdownFieldWidget extends ConsumerStatefulWidget {
   final bool? autofocus;
   final bool? isStringOnly;
   final double? horizantalPadding;
+  final bool isIntOnly;
 
   @override
   ConsumerState createState() => _DropdownFieldWidgetState();
@@ -33,8 +35,8 @@ class _DropdownFieldWidgetState extends ConsumerState<DropdownFieldWidget> {
     return DropdownButtonFormField(
         autofocus: widget.autofocus ?? false,
         padding: EdgeInsets.symmetric(
-          vertical: getIt<AppDimension>().isSmallScreen(context) ? 0 : 10,
-          horizontal:  widget.horizantalPadding ?? 20),
+            vertical: getIt<AppDimension>().isSmallScreen(context) ? 0 : 10,
+            horizontal: widget.horizantalPadding ?? 20),
         decoration: InputDecoration(
           border: OutlineInputBorder(
             borderRadius: BorderRadius.circular(7),
@@ -46,8 +48,9 @@ class _DropdownFieldWidgetState extends ConsumerState<DropdownFieldWidget> {
           enabledBorder: OutlineInputBorder(
             borderSide: BorderSide(
               width: 0.5,
-              color: ref.read(themeModeNotifier.notifier)
-                  .primaryTheme(ref: ref,withOpacity: .3),
+              color: ref
+                  .read(themeModeNotifier.notifier)
+                  .primaryTheme(ref: ref, withOpacity: .3),
             ),
           ),
           focusedBorder: OutlineInputBorder(
@@ -62,13 +65,22 @@ class _DropdownFieldWidgetState extends ConsumerState<DropdownFieldWidget> {
             ref.read(themeModeNotifier.notifier).containerTheme(ref: ref),
         initialValue: widget.alreadyExistingValue ?? widget.items.first,
         items: widget.items.map((item) {
-          String? itemName = widget.isStringOnly ?? false ? item : item.name;
-          itemName = widget.isStringOnly ?? false ? item : item.name;
+          String itemName = "";
+          int itemValue = 0;
+          //itemName = widget.isStringOnly ?? false ? item : item.name;
+          if (widget.isIntOnly) {
+            itemValue = item;
+          } else if (widget.isStringOnly ?? false) {
+            itemName = item;
+          } else {
+            itemName = item.name;
+          }
+
           return DropdownMenuItem(
             value: item,
             child: FittedBox(
                 child: Text(
-              itemName ?? "",
+              widget.isIntOnly ? itemValue.toString() : itemName,
               style: TextStyle(
                 fontSize:
                     getIt<AppDimension>().isSmallScreen(context) ? 14 : 16,
