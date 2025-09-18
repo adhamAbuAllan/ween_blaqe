@@ -48,23 +48,6 @@ animate and scroll the bar of cities.
 
 
     NewSession.save("PrefKeys.isFirstTime", "OK");
-    widget.scrollController?.addListener(() {
-      Future.delayed(const Duration(milliseconds: 350), () {
-        if (widget.scrollController?.position.userScrollDirection ==
-            ScrollDirection.forward) {
-          if (!apartmentState.isLoading) {
-            ref.watch(isSebhaVisibleNotifier.notifier).state = true;
-          }
-          ref.watch(isVisibleNotifier.notifier).state = true;
-        } else if (widget.scrollController?.position.userScrollDirection ==
-            ScrollDirection.reverse) {
-          if (!apartmentState.isLoading) {
-            ref.watch(isSebhaVisibleNotifier.notifier).state = false;
-          }
-          ref.watch(isSebhaVisibleNotifier.notifier).state = false;
-        }
-      });
-    });
     WidgetsBinding.instance.addPostFrameCallback((_) async {
       //that should make update when fetchApartment of owner is run from api
       // you should to handel that from api
@@ -84,25 +67,51 @@ animate and scroll the bar of cities.
 
     final apartmentsList = apartmentsState.apartmentsList;
     var isAllTypesOfApartment = ref.watch(isAllTypesOfApartmentNotifier);
-    return FutureBuilder(
-        future: Connectivity().checkConnectivity(),
-        builder: (context, snapshot) {
-          if (ref.watch(connectivityNotifier).isSnackBarShown) {
-            ref
-                .watch(connectivityNotifier.notifier)
-                .handleConnectivityChange(context, ref);
+    return NotificationListener<ScrollNotification>(
+      onNotification: (scrollNotification) {
+        if (scrollNotification is ScrollUpdateNotification) {
+          final double? delta = scrollNotification.scrollDelta;
+          if (delta != null ) {
+            if (delta > 0) {
+              // scrolling down
+              if (delta.abs() > 25) {
+                if (!apartmentState.isLoading) {
+                  ref.watch(isSebhaVisibleNotifier.notifier).state = false;
+                }                ref.watch(isVisibleNotifier.notifier).state = false;
+              }
+            } else if (delta < 0) {
+              // scrolling up
+              if (delta.abs() > 25) {
+                if (!apartmentState.isLoading) {
+                  ref.watch(isSebhaVisibleNotifier.notifier).state = true;
+                }                ref.watch(isVisibleNotifier.notifier).state = true;
+              }
+            }
           }
+        }
+        return false;
+      },
+      child: FutureBuilder(
+          future: Connectivity().checkConnectivity(),
+          builder: (context, snapshot) {
+            if (ref.watch(connectivityNotifier).isSnackBarShown) {
+              ref
+                  .watch(connectivityNotifier.notifier)
+                  .handleConnectivityChange(context, ref);
+            }
 // make a scetion , that to check if list of apartment is null and the
 // intrent is not connection
-          return ref.watch(fetchApartmentNotifier).isLoading
-              // || ref.watch(mapStateProvider).loadingLocation
-              ? _buildSkeleton(apartmentsList)
-              : (apartmentsList.data?.isEmpty ?? false
-                  ? const TypeNotFoundUi(
-                    )
-                  : buildRefreshIndicator(isAllTypesOfApartment, cityId, type,
-                      apartmentsList: apartmentsList));
-        });
+            return ref.watch(fetchApartmentNotifier).isLoading || !ref.read
+              (connectivityNotifier.notifier).isConnected
+                // || ref.watch(mapStateProvider).loadingLocation
+                ? _buildSkeleton(apartmentsList)
+                : (apartmentsList.data?.isEmpty ?? false
+                    ? const TypeNotFoundUi(
+                      )
+                    : buildRefreshIndicator(isAllTypesOfApartment, cityId, type,
+                        apartmentsList: apartmentsList));
+          }),
+    );
   }
 
   /// a widgets that has been extract.

@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:ween_blaqe/controller/provider_controllers/providers/apartment_provider.dart';
 import 'package:ween_blaqe/controller/provider_controllers/providers/connectivity_provider.dart';
 import 'package:ween_blaqe/controller/provider_controllers/methods/local_methods/show_snack_bar_notifier.dart';
 import '../../statuses/connectivity_state.dart';
@@ -45,10 +46,15 @@ class ConnectivityNotifier extends StateNotifier<ConnectivityState> {
     final notifier = ref.read(connectivityNotifier.notifier);
 
     if (!notifier.isConnected) {
+
         notifier.setResponseOk(false);
 
+
     } else {
+      await  ref.read(fetchApartmentNotifier.notifier).fetchApartments(ref: ref,
+          isOwnerApartments: false);
     notifier.setResponseOk(true);
+
 
     }
 

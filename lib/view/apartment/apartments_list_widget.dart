@@ -79,6 +79,7 @@ class _ApartmentsListConsumerState extends ConsumerState<ApartmentsListWidget> {
   @override
   Widget build(BuildContext context) {
     return CustomScrollView(
+
       physics: const BouncingScrollPhysics(),
       controller: widget.scrollController,
       slivers: [

@@ -47,12 +47,11 @@ class _StudentAddButtonWidgetState extends ConsumerState<StudentAddWidget> {
     studentsCount.insert(0, 0);
 
     final safeStudentsCount = studentsCount.isNotEmpty ? studentsCount : [0];
-    debugPrint("safeStudentCount $safeStudentsCount");
     return !widget.isOwnerApartment || !widget.isStudentType
         ? const SizedBox()
         : (widget.countOfStudents == widget.currentStudentCount
             ?
-            // return const TextW(" - هل مُتبقي طلاب ؟  ");
+           
             TextButton(
                 style: const ButtonStyle(
                     tapTargetSize: MaterialTapTargetSize.shrinkWrap),
