@@ -24,18 +24,20 @@ Animate buildAnimatedWidget({
 
 // file: build_animation_widget.dart
 
-enum SlideDirection { x, y, xy }
+enum SlideDirection { x, y, xy, bottom, right }
 
 class FadeInOnVisible extends StatefulWidget {
   final Widget child;
   final SlideDirection direction;
   final Duration? delay;
+  final Duration? duration;
   final bool? isUIHaveScroll;
 
   const FadeInOnVisible({
     super.key,
     required this.child,
     this.direction = SlideDirection.xy,
+    this.duration,
     this.delay,
     this.isUIHaveScroll = true,
   });
@@ -66,7 +68,8 @@ class _FadeInOnVisibleState extends State<FadeInOnVisible> {
 
   Widget _animatedWidget(Widget child) {
     final animate =
-        child.animate().fadeIn(duration: 500.ms, delay: widget.delay);
+        child.animate().fadeIn(duration: widget.duration ?? 500.ms, delay:
+        widget.delay);
 
     switch (widget.direction) {
       case SlideDirection.x:
@@ -75,6 +78,20 @@ class _FadeInOnVisibleState extends State<FadeInOnVisible> {
         return animate.slideY(duration: 500.ms, curve: Curves.easeOutCubic);
       case SlideDirection.xy:
         return animate.slide(duration: 500.ms, curve: Curves.easeOutCubic);
+      case SlideDirection.bottom:
+        return animate.slideY(
+          begin: 0.5,
+          end: 0,
+          duration: 500.ms,
+          curve: Curves.easeOutCubic,
+        );
+      case SlideDirection.right:
+        return animate.slideX(
+          begin: 0.5,
+          end: 0,
+          duration: 500.ms,
+          curve: Curves.easeOutCubic,
+        );
     }
   }
 }

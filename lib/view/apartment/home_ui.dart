@@ -60,10 +60,12 @@ animate and scroll the bar of cities.
   final VelocityTracker _velocityTracker =
       VelocityTracker.withKind(PointerDeviceKind.touch);
   final double threshold = 1500.0;
+
   double get velocity {
     final v = _velocityTracker.getVelocity();
     return v.pixelsPerSecond.dy;
   }
+
   @override
   Widget build(BuildContext context) {
     var type = ref.watch(apartmentTypeNotifier.notifier).state;
@@ -77,20 +79,22 @@ animate and scroll the bar of cities.
       onNotification: (scrollNotification) {
         if (scrollNotification is ScrollUpdateNotification) {
           final double? delta = scrollNotification.scrollDelta;
-          if (delta != null ) {
+          if (delta != null) {
             if (delta > 0) {
               // scrolling down
               if (delta.abs() > 25) {
                 if (!apartmentState.isLoading) {
                   ref.watch(isSebhaVisibleNotifier.notifier).state = false;
-                }                ref.watch(isVisibleNotifier.notifier).state = false;
+                }
+                ref.watch(isVisibleNotifier.notifier).state = false;
               }
             } else if (delta < 0) {
               // scrolling up
               if (delta.abs() > 25) {
                 if (!apartmentState.isLoading) {
                   ref.watch(isSebhaVisibleNotifier.notifier).state = true;
-                }                ref.watch(isVisibleNotifier.notifier).state = true;
+                }
+                ref.watch(isVisibleNotifier.notifier).state = true;
               }
             }
           }
@@ -281,18 +285,16 @@ class ListApartmentWithTypeBtn extends StatelessWidget {
                 },
                 haveCitiesBar: true,
                 onClick: () async {
-
-                    WidgetsBinding.instance.addPostFrameCallback((_) async {
-                      await ref
-                          .watch(fetchApartmentNotifier.notifier)
-                          .fetchApartments(
-                            isOwnerApartments: false,
-                            isAll: isAllTypesOfApartment,
-                            ref: ref,
-                            cityId: cityId,
-                          );
-                    });
-
+                  WidgetsBinding.instance.addPostFrameCallback((_) async {
+                    await ref
+                        .watch(fetchApartmentNotifier.notifier)
+                        .fetchApartments(
+                          isOwnerApartments: false,
+                          isAll: isAllTypesOfApartment,
+                          ref: ref,
+                          cityId: cityId,
+                        );
+                  });
                 },
                 // ref.watch
                 //   (fetchApartmentNotifier).apartmentsList,
@@ -302,7 +304,7 @@ class ListApartmentWithTypeBtn extends StatelessWidget {
                 const SebhaButtonWidget()
               else
                 const ShowTypesButtonWidget(),
-              const ShowApartmentTypesBoxWidget() // list of types
+              const   ShowApartmentTypesBoxWidget() // list of types
             ]));
   }
 }

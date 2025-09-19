@@ -172,7 +172,7 @@ class _OwnMaterialAppConsumerState
       routes: {
         MyPagesRoutes.main: (context) => const Main(),
         // MyPagesRoutes.mainOwner: (context) => const MainOwner(),
-        MyPagesRoutes.mainUi: (context) => const MainUi(),
+        MyPagesRoutes.mainUi: (context) => const  MainUi(),
         MyPagesRoutes.step1: (context) => const FirstStepUi(),
         MyPagesRoutes.step2: (context) => const SecondStepUi(),
         MyPagesRoutes.step3: (context) => const ThirdStepUi(),
@@ -229,7 +229,8 @@ home ,
   bookmark ,
    account,)
  */
-class Main extends StatefulWidget {
+
+class Main extends ConsumerStatefulWidget {
   final Future<void> Function(BuildContext, String)? navigatorOfMainClass;
 
   const Main({
@@ -237,12 +238,11 @@ class Main extends StatefulWidget {
     this.navigatorOfMainClass,
   });
 
-  // myPushName(context, MyPagesRoutes.showMore);
   @override
-  State<Main> createState() => _MainState();
+  ConsumerState<Main> createState() => _MainState();
 }
 
-class _MainState extends State<Main> {
+class _MainState extends ConsumerState<Main> {
   final controller = ScrollController();
 
   @override
@@ -250,14 +250,11 @@ class _MainState extends State<Main> {
     super.initState();
     debugPrint(
         "code language now is in sp is -- ${NewSession.get(PrefKeys.language, "def")}");
-    // introController.saveIsFirstTime();
     controller.addListener(listener);
     SystemChrome.setPreferredOrientations([
       DeviceOrientation.portraitUp,
       DeviceOrientation.portraitDown,
     ]);
-
-    // initializtion();
   }
 
   void initializtion() async {
@@ -269,13 +266,14 @@ class _MainState extends State<Main> {
     myPushNameAndRemoveUntil(
         context,
         MyPagesRoutes.main,
-        (route) => route.settings.name == MyPagesRoutes.main,
+            (route) => route.settings.name == MyPagesRoutes.main,
         MyPagesRoutes.main);
   }
 
   @override
   void dispose() {
     super.dispose();
+    controller.dispose();
     SystemChrome.setPreferredOrientations([
       DeviceOrientation.portraitUp,
       DeviceOrientation.portraitDown,
@@ -288,12 +286,9 @@ class _MainState extends State<Main> {
     // \(controller.position.pixel);
   }
 
-  // var index = 0;
-
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-        //onTap to hide keyboard when click outside keyboard
         onTap: () {
           FocusScopeNode currentFocus = FocusScope.of(context);
           if (!currentFocus.hasPrimaryFocus) {

@@ -12,28 +12,36 @@ import '../../../../../constants/get_it_controller.dart';
 import '../../../../../session/new_session.dart';
 import '../../../../controller/provider_controllers/providers/color_provider.dart';
 
-class ShowApartmentTypesBoxWidget extends ConsumerWidget {
+class ShowApartmentTypesBoxWidget extends ConsumerStatefulWidget {
   const ShowApartmentTypesBoxWidget({super.key});
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
-    // Watch the visibility state of both the box and the list
+  ConsumerState<ShowApartmentTypesBoxWidget> createState() => _ShowApartmentTypesBoxWidgetState();
+}
 
+class _ShowApartmentTypesBoxWidgetState extends ConsumerState<ShowApartmentTypesBoxWidget> {
+  @override
+  Widget build(BuildContext context) {
+    // Watch the visibility state of both the box and the list
     var isListOfTypes = ref.watch(isListOfTypesNotifier);
     var isBoxVisible = ref.watch(isSebhaVisibleNotifier);
+    
     return SizedBox(
       child: isListOfTypes && isBoxVisible
-          ? Padding(
-              padding:
-                  const EdgeInsets.symmetric(vertical: 155.0, horizontal: 15),
-              child: Container(
+          ? FadeInOnVisible(
+        duration: const Duration(milliseconds: 300),
+              direction: SlideDirection.right,
+              child: Padding(
+                padding: const EdgeInsets.symmetric(vertical: 155.0, horizontal: 15),
+                child: Container(
                   decoration: BoxDecoration(
                     border: Border.all(
-                        width: 7,
-                        color: ref
-                            .read(themeModeNotifier.notifier)
-                            .backgroundAppTheme(ref: ref),
-                        strokeAlign: BorderSide.strokeAlignOutside),
+                      width: 7,
+                      color: ref
+                          .read(themeModeNotifier.notifier)
+                          .backgroundAppTheme(ref: ref),
+                      strokeAlign: BorderSide.strokeAlignOutside,
+                    ),
                     color: ref
                         .read(themeModeNotifier.notifier)
                         .containerTheme(ref: ref),
@@ -42,27 +50,18 @@ class ShowApartmentTypesBoxWidget extends ConsumerWidget {
                   height: 200,
                   width: 150,
                   child: const Padding(
-                      padding: EdgeInsets.only(top: 0, left: 8, right: 8),
-                      child: Column(
-                        children: [
-                          FadeInOnVisible(
-                              direction: SlideDirection.x,
-                              delay: Duration(milliseconds: 100),
-                              child: TypeRowOfBoyStudent()),
-                          FadeInOnVisible(
-                              direction: SlideDirection.x,
-                              delay: Duration(milliseconds: 200),
-                              child: TypeRowOfGirlStudent()),
-                          FadeInOnVisible(
-                              direction: SlideDirection.x,
-                              delay: Duration(milliseconds: 300),
-                              child: TypeRowOfFamilies()),
-                          FadeInOnVisible(
-                              direction: SlideDirection.x,
-                              delay: Duration(milliseconds: 400),
-                              child: TypeRowOfAllTypes()),
-                        ],
-                      ))),
+                    padding: EdgeInsets.only(top: 0, left: 8, right: 8),
+                    child: Column(
+                      children: [
+                        TypeRowOfFamilies(),
+                        TypeRowOfGirlStudent(),
+                        TypeRowOfBoyStudent(),
+                        TypeRowOfAllTypes(),
+                      ],
+                    ),
+                  ),
+                ),
+              ),
             )
           : null,
     );
@@ -72,9 +71,10 @@ class ShowApartmentTypesBoxWidget extends ConsumerWidget {
 class ApartmentShowTypesTextButtonWidget extends ConsumerWidget {
   final String textType;
   final void Function()? onPressed;
+  final int delay;
 
   const ApartmentShowTypesTextButtonWidget(
-      {super.key, this.onPressed, required this.textType});
+      {super.key, this.onPressed, required this.textType, required this.delay});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -95,12 +95,16 @@ class ApartmentShowTypesTextButtonWidget extends ConsumerWidget {
           ),
         ),
         onPressed: onPressed,
-        child: Text(
-          textType,
-          style: TextStyle(
-            color: ref.read(themeModeNotifier.notifier).textTheme(ref: ref),
-            fontSize: getIt<AppDimension>().isSmallScreen(context) ? 14 : 15,
-            fontFamily: 'Cairo',
+        child: FadeInOnVisible(
+          direction: SlideDirection.x,
+          delay: Duration(milliseconds: delay),
+          child: Text(
+            textType,
+            style: TextStyle(
+              color: ref.read(themeModeNotifier.notifier).textTheme(ref: ref),
+              fontSize: getIt<AppDimension>().isSmallScreen(context) ? 14 : 15,
+              fontFamily: 'Cairo',
+            ),
           ),
         ),
       ),
@@ -118,6 +122,7 @@ class TypeRowOfBoyStudent extends ConsumerWidget {
     return Row(
       children: [
         ApartmentShowTypesTextButtonWidget(
+          delay: 300,
           textType: "طلاب", // Change this as per localization
           onPressed: () {
             ref.read(apartmentTypeNotifier.notifier).state = 2;
@@ -163,6 +168,7 @@ class TypeRowOfGirlStudent extends ConsumerWidget {
     return Row(
       children: [
         ApartmentShowTypesTextButtonWidget(
+          delay: 200,
           textType: "طالبات", // Change this as per localization
           onPressed: () {
 
@@ -209,6 +215,7 @@ class TypeRowOfFamilies extends ConsumerWidget {
     return Row(
       children: [
         ApartmentShowTypesTextButtonWidget(
+          delay: 100,
           textType: "عائلات", // Change this as per localization
           onPressed: () {
             ref.read(isFamiliesNotifier.notifier).state = true;
@@ -255,6 +262,7 @@ class TypeRowOfAllTypes extends ConsumerWidget {
     return Row(
       children: [
         ApartmentShowTypesTextButtonWidget(
+          delay: 400,
           textType: "الكل", // Change this as per localization
           onPressed: () {
             ref.read(isAllTypesOfApartmentNotifier.notifier).state = true;
