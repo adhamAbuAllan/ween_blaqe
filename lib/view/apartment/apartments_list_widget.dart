@@ -44,7 +44,7 @@ class ApartmentsListWidget extends ConsumerStatefulWidget {
     this.onClick,
     this.onTypePress,
     this.isDeleteMode = false,
-    required this.haveCitiesBar,
+    required this.  haveCitiesBar,
     required this.apartmentsRes,
     this.onLocationPress,
     this.margeBetweenImages,

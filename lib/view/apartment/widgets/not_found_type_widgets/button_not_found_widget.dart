@@ -28,27 +28,19 @@ class ButtonNotFoundWidget extends ConsumerWidget {
                 decoration: TextDecoration.underline),
           ),
           onPressed: () async {
-
-            ref.read(isAllTypesOfApartmentNotifier.notifier).state =
-            true;
-            ref.read(selectedCityIdToFilter.notifier)
-                .state = 0;
+            ref.read(isAllTypesOfApartmentNotifier.notifier).state = true;
+            ref.read(selectedCityIdToFilter.notifier).state = 0;
             ref.read(selectedTypeOwnerId.notifier).state = -1;
-
+            ref.read(selectedStudentReminding.notifier).state = 0;
             WidgetsBinding.instance.addPostFrameCallback((_) async {
               ref.read(apartmentTypeNotifier.notifier).state = 0;
-              await ref
-                  .read(fetchApartmentNotifier.notifier)
-                  .fetchApartments(
-                  isOwnerApartments: false,
-                  isAll: true,
-                  cityId: 0,ref: ref);
+              await ref.read(fetchApartmentNotifier.notifier).fetchApartments(
+                  isOwnerApartments: false, isAll: true, cityId: 0, ref: ref,
+                  studentReminding: null);
             });
             ref.read(isBoyStudentNotifier.notifier).state = false;
             ref.read(isGirlStudentNotifier.notifier).state = false;
-            ref.read(isFamiliesNotifier.notifier).state = false;
-
-          }),
+            ref.read(isFamiliesNotifier.notifier).state = false;}),
     )
     ;
   }

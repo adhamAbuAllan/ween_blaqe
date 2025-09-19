@@ -1,4 +1,5 @@
 import 'package:connectivity_plus/connectivity_plus.dart';
+import 'package:flutter/gestures.dart';
 
 // import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
@@ -35,17 +36,15 @@ class HomeUi extends ConsumerStatefulWidget {
 
 class _HomeUiState extends ConsumerState<HomeUi> {
   ApartmentState apartmentState = ApartmentState();
+
   @override
   void initState() {
     super.initState();
 
-
-
-      /*
+    /*
 "if index is above of 1 && if the state of loading is false", then make
 animate and scroll the bar of cities.
  */
-
 
     NewSession.save("PrefKeys.isFirstTime", "OK");
     WidgetsBinding.instance.addPostFrameCallback((_) async {
@@ -58,11 +57,18 @@ animate and scroll the bar of cities.
     });
   }
 
+  final VelocityTracker _velocityTracker =
+      VelocityTracker.withKind(PointerDeviceKind.touch);
+  final double threshold = 1500.0;
+  double get velocity {
+    final v = _velocityTracker.getVelocity();
+    return v.pixelsPerSecond.dy;
+  }
   @override
   Widget build(BuildContext context) {
     var type = ref.watch(apartmentTypeNotifier.notifier).state;
     // var isAll = ref.read(isAllTypesOfApartmentNotifier);
-    var cityId = ref.read(selectedCityIdToFilter.notifier).state;
+    var cityId = ref.watch(selectedCityIdToFilter.notifier).state;
     final apartmentsState = ref.read(fetchApartmentNotifier);
 
     final apartmentsList = apartmentsState.apartmentsList;
@@ -101,13 +107,12 @@ animate and scroll the bar of cities.
             }
 // make a scetion , that to check if list of apartment is null and the
 // intrent is not connection
-            return ref.watch(fetchApartmentNotifier).isLoading || !ref.read
-              (connectivityNotifier.notifier).isConnected
+            return ref.watch(fetchApartmentNotifier).isLoading ||
+                    !ref.read(connectivityNotifier.notifier).isConnected
                 // || ref.watch(mapStateProvider).loadingLocation
-                ? _buildSkeleton(apartmentsList)
+                ? _buildSkeleton()
                 : (apartmentsList.data?.isEmpty ?? false
-                    ? const TypeNotFoundUi(
-                      )
+                    ? const TypeNotFoundUi()
                     : buildRefreshIndicator(isAllTypesOfApartment, cityId, type,
                         apartmentsList: apartmentsList));
           }),
@@ -150,7 +155,7 @@ animate and scroll the bar of cities.
             widget: widget));
   }
 
-  Stack _buildSkeleton(Apartments apartmentsList) {
+  Stack _buildSkeleton() {
     return Stack(
       children: [
         GestureDetector(
@@ -231,6 +236,8 @@ class ListApartmentWithTypeBtn extends StatelessWidget {
                             isAll: true,
                             ref: ref,
                             cityId: cityId,
+                            studentReminding:
+                                ref.read(selectedStudentReminding),
                             // typeOfOwnerId: typeOwnerId,
                           );
                     });
@@ -238,9 +245,9 @@ class ListApartmentWithTypeBtn extends StatelessWidget {
                     ref.read(isAllTypesOfApartmentNotifier.notifier).state =
                         true;
                     ref.watch(fetchApartmentNotifier.notifier).fetchApartments(
-                      ref: ref,
+                          ref: ref,
 
-                      isOwnerApartments: false,
+                          isOwnerApartments: false,
                           isAll: isAllTypesOfApartment,
                           typeId: typeId,
                           // typeOfOwnerId: typeOwnerId,
@@ -265,7 +272,6 @@ class ListApartmentWithTypeBtn extends StatelessWidget {
                         true;
                     ref.watch(fetchApartmentNotifier.notifier).fetchApartments(
                         ref: ref,
-
                         isOwnerApartments: false,
                         isAll: isAllTypesOfApartment,
                         typeId: typeId,
@@ -275,29 +281,18 @@ class ListApartmentWithTypeBtn extends StatelessWidget {
                 },
                 haveCitiesBar: true,
                 onClick: () async {
-                  if (isAllTypesOfApartment) {
+
                     WidgetsBinding.instance.addPostFrameCallback((_) async {
                       await ref
                           .watch(fetchApartmentNotifier.notifier)
                           .fetchApartments(
                             isOwnerApartments: false,
-                            isAll: true,
+                            isAll: isAllTypesOfApartment,
                             ref: ref,
                             cityId: cityId,
                           );
                     });
-                  } else {
-                    ref.read(isAllTypesOfApartmentNotifier.notifier).state =
-                        true;
-                    ref.watch(fetchApartmentNotifier.notifier).fetchApartments(
-                      ref: ref,
 
-                      isOwnerApartments: false,
-                          isAll: isAllTypesOfApartment,
-                          typeId: typeId,
-                          cityId: cityId,
-                        );
-                  }
                 },
                 // ref.watch
                 //   (fetchApartmentNotifier).apartmentsList,

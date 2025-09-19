@@ -133,6 +133,8 @@ class TypeRowOfBoyStudent extends ConsumerWidget {
                   typeId: 2,
                   isAll: false,
                   ref: ref,
+                  studentReminding: ref.read(selectedStudentReminding),
+
                   cityId: ref.read(selectedCityIdToFilter.notifier).state);
             });
           },
@@ -177,6 +179,8 @@ class TypeRowOfGirlStudent extends ConsumerWidget {
                   isOwnerApartments: false,
                   typeId: 3,
                   isAll: false,
+                  studentReminding: ref.read(selectedStudentReminding),
+
                   cityId: ref.read(selectedCityIdToFilter.notifier).state);
             });
           },
@@ -270,9 +274,9 @@ class TypeRowOfAllTypes extends ConsumerWidget {
           child: AnimatedOpacity(
             opacity: isAllTypesOfApartment ? 1.0 : 0.0,
             duration: const Duration(milliseconds: 200),
-            child: ref.watch(isAllTypesOfApartmentNotifier.notifier).state
-                ? const PointerTypeWidget()
-                : const SizedBox(),
+            child:
+                 const PointerTypeWidget()
+
           ),
         ),
         const SizedBox(width: 10),

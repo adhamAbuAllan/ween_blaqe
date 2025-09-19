@@ -28,15 +28,18 @@ class FetchApartmentsNotifier extends StateNotifier<ApartmentState> {
   //   }
   // }
 
-  String formatUrl(
-      {required WidgetRef ref,
-      int? typeId = 0,
-      int? cityId = 0,
-      int? typeOfOwnerId = 0}) {
+  String formatUrl({
+    required WidgetRef ref,
+    int? typeId = 0,
+    int? cityId = 0,
+    int? typeOfOwnerId = 0,
+    int? studentReminding = 0,
+  }) {
     String url = "${ServerWeenBalaqee.apartmentAll}"
         "?type_id=$typeId"
         "&city_id=$cityId"
-        "&type_of_owner=$typeOfOwnerId";
+        "&type_of_owner=$typeOfOwnerId"
+        "${studentReminding != 0 && studentReminding != null ? "&remaining=$studentReminding" : ""}";
 
     /// that the userPosition will stop currently, but in the future, will
     /// enable it.
@@ -45,11 +48,13 @@ class FetchApartmentsNotifier extends StateNotifier<ApartmentState> {
 
   /// a [fetchApartments] usage to fetch apartment data.
   Future<Apartments> fetchApartments({
+    //TODO: remove both cityId and typeId parameters
     int? typeId,
     int? cityId,
     bool? isAll,
     int? latitude,
     int? longitude,
+    int? studentReminding,
     required WidgetRef ref,
     bool? isWantToEnableLocationService,
     required bool isOwnerApartments,
@@ -96,11 +101,11 @@ class FetchApartmentsNotifier extends StateNotifier<ApartmentState> {
         );
       }
     } else {
-
-      Uri uri =  Uri.parse( formatUrl(
-          typeId:   ref.read(apartmentTypeNotifier.notifier).state,
-          typeOfOwnerId:  typeOfOwnerId,
-          cityId:   cityId,
+      Uri uri = Uri.parse(formatUrl(
+          typeId: ref.read(apartmentTypeNotifier.notifier).state,
+          typeOfOwnerId: typeOfOwnerId,
+          cityId: ref.read(selectedCityIdToFilter.notifier).state,
+          studentReminding: studentReminding,
           ref: ref));
 
       debugPrint("uri is $uri");
