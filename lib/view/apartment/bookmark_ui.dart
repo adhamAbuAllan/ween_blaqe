@@ -26,8 +26,6 @@ class _BookmarkApartmentState extends ConsumerState<BookmarkApartmentUi> {
       await ref.read(fetchApartmentNotifier.notifier).fetchApartments(
             ref: ref,
             isOwnerApartments: false,
-            isAll: true,
-            cityId: 0,
           );
 
       await ref

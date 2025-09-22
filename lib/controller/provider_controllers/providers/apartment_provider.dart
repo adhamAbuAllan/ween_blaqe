@@ -8,6 +8,7 @@ import 'package:ween_blaqe/controller/provider_controllers/methods/api_methods/a
 import 'package:ween_blaqe/controller/provider_controllers/methods/api_methods/apartment_methods/cities_notifier.dart';
 import 'package:ween_blaqe/controller/provider_controllers/methods/api_methods/apartment_methods/type_notifier.dart';
 import 'package:ween_blaqe/controller/provider_controllers/methods/hybrid_methods/students_counter_notifier.dart';
+import 'package:ween_blaqe/controller/provider_controllers/methods/hybrid_methods/type_of_apartment_notifier.dart';
 import 'package:ween_blaqe/controller/provider_controllers/methods/local_methods/check_update_apartment_notifier.dart';
 import 'package:ween_blaqe/controller/provider_controllers/statuses/status_of_apartment/city_state.dart';
 import 'package:ween_blaqe/controller/provider_controllers/statuses/status_of_apartment/type_state.dart';
@@ -24,6 +25,7 @@ import '../methods/local_methods/location_notifier.dart';
 import '../methods/local_methods/toggle_owner_buttons_notifier.dart';
 import '../statuses/status_of_apartment/advantage_state.dart';
 import '../statuses/status_of_apartment/apartment_state.dart';
+import '../statuses/status_of_apartment/apartment_type_state.dart';
 import '../statuses/status_of_apartment/bookmark_state.dart';
 import '../statuses/status_of_apartment/map_state.dart';
 import '../statuses/status_of_apartment/update_apartment_state.dart';
@@ -100,7 +102,10 @@ final locationNotifier = StateNotifierProvider<LocationNotifier, LatLng?>((ref) 
 final mapStateProvider = StateNotifierProvider<MapStateNotifier, MapState>((ref) {
   return MapStateNotifier();
 });
-
+final apartmentTypeNotifierProvider = StateNotifierProvider<ApartmentTypeNotifier,
+    ApartmentTypeState>((ref) {
+  return ApartmentTypeNotifier(ref);
+});
 final ownerTokenNotifier = Provider<String?>((ref) {
   final apartmentsList = ref.watch(apartmentsOfOwnerNotifier).data;
   return apartmentsList?[1].owner?.token;

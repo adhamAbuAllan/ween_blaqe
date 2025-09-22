@@ -5,6 +5,7 @@ import 'package:ween_blaqe/view/apartment/widgets/types_of_apartments_widgets'
 import 'package:ween_blaqe/view/common_widgets/animations_widgets/build_animation_widget.dart';
 
 import '../../../../constants/strings.dart';
+import '../../../../controller/provider_controllers/methods/hybrid_methods/type_of_apartment_notifier.dart';
 import '../../../../controller/provider_controllers/providers/apartment_provider.dart';
 import 'package:ween_blaqe/constants/coordination.dart';
 
@@ -25,7 +26,6 @@ class _ShowApartmentTypesBoxWidgetState extends ConsumerState<ShowApartmentTypes
     // Watch the visibility state of both the box and the list
     var isListOfTypes = ref.watch(isListOfTypesNotifier);
     var isBoxVisible = ref.watch(isSebhaVisibleNotifier);
-    
     return SizedBox(
       child: isListOfTypes && isBoxVisible
           ? FadeInOnVisible(
@@ -124,25 +124,11 @@ class TypeRowOfBoyStudent extends ConsumerWidget {
         ApartmentShowTypesTextButtonWidget(
           delay: 300,
           textType: "طلاب", // Change this as per localization
-          onPressed: () {
-            ref.read(apartmentTypeNotifier.notifier).state = 2;
-
-            ref.read(isBoyStudentNotifier.notifier).state = true;
-            ref.read(isGirlStudentNotifier.notifier).state = false;
-            ref.read(isFamiliesNotifier.notifier).state = false;
-            ref.read(isAllTypesOfApartmentNotifier.notifier).state = false;
-
-            WidgetsBinding.instance.addPostFrameCallback((_) async {
-              await ref.read(fetchApartmentNotifier.notifier).fetchApartments(
-                  isOwnerApartments: false,
-                  typeId: 2,
-                  isAll: false,
-                  ref: ref,
-                  studentReminding: ref.read(selectedStudentReminding),
-
-                  cityId: ref.read(selectedCityIdToFilter.notifier).state);
-            });
-          },
+            // For all types
+            onPressed: () {
+              ref.read(apartmentTypeNotifierProvider.notifier)
+                  .selectApartmentType(ApartmentType.boyStudents,ref:ref);
+            }
         ),
         Padding(
           padding: const EdgeInsets.only(right: 5),
@@ -170,26 +156,11 @@ class TypeRowOfGirlStudent extends ConsumerWidget {
         ApartmentShowTypesTextButtonWidget(
           delay: 200,
           textType: "طالبات", // Change this as per localization
-          onPressed: () {
-
-            ref.read(isBoyStudentNotifier.notifier).state = false;
-            ref.read(isGirlStudentNotifier.notifier).state = true;
-            ref.read(isFamiliesNotifier.notifier).state = false;
-            ref.read(isAllTypesOfApartmentNotifier.notifier).state = false;
-            ref.read(apartmentTypeNotifier.notifier).state = 3;
-
-            WidgetsBinding.instance.addPostFrameCallback((_) async {
-
-              await ref.read(fetchApartmentNotifier.notifier).fetchApartments(
-                  ref: ref,
-                  isOwnerApartments: false,
-                  typeId: 3,
-                  isAll: false,
-                  studentReminding: ref.read(selectedStudentReminding),
-
-                  cityId: ref.read(selectedCityIdToFilter.notifier).state);
-            });
-          },
+            // For families
+            onPressed: () {
+              ref.read(apartmentTypeNotifierProvider.notifier)
+                  .selectApartmentType(ApartmentType.girlStudents,ref: ref);
+            }
         ),
         Padding(
           padding: const EdgeInsets.only(right: 5),
@@ -217,26 +188,11 @@ class TypeRowOfFamilies extends ConsumerWidget {
         ApartmentShowTypesTextButtonWidget(
           delay: 100,
           textType: "عائلات", // Change this as per localization
-          onPressed: () {
-            ref.read(isFamiliesNotifier.notifier).state = true;
-            ref.read(isBoyStudentNotifier.notifier).state = false;
-            ref.read(isGirlStudentNotifier.notifier).state = false;
-            ref.read(isAllTypesOfApartmentNotifier.notifier).state = false;
-
-            WidgetsBinding.instance.addPostFrameCallback(
-              (_) async {
-                ref.read(apartmentTypeNotifier.notifier).state = 1;
-
-                await ref.read(fetchApartmentNotifier.notifier).fetchApartments(
-                      ref: ref,
-                      isOwnerApartments: false,
-                      typeId: await 1,
-                      isAll: false,
-                      cityId: ref.read(selectedCityIdToFilter.notifier).state,
-                    );
-              },
-            );
-          },
+            // For families
+            onPressed: () {
+              ref.read(apartmentTypeNotifierProvider.notifier)
+                  .selectApartmentType(ApartmentType.families,ref: ref);
+            }
         ),
         Padding(
           padding: const EdgeInsets.only(right: 5),
@@ -264,18 +220,11 @@ class TypeRowOfAllTypes extends ConsumerWidget {
         ApartmentShowTypesTextButtonWidget(
           delay: 400,
           textType: "الكل", // Change this as per localization
-          onPressed: () {
-            ref.read(isAllTypesOfApartmentNotifier.notifier).state = true;
-            WidgetsBinding.instance.addPostFrameCallback((_) async {
-              ref.read(apartmentTypeNotifier.notifier).state = 0;
-
-              await ref.read(fetchApartmentNotifier.notifier).fetchApartments(
-                  ref: ref, isOwnerApartments: false, isAll: true, cityId: 0);
-            });
-            ref.read(isBoyStudentNotifier.notifier).state = false;
-            ref.read(isGirlStudentNotifier.notifier).state = false;
-            ref.read(isFamiliesNotifier.notifier).state = false;
-          },
+// For all types
+            onPressed: () {
+              ref.read(apartmentTypeNotifierProvider.notifier)
+                  .selectApartmentType(ApartmentType.all,ref:ref);
+            }
         ),
         Padding(
           padding: const EdgeInsets.only(right: 5),

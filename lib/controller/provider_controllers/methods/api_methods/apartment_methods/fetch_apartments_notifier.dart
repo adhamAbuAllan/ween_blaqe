@@ -49,9 +49,6 @@ class FetchApartmentsNotifier extends StateNotifier<ApartmentState> {
   /// a [fetchApartments] usage to fetch apartment data.
   Future<Apartments> fetchApartments({
     //TODO: remove both cityId and typeId parameters
-    int? typeId,
-    int? cityId,
-    bool? isAll,
     int? latitude,
     int? longitude,
     int? studentReminding,
@@ -102,6 +99,7 @@ class FetchApartmentsNotifier extends StateNotifier<ApartmentState> {
       }
     } else {
       Uri uri = Uri.parse(formatUrl(
+
           typeId: ref.read(apartmentTypeNotifier.notifier).state,
           typeOfOwnerId: typeOfOwnerId,
           cityId: ref.read(selectedCityIdToFilter.notifier).state,

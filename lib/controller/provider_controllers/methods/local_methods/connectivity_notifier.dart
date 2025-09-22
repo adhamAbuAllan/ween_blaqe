@@ -51,7 +51,8 @@ class ConnectivityNotifier extends StateNotifier<ConnectivityState> {
 
 
     } else {
-      await  ref.read(fetchApartmentNotifier.notifier).fetchApartments(ref: ref,
+      await ref.read(fetchApartmentNotifier.notifier).fetchApartments(
+          ref: ref,
           isOwnerApartments: false);
     notifier.setResponseOk(true);
 

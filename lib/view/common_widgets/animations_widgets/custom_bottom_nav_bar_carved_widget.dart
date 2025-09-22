@@ -177,8 +177,6 @@ class _CustomBottomNavBarCarvedState
           ref.read(apartmentTypeNotifier.notifier).state = 0;
           await ref.read(fetchApartmentNotifier.notifier).fetchApartments(
                 isOwnerApartments: false,
-                isAll: true,
-                cityId: 0,
                 ref: ref,
               );
         });

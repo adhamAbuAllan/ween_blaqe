@@ -52,7 +52,7 @@ animate and scroll the bar of cities.
       // you should to handel that from api
       ref.read(isAllTypesOfApartmentNotifier.notifier).state = true;
       await ref.read(fetchApartmentNotifier.notifier).fetchApartments(
-          isOwnerApartments: false, isAll: true, cityId: 0, ref: ref);
+          isOwnerApartments: false, ref: ref);
       ref.read(cityNotifier.notifier).getCity();
     });
   }
@@ -143,7 +143,7 @@ animate and scroll the bar of cities.
           WidgetsBinding.instance.addPostFrameCallback((_) async {
             ref.read(apartmentTypeNotifier.notifier).state = 0;
             await ref.read(fetchApartmentNotifier.notifier).fetchApartments(
-                isOwnerApartments: false, isAll: true, cityId: 0, ref: ref);
+                isOwnerApartments: false, ref: ref);
           });
           ref.read(isBoyStudentNotifier.notifier).state = false;
           ref.read(isGirlStudentNotifier.notifier).state = false;
@@ -237,11 +237,8 @@ class ListApartmentWithTypeBtn extends StatelessWidget {
                           .watch(fetchApartmentNotifier.notifier)
                           .fetchApartments(
                             isOwnerApartments: false,
-                            isAll: true,
                             ref: ref,
-                            cityId: cityId,
-                            studentReminding:
-                                ref.read(selectedStudentReminding),
+                            studentReminding: ref.read(selectedStudentReminding),
                             // typeOfOwnerId: typeOwnerId,
                           );
                     });
@@ -250,12 +247,8 @@ class ListApartmentWithTypeBtn extends StatelessWidget {
                         true;
                     ref.watch(fetchApartmentNotifier.notifier).fetchApartments(
                           ref: ref,
-
                           isOwnerApartments: false,
-                          isAll: isAllTypesOfApartment,
-                          typeId: typeId,
                           // typeOfOwnerId: typeOwnerId,
-                          cityId: cityId,
                         );
                   }
                 },
@@ -266,9 +259,7 @@ class ListApartmentWithTypeBtn extends StatelessWidget {
                           .watch(fetchApartmentNotifier.notifier)
                           .fetchApartments(
                               isOwnerApartments: false,
-                              isAll: true,
                               ref: ref,
-                              cityId: cityId,
                               isWantToEnableLocationService: true);
                     });
                   } else {
@@ -277,9 +268,6 @@ class ListApartmentWithTypeBtn extends StatelessWidget {
                     ref.watch(fetchApartmentNotifier.notifier).fetchApartments(
                         ref: ref,
                         isOwnerApartments: false,
-                        isAll: isAllTypesOfApartment,
-                        typeId: typeId,
-                        cityId: cityId,
                         isWantToEnableLocationService: true);
                   }
                 },
@@ -290,9 +278,7 @@ class ListApartmentWithTypeBtn extends StatelessWidget {
                         .watch(fetchApartmentNotifier.notifier)
                         .fetchApartments(
                           isOwnerApartments: false,
-                          isAll: isAllTypesOfApartment,
                           ref: ref,
-                          cityId: cityId,
                         );
                   });
                 },
