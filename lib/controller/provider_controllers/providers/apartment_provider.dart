@@ -14,6 +14,7 @@ import 'package:ween_blaqe/controller/provider_controllers/statuses/status_of_ap
 import 'package:ween_blaqe/controller/provider_controllers/statuses/status_of_apartment/type_state.dart';
 import '../../../api/apartments_api/apartments.dart';
 import '../../../api/cities.dart';
+import '../../../api/owner_type.dart';
 import '../methods/api_methods/apartment_methods/create_apartment_notifier.dart';
 import '../methods/api_methods/apartment_methods/delete_apartment_notifier.dart';
 import '../methods/api_methods/apartment_methods/advantages_notifier.dart';
@@ -88,6 +89,8 @@ final createApartmentNotifier =
 final validatorCreateApartmentNotifier =
     StateNotifierProvider<ValidatorCreateApartmentNotifier, ApartmentState>(
         (ref) => ValidatorCreateApartmentNotifier());
+final ownerTypesProvider = Provider<List<OwnerType>>((ref) => OwnerType.ownerTypes);
+
 // CarouselSliderController
 final carouselSliderControllerNotifier =
     Provider<CarouselSliderController>((ref) {
@@ -181,7 +184,7 @@ final currentPhotoIndex = StateProvider<int>((ref) => 0);
 final selectedCityId = StateProvider<int>((ref) => 1);
 final selectedCityIdToFilter = StateProvider<int>((ref) => 0);
 final selectedTypeId = StateProvider<int>((ref) => 1);
-final selectedTypeOwnerId = StateProvider<int>((ref) => -1);
+final selectedOwnerTypeId = StateProvider<int>((ref) => -1);
 final selectedStudentCount = StateProvider<int?>((ref) => null);
   final selectedStudentReminding = StateProvider<int?>((ref) => 0 );
 

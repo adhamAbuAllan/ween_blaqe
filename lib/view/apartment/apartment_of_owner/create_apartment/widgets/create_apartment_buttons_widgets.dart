@@ -9,7 +9,7 @@ import '../../../../../core/utils/styles/button.dart';
 import '../../../../common_widgets/button_widgets/elevated_button_widget.dart';
 
 class ButtonsCreateApartmentWidgets extends ConsumerWidget {
-  const ButtonsCreateApartmentWidgets({super.key, this.onPressed, this.title});
+  const     ButtonsCreateApartmentWidgets({super.key, this.onPressed, this.title});
 
   final void Function()? onPressed;
   final String? title;
@@ -20,9 +20,9 @@ class ButtonsCreateApartmentWidgets extends ConsumerWidget {
       padding: const EdgeInsets.all(8.0),
       child: Row(
         children: [
-          FadeInOnVisible(
+          const FadeInOnVisible(
               isUIHaveScroll: false,
-              child: const OutlinedBackButtonWidget()),
+              child: OutlinedBackButtonWidget()),
           const Expanded(child: SizedBox()),
           FadeInOnVisible(
             isUIHaveScroll: false,

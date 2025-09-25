@@ -201,7 +201,7 @@ class EmailButton extends ConsumerWidget {
               height: getIt<AppDimension>().isSmallScreen(context) ? 24 : 28,
             ),
             Padding(
-              padding: const EdgeInsets.fromLTRB(0, 0, 0, 0),
+              padding: const EdgeInsets.symmetric(horizontal: 8),
               child: Text(
                 SetLocalization.of(context)!.getTranslateValue("gmail"),
                 style: TextStyle(

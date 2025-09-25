@@ -29,7 +29,7 @@ class _ShowApartmentTypesBoxWidgetState extends ConsumerState<ShowApartmentTypes
     return SizedBox(
       child: isListOfTypes && isBoxVisible
           ? FadeInOnVisible(
-        duration: const Duration(milliseconds: 300),
+        delay: const Duration(milliseconds: 40),
               direction: SlideDirection.right,
               child: Padding(
                 padding: const EdgeInsets.symmetric(vertical: 155.0, horizontal: 15),
@@ -122,7 +122,7 @@ class TypeRowOfBoyStudent extends ConsumerWidget {
     return Row(
       children: [
         ApartmentShowTypesTextButtonWidget(
-          delay: 300,
+          delay: 150,
           textType: "طلاب", // Change this as per localization
             // For all types
             onPressed: () {
@@ -154,7 +154,7 @@ class TypeRowOfGirlStudent extends ConsumerWidget {
     return Row(
       children: [
         ApartmentShowTypesTextButtonWidget(
-          delay: 200,
+          delay: 100,
           textType: "طالبات", // Change this as per localization
             // For families
             onPressed: () {
@@ -186,7 +186,7 @@ class TypeRowOfFamilies extends ConsumerWidget {
     return Row(
       children: [
         ApartmentShowTypesTextButtonWidget(
-          delay: 100,
+          delay: 50,
           textType: "عائلات", // Change this as per localization
             // For families
             onPressed: () {
@@ -218,7 +218,7 @@ class TypeRowOfAllTypes extends ConsumerWidget {
     return Row(
       children: [
         ApartmentShowTypesTextButtonWidget(
-          delay: 400,
+          delay: 200,
           textType: "الكل", // Change this as per localization
 // For all types
             onPressed: () {

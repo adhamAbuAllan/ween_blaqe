@@ -30,7 +30,7 @@ class ButtonNotFoundWidget extends ConsumerWidget {
           onPressed: () async {
             ref.read(isAllTypesOfApartmentNotifier.notifier).state = true;
             ref.read(selectedCityIdToFilter.notifier).state = 0;
-            ref.read(selectedTypeOwnerId.notifier).state = -1;
+            ref.read(selectedOwnerTypeId.notifier).state = -1;
             ref.read(selectedStudentReminding.notifier).state = 0;
             WidgetsBinding.instance.addPostFrameCallback((_) async {
               ref.read(apartmentTypeNotifier.notifier).state = 0;

@@ -67,29 +67,32 @@ class _FadeInOnVisibleState extends State<FadeInOnVisible> {
   }
 
   Widget _animatedWidget(Widget child) {
-    final animate =
-        child.animate().fadeIn(duration: widget.duration ?? 500.ms, delay:
-        widget.delay);
+    final animate = child
+        .animate()
+        .fadeIn(duration: widget.duration ?? 500.ms, delay: widget.delay);
 
     switch (widget.direction) {
       case SlideDirection.x:
-        return animate.slideX(duration: 500.ms, curve: Curves.easeOutCubic);
+        return animate.slideX(
+            duration: widget.duration ?? 500.ms, curve: Curves.easeOutCubic);
       case SlideDirection.y:
-        return animate.slideY(duration: 500.ms, curve: Curves.easeOutCubic);
+        return animate.slideY(
+            duration: widget.duration ?? 500.ms, curve: Curves.easeOutCubic);
       case SlideDirection.xy:
-        return animate.slide(duration: 500.ms, curve: Curves.easeOutCubic);
+        return animate.slide(
+            duration: widget.duration ?? 500.ms, curve: Curves.easeOutCubic);
       case SlideDirection.bottom:
         return animate.slideY(
           begin: 0.5,
           end: 0,
-          duration: 500.ms,
+          duration: widget.duration ?? 500.ms,
           curve: Curves.easeOutCubic,
         );
       case SlideDirection.right:
         return animate.slideX(
           begin: 0.5,
           end: 0,
-          duration: 500.ms,
+          duration: widget.duration ?? 500.ms,
           curve: Curves.easeOutCubic,
         );
     }

@@ -127,7 +127,7 @@ animate and scroll the bar of cities.
   RefreshIndicator buildRefreshIndicator(
       bool isAllTypesOfApartment, int cityId, int type,
       {required apartmentsList}) {
-    int typeOwnerId = ref.watch(selectedTypeOwnerId);
+    int typeOwnerId = ref.watch(selectedOwnerTypeId);
 
     return RefreshIndicator(
         triggerMode: RefreshIndicatorTriggerMode.anywhere,
@@ -139,7 +139,7 @@ animate and scroll the bar of cities.
         onRefresh: () async {
           ref.read(isAllTypesOfApartmentNotifier.notifier).state = true;
           ref.read(selectedCityIdToFilter.notifier).state = 0;
-          ref.read(selectedTypeOwnerId.notifier).state = -1;
+          ref.read(selectedOwnerTypeId.notifier).state = -1;
           WidgetsBinding.instance.addPostFrameCallback((_) async {
             ref.read(apartmentTypeNotifier.notifier).state = 0;
             await ref.read(fetchApartmentNotifier.notifier).fetchApartments(

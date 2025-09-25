@@ -12,20 +12,21 @@ class ElevatedButtonWidget extends ConsumerWidget {
     required this.onPressed,
     required this.context,
     this.color,
-    this.onLongPress,
+    this.onLongPress,this.style,
   });
   final void Function()? onPressed;
   final Widget child;
   final Color? color;
   final void Function()? onLongPress;
   final BuildContext context;
+  final ButtonStyle? style;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     return ElevatedButton(
       onLongPress: onLongPress,
       onPressed: onPressed,
-      style: fullButton(
+      style:style?? fullButton(
           color: color ??
               ref.read(themeModeNotifier.notifier).primaryTheme(ref: ref),
           context: context),

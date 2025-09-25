@@ -17,13 +17,13 @@ class _PointerTypeWidgetState extends ConsumerState<PointerTypeWidget> {
 
   int handelDuration(int duration) {
     if (ref.read(isFamiliesNotifier)) {
-      duration = 200;
+      duration = 100;
     } else if (ref.read(isGirlStudentNotifier)) {
-      duration = 300;
+      duration = 150;
     } else if (ref.read(isBoyStudentNotifier)) {
-      duration = 400;
+      duration = 200;
     } else {
-      duration = 500;
+      duration = 250  ;
     }
     debugPrint("duration $duration")  ;
     return duration;

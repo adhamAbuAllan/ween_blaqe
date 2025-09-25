@@ -172,7 +172,7 @@ class _CustomBottomNavBarCarvedState
           scrollController!.offset < 100) {
         ref.read(isAllTypesOfApartmentNotifier.notifier).state = true;
         ref.read(selectedCityIdToFilter.notifier).state = 0;
-        ref.read(selectedTypeOwnerId.notifier).state = -1;
+        ref.read(selectedOwnerTypeId.notifier).state = -1;
         WidgetsBinding.instance.addPostFrameCallback((_) async {
           ref.read(apartmentTypeNotifier.notifier).state = 0;
           await ref.read(fetchApartmentNotifier.notifier).fetchApartments(

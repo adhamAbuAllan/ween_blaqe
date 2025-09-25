@@ -57,10 +57,10 @@ class FetchApartmentsNotifier extends StateNotifier<ApartmentState> {
     required bool isOwnerApartments,
   }) async {
     // late Position? pos = null;
-    int typeOfOwnerId = ref.read(selectedTypeOwnerId);
+    int typeOfOwnerId = ref.read(selectedOwnerTypeId);
 
     if (typeOfOwnerId != -1) {
-      typeOfOwnerId = ref.watch(selectedTypeOwnerId) + 1;
+      typeOfOwnerId = ref.watch(selectedOwnerTypeId) + 1;
     } else {
       typeOfOwnerId = 0;
     }
