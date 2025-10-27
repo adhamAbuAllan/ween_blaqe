@@ -62,8 +62,8 @@ class _ApartmentsOfOwnerUiState extends ConsumerState<ApartmentsOfOwnerUi>
           .read(fetchApartmentNotifier.notifier)
           .fetchApartments(isOwnerApartments: true, ref: ref);
       debugPrint("Init ListOwnerApartmentsWidget");
-      if (ref.read(selectedStudentCount) != null) {
-        ref.read(selectedStudentCount.notifier).state = null;
+      if (ref.read(selectedStudentCount) != -1) {
+        ref.read(selectedStudentCount.notifier).state = -1;
       }
       if (ref.read(isChosenStudentCount) != false) {
         ref.read(isChosenStudentCount.notifier).state = false;
@@ -159,15 +159,15 @@ class _ApartmentsOfOwnerUiState extends ConsumerState<ApartmentsOfOwnerUi>
   @override
   Widget build(BuildContext context) {
     var isApartmentUpdated = ref.read(isApartmentUpdatedNotifier);
-        if (ref.read(selectedStudentCount.notifier).state != null &&
+        if (ref.read(selectedStudentCount.notifier).state != -1 &&
         ref.watch(isChosenStudentCount)) {
       WidgetsBinding.instance.addPostFrameCallback((_) async {
         await ref.read(updateApartmentNotifier.notifier).updateStudentCountHave(
               ref: ref,
               apartmentId: ref.read(apartmentIdNotifier.notifier).state,
-              studentCountHave: ref.read(selectedStudentCount.notifier).state!,
+              studentCountHave: ref.read(selectedStudentCount.notifier).state,
             );
-                ref.read(selectedStudentCount.notifier).state = null;
+                ref.read(selectedStudentCount.notifier).state = -1;
         ref.read(isChosenStudentCount.notifier).state = false;   
       });
      

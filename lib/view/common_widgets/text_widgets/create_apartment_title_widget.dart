@@ -14,7 +14,7 @@ final String title;
     return Padding(
       padding: const EdgeInsets.fromLTRB(0, 10, 0, 0),
       child: FadeInOnVisible(
-        isUIHaveScroll: false,
+        isVisibleOnScroll: false,
         child: Text(
          title ,
           style: TextStyle(

@@ -2,10 +2,11 @@ import 'package:flutter/material.dart';
 
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:ween_blaqe/controller/provider_controllers/providers/color_provider.dart';
+import 'package:ween_blaqe/view/common_widgets/aline_widget.dart';
 import 'package:ween_blaqe/view/common_widgets/animations_widgets/build_animation_widget.dart';
+import 'package:ween_blaqe/view/user/owner/widgets/menu_widgets/language_switcher_widget.dart';
 import 'package:ween_blaqe/view/user/owner/widgets/menu_widgets/logout_menu_widgets/menu_buttons_logout_widget.dart';
 import 'package:ween_blaqe/view/user/owner/widgets/menu_widgets/theme_mode_switcher_widget.dart';
-
 
 class ContainerMenuWidget extends ConsumerStatefulWidget {
   const ContainerMenuWidget(
@@ -35,6 +36,14 @@ class _ContainerLogoutWidgetState extends ConsumerState<ContainerMenuWidget> {
               onChange: widget.onChange,
             ),
           ),
+          FadeInOnVisible(
+              direction: SlideDirection.x,
+              delay: const Duration(milliseconds: 60),
+              child: aline),
+          const FadeInOnVisible(
+              direction: SlideDirection.x,
+              delay: Duration(milliseconds: 80),
+              child: LanguageSwitcherWidget()),
           MenuButtonsWidgets(
             isLogined: widget.isLogined,
           ),

@@ -32,7 +32,7 @@ class OwnerTypeFilterWidget extends ConsumerWidget {
           children: ref
               .watch(ownerTypesProvider)
               .map((ownerType) => FadeInOnVisible(
-                    isUIHaveScroll: false,
+                    isVisibleOnScroll: false,
                     delay: Duration(milliseconds: ownerType.id! * 150),
                     child: CityButtonWidget(
                       context: context,

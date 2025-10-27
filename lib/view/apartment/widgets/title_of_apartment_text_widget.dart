@@ -25,8 +25,7 @@ class ApartmentTitleTextWidget extends ConsumerWidget {
                 style: TextStyle(
                   color:
                       ref.read(themeModeNotifier.notifier).textTheme(ref: ref),
-                  fontSize:
-                      getIt<AppDimension>().isSmallScreen(context) ? 14 : 16,
+                  fontSize:getIt<AppDimension>().isSmallScreen(context) ? 14 : 16,
                   fontWeight: FontWeight.w800,
                 )),
           ),

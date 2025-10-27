@@ -21,11 +21,11 @@ class ButtonsCreateApartmentWidgets extends ConsumerWidget {
       child: Row(
         children: [
           const FadeInOnVisible(
-              isUIHaveScroll: false,
+              isVisibleOnScroll: false,
               child: OutlinedBackButtonWidget()),
           const Expanded(child: SizedBox()),
           FadeInOnVisible(
-            isUIHaveScroll: false,
+            isVisibleOnScroll: false,
             child: NextButtonWidget(
               onPressed: onPressed,
               title: title,
@@ -61,12 +61,12 @@ class NextButtonWidget extends ConsumerWidget {
 }
 
 class OutlinedBackButtonWidget extends ConsumerWidget {
-  const OutlinedBackButtonWidget({super.key});
-
+  const OutlinedBackButtonWidget({super.key,this.onPressed  });
+final void Function()? onPressed;
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     return OutlinedButton(
-      onPressed: () {
+      onPressed: onPressed ?? () {  
         Navigator.pop(context);
       },
       style: outlinedButton(primaryColor: ref.read(themeModeNotifier

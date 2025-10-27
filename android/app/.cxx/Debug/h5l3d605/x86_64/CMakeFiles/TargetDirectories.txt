@@ -1,0 +1,2 @@
+/Users/adhamabuallan/StudioProjects/ween_blaqe/android/app/.cxx/Debug/h5l3d605/x86_64/CMakeFiles/edit_cache.dir
+/Users/adhamabuallan/StudioProjects/ween_blaqe/android/app/.cxx/Debug/h5l3d605/x86_64/CMakeFiles/rebuild_cache.dir

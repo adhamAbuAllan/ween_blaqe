@@ -18,7 +18,7 @@ class UserNameRegCompletedWidget extends ConsumerWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         FadeInOnVisible(
-          isUIHaveScroll: false,
+          isVisibleOnScroll: false,
           direction: SlideDirection.x,
           child: TextFormFieldWidget(
             isPhoneRegTextField: true,
@@ -35,7 +35,7 @@ class UserNameRegCompletedWidget extends ConsumerWidget {
         ),
         FadeInOnVisible(
           direction: SlideDirection.y,
-            isUIHaveScroll: false,
+            isVisibleOnScroll: false,
             child: const HintUnderUserNameField())
       ],
     );

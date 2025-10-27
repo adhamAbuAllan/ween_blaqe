@@ -31,7 +31,7 @@ class FadeInOnVisible extends StatefulWidget {
   final SlideDirection direction;
   final Duration? delay;
   final Duration? duration;
-  final bool? isUIHaveScroll;
+  final bool? isVisibleOnScroll;
 
   const FadeInOnVisible({
     super.key,
@@ -39,7 +39,7 @@ class FadeInOnVisible extends StatefulWidget {
     this.direction = SlideDirection.xy,
     this.duration,
     this.delay,
-    this.isUIHaveScroll = true,
+    this.isVisibleOnScroll = true,
   });
 
   @override
@@ -51,7 +51,7 @@ class _FadeInOnVisibleState extends State<FadeInOnVisible> {
 
   @override
   Widget build(BuildContext context) {
-    return widget.isUIHaveScroll ?? true
+    return widget.isVisibleOnScroll ?? true
         ? VisibilityDetector(
             key: widget.key ?? UniqueKey(),
             onVisibilityChanged: (info) {

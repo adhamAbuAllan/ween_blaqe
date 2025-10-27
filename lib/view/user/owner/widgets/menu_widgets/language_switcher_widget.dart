@@ -94,6 +94,7 @@ class ArabicButton extends ConsumerWidget {
           ? activeHeightButton
           : inActiveHeightButton,
       child: ElevatedButton(
+        
         onPressed: () async {
           WidgetsBinding.instance.addPostFrameCallback((_) async {
             ref.read(languageNotifier.notifier).changeLanguage("ar", context);
@@ -113,6 +114,7 @@ class ArabicButton extends ConsumerWidget {
           // e.g., changeLanguage('ar', context);
         },
         style: ElevatedButton.styleFrom(
+          
           elevation: NewSession.get(PrefKeys.language, "ar") == 'ar' ? 0 : 3.5,
           backgroundColor: NewSession.get(
                       PrefKeys.language,
@@ -123,7 +125,12 @@ class ArabicButton extends ConsumerWidget {
               : Colors.grey, // Highlight selected language
         ),
         child: Text('ع',
+        //a text in t
+            softWrap: false,
             style: TextStyle(
+              //line count
+
+              
                 fontSize:
                     getIt<AppDimension>().isSmallScreen(context) ? 14 : 16,
                 color: Colors.white)),

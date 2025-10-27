@@ -32,6 +32,10 @@ class _CitiesBarWidgetState extends ConsumerState<CitiesBarWidget> {
       "مالك",
       "مكتب عقاري",
     ];
+
+
+
+
     return SingleChildScrollView(
       keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior.onDrag,
       scrollDirection: Axis.horizontal,
@@ -40,37 +44,7 @@ class _CitiesBarWidgetState extends ConsumerState<CitiesBarWidget> {
         elevation: 0,
         child: Row(
           children: [
-            // ref.watch(mapStateProvider).loadingLocation
-            //     ? Padding(
-            //         padding: const EdgeInsets.symmetric(horizontal: 15),
-            //         child: CircularProgressIndicator(
-            //           color: ref
-            //               .read(themeModeNotifier.notifier)
-            //               .primaryTheme(ref: ref),
-            //         ),
-            //       )
-            //     : CityButtonWidget(
-            //         city: City(),
-            //         onClick: widget.onLocationPress!,
-            //         context: context,
-            //         style: ref
-            //                     .watch(fetchApartmentNotifier)
-            //                     .apartmentsList
-            //                     .data
-            //                     ?.first
-            //                     .distance_in_meters !=
-            //                 null
-            //             ? fullButton(
-            //                     backgroundColor: ref
-            //                         .read(themeModeNotifier.notifier)
-            //                         .primaryTheme(ref: ref))
-            //                 .copyWith(
-            //                 foregroundColor:
-            //                     WidgetStateProperty.all<Color>(Colors.white),
-            //               )
-            //             : null,
-            //         child: const Icon(Icons.location_on),
-            //       ),
+        
             FadeInOnVisible(
               delay: const Duration(milliseconds: 50),
               direction: SlideDirection.y,
@@ -84,17 +58,17 @@ class _CitiesBarWidgetState extends ConsumerState<CitiesBarWidget> {
                 },
                 context: context,
                 style: ref.watch(selectedOwnerTypeId) != -1 ||
-                        ref.watch(selectedStudentReminding) != 0
+                        ref.watch(selectedStudentReminding) != 0 ||
+                        ref.watch(isAllTypesOfApartmentNotifier) == false||
+                        ref.watch(selectedCityIdToFilter) != 0
                     ? fullButton(
-                    backgroundColor: ref
-                        .read(themeModeNotifier.notifier)
-                        .primaryTheme(ref: ref))
-                    .copyWith(
-                  foregroundColor:
-                  WidgetStateProperty.all<Color>(
-                      Colors.white),
-                )
-
+                            backgroundColor: ref    
+                                .read(themeModeNotifier.notifier)
+                                .primaryTheme(ref: ref))
+                        .copyWith(
+                        foregroundColor:
+                            WidgetStateProperty.all<Color>(Colors.white),
+                      )
                     : null,
                 child: const Text("فلترة"),
               ),
@@ -122,6 +96,7 @@ class _CitiesBarWidgetState extends ConsumerState<CitiesBarWidget> {
                 return ref.watch(selectedCityIdToFilter) == 0 ||
                         ref.watch(selectedCityIdToFilter) == indexPlusOne
                     ? FadeInOnVisible(
+                        isVisibleOnScroll: true,
                         delay: Duration(milliseconds: indexPlusOne + 1 * 300),
                         //for owner type id
                         child: CityButtonWidget(
@@ -163,61 +138,7 @@ class _CitiesBarWidgetState extends ConsumerState<CitiesBarWidget> {
                     : const SizedBox();
               }),
             ),
-            // ...ref.watch(cityNotifier).cities.map((c) => FadeInOnVisible(
-            //       delay: Duration(milliseconds: c.id! * 100),
-            //   child: CityButtonWidget(
-            //         context: context,
-            //         onClick: () async {
-            //           debugPrint("c.id : ${c.id}");
-            //           debugPrint(
-            //               "ref.read(selectedCityIdToFilter.notifier).state : ${ref.read(selectedCityIdToFilter.notifier).state}");
-            //           if (widget.onClick != null) {
-            //             WidgetsBinding.instance.addPostFrameCallback((_) async {
-            //               ref.read(selectedCityIdToFilter.notifier).state == c.id
-            //                   ? ref.read(selectedCityIdToFilter.notifier).state =
-            //                       0
-            //                   : ref.read(selectedCityIdToFilter.notifier).state =
-            //                       c.id??0;
-            //               await ref
-            //                   .read(fetchApartmentNotifier.notifier)
-            //                   .fetchApartments(
-            //                 ref: ref,
-            //                       isOwnerApartments: false,
-            //                   typeId: ref.read(isAllTypesOfApartmentNotifier)
-            //                           ? null
-            //                           : ref
-            //                               .read(apartmentTypeNotifier.notifier)
-            //                               .state,
-            //                       isAll: ref.read(isAllTypesOfApartmentNotifier),
-            //                       cityId: ref
-            //                           .read(selectedCityIdToFilter.notifier)
-            //                           .state);
-            //             });
-            //           }
-            //         },
-            //         style: c.id ==
-            //                     ref.read(selectedCityIdToFilter.notifier).state &&
-            //                 ref.read(selectedCityIdToFilter.notifier).state != 0
-            //             ? fullButton(
-            //                     backgroundColor: ref
-            //                         .read(themeModeNotifier.notifier)
-            //                         .primaryTheme(ref: ref))
-            //                 .copyWith(
-            //                 foregroundColor:
-            //                     WidgetStateProperty.all<Color>(Colors.white),
-            //               )
-            //             : outlinedButton(
-            //                 primaryColor: ref
-            //                     .read(themeModeNotifier.notifier)
-            //                     .primaryTheme(ref: ref),
-            //                 containerColor: ref
-            //                     .read(themeModeNotifier.notifier)
-            //                     .containerTheme(ref: ref),
-            //                 context: context),
-            //         city: c,
-            //       ),
-            // )),
-
+        
             // Add the custom button at the end of the list
             ref.watch(selectedOwnerTypeId) == -1
                 ? const SizedBox()
@@ -310,7 +231,7 @@ class _CitiesBarWidgetState extends ConsumerState<CitiesBarWidget> {
                               ref.watch(selectedStudentReminding) ==
                                   indexPlusOne
                           ? FadeInOnVisible(
-                              isUIHaveScroll: false,
+                              isVisibleOnScroll: false,
                               delay: const Duration(milliseconds: 800),
                               child: CityButtonWidget(
                                 city: City(),

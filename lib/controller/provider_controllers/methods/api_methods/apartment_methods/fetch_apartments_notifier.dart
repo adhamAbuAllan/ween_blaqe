@@ -48,7 +48,6 @@ class FetchApartmentsNotifier extends StateNotifier<ApartmentState> {
 
   /// a [fetchApartments] usage to fetch apartment data.
   Future<Apartments> fetchApartments({
-    //TODO: remove both cityId and typeId parameters
     int? latitude,
     int? longitude,
     int? studentReminding,

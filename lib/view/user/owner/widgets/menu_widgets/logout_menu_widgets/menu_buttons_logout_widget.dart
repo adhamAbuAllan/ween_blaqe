@@ -11,16 +11,16 @@ import '../../../../../../core/utils/funcations/route_pages/push_routes.dart';
 import '../../../../../common_widgets/aline_widget.dart';
 
 class MenuButtonsWidgets extends ConsumerWidget {
-  const MenuButtonsWidgets({super.key, required this.isLogined});
+  const     MenuButtonsWidgets({super.key, required this.isLogined});
 
   final bool isLogined;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     return Column(
-      children: [
+      children: [ 
         /// apartments of owner
-        isLogined?  FadeInOnVisible(
+        isLogined?  FadeInOnVisible(  
             direction: SlideDirection.x,
             delay: const Duration(milliseconds: 100),
 

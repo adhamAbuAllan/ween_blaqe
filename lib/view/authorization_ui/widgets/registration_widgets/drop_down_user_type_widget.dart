@@ -26,11 +26,11 @@ class _DropDownUserTypeWidgetState
 
       children: [
         FadeInOnVisible(
-            isUIHaveScroll: false,
+            isVisibleOnScroll: false,
             child: TypeOfUserTitle()),
         FadeInOnVisible(
           direction: SlideDirection.x,
-          isUIHaveScroll: false,
+          isVisibleOnScroll: false,
           child: DropdownFieldWidget(
             onChanged: (newValue) {
               ref.read(dropdownProvider.notifier).setSelectedItem(

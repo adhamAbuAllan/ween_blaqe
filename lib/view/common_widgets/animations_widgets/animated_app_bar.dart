@@ -29,7 +29,7 @@ class FadeAppBar extends StatelessWidget implements PreferredSizeWidget {
       // App bars are part of the scaffold layout, they should animate even
       // when there is scrolling in the body, so opt out of the visibility
       // detector's scroll gating by setting isUIHaveScroll to false.
-      isUIHaveScroll: false,
+      isVisibleOnScroll: false,
       child: AppBar(
         backgroundColor: backgroundColor,
         title: title,

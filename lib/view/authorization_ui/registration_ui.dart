@@ -51,7 +51,7 @@ class _RegistrationUiState extends ConsumerState<RegistrationUi> {
                   padding: const EdgeInsets.fromLTRB(0, 25, 0, 0),
                   child: FadeInOnVisible(
 
-                    isUIHaveScroll: false,
+                    isVisibleOnScroll: false,
                     child: BackButtonWidget(
                       onPressed: () {
                         Navigator.pop(context);
@@ -65,7 +65,7 @@ class _RegistrationUiState extends ConsumerState<RegistrationUi> {
                       : 20,
                 ),
                 FadeInOnVisible(
-                    isUIHaveScroll: false,
+                    isVisibleOnScroll: false,
                     child: const TitleRegCompletedWidget()),
                 Padding(
                     padding: EdgeInsets.symmetric(

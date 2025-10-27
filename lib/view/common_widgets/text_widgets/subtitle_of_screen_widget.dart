@@ -17,7 +17,7 @@ class SubtitleWidget extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     return FadeInOnVisible(
-      isUIHaveScroll: false,
+      isVisibleOnScroll: false,
       direction:SlideDirection.right,
       delay: delay,
       duration: duration,

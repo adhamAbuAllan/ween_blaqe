@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:ween_blaqe/view/splach_screen_ui.dart'; //push to another page
+import 'package:ween_blaqe/view/splash_screen_ui.dart'; //push to another page
 
 myPush({required BuildContext context, required Widget ui, String ?
 routeName}) {

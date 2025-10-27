@@ -240,7 +240,7 @@ final typeOfUser = StateProvider<List<String>>((ref) => [
     ]);
 
 final errorStatusCode = StateProvider<int>((ref) => 0);
-final ownerIdNotifier = StateProvider<int>((ref) => 0);
+  final ownerIdNotifier = StateProvider<int>((ref) => 0);
 
 final profileImageFile = StateProvider<XFile?>((ref) => null);
 

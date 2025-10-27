@@ -17,10 +17,12 @@ class ShowApartmentTypesBoxWidget extends ConsumerStatefulWidget {
   const ShowApartmentTypesBoxWidget({super.key});
 
   @override
-  ConsumerState<ShowApartmentTypesBoxWidget> createState() => _ShowApartmentTypesBoxWidgetState();
+  ConsumerState<ShowApartmentTypesBoxWidget> createState() =>
+      _ShowApartmentTypesBoxWidgetState();
 }
 
-class _ShowApartmentTypesBoxWidgetState extends ConsumerState<ShowApartmentTypesBoxWidget> {
+class _ShowApartmentTypesBoxWidgetState
+    extends ConsumerState<ShowApartmentTypesBoxWidget> {
   @override
   Widget build(BuildContext context) {
     // Watch the visibility state of both the box and the list
@@ -29,10 +31,11 @@ class _ShowApartmentTypesBoxWidgetState extends ConsumerState<ShowApartmentTypes
     return SizedBox(
       child: isListOfTypes && isBoxVisible
           ? FadeInOnVisible(
-        delay: const Duration(milliseconds: 40),
+              delay: const Duration(milliseconds: 40),
               direction: SlideDirection.right,
               child: Padding(
-                padding: const EdgeInsets.symmetric(vertical: 155.0, horizontal: 15),
+                padding:
+                    const EdgeInsets.symmetric(vertical: 155.0, horizontal: 15),
                 child: Container(
                   decoration: BoxDecoration(
                     border: Border.all(
@@ -122,14 +125,14 @@ class TypeRowOfBoyStudent extends ConsumerWidget {
     return Row(
       children: [
         ApartmentShowTypesTextButtonWidget(
-          delay: 150,
-          textType: "طلاب", // Change this as per localization
+            delay: 150,
+            textType: "طلاب", // Change this as per localization
             // For all types
             onPressed: () {
-              ref.read(apartmentTypeNotifierProvider.notifier)
-                  .selectApartmentType(ApartmentType.boyStudents,ref:ref);
-            }
-        ),
+              ref
+                  .read(apartmentTypeNotifierProvider.notifier)
+                  .selectApartmentType(ApartmentType.boyStudents, ref: ref);
+            }),
         Padding(
           padding: const EdgeInsets.only(right: 5),
           child: AnimatedOpacity(
@@ -154,14 +157,14 @@ class TypeRowOfGirlStudent extends ConsumerWidget {
     return Row(
       children: [
         ApartmentShowTypesTextButtonWidget(
-          delay: 100,
-          textType: "طالبات", // Change this as per localization
+            delay: 100,
+            textType: "طالبات", // Change this as per localization
             // For families
             onPressed: () {
-              ref.read(apartmentTypeNotifierProvider.notifier)
-                  .selectApartmentType(ApartmentType.girlStudents,ref: ref);
-            }
-        ),
+              ref
+                  .read(apartmentTypeNotifierProvider.notifier)
+                  .selectApartmentType(ApartmentType.girlStudents, ref: ref);
+            }),
         Padding(
           padding: const EdgeInsets.only(right: 5),
           child: AnimatedOpacity(
@@ -186,14 +189,14 @@ class TypeRowOfFamilies extends ConsumerWidget {
     return Row(
       children: [
         ApartmentShowTypesTextButtonWidget(
-          delay: 50,
-          textType: "عائلات", // Change this as per localization
+            delay: 50,
+            textType: "عائلات", // Change this as per localization
             // For families
             onPressed: () {
-              ref.read(apartmentTypeNotifierProvider.notifier)
-                  .selectApartmentType(ApartmentType.families,ref: ref);
-            }
-        ),
+              ref
+                  .read(apartmentTypeNotifierProvider.notifier)
+                  .selectApartmentType(ApartmentType.families, ref: ref);
+            }),
         Padding(
           padding: const EdgeInsets.only(right: 5),
           child: AnimatedOpacity(
@@ -218,23 +221,20 @@ class TypeRowOfAllTypes extends ConsumerWidget {
     return Row(
       children: [
         ApartmentShowTypesTextButtonWidget(
-          delay: 200,
-          textType: "الكل", // Change this as per localization
+            delay: 200,
+            textType: "الكل", // Change this as per localization
 // For all types
             onPressed: () {
-              ref.read(apartmentTypeNotifierProvider.notifier)
-                  .selectApartmentType(ApartmentType.all,ref:ref);
-            }
-        ),
+              ref
+                  .read(apartmentTypeNotifierProvider.notifier)
+                  .selectApartmentType(ApartmentType.all, ref: ref);
+            }),
         Padding(
           padding: const EdgeInsets.only(right: 5),
           child: AnimatedOpacity(
-            opacity: isAllTypesOfApartment ? 1.0 : 0.0,
-            duration: const Duration(milliseconds: 200),
-            child:
-                 const PointerTypeWidget()
-
-          ),
+              opacity: isAllTypesOfApartment ? 1.0 : 0.0,
+              duration: const Duration(milliseconds: 200),
+              child: const PointerTypeWidget()),
         ),
         const SizedBox(width: 10),
       ],

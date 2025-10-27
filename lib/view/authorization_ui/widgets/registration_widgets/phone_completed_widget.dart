@@ -61,7 +61,7 @@ class PhoneCompletedWidget extends ConsumerWidget {
             Expanded(
               flex: 2,
               child: FadeInOnVisible(
-                isUIHaveScroll: isUIHaveScroll,
+                isVisibleOnScroll: isUIHaveScroll,
                 direction: SlideDirection.x,
                 child: PhoneNumberWidget(
                   hasContainer: hasContainer,
@@ -74,7 +74,7 @@ class PhoneCompletedWidget extends ConsumerWidget {
             const SizedBox(width: 10),
              Expanded(
               child: FadeInOnVisible(
-                  isUIHaveScroll: isUIHaveScroll,
+                  isVisibleOnScroll: isUIHaveScroll,
                   child: DropDownMenuWidget()),
             ),
           ],
@@ -87,7 +87,7 @@ class PhoneCompletedWidget extends ConsumerWidget {
           ),
         ),
         FadeInOnVisible(
-            isUIHaveScroll: isUIHaveScroll,
+            isVisibleOnScroll: isUIHaveScroll,
             child: const ButtonCheckerPhoneNumberCompletedWidget()),
         SizedBox(
           height: getIt<AppDimension>().isSmallScreen(context) ? 10 : 20,

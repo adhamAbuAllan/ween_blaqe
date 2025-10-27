@@ -48,24 +48,24 @@ class AdvantagesWidget extends ConsumerWidget {
               ),
             ),
           ),
-          Column(
-            children: _advantageItemsWidget(
-                    advantages: advantages, context: context, ref: ref)
-                .toList()
-                .take(10)
-                .toList(),
-          ),
+                Column(
+                  children: _advantageItemsWidget(
+                          advantages: advantages, context: context, ref: ref)
+                      .toList()
+                      .take(10)
+                      .toList(),
+                ),
 
-          // Button to show more advantages if there are more than 10
-          (advantages.length) > 10
-              ? FadeInOnVisible(
-            delay: const Duration(milliseconds: 1000),
-            child: ShowAllAdvantagesButtonWidget(
+                // Button to show more advantages if there are more than 10
+                (advantages.length) > 10
+                    ? FadeInOnVisible(
+                  delay: const Duration(milliseconds: 1000),
+                  child: ShowAllAdvantagesButtonWidget(
 
-                    oneApartment: oneApartment ?? DataOfOneApartment(),
-                  ),
-              )
-              : const SizedBox(),
+                          oneApartment: oneApartment ?? DataOfOneApartment(),
+                        ),
+                    )
+                    : const SizedBox(),
         ],
       ),
     );

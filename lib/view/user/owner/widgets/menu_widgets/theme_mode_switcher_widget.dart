@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+          import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../../../../constants/coordination.dart';
@@ -10,7 +10,7 @@ class ThemeModeSwitcherWidget extends ConsumerStatefulWidget {
   const ThemeModeSwitcherWidget({super.key, this.onChange});
 
   final Function(bool value)? onChange;
-
+  
   @override
   ConsumerState createState() => _ThemeModeSwitcherWidgetState();
 }

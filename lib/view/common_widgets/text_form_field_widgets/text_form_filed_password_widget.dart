@@ -56,7 +56,7 @@ class _TextFormFiledPasswordWidgetState
     return Padding(
         padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 0),
         child: FadeInOnVisible(
-          isUIHaveScroll: widget.isUIHaveScroll,
+          isVisibleOnScroll: widget.isUIHaveScroll,
           direction: SlideDirection.x,
           delay: widget.delay,
 

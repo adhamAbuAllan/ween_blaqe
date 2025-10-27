@@ -181,7 +181,7 @@ class _ShowDeitalsOfApartmentUiState
               ),
               FadeInOnVisible(
                 direction: SlideDirection.x,
-                isUIHaveScroll:
+                isVisibleOnScroll:
                     getIt<AppDimension>().isSmallScreen(context) ? false : true,
                 delay: getIt<AppDimension>().isSmallScreen(context)
                     ? const Duration(milliseconds: 530)
@@ -194,7 +194,7 @@ class _ShowDeitalsOfApartmentUiState
               ),
               FadeInOnVisible(
                   delay: const Duration(milliseconds: 500),
-                  isUIHaveScroll: false,
+                  isVisibleOnScroll: false,
                   direction: SlideDirection.x,
                   child: AdvantagesWidget(oneApartment: widget.oneApartment)),
               FadeInOnVisible(

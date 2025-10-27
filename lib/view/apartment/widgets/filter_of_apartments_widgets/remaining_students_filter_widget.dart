@@ -32,8 +32,8 @@ class RemainingStudentsFilterWidget extends ConsumerWidget {
           children: List.generate(5, (index) {
             final number = index + 1;
             return FadeInOnVisible(
-              isUIHaveScroll: false,
-              delay: Duration(milliseconds: number * 200),
+              isVisibleOnScroll: false,
+                delay: Duration(milliseconds: number * 200),
               child: CityButtonWidget(
                 context: context,
                 city: City(),

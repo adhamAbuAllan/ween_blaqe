@@ -26,107 +26,119 @@ class ContainerOfProfileWidget extends ConsumerWidget {
           MaterialPageRoute(builder: (context) => const ProfileUi()),
         );
       },
-      child: Container(
-        width: double.infinity,
-        padding: EdgeInsets.fromLTRB(
-            5,
-            getIt<AppDimension>().isSmallScreen(context) ? 0 : 10,
-            5,
-            getIt<AppDimension>().isSmallScreen(context) ? 0 : 10),
-
-        margin: const EdgeInsets.fromLTRB(10, 50, 10, 30),
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(7),
-          color: ref.read(themeModeNotifier.notifier).containerTheme(ref: ref),
-        ),
-        child: Row(
-          children: [
-            Padding(
-              padding: const EdgeInsets.all(10),
-              child: ref.watch(profileImageFile)?.path != null
-                  ? FadeInOnVisible(
-                delay: const Duration(milliseconds: 30),
-                direction: SlideDirection.x,
-                child: MobileStorageImageWidget(
-                        radius: getIt<AppDimension>().isSmallScreen(context)
-                            ? 32 / 1.5
-                            : 32,
-                      ),
-                  )
-                  : (NewSession.get(PrefKeys.profile, "def") !=
-                          "images/profile/user.png"
-                      ? FadeInOnVisible(
-                delay: const Duration(milliseconds: 20),
-                direction: SlideDirection.x,
-                child: ServerImageWidget(
-                            radius: getIt<AppDimension>().isSmallScreen(context)
-                                ? 32 / 1.5
-                                : 32,
-                          ),
+      child: FadeInOnVisible(
+        child: Container(
+          width: double.infinity,
+          padding: EdgeInsets.fromLTRB(
+              5,
+              getIt<AppDimension>().isSmallScreen(context) ? 0 : 10,
+              5,
+              getIt<AppDimension>().isSmallScreen(context) ? 0 : 10),
+          margin: const EdgeInsets.fromLTRB(10, 50, 10, 30),
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(7),
+            color:
+                ref.read(themeModeNotifier.notifier).containerTheme(ref: ref),
+          ),
+          child: Row(
+            children: [
+              Padding(
+                padding: const EdgeInsets.all(10),
+                child: ref.watch(profileImageFile)?.path != null
+                    ? FadeInOnVisible(
+                        delay: const Duration(milliseconds: 30),
+                        direction: SlideDirection.x,
+                        child: MobileStorageImageWidget(
+                          radius: getIt<AppDimension>().isSmallScreen(context)
+                              ? 32 / 1.5
+                              : 32,
+                        ),
                       )
-                      : FadeInOnVisible(
-                delay: const Duration(milliseconds: 20),
-                direction: SlideDirection.x,
-                child: DefaultImageWidget(
-                            radius: getIt<AppDimension>().isSmallScreen(context)
-                                ? 32 / 1.5
-                                : 32,
-                          ),
-                      )),
-            ),
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                FadeInOnVisible(
-                  delay: const Duration(milliseconds: 30),
-                  direction: SlideDirection.x,
-                  child: Text(
-                    NewSession.get(PrefKeys.name, ""),
-                    style: TextStyle(
-                      fontSize:
-                          getIt<AppDimension>().isSmallScreen(context) ? 16 : 18,
-                      fontWeight: FontWeight.w600,
-                      color: ref.read(themeModeNotifier.notifier).textTheme(ref: ref),
+                    : (NewSession.get(PrefKeys.profile, "def") !=
+                            "images/profile/user.png"
+                        ? FadeInOnVisible(
+                            delay: const Duration(milliseconds: 20),
+                            direction: SlideDirection.x,
+                            child: ServerImageWidget(
+                              radius:
+                                  getIt<AppDimension>().isSmallScreen(context)
+                                      ? 32 / 1.5
+                                      : 32,
+                            ),
+                          )
+                        : FadeInOnVisible(
+                            delay: const Duration(milliseconds: 20),
+                            direction: SlideDirection.x,
+                            child: DefaultImageWidget(
+                              radius:
+                                  getIt<AppDimension>().isSmallScreen(context)
+                                      ? 32 / 1.5
+                                      : 32,
+                            ),
+                          )),
+              ),
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  FadeInOnVisible(
+                    delay: const Duration(milliseconds: 30),
+                    direction: SlideDirection.x,
+                    child: Text(
+                      NewSession.get(PrefKeys.name, ""),
+                      style: TextStyle(
+                        fontSize: getIt<AppDimension>().isSmallScreen(context)
+                            ? 16
+                            : 18,
+                        fontWeight: FontWeight.w600,
+                        color: ref
+                            .read(themeModeNotifier.notifier)
+                            .textTheme(ref: ref),
+                      ),
                     ),
                   ),
-                ),
-                SizedBox(
-                  height: getIt<AppDimension>().isSmallScreen(context) ? 0 : 2,
-                ),
-                FadeInOnVisible(
-                  delay: const Duration(milliseconds: 40),
-                  direction: SlideDirection.y,
-                  child: Text(
-                    // "عرض الملف الشخصي",
-                    NewSession.get(PrefKeys.phone, ""),
-                    // "972569339613",
-                    style: TextStyle(
-                        fontSize: 14,
-                        fontWeight: FontWeight.w500,
-                        color: ref.read(themeModeNotifier.notifier).textTheme(ref: ref)),
+                  SizedBox(
+                    height:
+                        getIt<AppDimension>().isSmallScreen(context) ? 0 : 2,
                   ),
-                )
-              ],
-            ),
-            const Expanded(
-                child: SizedBox(
-              child: Text(""),
-            )),
-            Padding(
-              padding: const EdgeInsets.only(
-                left: 10,
+                  FadeInOnVisible(
+                    delay: const Duration(milliseconds: 40),
+                    direction: SlideDirection.y,
+                    child: Text(
+                      // "عرض الملف الشخصي",
+                      NewSession.get(PrefKeys.phone, ""),
+                      // "972569339613",
+                      style: TextStyle(
+                          fontSize: 14,
+                          fontWeight: FontWeight.w500,
+                          color: ref
+                              .read(themeModeNotifier.notifier)
+                              .textTheme(ref: ref)),
+                    ),
+                  )
+                ],
               ),
-              child: FadeInOnVisible(
-                delay: const Duration(milliseconds: 50),
-                direction: SlideDirection.x,
-                child: Icon(
-                  Icons.arrow_forward_ios,
-                  color: ref.read(themeModeNotifier.notifier).textTheme(ref: ref),
-                  // size: ,
+              const Expanded(
+                  child: SizedBox(
+                child: Text(""),
+              )),
+              Padding(
+                padding: const EdgeInsets.only(
+                  left: 10,
+                ),
+                child: FadeInOnVisible(
+                  delay: const Duration(milliseconds: 50),
+                  direction: SlideDirection.x,
+                  child: Icon(
+                    Icons.arrow_forward_ios,
+                    color: ref
+                        .read(themeModeNotifier.notifier)
+                        .textTheme(ref: ref),
+                    // size: ,
+                  ),
                 ),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );

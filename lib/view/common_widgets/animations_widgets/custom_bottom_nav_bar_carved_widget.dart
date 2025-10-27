@@ -18,7 +18,7 @@ class AnimationBottomNavBar extends ConsumerStatefulWidget {
 class _CustomBottomNavBarCarvedState
     extends ConsumerState<AnimationBottomNavBar> with TickerProviderStateMixin {
   late List<AnimationController> _controllers;
-  final List<IconData> _icons = [Icons.home, Icons.bookmark, Icons.settings];
+  final List<IconData> _icons = [Icons.home, Icons.bookmark, Icons.person];
 
   @override
   void initState() {

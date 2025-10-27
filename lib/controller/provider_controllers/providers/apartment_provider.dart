@@ -182,11 +182,11 @@ final apartmentIdNotifier = StateProvider<dynamic>((ref) => '-1');
 final apartmentLengthOfOwnerProvider = StateProvider<int>((ref) => 0);
 final currentPhotoIndex = StateProvider<int>((ref) => 0);
 final selectedCityId = StateProvider<int>((ref) => 1);
-final selectedCityIdToFilter = StateProvider<int>((ref) => 0);
+  final selectedCityIdToFilter = StateProvider<int>((ref) => 0);
 final selectedTypeId = StateProvider<int>((ref) => 1);
 final selectedOwnerTypeId = StateProvider<int>((ref) => -1);
-final selectedStudentCount = StateProvider<int?>((ref) => null);
-  final selectedStudentReminding = StateProvider<int?>((ref) => 0 );
+final selectedStudentCount = StateProvider<int>((ref) => -1);
+  final selectedStudentReminding = StateProvider<int>((ref) => 0 );
 
 
 // create a scroll controller

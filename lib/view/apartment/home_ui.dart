@@ -3,7 +3,6 @@ import 'package:flutter/gestures.dart';
 
 // import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/rendering.dart';
 import 'package:ween_blaqe/api/apartments_api/apartments.dart';
 import 'package:ween_blaqe/controller/provider_controllers/providers/apartment_provider.dart';
 import 'package:ween_blaqe/controller/provider_controllers/providers/color_provider.dart';
@@ -48,11 +47,13 @@ animate and scroll the bar of cities.
 
     NewSession.save("PrefKeys.isFirstTime", "OK");
     WidgetsBinding.instance.addPostFrameCallback((_) async {
+    
       //that should make update when fetchApartment of owner is run from api
       // you should to handel that from api
       ref.read(isAllTypesOfApartmentNotifier.notifier).state = true;
-      await ref.read(fetchApartmentNotifier.notifier).fetchApartments(
-          isOwnerApartments: false, ref: ref);
+      await ref
+          .read(fetchApartmentNotifier.notifier)
+          .fetchApartments(isOwnerApartments: false, ref: ref);
       ref.read(cityNotifier.notifier).getCity();
     });
   }
@@ -142,8 +143,9 @@ animate and scroll the bar of cities.
           ref.read(selectedOwnerTypeId.notifier).state = -1;
           WidgetsBinding.instance.addPostFrameCallback((_) async {
             ref.read(apartmentTypeNotifier.notifier).state = 0;
-            await ref.read(fetchApartmentNotifier.notifier).fetchApartments(
-                isOwnerApartments: false, ref: ref);
+            await ref
+                .read(fetchApartmentNotifier.notifier)
+                .fetchApartments(isOwnerApartments: false, ref: ref);
           });
           ref.read(isBoyStudentNotifier.notifier).state = false;
           ref.read(isGirlStudentNotifier.notifier).state = false;
@@ -238,7 +240,8 @@ class ListApartmentWithTypeBtn extends StatelessWidget {
                           .fetchApartments(
                             isOwnerApartments: false,
                             ref: ref,
-                            studentReminding: ref.read(selectedStudentReminding),
+                            studentReminding:
+                                ref.read(selectedStudentReminding),
                             // typeOfOwnerId: typeOwnerId,
                           );
                     });
@@ -290,7 +293,7 @@ class ListApartmentWithTypeBtn extends StatelessWidget {
                 const SebhaButtonWidget()
               else
                 const ShowTypesButtonWidget(),
-              const   ShowApartmentTypesBoxWidget() // list of types
+              const ShowApartmentTypesBoxWidget() // list of types
             ]));
   }
 }

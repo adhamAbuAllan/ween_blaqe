@@ -62,7 +62,7 @@ class _MainScreenState extends ConsumerState<MainUi> {
           // bottomNavigationBar: BottomNavigationBarWidget(
           //   scrollController: _scrollController,
           // ),
-          floatingActionButton: const FloatingActionButtonWidget(),
+        //  floatingActionButton: const FloatingActionButtonWidget(),
         ),
       ),
     );

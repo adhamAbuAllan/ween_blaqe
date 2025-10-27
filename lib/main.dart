@@ -50,7 +50,7 @@ import 'package:ween_blaqe/view/paragraphs_widgets/ask_for_help_widgets/for_stud
 import 'package:ween_blaqe/view/paragraphs_widgets/privacy_policy_ui.dart';
 import 'package:ween_blaqe/view/user/owner/profile_ui.dart';
 
-import 'package:ween_blaqe/view/splach_screen_ui.dart';
+import 'package:ween_blaqe/view/splash_screen_ui.dart';
 import 'package:ween_blaqe/view/user/owner/update_data_of_user_ui.dart';
 import 'package:ween_blaqe/session/new_session.dart';
 

@@ -10,7 +10,7 @@ class VersionAppTextWidget extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     return   Center(
-      child: Padding(
+      child: Padding( 
         padding: const EdgeInsets.symmetric(vertical: 30),
         child: FutureBuilder<String>(
           future: getAppVersion(),

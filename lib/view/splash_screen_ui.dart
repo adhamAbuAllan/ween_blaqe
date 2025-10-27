@@ -2,6 +2,8 @@ import 'dart:async';
 import 'package:colorful_safe_area/colorful_safe_area.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
+import 'package:ween_blaqe/controller/provider_controllers/methods/hybrid_methods/type_of_apartment_notifier.dart';
+import 'package:ween_blaqe/controller/provider_controllers/providers/apartment_provider.dart';
 import 'package:ween_blaqe/controller/provider_controllers/providers/color_provider.dart';
 import 'package:ween_blaqe/controller/provider_controllers/providers/language_proivder.dart';
 import '../constants/nums.dart';
@@ -21,8 +23,8 @@ class _SplashScreenState extends ConsumerState<SplashScreenUi> {
   void initState() {
     super.initState();
     WidgetsBinding.instance.addPostFrameCallback((_) async {
+ 
       // await ref.watch(mapStateProvider.notifier).getUserLocation(ref: ref);
-
       ref.read(languageNotifier.notifier);
       if (NewSession.get(PrefKeys.language, "").isEmpty) {
         NewSession.save(PrefKeys.language, "ar");
@@ -37,7 +39,6 @@ class _SplashScreenState extends ConsumerState<SplashScreenUi> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: const Color(0x2ef0f0fe),
-
       body: ColorfulSafeArea(
         bottomColor: Colors.transparent,
         color: ref.read(themeModeNotifier.notifier).primaryTheme(ref: ref),
@@ -51,20 +52,26 @@ class _SplashScreenState extends ConsumerState<SplashScreenUi> {
             ),
             // Gradient overlay with animation
             Container(
-              decoration:  BoxDecoration(
+              decoration: BoxDecoration(
                 gradient: LinearGradient(
-                  colors: [ Colors.white.withAlpha(255),Colors.white.withAlpha(220),Colors.white.withAlpha(180),Colors.white.withAlpha(140),Colors.white.withAlpha(80),Colors.transparent,],
+                  colors: [
+                    Colors.white.withAlpha(255),
+                    Colors.white.withAlpha(220),
+                    Colors.white.withAlpha(180),
+                    Colors.white.withAlpha(140),
+                    Colors.white.withAlpha(80),
+                    Colors.transparent,
+                  ],
                   begin: Alignment.topCenter,
                   end: Alignment.bottomCenter,
                   tileMode: TileMode.repeated,
-
                 ),
               ),
             )
-                  .animate()
-              .fadeIn(duration: 100.ms) // appear
-               .then(duration: 100.ms) // after 100ms
-              .fadeOut(duration: 300.ms), 
+                .animate()
+                .fadeIn(duration: 100.ms) // appear
+                .then(duration: 100.ms) // after 100ms
+                .fadeOut(duration: 300.ms),
           ],
         ),
       ),
@@ -72,6 +79,7 @@ class _SplashScreenState extends ConsumerState<SplashScreenUi> {
   }
 
   Future<void> navigateToHome() async {
+
     Future.delayed(const Duration(milliseconds: 700), () {
       NewSession.get("PrefKeys.isFirstTime", "") != "OK"
           ? NewSession.save(PrefKeys.language, "ar")
