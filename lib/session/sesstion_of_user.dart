@@ -32,7 +32,10 @@ saveUserInfo(User data, {DataOfOneApartment? apartment}) {
 
   // NewSession.save("type", data.type);
   NewSession.save(PrefKeys.phone, data.phone);
-  NewSession.save(PrefKeys.profile, data.profile);
+  NewSession.save(
+    PrefKeys.profile,
+    ServerWeenBalaqee.normalizePublicUrl(data.profile),
+  );
   NewSession.save(PrefKeys.apartmentId, apartment?.id ?? -1);
   NewSession.save(PrefKeys.facebook, data.facebook);
   NewSession.save(PrefKeys.email, data.email);

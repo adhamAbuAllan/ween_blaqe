@@ -84,6 +84,12 @@ class BottomNavigationBarWidget extends ConsumerWidget {
           label: SetLocalization.of(context)!.getTranslateValue("home"),
           activeIcon: const Icon(Icons.home),
         ),
+        const BottomNavigationBarItem(
+          icon: Icon(Icons.add_home_outlined),
+          label: "إضافة شقة",
+          //SetLocalization.of(context)!.getTranslateValue("home"),
+          activeIcon: Icon(Icons.add_home),
+        ),
         BottomNavigationBarItem(
           icon: const Icon(Icons.bookmark_border_outlined),
           label: SetLocalization.of(context)!.getTranslateValue("favorites"),

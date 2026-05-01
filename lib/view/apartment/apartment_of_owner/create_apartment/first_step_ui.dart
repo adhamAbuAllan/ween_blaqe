@@ -38,6 +38,7 @@ class _FirstStepCreateApartmentUiState extends ConsumerState<FirstStepUi> {
               child: Column(
                 children: [
                   ButtonsCreateApartmentWidgets(
+                    isFirstStep: true,
                     onPressed: () {
                       WidgetsBinding.instance.addPostFrameCallback((_) async {
                         ref

@@ -91,6 +91,7 @@ class _StudentAddButtonWidgetState extends ConsumerState<StudentAddWidget> {
   void buttomSheetAddCountStudentsWidget(
       BuildContext context, List<int> safeStudentsCount) {
     showModalBottomSheet(
+      backgroundColor: ref.read(themeModeNotifier.notifier).backgroundAppTheme(ref: ref),
         useSafeArea: true,
         context: context,
         isScrollControlled: true,

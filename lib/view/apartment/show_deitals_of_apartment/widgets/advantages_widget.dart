@@ -9,6 +9,7 @@ import 'package:ween_blaqe/view/common_widgets/animations_widgets/build_animatio
 
 import '../../../../api/advantages.dart';
 import '../../../../api/apartments_api/apartments.dart';
+import '../../../../constants/strings.dart';
 import 'show_all_advantages_button_widget.dart';
 
 // Get the advantagesNotifier state from Riverpod
@@ -48,24 +49,23 @@ class AdvantagesWidget extends ConsumerWidget {
               ),
             ),
           ),
-                Column(
-                  children: _advantageItemsWidget(
-                          advantages: advantages, context: context, ref: ref)
-                      .toList()
-                      .take(10)
-                      .toList(),
-                ),
+          Column(
+            children: _advantageItemsWidget(
+                    advantages: advantages, context: context, ref: ref)
+                .toList()
+                .take(10)
+                .toList(),
+          ),
 
-                // Button to show more advantages if there are more than 10
-                (advantages.length) > 10
-                    ? FadeInOnVisible(
+          // Button to show more advantages if there are more than 10
+          (advantages.length) > 10
+              ? FadeInOnVisible(
                   delay: const Duration(milliseconds: 1000),
                   child: ShowAllAdvantagesButtonWidget(
-
-                          oneApartment: oneApartment ?? DataOfOneApartment(),
-                        ),
-                    )
-                    : const SizedBox(),
+                    oneApartment: oneApartment ?? DataOfOneApartment(),
+                  ),
+                )
+              : const SizedBox(),
         ],
       ),
     );
@@ -99,9 +99,7 @@ class AdvantagesWidget extends ConsumerWidget {
                         child: SkeletonAvatar(
                             style: SkeletonAvatarStyle(width: 28, height: 28)))
                     : Image.network(
-                        entry.icon!.startsWith("1")
-                            ? "http://${entry.icon!}"
-                            : entry.icon!,
+                        ServerWeenBalaqee.normalizePublicUrl(entry.icon),
                         height: getIt<AppDimension>().isSmallScreen(context)
                             ? 26
                             : 30,

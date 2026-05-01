@@ -6,6 +6,7 @@ import 'package:ween_blaqe/view/apartment/widgets/filter_of_apartments_widgets/c
 import 'package:ween_blaqe/view/apartment/widgets/filter_of_apartments_widgets/owner_type_filter_widget.dart';
 import 'package:ween_blaqe/view/apartment/widgets/filter_of_apartments_widgets/remaining_students_filter_widget.dart';
 import 'package:ween_blaqe/view/apartment/widgets/filter_of_apartments_widgets/filter_top_bar_widget.dart';
+import 'package:ween_blaqe/view/apartment/widgets/filter_of_apartments_widgets/student_type_filter_widget.dart';
 import '../../controller/provider_controllers/providers/apartment_provider.dart';
 import '../common_widgets/text_widgets/create_apartment_title_widget.dart';
 
@@ -49,7 +50,7 @@ class ApartmentFilterUi extends ConsumerWidget {
 
             // Owner Type Filter Widget
             const OwnerTypeFilterWidget(),
-
+            const StudentTypeFilterWidget(),
             // Remaining Students Filter Widget
             const RemainingStudentsFilterWidget(),
           ],

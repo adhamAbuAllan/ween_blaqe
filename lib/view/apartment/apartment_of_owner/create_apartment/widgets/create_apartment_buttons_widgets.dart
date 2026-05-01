@@ -9,10 +9,11 @@ import '../../../../../core/utils/styles/button.dart';
 import '../../../../common_widgets/button_widgets/elevated_button_widget.dart';
 
 class ButtonsCreateApartmentWidgets extends ConsumerWidget {
-  const     ButtonsCreateApartmentWidgets({super.key, this.onPressed, this.title});
+  const     ButtonsCreateApartmentWidgets({super.key, this.onPressed, this.title,  this.isFirstStep, });
 
   final void Function()? onPressed;
   final String? title;
+  final bool ?isFirstStep;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -20,9 +21,9 @@ class ButtonsCreateApartmentWidgets extends ConsumerWidget {
       padding: const EdgeInsets.all(8.0),
       child: Row(
         children: [
-          const FadeInOnVisible(
+           FadeInOnVisible(
               isVisibleOnScroll: false,
-              child: OutlinedBackButtonWidget()),
+              child: OutlinedBackButtonWidget(isFirstStep: isFirstStep)),
           const Expanded(child: SizedBox()),
           FadeInOnVisible(
             isVisibleOnScroll: false,
@@ -61,11 +62,15 @@ class NextButtonWidget extends ConsumerWidget {
 }
 
 class OutlinedBackButtonWidget extends ConsumerWidget {
-  const OutlinedBackButtonWidget({super.key,this.onPressed  });
+  const OutlinedBackButtonWidget({super.key,this.onPressed, this.isFirstStep  });
 final void Function()? onPressed;
+final bool? isFirstStep;
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    return OutlinedButton(
+    return isFirstStep == true ? const SizedBox() :
+
+
+      OutlinedButton(
       onPressed: onPressed ?? () {  
         Navigator.pop(context);
       },

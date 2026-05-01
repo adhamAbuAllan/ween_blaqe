@@ -8,6 +8,7 @@ import '../../../../api/advantages.dart';
 import '../../../../constants/coordination.dart';
 import '../../../../constants/get_it_controller.dart';
 import '../../../../constants/localization.dart';
+import '../../../../constants/strings.dart';
 import '../../../../controller/provider_controllers/providers/color_provider.dart';
 import '../../../common_widgets/containers_widgets/container_load_widget.dart';
 
@@ -124,15 +125,7 @@ class _AdvantageIconWidgetState extends ConsumerState<AdvantageIconWidget> {
             child: SkeletonAvatar(
                 style: SkeletonAvatarStyle(width: 28, height: 28)))
         : Image.network(
-            /*
-            entry.icon!.startsWith("1")
-                          ? "http://${entry.icon!}"
-                          : entry.icon!,
-          */
-
-            widget.advantage.icon!.startsWith("1")
-                ? "http://${widget.advantage.icon}"
-                : widget.advantage.icon!,
+            ServerWeenBalaqee.normalizePublicUrl(widget.advantage.icon),
             height: getIt<AppDimension>().isSmallScreen(context) ? 26 : 30,
             width: getIt<AppDimension>().isSmallScreen(context) ? 26 : 30,
             errorBuilder: (context, error, stackTrace) {

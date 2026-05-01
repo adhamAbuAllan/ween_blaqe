@@ -11,26 +11,26 @@ import '../../../../../../core/utils/funcations/route_pages/push_routes.dart';
 import '../../../../../common_widgets/aline_widget.dart';
 
 class MenuButtonsWidgets extends ConsumerWidget {
-  const     MenuButtonsWidgets({super.key, required this.isLogined});
+  const MenuButtonsWidgets({super.key, required this.isLogined});
 
   final bool isLogined;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     return Column(
-      children: [ 
+      children: [
         /// apartments of owner
-        isLogined?  FadeInOnVisible(  
-            direction: SlideDirection.x,
-            delay: const Duration(milliseconds: 100),
-
-            child: aline): const SizedBox(),
         isLogined
             ? FadeInOnVisible(
-          delay: const Duration(milliseconds: 130),
-          direction: SlideDirection.x,
-
-          child: ButtonListTileWidget(
+                direction: SlideDirection.x,
+                delay: const Duration(milliseconds: 100),
+                child: aline)
+            : const SizedBox(),
+        isLogined
+            ? FadeInOnVisible(
+                delay: const Duration(milliseconds: 130),
+                direction: SlideDirection.x,
+                child: ButtonListTileWidget(
                   onTap: () {
                     ref.read(ownerIdNotifier.notifier).state = 0;
 
@@ -40,12 +40,9 @@ class MenuButtonsWidgets extends ConsumerWidget {
                       .getTranslateValue("your_apartments"),
                   icon: Icons.apartment,
                 ),
-            )
+              )
             : const SizedBox(),
-        FadeInOnVisible(
-            delay: const Duration(milliseconds: 150),
-
-            child: aline),
+        FadeInOnVisible(delay: const Duration(milliseconds: 150), child: aline),
 
         /// ask for help
         FadeInOnVisible(
@@ -55,7 +52,8 @@ class MenuButtonsWidgets extends ConsumerWidget {
             onTap: () {
               myPushName(context, MyPagesRoutes.askForHelp);
             },
-            title: SetLocalization.of(context)!.getTranslateValue("request_help"),
+            title:
+                SetLocalization.of(context)!.getTranslateValue("request_help"),
             icon: Icons.info_outline,
           ),
         ),
@@ -72,14 +70,13 @@ class MenuButtonsWidgets extends ConsumerWidget {
             onTap: () {
               myPushName(context, MyPagesRoutes.privacyPolicy);
             },
-            title:
-                SetLocalization.of(context)!.getTranslateValue("privacy_policy"),
+            title: SetLocalization.of(context)!
+                .getTranslateValue("privacy_policy"),
             icon: Icons.privacy_tip_outlined,
           ),
         ),
 
         FadeInOnVisible(
-
             delay: const Duration(milliseconds: 350),
             direction: SlideDirection.x,
             child: aline),
@@ -110,6 +107,11 @@ class MenuButtonsWidgets extends ConsumerWidget {
             icon: Icons.share_outlined,
           ),
         ),
+        ButtonListTileWidget(
+            onTap: () {
+              myPushName(context, MyPagesRoutes.noInternet);
+            },
+            title: "title")
       ],
     );
   }

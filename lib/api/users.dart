@@ -58,7 +58,7 @@ class User {
     facebook = json['facebook'];
     email = json['email'];
 
-    typeId = json['type'];
+    typeId = json['type_id'];
     //countryPhoneNumberId = CountryPhoneNumberId.fromJson(json['country_phone_number_id']);
     timeAgoCreated = json['time_ago'];
     token = json['token'];
@@ -72,7 +72,7 @@ class User {
     _data['facebook'] = facebook;
     _data['email'] = email;
     _data['profile'] = profile;
-    _data['type'] = typeId;
+    _data['type_id'] = typeId;
   //  _data['country_phone_number_id'] = countryPhoneNumberId.toJson();
     _data["time_ago"] = timeAgoCreated;
     _data['token'] = token;

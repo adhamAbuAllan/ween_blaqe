@@ -146,7 +146,7 @@ final oldPasswordController = StateProvider<TextEditingController>((ref) {
       () => controller.dispose()); // Dispose when the provider is disposed
   return controller;
 });
-final updateUsernameController = StateProvider<TextEditingController>((ref) {
+final   updateUsernameController = StateProvider<TextEditingController>((ref) {
   //Reg => registration
   final controller = TextEditingController();
   ref.onDispose(
@@ -155,7 +155,7 @@ final updateUsernameController = StateProvider<TextEditingController>((ref) {
 });
 final updatePhoneNumberController = StateProvider<TextEditingController>((ref) {
   //Reg => registration
-  final controller = TextEditingController();
+  final controller = TextEditingController(); 
   ref.onDispose(
       () => controller.dispose()); // Dispose when the provider is disposed
   return controller;

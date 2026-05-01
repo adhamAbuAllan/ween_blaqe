@@ -2,6 +2,7 @@ import 'package:colorful_safe_area/colorful_safe_area.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:ween_blaqe/controller/provider_controllers/providers/animation_provider.dart';
+import 'package:ween_blaqe/view/apartment/apartment_of_owner/create_apartment/first_step_ui.dart';
 import 'package:ween_blaqe/view/apartment/bookmark_ui.dart';
 import 'package:ween_blaqe/view/apartment/home_ui.dart';
 import 'package:ween_blaqe/view/common_widgets/connectivity_listen_widget.dart';
@@ -9,7 +10,6 @@ import 'package:ween_blaqe/view/user/menu_ui.dart';
 import '../controller/provider_controllers/providers/color_provider.dart';
 import '../core/utils/funcations/route_pages/push_routes.dart';
 import 'common_widgets/animations_widgets/custom_bottom_nav_bar_carved_widget.dart';
-import 'common_widgets/button_widgets/floating_action_button_widget.dart';
 
 class MainUi extends ConsumerStatefulWidget {
   const MainUi({super.key});
@@ -36,6 +36,7 @@ class _MainScreenState extends ConsumerState<MainUi> {
                 index: ref.watch(bottomNavProvider),
                 children: [
                   HomeUi(scrollController: _scrollController),
+                  const FirstStepUi(),
                   const BookmarkApartmentUi(),
                   MenuUi(
                     onChange: (value) {

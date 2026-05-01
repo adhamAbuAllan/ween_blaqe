@@ -1,9 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_animate/flutter_animate.dart';
+import '../../../constants/localization.dart';
+import '../../../controller/provider_controllers/providers/alert_provider.dart';
 import '../../../controller/provider_controllers/providers/animation_provider.dart';
 import '../../../controller/provider_controllers/providers/apartment_provider.dart';
 import '../../../controller/provider_controllers/providers/color_provider.dart';
+import '../../../controller/provider_controllers/providers/connectivity_provider.dart';
+import '../../../controller/provider_controllers/providers/snack_bar_provider.dart';
+import '../../../core/utils/funcations/route_pages/push_routes.dart';
+import '../../../session/new_session.dart';
+import 'package:ween_blaqe/constants/strings.dart';
 
 class AnimationBottomNavBar extends ConsumerStatefulWidget {
   const AnimationBottomNavBar({super.key, this.scrollController});
@@ -18,7 +25,9 @@ class AnimationBottomNavBar extends ConsumerStatefulWidget {
 class _CustomBottomNavBarCarvedState
     extends ConsumerState<AnimationBottomNavBar> with TickerProviderStateMixin {
   late List<AnimationController> _controllers;
-  final List<IconData> _icons = [Icons.home, Icons.bookmark, Icons.person];
+  final List<IconData> _icons = [Icons.home, Icons.add_home,Icons.bookmark,
+    Icons
+      .person];
 
   @override
   void initState() {
@@ -46,7 +55,7 @@ class _CustomBottomNavBarCarvedState
         index: index,
         previousIndex: previousIndex,
         scrollController: widget.scrollController);
-
+handelAddApartmentClick(index);
     handelAnimationBtmBar(
         controllers: _controllers, index: index, previousIndex: previousIndex);
   }
@@ -89,7 +98,8 @@ class _CustomBottomNavBarCarvedState
 
                 Effect(duration: 975.ms),
                 Effect(delay: 175.ms, duration: 750.ms),
-                const ScaleEffect(end: Offset(1, 1), curve: Curves.easeOutBack),
+                const ScaleEffect(end: Offset(1, 1), 
+                curve: Curves.easeOutBack),
                 const MoveEffect(end: Offset(0, -5)),
                 ElevationEffect(
                     end: _controllers[index].isForwardOrCompleted ? 1.5 : 0,
@@ -148,7 +158,59 @@ class _CustomBottomNavBarCarvedState
     final controller = controllers[index];
     controller.forward();
   }
+void handelAddApartmentClick(int i){
+  var isConnected = ref.watch(connectivityNotifier.notifier).isConnected;
 
+  if(i ==1){
+    if (isConnected) {
+      if (NewSession.get(PrefKeys.logged, "") == "") {
+        /// this how show if user not logged
+        ref.read(alertNotifier.notifier).alertWithTwoBtn(
+          textColor:
+          ref.read(themeModeNotifier.notifier).textTheme(ref: ref),
+          borderColor: ref
+              .read(themeModeNotifier.notifier)
+              .primaryTheme(ref: ref),
+          containerColor: ref
+              .read(themeModeNotifier.notifier)
+              .containerTheme(ref: ref),
+          onClickOkBtn: () {
+            Navigator.pop(context);
+            myPushName(context, MyPagesRoutes.login);
+          },
+          textOfCancelButton:
+          SetLocalization.of(context)!.getTranslateValue("cancel"),
+          context: context,
+          //login_to_create_ad
+          title:
+          SetLocalization.of(context)!.getTranslateValue("login"),
+          message: SetLocalization.of(context)!
+              .getTranslateValue("login_to_create_ad"),
+          // SetLocalization.of(context)!
+          //     .getTranslateValue("login_to_add_apartment"),
+          textOfOkButton:
+          SetLocalization.of(context)!.getTranslateValue("login"),
+        );
+      } else {
+      //  myPushName(context, MyPagesRoutes.step1);
+      }
+    } else {
+      /// this show if no internet have
+      ref.watch(showSnackBarNotifier.notifier).showNormalSnackBar(
+        backgroundColor: ref
+            .read(themeModeNotifier.notifier)
+            .backgroundAppTheme(ref: ref),
+        textColor:
+        ref.read(themeModeNotifier.notifier).textTheme(ref: ref),
+        context: context,
+        message: SetLocalization.of(context)!
+            .getTranslateValue("no_internet"),
+      );
+      return;
+    }
+  }
+
+}
   void handelHomeIconClick({
     required int index,
     required int previousIndex,

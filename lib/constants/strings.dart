@@ -27,8 +27,14 @@ import 'package:upgrader/upgrader.dart';
 ///
 //weenbalaqee server host
 //Loclhost for physical Divise
-class ServerWeenBalaqee {static String server = "http://softapps.website/api/";
-  static String serverBase = "http://softapps.website/";
+class ServerWeenBalaqee {
+  static final String server = _normalizeApiBase(
+    const String.fromEnvironment(
+      'API_BASE_URL',
+      defaultValue: 'http://127.0.0.1:8000/api/',
+    ),
+  );
+  static final String serverBase = _serverBaseFromApiBase(server);
   // static String postAll = "${server}post/all";
   static String userLogin = "${server}user/login";
   static String userUpdate = "${server}user/update";
@@ -63,8 +69,62 @@ class ServerWeenBalaqee {static String server = "http://softapps.website/api/";
   static String commentAdd = "${server}comment/add";
   static String uploadImages = "${server}photo/add";
   static String deleteImage = "${server}photo/delete";
-static String showApartmentImages = "${server}photo/show";
+  static String showApartmentImages = "${server}photo/show";
 
+  static String normalizePublicUrl(String? value) {
+    return _normalizePublicUrl(value, serverBase);
+  }
+}
+
+String _normalizeApiBase(String value) {
+  final trimmed = value.trim();
+  if (trimmed.isEmpty) {
+    return 'http://127.0.0.1:8000/api/';
+  }
+
+  final withoutTrailingSlash = trimmed.endsWith('/')
+      ? trimmed.substring(0, trimmed.length - 1)
+      : trimmed;
+
+  if (withoutTrailingSlash.endsWith('/api')) {
+    return '$withoutTrailingSlash/';
+  }
+
+  return '$withoutTrailingSlash/api/';
+}
+
+String _serverBaseFromApiBase(String apiBase) {
+  final uri = Uri.parse(apiBase);
+  final path = uri.path;
+  final basePath = path.endsWith('/api/')
+      ? path.substring(0, path.length - 4)
+      : path.endsWith('/api')
+          ? path.substring(0, path.length - 3)
+          : path;
+
+  return uri.replace(path: basePath.isEmpty ? '/' : basePath).toString();
+}
+
+String _normalizePublicUrl(String? value, String baseUrl) {
+  final trimmed = value?.trim() ?? '';
+  if (trimmed.isEmpty) {
+    return '';
+  }
+
+  final parsed = Uri.tryParse(trimmed);
+  if (parsed != null && parsed.hasScheme && parsed.host.isNotEmpty) {
+    return parsed.toString();
+  }
+
+  if (trimmed.startsWith('//')) {
+    return 'https:$trimmed';
+  }
+
+  final normalizedBase = baseUrl.endsWith('/') ? baseUrl : '$baseUrl/';
+  final normalizedPath =
+      trimmed.startsWith('/') ? trimmed.substring(1) : trimmed;
+
+  return '$normalizedBase$normalizedPath';
 }
 
 class ServerLocalhost {
@@ -259,6 +319,7 @@ class ArabicUpgraderMessages extends UpgraderMessages {
 // Rele
 // ase Notes"
 }
+
 class PrefKeys {
   static const String phone = 'phone';
   static const String token = 'token';

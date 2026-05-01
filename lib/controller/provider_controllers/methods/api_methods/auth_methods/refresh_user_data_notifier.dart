@@ -6,7 +6,7 @@ import 'package:http/http.dart' as http;
 import 'package:ween_blaqe/constants/strings.dart';
 import '../../../../../api/users.dart';import '../../../providers/auth_provider.dart';
 
-import '../../../statuses/auth_state.dart';
+  import '../../../statuses/auth_state.dart';
 
 class RefreshUserDataNotifier extends StateNotifier<AuthState> {
   RefreshUserDataNotifier() : super(AuthState());

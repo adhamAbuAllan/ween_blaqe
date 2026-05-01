@@ -59,7 +59,7 @@ class FetchApartmentsNotifier extends StateNotifier<ApartmentState> {
     int typeOfOwnerId = ref.read(selectedOwnerTypeId);
 
     if (typeOfOwnerId != -1) {
-      typeOfOwnerId = ref.watch(selectedOwnerTypeId) + 1;
+      typeOfOwnerId = ref.watch(selectedOwnerTypeId) ;
     } else {
       typeOfOwnerId = 0;
     }
