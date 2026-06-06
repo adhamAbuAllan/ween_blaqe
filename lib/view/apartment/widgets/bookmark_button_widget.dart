@@ -16,8 +16,8 @@ class BookmarkButtonWidget extends ConsumerStatefulWidget {
 class _BookmarkButtonWidgetState extends ConsumerState<BookmarkButtonWidget> {
   @override
   Widget build(BuildContext context) {
-    var isBookmarked =
-        ref.watch(bookmarkNotifier.notifier).isBookmarked(widget.apartmentId);
+    final isBookmarked =
+        ref.watch(bookmarkNotifier).bookmarkIds.contains(widget.apartmentId);
 
     return IconButton(
       splashColor: Colors.transparent,
@@ -28,11 +28,7 @@ class _BookmarkButtonWidgetState extends ConsumerState<BookmarkButtonWidget> {
             : ref.read(themeModeNotifier.notifier).textTheme(ref: ref),
       ),
       onPressed: () {
-        setState(() {
-          ref
-              .watch(bookmarkNotifier.notifier)
-              .toggleBookmark(widget.apartmentId);
-        });
+        ref.read(bookmarkNotifier.notifier).toggleBookmark(widget.apartmentId);
       },
     );
   }

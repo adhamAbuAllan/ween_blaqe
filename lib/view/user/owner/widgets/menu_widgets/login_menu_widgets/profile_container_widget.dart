@@ -18,6 +18,8 @@ class ContainerOfProfileWidget extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final profileImage = NewSession.get(PrefKeys.profile, "");
+
     return GestureDetector(
       onTap: () {
         ref.read(loadProfileImageNotifier.notifier).loadProfileImage(ref);
@@ -54,8 +56,7 @@ class ContainerOfProfileWidget extends ConsumerWidget {
                               : 32,
                         ),
                       )
-                    : (NewSession.get(PrefKeys.profile, "def") !=
-                            "images/profile/user.png"
+                    : (hasServerProfileImage(profileImage)
                         ? FadeInOnVisible(
                             delay: const Duration(milliseconds: 20),
                             direction: SlideDirection.x,

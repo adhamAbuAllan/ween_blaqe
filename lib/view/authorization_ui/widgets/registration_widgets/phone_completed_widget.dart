@@ -9,7 +9,6 @@ import '../../../../constants/localization.dart';
 import '../../../../controller/provider_controllers/providers/color_provider.dart';
 import '../../../common_widgets/animations_widgets/build_animation_widget.dart';
 import '../../../common_widgets/text_form_field_widgets/text_form_filed_widget.dart';
-import 'button_checker_phone_number_completed_widget.dart';
 
 class PhoneCompletedWidget extends ConsumerWidget {
   const PhoneCompletedWidget({
@@ -86,9 +85,7 @@ class PhoneCompletedWidget extends ConsumerWidget {
             children: [CustomErrorText(validateValue ?? "")],
           ),
         ),
-        FadeInOnVisible(
-            isVisibleOnScroll: isUIHaveScroll,
-            child: const ButtonCheckerPhoneNumberCompletedWidget()),
+
         SizedBox(
           height: getIt<AppDimension>().isSmallScreen(context) ? 10 : 20,
         ),

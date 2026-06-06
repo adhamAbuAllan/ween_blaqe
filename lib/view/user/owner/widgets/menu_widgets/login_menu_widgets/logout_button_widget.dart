@@ -21,9 +21,10 @@ class LogoutButtonWidget extends ConsumerWidget {
         width: double.infinity,
         height: getIt<AppDimension>().isSmallScreen(context) ? 55 / 1.2 : 55,
         child: OutlinedButtonWidget(
-            onPressed: () {
+            onPressed: () async {
               /// cityModelController.cityId.value = 0;
-              removeUserInfo();
+              await removeUserInfo();
+              if (!context.mounted) return;
               myPushAndRemoveUntilName(context, const Main(), "");
             },
             child:

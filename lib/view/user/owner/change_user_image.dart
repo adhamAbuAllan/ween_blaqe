@@ -43,8 +43,11 @@ class _ChangeUserImageConsumerState extends ConsumerState<UpdateUserImage> {
 
   @override
   Widget build(BuildContext context) {
+    final profileImage = NewSession.get(PrefKeys.profile, "");
+
     return Scaffold(
-      backgroundColor: ref.read(themeModeNotifier.notifier).backgroundAppTheme(ref: ref),
+      backgroundColor:
+          ref.read(themeModeNotifier.notifier).backgroundAppTheme(ref: ref),
       appBar: const AppBarUpdateProfileWidget(),
       body: Center(
         child: Column(
@@ -63,8 +66,7 @@ class _ChangeUserImageConsumerState extends ConsumerState<UpdateUserImage> {
                     );
                   },
                   child: ref.watch(profileImageFile)?.path == null &&
-                          NewSession.get(PrefKeys.profile, "def") ==
-                              "images/profile/user.png"
+                          !hasServerProfileImage(profileImage)
                       ? DefaultImageWidget(
                           radius: getIt<AppDimension>().isSmallScreen(context)
                               ? 40 * 2
@@ -72,14 +74,16 @@ class _ChangeUserImageConsumerState extends ConsumerState<UpdateUserImage> {
                         )
                       : (ref.watch(profileImageFile)?.path != null
                           ? MobileStorageImageWidget(
-                              radius: getIt<AppDimension>().isSmallScreen(context)
-                                  ? 40 * 2
-                                  : (40 * 4),
+                              radius:
+                                  getIt<AppDimension>().isSmallScreen(context)
+                                      ? 40 * 2
+                                      : (40 * 4),
                             )
                           : ServerImageWidget(
-                              radius: getIt<AppDimension>().isSmallScreen(context)
-                                  ? 40 * 2
-                                  : (40 * 4),
+                              radius:
+                                  getIt<AppDimension>().isSmallScreen(context)
+                                      ? 40 * 2
+                                      : (40 * 4),
                             ))),
             ),
             const SizedBox(height: 20),

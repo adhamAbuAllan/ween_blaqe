@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:ween_blaqe/controller/provider_controllers/providers/color_provider.dart';
@@ -20,6 +19,8 @@ class CircleImageWidget extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final profileImage = NewSession.get(PrefKeys.profile, "");
+
     return FadeInOnVisible(
       direction: SlideDirection.x,
       child: Container(
@@ -32,8 +33,12 @@ class CircleImageWidget extends ConsumerWidget {
         decoration: BoxDecoration(
           gradient: LinearGradient(
             colors: [
-              (ref.read(themeModeNotifier.notifier).backgroundAppTheme(ref: ref)),
-              (ref.read(themeModeNotifier.notifier).backgroundAppTheme(ref: ref)),
+              (ref
+                  .read(themeModeNotifier.notifier)
+                  .backgroundAppTheme(ref: ref)),
+              (ref
+                  .read(themeModeNotifier.notifier)
+                  .backgroundAppTheme(ref: ref)),
               (ref.read(themeModeNotifier.notifier).containerTheme(ref: ref))
             ],
             // Three colors
@@ -44,17 +49,20 @@ class CircleImageWidget extends ConsumerWidget {
         ),
         child: GestureDetector(
           onTap: () {
-            Navigator.of(context).push(
-                MaterialPageRoute(builder: (context) => const UpdateUserImage()));
+            Navigator.of(context).push(MaterialPageRoute(
+                builder: (context) => const UpdateUserImage()));
           },
-          child:
-
-        ref.watch(profileImageFile)?.path != null ?
-          FadeInOnVisible(child: const MobileStorageImageWidget(radius: 40,)):
-          ( NewSession.get(PrefKeys.profile, "def") != "images/profile/user.png"?
-          FadeInOnVisible(child: const ServerImageWidget(radius: 40,)): FadeInOnVisible(child: const DefaultImageWidget(radius: 40,))),
-
-
+          child: ref.watch(profileImageFile)?.path != null
+              ? const FadeInOnVisible(
+                  child: MobileStorageImageWidget(radius: 40),
+                )
+              : (hasServerProfileImage(profileImage)
+                  ? const FadeInOnVisible(
+                      child: ServerImageWidget(radius: 40),
+                    )
+                  : const FadeInOnVisible(
+                      child: DefaultImageWidget(radius: 40),
+                    )),
         ),
       ),
     );

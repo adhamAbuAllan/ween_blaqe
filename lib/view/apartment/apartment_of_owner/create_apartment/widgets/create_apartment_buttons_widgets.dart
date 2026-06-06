@@ -9,11 +9,10 @@ import '../../../../../core/utils/styles/button.dart';
 import '../../../../common_widgets/button_widgets/elevated_button_widget.dart';
 
 class ButtonsCreateApartmentWidgets extends ConsumerWidget {
-  const     ButtonsCreateApartmentWidgets({super.key, this.onPressed, this.title,  this.isFirstStep, });
+  const     ButtonsCreateApartmentWidgets({super.key, this.onPressed, this.title,   });
 
   final void Function()? onPressed;
   final String? title;
-  final bool ?isFirstStep;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -23,7 +22,7 @@ class ButtonsCreateApartmentWidgets extends ConsumerWidget {
         children: [
            FadeInOnVisible(
               isVisibleOnScroll: false,
-              child: OutlinedBackButtonWidget(isFirstStep: isFirstStep)),
+              child: OutlinedBackButtonWidget()),
           const Expanded(child: SizedBox()),
           FadeInOnVisible(
             isVisibleOnScroll: false,
@@ -62,21 +61,18 @@ class NextButtonWidget extends ConsumerWidget {
 }
 
 class OutlinedBackButtonWidget extends ConsumerWidget {
-  const OutlinedBackButtonWidget({super.key,this.onPressed, this.isFirstStep  });
+  const OutlinedBackButtonWidget({super.key,this.onPressed,   });
 final void Function()? onPressed;
-final bool? isFirstStep;
+
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    return isFirstStep == true ? const SizedBox() :
-
-
-      OutlinedButton(
-      onPressed: onPressed ?? () {  
+    return       OutlinedButton(
+      onPressed: onPressed ?? () {
         Navigator.pop(context);
       },
       style: outlinedButton(primaryColor: ref.read(themeModeNotifier
           .notifier).primaryTheme(ref: ref),containerColor: ref.read
-        (themeModeNotifier.notifier).containerTheme(ref: ref), context: 
+        (themeModeNotifier.notifier).containerTheme(ref: ref), context:
       context),
       child: Text(SetLocalization.of(context)!.getTranslateValue("back")),
     );

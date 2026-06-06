@@ -170,8 +170,22 @@ final streamMapPositionController = StateProvider<StreamController<String>>(
 );
 
 final apartmentsListNotifier = StateProvider<Apartments>((ref) => Apartments());
-var apartmentBookmarkedNotifier =
-    StateProvider<Apartments>((ref) => Apartments(data: []));
+final apartmentBookmarkedNotifier = Provider<Apartments>((ref) {
+  final bookmarkState = ref.watch(bookmarkNotifier);
+  final apartmentsState = ref.watch(fetchApartmentNotifier);
+  final allApartments = apartmentsState.apartmentsList;
+  final bookmarkedData = <DataOfOneApartment>[];
+
+  if (allApartments.data != null) {
+    for (int apartmentId in bookmarkState.bookmarkIds) {
+      final apartment = allApartments.data!.firstWhereOrNull((a) => a.id == apartmentId);
+      if (apartment != null) {
+        bookmarkedData.add(apartment);
+      }
+    }
+  }
+  return Apartments(data: bookmarkedData);
+});
 final apartmentsOfOwnerNotifier =
     StateProvider<Apartments>((ref) => Apartments(data: []));
 

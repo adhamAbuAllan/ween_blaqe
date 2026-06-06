@@ -28,7 +28,6 @@ import '../../../api/users.dart';
 // import '../../../main.dart';
 import '../../../constants/strings.dart';
 import '../../../controller/provider_controllers/providers/color_provider.dart';
-import '../../../main.dart';
 import '../../../controller/provider_controllers/providers/auth_provider.dart';
 // import '../../../main.dart';
 
@@ -51,19 +50,33 @@ class ProfileUi extends ConsumerStatefulWidget {
 class _ProfileOfOwnerConsumerState extends ConsumerState<ProfileUi> {
   var countOfApartmentsOfOwner = 0;
 
-  void initializeValue() async {
-    (await sp).setString(PrefKeys.name, ref.read(userData)?.name ?? "user name");
-    ref.read(updateUsernameController.notifier).state.text =
-        (await sp).getString(PrefKeys.name) ?? "user name";
-    (await sp).setString(PrefKeys.phone, ref.read(userData)?.phone ?? "9700000000");
+  String _firstNotEmpty(List<String?> values, String fallback) {
+    for (final value in values) {
+      final trimmed = value?.trim();
+      if (trimmed != null && trimmed.isNotEmpty) {
+        return trimmed;
+      }
+    }
+    return fallback;
+  }
 
+  void initializeValue({User? refreshedUser}) {
+    final currentUser = refreshedUser ?? ref.read(userData);
+    final name = _firstNotEmpty(
+      [currentUser?.name, NewSession.get(PrefKeys.name, "")],
+      "user name",
+    );
+    final phone = _firstNotEmpty(
+      [currentUser?.phone, NewSession.get(PrefKeys.phone, "")],
+      "97000000000",
+    );
+
+    ref.read(updateUsernameController.notifier).state.text = name;
     ref.read(updatePhoneNumberController.notifier).state.text =
-        (await sp).getString(PrefKeys.phone)?.substring(3) ??
-            "97000000000".substring(3);
+        phone.length > 3 ? phone.substring(3) : phone;
 
-    ref.read(userData)?.phone?.startsWith("970") ?? true
-        ? ref.read(selectedCountryCode.notifier).state = "+970"
-        : ref.read(selectedCountryCode.notifier).state = "+972";
+    ref.read(selectedCountryCode.notifier).state =
+        phone.startsWith("972") ? "+972" : "+970";
   }
 
   @override
@@ -74,15 +87,17 @@ class _ProfileOfOwnerConsumerState extends ConsumerState<ProfileUi> {
     WidgetsBinding.instance.addPostFrameCallback((_) async {
       await ref.read(loadProfileImageNotifier.notifier).loadProfileImage(ref);
 
-      await ref
+      final refreshedUser = await ref
           .read(refreshUserDataNotifier.notifier)
           .refreshUserData(userId: NewSession.get(PrefKeys.id, -1), ref: ref);
+
+      if (!mounted) return;
+      initializeValue(refreshedUser: refreshedUser);
 
       await ref
           .read(refreshAndSetSocialDataNotifier.notifier)
           .refreshAndSetSocialData(ref);
     });
-    initializeValue();
     // apartmentModelController.fetchApartments(isOwnerApartments: true);
   }
 

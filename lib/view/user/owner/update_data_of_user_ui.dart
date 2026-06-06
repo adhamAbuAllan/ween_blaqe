@@ -41,9 +41,9 @@ class UpdateUserDataUi extends ConsumerWidget {
                 // mainAxisAlignment: MainAxisAlignment.center,
                 // mainAxisSize: MainAxisSize.min,
                 children: [
-                  FadeInOnVisible(
+                  const FadeInOnVisible(
                       direction: SlideDirection.x,
-                      child: const TitleUpdateUserDataWidget()),
+                      child: TitleUpdateUserDataWidget()),
                   SizedBox(
                     height: getIt<AppDimension>().isSmallScreen(context)
                         ? 50 / 2.1

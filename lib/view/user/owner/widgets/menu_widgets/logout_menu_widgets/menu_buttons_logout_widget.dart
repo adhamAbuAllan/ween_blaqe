@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:share_plus/share_plus.dart';
+// import 'package:share_plus/share_plus.dart';
 import 'package:ween_blaqe/view/common_widgets/animations_widgets/build_animation_widget.dart';
 import 'package:ween_blaqe/view/common_widgets/button_widgets/button_list_tile_widget.dart';
 
@@ -76,42 +76,37 @@ class MenuButtonsWidgets extends ConsumerWidget {
           ),
         ),
 
-        FadeInOnVisible(
-            delay: const Duration(milliseconds: 350),
-            direction: SlideDirection.x,
-            child: aline),
+        // FadeInOnVisible(
+        //     delay: const Duration(milliseconds: 350),
+        //     direction: SlideDirection.x,
+        //     child: aline),
 
         /// share app
-        FadeInOnVisible(
-          direction: SlideDirection.x,
-          delay: const Duration(milliseconds: 400),
-          child: ButtonListTileWidget(
-            onTap: () {
-              String url =
-                  "https://play.google.com/store/apps/details?id=com.weenbalaqee.weenbalaqee";
-
-              /// use this code if you upload your app to play store
-              // switch (Platform.operatingSystem) {
-              //   case 'ios':
-              //     url = "www.youtube.com";
-              //     break;
-              //   default:
-              //     // Use the original value for other platforms
-              //     break;
-              // }
-              Share.shareUri(
-                Uri.parse(url),
-              );
-            },
-            title: SetLocalization.of(context)!.getTranslateValue("share_app"),
-            icon: Icons.share_outlined,
-          ),
-        ),
-        ButtonListTileWidget(
-            onTap: () {
-              myPushName(context, MyPagesRoutes.noInternet);
-            },
-            title: "title")
+        // FadeInOnVisible(
+        //   direction: SlideDirection.x,
+        //   delay: const Duration(milliseconds: 400),
+        //   child: ButtonListTileWidget(
+        //     onTap: () {
+        //       String url = "https://play.google.com/store/apps/details?id=com"
+        //           ".example.app";
+        //
+        //       /// use this code if you upload your app to play store
+        //       // switch (Platform.operatingSystem) {
+        //       //   case 'ios':
+        //       //     url = "www.youtube.com";
+        //       //     break;
+        //       //   default:
+        //       //     // Use the original value for other platforms
+        //       //     break;
+        //       // }
+        //       Share.shareUri(
+        //         Uri.parse(url),
+        //       );
+        //     },
+        //     title: SetLocalization.of(context)!.getTranslateValue("share_app"),
+        //     icon: Icons.share_outlined,
+        //   ),
+        // ),
       ],
     );
   }

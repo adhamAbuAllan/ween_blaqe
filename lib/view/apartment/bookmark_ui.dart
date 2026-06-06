@@ -27,16 +27,12 @@ class _BookmarkApartmentState extends ConsumerState<BookmarkApartmentUi> {
             ref: ref,
             isOwnerApartments: false,
           );
-
-      await ref
-          .watch(bookmarkNotifier.notifier)
-          .fetchBookmarkedApartment(ref: ref);
     });
   }
 
   @override
   Widget build(BuildContext context) {
-    var bookmarkedList = ref.watch(apartmentBookmarkedNotifier.notifier).state;
+    var bookmarkedList = ref.watch(apartmentBookmarkedNotifier);
     return Scaffold(
       backgroundColor:
           ref.read(themeModeNotifier.notifier).backgroundAppTheme(ref: ref),

@@ -27,14 +27,20 @@ class LoginNotifier extends StateNotifier<AuthState> {
       body: {"phone": phone, "password": password},
     );
 
+    if (!context.mounted) {
+      state = state.copyWith(isLoading: false);
+      return;
+    }
+
     if (response.statusCode <= 400) {
       var res = UserRes.fromJson(jsonDecode(response.body));
-      saveUserInfo(res.data);
-      ref
+      await saveUserInfo(res.data);
+      await ref
           .read(refreshUserDataNotifier.notifier)
-          .refreshUserData(userId: res.data.id??-1, ref: ref);
+          .refreshUserData(userId: res.data.id ?? -1, ref: ref);
       state = state.copyWith(isLoading: false);
 
+      if (!context.mounted) return;
       await myPushReplacementNamedFuture(MyPagesRoutes.main, context);
     } else {
 // Update form fields state with error messages

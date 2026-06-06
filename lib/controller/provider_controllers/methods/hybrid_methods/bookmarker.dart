@@ -56,14 +56,6 @@ await prefs.setStringList(state.bookmarkKey , state.bookmarkIds.map((id) => id.t
 
     return bookmarkedApartments;
   }
-  Future<void> fetchBookmarkedApartment({
-    required WidgetRef ref,
-  }) async {
-    final bookmarkedApartments = ref.watch(bookmarkNotifier.notifier)
-        .getApartmentsFromBookmarks(ref: ref,);
-    ref.watch(apartmentBookmarkedNotifier.notifier).state = bookmarkedApartments;
-  }
-
 }
 
 /*

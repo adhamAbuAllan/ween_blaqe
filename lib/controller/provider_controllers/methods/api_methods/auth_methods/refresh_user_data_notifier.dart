@@ -4,15 +4,19 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:http/http.dart' as http;
 import 'package:ween_blaqe/constants/strings.dart';
-import '../../../../../api/users.dart';import '../../../providers/auth_provider.dart';
+import 'package:ween_blaqe/session/sesstion_of_user.dart';
 
-  import '../../../statuses/auth_state.dart';
+import '../../../../../api/users.dart';
+import '../../../providers/auth_provider.dart';
+
+import '../../../statuses/auth_state.dart';
 
 class RefreshUserDataNotifier extends StateNotifier<AuthState> {
   RefreshUserDataNotifier() : super(AuthState());
-/// a [refreshUserData] method usage to get a lastest data of user from database.
-  Future<User?> refreshUserData({required int userId, required WidgetRef ref})
-  async {
+
+  /// a [refreshUserData] method usage to get a lastest data of user from database.
+  Future<User?> refreshUserData(
+      {required int userId, required WidgetRef ref}) async {
     final url =
         Uri.parse(ServerWeenBalaqee.refreshData); // Replace with your API
     final response = await http.post(url, body: {'id': userId.toString()});
@@ -22,6 +26,7 @@ class RefreshUserDataNotifier extends StateNotifier<AuthState> {
       final user = User.fromJson(jsonData['data']);
 
       ref.read(userData.notifier).state = user;
+      await saveUserInfo(user);
 
       return user;
     } else if (response.statusCode == 404) {

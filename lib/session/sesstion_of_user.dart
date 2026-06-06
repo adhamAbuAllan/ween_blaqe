@@ -6,18 +6,21 @@ import '../api/users.dart';
 import '../constants/strings.dart';
 import 'new_session.dart';
 
-saveUserInfo(User data, {DataOfOneApartment? apartment}) {
-  NewSession.save(PrefKeys.logged, "OK");
+Future<void> saveUserInfo(User data, {DataOfOneApartment? apartment}) async {
+  await NewSession.save(PrefKeys.logged, "OK");
   // if(apartmentModelController.ownerToken!=null){
   //   NewSession.save("token", apartmentModelController.ownerToken);
   //   debugPrint("the token of owner is ${apartmentModelController.ownerToken}");
   //
   // }
-  NewSession.save<int>(PrefKeys.id, data.id ?? -1);
-  NewSession.save<String>(PrefKeys.token, data.token ?? "null");
+  await NewSession.save<int>(PrefKeys.id, data.id ?? -1);
+  await NewSession.save<String>(
+    PrefKeys.token,
+    data.token ?? NewSession.get(PrefKeys.token, ""),
+  );
   // Session.save("profile", data.profile);
 
-  NewSession.save(PrefKeys.name, data.name);
+  await NewSession.save(PrefKeys.name, data.name ?? "");
 
   /*
              * be careful !!!
@@ -31,15 +34,15 @@ saveUserInfo(User data, {DataOfOneApartment? apartment}) {
 */
 
   // NewSession.save("type", data.type);
-  NewSession.save(PrefKeys.phone, data.phone);
-  NewSession.save(
+  await NewSession.save(PrefKeys.phone, data.phone ?? "");
+  await NewSession.save(
     PrefKeys.profile,
     ServerWeenBalaqee.normalizePublicUrl(data.profile),
   );
-  NewSession.save(PrefKeys.apartmentId, apartment?.id ?? -1);
-  NewSession.save(PrefKeys.facebook, data.facebook);
-  NewSession.save(PrefKeys.email, data.email);
-  NewSession.save(PrefKeys.createdAt, data.timeAgoCreated);
+  await NewSession.save(PrefKeys.apartmentId, apartment?.id ?? -1);
+  await NewSession.save(PrefKeys.facebook, data.facebook ?? "");
+  await NewSession.save(PrefKeys.email, data.email ?? "");
+  await NewSession.save(PrefKeys.createdAt, data.timeAgoCreated ?? "");
 
   // NewSession.save("countryPhoneNumberId", data.)
   // NewSession.save("gender", data.gender);
@@ -47,18 +50,18 @@ saveUserInfo(User data, {DataOfOneApartment? apartment}) {
 }
 //
 
-removeUserInfo() {
-  NewSession.remove(PrefKeys.logged);
-  NewSession.remove(PrefKeys.token);
-  NewSession.remove(PrefKeys.id);
-  NewSession.remove(PrefKeys.profile);
-  NewSession.remove(PrefKeys.facebook);
-  NewSession.remove(PrefKeys.email);
-  NewSession.remove(PrefKeys.name);
+Future<void> removeUserInfo() async {
+  await NewSession.remove(PrefKeys.logged);
+  await NewSession.remove(PrefKeys.token);
+  await NewSession.remove(PrefKeys.id);
+  await NewSession.remove(PrefKeys.profile);
+  await NewSession.remove(PrefKeys.facebook);
+  await NewSession.remove(PrefKeys.email);
+  await NewSession.remove(PrefKeys.name);
   // NewSession.remove("gender");
-  NewSession.remove(PrefKeys.typeId);
-  NewSession.remove(PrefKeys.phone);
-  NewSession.remove(PrefKeys.createdAt);
+  await NewSession.remove(PrefKeys.typeId);
+  await NewSession.remove(PrefKeys.phone);
+  await NewSession.remove(PrefKeys.createdAt);
   // NewSession.remove("university_id");
 }
 

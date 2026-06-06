@@ -70,10 +70,6 @@ class BottomNavigationBarWidget extends ConsumerWidget {
               await ref.read(fetchApartmentNotifier.notifier).fetchApartments(
                   isOwnerApartments: false, ref: ref);
             }
-
-            await ref
-                .watch(bookmarkNotifier.notifier)
-                .fetchBookmarkedApartment(ref: ref);
           });
         }
         ref.read(btmNavBarIndexNotifier.notifier).changeTo(i);

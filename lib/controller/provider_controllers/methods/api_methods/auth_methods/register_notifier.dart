@@ -35,21 +35,28 @@ class RegisterNotifier extends StateNotifier<AuthState> {
     final responseData = jsonDecode(response.body);
     debugPrint("response from server ${response.body}");
 
-    debugPrint("the type id ${typeId}");
+    debugPrint("the type id $typeId");
     debugPrint("msg from server ${responseData['msg']}");
     debugPrint("Status code: ${response.statusCode}");
+
+    if (!context.mounted) {
+      state = state.copyWith(isLoading: false);
+      return;
+    }
+
     // debugPrint("response body -> ${response.body}");
     if (response.statusCode <= 400) {
       var res = UserRes.fromJson(jsonDecode(response.body));
 
-      saveUserInfo(res.data);
+      await saveUserInfo(res.data);
 
-      ref
+      await ref
           .read(refreshUserDataNotifier.notifier)
           .refreshUserData(userId: res.data.id ?? -1, ref: ref);
       ref.read(phoneLoginController).clear();
       ref.read(passwordLoginController).clear();
       state = state.copyWith(isLoading: false);
+      if (!context.mounted) return;
       await myPushReplacementNamedFuture(MyPagesRoutes.main, context);
     } else {
       if (response.statusCode == 404) {

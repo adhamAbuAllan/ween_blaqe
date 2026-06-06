@@ -6,21 +6,22 @@ class NewSession {
   static Future<void> init() async {
     sp = await SharedPreferences.getInstance();
   }
+
 // Hypothetical example:
 //   static Future<void> save(String key, String value) async {
 //     // Implementation
 //   }
   static Future<void> save<T>(String key, T value) async {
     if (value is String) {
-      sp.setString(key, value);
+      await sp.setString(key, value);
     } else if (value is int) {
-      sp.setInt(key, value);
+      await sp.setInt(key, value);
     } else if (value is double) {
-      sp.setDouble(key, value);
+      await sp.setDouble(key, value);
     } else if (value is bool) {
-      sp.setBool(key, value);
+      await sp.setBool(key, value);
     } else if (value is List<String>) {
-      sp.setStringList(key, value); // This already handles List<String>
+      await sp.setStringList(key, value);
     } else {
       throw ArgumentError('Unsupported type');
     }
@@ -42,7 +43,7 @@ class NewSession {
     }
   }
 
-  static void remove(String key) {
-    sp.remove(key);
+  static Future<void> remove(String key) async {
+    await sp.remove(key);
   }
 }
