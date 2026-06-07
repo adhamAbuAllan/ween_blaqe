@@ -51,11 +51,9 @@ class CompressAndUploadProfileImageNotifier extends StateNotifier<AuthState> {
       Navigator.pop(context);
       state = state.copyWith(isLoading: false);
       // ref.read(loadProfileImageNotifier.notifier).loadProfileImage(ref);
-      debugPrint('Profile image uploaded successfully');
       // Handle success
     } else {
       state = state.copyWith(isLoading: false);
-      debugPrint('Profile image upload failed');
       // Handle failure
     }
   }

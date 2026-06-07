@@ -28,6 +28,7 @@ class _TypesContainerWidgetState extends ConsumerState<DropdownTypesWidget> {
     return ContainerLoadWidget(
         title: SetLocalization.of(context)!
             .getTranslateValue("housing_type_students"),
+        isLoading: ref.watch(typesNotifier).isLoading??false,
         child: DropdownFieldWidget(
             alreadyExistingValue:
             types.isNotEmpty ?
@@ -49,7 +50,6 @@ class _TypesContainerWidgetState extends ConsumerState<DropdownTypesWidget> {
                 });
               });
             },
-            items: ref.watch(typesNotifier).types),
-        isLoading: ref.watch(typesNotifier).isLoading??false);
+            items: ref.watch(typesNotifier).types));
   }
 }

@@ -95,8 +95,7 @@ class ChangePasswordNotifier extends StateNotifier<AuthState> {
             "confirm_new_password": sureNewPasswordControllerValue,
           }),
         );
-        debugPrint("status code now is : ${response.statusCode}");
-        debugPrint("body now is : ${response.body}");
+
 
         if (response.statusCode == 200) {
 

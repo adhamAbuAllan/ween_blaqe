@@ -1,41 +1,16 @@
-// import 'package:flutter/material.dart';
 import 'package:upgrader/upgrader.dart';
-// import 'package:ween_blaqe/i_well_delete_it/learn_from_udemy/chat_app/widgets/custom_button.dart';
-
-// main() {
-//   runApp(MaterialApp(
-//     home: _StringLen(),
-//   ));
-// }
-
-// class _StringLen extends StatelessWidget {
-//   String text =
-//       "https://weenbalaqee.com/laravel-ween-balaqee/assets/images/subsections_photos/img_1234.png";
-
-//   _StringLen();
-
-//   @override
-//   Widget build(BuildContext context) {
-//     return Scaffold(
-//       body: Center(child: Text("${text.length}")),
-//     );
-//   }
-// }
 
 ///Server Part///
-///
-///
-//weenbalaqee server host
-//Loclhost for physical Divise
 class ServerWeenBalaqee {
+  static const ngrok = "https://five-sterile-wildlife.ngrok-free.dev";
+  static const localhost = "http://127.0.0.1:8000/api/";
   static final String server = _normalizeApiBase(
-    const String.fromEnvironment(
+     const String.fromEnvironment(
       'API_BASE_URL',
-      defaultValue: 'http://127.0.0.1:8000/api/',
+      defaultValue: ngrok,
     ),
   );
   static final String serverBase = _serverBaseFromApiBase(server);
-  // static String postAll = "${server}post/all";
   static String userLogin = "${server}user/login";
   static String userUpdate = "${server}user/update";
   static String checkPhone = "${server}user/check_phone";
@@ -127,102 +102,8 @@ String _normalizePublicUrl(String? value, String baseUrl) {
   return '$normalizedBase$normalizedPath';
 }
 
-class ServerLocalhost {
-  static String server = "http://localhost:8000/api/";
 
-  // static String postAll = "${server}post/all";
-  static String userLogin = "${server}user/login";
-  static String register = "${server}user/register";
-  static String apartmentAll = "${server}apartment/all";
-  static String apartmentOwner = "${server}apartment/owner";
-  static String apartmentOne = "${server}apartment/one";
-  static String apartmentAdd = "${server}apartment/add";
-  static String typeOfApartment = "${server}typeOfApartment/all";
-  static String apartmentDelete = "${server}apartment/delete";
-  static String apartmentUpdate = "${server}apartment/update";
-  static String typeUser = "${server}typeOfUser/all";
-  static String city = "${server}city/all";
-  static String university = "${server}universities/all";
-  static String advantagesAll = "${server}advantages/all";
-  static String advantagesAdd = "${server}advantages/add";
-  static String citizenAdd = "${server}citizen/add";
-  static String cityNewAll = "${server}cityTest/all";
-  static String apartmentNewAll = "${server}apartmentTest/all";
-  static String apartmentNewAdd = "${server}apartmentTest/add";
-  static String bookingAdd = "${server}booking/add";
-  static String bookingAll = "${server}booking/all";
-  static String commentAdd = "${server}comment/add";
-  static String uploadImages = "${server}photo/add";
 
-  static String changeTheServerUrl(String sever, urlFromClass) {
-    return sever + urlFromClass;
-  }
-}
-
-//Loclhost for physical Divise
-class ServerLocalDiv {
-  static String server = "http://192.168.1.200:8000/api/";
-
-  // static String postAll = "${server}post/all";
-  static String userLogin = "${server}user/login";
-  static String register = "${server}user/register";
-  static String apartmentAll = "${server}apartment/all";
-  static String apartmentOne = "${server}apartment/one";
-  static String apartmentAdd = "${server}apartment/add";
-  static String typeOfApartment = "${server}typeOfApartment/all";
-  static String apartmentDelete = "${server}apartment/delete";
-  static String apartmentUpdate = "${server}apartment/update";
-  static String typeUser = "${server}typeOfUser/all";
-  static String city = "${server}city/all";
-  static String university = "${server}universities/all";
-  static String advantagesAll = "${server}advantages/all";
-  static String advantagesAdd = "${server}advantages/add";
-  static String citizenAdd = "${server}citizen/add";
-  static String cityNewAll = "${server}cityTest/all";
-  static String apartmentNewAll = "${server}apartmentTest/all";
-  static String apartmentNewAdd = "${server}apartmentTest/add";
-  static String bookingAdd = "${server}booking/add";
-  static String bookingAll = "${server}booking/all";
-  static String commentAdd = "${server}comment/add";
-  static String uploadImages = "${server}photo/add";
-}
-
-//Localhost for Emulator
-class ServerLocalhostEm {
-  static String server = "http://192.168.1.10:8000/api/";
-
-  // static String postAll = "${server}post/all";
-  static String userLogin = "${server}user/login";
-  static String register = "${server}user/register";
-  static String university = "${server}universities/all";
-  static String apartmentAll = "${server}apartment/all";
-  static String typeOfApartment = "${server}typeOfApartment/all";
-  static String typeUser = "${server}typeOfUser/all";
-  static String apartmentOne = "${server}apartment/one";
-  static String apartmentAdd = "${server}apartment/add";
-  static String apartmentDelete = "${server}apartment/delete";
-  static String apartmentUpdate = "${server}apartment/update";
-  static String city = "${server}city/all";
-  static String advantagesAll = "${server}advantages/all";
-  static String bookingAdd = "${server}booking/add";
-  static String bookingAll = "${server}booking/all";
-  static String commentAdd = "${server}comment/add";
-  static String uploadImages = "${server}photo/uploadImages";
-  static String showApartmentImages = "${server}photo/show";
-
-  //for test
-  static String playerAll = "${server}player/all";
-}
-
-//For Cpanel Of Teacher Of PPU
-//   class ServerCpanelOfTecher {
-//
-//     static String server = "http://akram.cap.edu.ps/api/";
-//     // static String postAll = "${server}post/all";
-//     static String userLogin = "${server}user/login";
-//     static String register = "${server}user/register";
-//     static String areaAll = "${server}area/all";
-//   }
 
 ///pages routes
 class MyPagesRoutes {

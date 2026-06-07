@@ -33,7 +33,7 @@ migrate_working_dir/
 .pub-cache/
 .pub/
 /build/
-bugreport-BRP-NX1-HONORBRP-N21-2025-09-18-00-10-05.zip
+
 # Symbolication related
 app.*.symbols
 

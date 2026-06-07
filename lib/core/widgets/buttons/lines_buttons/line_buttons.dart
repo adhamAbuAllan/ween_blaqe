@@ -41,36 +41,6 @@ Widget buttonAccount(Function onClick, String title,
       color: themeMode.isLight ? kTextColorLightMode : kTextColorDarkMode,
     ),
   );
-  // return Padding(
-  //   padding: const EdgeInsets.fromLTRB(0, 10, 0, 10),
-  //   child: GestureDetector(
-  //     onTap: (){
-  //       onClick();
-  //     },
-  //       child:Row(children: [
-  //         Padding(
-  //           padding: const EdgeInsets.fromLTRB(0, 0, 10,0),
-  //           child:icon,
-  //         ),
-  //         Text(title
-  //           ,style: const TextStyle(
-  //               fontSize: getIt<AppDimension>().isSmallScreen(context) ? 16 : 18,
-  //               
-  //               color:Colors.black87
-  //           ),
-  //         ),
-  //         const Expanded(child: SizedBox()),
-  //         const Padding(
-  //           padding: EdgeInsets.fromLTRB(10, 0, 0,0),
-  //           child:  Icon(Icons.arrow_forward_ios_rounded,
-  //             kTextColor,),
-  //
-  //         )
-  //       ],),
-  //
-  //
-  //   ),
-  // );
 }
 
 Widget askForHelpButton(Function onClick, String title,
@@ -97,54 +67,7 @@ Widget askForHelpButton(Function onClick, String title,
       color: themeMode.isLight ? kTextColorLightMode : kTextColorDarkMode,
     ),
   );
-  // return Padding(
-  //   padding: const EdgeInsets.fromLTRB(0, 10, 0, 10),
-  //   child: GestureDetector(
-  //     onTap: (){
-  //       onClick();
-  //     },
-  //       child:Row(children: [
-  //         Padding(
-  //           padding: const EdgeInsets.fromLTRB(0, 0, 10,0),
-  //           child:icon,
-  //         ),
-  //         Text(title
-  //           ,style: const TextStyle(
-  //               fontSize: getIt<AppDimension>().isSmallScreen(context) ? 16 : 18,
-  //               
-  //               color:Colors.black87
-  //           ),
-  //         ),
-  //         const Expanded(child: SizedBox()),
-  //         const Padding(
-  //           padding: EdgeInsets.fromLTRB(10, 0, 0,0),
-  //           child:  Icon(Icons.arrow_forward_ios_rounded,
-  //             kTextColor,),
-  //
-  //         )
-  //       ],),
-  //
-  //
-  //   ),
-  // );
 }
-
-// Widget buttonGoToPage(Function onClick, String title) {
-//   return ListTile(
-//     onTap: () {
-//       onClick.call();
-//     },
-//     // minVerticalPadding: ,
-//     contentPadding: const EdgeInsets.fromLTRB(10, 0, 10, 0),
-//     // leading: icon ,
-//     title: Text(
-//       title,
-//       style: const TextStyle(
-//           fontSize: getIt<AppDimension>().isSmallScreen(context) ? 14 : 16,  kTextColor),
-//     ),
-//     trailing: const Icon(Icons.arrow_forward_ios_rounded),
-//   );
-// }
 
 Widget buttonHaveTitleAndIcon(Function onClick, String title,
     {IconData? icon, bool? isIcon, Image? image,Color? color}) {
@@ -154,14 +77,5 @@ Widget buttonHaveTitleAndIcon(Function onClick, String title,
     icon: icon,
     image: image,
     onTap: () => {onClick.call()},
-    // contentPadding: const EdgeInsets.fromLTRB(10, 0, 10, 0),
-    // title: Text(
-    //   title,
-    //   style: TextStyle(
-    //       fontSize: getIt<AppDimension>().isSmallScreen(context) ? 14 : 16,
-    //
-    //       color: color),
-    // ),
-    // trailing: isIcon ?? false ? icon : image,
   );
 }

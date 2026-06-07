@@ -1,6 +1,6 @@
 import 'dart:convert';
 
-import 'package:flutter/cupertino.dart';
+
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:ween_blaqe/controller/provider_controllers/providers/apartment_provider.dart';
 import 'package:ween_blaqe/controller/provider_controllers/providers/auth_provider.dart';
@@ -14,20 +14,6 @@ import 'package:http/http.dart' as http;
 class FetchApartmentsNotifier extends StateNotifier<ApartmentState> {
   FetchApartmentsNotifier() : super(ApartmentState());
 
-  // int putTypeId(String typeName) {
-  //   switch (typeName) {
-  //     case "عائلات":
-  //       return 1;
-  //     case "طلاب":
-  //       return 2;
-  //     case "طالبات":
-  //       return 3;
-  //
-  //     default:
-  //       return 0;
-  //   }
-  // }
-
   String formatUrl({
     required WidgetRef ref,
     int? typeId = 0,
@@ -39,10 +25,10 @@ class FetchApartmentsNotifier extends StateNotifier<ApartmentState> {
         "?type_id=$typeId"
         "&city_id=$cityId"
         "&type_of_owner=$typeOfOwnerId"
-        "${studentReminding != 0 && studentReminding != null ? "&remaining=$studentReminding" : ""}";
+        "${studentReminding != 0 && studentReminding != null ?
+    "&remaining=$studentReminding" : ""}";
 
-    /// that the userPosition will stop currently, but in the future, will
-    /// enable it.
+
     return url;
   }
 
@@ -64,27 +50,6 @@ class FetchApartmentsNotifier extends StateNotifier<ApartmentState> {
       typeOfOwnerId = 0;
     }
     state = state.copyWith(isLoading: true);
-    // bool locationServiceEnabled = await Geolocator.isLocationServiceEnabled();
-    // late String urlWithLocation = "";
-    // if (locationServiceEnabled) {
-    // pos = await ref.read(mapStateProvider).userPosition;
-
-    // await ref.read(mapStateProvider.notifier).getUserLocation(
-    //       ref: ref,
-    //     );
-    // urlWithLocation = "latitude=${pos?.latitude}&"
-    //     "longitude=${pos?.longitude}";
-    // } else {
-    //   if (isWantToEnableLocationService ?? false) {
-    //     await ref.read(mapStateProvider.notifier).getUserLocation(
-    //           ref: ref,
-    //         );
-    // urlWithLocation = await "latitude=${pos?.latitude}&"
-    //     "longitude=${pos?.longitude}";
-    // }
-    // }
-
-    // debugPrint("posLAT : ${pos?.latitude}");
 
     if (isOwnerApartments) {
       final apartmentsOfOwner = await getApartmentsByOwner(ref: ref);
@@ -105,18 +70,13 @@ class FetchApartmentsNotifier extends StateNotifier<ApartmentState> {
           studentReminding: studentReminding,
           ref: ref));
 
-      debugPrint("uri is $uri");
       final response = await http.get(uri);
-      debugPrint("status code is ${response.statusCode}");
-      debugPrint("response body is ${response.body}");
       if (response.statusCode == 200) {
         var apartmentRes = Apartments.fromJson(jsonDecode(response.body));
-        debugPrint("apartment res -> $apartmentRes");
 
         // Directly update the notifier without using ref.
 
         state = state.copyWith(apartmentsList: apartmentRes, isLoading: false);
-        debugPrint("fetch data id done!");
       } else {
         state = state.copyWith(isLoading: false);
 
@@ -166,8 +126,6 @@ Future<Apartments> getApartmentsByOwner({WidgetRef? ref}) async {
     // }
     return apartmentsRes;
   } else {
-    debugPrint("error is ${response.body}");
-    debugPrint("owner id notifier is ${ref?.watch(ownerIdNotifier)}");
     throw Exception('Failed to fetch apartments by owner');
   }
 }
