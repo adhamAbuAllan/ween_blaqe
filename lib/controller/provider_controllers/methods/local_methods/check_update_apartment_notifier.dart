@@ -1,5 +1,7 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:ween_blaqe/api/apartments_api/apartments.dart';
 
 import '../../providers/apartment_provider.dart';
 import '../../providers/image_provider.dart';
@@ -10,7 +12,7 @@ class ApartmentDataChangedCheckerNotifier extends StateNotifier<bool> {
 /// them has a true value that if true, that will owner take a massage in the 
 /// UI that the data of apartment has been change, 
 /// in [AppbarUpdateApartmentWidget].
-  bool hasAnyChange(WidgetRef ref) {
+  bool hasAnyChange(WidgetRef ref, [DataOfOneApartment? originalApartment]) {
     /// the advantagesApiNotifier is the advantages of apartment before 
     /// update it, and the chosenAdvantages is the new advantages that owner 
     /// has been chosen, that you should to now, in every time when user want
@@ -22,8 +24,17 @@ class ApartmentDataChangedCheckerNotifier extends StateNotifier<bool> {
     /// else will return false.
     var advantagesApiNotifier = ref.read(advantagesApi.notifier).state;
     var chosenAdvantages = ref.read(advantagesNotifier).chosen;
+
+    var selectedLocation = ref.read(selectedLocationProvider);
+    var isLocationChanged = false;
+    if (selectedLocation != null && originalApartment != null) {
+      isLocationChanged = selectedLocation.latitude != originalApartment.latitude?.toDouble() ||
+          selectedLocation.longitude != originalApartment.longitude?.toDouble();
+    }
+
     return ref.read(hasChanged.notifier).state ||
         ref.read(isApartmentImagesUpdated) ||
+        isLocationChanged ||
         !listEquals(advantagesApiNotifier, chosenAdvantages);
   }
 }

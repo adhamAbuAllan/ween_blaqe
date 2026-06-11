@@ -215,7 +215,7 @@ class _PriceTextWidgetState extends ConsumerState<PriceTextWidget> {
         const SizedBox(width: 5),
         Text(
           SetLocalization.of(context)!
-              .getTranslateValue("shekel_per_month"),
+              .getTranslateValue("price_per_month"),
           style: TextStyle(
             color: ref.read(themeModeNotifier.notifier).primaryTheme(ref: ref),
             fontSize: 14,

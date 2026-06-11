@@ -11,6 +11,7 @@ import '../../../../../api/photos.dart';
 import '../../../../../constants/strings.dart';
 import '../../../../../main.dart';
 import '../../../providers/image_provider.dart';
+import '../../../../../api/apartments_api/apartments.dart';
 
 class UpdateApartmentNotifier extends StateNotifier<ApartmentState> {
   UpdateApartmentNotifier() : super(ApartmentState());
@@ -19,7 +20,8 @@ class UpdateApartmentNotifier extends StateNotifier<ApartmentState> {
   Future<void> updateFieldsOfApartment(
       {required WidgetRef ref,
       required int apartmentId,
-      required BuildContext context}) async {
+      required BuildContext context,
+      required DataOfOneApartment originalApartment}) async {
     var advantagesApiNotifier = ref.read(advantagesApi.notifier).state;
     var advantageChosen = ref.read(advantagesNotifier).chosen;
     var countOfRooms = ref.read(countOfRoomsController.notifier).state.text;
@@ -31,6 +33,16 @@ class UpdateApartmentNotifier extends StateNotifier<ApartmentState> {
     var price = ref.read(priceController.notifier).state.text;
     var cityId = ref.read(selectedCityId);
     var typeId = ref.read(selectedTypeId);
+
+    var selectedLocation = ref.read(selectedLocationProvider);
+    var latitude = selectedLocation?.latitude;
+    var longitude = selectedLocation?.longitude;
+    var isLocationChanged = false;
+    if (selectedLocation != null) {
+      isLocationChanged = selectedLocation.latitude != originalApartment.latitude?.toDouble() ||
+          selectedLocation.longitude != originalApartment.longitude?.toDouble();
+    }
+
     final token = (await sp).get(PrefKeys.token);
     final url = Uri.parse(ServerWeenBalaqee.apartmentUpdate);
 
@@ -55,10 +67,12 @@ class UpdateApartmentNotifier extends StateNotifier<ApartmentState> {
         if (price.isNotEmpty) 'price': price,
         if (cityId.toString().isNotEmpty) 'city_id': cityId,
         if (typeId.toString().isNotEmpty) 'type_id': typeId,
+        if (latitude != null) 'latitude': latitude,
+        if (longitude != null) 'longitude': longitude,
       }),
     );
     if (response.statusCode == 200 &&
-        ref.read(hasChanged) &&
+        (ref.read(hasChanged) || isLocationChanged) &&
         ref.watch(isApartmentImagesUpdated.notifier).state == false &&
         listEquals(advantagesApiNotifier, advantageChosen)) {
       // Delay showing the button by 2 seconds
@@ -118,15 +132,26 @@ class UpdateApartmentNotifier extends StateNotifier<ApartmentState> {
     required int apartmentId,
     required List<Photos> imagesApi,
     required BuildContext context,
+    required DataOfOneApartment originalApartment,
   }) async {
     state = state.copyWith(isUpdating: true);
     var advantagesApiNotifier = ref.watch(advantagesApi.notifier).state;
 
+    var selectedLocation = ref.read(selectedLocationProvider);
+    var isLocationChanged = false;
+    if (selectedLocation != null) {
+      isLocationChanged = selectedLocation.latitude != originalApartment.latitude?.toDouble() ||
+          selectedLocation.longitude != originalApartment.longitude?.toDouble();
+    }
+
     ///update fields of apartment
-    if (ref.watch(hasChanged.notifier).state) {
+    if (ref.watch(hasChanged.notifier).state || isLocationChanged) {
       debugPrint("fields updating...");
       await updateFieldsOfApartment(
-          ref: ref, apartmentId: apartmentId, context: context);
+          ref: ref,
+          apartmentId: apartmentId,
+          context: context,
+          originalApartment: originalApartment);
     }
 
     ///update advantages

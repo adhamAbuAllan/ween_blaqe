@@ -40,6 +40,23 @@ class _MapUiState extends ConsumerState<MapUi> {
       mapStateNotifier.updateMapStyle(ref.read(mapStateProvider).mapStyle);
 
       mapStateNotifier.updateMapStyle(ref.read(mapStateProvider).mapStyle);
+      
+      final selectedLocation = ref.read(selectedLocationProvider);
+      if (selectedLocation != null) {
+        mapStateNotifier.updateMarkers({
+          Marker(
+            icon: BitmapDescriptor.defaultMarker,
+            markerId: const MarkerId('selectedLocation'),
+            position: selectedLocation,
+            infoWindow: InfoWindow(
+              title: "${SetLocalization.of(context)?.getTranslateValue("selected_location")}",
+            ),
+          )
+        });
+      } else {
+        mapStateNotifier.updateMarkers({});
+      }
+
       if (widget.oneApartment != null) {
         debugPrint("latitude : ${widget.oneApartment?.latitude ?? 0.0}");
         debugPrint("longitude : ${widget.oneApartment?.longitude ?? 0.0}");
@@ -98,7 +115,7 @@ class MapSelectModeUi extends StatelessWidget {
             },
             markers: mapState.markers,
             initialCameraPosition: CameraPosition(
-              target: LatLng(latitude, longitude),
+              target: selectedLocation ?? LatLng(latitude, longitude),
               zoom: 14,
             ),
             mapType: MapType.normal,

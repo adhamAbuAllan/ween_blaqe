@@ -20,40 +20,42 @@ class ApartmentFilterUi extends ConsumerWidget {
       ref.read(themeModeNotifier.notifier).backgroundAppTheme(ref: ref),
       body: ColorfulSafeArea(
         color: ref.read(themeModeNotifier.notifier).primaryTheme(ref: ref),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            FilterTopBarWidget(
-              onSavePressed: () {
-
-                Navigator.pop(context);
-                ref
-                    .read(fetchApartmentNotifier.notifier)
-                    .fetchApartments(
-                      isOwnerApartments: false,
-                      ref: ref,
-                  studentReminding: ref.read(selectedStudentReminding),
-                      // typeOfOwnerId: typeOwnerId,
-                    );
-
-              },
-            ),
-
-            const Center(
-              child: CreateApartmentTitleWidget(
-                title: "تصفية الشقق",
+        child: SingleChildScrollView(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              FilterTopBarWidget(
+                onSavePressed: () {
+          
+                  Navigator.pop(context);
+                  ref
+                      .read(fetchApartmentNotifier.notifier)
+                      .fetchApartments(
+                        isOwnerApartments: false,
+                        ref: ref,
+                    studentReminding: ref.read(selectedStudentReminding),
+                        // typeOfOwnerId: typeOwnerId,
+                      );
+          
+                },
               ),
-            ),
-
-            // City Filter Widget
-            const CityFilterWidget(),
-
-            // Owner Type Filter Widget
-            const OwnerTypeFilterWidget(),
-            const StudentTypeFilterWidget(),
-            // Remaining Students Filter Widget
-            const RemainingStudentsFilterWidget(),
-          ],
+          
+              const Center(
+                child: CreateApartmentTitleWidget(
+                  title: "تصفية الشقق",
+                ),
+              ),
+          
+              // City Filter Widget
+              const CityFilterWidget(),
+          
+              // Owner Type Filter Widget
+              const OwnerTypeFilterWidget(),
+              const StudentTypeFilterWidget(),
+              // Remaining Students Filter Widget
+              const RemainingStudentsFilterWidget(),
+            ],
+          ),
         ),
       ),
     );

@@ -86,7 +86,7 @@ class _AppbarEditApartmentWidgetState
 
               debugPrint(
                   "isApartmentImagesUpdated : ${ref.watch(isApartmentImagesUpdated.notifier).state}");
-              if (hasApartmentDataChanged.hasAnyChange(ref)) {
+              if (hasApartmentDataChanged.hasAnyChange(ref, widget.oneApartment)) {
                 if (ref.watch(updateApartmentNotifier).isUpdating) {
                   ref.watch(showSnackBarNotifier.notifier).showNormalSnackBar(
                     backgroundColor: ref.read(themeModeNotifier.notifier).backgroundAppTheme(ref: ref),
@@ -128,7 +128,8 @@ class _AppbarEditApartmentWidgetState
                     ref: ref,
                     apartmentId: widget.oneApartment.id ?? -1,
                     imagesApi: imagesApi??[],
-                    context: context);
+                    context: context,
+                    originalApartment: widget.oneApartment);
                 if (ref.read(badResponse)) {
                   debugPrint("response bad");
                   ref.read(showSnackBarNotifier.notifier).showNormalSnackBar(

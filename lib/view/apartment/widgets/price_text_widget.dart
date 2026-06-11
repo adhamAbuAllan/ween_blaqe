@@ -29,7 +29,7 @@ class ApartmentPriceTextWidget extends ConsumerWidget {
         ),
         Padding(
           padding: const EdgeInsets.fromLTRB(0, 0, 3, 4),
-          child: Text(SetLocalization.of(context)!.getTranslateValue("shekel_per_month"),
+          child: Text(SetLocalization.of(context)!.getTranslateValue("price_per_month"),
               style: TextStyle(
                 color: ref.read(themeModeNotifier.notifier).primaryTheme(ref: ref),
 

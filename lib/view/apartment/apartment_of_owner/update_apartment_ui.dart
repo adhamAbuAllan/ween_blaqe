@@ -1,6 +1,9 @@
 import 'package:colorful_safe_area/colorful_safe_area.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:flutter_speed_dial/flutter_speed_dial.dart';
+import 'package:ween_blaqe/view/apartment/widgets/map_widgets/map_ui.dart';
 import 'package:ween_blaqe/controller/provider_controllers/providers/apartment_provider.dart';
 import 'package:ween_blaqe/controller/provider_controllers/providers/color_provider.dart';
 import 'package:ween_blaqe/view/apartment/apartment_of_owner/widgets/dropdown_fields_widgets/cities_drop_down_widget.dart';
@@ -106,6 +109,16 @@ class _UpdateApartmentUiState extends ConsumerState<UpdateApartmentUi> {
           widget.oneApartment?.description ?? "";
       ref.read(descriptionController.notifier).state.text !=
           widget.oneApartment?.description;
+
+      if (widget.oneApartment?.latitude != null &&
+          widget.oneApartment?.longitude != null) {
+        ref.read(selectedLocationProvider.notifier).state = LatLng(
+          widget.oneApartment!.latitude!.toDouble(),
+          widget.oneApartment!.longitude!.toDouble(),
+        );
+      } else {
+        ref.read(selectedLocationProvider.notifier).state = null;
+      }
     });
   }
 
@@ -174,8 +187,31 @@ class _UpdateApartmentUiState extends ConsumerState<UpdateApartmentUi> {
             ),
           ),
         ),
-        floatingActionButton: ImageGridFloatingButtonWidget(
-          oneApartment: widget.oneApartment,
+        floatingActionButton: SpeedDial(
+          openCloseDial: ref.watch(isDialOpen.notifier).state,
+          animatedIcon: AnimatedIcons.menu_close,
+          backgroundColor: ref.read(themeModeNotifier.notifier).primaryTheme(ref: ref),
+          overlayOpacity: 0.1,
+          spaceBetweenChildren: 15,
+          switchLabelPosition: true,
+          childrenButtonSize: const Size(60.0, 60.0),
+          children: [
+            imageGridFloatingButtonWidget(
+              context: context,
+              ref: ref,
+              oneApartment: widget.oneApartment,
+            ),
+            SpeedDialChild(
+              child: const Icon(Icons.map, color: Colors.white),
+              backgroundColor: ref.read(themeModeNotifier.notifier).primaryTheme(ref: ref),
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => const MapUi()),
+                );
+              },
+            ),
+          ],
         ),
       ),
     );
