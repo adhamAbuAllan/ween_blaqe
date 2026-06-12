@@ -22,7 +22,7 @@ class Validator {
 
     debugPrint("value phone validate = $value");
     if (value.isEmpty) return 'fill_field';
-    if (!value.startsWith('97')) {
+    if (!value.startsWith('213')) {
       return SetLocalization.of(context)
           ?.getTranslateValue("phone_number_should_start_with_country_code");
     }
