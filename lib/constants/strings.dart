@@ -2,7 +2,7 @@ import 'package:upgrader/upgrader.dart';
 
 ///Server Part///
 class ServerWeenBalaqee {
-  static const ngrok = "https://five-sterile-wildlife.ngrok-free.dev";
+  static const ngrok = "https://five-sterile-wildlife.ngrok-free.dev/api/";
   static const localhost = "http://127.0.0.1:8000/api/";
   static final String server = _normalizeApiBase(
      const String.fromEnvironment(
