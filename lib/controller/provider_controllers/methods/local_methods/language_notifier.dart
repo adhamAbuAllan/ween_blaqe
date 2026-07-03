@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:get/get.dart';
+import 'package:flutter_riverpod/legacy.dart';
 
 import '../../../../constants/strings.dart';
 import '../../../../session/new_session.dart';

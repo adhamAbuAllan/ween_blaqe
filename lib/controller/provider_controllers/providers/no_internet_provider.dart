@@ -1,7 +1,7 @@
 import 'package:carousel_slider_plus/carousel_controller.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:ween_blaqe/controller/provider_controllers/methods/local_methods/no_internet_notifier.dart';
 import 'package:ween_blaqe/controller/provider_controllers/statuses/no_internet_state.dart';
+import 'package:flutter_riverpod/legacy.dart';
 
 final noInternetNotfierProvider =
     StateNotifierProvider<NoInternetNotifier, NoInternetState>((ref) {

@@ -14,9 +14,11 @@ class ConnectivityController extends GetxController {
   void onInit() {
     super.onInit();
 
-    Connectivity().onConnectivityChanged.listen((ConnectivityResult result) {
+    Connectivity().onConnectivityChanged.listen((List<ConnectivityResult> result) {
 //AsyncWidgetBuilder<ConnectivityResult>
-      connectivity.value = result;
+      connectivity.value = result.contains(ConnectivityResult.none)
+          ? ConnectivityResult.none
+          : result.first;
 
     });
   }

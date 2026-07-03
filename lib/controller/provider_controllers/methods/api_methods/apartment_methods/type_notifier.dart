@@ -1,7 +1,7 @@
 import 'dart:convert';
+import 'package:flutter_riverpod/legacy.dart';
 
 import 'package:flutter/material.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:ween_blaqe/api/type_of_apartment.dart';
 import 'package:ween_blaqe/constants/strings.dart';
 import 'package:http/http.dart' as http;

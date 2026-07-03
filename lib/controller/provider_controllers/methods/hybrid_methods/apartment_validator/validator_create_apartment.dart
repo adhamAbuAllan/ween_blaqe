@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:flutter_riverpod/legacy.dart';
 import 'package:ween_blaqe/controller/provider_controllers/providers/image_provider.dart';
 import 'package:ween_blaqe/controller/provider_controllers/providers/snack_bar_provider.dart';
 import 'package:ween_blaqe/core/utils/funcations/route_pages/pop_routes.dart';

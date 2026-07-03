@@ -1,6 +1,6 @@
 import 'dart:io';
+import 'package:flutter_riverpod/legacy.dart';
 
-import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:ween_blaqe/controller/provider_controllers/statuses/status_of_apartment/image_state.dart';

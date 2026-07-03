@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'package:ween_blaqe/controller/provider_controllers/statuses/auth_state.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:flutter_riverpod/legacy.dart';
 import 'package:ween_blaqe/controller/provider_controllers/providers/auth_provider.dart';
 import 'package:ween_blaqe/session/new_session.dart';
 

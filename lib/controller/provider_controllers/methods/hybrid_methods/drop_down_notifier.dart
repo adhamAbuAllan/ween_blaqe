@@ -1,5 +1,5 @@
 import 'package:flutter/cupertino.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:flutter_riverpod/legacy.dart';
 
 // StateNotifier to manage the selected dropdown item
 class DropdownNotifier extends StateNotifier<int> {

@@ -1,5 +1,5 @@
-import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:flutter_riverpod/legacy.dart';
 
 import '../methods/api_methods/apartment_methods/images_of_apartment_notifier.dart';
 import '../methods/hybrid_methods/hybrid_image_notifier.dart';

@@ -1,7 +1,7 @@
 import 'dart:convert';
+import 'package:flutter_riverpod/legacy.dart';
 
 import 'package:ween_blaqe/controller/provider_controllers/statuses/auth_state.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:http/http.dart' as http;
 import '../../../../../api/comments.dart';
 import '../../../../../constants/strings.dart';

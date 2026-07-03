@@ -1,5 +1,5 @@
-import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:ween_blaqe/api/apartments_api/apartments.dart';
+import 'package:flutter_riverpod/legacy.dart';
 
 class StudentsCounterNotifier extends StateNotifier<bool> {
   StudentsCounterNotifier() : super(false);

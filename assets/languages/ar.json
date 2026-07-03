@@ -259,5 +259,10 @@
   "the_map": "الخريطة",
   "select_the_location_on_the_map" : "حدد الموقع على الخريطة",
   "the_location_has_been_selected": "تم تحديد الموقع",
-  "please_select_the_location" : "يرجى تحديد الموقع"
+  "please_select_the_location" : "يرجى تحديد الموقع",
+  "otp_sent_to": "أرسلنا رمز تحقق إلى",
+  "otp_code": "رمز التحقق",
+  "invalid_otp_code": "رمز التحقق غير صحيح",
+  "too_many_otp_requests": "عدد المحاولات كبير، يرجى المحاولة لاحقًا",
+  "phone_verification_failed": "فشل التحقق من رقم الهاتف، يرجى المحاولة مرة أخرى"
 }

@@ -19,10 +19,13 @@ flutter clean واعمل بيلد تاني وارفعه وكل ما تيجي ت�
  */
 //مصطلح التفكير التصميمي
 
-// import 'package:firebase_core/firebase_core.dart';
+import 'package:firebase_app_check/firebase_app_check.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:flutter_riverpod/legacy.dart';
 import 'package:get/get.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:ween_blaqe/controller/function_controller/change_theme_mode.dart';
@@ -68,6 +71,7 @@ import 'view/apartment/show_deitals_of_apartment/show_deitals_of_apartment_ui.da
 import 'view/intro_screen.dart';
 import 'view/main_ui.dart';
 import 'view/send_notice_for_us_ui.dart';
+
 //QN2FHFR7JTFYLSCEVVK7BYBD
 //the line that could user to upload a file currently :
 //https://drive.google.com/uc?export=download&id=
@@ -84,11 +88,28 @@ a type of user
   3 : صاحب مكتب عقار
  */
 final Future<SharedPreferences> sp = SharedPreferences.getInstance();
-final RouteObserver<ModalRoute<void>> routeObserver = RouteObserver<ModalRoute<void>>();
+final RouteObserver<ModalRoute<void>> routeObserver =
+    RouteObserver<ModalRoute<void>>();
+const appCheckDebugToken = String.fromEnvironment('APP_CHECK_DEBUG_TOKEN');
 
 void main() async {
   debugPrint("Starting");
   WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
+  await FirebaseAppCheck.instance.activate(
+    providerAndroid: kDebugMode
+        ? AndroidDebugProvider(
+            debugToken:
+                appCheckDebugToken.isEmpty ? null : appCheckDebugToken,
+          )
+        : const AndroidPlayIntegrityProvider(),
+    providerApple: kDebugMode
+        ? AppleDebugProvider(
+            debugToken:
+                appCheckDebugToken.isEmpty ? null : appCheckDebugToken,
+          )
+        : const AppleDeviceCheckProvider(),
+  );
   await NewSession.init();
   await SystemChrome.setPreferredOrientations([
     DeviceOrientation.portraitUp,
@@ -108,8 +129,7 @@ void main() async {
       )
     ],
     child: const OwnMaterialAppConsumer(),
-  )
-  );
+  ));
 }
 
 final savedLanguage = NewSession.get(PrefKeys.language, 'ar');
@@ -129,7 +149,6 @@ class OwnMaterialAppConsumer extends ConsumerStatefulWidget {
 
 class _OwnMaterialAppConsumerState
     extends ConsumerState<OwnMaterialAppConsumer> {
-
   @override
   Widget build(BuildContext context) {
     final locale = ref.watch(languageProvider);
@@ -139,17 +158,21 @@ class _OwnMaterialAppConsumerState
 
       debugShowCheckedModeBanner: false,
       darkTheme: ThemeData(
-
         useMaterial3: false,
         fontFamily: 'Cairo',
         colorScheme: ColorScheme.fromSwatch().copyWith(secondary: Colors.grey),
       ),
       theme: ThemeData(
-        textSelectionTheme: TextSelectionThemeData(
-          cursorColor: ref.read(themeModeNotifier.notifier).primaryTheme(ref: ref),
-          selectionColor: ref.read(themeModeNotifier.notifier).primaryTheme(ref: ref).withAlpha(128),
-          selectionHandleColor: ref.read(themeModeNotifier.notifier).primaryTheme(ref: ref),
-        ),
+          textSelectionTheme: TextSelectionThemeData(
+            cursorColor:
+                ref.read(themeModeNotifier.notifier).primaryTheme(ref: ref),
+            selectionColor: ref
+                .read(themeModeNotifier.notifier)
+                .primaryTheme(ref: ref)
+                .withAlpha(128),
+            selectionHandleColor:
+                ref.read(themeModeNotifier.notifier).primaryTheme(ref: ref),
+          ),
           useMaterial3: false,
           fontFamily: 'Cairo',
           switchTheme: const SwitchThemeData(),
@@ -172,7 +195,7 @@ class _OwnMaterialAppConsumerState
       routes: {
         MyPagesRoutes.main: (context) => const Main(),
         // MyPagesRoutes.mainOwner: (context) => const MainOwner(),
-        MyPagesRoutes.mainUi: (context) => const  MainUi(),
+        MyPagesRoutes.mainUi: (context) => const MainUi(),
         MyPagesRoutes.step1: (context) => const FirstStepUi(),
         MyPagesRoutes.step2: (context) => const SecondStepUi(),
         MyPagesRoutes.step3: (context) => const ThirdStepUi(),
@@ -266,7 +289,7 @@ class _MainState extends ConsumerState<Main> {
     myPushNameAndRemoveUntil(
         context,
         MyPagesRoutes.main,
-            (route) => route.settings.name == MyPagesRoutes.main,
+        (route) => route.settings.name == MyPagesRoutes.main,
         MyPagesRoutes.main);
   }
 

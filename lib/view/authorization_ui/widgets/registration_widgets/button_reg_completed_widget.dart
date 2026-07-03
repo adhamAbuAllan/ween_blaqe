@@ -9,29 +9,29 @@ import '../../../../constants/localization.dart';
 import '../../../../controller/provider_controllers/providers/auth_provider.dart';
 
 class ButtonRegCompletedWidget extends ConsumerWidget {
-  const   ButtonRegCompletedWidget({super.key});
+  const ButtonRegCompletedWidget({super.key});
 
   @override
-  Widget build(BuildContext context,WidgetRef ref) {
+  Widget build(BuildContext context, WidgetRef ref) {
     return Padding(
       padding: const EdgeInsets.fromLTRB(0, 15, 0, 25),
       child: SizedBox(
         width: double.infinity,
         height: getIt<AppDimension>().isSmallScreen(context) ? 55 / 1.2 : 55,
         child: ElevatedButtonWidget(
-            onPressed: () async{
+            onPressed: () async {
               // Navigator.push(context, MaterialPageRoute(builder: (context) => OtpScreen()));
 
               validateAndRegistration(ref, context);
-
             },
             context: context,
-            child: ref.watch(registerNotifier).isLoading == false
-                ? Text(SetLocalization.of(context)!.getTranslateValue
-              ("create_account"))
+            child: ref.watch(registerNotifier).isLoading == false &&
+                    ref.watch(isPhoneOtpLoading) == false
+                ? Text(SetLocalization.of(context)!
+                    .getTranslateValue("create_account"))
                 : const CircularProgressIndicator(
-              color: Colors.white,
-            )),
+                    color: Colors.white,
+                  )),
       ),
     );
   }

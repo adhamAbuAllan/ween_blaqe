@@ -1,4 +1,5 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:flutter_riverpod/legacy.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:ween_blaqe/controller/provider_controllers/statuses/status_of_apartment/image_state.dart';
 import 'package:flutter/material.dart';

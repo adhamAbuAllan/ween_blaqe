@@ -1,6 +1,6 @@
 
-import 'package:flutter_riverpod/flutter_riverpod.dart'
-    show StateNotifier, WidgetRef;
+import 'package:flutter_riverpod/flutter_riverpod.dart' show WidgetRef;
+import 'package:flutter_riverpod/legacy.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:flutter/material.dart';

@@ -77,7 +77,7 @@ class _NoInternetUiState extends ConsumerState<NoInternetUi>
     return ColorfulSafeArea(
       bottomColor: Colors.transparent,
       color: ref.read(themeModeNotifier.notifier).primaryTheme(ref: ref),
-      child: StreamBuilder<ConnectivityResult>(
+      child: StreamBuilder<List<ConnectivityResult>>(
           stream: Connectivity().onConnectivityChanged,
           builder: (context, snapshot) {
             return Scaffold(

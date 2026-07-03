@@ -1,4 +1,5 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:flutter_riverpod/legacy.dart';
 // import 'package:vibration/vibration.dart';
 import 'package:ween_blaqe/controller/provider_controllers/providers/no_internet_provider.dart';
 import 'package:ween_blaqe/controller/provider_controllers/statuses/no_internet_state.dart';

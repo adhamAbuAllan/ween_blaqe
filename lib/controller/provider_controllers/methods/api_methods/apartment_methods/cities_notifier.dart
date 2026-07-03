@@ -1,7 +1,7 @@
 import 'dart:convert';
+import 'package:flutter_riverpod/legacy.dart';
 
 import 'package:flutter/material.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../../../../api/cities.dart';
 import '../../../../../constants/strings.dart';

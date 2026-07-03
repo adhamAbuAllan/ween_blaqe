@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:flutter_riverpod/legacy.dart';
 import 'package:ween_blaqe/core/utils/funcations/route_pages/push_routes.dart';
 
 // import '../../../../controller/get_controllers.dart';
@@ -18,8 +19,15 @@ import '../../../../../session/sesstion_of_user.dart';
 class RegisterNotifier extends StateNotifier<AuthState> {
   RegisterNotifier() : super(AuthState());
 
-  Future<void> register(String name, String phone, String password, int typeId,
-      int universityId, WidgetRef ref, BuildContext context) async {
+  Future<void> register(
+      String name,
+      String phone,
+      String password,
+      int typeId,
+      int universityId,
+      String firebaseIdToken,
+      WidgetRef ref,
+      BuildContext context) async {
     state = state.copyWith(isLoading: true, errorMessage: null);
     var url = Uri.parse(ServerWeenBalaqee.register);
     typeId = typeId + 1;
@@ -30,6 +38,7 @@ class RegisterNotifier extends StateNotifier<AuthState> {
       "type_id": typeId.toString(),
       "university_id": universityId.toString(),
       "country_phone_number_id": "1",
+      "firebase_id_token": firebaseIdToken,
     });
 
     final responseData = jsonDecode(response.body);

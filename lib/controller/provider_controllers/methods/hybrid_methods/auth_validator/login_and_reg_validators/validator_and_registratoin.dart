@@ -4,6 +4,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 // import '../../../features/statuses/validate_text_form_field_state.dart';
 import '../../../../../../core/utils/function_that_effect_widgets/remove_plus_from_phone_number.dart';
+import '../../firebase_phone_registration.dart';
 import '../../../../providers/auth_provider.dart';
 
 Future<void> validateAndRegistration(
@@ -29,6 +30,7 @@ Future<void> validateAndRegistration(
       ref: ref,
       codeCountry: selectedCountryCodeValue,
       phoneNumber: phoneControllerValue);
+  if (!context.mounted) return;
   ref.read(formFieldsNotifier.notifier).updateValue(
       "phoneNumberRegistration", phoneControllerValue,
       context: context);
@@ -66,12 +68,13 @@ Future<void> validateAndRegistration(
     return;
   }
   // debugPrint("no error validate from local you have ");
-  await ref.read(registerNotifier.notifier).register(
-      userNameControllerValue,
-      phoneControllerValue,
-      passwordControllerValue,
-      typeOfUserValue,
-      1,
-      ref,
-      context);
+  await FirebasePhoneRegistration.verifyPhoneAndRegister(
+    ref: ref,
+    context: context,
+    name: userNameControllerValue,
+    phone: phoneControllerValue,
+    password: passwordControllerValue,
+    typeId: typeOfUserValue,
+    universityId: 1,
+  );
 }

@@ -1,7 +1,7 @@
 import 'dart:async';
+import 'package:flutter_riverpod/legacy.dart';
 
 import 'package:flutter/cupertino.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:ween_blaqe/controller/provider_controllers/methods/api_methods/auth_methods/refresh_user_data_notifier.dart';
 import 'package:ween_blaqe/controller/provider_controllers/methods/hybrid_methods/auth_validator/login_and_reg_validators/validator.dart';
@@ -83,11 +83,9 @@ final sendNoticeForUsNotifier =
   (ref) => SendNoticeForUsNotifier(),
 );
 
-
 final dropdownProvider = StateNotifierProvider<DropdownNotifier, int>((ref) {
   return DropdownNotifier();
 });
-
 
 final phoneLoginController = StateProvider<TextEditingController>((ref) {
   final controller = TextEditingController();
@@ -146,7 +144,7 @@ final oldPasswordController = StateProvider<TextEditingController>((ref) {
       () => controller.dispose()); // Dispose when the provider is disposed
   return controller;
 });
-final   updateUsernameController = StateProvider<TextEditingController>((ref) {
+final updateUsernameController = StateProvider<TextEditingController>((ref) {
   //Reg => registration
   final controller = TextEditingController();
   ref.onDispose(
@@ -155,7 +153,7 @@ final   updateUsernameController = StateProvider<TextEditingController>((ref) {
 });
 final updatePhoneNumberController = StateProvider<TextEditingController>((ref) {
   //Reg => registration
-  final controller = TextEditingController(); 
+  final controller = TextEditingController();
   ref.onDispose(
       () => controller.dispose()); // Dispose when the provider is disposed
   return controller;
@@ -205,6 +203,7 @@ final sendNoticeForUcController = StateProvider<TextEditingController>((ref) {
 });
 
 final isObscure = StateProvider<bool>((ref) => true);
+final isPhoneOtpLoading = StateProvider<bool>((ref) => false);
 final hasCheckedPhone = StateProvider<bool>((ref) => false);
 final isPhoneNumberIsAlreadyTaken = StateProvider<bool>((ref) => false);
 final isPop = StateProvider<bool>((ref) => false);
@@ -232,15 +231,16 @@ final newPasswordValidate = StateProvider<String?>((ref) => null);
 final sureNewPasswordValidate = StateProvider<String?>((ref) => null);
 final updatePhoneValidate = StateProvider<String?>((ref) => null);
 final countriesCodes = StateProvider<List<String>>((ref) => [
-  "+970",
-  "+972",    ]);
+      "+970",
+      "+972",
+    ]);
 final typeOfUser = StateProvider<List<String>>((ref) => [
-  "مالك",
-  "مكتب عقاري",
+      "مالك",
+      "مكتب عقاري",
     ]);
 
 final errorStatusCode = StateProvider<int>((ref) => 0);
-  final ownerIdNotifier = StateProvider<int>((ref) => 0);
+final ownerIdNotifier = StateProvider<int>((ref) => 0);
 
 final profileImageFile = StateProvider<XFile?>((ref) => null);
 

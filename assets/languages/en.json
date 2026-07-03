@@ -251,6 +251,10 @@
   "the_map": "the map",
   "select_the_location_on_the_map": "Select the location on the map",
   "the_location_has_been_selected": "The location has been selected",
-  "please_select_the_location": "Please select the location"
+  "please_select_the_location": "Please select the location",
+  "otp_sent_to": "We sent a verification code to",
+  "otp_code": "Verification code",
+  "invalid_otp_code": "The verification code is incorrect",
+  "too_many_otp_requests": "Too many attempts. Please try again later",
+  "phone_verification_failed": "Phone verification failed. Please try again"
 }
-

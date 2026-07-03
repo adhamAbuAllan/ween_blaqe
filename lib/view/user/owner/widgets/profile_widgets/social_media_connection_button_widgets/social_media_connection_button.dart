@@ -30,7 +30,7 @@ class SocialMediaConnectionButton extends ConsumerStatefulWidget {
 
   final String socialName;
 
-  final IconData socialIcon;
+  final FaIconData socialIcon;
   final String socialDialogName;
   final String labelUserName;
   final Color? borderColor;
@@ -102,7 +102,7 @@ class SocialIconWidget extends ConsumerWidget {
   const SocialIconWidget(
       {super.key, required this.socialIcon, this.colorOfIcon});
 
-  final IconData socialIcon;
+  final FaIconData socialIcon;
   final Color? colorOfIcon;
 
   @override

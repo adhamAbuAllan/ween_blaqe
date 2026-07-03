@@ -1,6 +1,7 @@
-import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../statuses/status_of_apartment/apartment_state.dart';
+import 'package:flutter_riverpod/legacy.dart';
+
 class ImageSliderNotifier extends StateNotifier<Map<int, ApartmentState>> {
   ImageSliderNotifier() : super({});
 
@@ -18,5 +19,4 @@ class ImageSliderNotifier extends StateNotifier<Map<int, ApartmentState>> {
     return state[apartmentId]?.currentIndex ?? 0;
   }
 }
-
 

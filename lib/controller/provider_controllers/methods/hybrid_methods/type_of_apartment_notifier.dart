@@ -1,4 +1,5 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:flutter_riverpod/legacy.dart';
 import 'package:ween_blaqe/controller/provider_controllers/providers/apartment_provider.dart';
 
 import '../../statuses/status_of_apartment/apartment_type_state.dart';

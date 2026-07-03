@@ -1,7 +1,7 @@
 import 'package:flutter_animate/flutter_animate.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:ween_blaqe/controller/provider_controllers/statuses/animation_state.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/legacy.dart';
 class AnimationNotifier extends StateNotifier<AnimationState> {
   AnimationNotifier() : super(AnimationState());
 

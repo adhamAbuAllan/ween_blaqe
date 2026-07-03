@@ -1,3 +1,120 @@
+import 'package:flutter/material.dart';
+import 'package:flutter_otp_text_field/flutter_otp_text_field.dart';
+
+void main() {
+  runApp(const MyApp());
+}
+
+class MyApp extends StatelessWidget {
+  const MyApp({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      debugShowCheckedModeBanner: false,
+      home: const OtpPreviewScreen(),
+    );
+  }
+}
+
+class OtpPreviewScreen extends StatelessWidget {
+  const OtpPreviewScreen({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    bool otpSent = true;
+
+    return Scaffold(
+      backgroundColor: Colors.white,
+      appBar: AppBar(
+        title: const Text("إنشاء حساب"),
+        centerTitle: true,
+        backgroundColor: Colors.orange,
+      ),
+      body: SingleChildScrollView(
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 24),
+          child: Column(
+            children: [
+              const SizedBox(height: 40),
+
+              const Text(
+                "رمز التحقق",
+                style: TextStyle(
+                  fontSize: 28,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+
+              const SizedBox(height: 12),
+
+              if (otpSent)
+                const Text(
+                  "قم بالتحقق من رسائل الواتس اب",
+                  style: TextStyle(
+                    color: Colors.grey,
+                    fontSize: 16,
+                  ),
+                ),
+
+              const SizedBox(height: 70),
+
+              OtpTextField(
+                numberOfFields: 6,
+                autoFocus: true,
+                showFieldAsBox: true,
+                borderRadius: BorderRadius.circular(8),
+                fieldWidth: 45,
+                borderColor: Colors.black54,
+                focusedBorderColor: Colors.orange,
+                cursorColor: Colors.orange,
+                textStyle: const TextStyle(
+                  fontSize: 20,
+                  fontWeight: FontWeight.bold,
+                ),
+                onCodeChanged: (_) {},
+                onSubmit: (_) {},
+              ),
+
+              const SizedBox(height: 40),
+
+              const Text(
+                "Logged in as +97056XXXXXXX",
+                style: TextStyle(
+                  color: Colors.green,
+                  fontWeight: FontWeight.w600,
+                ),
+              ),
+
+              const SizedBox(height: 80),
+
+              SizedBox(
+                width: double.infinity,
+                height: 55,
+                child: ElevatedButton(
+                  onPressed: () {},
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: Colors.orange,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(12),
+                    ),
+                  ),
+                  child: const Text(
+                    "تحقق",
+                    style: TextStyle(
+                      fontSize: 18,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                ),
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+}
 // import 'dart:developer';
 //
 // import 'package:firebase_auth/firebase_auth.dart';
@@ -5,13 +122,12 @@
 // import 'package:flutter_otp_text_field/flutter_otp_text_field.dart';
 // import 'package:ween_blaqe/view/common_widgets/text_widgets/subtitle_of_screen_widget.dart';
 // import 'package:ween_blaqe/view/common_widgets/text_widgets/title_of_screen_widget.dart';
-// import 'package:flutter_riverpod/flutter_riverpod.dart';
-//
 // import '../constants/coordination.dart';
 // import '../constants/get_it_controller.dart';
 // import '../controller/provider_controllers/methods/hybrid_methods/auth_validator/login_and_reg_validators/validator_and_registratoin.dart';
 // import '../controller/provider_controllers/methods/hybrid_methods/supbase_otp_notifier.dart';
 // import '../controller/provider_controllers/providers/auth_provider.dart';
+// import '../controller/provider_controllers/providers/auth_provider.dart' as OtpChannelType;
 // import '../controller/provider_controllers/providers/color_provider.dart';
 // import '../controller/provider_controllers/providers/supabase_provider.dart';
 // import '../view/common_widgets/button_widgets/elevated_button_widget.dart';
